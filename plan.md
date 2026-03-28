@@ -2,57 +2,95 @@
 
 ## 文档定位
 
-本文件只写当前最近一批、可以立刻开始编码执行的工作。
+本文件只写当前最近一批、可以直接开始执行的工作，不写长期制度展开。
 
 - 长期制度看 `docs/protocol_blueprint.md`
-- 当前真实可运行事实看 `README.md`
+- 当前真实状态看 `README.md`
+
+## 当前主任务
+
+先补 `benchmark-invariant layer` 的地基，再推进 entrant benchmarking。
+
+当前固定顺序：
+
+1. `harmonized resource layer`
+2. `dataset admission layer`
+3. `entrant benchmarking layer`
 
 ## 本轮目标
 
-推进 `Stage 1A` 的 `3 datasets × split_seed 101` 收口，实现与蓝图一致的 formal scoring 与 entrant 训练边界。
+把 `Stage 1A` 从“已有数据与 adapter 骨架”推进到“资源层与准入层闭环明确、随后可稳定进入 entrant benchmarking”的状态。
 
-本轮不做：
+## 本轮不做
 
-- 不新增任何预训练数据集
-- 不改 formal Stage 1A 数据池
-- 不展开 formal `3 datasets × 5 seeds`
-- 不输出正式 benchmark 结论
-- 不改 `protocol_blueprint.md`
+- 不新增 formal 主线数据池
+- 不直接展开 `3 datasets × 5 seeds` formal adjudication
+- 不在 admission 未闭合的数据集上产出 formal entrant 结论
+- 不把 adequacy 诊断指标替代 `predicted_shift` formal scoring
 
 ## 当前执行批次
 
-### 1. checkpoint registry 冻结
+### 1. harmonized resource layer 收口
 
-- 建立 `configs/entrants/checkpoint_registry.yaml`
-- 优先解析本地 `scgpt_human` 与 `geneformer_gf_12l_95m_i4096`
-- 若无法解析则保留 `to_be_confirmed`，但不阻断其余骨架
+- 固化 `Stage 1A` 数据资源登记、来源、下载口径与 provenance
+- 明确 raw / processed level 边界
+- 保持 formal dataset registry、raw audit 产物与 README 叙述一致
 
-### 2. entrant identity 与 runtime spec 文档冻结
+### 2. dataset admission layer 收口
 
-- 三张 entrant card
-- 三份 smoke 级 runtime spec
-- 一份 readiness summary
+- 把 `signal adequacy` 与 `model fidelity` 分开
+- 把 `support floor` 明确为 admission 规则，而不是事后调分规则
+- admission 至少显式追踪：
+  - `cells per perturbation`
+  - `cells per control`
+  - `UMI depth`
+- 前置审计并记录：
+  - `single-target vs multi-target`
+  - `MOI`
+  - `control definition`
+  - `barcode assignment reliability`
+  - `processed/raw level`
+  - `target mapping closure`
 
-### 3. 统一接口与 export 主线
+### 3. 当前数据集决议收口
 
-- `BaseEntrant`
-- `checkpoints.py`
-- `export.py`
-- target-level split manifest 生成与落盘
+#### `tian_2019_day7neuron`
 
-### 4. 当前实现重点
+- 已完成 raw audit
+- 下一步跑 formal filtering
+- filtering 完成后回填 formal 统计
+- 再决定是否进入 truth / scoring 重跑
 
-1. 正式 scoring 按 `dataset-local + four-lane + cross-lane summary` 收口
-2. canonical baseline/null family 先冻结到当前已实现且语义清晰的集合
-3. 三个 entrant 的 train-side 终点选择统一使用 target-level inner validation
-4. smoke 入口继续保留，作为 entrant 接线与最小回归入口
-5. 三个 entrant 的外层训练上限字段统一使用 `max_epochs`，当前 single-seed 收口版固定为 `30`
+#### `tian_2021_crispri`
+
+- 已完成下载与 raw audit
+- 当前状态为 `raw_audit_hold`
+- 先核对 `ATP5C1`、`ATP5H`、`TMEM55A` 三个 token 的 target mapping closure
+- 只有 admission 闭合后，才决定是否进入 formal filtering
+
+### 4. entrant benchmarking 进入条件
+
+只有在以下条件满足后，才继续推进 entrant benchmarking：
+
+- harmonized resource layer 已稳定
+- dataset admission 规则已明确
+- 主线数据集 formal filtering 与 truth 输入边界已冻结
+- adequacy diagnostics 与 fidelity scoring 的解释边界已写清
+
+## 你接下来先做什么
+
+按优先级：
+
+1. 核对 `tian_2021_crispri` 的 3 个未闭合 token 映射
+2. 跑 `tian_2019_day7neuron` 的 formal filtering
+3. 回填 `configs/stage1a_formal_datasets.yaml` 的 formal 统计
+4. 视 admission 结果决定是否把 `tian_2021_crispri` 从 `hold` 转为 auxiliary-pass 或继续保持 hold
+5. 在上述边界稳定后，再启动 entrant benchmarking 的重跑
 
 ## 本轮验收口径
 
-- 三个 entrant 在 `split_seed 101` 下都使用统一的 outer split 与 inner split
-- inner split 必须是 target-level，固定 `inner_seed=11`、`inner_val_fraction=0.2`
-- outer heldout 仅用于最终正式评估，不参与 epoch / checkpoint 选型
-- README / plan / runtime spec 对 `max_epochs` 的命名约定一致
-- 正式结果包含 lane-wise outputs 与 cross-lane summary
-- baseline legacy 命名与 formal comparator 语义不再混淆
+- `README.md`、`plan.md`、`configs/stage1a_formal_datasets.yaml` 对当前数据集状态描述一致
+- `harmonized resource layer -> dataset admission layer -> entrant benchmarking layer` 的顺序在文档中明确
+- `signal adequacy` 与 `model fidelity` 的边界在文档中明确
+- `support floor` 至少显式绑定 `cells per perturbation`、`cells per control`、`UMI depth`
+- `tian_2019_day7neuron` 与 `tian_2021_crispri` 的下一步动作明确，不再混成“统一待重跑”

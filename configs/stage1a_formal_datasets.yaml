@@ -50,13 +50,13 @@ datasets:
     perturbation_unit: single-gene perturbation
     n_cells_raw: 182790
     n_cells_formal: 0
-    n_controls: 0
-    n_perturbed: 0
-    n_unique_targets: 0
+    n_controls: 15580
+    n_perturbed: 167210
+    n_unique_targets: 26
     stage: Stage 1A formal
-    status: pending_reaudit
+    status: raw_audit_pass_pending_formal_filter
     output_path: data/processed/stage1a/formal_filtered/tian_2019_day7neuron.h5ad
-    notes: 已切换为当前第三主线数据集；原始 h5ad 已就位并完成基础读取核验，等待 formal filtering 与主线统计回填。
+    notes: 已完成 raw audit，当前 shape=182790x33752，control=15580，raw target=26；可继续进入 formal filtering，并在过滤后回填 formal 统计。
     source_loader: pertpy.data.tian_2019_day7neuron
     source_origin: pertpy 官方 datasets 文档与 _datasets 源码
     source_download_url: https://zenodo.org/records/10044268/files/TianKampmann2019_day7neuron.h5ad?download=1
@@ -66,15 +66,15 @@ datasets:
     cell_line: neuron
     control_definition: in-dataset control baseline
     perturbation_unit: single-gene perturbation
-    n_cells_raw: 0
+    n_cells_raw: 32300
     n_cells_formal: 0
-    n_controls: 0
-    n_perturbed: 0
-    n_unique_targets: 0
+    n_controls: 437
+    n_perturbed: 31863
+    n_unique_targets: 184
     stage: Stage 1A auxiliary
-    status: pending_download_and_reaudit
+    status: raw_audit_hold
     output_path: data/processed/stage1a/formal_filtered/tian_2021_crispri.h5ad
-    notes: 当前只作为辅助鲁棒性数据集；默认不进入 formal 主裁决。外部下载速度过慢，本轮仅保留来源登记，待完整下载后再回填统计。
+    notes: 原始 h5ad 已下载并完成 raw audit，当前 shape=32300x33538，control=437，raw target=184；因 3 个 perturbation token（ATP5C1、ATP5H、TMEM55A）无法在 var_names 中确认，暂维持 hold，默认不进入 formal 主裁决。
     source_loader: pertpy.data.tian_2021_crispri
     source_origin: pertpy 官方 datasets 文档与 _datasets 源码
     source_download_url: https://zenodo.org/records/10044268/files/TianKampmann2021_CRISPRi.h5ad?download=1
