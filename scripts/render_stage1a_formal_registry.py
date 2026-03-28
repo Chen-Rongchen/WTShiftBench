@@ -23,7 +23,7 @@ FIELDNAMES = [
 
 
 def main() -> None:
-    datasets = load_formal_dataset_contracts()
+    datasets = load_formal_dataset_contracts(include_auxiliary=True)
     FORMAL_CONTRACT_TSV_PATH.parent.mkdir(parents=True, exist_ok=True)
 
     with FORMAL_CONTRACT_TSV_PATH.open("w", encoding="utf-8", newline="") as handle:
