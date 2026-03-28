@@ -111,6 +111,76 @@ formal source shared
 - 统一的是 `predicted_shift` contract，不是模型输入形态
 - 任何真实模型接入都应先经过 adapter，再进入公共 scoring
 
+### 4.2B Harmonized Resource Layer 优先于 Entrant Benchmarking
+
+长期制度中，`benchmark-invariant layer` 不应直接从“原始候选数据集”跳到 entrant benchmarking，而应先建设 `harmonized resource layer`，再进入 `dataset admission layer`，最后才进入 `entrant benchmarking layer`。
+
+固定顺序应表达为：
+
+```text
+raw / processed candidate resources
+-> harmonized resource layer
+-> dataset admission layer
+-> entrant benchmarking layer
+```
+
+三层职责固定如下：
+
+- `harmonized resource layer`：统一来源登记、schema 映射、字段命名、provenance、processed/raw level 标注与基础可读性审计
+- `dataset admission layer`：判断数据是否具备进入 formal benchmark 的最低统计支持与元数据闭环
+- `entrant benchmarking layer`：仅对 admission 通过的数据运行 truth build、predicted-shift scoring 与 entrant adjudication
+
+长期原则：
+
+- `signal adequacy` 与 `model fidelity` 必须分离
+- `E-test`、`E-distance` 或其他 distributional diagnostics 只能用于 adequacy / diagnosability，不替代 `predicted_shift vs real_shift` formal scoring
+- formal benchmark 的主问题始终是模型 fidelity，而不是“该数据集是否看起来有信号”
+- 若数据集在 admission 层未闭合，则不得把 entrant score 解释为模型成败
+
+`support floor` 必须具备统计语义，而不能只是经验门槛。至少应显式追踪：
+
+- `cells per perturbation`
+- `cells per control`
+- `UMI depth`
+
+必要时可增加：
+
+- `detected genes per cell`
+- `usable pseudobulk replicates`
+- `perturbation prevalence / support distribution`
+
+这些支持度指标的职责是定义 admission / hold / exclude，而不是在 entrant 结果出来后事后救场。
+
+### 4.2C Dataset Admission 的前置元数据治理
+
+`dataset admission` 的本质是元数据治理，而不是“文件能读就算可评”。
+
+在进入 formal benchmark 前，长期应前置审计并冻结至少以下维度：
+
+- `single-target vs multi-target`
+- `MOI`
+- `control definition`
+- `barcode assignment reliability`
+- `processed/raw level`
+- `target mapping closure`
+
+制度含义：
+
+- admission 决策必须先于 truth build、formal filtering 与 entrant benchmarking
+- 若上述维度存在关键歧义，数据集应进入 `hold` 或 `auxiliary-only`，而不是带病进入 formal 主裁决
+- metadata audit 结论属于 `benchmark-invariant layer` 的公共治理资产，不得为某个 entrant 单独改写
+
+### 4.2D `scPerturb` 的制度角色
+
+`scPerturb` 或其他 dataset hub 的长期角色，是 `harmonized resource layer` 与预审计层的输入来源，而不是 formal benchmark protocol 本身。
+
+正式条文：
+
+- `scPerturb` 可作为候选数据资源目录、下载入口、初始 schema 参考与 provenance 起点
+- `scPerturb` 不等同于本项目的 formal dataset registry
+- `scPerturb` 的处理口径、字段命名或预处理层级，不得直接上升为本项目的 formal benchmark protocol
+- 任何来自 `scPerturb` 的资源，仍须经过本项目自己的 harmonization、admission audit 与 contract freezing
+
 ### 4.3 Stage 1A Four-Lane Formal Adjudication
 
 `Stage 1A` adopts a four-lane formal adjudication design, in which `full_gene`, `top500`, `top1000`, and `top2000` lanes are evaluated in parallel under a pre-registered rule. Admission is determined by cross-lane stability rather than by post hoc selection of the best-performing lane.
@@ -437,7 +507,7 @@ formal source shared
 - `tian_2021_crispri` 当前只作为辅助鲁棒性数据集，默认不进入 formal 主裁决
 - `replogle_2022_k562_gwps` 当前不升格为主线
 - 正式分析不依赖模型仓库自带数据版本
-- 正式数据应来自 `pertpy-sourced` 且经协议化审计后的版本
+- 正式数据可由 `pertpy`、`scPerturb` 或其他公开资源进入候选池，但只有经本项目 harmonized resource layer 与 admission audit 收口后的版本，才能进入 formal registry
 
 ### 5.1A Stage 1A 目标划分与 split governance
 
@@ -458,6 +528,13 @@ formal source shared
 - split governance 只负责 train / held-out target 划分
 - split governance 不得与 formal output gene-space 治理混写
 - split governance 不得被 common gene intersection 反向决定
+
+对 `minimum-support floor` 的长期解释进一步固定为：
+
+- 它是 admission 语义，不是事后调分语义
+- 至少应联合追踪 `cells per perturbation`、`cells per control` 与 `UMI depth`
+- 若支持度不足，应先在 admission 层 `hold / exclude`，而不是继续进入 entrant formal scoring
+- adequacy diagnostics 可以支持这一决策，但不得替代 `predicted_shift` formal score 本身
 
 当前预注册参数仍包括：
 
