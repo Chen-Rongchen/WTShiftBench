@@ -1,0 +1,6 @@
+{
+  "label": "stage1a_inner_val_5seeds",
+  "split_config": "configs/entrants/stage1a_inner_split_3datasets_5seeds.json",
+  "matrix_config": "configs/entrants/stage1a_smoke_matrix_3datasets_5seeds.json",
+  "audit_output_dir": "artifacts/audits/stage1a_inner_val_5seeds"
+}
