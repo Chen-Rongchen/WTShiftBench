@@ -4,7 +4,7 @@
 
 ## 项目一句话
 
-**WT Benchmark**：用统一、可审计的 black-box 框架评估各 entrant 是否产出可信的 `predicted_shift`。当前最近一批工作的重点是按 blueprint 收口 `Stage 1A` 的 `3 datasets × split_seed 101` 主线，并保留 1 个辅助数据集用于鲁棒性审计。
+**WT Benchmark**：用统一、可审计的 black-box 框架评估各 entrant 是否产出可信的 `predicted_shift`。当前最近一批工作的重点是先补 `benchmark-invariant layer` 的资源层与准入层，再进入 `Stage 1A` 的 entrant benchmarking。
 
 ## 当前真实状态
 
@@ -15,17 +15,23 @@
 | 已具备 | 本地 checkpoint：`models/pretrained/scgpt_human` |
 | 已具备 | 本地 checkpoint：`models/pretrained/geneformer_gf_12l_95m_i4096` |
 | 已具备 | 三个 smoke yaml、runtime defaults、checkpoint registry |
-| 进行中 | `Stage 1A` 的 dataset-local / four-lane / cross-lane formal 收口 |
+| 已具备 | `tian_2021_crispri` 原始文件下载完成并完成 raw audit |
+| 已具备 | 4 个 Stage 1A 数据集的 raw audit 产物 |
 | 已具备 | 三模型 × 三数据集 × seed101 的 formal adapter / ingest / evaluate 主线配置 |
-| 待重跑 | 新第三主线 `tian_2019_day7neuron` 与辅助位 `tian_2021_crispri` 的产物审计与重建 |
+| 进行中 | `Stage 1A` 的 harmonized resource layer / dataset admission layer 收口 |
+| 待推进 | `tian_2019_day7neuron` 的 formal filtering 与 formal 统计回填 |
+| 待决议 | `tian_2021_crispri` 的 target mapping closure 审计（`ATP5C1` / `ATP5H` / `TMEM55A`） |
 | 暂不进行 | formal multi-dataset × multi-seed adjudication（`3 datasets × 5 seeds`） |
 
 ## 当前收口范围
 
+- 当前固定顺序：`harmonized resource layer -> dataset admission layer -> entrant benchmarking layer`
 - 正式主线使用 `replogle_2022_k562_essential / replogle_2022_rpe1 / tian_2019_day7neuron`
 - 辅助数据集使用 `tian_2021_crispri`，默认不进入 formal 主流程
 - `tian_2019_ipsc` 与 `replogle_2022_k562_gwps` 不属于当前默认主线
 - 本轮固定 `split_seed: 101`
+- `signal adequacy` 与 `model fidelity` 明确分离：adequacy diagnostics 不替代 `predicted_shift` formal scoring
+- `support floor` 具有 admission 语义，至少显式追踪 `cells per perturbation`、`cells per control`、`UMI depth`
 - 正式评分按 `dataset-local + four-lane + cross-lane summary`
 - `common intersection` 仅保留 supplementary / audit 用途
 - train-side 终点选择统一采用 target-level inner validation：`inner_seed=11`、`inner_val_fraction=0.2`
@@ -35,6 +41,19 @@
 - `GEARS` 在内部把 `max_epochs` 映射到官方训练接口 `epochs`
 - `scGPT / Geneformer` 的 `max_epochs` 属于本项目 adapter 训练层，不是官方 backbone 原生参数名
 - 设备策略统一为 `gpu_if_available_else_cpu`：GPU 可用时默认且优先使用 GPU，只在 CUDA 不可用时回退 CPU
+
+## 当前数据集状态
+
+- `replogle_2022_k562_essential`：已在 formal 主线中
+- `replogle_2022_rpe1`：已在 formal 主线中
+- `tian_2019_day7neuron`：raw audit 已通过，等待 formal filtering
+- `tian_2021_crispri`：raw audit 已完成，但当前为 `raw_audit_hold`
+
+其中：
+
+- `tian_2019_day7neuron` 当前 raw 统计为 `182790 x 33752`，`n_controls=15580`，`n_perturbed=167210`，`n_unique_targets=26`
+- `tian_2021_crispri` 当前 raw 统计为 `32300 x 33538`，`n_controls=437`，`n_perturbed=31863`，`n_unique_targets=184`
+- `tian_2021_crispri` 暂时 `hold` 的原因是 3 个 perturbation token 仍未完成 target mapping closure：`ATP5C1`、`ATP5H`、`TMEM55A`
 
 ## 关键文件
 
@@ -89,6 +108,7 @@ python scripts/run_stage1a_smoke_matrix.py
 - smoke 运行只证明 entrant identity、runtime spec、split governance、`predicted_shift` export 与 benchmark hooks 已接通
 - smoke 结果不构成 formal Stage 1A adjudication 结论
 - 正式记录以 `lane-wise outputs + cross-lane summary` 为中心，而不是单一 leaderboard
+- `E-test` / `E-distance` 等 adequacy diagnostics 只用于资源层 / admission 层诊断，不替代 formal predicted-shift scoring
 - 当前 `linear_delta_baseline` 的仓库实现仅保留 `legacy` 版本，不作为 canonical linear baseline formal 结论依据
 - `scripts/run_stage1a_smoke_matrix.py` 当前用于 entrant smoke / inner-validation 批量回归，不等同于 formal `3 datasets × 5 seeds` adjudication 主线
 
@@ -100,6 +120,16 @@ python scripts/run_stage1a_smoke_matrix.py
   - `pertpy.data.tian_2019_day7neuron()`
   - `pertpy.data.tian_2021_crispri()`
 - 该口径已按 pertpy 官方 datasets 文档与 `_datasets` 源码页核对；仓库配置中的 loader 名、文件名与下载 URL 应与官方实现一致
+- `scPerturb` 或其他 dataset hub 只作为候选资源入口与预审计输入，不等同于本项目 formal benchmark protocol
+
+## 下一步
+
+按当前优先级：
+
+1. 核对 `tian_2021_crispri` 中 `ATP5C1`、`ATP5H`、`TMEM55A` 的 target mapping closure
+2. 跑 `tian_2019_day7neuron` 的 formal filtering
+3. 回填 formal 统计并决定 `tian_2021_crispri` 是否解除 `hold`
+4. 在 resource/admission 边界稳定后，再继续 entrant benchmarking 重跑
 
 ## Registry 层状态（已弃用）
 
