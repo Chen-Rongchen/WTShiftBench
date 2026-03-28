@@ -1,0 +1,80 @@
+stage: stage1a_formal
+contract_version: "1.1"
+source_summary: data/processed/stage1a/formal_filtered/formal_filter_summary.tsv
+notes:
+  - 当前登记 4 个数据集：3 个主线 + 1 个辅助。
+  - 只有 `default_in_mainline: true` 的数据集会被 formal 主流程默认消费。
+  - 新增数据集的细胞数/基因数统计需在重新下载、审计与过滤后回填；未重跑前保留为 0，避免写入虚假数字。
+datasets:
+  - dataset_id: replogle_2022_k562_essential
+    role: mainline
+    default_in_mainline: true
+    cell_line: K562
+    control_definition: in-dataset control baseline
+    perturbation_unit: single-gene perturbation
+    n_cells_raw: 310385
+    n_cells_formal: 310385
+    n_controls: 10691
+    n_perturbed: 299694
+    n_unique_targets: 2057
+    stage: Stage 1A formal
+    status: pass
+    output_path: data/processed/stage1a/formal_filtered/replogle_2022_k562_essential.h5ad
+    notes: 已按 formal 主线规则完成过滤并补齐标准 obs 字段。
+    source_loader: pertpy.data.replogle_2022_k562_essential
+    source_origin: pertpy 官方 datasets 文档与 _datasets 源码
+    source_download_url: https://exampledata.scverse.org/pertpy/replogle_2022_k562_essential.h5ad
+  - dataset_id: replogle_2022_rpe1
+    role: mainline
+    default_in_mainline: true
+    cell_line: RPE1
+    control_definition: in-dataset control baseline
+    perturbation_unit: single-gene perturbation
+    n_cells_raw: 247914
+    n_cells_formal: 247914
+    n_controls: 11485
+    n_perturbed: 236429
+    n_unique_targets: 2393
+    stage: Stage 1A formal
+    status: pass
+    output_path: data/processed/stage1a/formal_filtered/replogle_2022_rpe1.h5ad
+    notes: 已按 formal 主线规则完成过滤并补齐标准 obs 字段。
+    source_loader: pertpy.data.replogle_2022_rpe1
+    source_origin: pertpy 官方 datasets 文档与 _datasets 源码
+    source_download_url: https://zenodo.org/record/10044268/files/ReplogleWeissman2022_rpe1.h5ad?download=1
+  - dataset_id: tian_2019_day7neuron
+    role: mainline
+    default_in_mainline: true
+    cell_line: neuron
+    control_definition: in-dataset control baseline
+    perturbation_unit: single-gene perturbation
+    n_cells_raw: 182790
+    n_cells_formal: 0
+    n_controls: 0
+    n_perturbed: 0
+    n_unique_targets: 0
+    stage: Stage 1A formal
+    status: pending_reaudit
+    output_path: data/processed/stage1a/formal_filtered/tian_2019_day7neuron.h5ad
+    notes: 已切换为当前第三主线数据集；原始 h5ad 已就位并完成基础读取核验，等待 formal filtering 与主线统计回填。
+    source_loader: pertpy.data.tian_2019_day7neuron
+    source_origin: pertpy 官方 datasets 文档与 _datasets 源码
+    source_download_url: https://zenodo.org/records/10044268/files/TianKampmann2019_day7neuron.h5ad?download=1
+  - dataset_id: tian_2021_crispri
+    role: auxiliary
+    default_in_mainline: false
+    cell_line: neuron
+    control_definition: in-dataset control baseline
+    perturbation_unit: single-gene perturbation
+    n_cells_raw: 0
+    n_cells_formal: 0
+    n_controls: 0
+    n_perturbed: 0
+    n_unique_targets: 0
+    stage: Stage 1A auxiliary
+    status: pending_download_and_reaudit
+    output_path: data/processed/stage1a/formal_filtered/tian_2021_crispri.h5ad
+    notes: 当前只作为辅助鲁棒性数据集；默认不进入 formal 主裁决。外部下载速度过慢，本轮仅保留来源登记，待完整下载后再回填统计。
+    source_loader: pertpy.data.tian_2021_crispri
+    source_origin: pertpy 官方 datasets 文档与 _datasets 源码
+    source_download_url: https://zenodo.org/records/10044268/files/TianKampmann2021_CRISPRi.h5ad?download=1

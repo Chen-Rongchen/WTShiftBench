@@ -1,0 +1,13 @@
+dataset_id: replogle_2022_k562_essential
+model_id: scgpt_embedding_kernel_formal
+formal_h5ad_path: data/processed/stage1a/formal_filtered/replogle_2022_k562_essential.h5ad
+prediction_path: data/predictions/stage1a_scgpt_raw/scgpt_embedding_kernel_formal/replogle_2022_k562_essential/predicted_shift.tsv.gz
+prediction_space: X_pseudobulk_delta
+output_path: data/predictions/stage1a_main_aligned/scgpt_embedding_kernel_formal/replogle_2022_k562_essential/predicted_shift_aligned.tsv.gz
+summary_path: reports/stage1a/prediction_alignment/scgpt_embedding_kernel_formal/replogle_2022_k562_essential/alignment_summary.json
+manifest_path: reports/stage1a/prediction_alignment/scgpt_embedding_kernel_formal/replogle_2022_k562_essential/alignment_manifest.json
+allow_missing_targets: true
+allow_missing_genes: true
+checkpoint_dir: models/pretrained/scgpt_human
+seed: 123
+top_k: 4

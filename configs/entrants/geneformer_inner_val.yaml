@@ -1,0 +1,12 @@
+entrant_name: geneformer_stage1a_inner_val_v1
+dataset_id: replogle_2022_k562_essential
+split_seed: 101
+lane_mode: current_project_default_smoke_lane
+runtime_defaults_ref: configs/entrants/geneformer_runtime_defaults.yaml
+checkpoint_registry_ref: configs/entrants/checkpoint_registry.yaml
+checkpoint_key: geneformer_gf_12l_95m_i4096
+output_dir: data/predictions/smoke/geneformer_stage1a_inner_val_v1/replogle_2022_k562_essential/seed101
+device: auto
+do_validate_contract: true
+do_ingest: true
+do_align: true

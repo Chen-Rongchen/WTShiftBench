@@ -1,0 +1,6 @@
+run_configs:
+  - configs/stage1a/runs/baseline_smoke_zero_shift_null.yaml
+  - configs/stage1a/runs/baseline_smoke_mean_shift_baseline.yaml
+  - configs/stage1a/runs/baseline_smoke_linear_delta_baseline_legacy.yaml
+  - configs/stage1a/runs/baseline_smoke_label_shuffle.yaml
+  - configs/stage1a/runs/baseline_smoke_random_pairing.yaml

@@ -1,0 +1,9 @@
+dataset_id: replogle_2022_k562_essential
+model_id: baseline_smoke_random_pairing
+prediction_path: data/nulls/stage1a_main_aligned/replogle_2022_k562_essential/random_pairing.tsv.gz
+prediction_space: X_pseudobulk_delta
+output_path: data/predictions/stage1a_main_aligned/baseline_smoke_random_pairing/replogle_2022_k562_essential/predicted_shift_aligned.tsv.gz
+summary_path: reports/stage1a/prediction_alignment/baseline_smoke_random_pairing/replogle_2022_k562_essential/alignment_summary.json
+manifest_path: reports/stage1a/prediction_alignment/baseline_smoke_random_pairing/replogle_2022_k562_essential/alignment_manifest.json
+allow_missing_targets: false
+allow_missing_genes: false

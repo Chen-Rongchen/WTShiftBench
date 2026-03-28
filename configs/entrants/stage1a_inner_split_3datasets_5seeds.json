@@ -1,0 +1,11 @@
+{
+  "datasets": [
+    "replogle_2022_k562_essential",
+    "replogle_2022_rpe1",
+    "tian_2019_day7neuron"
+  ],
+  "split_seeds": [101, 202, 303, 404, 505],
+  "heldout_fraction": 0.2,
+  "inner_seed": 11,
+  "inner_val_fraction": 0.2
+}

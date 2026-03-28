@@ -1,0 +1,22 @@
+registry_version: "1.0"
+checkpoints:
+  scgpt_human:
+    entrant_name: scgpt_human
+    checkpoint_vendor_type: internal_mirror
+    checkpoint_vendor_uri: /home/data/gz0705/WTKO/models/pretrained/scgpt_human
+    checkpoint_version_tag: local_existing
+    checkpoint_artifact_identity: scgpt_human
+    local_resolved_path: /home/data/gz0705/WTKO/models/pretrained/scgpt_human
+    upstream_vendor_uri: https://huggingface.co/perturblab/scgpt-human
+    upstream_version_tag: unknown_local_existing
+    status: resolved_local
+  geneformer_gf_12l_95m_i4096:
+    entrant_name: geneformer_gf_12l_95m_i4096
+    checkpoint_vendor_type: internal_mirror
+    checkpoint_vendor_uri: /home/data/gz0705/WTKO/models/pretrained/geneformer_gf_12l_95m_i4096
+    checkpoint_version_tag: local_existing
+    checkpoint_artifact_identity: geneformer_gf_12l_95m_i4096
+    local_resolved_path: /home/data/gz0705/WTKO/models/pretrained/geneformer_gf_12l_95m_i4096
+    upstream_vendor_uri: https://huggingface.co/ctheodoris/Geneformer
+    upstream_version_tag: gf-12L-95M-i4096
+    status: resolved_local
