@@ -1,0 +1,5 @@
+dataset_id: tian_2019_day7neuron
+model_id: gears_stage1a_formal
+raw_signal_root: reports/stage1a_audit/gears_raw_signal_audit
+coverage_root: reports/stage1a_audit/gears_coverage_audit
+output_root: reports/stage1a_audit/gears_residual_relation_audit

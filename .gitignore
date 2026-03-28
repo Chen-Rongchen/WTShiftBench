@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtualenv / Pixi / local env
+.venv/
+venv/
+.pixi/
+.python-version
+
+# Jupyter / editor
+.ipynb_checkpoints/
+.DS_Store
+.idea/
+.vscode/
+
+# Build / local package artifacts
+build/
+dist/
+*.egg-info/
+
+# Runtime outputs
+tmp/
+artifacts/
+reports/
+logs/
+
+# Large benchmark data
+data/
+data/raw/
+data/processed/
+data/predictions/
+data/baselines/
+data/nulls/
+data/frozen/
+data/audit/
+
+# Local model assets
+models/pretrained/
+
+# Result bundles
+results/
+
+# Keep repo docs/configs/code only

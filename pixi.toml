@@ -1,0 +1,308 @@
+[workspace]
+name = "wt-benchmark"
+version = "0.1.0"
+channels = ["pytorch", "nvidia", "conda-forge", "bioconda"]
+platforms = ["linux-64"]
+
+[activation.env]
+PYTHONNOUSERSITE = "1"
+# 使 `from stage1a_catalog` 在 `python -m scripts.*` 下也可用（模块在 scripts/stage1a_catalog.py）
+PYTHONPATH = ".:scripts:src"
+
+# ============================================================
+# Feature 定义：各环境的依赖集合
+# ============================================================
+
+# Core Feature: WT Benchmark 主链路
+[feature.core.dependencies]
+python = "3.10.*"
+pip = "*"
+numpy = ">=1.26,<2.0"
+pandas = ">=2.1,<2.3"
+scipy = ">=1.11,<1.14"
+pyyaml = "*"
+rich = "*"
+typer = "*"
+anndata = "*"
+
+# GEARS Feature: GEARS Prediction Producer
+[feature.gears.dependencies]
+python = "3.10.*"
+pip = "*"
+numpy = ">=1.26,<2.0"
+pandas = ">=2.1,<2.3"
+scipy = ">=1.11,<1.14"
+scikit-learn = "*"
+tqdm = "*"
+pytorch = ">=2.4,<2.6"
+pytorch-cuda = "12.1.*"
+pytorch-lightning = ">=2.4,<2.6"
+torch-geometric = ">=2.5,<2.7"
+
+[feature.gears.pypi-dependencies]
+cell-gears = "==0.1.2"
+
+# scGPT Feature: scGPT Prediction Producer
+[feature.scgpt.dependencies]
+python = "3.10.*"
+pip = "*"
+ipython = "*"
+numpy = ">=1.26,<2.0"
+pandas = ">=2.1,<2.3"
+scipy = ">=1.11,<1.14"
+anndata = "*"
+scanpy = "*"
+scikit-learn = "*"
+pytorch = ">=2.3,<2.4"
+pytorch-cuda = "12.1.*"
+torchtext = "0.18.*"
+transformers = ">=4.37,<5.0"
+datasets = ">=2.3,<3.0"
+accelerate = "*"
+huggingface_hub = "*"
+sentencepiece = "*"
+tokenizers = "*"
+
+[feature.scgpt.pypi-dependencies]
+scgpt = "==0.2.4"
+
+# Geneformer Feature: Geneformer Prediction Producer
+[feature.geneformer.dependencies]
+python = "3.10.*"
+pip = "*"
+numpy = ">=1.26,<2.0"
+pandas = ">=2.1,<2.3"
+scipy = ">=1.11,<1.14"
+anndata = "*"
+pytorch = ">=2.4,<2.6"
+pytorch-cuda = "12.1.*"
+transformers = ">=4.37,<5.0"
+datasets = "*"
+accelerate = "*"
+huggingface_hub = "*"
+sentencepiece = "*"
+tokenizers = "*"
+
+[feature.geneformer.pypi-dependencies]
+geneformer = { path = "vendor/geneformer" }
+safetensors = ">=0.4"
+
+# ============================================================
+# 环境定义：组合 features
+# ============================================================
+
+[environments.core]
+solve-group = "core"
+features = ["core"]
+
+[environments.gears]
+solve-group = "gears"
+features = ["gears"]
+
+[environments.scgpt]
+solve-group = "scgpt"
+features = ["scgpt"]
+
+[environments.geneformer]
+solve-group = "geneformer"
+features = ["geneformer"]
+
+# ============================================================
+# Tasks: 环境安装
+# ============================================================
+[tasks.env-install-core]
+cmd = "pixi install --environment core"
+description = "安装 core 环境"
+
+[tasks.env-install-gears]
+cmd = "pixi install --environment gears"
+description = "安装 GEARS 环境"
+
+[tasks.env-install-scgpt]
+cmd = "pixi install --environment scgpt"
+description = "安装 scGPT 环境"
+
+[tasks.env-install-geneformer]
+cmd = "pixi install --environment geneformer"
+description = "安装 Geneformer 环境"
+
+[tasks.fetch-geneformer-gf-12l-95m-i4096]
+cmd = "hf download ctheodoris/Geneformer --include \"gf-12L-95M-i4096/*\" --local-dir models/pretrained/geneformer_gf_12l_95m_i4096 --revision 933ca80e39d421c47a12168699766bb7e4e2c197"
+description = "下载 gf-12L-95M-i4096 权重（model.safetensors）到 models/pretrained/"
+
+[tasks.env-install-all]
+cmd = "pixi install"
+description = "安装所有环境"
+
+# ============================================================
+# Tasks: 环境检查
+# ============================================================
+[tasks.env-check-core]
+cmd = "python scripts/env/check_core_env.py"
+description = "验证 core 环境"
+
+[tasks.env-check-gears]
+cmd = "python scripts/env/check_gears_env.py"
+description = "验证 GEARS 环境，要求 GPU 可用"
+
+[tasks.env-check-scgpt]
+cmd = "python scripts/env/check_scgpt_env.py"
+description = "验证 scGPT 环境，要求 GPU 可用"
+
+[tasks.env-check-geneformer]
+cmd = "python scripts/env/check_geneformer_env.py"
+description = "验证 Geneformer 环境，要求 GPU 可用"
+
+[tasks.check-envs]
+cmd = "pixi run --environment core env-check-core && pixi run --environment gears env-check-gears && pixi run --environment scgpt env-check-scgpt && pixi run --environment geneformer env-check-geneformer"
+description = "验证所有环境"
+
+# ============================================================
+# Tasks: 版本检查
+# ============================================================
+[tasks.versions-core]
+cmd = "python scripts/env/print_versions.py core"
+description = "打印 core 环境版本信息"
+
+[tasks.versions-gears]
+cmd = "python scripts/env/print_versions.py gears"
+description = "打印 GEARS 环境版本信息"
+
+[tasks.versions-scgpt]
+cmd = "python scripts/env/print_versions.py scgpt"
+description = "打印 scGPT 环境版本信息"
+
+[tasks.versions-geneformer]
+cmd = "python scripts/env/print_versions.py geneformer"
+description = "打印 Geneformer 环境版本信息"
+
+[tasks.check-all]
+cmd = "pixi run --environment core versions-core && pixi run --environment gears versions-gears && pixi run --environment scgpt versions-scgpt && pixi run --environment geneformer versions-geneformer"
+description = "打印所有环境版本信息"
+
+# ============================================================
+# Tasks: Stage 1A 主链路任务（仅在 core 环境）
+# ============================================================
+[tasks.load-stage1a]
+cmd = "python scripts/load_stage1a_pertpy.py"
+description = "加载 Stage 1A 数据"
+
+[tasks.formal-filter-stage1a]
+cmd = "python scripts/formal_filter_stage1a.py"
+description = "筛选符合条件的数据"
+
+[tasks.render-stage1a-formal-registry]
+cmd = "python scripts/render_stage1a_formal_registry.py"
+description = "渲染正式注册表"
+
+[tasks.analyze-stage1a-pseudobulk-eligibility]
+cmd = "python scripts/analyze_stage1a_pseudobulk_eligibility.py"
+description = "分析假体数据资格"
+
+[tasks.freeze-stage1a-formal-inputs]
+cmd = "python scripts/freeze_stage1a_formal_inputs.py"
+description = "冻结正式输入数据"
+
+[tasks.run-stage1a-formal-freeze-mainline]
+cmd = "python -m scripts.stage1a.benchmark_invariant.formal.run_formal_freeze_mainline"
+description = "运行 Stage 1A benchmark-invariant formal 主线"
+
+[tasks.run-stage1a-truth-space-mainline]
+cmd = "python -m scripts.stage1a.benchmark_invariant.truth_space.run_truth_space_mainline"
+description = "运行 Stage 1A benchmark-invariant truth/evaluation-space 主线"
+
+[tasks.build-stage1a-pseudobulk-delta-truth]
+cmd = "python scripts/build_stage1a_pseudobulk_delta_truth.py"
+description = "构建假体增量真值"
+
+[tasks.freeze-stage1a-truth]
+cmd = "python scripts/freeze_stage1a_truth.py"
+description = "冻结真值数据"
+
+[tasks.build-stage1a-evaluation-space]
+cmd = "python scripts/build_stage1a_evaluation_space.py"
+description = "构建评估空间"
+
+[tasks.build-stage1a-main-aligned-baselines-nulls]
+cmd = "python scripts/build_stage1a_main_aligned_baselines_nulls.py"
+description = "构建基线空值"
+
+[tasks.run-stage1a-truth-to-render-mainline]
+cmd = "python scripts/run_stage1a_truth_to_render_mainline.py"
+description = "兼容入口：共享 truth-space 后执行 scoring"
+
+[tasks.run-stage1a-batch-truth-to-render-mainline]
+cmd = "python scripts/run_stage1a_batch_truth_to_render_mainline.py"
+description = "兼容入口：共享 truth-space 后批量执行 scoring"
+
+[tasks.run-stage1a-scoring-pipeline]
+cmd = "python -m scripts.stage1a.benchmark_invariant.scoring.run_scoring_pipeline"
+description = "运行 Stage 1A benchmark-invariant scoring"
+
+[tasks.run-stage1a-batch-scoring-pipeline]
+cmd = "python -m scripts.stage1a.benchmark_invariant.scoring.run_batch_scoring_pipeline"
+description = "批量运行 Stage 1A benchmark-invariant scoring"
+
+[tasks.run-stage1a-baseline-ladder-smoke]
+cmd = "python -m scripts.stage1a.benchmark_invariant.scoring.run_baseline_ladder_smoke"
+description = "执行 Stage 1A baseline ladder 的最小 smoke"
+
+[tasks.run-stage1a-three-models-pipeline]
+cmd = "python scripts/run_stage1a_three_models_pipeline.py"
+description = "formal freeze 起：三模型×三数据集预测 + 批量 scoring（需已完成 formal-filter）"
+
+[tasks.ingest-stage1a-model-predictions]
+cmd = "python -m scripts.stage1a.benchmark_invariant.scoring.ingest_predictions"
+description = "运行 benchmark-invariant ingest"
+
+[tasks.evaluate-stage1a-predictions]
+cmd = "python -m scripts.stage1a.benchmark_invariant.scoring.evaluate_predictions"
+description = "运行 benchmark-invariant evaluate"
+
+[tasks.render-stage1a-pass-skeleton]
+cmd = "python -m scripts.stage1a.benchmark_invariant.scoring.render_pass_skeleton"
+description = "运行 benchmark-invariant render"
+
+[tasks.build-stage1a-mock-predictions]
+cmd = "python -m scripts.stage1a.benchmark_invariant.scoring.build_mock_predictions"
+description = "构建 Stage 1A mock 预测"
+
+[tasks.materialize-stage1a-inner-splits-seed101]
+cmd = "python scripts/materialize_stage1a_inner_splits.py --config configs/entrants/stage1a_inner_split_3datasets_seed101.json"
+description = "物化 Stage 1A 单种子 inner split"
+
+[tasks.materialize-stage1a-inner-splits-5seeds]
+cmd = "python scripts/materialize_stage1a_inner_splits.py --config configs/entrants/stage1a_inner_split_3datasets_5seeds.json"
+description = "物化 Stage 1A 五种子 inner split"
+
+[tasks.run-stage1a-inner-val-matrix-seed101-dry-run]
+cmd = "python scripts/run_stage1a_smoke_matrix.py --config configs/entrants/stage1a_smoke_matrix_3datasets_seed101.json --dry-run"
+description = "预览 Stage 1A 单种子 inner validation 矩阵命令"
+
+[tasks.run-stage1a-inner-val-matrix-seed101]
+cmd = "python scripts/run_stage1a_smoke_matrix.py --config configs/entrants/stage1a_smoke_matrix_3datasets_seed101.json"
+description = "运行 Stage 1A 单种子 inner validation 矩阵"
+
+[tasks.run-stage1a-inner-val-matrix-5seeds-dry-run]
+cmd = "python scripts/run_stage1a_smoke_matrix.py --config configs/entrants/stage1a_smoke_matrix_3datasets_5seeds.json --dry-run"
+description = "预览 Stage 1A 五种子 inner validation 矩阵命令"
+
+[tasks.run-stage1a-inner-val-matrix-5seeds]
+cmd = "python scripts/run_stage1a_smoke_matrix.py --config configs/entrants/stage1a_smoke_matrix_3datasets_5seeds.json"
+description = "运行 Stage 1A 五种子 inner validation 矩阵"
+
+[tasks.audit-stage1a-inner-val-seed101]
+cmd = "python scripts/audit_stage1a_inner_val_runs.py --config configs/entrants/stage1a_smoke_matrix_3datasets_seed101.json --output-dir artifacts/audits/stage1a_inner_val_seed101"
+description = "审计 Stage 1A 单种子 inner validation 产物"
+
+[tasks.audit-stage1a-inner-val-5seeds]
+cmd = "python scripts/audit_stage1a_inner_val_runs.py --config configs/entrants/stage1a_smoke_matrix_3datasets_5seeds.json --output-dir artifacts/audits/stage1a_inner_val_5seeds"
+description = "审计 Stage 1A 五种子 inner validation 产物"
+
+[tasks.run-stage1a-inner-val-pipeline-seed101]
+cmd = "python scripts/run_stage1a_inner_val_pipeline.py --config configs/entrants/stage1a_inner_val_pipeline_seed101.json"
+description = "执行 Stage 1A 单种子 inner validation 收口流水线"
+
+[tasks.run-stage1a-inner-val-pipeline-5seeds]
+cmd = "python scripts/run_stage1a_inner_val_pipeline.py --config configs/entrants/stage1a_inner_val_pipeline_5seeds.json"
+description = "执行 Stage 1A 五种子 inner validation 收口流水线"
