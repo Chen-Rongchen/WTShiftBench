@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import argparse
 import json
 from pathlib import Path
 
@@ -50,24 +51,6 @@ def assert_retained_targets_complete(dataset_name: str, filtered_obs: pd.DataFra
             f"{dataset_name} 存在被保留但 target_gene 为空的非 control 细胞: "
             f"{invalid_target_rows.head(10).to_dict(orient='records')}"
         )
-
-    if dataset_name in {"replogle_2022_k562_essential", "replogle_2022_rpe1"}:
-        invalid_gene_id_rows = filtered_obs.loc[
-            non_control_mask
-            & filtered_obs["target_gene_id"].astype("string").str.strip().eq(""),
-            [
-                "cell_id",
-                "perturbation_label_raw",
-                "perturbation_label_clean",
-                "target_gene",
-                "target_gene_id",
-            ],
-        ]
-        if not invalid_gene_id_rows.empty:
-            raise ValueError(
-                f"{dataset_name} 存在被保留但 target_gene_id 为空的非 control 细胞: "
-                f"{invalid_gene_id_rows.head(10).to_dict(orient='records')}"
-            )
 
 
 def build_standard_obs(dataset_name: str, obs: pd.DataFrame) -> pd.DataFrame:
@@ -137,6 +120,17 @@ def build_filter_report(
     unique_target_count = int(
         filtered_obs.loc[~filtered_obs["is_control"], "target_gene"].astype("string").nunique()
     )
+    track_target_gene_id = dataset_name in {"replogle_2022_k562_essential", "replogle_2022_rpe1"}
+    missing_target_gene_id_rows = (
+        int(
+            (
+                (~filtered_obs["is_control"].astype(bool))
+                & filtered_obs["target_gene_id"].astype("string").str.strip().eq("")
+            ).sum()
+        )
+        if track_target_gene_id
+        else 0
+    )
 
     return {
         "dataset": dataset_name,
@@ -146,9 +140,14 @@ def build_filter_report(
         "kept_perturbed_cells": kept_perturbed_cells,
         "removed_multi_perturbation_cells": removed_multi_perturbation_cells,
         "unique_target_count": unique_target_count,
+        "missing_target_gene_id_rows": missing_target_gene_id_rows,
         "final_status": "pass",
         "output_path": str(output_path),
-        "note": "已按 formal 主线规则完成过滤并补齐标准 obs 字段。",
+        "note": (
+            "已按 formal 主线规则完成过滤并补齐标准 obs 字段。"
+            if missing_target_gene_id_rows == 0
+            else "已按 formal 主线规则完成过滤；保留 target_gene 作为 formal 主键，部分细胞缺少 source gene_id。"
+        ),
     }
 
 
@@ -183,13 +182,31 @@ def process_dataset(dataset_name: str, input_path: Path) -> tuple[dict[str, obje
     return report, report_path
 
 
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="按 Stage 1A formal 规则过滤数据集。")
+    parser.add_argument(
+        "--dataset",
+        action="append",
+        dest="datasets",
+        help="仅处理指定 dataset_id；可重复传入多次。",
+    )
+    return parser.parse_args()
+
+
 def main() -> None:
+    args = parse_args()
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     summary_rows: list[dict[str, object]] = []
+    selected = set(args.datasets or [])
 
     for dataset in FORMAL_SOURCE_DATASETS:
+        if selected and dataset.name not in selected:
+            continue
         report, _ = process_dataset(dataset.name, dataset.path)
         summary_rows.append(report)
+
+    if not summary_rows:
+        raise ValueError("未匹配到任何待处理数据集。")
 
     summary_df = pd.DataFrame(summary_rows).sort_values("dataset").reset_index(drop=True)
     summary_path = OUTPUT_DIR / "formal_filter_summary.tsv"

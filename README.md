@@ -19,8 +19,8 @@
 | 已具备 | 4 个 Stage 1A 数据集的 raw audit 产物 |
 | 已具备 | 三模型 × 三数据集 × seed101 的 formal adapter / ingest / evaluate 主线配置 |
 | 进行中 | `Stage 1A` 的 harmonized resource layer / dataset admission layer 收口 |
-| 待推进 | `tian_2019_day7neuron` 的 formal filtering 与 formal 统计回填 |
-| 待决议 | `tian_2021_crispri` 的 target mapping closure 审计（`ATP5C1` / `ATP5H` / `TMEM55A`） |
+| 已完成 | `tian_2019_day7neuron` 的 formal filtering 与 formal 统计回填 |
+| 已完成 | `tian_2021_crispri` 的 target mapping closure 审计与 formal filtering |
 | 暂不进行 | formal multi-dataset × multi-seed adjudication（`3 datasets × 5 seeds`） |
 
 ## 当前收口范围
@@ -46,14 +46,16 @@
 
 - `replogle_2022_k562_essential`：已在 formal 主线中
 - `replogle_2022_rpe1`：已在 formal 主线中
-- `tian_2019_day7neuron`：raw audit 已通过，等待 formal filtering
-- `tian_2021_crispri`：raw audit 已完成，但当前为 `raw_audit_hold`
+- `tian_2019_day7neuron`：已完成 formal filtering
+- `tian_2021_crispri`：已完成 formal filtering，当前作为 auxiliary-pass 保留
 
 其中：
 
-- `tian_2019_day7neuron` 当前 raw 统计为 `182790 x 33752`，`n_controls=15580`，`n_perturbed=167210`，`n_unique_targets=26`
+- `tian_2019_day7neuron` 当前 raw 统计为 `182790 x 33752`，formal 统计为 `85290 x 33752`，`n_controls=15580`，`n_perturbed=69710`，`n_unique_targets=26`
+- `replogle_2022_rpe1` 当前 formal 统计为 `247914 x 8749`；有 458 行 source `gene_id` 为空，但 formal 主键仍可稳定落在 `target_gene`
 - `tian_2021_crispri` 当前 raw 统计为 `32300 x 33538`，`n_controls=437`，`n_perturbed=31863`，`n_unique_targets=184`
-- `tian_2021_crispri` 暂时 `hold` 的原因是 3 个 perturbation token 仍未完成 target mapping closure：`ATP5C1`、`ATP5H`、`TMEM55A`
+- `tian_2021_crispri` 的 3 个旧符号 token 已完成 target mapping closure：`ATP5C1 -> ATP5F1C`、`ATP5H -> ATP5PD`、`TMEM55A -> PIP4P2`
+- `tian_2021_crispri` 当前 formal 统计为 `32300 x 33538`，`n_controls=437`，`n_perturbed=31863`，`n_unique_targets=184`
 
 ## 关键文件
 
@@ -126,10 +128,9 @@ python scripts/run_stage1a_smoke_matrix.py
 
 按当前优先级：
 
-1. 核对 `tian_2021_crispri` 中 `ATP5C1`、`ATP5H`、`TMEM55A` 的 target mapping closure
-2. 跑 `tian_2019_day7neuron` 的 formal filtering
-3. 回填 formal 统计并决定 `tian_2021_crispri` 是否解除 `hold`
-4. 在 resource/admission 边界稳定后，再继续 entrant benchmarking 重跑
+1. 进入三模型 mainline adapter 预测产物生成
+2. 在现有 truth / baselines / nulls 上执行 batch scoring
+3. 视结果决定是否把 `tian_2021_crispri` 纳入 supplementary / auxiliary benchmarking
 
 ## Registry 层状态（已弃用）
 

@@ -62,6 +62,11 @@ CONTROL_COLUMN_PRIORITY = [
     "condition",
     "guide_id",
 ]
+GENE_SYMBOL_ALIASES = {
+    "ATP5C1": "ATP5F1C",
+    "ATP5H": "ATP5PD",
+    "TMEM55A": "PIP4P2",
+}
 
 def stringify(series: pd.Series) -> pd.Series:
     return series.astype("string")
@@ -306,7 +311,16 @@ def assess_gene_cleaning(
             }
         )
         var_names = set(map(str, adata.var_names.tolist()))
-        missing_tokens = [token for token in all_tokens if token not in var_names]
+        resolved_aliases = {
+            token: GENE_SYMBOL_ALIASES[token]
+            for token in all_tokens
+            if token not in var_names and GENE_SYMBOL_ALIASES.get(token, "") in var_names
+        }
+        missing_tokens = [
+            token
+            for token in all_tokens
+            if token not in var_names and token not in resolved_aliases
+        ]
         status = "pass" if not missing_tokens else "hold"
         return {
             "status": status,
@@ -314,8 +328,11 @@ def assess_gene_cleaning(
             "target_id_column": "",
             "cleaning_rule": "control -> control; 单扰动 target_gene = perturbation; 组合扰动按 `_` 拆分",
             "non_control_unique_targets": len(all_tokens),
+            "resolved_aliases_in_var_names": resolved_aliases,
             "missing_tokens_in_var_names": missing_tokens[:20],
-            "note": "可直接从 `perturbation` 提取 gene-level target。"
+            "note": "可直接从 `perturbation` 提取 gene-level target；部分旧符号已按受控别名映射闭合。"
+            if status == "pass" and resolved_aliases
+            else "可直接从 `perturbation` 提取 gene-level target。"
             if status == "pass"
             else "部分 target token 无法在 var_names 中确认，建议人工复核。",
         }
