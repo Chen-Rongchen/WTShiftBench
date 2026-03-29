@@ -38,7 +38,7 @@ datasets:
     stage: Stage 1A formal
     status: pass
     output_path: data/processed/stage1a/formal_filtered/replogle_2022_rpe1.h5ad
-    notes: 已按 formal 主线规则完成过滤并补齐标准 obs 字段。
+    notes: 已按 formal 主线规则完成过滤；保留 target_gene 作为 formal 主键，当前有 458 行 source gene_id 为空，但不影响 formal scoring。
     source_loader: pertpy.data.replogle_2022_rpe1
     source_origin: pertpy 官方 datasets 文档与 _datasets 源码
     source_download_url: https://zenodo.org/record/10044268/files/ReplogleWeissman2022_rpe1.h5ad?download=1
@@ -49,14 +49,14 @@ datasets:
     control_definition: in-dataset control baseline
     perturbation_unit: single-gene perturbation
     n_cells_raw: 182790
-    n_cells_formal: 0
+    n_cells_formal: 85290
     n_controls: 15580
-    n_perturbed: 167210
+    n_perturbed: 69710
     n_unique_targets: 26
     stage: Stage 1A formal
-    status: raw_audit_pass_pending_formal_filter
+    status: pass
     output_path: data/processed/stage1a/formal_filtered/tian_2019_day7neuron.h5ad
-    notes: 已完成 raw audit，当前 shape=182790x33752，control=15580，raw target=26；可继续进入 formal filtering，并在过滤后回填 formal 统计。
+    notes: 已完成 formal filtering；当前 formal shape=85290x33752，control=15580，single-perturbation=69710，移除了 97500 个 multi-perturbation cells。
     source_loader: pertpy.data.tian_2019_day7neuron
     source_origin: pertpy 官方 datasets 文档与 _datasets 源码
     source_download_url: https://zenodo.org/records/10044268/files/TianKampmann2019_day7neuron.h5ad?download=1
@@ -67,14 +67,14 @@ datasets:
     control_definition: in-dataset control baseline
     perturbation_unit: single-gene perturbation
     n_cells_raw: 32300
-    n_cells_formal: 0
+    n_cells_formal: 32300
     n_controls: 437
     n_perturbed: 31863
     n_unique_targets: 184
     stage: Stage 1A auxiliary
-    status: raw_audit_hold
+    status: auxiliary_pass
     output_path: data/processed/stage1a/formal_filtered/tian_2021_crispri.h5ad
-    notes: 原始 h5ad 已下载并完成 raw audit，当前 shape=32300x33538，control=437，raw target=184；因 3 个 perturbation token（ATP5C1、ATP5H、TMEM55A）无法在 var_names 中确认，暂维持 hold，默认不进入 formal 主裁决。
+    notes: raw audit 已闭合，3 个旧符号 token 已通过受控别名映射完成 target closure：ATP5C1->ATP5F1C、ATP5H->ATP5PD、TMEM55A->PIP4P2；formal filtering 已完成，当前作为 auxiliary-pass 保留，默认仍不进入 formal 主裁决。
     source_loader: pertpy.data.tian_2021_crispri
     source_origin: pertpy 官方 datasets 文档与 _datasets 源码
     source_download_url: https://zenodo.org/records/10044268/files/TianKampmann2021_CRISPRi.h5ad?download=1

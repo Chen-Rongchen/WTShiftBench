@@ -57,16 +57,17 @@
 #### `tian_2019_day7neuron`
 
 - 已完成 raw audit
-- 下一步跑 formal filtering
-- filtering 完成后回填 formal 统计
-- 再决定是否进入 truth / scoring 重跑
+- 已完成 formal filtering
+- formal 统计已回填：`85290 x 33752`，`n_controls=15580`，`n_perturbed=69710`，`n_unique_targets=26`
+- 下一步可进入 truth / scoring 重跑决议
 
 #### `tian_2021_crispri`
 
 - 已完成下载与 raw audit
-- 当前状态为 `raw_audit_hold`
-- 先核对 `ATP5C1`、`ATP5H`、`TMEM55A` 三个 token 的 target mapping closure
-- 只有 admission 闭合后，才决定是否进入 formal filtering
+- `ATP5C1`、`ATP5H`、`TMEM55A` 三个 token 的 target mapping closure 已闭合
+- 已完成 refetch 与 formal filtering
+- 当前状态更新为 `auxiliary_pass`
+- 默认仍不进入 formal 主裁决，但可进入 supplementary / auxiliary benchmarking
 
 ### 4. entrant benchmarking 进入条件
 
@@ -81,11 +82,10 @@
 
 按优先级：
 
-1. 核对 `tian_2021_crispri` 的 3 个未闭合 token 映射
-2. 跑 `tian_2019_day7neuron` 的 formal filtering
-3. 回填 `configs/stage1a_formal_datasets.yaml` 的 formal 统计
-4. 视 admission 结果决定是否把 `tian_2021_crispri` 从 `hold` 转为 auxiliary-pass 或继续保持 hold
-5. 在上述边界稳定后，再启动 entrant benchmarking 的重跑
+1. 生成三模型 mainline adapter 预测产物
+2. 跑 batch scoring 并产出 lane-wise formal outputs
+3. 视结果决定是否启动 `tian_2021_crispri` 的 supplementary / auxiliary benchmarking
+4. 在上述边界稳定后，再启动 entrant benchmarking 的正式重跑
 
 ## 本轮验收口径
 
@@ -94,3 +94,4 @@
 - `signal adequacy` 与 `model fidelity` 的边界在文档中明确
 - `support floor` 至少显式绑定 `cells per perturbation`、`cells per control`、`UMI depth`
 - `tian_2019_day7neuron` 与 `tian_2021_crispri` 的下一步动作明确，不再混成“统一待重跑”
+- 4 个 Stage 1A 数据集均已完成统一口径的完整性检查
