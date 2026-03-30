@@ -62,6 +62,8 @@
 - `split_seed=101`
 - `model/adaptor seed=123`
 - 已落地 aligned prediction、lane summary、dataset score summary 与 entrant-level pass skeleton
+- 已落地 single-seed trial run 解释审计报告
+- 已落地 `GEARS × day7neuron` prediction-space / export-space 审计矩阵
 ### 4. 当前数据集决议收口
 
 #### `tian_2019_day7neuron`
@@ -83,7 +85,7 @@
 ### 5. 当前 entrant benchmarking 边界
 - 当前 trial run 已满足 entrant benchmarking 的运行闭环，但还不等同于 entrant version-level formal adjudication
 - 进入正式多 seed adjudication 前，仍需先完成：
-  - `GEARS` prediction space / explanation boundary 审计
+  - 固化 `GEARS` current version 的 `under audit` explanation boundary
   - `scGPT / Geneformer` adapter taxonomy 的声明边界确认
   - 单 seed 结果的 lane-wise 解释与异常排查
 
@@ -92,9 +94,9 @@
 按优先级：
 
 1. 审查 9 份 `dataset_score_summary.json` 与 9 份 `lane_summary.tsv`
-2. 形成单 seed trial run 的解释报告，而不是直接写 formal leaderboard 结论
-3. 优先完成 `GEARS` 的 prediction space / LOG-RAW mismatch 审计
-4. 确认 `scGPT / Geneformer` 当前 adapter 的 taxonomy 与可声明范围
+2. 固化 `GEARS` current version 的 `under audit` 结论，不再把它描述成“暂时无问题”
+3. 确认 `scGPT / Geneformer` 当前 adapter 的 taxonomy 与可声明范围
+4. 整理四条 lanes 的稳定性结论，明确“lane 稳定”与“entrant 表现稳定”是两回事
 5. 在解释边界稳定后，再决定是否推进 `3 datasets × 5 seeds` formal adjudication
 6. 视结果决定是否启动 `tian_2021_crispri` 的 supplementary / auxiliary benchmarking
 
@@ -108,3 +110,4 @@
 - 4 个 Stage 1A 数据集均已完成统一口径的完整性检查
 - formal freeze 仅冻结 mainline `pass` 数据集
 - `1 seed × 3 entrants × 3 datasets` 的 trial run 已产出完整 aligned / lane / dataset / pass skeleton 结果
+- `GEARS × day7neuron` 的 export-space 审计已证明：control 无误，但 `predicted_expression_raw` 已偏大，减 control 后放大成不可信 delta
