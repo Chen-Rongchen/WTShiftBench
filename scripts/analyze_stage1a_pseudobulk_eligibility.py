@@ -117,8 +117,8 @@ def main() -> None:
     combined_rows: list[pd.DataFrame] = []
     contracts = [
         contract
-        for contract in load_formal_dataset_contracts()
-        if contract.status == "pass"
+        for contract in load_formal_dataset_contracts(include_auxiliary=True)
+        if contract.status in {"pass", "auxiliary_pass"}
     ]
 
     for contract in contracts:
