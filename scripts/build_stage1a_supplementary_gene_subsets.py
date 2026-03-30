@@ -23,12 +23,20 @@ import numpy as np
 import pandas as pd
 from scipy import sparse
 
-from scripts.stage1a.benchmark_invariant.catalog import (
-    PROJECT_ROOT,
-    get_formal_dataset_contract,
-    get_formal_dataset_index,
-    load_stage1a_aligned_truth_registry,
-)
+try:
+    from scripts.stage1a.benchmark_invariant.catalog import (
+        PROJECT_ROOT,
+        get_formal_dataset_contract,
+        get_formal_dataset_index,
+        load_stage1a_aligned_truth_registry,
+    )
+except ModuleNotFoundError:  # pragma: no cover - script entrypoint fallback
+    from stage1a.benchmark_invariant.catalog import (
+        PROJECT_ROOT,
+        get_formal_dataset_contract,
+        get_formal_dataset_index,
+        load_stage1a_aligned_truth_registry,
+    )
 
 
 SUBSET_SIZES = [500, 1000, 2000]
