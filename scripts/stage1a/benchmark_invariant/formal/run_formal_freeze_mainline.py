@@ -9,6 +9,7 @@ from scripts.stage1a.benchmark_invariant.catalog import PROJECT_ROOT
 MAINLINE_MODULES = [
     "scripts.render_stage1a_formal_registry",
     "scripts.analyze_stage1a_pseudobulk_eligibility",
+    "scripts.build_stage1a_admission_manifest",
     "scripts.freeze_stage1a_formal_inputs",
 ]
 
