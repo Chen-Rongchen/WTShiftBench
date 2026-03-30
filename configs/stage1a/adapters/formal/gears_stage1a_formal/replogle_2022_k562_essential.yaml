@@ -9,13 +9,13 @@ manifest_path: reports/stage1a/prediction_alignment/gears_stage1a_formal/replogl
 allow_missing_targets: true
 allow_missing_genes: true
 gears_cache_dir: tmp/stage1a_gears/gears_stage1a_formal/replogle_2022_k562_essential
-device: cuda
+device: auto
 seed: 123
-epochs: 1
+epochs: 30
 batch_size: 32
 lr: 0.001
-weight_decay: 0.0005
-train_val_fraction: 0.875
+weight_decay: 1.0e-6
+train_val_fraction: 0.8
 max_control_cells: 2048
 prediction_num_samples: 64
 perturbation_graph_k: 8

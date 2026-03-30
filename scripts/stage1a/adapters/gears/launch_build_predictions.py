@@ -71,6 +71,19 @@ def is_cuda_visibility_failure(output: str) -> bool:
     return any(marker in output for marker in markers)
 
 
+def with_device_override(command: list[str], device: str) -> list[str]:
+    return [*command, "--device", device]
+
+
+def run_target_with_cpu_fallback(base_command: list[str]) -> int:
+    print(
+        "[gears-launch] CUDA 不可用，按仓库设备策略回退到 CPU 执行 GEARS build_predictions",
+        flush=True,
+    )
+    target_rc, _ = run_and_tee(with_device_override(base_command, "cpu"))
+    return target_rc
+
+
 def main() -> int:
     parser = build_parser()
     args, forwarded = parser.parse_known_args()
@@ -119,6 +132,8 @@ def main() -> int:
                 )
                 time.sleep(args.sleep_seconds)
                 continue
+            if is_cuda_visibility_failure(target_output):
+                return run_target_with_cpu_fallback(target_command)
             return target_rc
 
         if attempt < args.max_attempts:
@@ -132,7 +147,7 @@ def main() -> int:
         f"[gears-launch] exhausted {args.max_attempts} attempts without a stable CUDA-visible GEARS process",
         flush=True,
     )
-    return 1
+    return run_target_with_cpu_fallback(target_command)
 
 
 if __name__ == "__main__":

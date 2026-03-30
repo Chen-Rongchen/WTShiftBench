@@ -12,6 +12,7 @@ FREEZE_REPORT_DIR = PROJECT_ROOT / "reports/stage1a/freeze"
 DEFAULT_COMBINED_ELIGIBILITY_PATH = (
     PROJECT_ROOT / "reports/stage1a/pseudobulk_eligibility/combined_eligibility.tsv"
 )
+ADMISSION_MANIFEST_PATH = PROJECT_ROOT / "reports/stage1a/admission/stage1a_admission_manifest.tsv"
 ELIGIBILITY_COLUMNS = [
     "dataset_id",
     "target_gene",
@@ -36,7 +37,26 @@ def find_combined_eligibility_path() -> Path:
     return matches[0]
 
 
-def build_frozen_registry() -> pd.DataFrame:
+def load_admission_pass_dataset_ids() -> set[str]:
+    if not ADMISSION_MANIFEST_PATH.exists():
+        raise FileNotFoundError(f"未找到 admission manifest: {ADMISSION_MANIFEST_PATH}")
+    manifest = pd.read_csv(ADMISSION_MANIFEST_PATH, sep="\t")
+    required = {"dataset_id", "admission_decision", "default_in_mainline"}
+    missing = sorted(required - set(manifest.columns))
+    if missing:
+        raise ValueError(f"admission manifest 缺少字段: {missing}")
+    manifest["default_in_mainline"] = (
+        manifest["default_in_mainline"].astype("string").str.lower().eq("true")
+    )
+    allowed = manifest.loc[
+        manifest["default_in_mainline"]
+        & manifest["admission_decision"].astype("string").eq("pass"),
+        "dataset_id",
+    ]
+    return set(allowed.astype(str).tolist())
+
+
+def build_frozen_registry(allowed_dataset_ids: set[str]) -> pd.DataFrame:
     rows = [
         {
             "dataset_id": contract.dataset_id,
@@ -54,7 +74,7 @@ def build_frozen_registry() -> pd.DataFrame:
             "notes": contract.notes,
         }
         for contract in load_formal_dataset_contracts()
-        if contract.status == "pass"
+        if contract.status == "pass" and contract.dataset_id in allowed_dataset_ids
     ]
     return pd.DataFrame(rows).sort_values("dataset_id").reset_index(drop=True)
 
@@ -116,8 +136,8 @@ def main() -> None:
     FROZEN_DIR.mkdir(parents=True, exist_ok=True)
     FREEZE_REPORT_DIR.mkdir(parents=True, exist_ok=True)
 
-    frozen_registry = build_frozen_registry()
-    allowed_dataset_ids = set(frozen_registry["dataset_id"].tolist())
+    allowed_dataset_ids = load_admission_pass_dataset_ids()
+    frozen_registry = build_frozen_registry(allowed_dataset_ids)
     combined_eligibility_path = find_combined_eligibility_path()
     eligible_targets = load_and_filter_eligible_targets(
         combined_eligibility_path=combined_eligibility_path,

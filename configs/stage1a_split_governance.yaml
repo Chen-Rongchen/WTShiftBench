@@ -5,6 +5,7 @@ split_scheme: B
 
 # pseudobulk eligibility：perturbed 与 control 两侧均须达到该下限（与 MIN_CELLS_PER_GROUP 同义）
 min_cells_per_group: 5
+require_umi_depth_column: true
 
 # 预注册 split seeds（主分析禁止改用 0–4 或未登记集合）
 split_seeds: [101, 202, 303, 404, 505]

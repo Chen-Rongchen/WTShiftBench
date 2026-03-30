@@ -405,16 +405,23 @@ def main() -> None:
             DEFAULT_GEARS_CACHE_ROOT / model_id / dataset_id,
         )
     )
-    device = str(
+    requested_device = str(
         coalesce_arg(
             args.device,
             run_config,
             "device",
-            "cuda" if torch.cuda.is_available() else "cpu",
+            "auto",
         )
     )
+    device = (
+        "cuda"
+        if requested_device == "auto" and torch.cuda.is_available()
+        else "cpu"
+        if requested_device == "auto"
+        else requested_device
+    )
     if device.startswith("cuda") and not torch.cuda.is_available():
-        raise ValueError(f"请求 device={device}，但当前环境不可用 CUDA。")
+        raise ValueError(f"请求 device={requested_device}，但当前环境不可用 CUDA。")
     seed = int(coalesce_arg(args.seed, run_config, "seed", 123))
     epochs = int(coalesce_arg(args.epochs, run_config, "epochs", 1))
     batch_size = int(coalesce_arg(args.batch_size, run_config, "batch_size", 32))
@@ -449,6 +456,7 @@ def main() -> None:
         n_obs=int(formal_adata.n_obs),
         n_vars=int(formal_adata.n_vars),
         device=device,
+        requested_device=requested_device,
         seed=seed,
         epochs=epochs,
     )
@@ -625,6 +633,7 @@ def main() -> None:
             "cell_type": dataset_contract.cell_line,
             "prediction_path": resolve_project_relative(prediction_path),
             "device": device,
+            "requested_device": requested_device,
             "seed": seed,
             "epochs": epochs,
             "batch_size": batch_size,
@@ -645,6 +654,7 @@ def main() -> None:
     print(f"已写出: {resolve_project_relative(prediction_path)}")
     print(f"已写出: {resolve_project_relative(metadata_path)}")
     print(f"device: {device}")
+    print(f"requested_device: {requested_device}")
     print(f"seed: {seed}")
     print(f"dataset_id: {dataset_id}")
     print(f"cell_type: {dataset_contract.cell_line}")

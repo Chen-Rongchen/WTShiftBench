@@ -19,7 +19,7 @@
 
 ## 本轮目标
 
-把 `Stage 1A` 从“已有数据与 adapter 骨架”推进到“资源层与准入层闭环明确、随后可稳定进入 entrant benchmarking”的状态。
+把 `Stage 1A` 从“已有数据与 adapter 骨架”推进到“benchmark-invariant layer 已冻结、随后可稳定进入 entrant benchmarking”的状态。
 
 ## 本轮不做
 
@@ -34,7 +34,7 @@
 
 - 固化 `Stage 1A` 数据资源登记、来源、下载口径与 provenance
 - 明确 raw / processed level 边界
-- 保持 formal dataset registry、raw audit 产物与 README 叙述一致
+- 保持 formal dataset registry、raw audit 产物、admission manifest 与 README 叙述一致
 
 ### 2. dataset admission layer 收口
 
@@ -51,6 +51,8 @@
   - `barcode assignment reliability`
   - `processed/raw level`
   - `target mapping closure`
+- 统一产出 `reports/stage1a/admission/stage1a_admission_manifest.tsv`
+- 让 formal freeze 仅消费 `admission_decision=pass` 的主线数据集
 
 ### 3. 当前数据集决议收口
 
@@ -59,7 +61,7 @@
 - 已完成 raw audit
 - 已完成 formal filtering
 - formal 统计已回填：`85290 x 33752`，`n_controls=15580`，`n_perturbed=69710`，`n_unique_targets=26`
-- 下一步可进入 truth / scoring 重跑决议
+- 已在 admission manifest 中标记为 `pass`
 
 #### `tian_2021_crispri`
 
@@ -67,6 +69,7 @@
 - `ATP5C1`、`ATP5H`、`TMEM55A` 三个 token 的 target mapping closure 已闭合
 - 已完成 refetch 与 formal filtering
 - 当前状态更新为 `auxiliary_pass`
+- 已在 admission manifest 中标记为 `auxiliary_pass`
 - 默认仍不进入 formal 主裁决，但可进入 supplementary / auxiliary benchmarking
 
 ### 4. entrant benchmarking 进入条件
@@ -84,14 +87,15 @@
 
 1. 生成三模型 mainline adapter 预测产物
 2. 跑 batch scoring 并产出 lane-wise formal outputs
-3. 视结果决定是否启动 `tian_2021_crispri` 的 supplementary / auxiliary benchmarking
-4. 在上述边界稳定后，再启动 entrant benchmarking 的正式重跑
+3. 汇总 cross-lane summary，形成单 seed 的 formal adjudication 草案
+4. 视结果决定是否启动 `tian_2021_crispri` 的 supplementary / auxiliary benchmarking
 
 ## 本轮验收口径
 
-- `README.md`、`plan.md`、`configs/stage1a_formal_datasets.yaml` 对当前数据集状态描述一致
+- `README.md`、`plan.md`、`configs/stage1a_formal_datasets.yaml`、`reports/stage1a/admission/stage1a_admission_manifest.tsv` 对当前数据集状态描述一致
 - `harmonized resource layer -> dataset admission layer -> entrant benchmarking layer` 的顺序在文档中明确
 - `signal adequacy` 与 `model fidelity` 的边界在文档中明确
 - `support floor` 至少显式绑定 `cells per perturbation`、`cells per control`、`UMI depth`
-- `tian_2019_day7neuron` 与 `tian_2021_crispri` 的下一步动作明确，不再混成“统一待重跑”
+- `tian_2019_day7neuron` 与 `tian_2021_crispri` 的 admission 决议明确，不再混成“统一待重跑”
 - 4 个 Stage 1A 数据集均已完成统一口径的完整性检查
+- formal freeze 仅冻结 mainline `pass` 数据集
