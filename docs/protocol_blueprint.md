@@ -132,6 +132,12 @@ raw / processed candidate resources
 
 工程上，`dataset admission layer` 应沉淀为统一、机器可读的 `admission manifest`，而不是散落在临时 notebook 或口头说明里的判断。formal freeze 只能消费该 manifest 中 `admission_decision=pass` 的数据集；`auxiliary_pass` 仅可保留为 supplementary / auxiliary 资源，不得默认进入 formal mainline。
 
+当前仓库实现状态：
+
+- `harmonized resource layer`、`dataset admission manifest` 与 `formal freeze gating` 已落地
+- 当前已完成 `1 seed × 3 entrants × 3 datasets` 的 trial run，说明 resource/admission/scoring 主线已工程化打通
+- 该 trial run 的存在只证明运行闭环与审计资产已落地，不自动等同于 entrant version 已完成 formal adjudication
+
 长期原则：
 
 - `signal adequacy` 与 `model fidelity` 必须分离
@@ -187,6 +193,18 @@ raw / processed candidate resources
 - `processed_raw_level_status`
 - `target_mapping_status`
 - `admission_decision`
+
+当前仓库实现状态：
+
+- `single-target vs multi-target`
+- `control definition`
+- `target mapping closure`
+- `processed/raw level`
+- `cells per perturbation`
+- `cells per control`
+- `UMI depth`
+
+以上字段已进入统一 manifest；`MOI` 与 `barcode assignment reliability` 当前已进入审计字段框架，但其长期语义仍应继续补强。
 
 ### 4.2D `scPerturb` 的制度角色
 

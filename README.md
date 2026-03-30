@@ -4,7 +4,7 @@
 
 ## 项目一句话
 
-**WT Benchmark**：用统一、可审计的 black-box 框架评估各 entrant 是否产出可信的 `predicted_shift`。当前最近一批工作的重点是先补 `benchmark-invariant layer` 的资源层与准入层，再进入 `Stage 1A` 的 entrant benchmarking。
+**WT Benchmark**：用统一、可审计的 black-box 框架评估各 entrant 是否产出可信的 `predicted_shift`。当前最近一批工作的重点是先冻结 `benchmark-invariant layer`，再在冻结边界上推进 `Stage 1A` entrant benchmarking 与解释边界审计。
 
 ## 当前真实状态
 
@@ -22,6 +22,7 @@
 | 已完成 | `tian_2019_day7neuron` 的 formal filtering 与 formal 统计回填 |
 | 已完成 | `tian_2021_crispri` 的 target mapping closure 审计与 formal filtering |
 | 已完成 | `Stage 1A` admission manifest 与 formal freeze gating |
+| 已完成 | `1 seed × 3 entrants × 3 datasets` 的 formal trial run（预测、对齐、评分、pass skeleton） |
 | 暂不进行 | formal multi-dataset × multi-seed adjudication（`3 datasets × 5 seeds`） |
 
 ## 当前收口范围
@@ -36,12 +37,9 @@
 - formal freeze 只消费 `admission_decision=pass` 的主线数据集
 - 正式评分按 `dataset-local + four-lane + cross-lane summary`
 - `common intersection` 仅保留 supplementary / audit 用途
-- train-side 终点选择统一采用 target-level inner validation：`inner_seed=11`、`inner_val_fraction=0.2`
-- outer heldout 只用于最终正式评估，不参与 epoch / checkpoint 选型
-- 三个 entrant 的外层训练上限字段统一命名为 `max_epochs`
-- 当前 single-seed 收口版统一采用 `max_epochs=30`
-- `GEARS` 在内部把 `max_epochs` 映射到官方训练接口 `epochs`
-- `scGPT / Geneformer` 的 `max_epochs` 属于本项目 adapter 训练层，不是官方 backbone 原生参数名
+- 当前 trial run 固定 `model/adaptor seed: 123`，与 formal split seed `101` 分离
+- `GEARS` 是当前唯一训练型 entrant；其试运行配置当前为 `epochs=30`、`lr=1e-3`、`weight_decay=1e-6`、`train_val_fraction=0.8`、`device=auto`
+- `scGPT / Geneformer` 当前接入方式是 `embedding + cosine kernel regression` adapter，不走训练型 inner validation 主线
 - 设备策略统一为 `gpu_if_available_else_cpu`：GPU 可用时默认且优先使用 GPU，只在 CUDA 不可用时回退 CPU
 
 ## 当前数据集状态
@@ -71,6 +69,30 @@
 - `replogle_2022_k562_essential`
 - `replogle_2022_rpe1`
 - `tian_2019_day7neuron`
+
+## 当前 trial run 状态
+
+本轮已完成 `1 seed × 3 entrants × 3 datasets` 的 formal 试运行：
+
+- entrants：`gears_stage1a_formal`、`scgpt_embedding_kernel_formal`、`geneformer_embedding_kernel_formal`
+- datasets：`replogle_2022_k562_essential`、`replogle_2022_rpe1`、`tian_2019_day7neuron`
+- split seed：`101`
+- model/adaptor seed：`123`
+
+本轮已落地产物：
+
+- 9 份 dataset-level score summary：`reports/stage1a/model_eval/*/*/dataset_score_summary.json`
+- 9 份 lane-level summary：`reports/stage1a/model_eval_lanes/*/*/lane_summary.tsv`
+- 9 份 aligned predictions：`data/predictions/stage1a_main_aligned/*/*/predicted_shift_aligned.tsv.gz`
+- 3 份 entrant-level pass skeleton：
+  - `reports/stage1a/model_eval/gears_stage1a_formal/stage1a_pass_skeleton_official_leaderboard.tsv`
+  - `reports/stage1a/model_eval/scgpt_embedding_kernel_formal/stage1a_pass_skeleton_official_leaderboard.tsv`
+  - `reports/stage1a/model_eval/geneformer_embedding_kernel_formal/stage1a_pass_skeleton_official_leaderboard.tsv`
+
+说明：
+
+- 这次运行是 single-seed trial run，不等同于正式 `3 datasets × 5 seeds` adjudication
+- 当前结果可用于 runtime 审计、lane-wise 诊断与解释边界核查，不自动等同于 entrant version 已获得 formal downstream admission
 
 ## 关键文件
 
@@ -145,10 +167,11 @@ python scripts/run_stage1a_smoke_matrix.py
 
 按当前优先级：
 
-1. 进入三模型 mainline adapter 预测产物生成
-2. 在现有 truth / baselines / nulls 上执行 batch scoring
-3. 汇总 cross-lane summary，形成单 seed formal adjudication 草案
-4. 视结果决定是否把 `tian_2021_crispri` 纳入 supplementary / auxiliary benchmarking
+1. 审查 9 份 `dataset_score_summary.json` 与 9 份 `lane_summary.tsv`，形成单 seed trial run 的解释报告
+2. 对 `GEARS` 继续做 prediction space / LOG-RAW mismatch 审计，确认当前 version 的解释边界
+3. 明确 `scGPT / Geneformer` 当前 adapter taxonomy 与可声明范围，避免把 adapter 结果误写成 backbone 原生 perturbation 能力
+4. 在解释边界稳定后，再决定是否推进 formal `3 datasets × 5 seeds` adjudication
+5. 视需要决定是否把 `tian_2021_crispri` 纳入 supplementary / auxiliary benchmarking
 
 ## Registry 层状态（已弃用）
 
