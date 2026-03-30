@@ -18,9 +18,10 @@
 | 已具备 | `tian_2021_crispri` 原始文件下载完成并完成 raw audit |
 | 已具备 | 4 个 Stage 1A 数据集的 raw audit 产物 |
 | 已具备 | 三模型 × 三数据集 × seed101 的 formal adapter / ingest / evaluate 主线配置 |
-| 进行中 | `Stage 1A` 的 harmonized resource layer / dataset admission layer 收口 |
+| 已完成 | `Stage 1A` 的 harmonized resource layer / dataset admission layer 收口 |
 | 已完成 | `tian_2019_day7neuron` 的 formal filtering 与 formal 统计回填 |
 | 已完成 | `tian_2021_crispri` 的 target mapping closure 审计与 formal filtering |
+| 已完成 | `Stage 1A` admission manifest 与 formal freeze gating |
 | 暂不进行 | formal multi-dataset × multi-seed adjudication（`3 datasets × 5 seeds`） |
 
 ## 当前收口范围
@@ -32,6 +33,7 @@
 - 本轮固定 `split_seed: 101`
 - `signal adequacy` 与 `model fidelity` 明确分离：adequacy diagnostics 不替代 `predicted_shift` formal scoring
 - `support floor` 具有 admission 语义，至少显式追踪 `cells per perturbation`、`cells per control`、`UMI depth`
+- formal freeze 只消费 `admission_decision=pass` 的主线数据集
 - 正式评分按 `dataset-local + four-lane + cross-lane summary`
 - `common intersection` 仅保留 supplementary / audit 用途
 - train-side 终点选择统一采用 target-level inner validation：`inner_seed=11`、`inner_val_fraction=0.2`
@@ -46,8 +48,8 @@
 
 - `replogle_2022_k562_essential`：已在 formal 主线中
 - `replogle_2022_rpe1`：已在 formal 主线中
-- `tian_2019_day7neuron`：已完成 formal filtering
-- `tian_2021_crispri`：已完成 formal filtering，当前作为 auxiliary-pass 保留
+- `tian_2019_day7neuron`：已完成 formal filtering，admission=`pass`
+- `tian_2021_crispri`：已完成 formal filtering，admission=`auxiliary_pass`
 
 其中：
 
@@ -57,10 +59,25 @@
 - `tian_2021_crispri` 的 3 个旧符号 token 已完成 target mapping closure：`ATP5C1 -> ATP5F1C`、`ATP5H -> ATP5PD`、`TMEM55A -> PIP4P2`
 - `tian_2021_crispri` 当前 formal 统计为 `32300 x 33538`，`n_controls=437`，`n_perturbed=31863`，`n_unique_targets=184`
 
+当前 admission manifest 冻结结果：
+
+- `replogle_2022_k562_essential`：`pass`
+- `replogle_2022_rpe1`：`pass`
+- `tian_2019_day7neuron`：`pass`
+- `tian_2021_crispri`：`auxiliary_pass`
+
+当前 formal freeze 仅冻结 3 个 mainline `pass` 数据集：
+
+- `replogle_2022_k562_essential`
+- `replogle_2022_rpe1`
+- `tian_2019_day7neuron`
+
 ## 关键文件
 
 - 蓝图：`docs/protocol_blueprint.md`
 - 当前计划：`plan.md`
+- admission manifest：`reports/stage1a/admission/stage1a_admission_manifest.tsv`
+- formal freeze manifest：`reports/stage1a/freeze/freeze_manifest.json`
 - smoke 卡片与 runtime spec：`docs/entrants/`
 - smoke 配置：`configs/entrants/*.yaml`
 - checkpoint registry：`configs/entrants/checkpoint_registry.yaml`
@@ -130,7 +147,8 @@ python scripts/run_stage1a_smoke_matrix.py
 
 1. 进入三模型 mainline adapter 预测产物生成
 2. 在现有 truth / baselines / nulls 上执行 batch scoring
-3. 视结果决定是否把 `tian_2021_crispri` 纳入 supplementary / auxiliary benchmarking
+3. 汇总 cross-lane summary，形成单 seed formal adjudication 草案
+4. 视结果决定是否把 `tian_2021_crispri` 纳入 supplementary / auxiliary benchmarking
 
 ## Registry 层状态（已弃用）
 

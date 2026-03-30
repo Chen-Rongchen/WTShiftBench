@@ -130,6 +130,8 @@ raw / processed candidate resources
 - `dataset admission layer`：判断数据是否具备进入 formal benchmark 的最低统计支持与元数据闭环
 - `entrant benchmarking layer`：仅对 admission 通过的数据运行 truth build、predicted-shift scoring 与 entrant adjudication
 
+工程上，`dataset admission layer` 应沉淀为统一、机器可读的 `admission manifest`，而不是散落在临时 notebook 或口头说明里的判断。formal freeze 只能消费该 manifest 中 `admission_decision=pass` 的数据集；`auxiliary_pass` 仅可保留为 supplementary / auxiliary 资源，不得默认进入 formal mainline。
+
 长期原则：
 
 - `signal adequacy` 与 `model fidelity` 必须分离
@@ -169,6 +171,22 @@ raw / processed candidate resources
 - admission 决策必须先于 truth build、formal filtering 与 entrant benchmarking
 - 若上述维度存在关键歧义，数据集应进入 `hold` 或 `auxiliary-only`，而不是带病进入 formal 主裁决
 - metadata audit 结论属于 `benchmark-invariant layer` 的公共治理资产，不得为某个 entrant 单独改写
+
+工程上，admission manifest 至少应输出以下冻结字段：
+
+- `support_floor_status`
+- `min_cells_perturbed`
+- `n_cells_control`
+- `n_eligible_targets`
+- `n_ineligible_targets`
+- `umi_depth_*`
+- `control_definition_status`
+- `single_vs_multi_target_status`
+- `moi_audit_status`
+- `barcode_assignment_status`
+- `processed_raw_level_status`
+- `target_mapping_status`
+- `admission_decision`
 
 ### 4.2D `scPerturb` 的制度角色
 
