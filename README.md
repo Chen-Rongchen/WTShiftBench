@@ -94,6 +94,22 @@
 - 这次运行是 single-seed trial run，不等同于正式 `3 datasets × 5 seeds` adjudication
 - 当前结果可用于 runtime 审计、lane-wise 诊断与解释边界核查，不自动等同于 entrant version 已获得 formal downstream admission
 
+本轮新增解释审计：
+
+- single-seed trial run 总结：`reports/stage1a/trial_run_interpretation_2026-03-30.md`
+- `GEARS` prediction space 审计：`reports/stage1a/gears_prediction_space_audit_2026-03-30.md`
+- `GEARS × day7neuron` export-space 分层矩阵：
+  - `reports/stage1a_audit/gears_export_space/gears_stage1a_formal/tian_2019_day7neuron/predicted_expression_raw.tsv.gz`
+  - `reports/stage1a_audit/gears_export_space/gears_stage1a_formal/tian_2019_day7neuron/control_values_full.tsv.gz`
+  - `reports/stage1a_audit/gears_export_space/gears_stage1a_formal/tian_2019_day7neuron/predicted_shift_pre_align.tsv.gz`
+  - `reports/stage1a_audit/gears_export_space/gears_stage1a_formal/tian_2019_day7neuron/predicted_shift_aligned.tsv.gz`
+
+当前可确认的解释边界：
+
+- `scGPT / Geneformer` 当前 adapter 版本未见明显结构性错误，四条 lane 表现整体稳定
+- `GEARS` 当前 version 在 `tian_2019_day7neuron` 上存在明确的 prediction-space instability
+- 四条 lanes 在数据层都可稳定产生产物；当前不稳定主要来自 entrant 表现，而不是 lane 机制本身
+
 ## 关键文件
 
 - 蓝图：`docs/protocol_blueprint.md`
@@ -168,7 +184,7 @@ python scripts/run_stage1a_smoke_matrix.py
 按当前优先级：
 
 1. 审查 9 份 `dataset_score_summary.json` 与 9 份 `lane_summary.tsv`，形成单 seed trial run 的解释报告
-2. 对 `GEARS` 继续做 prediction space / LOG-RAW mismatch 审计，确认当前 version 的解释边界
+2. 固化 `GEARS` 当前 version 的 `under audit` 解释边界，不把 `day7neuron` 结果误写成模型正式能力
 3. 明确 `scGPT / Geneformer` 当前 adapter taxonomy 与可声明范围，避免把 adapter 结果误写成 backbone 原生 perturbation 能力
 4. 在解释边界稳定后，再决定是否推进 formal `3 datasets × 5 seeds` adjudication
 5. 视需要决定是否把 `tian_2021_crispri` 纳入 supplementary / auxiliary benchmarking
