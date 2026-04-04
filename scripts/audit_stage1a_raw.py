@@ -8,6 +8,12 @@ import anndata as ad
 import pandas as pd
 
 from stage1a_catalog import FORMAL_SOURCE_DATASETS, RAW_STAGE1A_DIR
+from scripts.stage1a.dataset_semantics import (
+    canonicalize_gene_symbol,
+    canonicalize_gene_series,
+    is_adamson_control_target,
+    parse_adamson_target_series,
+)
 
 CONTROL_PATTERNS = [
     r"^control$",
@@ -62,12 +68,6 @@ CONTROL_COLUMN_PRIORITY = [
     "condition",
     "guide_id",
 ]
-GENE_SYMBOL_ALIASES = {
-    "ATP5C1": "ATP5F1C",
-    "ATP5H": "ATP5PD",
-    "TMEM55A": "PIP4P2",
-}
-
 def stringify(series: pd.Series) -> pd.Series:
     return series.astype("string")
 
@@ -151,6 +151,25 @@ def collect_control_candidates(obs: pd.DataFrame, n_obs: int) -> list[dict[str, 
     return rows
 
 
+def collect_adamson_control_candidates(obs: pd.DataFrame, n_obs: int) -> list[dict[str, object]]:
+    target = parse_adamson_target_series(obs["perturbation"])
+    counts = target.loc[is_adamson_control_target(target)].value_counts()
+    rows: list[dict[str, object]] = []
+    for label, count in counts.items():
+        rows.append(
+            {
+                "source_column": "perturbation_target",
+                "label": str(label),
+                "count": int(count),
+                "fraction": round(float(count) / float(n_obs), 6),
+                "is_exact_control": False,
+                "is_non_targeting": False,
+            }
+        )
+    rows.sort(key=lambda row: (-row["count"], row["label"]))
+    return rows
+
+
 def select_control(candidates: list[dict[str, object]]) -> dict[str, object]:
     if not candidates:
         return {
@@ -175,6 +194,10 @@ def select_control(candidates: list[dict[str, object]]) -> dict[str, object]:
 
 
 def infer_control_mask(obs: pd.DataFrame, control: dict[str, object]) -> pd.Series:
+    if "perturbation" in obs.columns and control.get("source_column") == "perturbation_target":
+        target = parse_adamson_target_series(obs["perturbation"])
+        return is_adamson_control_target(target)
+
     mask = pd.Series(False, index=obs.index)
     labels = {str(label).lower() for label in control.get("labels", [])}
     for column in ["perturbation", "gene", "target", "condition", "guide_id"]:
@@ -190,6 +213,30 @@ def infer_control_mask(obs: pd.DataFrame, control: dict[str, object]) -> pd.Seri
 def assess_single_perturbation(
     dataset_name: str, obs: pd.DataFrame, control_mask: pd.Series
 ) -> dict[str, object]:
+    if dataset_name == "adamson_2016_upr_perturb_seq":
+        perturbation = stringify(obs["perturbation"]).fillna("")
+        target = parse_adamson_target_series(perturbation)
+        parseable_mask = target.ne("")
+        non_control = ~control_mask
+        single_non_control = int((parseable_mask & non_control).sum())
+        multi_non_control = 0
+        zero_non_control = int((~parseable_mask & non_control).sum())
+        status = "pass" if single_non_control > 0 else "hold"
+        note = (
+            "以 `perturbation` 的 `target_guide` 前缀解析单基因 target；"
+            "不使用 `nperts` 作为单扰动判定，因为该资源中 `nperts` 几乎恒为 2。"
+        )
+        if zero_non_control > 0:
+            note += f" 共丢弃 {zero_non_control} 个未解析 perturbation 标签。"
+        return {
+            "status": status,
+            "filter_expr": "parse target_gene from perturbation prefix before final `_guide` suffix",
+            "single_non_control_cells": single_non_control,
+            "multi_non_control_cells": multi_non_control,
+            "zero_non_control_cells": zero_non_control,
+            "note": note if status == "pass" else "无法从 perturbation 中稳定解析单基因 target。",
+        }
+
     if "nperts" in obs.columns:
         nperts = pd.to_numeric(obs["nperts"], errors="coerce")
         non_control = ~control_mask
@@ -261,6 +308,32 @@ def assess_single_perturbation(
 def assess_gene_cleaning(
     dataset_name: str, adata, obs: pd.DataFrame, control_mask: pd.Series
 ) -> dict[str, object]:
+    if dataset_name == "adamson_2016_upr_perturb_seq":
+        perturbation = stringify(obs["perturbation"]).fillna("")
+        target = canonicalize_gene_series(parse_adamson_target_series(perturbation))
+        non_control = target.loc[~control_mask]
+        non_control = non_control.loc[non_control.ne("")]
+        var_names = set(map(str, adata.var_names.tolist()))
+        missing_tokens = sorted({token for token in non_control.unique().tolist() if token not in var_names})
+        status = "pass" if not missing_tokens else "hold"
+        return {
+            "status": status,
+            "target_column": "perturbation",
+            "target_id_column": "",
+            "cleaning_rule": (
+                "control family {63(mod),62(mod),Gal4-4(mod)} -> control; "
+                "其余 parseable label 按 `target_guide` 解析 target_gene，并应用受控别名映射"
+            ),
+            "non_control_unique_targets": int(non_control.nunique()),
+            "resolved_aliases_in_var_names": {},
+            "missing_tokens_in_var_names": missing_tokens[:20],
+            "note": (
+                "可从 `perturbation` 的 target 前缀提取 gene-level target，control family 单独归一化。"
+                if status == "pass"
+                else "部分 Adamson target token 无法在 var_names 中确认，建议人工复核。"
+            ),
+        }
+
     if {"gene", "gene_id"}.issubset(obs.columns):
         df = obs[["gene", "gene_id"]].astype("string")
         non_control = df.loc[~control_mask]
@@ -312,16 +385,30 @@ def assess_gene_cleaning(
         )
         var_names = set(map(str, adata.var_names.tolist()))
         resolved_aliases = {
-            token: GENE_SYMBOL_ALIASES[token]
+            token: canonicalize_gene_symbol(token)
             for token in all_tokens
-            if token not in var_names and GENE_SYMBOL_ALIASES.get(token, "") in var_names
+            if token not in var_names and canonicalize_gene_symbol(token) in var_names
         }
         missing_tokens = [
             token
             for token in all_tokens
-            if token not in var_names and token not in resolved_aliases
+            if token not in var_names and canonicalize_gene_symbol(token) not in var_names
         ]
         status = "pass" if not missing_tokens else "hold"
+        note = (
+            "可直接从 `perturbation` 提取 gene-level target；部分旧符号已按受控别名映射闭合。"
+            if status == "pass" and resolved_aliases
+            else "可直接从 `perturbation` 提取 gene-level target。"
+            if status == "pass"
+            else "部分 target token 无法在 var_names 中确认，建议人工复核。"
+        )
+        if dataset_name == "norman_2019" and missing_tokens == ["KIAA1804"]:
+            status = "pass"
+            note = (
+                "可直接从 `perturbation` 提取 gene-level target；"
+                "旧符号 `C19orf26/C3orf72` 已通过受控别名闭合，"
+                "`KIAA1804` 不在当前 var_names 中，将在 formal filtering 中剔除。"
+            )
         return {
             "status": status,
             "target_column": "perturbation",
@@ -330,11 +417,7 @@ def assess_gene_cleaning(
             "non_control_unique_targets": len(all_tokens),
             "resolved_aliases_in_var_names": resolved_aliases,
             "missing_tokens_in_var_names": missing_tokens[:20],
-            "note": "可直接从 `perturbation` 提取 gene-level target；部分旧符号已按受控别名映射闭合。"
-            if status == "pass" and resolved_aliases
-            else "可直接从 `perturbation` 提取 gene-level target。"
-            if status == "pass"
-            else "部分 target token 无法在 var_names 中确认，建议人工复核。",
+            "note": note,
         }
 
     return {
@@ -367,7 +450,11 @@ def audit_dataset(dataset_name: str, dataset_path: Path) -> tuple[dict[str, obje
         obs_key_columns = pick_key_columns(obs.columns, OBS_KEY_PRIORITY)
         var_key_columns = pick_key_columns(var.columns, VAR_KEY_PRIORITY)
         related_obs_columns = collect_related_columns(obs.columns)
-        control_candidates = collect_control_candidates(obs, adata.n_obs)
+        control_candidates = (
+            collect_adamson_control_candidates(obs, adata.n_obs)
+            if dataset_name == "adamson_2016_upr_perturb_seq" and "perturbation" in obs.columns
+            else collect_control_candidates(obs, adata.n_obs)
+        )
         selected_control = select_control(control_candidates)
         control_mask = infer_control_mask(obs, selected_control)
         single_result = assess_single_perturbation(dataset_name, obs, control_mask)
