@@ -32,6 +32,9 @@
 - `run_stage1a_formal_freeze_mainline.py`
 - `run_stage1a_truth_to_render_mainline.py`
 - `run_stage1a_batch_truth_to_render_mainline.py`
+- `build_stage1a_all_datasets_eval_matrix.py`
+- `run_stage1a_all_datasets_pipeline.py`
+- `summarize_stage1a_all_datasets_vs_baseline.py`
 - `ingest_stage1a_model_predictions.py`
 - `evaluate_stage1a_predictions.py`
 - `render_stage1a_pass_skeleton.py`
@@ -43,6 +46,13 @@
 
 其中 `run_stage1a_smoke_matrix.py` 用于批量驱动 entrant smoke / inner-validation 回归；
 它读取 `configs/entrants/stage1a_smoke_matrix_3datasets_5seeds.json`，生成临时 smoke 配置并顺序执行，不直接替代 formal truth/scoring 主线。
+
+`build_stage1a_all_datasets_eval_matrix.py` / `run_stage1a_all_datasets_pipeline.py` / `summarize_stage1a_all_datasets_vs_baseline.py`
+则用于当前的 `3 + 3 + 2` 数据集评测矩阵：
+
+- 先做 readiness 审计
+- 再按环境批量驱动三模型
+- 最后统一汇总 `vs_mean_shift_baseline`
 
 ## 4. 维护原则
 

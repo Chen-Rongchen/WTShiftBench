@@ -21,6 +21,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--model-id")
     parser.add_argument("--prediction-path")
     parser.add_argument("--prediction-space")
+    parser.add_argument("--truth-registry-path")
     parser.add_argument(
         "--allow-missing-targets",
         action=argparse.BooleanOptionalAction,
@@ -70,9 +71,15 @@ def main() -> None:
     )
     dataset_id = str(require_arg("dataset_id", dataset_id_value))
     model_id = str(require_arg("model_id", model_id_value))
+    truth_registry_path_value = coalesce_arg(args.truth_registry_path, run_config, "truth_registry_path")
     prediction_path = Path(str(require_arg("prediction_path", prediction_path_value)))
     if not prediction_path.is_absolute():
         prediction_path = PROJECT_ROOT / prediction_path
+    truth_registry_path = None
+    if truth_registry_path_value:
+        truth_registry_path = Path(str(truth_registry_path_value))
+        if not truth_registry_path.is_absolute():
+            truth_registry_path = PROJECT_ROOT / truth_registry_path
     prediction_space = str(require_arg("prediction_space", prediction_space_value))
     allow_missing_targets = bool(
         coalesce_arg(args.allow_missing_targets, run_config, "allow_missing_targets", True)
@@ -82,7 +89,7 @@ def main() -> None:
     )
 
     prediction = read_matrix(prediction_path)
-    truth_entry = load_main_aligned_truth_entry(dataset_id)
+    truth_entry = load_main_aligned_truth_entry(dataset_id, truth_registry_path)
     truth = read_matrix(truth_entry.path)
     _, summary, _ = align_prediction_to_truth(
         prediction=prediction,
@@ -94,6 +101,7 @@ def main() -> None:
         prediction_space=prediction_space,
         allow_missing_targets=allow_missing_targets,
         allow_missing_genes=allow_missing_genes,
+        truth_registry_path=truth_registry_path,
     )
 
     contract_check = {

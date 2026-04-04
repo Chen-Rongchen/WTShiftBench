@@ -19,7 +19,7 @@
 
 ## 本轮目标
 
-把 `Stage 1A` 的数据集治理收紧到 `3 + 4 + 1`，并在不改变 official formal 主线的前提下，尽可能把候选数据集补齐到接近 formal admission 的标准。
+把 `Stage 1A` 的数据集治理收紧到 `3 + 4 + 1`，并在不改变 official formal 主线的前提下，先完成“三模型尽可能覆盖所有可用数据集，并判断是否打过 baseline”的工程闭环。
 
 ## 本轮不做
 
@@ -119,6 +119,24 @@
   - `scGPT / Geneformer` adapter taxonomy 的声明边界确认
   - 单 seed 结果的 lane-wise 解释与异常排查
 
+### 5.1 当前评测矩阵
+
+当前不升格 dataset tier，先跑以下 `3 + 3 + 2`：
+
+- official formal：
+  - `replogle_2022_k562_essential`
+  - `replogle_2022_rpe1`
+  - `tian_2019_day7neuron`
+- next formal-admission batch 中先纳入运行矩阵的 3 个：
+  - `tian_2019_ipsc`
+  - `tian_2021_crispri`
+  - `replogle_2022_k562_gwps`
+- derived candidates：
+  - `norman_2019_raw__single_target`
+  - `dixit_2016_raw__control_context`
+
+原始整包 `norman_2019_raw` 与 `dixit_2016_raw` 继续不进这条统一评测矩阵。
+
 ### 6. 当前 challenger 探索边界
 
 - 当前只允许在不改变 `Stage 1A smoke` 制度的前提下，检查是否存在任何 challenger 能在 non-formal `single-seed` 设置下初步接近或超过 `mean_shift_baseline`
@@ -162,6 +180,20 @@
 - 新增 `admission_matrix.tsv`，只输出当前分层所需 admission 结论，不预写主协议升格
 - 新增 `short_summary.md`，简述为何采用 `3 + 4 + 1`
 - 删除不符合当前分层的旧 auxiliary / supplementary formal 叙述与衍生产物
+
+### 7.1 当前全量跑模交付
+
+- 新增 `configs/stage1a/runs/all_datasets_eval_matrix.json`
+- 新增 `scripts/build_stage1a_all_datasets_eval_matrix.py`
+- 新增 `scripts/run_stage1a_all_datasets_pipeline.py`
+- 新增 `scripts/summarize_stage1a_all_datasets_vs_baseline.py`
+- `pixi.toml` 已补全对应 task
+- 当前执行顺序固定为：
+  1. `pixi run build-stage1a-all-datasets-eval-matrix`
+  2. `pixi run run-stage1a-all-datasets-pipeline-dry-run`
+  3. `pixi run run-stage1a-all-datasets-pipeline`
+  4. `pixi run summarize-stage1a-all-datasets-vs-baseline`
+- 第一目标不是立刻让 8 个数据集全部 ready，而是把 blocked 原因机器化写清楚，然后逐个补齐缺口
 
 ### 8. 输入侧 normalize 审计已关闭
 

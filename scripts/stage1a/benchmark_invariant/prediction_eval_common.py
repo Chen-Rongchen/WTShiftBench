@@ -9,6 +9,7 @@ import pandas as pd
 from scripts.stage1a.benchmark_invariant.catalog import (
     PROJECT_ROOT,
     load_stage1a_aligned_truth_registry,
+    load_stage1a_truth_registry,
 )
 
 
@@ -47,8 +48,14 @@ def load_supplementary_common_genes() -> list[str]:
     return genes
 
 
-def load_main_aligned_truth_entry(dataset_id: str):
-    entries = load_stage1a_aligned_truth_registry()
+def load_truth_registry_entries(registry_path: Path | None = None):
+    if registry_path is None:
+        return load_stage1a_aligned_truth_registry()
+    return load_stage1a_truth_registry(registry_path)
+
+
+def load_main_aligned_truth_entry(dataset_id: str, registry_path: Path | None = None):
+    entries = load_truth_registry_entries(registry_path)
     matched = [
         entry
         for entry in entries
@@ -57,7 +64,10 @@ def load_main_aligned_truth_entry(dataset_id: str):
         and str(entry.freeze_status) == "frozen"
     ]
     if not matched:
-        raise ValueError(f"未找到 dataset_id={dataset_id} 的 frozen main_aligned truth entry。")
+        source = resolve_project_relative(registry_path) if registry_path is not None else "default"
+        raise ValueError(
+            f"未找到 dataset_id={dataset_id} 的 frozen main_aligned truth entry。truth_registry={source}"
+        )
     if len(matched) != 1:
         raise ValueError(
             f"dataset_id={dataset_id} 的 frozen main_aligned truth entry 不唯一，"
@@ -119,6 +129,7 @@ def align_prediction_to_truth(
     prediction_space: str,
     allow_missing_targets: bool,
     allow_missing_genes: bool,
+    truth_registry_path: Path | None = None,
 ) -> tuple[pd.DataFrame, dict[str, object], dict[str, object]]:
     # 根据 protocol_blueprint.md 4.3 节，Stage 1A formal main evaluation
     # 使用 dataset-local evaluation space，不再使用跨数据集共同交集。
@@ -179,7 +190,9 @@ def align_prediction_to_truth(
         "prediction_space": prediction_space,
         "input_prediction_path": resolve_project_relative(prediction_path),
         "aligned_output_path": resolve_project_relative(output_path),
-        "truth_path": resolve_project_relative(load_main_aligned_truth_entry(dataset_id).path),
+        "truth_path": resolve_project_relative(
+            load_main_aligned_truth_entry(dataset_id, truth_registry_path).path
+        ),
         "evaluation_space": "main_aligned",
         "formal_scoring_rule": "正式主榜只在 dataset-local evaluation space 上评分（根据 protocol_blueprint.md 4.3 节）。",
         "coverage_policy": "coverage 不足时允许对齐与评分，但必须降级为 degraded_or_supplementary_only。",
@@ -220,8 +233,14 @@ def align_prediction_to_truth(
         },
         "sources": {
             "prediction_path": resolve_project_relative(prediction_path),
-            "truth_registry": "data/frozen/stage1a_truth/aligned_truth_registry.tsv",
-            "truth_path": resolve_project_relative(load_main_aligned_truth_entry(dataset_id).path),
+            "truth_registry": (
+                resolve_project_relative(truth_registry_path)
+                if truth_registry_path is not None
+                else "data/frozen/stage1a_truth/aligned_truth_registry.tsv"
+            ),
+            "truth_path": resolve_project_relative(
+                load_main_aligned_truth_entry(dataset_id, truth_registry_path).path
+            ),
             "evaluable_genes_source": "从 truth 矩阵的列获取，不使用跨数据集共同交集。",
         },
         "outputs": {
@@ -340,9 +359,17 @@ def subset_like_truth(candidate: pd.DataFrame, truth: pd.DataFrame) -> pd.DataFr
     return candidate.loc[truth.index, truth.columns].copy()
 
 
-def comparator_path(dataset_id: str, comparator_name: str) -> Path:
+def comparator_path(
+    dataset_id: str,
+    comparator_name: str,
+    *,
+    baseline_root: Path | None = None,
+    null_root: Path | None = None,
+) -> Path:
+    resolved_baseline_root = BASELINE_ROOT if baseline_root is None else baseline_root
+    resolved_null_root = NULL_ROOT if null_root is None else null_root
     if comparator_name in STAGE1A_BASELINE_COMPARATOR_NAMES:
-        return BASELINE_ROOT / dataset_id / f"{comparator_name}.tsv.gz"
+        return resolved_baseline_root / dataset_id / f"{comparator_name}.tsv.gz"
     if comparator_name in {"label_shuffle", "random_pairing"}:
-        return NULL_ROOT / dataset_id / f"{comparator_name}.tsv.gz"
+        return resolved_null_root / dataset_id / f"{comparator_name}.tsv.gz"
     raise ValueError(f"未知 comparator: {comparator_name}")

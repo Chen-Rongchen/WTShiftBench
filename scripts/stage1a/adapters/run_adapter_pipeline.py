@@ -89,6 +89,21 @@ def main() -> None:
             str(dataset_id),
             "--model-id",
             str(model_id),
+            *(
+                ["--truth-registry-path", str(run_config["truth_registry_path"])]
+                if run_config.get("truth_registry_path")
+                else []
+            ),
+            *(
+                ["--baseline-root", str(run_config["baseline_root"])]
+                if run_config.get("baseline_root")
+                else []
+            ),
+            *(
+                ["--null-root", str(run_config["null_root"])]
+                if run_config.get("null_root")
+                else []
+            ),
             "--topk",
             *[str(value) for value in args.topk],
         ]
