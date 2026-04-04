@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from dataclasses import dataclass
 from pathlib import Path
 
 import numpy as np
@@ -8,12 +9,22 @@ import torch
 import yaml
 from scipy import sparse
 
-from scripts.stage1a.benchmark_invariant.catalog import PROJECT_ROOT
+from scripts.stage1a.benchmark_invariant.catalog import (
+    PROJECT_ROOT,
+    get_formal_dataset_contract,
+)
 from scripts.stage1a.benchmark_invariant.prediction_eval_common import (
     load_supplementary_common_genes,
     load_main_aligned_truth_entry,
     read_matrix,
 )
+
+
+@dataclass(frozen=True)
+class AdapterDatasetContext:
+    dataset_id: str
+    formal_h5ad_path: Path
+    cell_line: str
 
 
 def load_run_config(run_config_path: str | None) -> dict[str, object]:
@@ -37,6 +48,45 @@ def resolve_path(path_value: str | Path | None) -> Path | None:
     if path.is_absolute():
         return path
     return PROJECT_ROOT / path
+
+
+def resolve_adapter_dataset_context(
+    *,
+    dataset_id: str,
+    run_config: dict[str, object],
+    formal_h5ad_cli=None,
+    cell_line_cli=None,
+) -> AdapterDatasetContext:
+    try:
+        contract = get_formal_dataset_contract(dataset_id)
+    except KeyError:
+        contract = None
+
+    formal_h5ad_value = coalesce_arg(
+        formal_h5ad_cli,
+        run_config,
+        "formal_h5ad_path",
+        contract.path if contract is not None else None,
+    )
+    formal_h5ad_path = resolve_path(formal_h5ad_value)
+    if formal_h5ad_path is None:
+        raise ValueError(
+            f"{dataset_id} 缺少 formal_h5ad_path，且不在 current formal registry 中。"
+        )
+
+    cell_line = str(
+        coalesce_arg(
+            cell_line_cli,
+            run_config,
+            "cell_line",
+            contract.cell_line if contract is not None else dataset_id,
+        )
+    )
+    return AdapterDatasetContext(
+        dataset_id=dataset_id,
+        formal_h5ad_path=formal_h5ad_path,
+        cell_line=cell_line,
+    )
 
 
 def mean_expression(matrix) -> np.ndarray:
@@ -65,20 +115,23 @@ def audit_input_matrix_semantics(adata, sample_rows: int = 256, sample_cols: int
     }
 
 
-def load_truth_target_order(dataset_id: str) -> list[str]:
-    truth_entry = load_main_aligned_truth_entry(dataset_id)
+def load_truth_target_order(dataset_id: str, truth_registry_path: str | Path | None = None) -> list[str]:
+    truth_entry = load_main_aligned_truth_entry(dataset_id, resolve_path(truth_registry_path))
     truth = read_matrix(truth_entry.path)
     return truth.index.astype(str).tolist()
 
 
-def load_frozen_prediction_space(dataset_id: str) -> tuple[list[str], list[str]]:
+def load_frozen_prediction_space(
+    dataset_id: str,
+    truth_registry_path: str | Path | None = None,
+) -> tuple[list[str], list[str]]:
     """返回 (heldout_targets, evaluable_genes)。
 
     evaluable_genes 现在是 dataset-local 的，不是跨数据集共同交集。
     根据 protocol_blueprint.md 4.3 节，Stage 1A formal main evaluation
     使用 dataset-specific evaluation space。
     """
-    truth_entry = load_main_aligned_truth_entry(dataset_id)
+    truth_entry = load_main_aligned_truth_entry(dataset_id, resolve_path(truth_registry_path))
     truth = read_matrix(truth_entry.path)
     return truth.index.astype(str).tolist(), list(truth.columns)
 

@@ -35,10 +35,12 @@ Stage 1A 现在按职责分成三类：
 - `stage1a/runs/baseline_smoke_linear_delta_baseline_legacy.yaml`
 - `stage1a/runs/baseline_ladder_smoke.batch.yaml`
 - `stage1a/runs/batch_scoring_three_models_formal.yaml`（三模型 × 三个主线数据集批量 scoring）
+- `stage1a/runs/all_datasets_eval_matrix.json`（三模型 × `3 + 3 + 2` 数据集评测矩阵配置）
 
 ## 3. 维护原则
 
 - Stage 1A benchmark-invariant 与旧 adapter 仍以 YAML 为主；entrant **recipe 参数**统一为 `configs/**/*.json`（见下节）
+- 跨数据集批量运行的参数矩阵优先写入 `configs/**/*.json`；脚本只负责物化 run-config 与执行
 - contract 与 run instance 分开表达
 - adapter config 可以包含模型专属字段，但不改变公共 contract 字段语义
 - 修改字段语义前先更新文档，再改实现

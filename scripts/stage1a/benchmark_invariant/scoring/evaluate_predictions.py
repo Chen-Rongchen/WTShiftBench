@@ -57,6 +57,9 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--dataset-summary-path")
     parser.add_argument("--comparison-path")
     parser.add_argument("--alignment-summary-path")
+    parser.add_argument("--truth-registry-path")
+    parser.add_argument("--baseline-root")
+    parser.add_argument("--null-root")
     parser.add_argument("--topk", nargs="+", type=int, default=[50])
     parser.add_argument(
         "--gene-subset-mode",
@@ -211,6 +214,8 @@ def compare_against_group(
     truth_subset: pd.DataFrame,
     topk_values: list[int],
     model_summary: dict[str, object],
+    baseline_root: Path | None = None,
+    null_root: Path | None = None,
 ) -> dict[str, object]:
     aggregate_scores = model_summary["aggregate_scores"]
     primary_metrics = model_summary["primary_aggregation_rule"]["primary_metric_family"]
@@ -220,7 +225,12 @@ def compare_against_group(
     comparator_aggregates_by_name: dict[str, dict[str, float]] = {}
     comparator_paths: dict[str, str] = {}
     for comparator_name in comparator_names:
-        comparator_file = comparator_path(model_summary["dataset_id"], comparator_name)
+        comparator_file = comparator_path(
+            model_summary["dataset_id"],
+            comparator_name,
+            baseline_root=baseline_root,
+            null_root=null_root,
+        )
         comparator = read_matrix(comparator_file)
         comparator_subset = subset_like_truth(comparator, truth_subset)
         _, comparator_aggregates = evaluate_prediction_frame(
@@ -327,6 +337,8 @@ def build_comparison_summary(
     dataset_summary: dict[str, object],
     truth_subset: pd.DataFrame,
     topk_values: list[int],
+    baseline_root: Path | None = None,
+    null_root: Path | None = None,
 ) -> dict[str, object]:
     baseline_comparison = compare_against_group(
         group_name="baselines",
@@ -334,6 +346,8 @@ def build_comparison_summary(
         truth_subset=truth_subset,
         topk_values=topk_values,
         model_summary=dataset_summary,
+        baseline_root=baseline_root,
+        null_root=null_root,
     )
     null_comparison = compare_against_group(
         group_name="nulls",
@@ -341,6 +355,8 @@ def build_comparison_summary(
         truth_subset=truth_subset,
         topk_values=topk_values,
         model_summary=dataset_summary,
+        baseline_root=baseline_root,
+        null_root=null_root,
     )
     return {
         "stage": "stage1a_model_eval",
@@ -420,6 +436,21 @@ def main() -> None:
     )
     if not aligned_prediction_path.is_absolute():
         aligned_prediction_path = PROJECT_ROOT / aligned_prediction_path
+    truth_registry_path = (
+        None
+        if not args.truth_registry_path
+        else (Path(args.truth_registry_path) if Path(args.truth_registry_path).is_absolute() else PROJECT_ROOT / args.truth_registry_path)
+    )
+    baseline_root = (
+        None
+        if not args.baseline_root
+        else (Path(args.baseline_root) if Path(args.baseline_root).is_absolute() else PROJECT_ROOT / args.baseline_root)
+    )
+    null_root = (
+        None
+        if not args.null_root
+        else (Path(args.null_root) if Path(args.null_root).is_absolute() else PROJECT_ROOT / args.null_root)
+    )
 
     # Determine report root based on mode
     if args.gene_subset_mode == "supplementary_subset":
@@ -476,7 +507,7 @@ def main() -> None:
         skip_evaluation_space_check=skip_eval_space_check,
     )
 
-    truth_entry = load_main_aligned_truth_entry(args.dataset_id)
+    truth_entry = load_main_aligned_truth_entry(args.dataset_id, truth_registry_path)
     aligned_truth = read_matrix(truth_entry.path)
     aligned_prediction = read_matrix(aligned_prediction_path)
 
@@ -524,6 +555,8 @@ def main() -> None:
         dataset_summary=dataset_summary,
         truth_subset=truth_subset,
         topk_values=args.topk,
+        baseline_root=baseline_root,
+        null_root=null_root,
     )
     json_dump(comparison_summary, comparison_path)
 
@@ -565,6 +598,8 @@ def main() -> None:
                 dataset_summary=lane_dataset_summary,
                 truth_subset=lane_truth,
                 topk_values=args.topk,
+                baseline_root=baseline_root,
+                null_root=null_root,
             )
             lane_signal_pass, lane_signal_details = signal_adequacy_from_summary(lane_dataset_summary)
             lane_rows.append(
