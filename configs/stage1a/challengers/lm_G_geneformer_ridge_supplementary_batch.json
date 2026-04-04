@@ -1,0 +1,16 @@
+{
+  "challenger_id": "lm_G_geneformer_ridge",
+  "feature_id": "geneformer_gene_embedding_gc104m",
+  "dataset_ids": [
+    "tian_2019_ipsc",
+    "tian_2021_crispri"
+  ],
+  "n_components_grid": [
+    32
+  ],
+  "ridge_lambda_grid": [
+    1.0
+  ],
+  "model_prefix": "lm_G_geneformer_ridge",
+  "baseline_model_id": "baseline_mean_shift_formal"
+}

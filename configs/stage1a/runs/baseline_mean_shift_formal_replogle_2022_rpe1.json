@@ -1,0 +1,11 @@
+{
+  "dataset_id": "replogle_2022_rpe1",
+  "model_id": "baseline_mean_shift_formal",
+  "prediction_path": "data/baselines/stage1a_main_aligned/replogle_2022_rpe1/mean_shift_baseline.tsv.gz",
+  "prediction_space": "X_pseudobulk_delta",
+  "output_path": "data/predictions/stage1a_main_aligned/baseline_mean_shift_formal/replogle_2022_rpe1/predicted_shift_aligned.tsv.gz",
+  "summary_path": "reports/stage1a/prediction_alignment/baseline_mean_shift_formal/replogle_2022_rpe1/alignment_summary.json",
+  "manifest_path": "reports/stage1a/prediction_alignment/baseline_mean_shift_formal/replogle_2022_rpe1/alignment_manifest.json",
+  "allow_missing_targets": false,
+  "allow_missing_genes": false
+}
