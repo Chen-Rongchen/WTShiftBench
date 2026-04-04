@@ -1,0 +1,96 @@
+{
+  "matrix_id": "stage1a_all_datasets_v1",
+  "materialized_root": "artifacts/stage1a_eval_matrix",
+  "report_root": "reports/stage1a/eval_matrix",
+  "truth_registry_path": "data/frozen/stage1a_truth/aligned_truth_registry.tsv",
+  "baseline_root": "data/baselines/stage1a_main_aligned",
+  "null_root": "data/nulls/stage1a_main_aligned",
+  "topk": [50],
+  "models": [
+    {
+      "adapter": "gears",
+      "environment": "gears",
+      "model_id": "gears_stage1a_formal",
+      "config_overrides": {
+        "device": "auto",
+        "seed": 123,
+        "epochs": 30,
+        "batch_size": 32,
+        "lr": 0.001,
+        "weight_decay": 1e-06,
+        "train_val_fraction": 0.8,
+        "max_control_cells": 2048,
+        "prediction_num_samples": 64,
+        "perturbation_graph_k": 8
+      }
+    },
+    {
+      "adapter": "scgpt",
+      "environment": "scgpt",
+      "model_id": "scgpt_embedding_kernel_formal",
+      "config_overrides": {
+        "checkpoint_dir": "models/pretrained/scgpt_human",
+        "seed": 123,
+        "top_k": 4
+      }
+    },
+    {
+      "adapter": "geneformer",
+      "environment": "geneformer",
+      "model_id": "geneformer_embedding_kernel_formal",
+      "config_overrides": {
+        "checkpoint_dir": "models/pretrained/geneformer_gf_12l_95m_i4096",
+        "asset_root": "models/pretrained/geneformer_assets/geneformer",
+        "seed": 123,
+        "top_k": 4
+      }
+    }
+  ],
+  "datasets": [
+    {
+      "dataset_id": "replogle_2022_k562_essential",
+      "tier": "official_formal",
+      "formal_h5ad_path": "data/processed/stage1a/formal_filtered/replogle_2022_k562_essential.h5ad"
+    },
+    {
+      "dataset_id": "replogle_2022_rpe1",
+      "tier": "official_formal",
+      "formal_h5ad_path": "data/processed/stage1a/formal_filtered/replogle_2022_rpe1.h5ad"
+    },
+    {
+      "dataset_id": "tian_2019_day7neuron",
+      "tier": "official_formal",
+      "formal_h5ad_path": "data/processed/stage1a/formal_filtered/tian_2019_day7neuron.h5ad"
+    },
+    {
+      "dataset_id": "tian_2019_ipsc",
+      "tier": "next_formal_admission_batch",
+      "formal_h5ad_path": "data/processed/stage1a/candidate_formal_like/tian_2019_ipsc.h5ad",
+      "cell_line": "tian_2019_ipsc"
+    },
+    {
+      "dataset_id": "tian_2021_crispri",
+      "tier": "next_formal_admission_batch",
+      "formal_h5ad_path": "data/processed/stage1a/candidate_formal_like/tian_2021_crispri.h5ad",
+      "cell_line": "tian_2021_crispri"
+    },
+    {
+      "dataset_id": "replogle_2022_k562_gwps",
+      "tier": "next_formal_admission_batch",
+      "formal_h5ad_path": "data/raw/stage1a/candidates/replogle_2022_k562_gwps.h5ad",
+      "cell_line": "replogle_2022_k562_gwps"
+    },
+    {
+      "dataset_id": "norman_2019_raw__single_target",
+      "tier": "derived_candidate",
+      "formal_h5ad_path": "data/processed/stage1a/candidate_formal_like/norman_2019_raw.h5ad",
+      "cell_line": "norman_2019_raw__single_target"
+    },
+    {
+      "dataset_id": "dixit_2016_raw__control_context",
+      "tier": "derived_candidate",
+      "formal_h5ad_path": "data/processed/stage1a/candidate_formal_like/dixit_2016_raw__control_context.h5ad",
+      "cell_line": "dixit_2016_raw__control_context"
+    }
+  ]
+}

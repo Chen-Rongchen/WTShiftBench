@@ -30,6 +30,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--output-path")
     parser.add_argument("--summary-path")
     parser.add_argument("--manifest-path")
+    parser.add_argument("--truth-registry-path")
     parser.add_argument(
         "--allow-missing-targets",
         action=argparse.BooleanOptionalAction,
@@ -68,6 +69,7 @@ def main() -> None:
     output_path_value = coalesce_arg(args.output_path, run_config, "output_path")
     summary_path_value = coalesce_arg(args.summary_path, run_config, "summary_path")
     manifest_path_value = coalesce_arg(args.manifest_path, run_config, "manifest_path")
+    truth_registry_path_value = coalesce_arg(args.truth_registry_path, run_config, "truth_registry_path")
     allow_missing_targets_value = coalesce_arg(
         args.allow_missing_targets, run_config, "allow_missing_targets"
     )
@@ -118,9 +120,14 @@ def main() -> None:
     )
     if not manifest_path.is_absolute():
         manifest_path = PROJECT_ROOT / manifest_path
+    truth_registry_path = None
+    if truth_registry_path_value:
+        truth_registry_path = Path(str(truth_registry_path_value))
+        if not truth_registry_path.is_absolute():
+            truth_registry_path = PROJECT_ROOT / truth_registry_path
 
     prediction = read_matrix(prediction_path)
-    truth_entry = load_main_aligned_truth_entry(str(dataset_id))
+    truth_entry = load_main_aligned_truth_entry(str(dataset_id), truth_registry_path)
     truth = read_matrix(truth_entry.path)
 
     aligned, summary, manifest = align_prediction_to_truth(
@@ -133,6 +140,7 @@ def main() -> None:
         prediction_space=str(prediction_space),
         allow_missing_targets=allow_missing_targets,
         allow_missing_genes=allow_missing_genes,
+        truth_registry_path=truth_registry_path,
     )
     write_matrix(aligned, output_path)
     json_dump(summary, summary_path)
