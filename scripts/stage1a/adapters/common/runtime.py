@@ -49,6 +49,22 @@ def mean_expression(matrix) -> np.ndarray:
     return values.astype(np.float64, copy=False)
 
 
+def audit_input_matrix_semantics(adata, sample_rows: int = 256, sample_cols: int = 256) -> dict[str, object]:
+    sample = adata.X[: min(sample_rows, adata.n_obs), : min(sample_cols, adata.n_vars)]
+    if sparse.issparse(sample):
+        sample_values = sample.toarray()
+    else:
+        sample_values = np.asarray(sample)
+    max_nonint_abs = float(np.abs(sample_values - np.round(sample_values)).max()) if sample_values.size else 0.0
+    looks_like_raw_counts = bool(max_nonint_abs < 1e-8 and float(sample_values.min(initial=0.0)) >= 0.0)
+    return {
+        "input_matrix_source": "adata.X",
+        "looks_like_log_normalized_or_transformed": not looks_like_raw_counts,
+        "raw_counts_available": looks_like_raw_counts,
+        "matrix_sample_max_nonint_abs": max_nonint_abs,
+    }
+
+
 def load_truth_target_order(dataset_id: str) -> list[str]:
     truth_entry = load_main_aligned_truth_entry(dataset_id)
     truth = read_matrix(truth_entry.path)
@@ -66,8 +82,11 @@ def load_frozen_prediction_space(dataset_id: str) -> tuple[list[str], list[str]]
     truth = read_matrix(truth_entry.path)
     return truth.index.astype(str).tolist(), list(truth.columns)
 
-
-def compute_train_target_deltas(formal_adata, common_genes: list[str], heldout_targets: set[str]):
+def compute_train_target_deltas(
+    formal_adata,
+    common_genes: list[str],
+    heldout_targets: set[str],
+):
     obs = formal_adata.obs.copy()
     obs["is_control"] = obs["is_control"].astype(bool)
     obs["target_gene"] = obs["target_gene"].astype("string")

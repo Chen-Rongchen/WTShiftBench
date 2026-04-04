@@ -1,0 +1,15 @@
+{
+  "challenger_id": "residual_over_mean__lm_train_lowrank",
+  "feature_id": "gene_symbol_chargram_v1",
+  "dataset_ids": [
+    "norman_2019"
+  ],
+  "n_components_grid": [
+    32
+  ],
+  "ridge_lambda_grid": [
+    0.1
+  ],
+  "model_prefix": "residual_over_mean__lm_train_lowrank_symbolfeat_norman_smoke",
+  "baseline_model_id": "mean_shift_baseline"
+}
