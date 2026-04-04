@@ -11,10 +11,12 @@ try:
     from scripts.stage1a.benchmark_invariant.catalog import (
         PROJECT_ROOT,
         RAW_STAGE1A_DIR,
+        get_source_dataset,
         load_formal_dataset_contracts,
     )
 except ModuleNotFoundError:
     from stage1a_catalog import PROJECT_ROOT, RAW_STAGE1A_DIR, load_formal_dataset_contracts
+    from stage1a.benchmark_invariant.catalog import get_source_dataset
 
 
 RAW_AUDIT_DIR = RAW_STAGE1A_DIR
@@ -231,7 +233,8 @@ def main() -> None:
     for contract in load_formal_dataset_contracts(include_auxiliary=True):
         audit = load_audit_summary(contract.dataset_id)
         filter_report = load_filter_report(contract.dataset_id)
-        umi_summary = read_umi_depth_summary(RAW_STAGE1A_DIR / f"{contract.dataset_id}.h5ad")
+        source_dataset = get_source_dataset(contract.dataset_id)
+        umi_summary = read_umi_depth_summary(source_dataset.path)
 
         control = audit["selected_control"]
         single = audit["single_perturbation_filterability"]
@@ -239,7 +242,7 @@ def main() -> None:
         moi_state, moi_note = moi_status(audit)
         barcode_state, barcode_note = barcode_assignment_status(audit)
         level_state, level_value, level_note = processed_raw_level_status(
-            RAW_STAGE1A_DIR / f"{contract.dataset_id}.h5ad"
+            source_dataset.path
         )
         support_state, support_note, support_metrics = support_floor_status(
             contract.dataset_id,

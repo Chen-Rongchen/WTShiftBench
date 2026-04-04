@@ -20,7 +20,10 @@ KEY_CANDIDATES = PERTURBATION_CANDIDATES + CONTROL_CANDIDATES
 DIRECT_DOWNLOAD_URLS = {
     "replogle_2022_k562_essential": "https://exampledata.scverse.org/pertpy/replogle_2022_k562_essential.h5ad",
     "replogle_2022_rpe1": "https://zenodo.org/record/10044268/files/ReplogleWeissman2022_rpe1.h5ad?download=1",
+    "norman_2019": "https://zenodo.org/record/10044268/files/NormanWeissman2019_filtered.h5ad?download=1",
+    "adamson_2016_upr_perturb_seq": "https://zenodo.org/record/10044268/files/AdamsonWeissman2016_GSM2406681_10X010.h5ad?download=1",
     "tian_2019_day7neuron": "https://zenodo.org/records/10044268/files/TianKampmann2019_day7neuron.h5ad?download=1",
+    "tian_2019_ipsc": "https://zenodo.org/records/10044268/files/TianKampmann2019_iPSC.h5ad?download=1",
     "tian_2021_crispri": "https://zenodo.org/records/10044268/files/TianKampmann2021_CRISPRi.h5ad?download=1",
 }
 

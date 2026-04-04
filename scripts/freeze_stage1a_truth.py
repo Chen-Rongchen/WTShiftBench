@@ -43,8 +43,8 @@ def load_pass_contract_frame() -> pd.DataFrame:
             "control_definition": contract.control_definition,
             "status": contract.status,
         }
-        for contract in load_formal_dataset_contracts()
-        if contract.status == "pass"
+        for contract in load_formal_dataset_contracts(include_auxiliary=True)
+        if contract.status in {"pass", "auxiliary_pass"}
     ]
     if not rows:
         return pd.DataFrame(columns=["dataset_id", "control_definition", "status"])

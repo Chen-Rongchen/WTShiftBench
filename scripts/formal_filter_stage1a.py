@@ -8,6 +8,11 @@ import anndata as ad
 import pandas as pd
 
 from stage1a_catalog import FORMAL_SOURCE_DATASETS
+from scripts.stage1a.dataset_semantics import (
+    canonicalize_gene_series,
+    is_adamson_control_target,
+    parse_adamson_target_series,
+)
 
 OUTPUT_DIR = Path("data/processed/stage1a/formal_filtered")
 STANDARD_STRING_COLUMNS = [
@@ -53,7 +58,7 @@ def assert_retained_targets_complete(dataset_name: str, filtered_obs: pd.DataFra
         )
 
 
-def build_standard_obs(dataset_name: str, obs: pd.DataFrame) -> pd.DataFrame:
+def build_standard_obs(dataset_name: str, obs: pd.DataFrame, var_names: pd.Index | None = None) -> pd.DataFrame:
     if "perturbation" not in obs.columns or "nperts" not in obs.columns:
         raise ValueError(f"{dataset_name} 缺少 formal filtering 所需关键列。")
 
@@ -86,12 +91,38 @@ def build_standard_obs(dataset_name: str, obs: pd.DataFrame) -> pd.DataFrame:
         standardized["perturbation_label_clean"] = perturbation_label_clean
         standardized["target_gene"] = target_gene
         standardized["target_gene_id"] = target_gene_id
-    elif dataset_name in {"tian_2019_day7neuron", "tian_2021_crispri"}:
+    elif dataset_name in {"tian_2019_day7neuron", "tian_2019_ipsc", "tian_2021_crispri"}:
         target_gene = perturbation.where(~is_control, other="")
         perturbation_label_clean = perturbation.where(~is_control, other="control")
 
         standardized["perturbation_label_clean"] = perturbation_label_clean
         standardized["target_gene"] = target_gene
+        standardized["target_gene_id"] = pd.Series("", index=standardized.index, dtype=object)
+    elif dataset_name == "norman_2019":
+        target_gene = canonicalize_gene_series(perturbation.where(~is_control, other=""))
+        valid_targets = set(map(str, var_names.astype(str))) if var_names is not None else None
+        if valid_targets is not None:
+            valid_single_target = target_gene.isin(valid_targets)
+            is_single_perturbation = is_single_perturbation & valid_single_target
+            formal_keep = is_control | is_single_perturbation
+        perturbation_label_clean = target_gene.where(~is_control, other="control")
+
+        standardized["is_single_perturbation"] = is_single_perturbation.astype(bool)
+        standardized["formal_keep"] = formal_keep.astype(bool)
+        standardized["perturbation_label_clean"] = perturbation_label_clean
+        standardized["target_gene"] = target_gene
+        standardized["target_gene_id"] = pd.Series("", index=standardized.index, dtype=object)
+    elif dataset_name == "adamson_2016_upr_perturb_seq":
+        parsed_target = canonicalize_gene_series(parse_adamson_target_series(perturbation))
+        is_control = is_adamson_control_target(parsed_target)
+        is_single_perturbation = parsed_target.ne("") & ~is_control
+        formal_keep = is_control | is_single_perturbation
+
+        standardized["is_control"] = is_control.astype(bool)
+        standardized["is_single_perturbation"] = is_single_perturbation.astype(bool)
+        standardized["formal_keep"] = formal_keep.astype(bool)
+        standardized["perturbation_label_clean"] = parsed_target.where(~is_control, other="control")
+        standardized["target_gene"] = parsed_target.where(~is_control, other="")
         standardized["target_gene_id"] = pd.Series("", index=standardized.index, dtype=object)
     else:
         raise ValueError(f"未定义的数据集过滤规则: {dataset_name}")
@@ -117,6 +148,14 @@ def build_filter_report(
     removed_multi_perturbation_cells = int(
         ((~raw_obs["is_control"]) & (~raw_obs["is_single_perturbation"])).sum()
     )
+    removed_non_target_resolved_cells = int(
+        (
+            (~raw_obs["is_control"])
+            & raw_obs["is_single_perturbation"].astype(bool)
+            & raw_obs["target_gene"].astype("string").str.strip().ne("")
+            & (~raw_obs["formal_keep"].astype(bool))
+        ).sum()
+    )
     unique_target_count = int(
         filtered_obs.loc[~filtered_obs["is_control"], "target_gene"].astype("string").nunique()
     )
@@ -139,14 +178,17 @@ def build_filter_report(
         "kept_controls": kept_controls,
         "kept_perturbed_cells": kept_perturbed_cells,
         "removed_multi_perturbation_cells": removed_multi_perturbation_cells,
+        "removed_unresolved_target_cells": removed_non_target_resolved_cells,
         "unique_target_count": unique_target_count,
         "missing_target_gene_id_rows": missing_target_gene_id_rows,
         "final_status": "pass",
         "output_path": str(output_path),
         "note": (
             "已按 formal 主线规则完成过滤并补齐标准 obs 字段。"
-            if missing_target_gene_id_rows == 0
+            if missing_target_gene_id_rows == 0 and removed_non_target_resolved_cells == 0
             else "已按 formal 主线规则完成过滤；保留 target_gene 作为 formal 主键，部分细胞缺少 source gene_id。"
+            if missing_target_gene_id_rows > 0
+            else "已按 formal 主线规则完成过滤；剔除了 target 未闭合的细胞。"
         ),
     }
 
@@ -155,7 +197,7 @@ def process_dataset(dataset_name: str, input_path: Path) -> tuple[dict[str, obje
     print(f"开始处理: {dataset_name}")
     adata = ad.read_h5ad(input_path)
 
-    standardized_obs = build_standard_obs(dataset_name, adata.obs)
+    standardized_obs = build_standard_obs(dataset_name, adata.obs, adata.var_names)
     adata.obs = standardized_obs
 
     filtered = adata[adata.obs["formal_keep"].astype(bool)].copy()
