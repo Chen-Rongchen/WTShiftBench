@@ -33,6 +33,7 @@ from scripts.stage1a.adapters.common.runtime import (
 )
 from scripts.stage1a.benchmark_invariant.prediction_eval_common import (
     json_dump,
+    load_main_aligned_truth_entry,
     resolve_project_relative,
     write_matrix,
 )
@@ -515,6 +516,7 @@ def main() -> None:
     pert_data = PertData(str(gears_cache_dir), gene_set_path=str(gene_set_path), default_pert_graph=False)
     gears_dataset_name = f"{dataset_id}_{model_id}"
     gears_dataset_dir = gears_cache_dir / gears_dataset_name
+    truth_entry = load_main_aligned_truth_entry(dataset_id, truth_registry_path)
     expected_cache_signature = build_dataset_cache_signature(
         dataset_id=dataset_id,
         model_id=model_id,
@@ -522,6 +524,8 @@ def main() -> None:
         seed=seed,
         max_control_cells=max_control_cells,
         max_cells_per_train_condition=max_cells_per_train_condition,
+        input_transform="adata.X_raw_counts",
+        truth_path=truth_entry.path,
         train_adata=train_adata,
         train_targets=train_targets,
         heldout_target_order=heldout_target_order,
