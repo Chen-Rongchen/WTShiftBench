@@ -1,0 +1,11 @@
+dataset_id	tier	control_clear	single_target_fit	truth_build_feasible	recommendation
+replogle_2022_k562_essential	official_formal	yes	yes	yes	retain_official
+replogle_2022_rpe1	official_formal	yes	yes	yes	retain_official
+tian_2019_day7neuron	official_formal	yes	yes	yes	retain_official
+tian_2019_ipsc	next_formal_batch	yes	yes	yes	admit
+tian_2021_crispri	next_formal_batch	yes	yes	yes	admit
+replogle_2022_k562_gwps	next_formal_batch	yes	yes	yes	admit
+dixit_2016_raw	next_formal_batch	no_as_single_dataset	no_as_single_dataset	no_as_single_dataset	reject
+norman_2019_raw	side_formal_annex	yes	side_track_only	yes	annex_admit
+norman_2019_raw__single_target	derived_formal_candidate	yes	yes	yes	admit_as_derived_candidate
+dixit_2016_raw__control_context	derived_formal_candidate	yes	yes	yes	admit_as_derived_candidate
