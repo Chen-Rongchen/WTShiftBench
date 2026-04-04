@@ -2,9 +2,9 @@ stage: stage1a_formal
 contract_version: "1.1"
 source_summary: data/processed/stage1a/formal_filtered/formal_filter_summary.tsv
 notes:
-  - 当前登记 4 个数据集：3 个主线 + 1 个辅助。
+  - 当前只登记 3 个 official formal 数据集，不把候选 admission batch 或 annex side track 写进 formal registry。
   - 只有 `default_in_mainline: true` 的数据集会被 formal 主流程默认消费。
-  - 新增数据集的细胞数/基因数统计需在重新下载、审计与过滤后回填；未重跑前保留为 0，避免写入虚假数字。
+  - `tian_2019_ipsc`、`tian_2021_crispri`、`replogle_2022_k562_gwps`、`dixit_2016_raw` 与 `norman_2019_raw` 的分层与审计，统一记录在 `dataset_tiering.md` 与 admission notes，不提前升格为 formal registry 成员。
 datasets:
   - dataset_id: replogle_2022_k562_essential
     role: mainline
@@ -60,21 +60,3 @@ datasets:
     source_loader: pertpy.data.tian_2019_day7neuron
     source_origin: pertpy 官方 datasets 文档与 _datasets 源码
     source_download_url: https://zenodo.org/records/10044268/files/TianKampmann2019_day7neuron.h5ad?download=1
-  - dataset_id: tian_2021_crispri
-    role: auxiliary
-    default_in_mainline: false
-    cell_line: neuron
-    control_definition: in-dataset control baseline
-    perturbation_unit: single-gene perturbation
-    n_cells_raw: 32300
-    n_cells_formal: 32300
-    n_controls: 437
-    n_perturbed: 31863
-    n_unique_targets: 184
-    stage: Stage 1A auxiliary
-    status: auxiliary_pass
-    output_path: data/processed/stage1a/formal_filtered/tian_2021_crispri.h5ad
-    notes: raw audit 已闭合，3 个旧符号 token 已通过受控别名映射完成 target closure：ATP5C1->ATP5F1C、ATP5H->ATP5PD、TMEM55A->PIP4P2；formal filtering 已完成，当前作为 auxiliary-pass 保留，默认仍不进入 formal 主裁决。
-    source_loader: pertpy.data.tian_2021_crispri
-    source_origin: pertpy 官方 datasets 文档与 _datasets 源码
-    source_download_url: https://zenodo.org/records/10044268/files/TianKampmann2021_CRISPRi.h5ad?download=1
