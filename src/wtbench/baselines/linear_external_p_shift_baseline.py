@@ -87,7 +87,6 @@ def compute_train_shifts(
         control_values = np.asarray(adata.X[control_mask].mean(axis=0)).ravel()
     else:
         control_values = np.asarray(adata.X[control_mask].mean(axis=0)).ravel()
-
     control_values = control_values.astype(np.float64)
 
     # 计算每个 train target 的 delta
@@ -106,7 +105,6 @@ def compute_train_shifts(
             perturbed_values = np.asarray(adata.X[target_mask].mean(axis=0)).ravel()
         else:
             perturbed_values = np.asarray(adata.X[target_mask].mean(axis=0)).ravel()
-
         perturbed_values = perturbed_values.astype(np.float64)
         delta = perturbed_values - control_values
         Y_train_rows.append(delta[gene_positions])

@@ -1,0 +1,188 @@
+{
+  "registry_version": "2026-03-30",
+  "purpose": "冻结当前 Stage 1A challenger 方法清单、formal 解锁顺序与 exploratory override 下的实现状态。",
+  "close_to_mean_working_threshold": {
+    "pearson_mean_drop_max": 0.03,
+    "rmse_mean_ratio_max": 1.1,
+    "top50_jaccard_mean_drop_max": 0.03,
+    "catastrophic_pearson_drop": 0.05,
+    "catastrophic_rmse_ratio": 1.25
+  },
+  "challengers": [
+    {
+      "challenger_id": "lm_train_lowrank",
+      "method_family": "linear_lowrank_external_feature",
+      "feature_dependencies": [
+        "gene_symbol_chargram_v1"
+      ],
+      "train_inputs": [
+        "formal_filtered_h5ad",
+        "frozen_main_aligned_truth",
+        "dataset_local_evaluable_genes",
+        "split_seed_101"
+      ],
+      "output_contract": "predicted_shift.tsv.gz",
+      "status": "executed_positive_signal",
+      "current_scope": "single_feature_source_symbol_chargram_only",
+      "unlock_prerequisite": "feature_registry_frozen_and_batch_scoring_wired",
+      "notes": "当前实现使用 external P embedding low-rank 公式；首轮只跑 gene_symbol_chargram_v1。已在 3 个主线数据集 × 9 个网格上执行 single-seed smoke，并出现初步正向信号。",
+      "implemented": true,
+      "wired_to_eval": true,
+      "executed_on_smoke": true,
+      "eligible_for_next_step": true
+    },
+    {
+      "challenger_id": "lm_G_scgpt_ridge",
+      "method_family": "linear_ridge_external_feature",
+      "feature_dependencies": [
+        "scgpt_gene_embedding_human"
+      ],
+      "train_inputs": [
+        "formal_filtered_h5ad",
+        "frozen_main_aligned_truth",
+        "dataset_local_evaluable_genes",
+        "split_seed_101"
+      ],
+      "output_contract": "predicted_shift.tsv.gz",
+      "status": "executed_mixed_signal",
+      "current_scope": "pretrained_feature_with_frozen_coverage_policy",
+      "unlock_prerequisite": "lm_train_lowrank_positive_signal",
+      "notes": "已完成 single-seed smoke。K562 / RPE1 相对 mean_shift_baseline 有初步正向信号，但 day7neuron 全部劣于 mean_shift_baseline，因此当前只可记为 mixed signal。",
+      "implemented": true,
+      "wired_to_eval": true,
+      "executed_on_smoke": true,
+      "eligible_for_next_step": false
+    },
+    {
+      "challenger_id": "lm_G_geneformer_ridge",
+      "method_family": "linear_ridge_external_feature",
+      "feature_dependencies": [
+        "geneformer_gene_embedding_gc104m"
+      ],
+      "train_inputs": [
+        "formal_filtered_h5ad",
+        "frozen_main_aligned_truth",
+        "dataset_local_evaluable_genes",
+        "split_seed_101"
+      ],
+      "output_contract": "predicted_shift.tsv.gz",
+      "status": "executed_close_or_worse",
+      "current_scope": "pretrained_feature_with_frozen_coverage_policy",
+      "unlock_prerequisite": "lm_train_lowrank_positive_signal",
+      "notes": "已完成 single-seed smoke。K562 / RPE1 仅达到 close-to-mean，day7neuron 全部劣于 mean_shift_baseline，当前不能记为正向信号。",
+      "implemented": true,
+      "wired_to_eval": true,
+      "executed_on_smoke": true,
+      "eligible_for_next_step": false
+    },
+    {
+      "challenger_id": "residual_over_mean__lm_train_lowrank",
+      "method_family": "residual_linear_lowrank_external_feature",
+      "feature_dependencies": [
+        "gene_symbol_chargram_v1"
+      ],
+      "train_inputs": [
+        "formal_filtered_h5ad",
+        "frozen_main_aligned_truth",
+        "dataset_local_evaluable_genes",
+        "split_seed_101",
+        "mean_shift_baseline"
+      ],
+      "output_contract": "predicted_shift.tsv.gz",
+      "status": "executed_positive_signal_under_exploratory_override",
+      "current_scope": "single_seed_smoke_executed_exploratory_only",
+      "unlock_prerequisite": "lm_train_lowrank_and_ridge_positive_signal",
+      "notes": "当前定义为先固定 train mean delta，再仅对 residual 部分运行与 lm_train_lowrank 同构的 external-feature low-rank 公式。已在 3 个主线数据集 × 9 个网格上完成 single-seed smoke，并出现初步正向信号：K562 / RPE1 / day7neuron 均至少有一个网格点达到 ran_and_better_than_mean。该结果仍只记为 exploratory override 下的正向信号，不构成 formal 解锁。",
+      "implemented": true,
+      "wired_to_eval": true,
+      "executed_on_smoke": true,
+      "eligible_for_next_step": false
+    },
+    {
+      "challenger_id": "fixed_late_fusion_v1",
+      "method_family": "fixed_fusion",
+      "feature_dependencies": [],
+      "train_inputs": [
+        "pre_registered_member_predictions"
+      ],
+      "output_contract": "predicted_shift.tsv.gz",
+      "status": "executed_mixed_signal_under_exploratory_override",
+      "current_scope": "fixed_member_predictions_single_seed_smoke_executed",
+      "unlock_prerequisite": "at_least_two_complementary_positive_challengers",
+      "notes": "当前固定为 prediction-level late fusion，不引入任何额外训练。v1 预注册成员与权重固定为：lm_train_lowrank_symbolfeat__k32__a0p1(0.75) + lm_G_scgpt_ridge__k32__a0p1(0.25)。已在 3 个主线数据集上完成 single-seed smoke：K562 与 RPE1 达到 ran_and_better_than_mean，但 day7neuron 为 ran_and_worse_than_mean，因此当前只可记为 exploratory override 下的 mixed signal，不构成 formal 解锁。",
+      "implemented": true,
+      "wired_to_eval": true,
+      "executed_on_smoke": true,
+      "eligible_for_next_step": false
+    },
+    {
+      "challenger_id": "elasticnet_targetfeat",
+      "method_family": "traditional_ml",
+      "feature_dependencies": [
+        "scgpt_gene_embedding_human",
+        "geneformer_gene_embedding_gc104m"
+      ],
+      "train_inputs": [
+        "formal_filtered_h5ad",
+        "frozen_main_aligned_truth",
+        "dataset_local_evaluable_genes",
+        "split_seed_101"
+      ],
+      "output_contract": "predicted_shift.tsv.gz",
+      "status": "executed_mixed_signal_under_exploratory_override",
+      "current_scope": "single_seed_smoke_executed_scgpt_feature_only",
+      "unlock_prerequisite": "only_after_linear_and_fusion_paths",
+      "notes": "当前最小实现只先使用 scgpt_gene_embedding_human 作为冻结 feature source，方法为 projected target feature -> MultiTaskElasticNet -> full predicted_shift，并复用与 pretrained ridge 相同的 held-out coverage / fallback 规则。已在 3 个主线数据集 × 9 个配置上完成 single-seed smoke：K562 与 RPE1 存在 ran_and_better_than_mean 点位，但 day7neuron 全部为 ran_and_worse_than_mean，因此当前只可记为 exploratory override 下的 mixed signal。",
+      "implemented": true,
+      "wired_to_eval": true,
+      "executed_on_smoke": true,
+      "eligible_for_next_step": false
+    },
+    {
+      "challenger_id": "knn_kernel_targetfeat",
+      "method_family": "traditional_ml",
+      "feature_dependencies": [
+        "scgpt_gene_embedding_human",
+        "geneformer_gene_embedding_gc104m"
+      ],
+      "train_inputs": [
+        "formal_filtered_h5ad",
+        "frozen_main_aligned_truth",
+        "dataset_local_evaluable_genes",
+        "split_seed_101"
+      ],
+      "output_contract": "predicted_shift.tsv.gz",
+      "status": "executed_positive_signal_under_exploratory_override",
+      "current_scope": "single_seed_smoke_executed_scgpt_feature_only",
+      "unlock_prerequisite": "only_after_linear_and_fusion_paths",
+      "notes": "当前最小实现只先使用 scgpt_gene_embedding_human 作为冻结 feature source，方法为 projected target feature 上的 top-k cosine kernel averaging，并复用与 pretrained ridge 相同的 held-out coverage / fallback 规则。已在 3 个主线数据集 × 3 个邻居配置上完成 single-seed smoke：K562 / RPE1 存在 ran_and_better_than_mean 点位，day7neuron 维持 ran_and_close_to_mean，因此当前可记为 exploratory override 下的初步正向信号，但不构成 formal 解锁。",
+      "implemented": true,
+      "wired_to_eval": true,
+      "executed_on_smoke": true,
+      "eligible_for_next_step": false
+    },
+    {
+      "challenger_id": "rf_targetfeat_lowrank",
+      "method_family": "traditional_ml",
+      "feature_dependencies": [
+        "scgpt_gene_embedding_human",
+        "geneformer_gene_embedding_gc104m"
+      ],
+      "train_inputs": [
+        "formal_filtered_h5ad",
+        "frozen_main_aligned_truth",
+        "dataset_local_evaluable_genes",
+        "split_seed_101"
+      ],
+      "output_contract": "predicted_shift.tsv.gz",
+      "status": "executed_mixed_signal_under_exploratory_override",
+      "current_scope": "single_seed_smoke_executed_scgpt_feature_only",
+      "unlock_prerequisite": "only_after_linear_and_fusion_paths",
+      "notes": "当前最小实现只先使用 scgpt_gene_embedding_human 作为冻结 feature source，方法为 projected target feature -> RandomForestRegressor -> low-rank shift factors -> full predicted_shift，并复用与 pretrained ridge 相同的 held-out coverage / fallback 规则。已在 3 个主线数据集 × 4 个配置上完成 single-seed smoke：K562 与 RPE1 存在 ran_and_better_than_mean 点位，但 day7neuron 全部为 ran_and_worse_than_mean，因此当前只可记为 exploratory override 下的 mixed signal。",
+      "implemented": true,
+      "wired_to_eval": true,
+      "executed_on_smoke": true,
+      "eligible_for_next_step": false
+    }
+  ]
+}

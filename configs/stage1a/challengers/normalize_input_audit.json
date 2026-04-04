@@ -1,0 +1,42 @@
+{
+  "audit_name": "stage1a_input_normalize_audit",
+  "split_seed": 101,
+  "datasets": [
+    "replogle_2022_k562_essential",
+    "replogle_2022_rpe1",
+    "tian_2019_day7neuron"
+  ],
+  "input_preprocs": [
+    "raw",
+    "normalize_log1p"
+  ],
+  "models": [
+    {
+      "model_family": "lm_train_lowrank",
+      "runner_type": "lm_train_lowrank",
+      "challenger_id": "lm_train_lowrank",
+      "model_id_base": "lm_train_lowrank",
+      "feature_id": "gene_symbol_chargram_v1",
+      "n_components": 32,
+      "ridge_lambda": 0.1
+    },
+    {
+      "model_family": "lm_G_scgpt_ridge",
+      "runner_type": "external_feature_ridge",
+      "challenger_id": "lm_G_scgpt_ridge",
+      "model_id_base": "lm_G_scgpt_ridge",
+      "feature_id": "scgpt_gene_embedding_human",
+      "n_components": 32,
+      "ridge_lambda": 0.1
+    },
+    {
+      "model_family": "lm_G_geneformer_ridge",
+      "runner_type": "external_feature_ridge",
+      "challenger_id": "lm_G_geneformer_ridge",
+      "model_id_base": "lm_G_geneformer_ridge",
+      "feature_id": "geneformer_gene_embedding_gc104m",
+      "n_components": 32,
+      "ridge_lambda": 1.0
+    }
+  ]
+}
