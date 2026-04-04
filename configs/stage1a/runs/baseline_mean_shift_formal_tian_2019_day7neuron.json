@@ -1,0 +1,11 @@
+{
+  "dataset_id": "tian_2019_day7neuron",
+  "model_id": "baseline_mean_shift_formal",
+  "prediction_path": "data/baselines/stage1a_main_aligned/tian_2019_day7neuron/mean_shift_baseline.tsv.gz",
+  "prediction_space": "X_pseudobulk_delta",
+  "output_path": "data/predictions/stage1a_main_aligned/baseline_mean_shift_formal/tian_2019_day7neuron/predicted_shift_aligned.tsv.gz",
+  "summary_path": "reports/stage1a/prediction_alignment/baseline_mean_shift_formal/tian_2019_day7neuron/alignment_summary.json",
+  "manifest_path": "reports/stage1a/prediction_alignment/baseline_mean_shift_formal/tian_2019_day7neuron/alignment_manifest.json",
+  "allow_missing_targets": false,
+  "allow_missing_genes": false
+}

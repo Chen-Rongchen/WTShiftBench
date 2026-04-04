@@ -1,0 +1,16 @@
+{
+  "challenger_id": "lm_train_lowrank",
+  "feature_id": "gene_symbol_chargram_v1",
+  "dataset_ids": [
+    "tian_2019_ipsc",
+    "tian_2021_crispri"
+  ],
+  "n_components_grid": [
+    32
+  ],
+  "ridge_lambda_grid": [
+    0.1
+  ],
+  "model_prefix": "lm_train_lowrank_symbolfeat",
+  "baseline_model_id": "baseline_mean_shift_formal"
+}
