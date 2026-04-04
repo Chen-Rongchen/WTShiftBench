@@ -130,7 +130,7 @@ raw / processed candidate resources
 - `dataset admission layer`：判断数据是否具备进入 formal benchmark 的最低统计支持与元数据闭环
 - `entrant benchmarking layer`：仅对 admission 通过的数据运行 truth build、predicted-shift scoring 与 entrant adjudication
 
-工程上，`dataset admission layer` 应沉淀为统一、机器可读的 `admission manifest`，而不是散落在临时 notebook 或口头说明里的判断。formal freeze 只能消费该 manifest 中 `admission_decision=pass` 的数据集；`auxiliary_pass` 仅可保留为 supplementary / auxiliary 资源，不得默认进入 formal mainline。
+工程上，`dataset admission layer` 应沉淀为统一、机器可读的 admission 产物，而不是散落在临时 notebook 或口头说明里的判断。formal freeze 只能消费 official formal 的 `admission_decision=pass` 数据集；next formal-admission batch 与 annex side track 的审计结论应单独记录，不得默认进入 formal mainline。
 
 当前仓库实现状态：
 
@@ -530,7 +530,7 @@ raw / processed candidate resources
 
 ### 5.1 Stage 1A formal 数据池
 
-`Stage 1A formal benchmark-entry` 层当前主线采用三套单扰动数据：
+`Stage 1A formal benchmark-entry` 层当前 official formal 主线采用三套单扰动数据：
 
 - `replogle_2022_k562_essential`
 - `replogle_2022_rpe1`
@@ -538,10 +538,13 @@ raw / processed candidate resources
 
 说明：
 
-- `Norman` 不进入 `Stage 1A formal`
-- `adamson_2016_upr_perturb_seq` 不进入 `Stage 1A formal`
-- `tian_2021_crispri` 当前只作为辅助鲁棒性数据集，默认不进入 formal 主裁决
-- `replogle_2022_k562_gwps` 当前不升格为主线
+- `tian_2019_ipsc`、`tian_2021_crispri`、`replogle_2022_k562_gwps`、`dixit_2016_raw` 进入 next formal-admission batch，先做 admission audit
+- `norman_2019_raw` 单列为 activation / combinatorial side track，只评估是否值得建立 annex
+- 在不破坏 raw `3 + 4 + 1` 分层的前提下，允许派生 formalization candidates：
+  - `norman_2019_raw__single_target`
+  - `dixit_2016_raw__control_context`
+- 派生 candidate 的制度含义是“从 raw 中切出更接近 current single-target 主线的问题定义”，不等于把原始 raw 数据集整体升格
+- 非 official formal 数据集不得提前写入 formal registry
 - 正式分析不依赖模型仓库自带数据版本
 - 正式数据可由 `pertpy`、`scPerturb` 或其他公开资源进入候选池，但只有经本项目 harmonized resource layer 与 admission audit 收口后的版本，才能进入 formal registry
 

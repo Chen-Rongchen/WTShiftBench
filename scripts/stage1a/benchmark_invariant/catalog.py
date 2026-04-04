@@ -107,20 +107,15 @@ MAINLINE_SOURCE_DATASETS = [
     ),
 ]
 
-AUXILIARY_SOURCE_DATASETS = [
-    SourceDataset(
-        name="tian_2021_crispri",
-        loader_name="tian_2021_crispri",
-        file_name="tian_2021_crispri.h5ad",
-        role="auxiliary",
-        default_in_mainline=False,
-    ),
-]
+# 当前 formal source catalog 只登记 official formal 主线。
+# candidate admission batch 与 annex side track 单独在 dataset_tiering.md 管理，
+# 不写入 formal registry / formal source catalog。
+AUXILIARY_SOURCE_DATASETS: list[SourceDataset] = []
 
-ALL_SOURCE_DATASETS = [*MAINLINE_SOURCE_DATASETS, *AUXILIARY_SOURCE_DATASETS]
+ALL_SOURCE_DATASETS = [*MAINLINE_SOURCE_DATASETS]
 
-# 兼容旧导出名。当前语义为“仓库登记的全部 Stage 1A 数据集”，其中仅 mainline 默认进入正式主流程。
-FORMAL_SOURCE_DATASETS = ALL_SOURCE_DATASETS
+# 兼容旧导出名。当前语义收紧为“当前 official formal source datasets”。
+FORMAL_SOURCE_DATASETS = MAINLINE_SOURCE_DATASETS
 
 
 def load_formal_dataset_contracts(
@@ -221,7 +216,7 @@ def get_formal_dataset_contracts() -> tuple[FormalDatasetContract, ...]:
 def get_formal_dataset_index() -> dict[str, FormalDatasetContract]:
     return {
         dataset.dataset_id: dataset
-        for dataset in get_formal_dataset_contracts()
+        for dataset in load_formal_dataset_contracts(include_auxiliary=True)
     }
 
 
@@ -232,8 +227,19 @@ def get_formal_dataset_contract(dataset_id: str) -> FormalDatasetContract:
     except KeyError as exc:
         raise KeyError(f"未在 formal dataset registry 中找到 dataset_id={dataset_id}") from exc
 
+
+def get_source_dataset_index() -> dict[str, SourceDataset]:
+    return {dataset.name: dataset for dataset in FORMAL_SOURCE_DATASETS}
+
+
+def get_source_dataset(dataset_id: str) -> SourceDataset:
+    dataset_index = get_source_dataset_index()
+    try:
+        return dataset_index[dataset_id]
+    except KeyError as exc:
+        raise KeyError(f"未在 source dataset catalog 中找到 dataset_id={dataset_id}") from exc
+
 BACKUP_DATASET_FILES = {
-    "adamson_2016_upr_perturb_seq": STAGE1A_BACKUP_DIR / "adamson_2016_upr_perturb_seq.h5ad",
     "dixit_2016": STAGE1A_BACKUP_DIR / "dixit_2016.h5ad",
     "tian_2019_day7neuron": STAGE1A_BACKUP_DIR / "tian_2019_day7neuron.h5ad",
 }
