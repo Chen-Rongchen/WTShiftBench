@@ -14,7 +14,7 @@ Stage 1A 现在按职责分成三类：
 
 ### invariant contract
 
-- `stage1a_formal_datasets.yaml`（当前登记 4 个数据集：3 个主线 + 1 个辅助）
+- `stage1a_formal_datasets.yaml`（当前只登记 3 个 official formal 数据集）
 - `stage1a_prediction_contract.yaml`
 - `stage1a_split_governance.yaml`（Stage 1A 方案 B、split seeds、eligibility floor）
 

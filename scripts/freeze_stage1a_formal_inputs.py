@@ -41,16 +41,12 @@ def load_admission_pass_dataset_ids() -> set[str]:
     if not ADMISSION_MANIFEST_PATH.exists():
         raise FileNotFoundError(f"未找到 admission manifest: {ADMISSION_MANIFEST_PATH}")
     manifest = pd.read_csv(ADMISSION_MANIFEST_PATH, sep="\t")
-    required = {"dataset_id", "admission_decision", "default_in_mainline"}
+    required = {"dataset_id", "admission_decision"}
     missing = sorted(required - set(manifest.columns))
     if missing:
         raise ValueError(f"admission manifest 缺少字段: {missing}")
-    manifest["default_in_mainline"] = (
-        manifest["default_in_mainline"].astype("string").str.lower().eq("true")
-    )
     allowed = manifest.loc[
-        manifest["default_in_mainline"]
-        & manifest["admission_decision"].astype("string").eq("pass"),
+        manifest["admission_decision"].astype("string").isin(["pass", "auxiliary_pass"]),
         "dataset_id",
     ]
     return set(allowed.astype(str).tolist())
@@ -69,12 +65,14 @@ def build_frozen_registry(allowed_dataset_ids: set[str]) -> pd.DataFrame:
             "n_perturbed": contract.n_perturbed,
             "n_unique_targets": contract.n_unique_targets,
             "stage": contract.stage,
+            "role": contract.role,
+            "default_in_mainline": contract.default_in_mainline,
             "status": contract.status,
             "output_path": str(contract.output_path),
             "notes": contract.notes,
         }
-        for contract in load_formal_dataset_contracts()
-        if contract.status == "pass" and contract.dataset_id in allowed_dataset_ids
+        for contract in load_formal_dataset_contracts(include_auxiliary=True)
+        if contract.status in {"pass", "auxiliary_pass"} and contract.dataset_id in allowed_dataset_ids
     ]
     return pd.DataFrame(rows).sort_values("dataset_id").reset_index(drop=True)
 
@@ -119,6 +117,8 @@ def build_freeze_manifest(
                 "output_path": row.output_path,
                 "n_targets_total": int(row.n_unique_targets),
                 "n_targets_eligible": n_targets_eligible,
+                "role": row.role,
+                "default_in_mainline": bool(row.default_in_mainline),
                 "control_definition": row.control_definition,
                 "perturbation_unit": row.perturbation_unit,
                 "freeze_status": "frozen",
