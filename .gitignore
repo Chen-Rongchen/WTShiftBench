@@ -17,6 +17,7 @@ venv/
 .DS_Store
 .idea/
 .vscode/
+.codex
 .codex/
 
 # Build / local package artifacts
