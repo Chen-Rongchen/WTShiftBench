@@ -16,10 +16,10 @@ from scripts.stage1a.adapters.common.runtime import (
     cosine_kernel_predict,
     load_frozen_prediction_space,
     load_run_config,
+    resolve_adapter_dataset_context,
     resolve_path,
     resolve_torch_device,
 )
-from scripts.stage1a.benchmark_invariant.catalog import get_formal_dataset_contract
 from scripts.stage1a.benchmark_invariant.prediction_eval_common import (
     json_dump,
     resolve_project_relative,
@@ -41,9 +41,11 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--dataset-id")
     parser.add_argument("--model-id")
     parser.add_argument("--formal-h5ad-path")
+    parser.add_argument("--cell-line")
     parser.add_argument("--prediction-path")
     parser.add_argument("--metadata-path")
     parser.add_argument("--checkpoint-dir")
+    parser.add_argument("--truth-registry-path")
     parser.add_argument(
         "--device",
         help="计算设备：cuda / cpu / auto（默认 auto：有 GPU 则用 CUDA）",
@@ -70,7 +72,12 @@ def main() -> None:
     run_config = load_run_config(args.run_config)
 
     dataset_id = str(coalesce_arg(args.dataset_id, run_config, "dataset_id", "replogle_2022_k562_essential"))
-    dataset_contract = get_formal_dataset_contract(dataset_id)
+    dataset_context = resolve_adapter_dataset_context(
+        dataset_id=dataset_id,
+        run_config=run_config,
+        formal_h5ad_cli=args.formal_h5ad_path,
+        cell_line_cli=args.cell_line,
+    )
     model_id = str(
         coalesce_arg(
             args.model_id,
@@ -79,13 +86,9 @@ def main() -> None:
             DEFAULT_MODEL_ID,
         )
     )
-    formal_h5ad_path = resolve_path(
-        coalesce_arg(
-            args.formal_h5ad_path,
-            run_config,
-            "formal_h5ad_path",
-            dataset_contract.path,
-        )
+    formal_h5ad_path = dataset_context.formal_h5ad_path
+    truth_registry_path = resolve_path(
+        coalesce_arg(args.truth_registry_path, run_config, "truth_registry_path", None)
     )
     prediction_path = resolve_path(
         coalesce_arg(
@@ -111,7 +114,10 @@ def main() -> None:
     top_k = int(coalesce_arg(args.top_k, run_config, "top_k", 4))
     set_random_seed(seed)
 
-    heldout_target_order, common_genes = load_frozen_prediction_space(dataset_id)
+    heldout_target_order, common_genes = load_frozen_prediction_space(
+        dataset_id,
+        truth_registry_path=truth_registry_path,
+    )
     heldout_targets = set(heldout_target_order)
 
     formal_adata = ad.read_h5ad(formal_h5ad_path)
@@ -206,7 +212,7 @@ def main() -> None:
             "claim_scope": "不是 scGPT native perturbation prediction model。",
             "dataset_id": dataset_id,
             "model_id": model_id,
-            "cell_type": dataset_contract.cell_line,
+            "cell_type": dataset_context.cell_line,
             "prediction_path": resolve_project_relative(prediction_path),
             "seed": seed,
             "top_k": top_k,
@@ -226,7 +232,7 @@ def main() -> None:
     print(f"device: {device}")
     print(f"seed: {seed}")
     print(f"dataset_id: {dataset_id}")
-    print(f"cell_type: {dataset_contract.cell_line}")
+    print(f"cell_type: {dataset_context.cell_line}")
     print("adapter_method: scGPT embedding + cosine kernel regression")
     print(f"train_targets_total: {len(train_targets)}")
     print(f"train_targets_mapped_to_scgpt_vocab: {len(mapped_train_targets)}")

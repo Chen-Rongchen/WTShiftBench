@@ -355,6 +355,24 @@ pixi run --environment geneformer python scripts/smoke_stage1a_geneformer.py
 python scripts/run_stage1a_smoke_matrix.py
 ```
 
+全数据集评测矩阵 readiness：
+
+```bash
+pixi run build-stage1a-all-datasets-eval-matrix
+```
+
+全数据集评测矩阵 dry-run：
+
+```bash
+pixi run run-stage1a-all-datasets-pipeline-dry-run
+```
+
+全数据集评测矩阵结果汇总：
+
+```bash
+pixi run summarize-stage1a-all-datasets-vs-baseline
+```
+
 ## 输出边界
 
 - smoke 运行只证明 entrant identity、runtime spec、split governance、`predicted_shift` export 与 benchmark hooks 已接通
@@ -378,15 +396,13 @@ python scripts/run_stage1a_smoke_matrix.py
 
 按当前优先级：
 
-1. 审查 challenger 的 `vs_mean` 汇总，形成一份正式的 exploratory / supplementary 审计结论
-2. 在 registry 与文档中明确：`residual_over_mean__lm_train_lowrank` 当前与 `lm_train_lowrank` 等价，不再单独计数
-3. 固化 supplementary 上的 `coverage-blocked` 口径，避免把 blocked 误写成“结果差”
-4. 把 normalize 审计关闭结论保持为最终状态，不再在这三条 challenger 上继续消耗时间
-5. 固化 `GEARS` current version 的 `under audit` 结论，不再把它描述成“暂时无问题”
-6. 确认 `scGPT / Geneformer` 当前 adapter 的 taxonomy 与可声明范围
-7. 整理四条 lanes 的稳定性结论，明确“lane 稳定”与“entrant 表现稳定”是两回事
-8. 是否推进 formal `3 datasets × 5 seeds` adjudication 仍需单独判断
-9. 是否需要调整 frozen feature coverage policy，需单独立项，不在当前文档里默认放宽
+1. 先运行 `pixi run build-stage1a-all-datasets-eval-matrix`，确认 `3 + 3 + 2` 评测矩阵里哪些数据集已经 readiness 闭合
+2. 对 readiness 已闭合的数据集执行 `pixi run run-stage1a-all-datasets-pipeline-dry-run`，确认批量命令与环境分发无误
+3. 再执行 `pixi run run-stage1a-all-datasets-pipeline`，让三模型至少在当前可跑数据集上全覆盖
+4. 执行 `pixi run summarize-stage1a-all-datasets-vs-baseline`，统一查看哪些模型在哪些数据集上打过 `mean_shift_baseline`
+5. 对仍 blocked 的数据集，只补 readiness 缺口，不提前升格 dataset tier
+6. `norman_2019_raw__single_target` 与 `dixit_2016_raw__control_context` 继续作为 derived candidates，看运行结果，不改原始 raw 定位
+7. 是否推进 formal `3 datasets × 5 seeds` adjudication 仍需单独判断
 
 ## 新窗口直接接手
 

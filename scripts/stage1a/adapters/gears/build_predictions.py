@@ -28,9 +28,9 @@ from scripts.stage1a.adapters.common.runtime import (
     load_frozen_prediction_space,
     load_run_config,
     mean_expression,
+    resolve_adapter_dataset_context,
     resolve_path,
 )
-from scripts.stage1a.benchmark_invariant.catalog import get_formal_dataset_contract
 from scripts.stage1a.benchmark_invariant.prediction_eval_common import (
     json_dump,
     resolve_project_relative,
@@ -64,9 +64,11 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--dataset-id")
     parser.add_argument("--model-id")
     parser.add_argument("--formal-h5ad-path")
+    parser.add_argument("--cell-line")
     parser.add_argument("--prediction-path")
     parser.add_argument("--metadata-path")
     parser.add_argument("--gears-cache-dir")
+    parser.add_argument("--truth-registry-path")
     parser.add_argument("--device")
     parser.add_argument("--seed", type=int)
     parser.add_argument("--epochs", type=int)
@@ -374,16 +376,17 @@ def main() -> None:
     dataset_id = str(
         coalesce_arg(args.dataset_id, run_config, "dataset_id", "replogle_2022_k562_essential")
     )
-    dataset_contract = get_formal_dataset_contract(dataset_id)
+    dataset_context = resolve_adapter_dataset_context(
+        dataset_id=dataset_id,
+        run_config=run_config,
+        formal_h5ad_cli=args.formal_h5ad_path,
+        cell_line_cli=args.cell_line,
+    )
 
     model_id = str(coalesce_arg(args.model_id, run_config, "model_id", DEFAULT_MODEL_ID))
-    formal_h5ad_path = resolve_path(
-        coalesce_arg(
-            args.formal_h5ad_path,
-            run_config,
-            "formal_h5ad_path",
-            dataset_contract.path,
-        )
+    formal_h5ad_path = dataset_context.formal_h5ad_path
+    truth_registry_path = resolve_path(
+        coalesce_arg(args.truth_registry_path, run_config, "truth_registry_path", None)
     )
     prediction_path = resolve_path(
         coalesce_arg(
@@ -465,7 +468,10 @@ def main() -> None:
         epochs=epochs,
     )
     try:
-        heldout_target_order, common_genes = load_frozen_prediction_space(dataset_id)
+        heldout_target_order, common_genes = load_frozen_prediction_space(
+            dataset_id,
+            truth_registry_path=truth_registry_path,
+        )
         heldout_targets = set(heldout_target_order)
         obs = formal_adata.obs.copy()
         obs["is_control"] = obs["is_control"].astype(bool)
@@ -485,7 +491,7 @@ def main() -> None:
             rng=rng,
             max_control_cells=max_control_cells,
             max_cells_per_train_condition=max_cells_per_train_condition,
-            cell_type_label=dataset_contract.cell_line,
+            cell_type_label=dataset_context.cell_line,
         )
         log_stage_timing(
             "build_gears_input_done",
@@ -634,7 +640,7 @@ def main() -> None:
             "adapter_method": "GEARS Stage 1A formal perturbation adapter",
             "dataset_id": dataset_id,
             "model_id": model_id,
-            "cell_type": dataset_contract.cell_line,
+            "cell_type": dataset_context.cell_line,
             "prediction_path": resolve_project_relative(prediction_path),
             "device": device,
             "requested_device": requested_device,
@@ -661,7 +667,7 @@ def main() -> None:
     print(f"requested_device: {requested_device}")
     print(f"seed: {seed}")
     print(f"dataset_id: {dataset_id}")
-    print(f"cell_type: {dataset_contract.cell_line}")
+    print(f"cell_type: {dataset_context.cell_line}")
     print(f"train_targets: {len(train_targets)}")
     print(f"heldout_targets: {len(heldout_target_order)}")
     print(f"train_cells: {train_adata.n_obs}")

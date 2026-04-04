@@ -251,6 +251,22 @@ description = "执行 Stage 1A baseline ladder 的最小 smoke"
 cmd = "python scripts/run_stage1a_three_models_pipeline.py"
 description = "formal freeze 起：三模型×三数据集预测 + 批量 scoring（需已完成 formal-filter）"
 
+[tasks.build-stage1a-all-datasets-eval-matrix]
+cmd = "python scripts/build_stage1a_all_datasets_eval_matrix.py"
+description = "物化 Stage 1A 全数据集评测矩阵配置，并输出 readiness 审计"
+
+[tasks.run-stage1a-all-datasets-pipeline]
+cmd = "python scripts/run_stage1a_all_datasets_pipeline.py --ready-only"
+description = "按 readiness 已闭合的数据集批量执行全数据集评测矩阵"
+
+[tasks.run-stage1a-all-datasets-pipeline-dry-run]
+cmd = "python scripts/run_stage1a_all_datasets_pipeline.py --ready-only --dry-run"
+description = "只打印全数据集评测矩阵将执行的命令"
+
+[tasks.summarize-stage1a-all-datasets-vs-baseline]
+cmd = "python scripts/summarize_stage1a_all_datasets_vs_baseline.py"
+description = "汇总全数据集评测矩阵结果，并判断是否打过 mean_shift_baseline"
+
 [tasks.ingest-stage1a-model-predictions]
 cmd = "python -m scripts.stage1a.benchmark_invariant.scoring.ingest_predictions"
 description = "运行 benchmark-invariant ingest"
