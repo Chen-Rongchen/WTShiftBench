@@ -2,9 +2,9 @@ stage: stage1a_formal
 contract_version: "1.1"
 source_summary: data/processed/stage1a/formal_filtered/formal_filter_summary.tsv
 notes:
-  - 当前只登记 3 个 official formal 数据集，不把候选 admission batch 或 annex side track 写进 formal registry。
-  - 只有 `default_in_mainline: true` 的数据集会被 formal 主流程默认消费。
-  - `tian_2019_ipsc`、`tian_2021_crispri`、`replogle_2022_k562_gwps`、`dixit_2016_raw` 与 `norman_2019_raw` 的分层与审计，统一记录在 `dataset_tiering.md` 与 admission notes，不提前升格为 formal registry 成员。
+  - "当前只登记 3 个 official formal 数据集，不把候选 admission batch 或 annex side track 写进 formal registry。"
+  - "只有 `default_in_mainline: true` 的数据集会被 formal 主流程默认消费。"
+  - "`tian_2019_ipsc`、`tian_2021_crispri`、`replogle_2022_k562_gwps`、`dixit_2016_raw` 与 `norman_2019_raw` 的分层与审计，统一记录在 `dataset_tiering.md` 与 admission notes，不提前升格为 formal registry 成员。"
 datasets:
   - dataset_id: replogle_2022_k562_essential
     role: mainline
