@@ -2,7 +2,7 @@
   "matrix_id": "stage1a_all_datasets_v1",
   "materialized_root": "artifacts/stage1a_eval_matrix",
   "report_root": "reports/stage1a/eval_matrix",
-  "truth_registry_path": "data/frozen/stage1a_truth/aligned_truth_registry.tsv",
+  "truth_registry_path": "data/frozen/stage1a_truth/all_datasets_eval_aligned_truth_registry.tsv",
   "baseline_root": "data/baselines/stage1a_main_aligned",
   "null_root": "data/nulls/stage1a_main_aligned",
   "topk": [50],
@@ -77,13 +77,13 @@
     {
       "dataset_id": "replogle_2022_k562_gwps",
       "tier": "next_formal_admission_batch",
-      "formal_h5ad_path": "data/raw/stage1a/candidates/replogle_2022_k562_gwps.h5ad",
+      "formal_h5ad_path": "data/processed/stage1a/candidate_formal_like/replogle_2022_k562_gwps.h5ad",
       "cell_line": "replogle_2022_k562_gwps"
     },
     {
       "dataset_id": "norman_2019_raw__single_target",
       "tier": "derived_candidate",
-      "formal_h5ad_path": "data/processed/stage1a/candidate_formal_like/norman_2019_raw.h5ad",
+      "formal_h5ad_path": "data/processed/stage1a/candidate_formal_like/norman_2019_raw__single_target.h5ad",
       "cell_line": "norman_2019_raw__single_target"
     },
     {

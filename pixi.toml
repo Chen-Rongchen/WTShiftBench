@@ -255,6 +255,10 @@ description = "formal freeze 起：三模型×三数据集预测 + 批量 scorin
 cmd = "python scripts/build_stage1a_all_datasets_eval_matrix.py"
 description = "物化 Stage 1A 全数据集评测矩阵配置，并输出 readiness 审计"
 
+[tasks.build-stage1a-all-datasets-readiness-assets]
+cmd = "python scripts/build_stage1a_all_datasets_readiness_assets.py"
+description = "补齐 all-datasets 评测矩阵的 candidate truth registry、formal-like h5ad 与 comparators"
+
 [tasks.run-stage1a-all-datasets-pipeline]
 cmd = "python scripts/run_stage1a_all_datasets_pipeline.py --ready-only"
 description = "按 readiness 已闭合的数据集批量执行全数据集评测矩阵"
