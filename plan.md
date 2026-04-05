@@ -183,17 +183,22 @@
 
 ### 7.1 当前全量跑模交付
 
+- 先补 candidate readiness，再进入统一运行矩阵
 - 新增 `configs/stage1a/runs/all_datasets_eval_matrix.json`
+- 新增 `configs/stage1a/runs/all_datasets_readiness_fill.json`
 - 新增 `scripts/build_stage1a_all_datasets_eval_matrix.py`
+- 新增 `scripts/build_stage1a_all_datasets_readiness_assets.py`
 - 新增 `scripts/run_stage1a_all_datasets_pipeline.py`
 - 新增 `scripts/summarize_stage1a_all_datasets_vs_baseline.py`
 - `pixi.toml` 已补全对应 task
 - 当前执行顺序固定为：
-  1. `pixi run build-stage1a-all-datasets-eval-matrix`
-  2. `pixi run run-stage1a-all-datasets-pipeline-dry-run`
-  3. `pixi run run-stage1a-all-datasets-pipeline`
-  4. `pixi run summarize-stage1a-all-datasets-vs-baseline`
-- 第一目标不是立刻让 8 个数据集全部 ready，而是把 blocked 原因机器化写清楚，然后逐个补齐缺口
+  1. `pixi run build-stage1a-all-datasets-readiness-assets`
+  2. `pixi run build-stage1a-all-datasets-eval-matrix`
+  3. `pixi run run-stage1a-all-datasets-pipeline-gears`
+  4. `pixi run run-stage1a-all-datasets-pipeline-scgpt`
+  5. `pixi run run-stage1a-all-datasets-pipeline-geneformer`
+  6. `pixi run summarize-stage1a-all-datasets-vs-baseline-evaluated`
+- 当前第一目标已经从“只写 blocked 原因”推进到“先补齐候选集 readiness，再统一跑模”
 
 ### 8. 输入侧 normalize 审计已关闭
 
