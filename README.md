@@ -132,6 +132,23 @@
 - `GEARS` 当前 version 在 `tian_2019_day7neuron` 上存在明确的 prediction-space instability
 - 四条 lanes 在数据层都可稳定产生产物；当前不稳定主要来自 entrant 表现，而不是 lane 机制本身
 
+## 当前 all-datasets 运行起点
+
+当前 `all_datasets_eval_matrix` 的建议顺序已经改成：
+
+1. `pixi run build-stage1a-all-datasets-readiness-assets`
+2. `pixi run build-stage1a-all-datasets-eval-matrix`
+3. `pixi run run-stage1a-all-datasets-pipeline-gears`
+4. `pixi run run-stage1a-all-datasets-pipeline-scgpt`
+5. `pixi run run-stage1a-all-datasets-pipeline-geneformer`
+6. `pixi run summarize-stage1a-all-datasets-vs-baseline-evaluated`
+
+其中第 `1` 步专门补齐 candidate / derived 数据集的 readiness 缺口：
+
+- `tian_2019_ipsc / tian_2021_crispri` 的 comparator
+- `norman_2019_raw__single_target / dixit_2016_raw__control_context` 的 truth registry entry
+- `replogle_2022_k562_gwps` 的 formal-like h5ad、truth registry entry 与 comparator
+
 ## 当前 challenger 方向
 
 - 当前只在不改变 `Stage 1A smoke` 制度的前提下，探索是否存在任何 challenger 能在 non-formal `single-seed` 设置下初步接近或超过 `mean_shift_baseline`
