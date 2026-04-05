@@ -263,9 +263,41 @@ description = "按 readiness 已闭合的数据集批量执行全数据集评测
 cmd = "python scripts/run_stage1a_all_datasets_pipeline.py --ready-only --dry-run"
 description = "只打印全数据集评测矩阵将执行的命令"
 
+[tasks.run-stage1a-all-datasets-pipeline-pending]
+cmd = "python scripts/run_stage1a_all_datasets_pipeline.py --ready-only --skip-build --pending-only"
+description = "只运行当前缺少 dataset_score_summary 的全数据集评测任务"
+
+[tasks.run-stage1a-all-datasets-pipeline-gears]
+cmd = "python scripts/run_stage1a_all_datasets_pipeline.py --ready-only --skip-build --pending-only --adapter gears --runs-per-batch 1"
+description = "按单任务分片运行 GEARS 的 ready 数据集评测"
+
+[tasks.run-stage1a-all-datasets-pipeline-scgpt]
+cmd = "python scripts/run_stage1a_all_datasets_pipeline.py --ready-only --skip-build --pending-only --adapter scgpt --runs-per-batch 2"
+description = "按小批次运行 scGPT 的 ready 数据集评测"
+
+[tasks.run-stage1a-all-datasets-pipeline-geneformer]
+cmd = "python scripts/run_stage1a_all_datasets_pipeline.py --ready-only --skip-build --pending-only --adapter geneformer --runs-per-batch 2"
+description = "按小批次运行 Geneformer 的 ready 数据集评测"
+
+[tasks.run-stage1a-all-datasets-pipeline-official-formal]
+cmd = "python scripts/run_stage1a_all_datasets_pipeline.py --ready-only --skip-build --pending-only --tier official_formal --runs-per-batch 1"
+description = "只运行 official formal 三个数据集的未完成评测"
+
 [tasks.summarize-stage1a-all-datasets-vs-baseline]
 cmd = "python scripts/summarize_stage1a_all_datasets_vs_baseline.py"
 description = "汇总全数据集评测矩阵结果，并判断是否打过 mean_shift_baseline"
+
+[tasks.summarize-stage1a-all-datasets-vs-baseline-evaluated]
+cmd = "python scripts/summarize_stage1a_all_datasets_vs_baseline.py --evaluated-only"
+description = "只汇总已完成 evaluation 的全数据集结果"
+
+[tasks.summarize-stage1a-all-datasets-vs-baseline-official-formal]
+cmd = "python scripts/summarize_stage1a_all_datasets_vs_baseline.py --tier official_formal --evaluated-only --output-suffix official_formal"
+description = "只汇总 official formal 三个数据集的已完成结果"
+
+[tasks.summarize-stage1a-all-datasets-vs-baseline-gears]
+cmd = "python scripts/summarize_stage1a_all_datasets_vs_baseline.py --model-id gears_stage1a_formal --evaluated-only --output-suffix gears"
+description = "只汇总 GEARS 的已完成结果"
 
 [tasks.ingest-stage1a-model-predictions]
 cmd = "python -m scripts.stage1a.benchmark_invariant.scoring.ingest_predictions"
