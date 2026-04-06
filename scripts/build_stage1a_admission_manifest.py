@@ -267,7 +267,7 @@ def main() -> None:
         elif contract.default_in_mainline:
             admission_decision = "pass"
         else:
-            admission_decision = "auxiliary_pass"
+            admission_decision = "supplement_pass"
 
         rows.append(
             {
@@ -306,8 +306,8 @@ def main() -> None:
                 "admission_note": (
                     "可进入 formal mainline。"
                     if admission_decision == "pass"
-                    else "可作为 auxiliary / supplementary 数据集保留。"
-                    if admission_decision == "auxiliary_pass"
+                    else "可作为 supplement 数据集保留。"
+                    if admission_decision == "supplement_pass"
                     else "关键 admission 维度未闭合。"
                 ),
             }

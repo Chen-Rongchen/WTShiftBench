@@ -84,6 +84,7 @@ def dataset_readiness_row(
     null_root: Path,
 ) -> dict[str, object]:
     dataset_id = str(dataset["dataset_id"])
+    tier = str(dataset.get("tier", dataset.get("benchmark_tier", "")))
     formal_h5ad_path = resolve_path(str(dataset["formal_h5ad_path"]))
     formal_h5ad_ready, obs_status, n_obs, n_vars = h5ad_obs_audit(formal_h5ad_path)
     truth_ready = dataset_id in truth_registry_ids
@@ -120,7 +121,10 @@ def dataset_readiness_row(
         note = "missing_comparators:" + ",".join(missing)
     return {
         "dataset_id": dataset_id,
-        "tier": str(dataset["tier"]),
+        "tier": tier,
+        "usage": str(dataset.get("usage", "runnable")),
+        "review_status": str(dataset.get("review_status", "")),
+        "source_kind": str(dataset.get("source_kind", "")),
         "formal_h5ad_path": str(formal_h5ad_path.relative_to(PROJECT_ROOT)),
         "formal_h5ad_ready": formal_h5ad_ready,
         "formal_obs_status": obs_status,
@@ -254,7 +258,10 @@ def main() -> None:
             model_matrix_rows.append(
                 {
                     "dataset_id": dataset_id,
-                    "tier": str(dataset["tier"]),
+                    "tier": str(dataset.get("tier", dataset.get("benchmark_tier", ""))),
+                    "usage": str(dataset.get("usage", "runnable")),
+                    "review_status": str(dataset.get("review_status", "")),
+                    "source_kind": str(dataset.get("source_kind", "")),
                     "adapter": adapter,
                     "environment": str(model["environment"]),
                     "model_id": model_id,
