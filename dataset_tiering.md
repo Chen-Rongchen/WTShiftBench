@@ -1,8 +1,13 @@
 # Stage 1A 数据集分层
 
-## 1. official formal
+当前收口为两层：
 
-这一层保持不变，不改协议主线，不因新增候选重写既有结论。
+- `formal`：进入正式主榜与 formal freeze 的主线数据集
+- `supplement`：允许进入统一运行矩阵与补充审查的数据集
+
+另外，未筛选原始整包数据仍可保留在 `supplement`，但其 `usage` 必须是 `backup_only`，不进入统一评测矩阵。
+
+## 1. formal
 
 - `replogle_2022_k562_essential`
 - `replogle_2022_rpe1`
@@ -12,82 +17,58 @@
 
 - 继续作为当前 formal 主锚点
 - 继续由 formal registry 与 formal freeze 默认消费
-- 当前已存在的 trial run、baseline、null、truth 与 scoring 结论继续有效
+- 当前 trial run、baseline、null、truth 与 scoring 结论继续有效
 
-## 2. next formal-admission batch
+## 2. supplement
 
-这一层只做 admission audit，不提前升格。
+### 2.1 可运行 supplement
+
+这些数据集已经具备进入统一运行矩阵的条件，可以做 entrant 对比、baseline 对比和补充审查。
 
 - `tian_2019_ipsc`
 - `tian_2021_crispri`
 - `replogle_2022_k562_gwps`
-- `dixit_2016_raw`
-
-统一审计问题：
-
-1. 是否能定义清晰的 perturbation identity
-2. control 语义是否清晰
-3. 是否能限制到 single-guide / single-target 主线
-4. support floor `>= 5` 后剩余多少 eligible perturbations
-5. 是否能构建 perturbation-level pseudobulk delta truth
-6. 是否适合进入 official formal
-
-当前裁决：
-
-- `tian_2019_ipsc`：`admit`
-- `tian_2021_crispri`：`admit`
-- `replogle_2022_k562_gwps`：`admit`
-- `dixit_2016_raw`：`reject`
+- `norman_2019_raw__single_target`
+- `dixit_2016_raw__control_context`
 
 说明：
 
-- `tian_2019_ipsc` 与 `tian_2021_crispri` 都已在 raw audit 层证明 control / single-target / support floor 可以闭合，适合进入下一批 formal 准入决策。
-- `replogle_2022_k562_gwps` 已完成本地 raw audit：`gene == non-targeting` 可稳定定义 control，按 gene-level target 聚合后有 `9863` 个 perturbations 满足 support floor `>= 5`，因此建议进入下一批 formal 准入通过名单。
-- `dixit_2016_raw` 作为整包 raw 资源覆盖多 screen / 多 context，不适合作为一个单一 official formal 数据集直接并入；若后续拆成单一 screen 子数据集，可再重新送审。
+- `tian_2019_ipsc` 与 `tian_2021_crispri` 已在 raw audit 层证明 control、single-target 与 truth build 可以闭合，当前作为 runnable supplement 使用。
+- `replogle_2022_k562_gwps` 已完成 raw audit：`gene == non-targeting` 可稳定定义 control，按 gene-level target 聚合后有 `9863` 个 perturbations 满足 support floor `>= 5`，当前作为 runnable supplement 使用。
+- `norman_2019_raw__single_target` 是从 `norman_2019_raw` 中切出的 single-target 子集，已落盘 formal-like 子集，可直接作为 runnable supplement。
+- `dixit_2016_raw__control_context` 是从 `dixit_2016_raw` 中切出的 `Control + MOI==1` 子集，已落盘 formal-like 子集，可直接作为 runnable supplement。
 
-## 3. side formal / annex
+### 2.2 backup-only supplement
+
+这些数据集保留 raw 回溯、再切分和审计价值，但不再进入统一评测矩阵。
 
 - `norman_2019_raw`
-
-要求：
-
-- 单独审计
-- 明确标记为 activation / combinatorial side track
-- 不得直接并入 current official formal
-- 只评估是否值得建立独立 annex
-
-当前裁决：
-
-- `norman_2019_raw`：`annex_admit`
+- `dixit_2016_raw`
 
 说明：
 
-- Norman 的主要信息增益在 activation 与 combinatorial 结构，不应被包装成当前 single-target official formal 的一部分。
-- 其 single-target 子集可用于技术闭环，但这不改变它应留在 side track 的制度定位。
-- 当前本地 raw 已复核通过：文件为 `111445 x 33694`，可由 `guide_ids` 切出 `57831` 个 single-target cells 与 `41759` 个 combinatorial cells；其中 single-target support floor `>= 5` 后保留 `105` 个 eligible targets。
+- `norman_2019_raw` 的主要价值在 activation / combinatorial side track。它保留为备份与 annex 参考，不直接参与当前 single-target 主线跑模。
+- `dixit_2016_raw` 作为整包 raw 资源横跨多个 context，不适合作为单一 benchmark object；原始整包仅保留备份作用，真正进入评测的是派生子集 `dixit_2016_raw__control_context`。
 
-## 4. 来源口径
+## 3. 来源口径
 
 - `replogle_2022_k562_essential`、`replogle_2022_rpe1`、`tian_2019_day7neuron`：继续使用当前已审查来源。
 - `tian_2019_ipsc`：保留 Zenodo `TianKampmann2019_iPSC.h5ad` 作为受审来源，不采用 pertpy 稳定版源码中的可疑 `iPad` URL。
 - `tian_2021_crispri`：继续使用 pertpy 官方 loader 对应来源。
 - `replogle_2022_k562_gwps`：采用 pertpy 官方 `replogle_2022_k562_gwps()` 对应来源。
 - `dixit_2016_raw`：采用 pertpy 官方 `dixit_2016_raw()` 对应来源。
-- `norman_2019_raw`：采用 pertpy 官方 `norman_2019_raw()` 对应来源 `https://figshare.com/ndownloader/files/34002548`，不再复用旧的 processed `norman_2019` 资源，也不再保留当前错误下载件。
+- `norman_2019_raw`：采用 pertpy 官方 `norman_2019_raw()` 对应来源 `https://figshare.com/ndownloader/files/34002548`。
 
-## 5. 派生 formalization 候选
+## 4. 机器可读口径
 
-这一层不改原始 raw 数据集的 `3 + 4 + 1` 分层，只记录“从原始数据集中切出的、更接近 current formal 主线的问题定义”的派生子集。
+当前两层治理的机器可读入口是：
 
-- `norman_2019_raw__single_target`
-- `dixit_2016_raw__control_context`
+- `configs/stage1a/dataset_governance.json`
+- `admission_matrix.tsv`
 
-当前裁决：
+其中：
 
-- `norman_2019_raw__single_target`：`admit_as_derived_candidate`
-- `dixit_2016_raw__control_context`：`admit_as_derived_candidate`
-
-说明：
-
-- `norman_2019_raw__single_target` 是从 Norman raw 中切出的单扰动子集。它保留 `11855` 个 controls、`57553` 个 perturbed cells、`104` 个 support floor `>= 5` 的 eligible targets。合理的制度定位是：原始 `norman_2019_raw` 继续留在 annex，而这个派生子集可单独送入 next formal-admission candidate 轨道。
-- `dixit_2016_raw__control_context` 是从 Dixit raw 中切出的 `condition == Control 且 MOI == 1` 子集。它保留 `3770` 个 control-like cells、`26716` 个 perturbed cells、`244` 个 support floor `>= 5` 的 eligible targets。合理的制度定位是：原始 `dixit_2016_raw` 整包继续 `reject`，但该派生子集可作为单独候选再审。
+- `tier` 只允许 `formal` 或 `supplement`
+- `usage=mainline` 表示正式主线
+- `usage=runnable` 表示 supplement 中可直接进入统一运行矩阵的数据集
+- `usage=backup_only` 表示仅保留为原始备份，不进入统一运行矩阵

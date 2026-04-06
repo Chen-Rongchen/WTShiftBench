@@ -1,0 +1,66 @@
+{
+  "registry_version": "2026-04-06",
+  "purpose": "登记当前纳入 Stage 1A supplement entrant 池的方法。它们统一进入 entrant 比较，但不改写 formal 主榜。 ",
+  "entrants": [
+    {
+      "entrant_id": "lm_train_lowrank",
+      "tier": "supplement",
+      "status": "positive_signal",
+      "challenger_id": "lm_train_lowrank",
+      "model_id": "lm_train_lowrank_symbolfeat__k32__a0p1",
+      "batch_config": "configs/stage1a/challengers/lm_train_lowrank_batch.json",
+      "runner_module": "scripts.stage1a.challengers.run_lm_train_lowrank_batch",
+      "notes": "A 类 entrant。当前最稳的 low-rank external feature entrant。"
+    },
+    {
+      "entrant_id": "lm_G_scgpt_ridge",
+      "tier": "supplement",
+      "status": "mixed_signal",
+      "challenger_id": "lm_G_scgpt_ridge",
+      "model_id": "lm_G_scgpt_ridge__k32__a0p1",
+      "batch_config": "configs/stage1a/challengers/lm_G_scgpt_ridge_batch.json",
+      "runner_module": "scripts.stage1a.challengers.run_external_feature_ridge_batch",
+      "notes": "A 类 entrant。允许 mixed signal entrant 进入 supplement entrant 池。"
+    },
+    {
+      "entrant_id": "knn_kernel_targetfeat",
+      "tier": "supplement",
+      "status": "positive_signal",
+      "challenger_id": "knn_kernel_targetfeat",
+      "model_id": "knn_kernel_targetfeat__scgpt__k32__nn20",
+      "batch_config": "configs/stage1a/challengers/knn_kernel_targetfeat_batch.json",
+      "runner_module": "scripts.stage1a.challengers.run_knn_kernel_targetfeat_batch",
+      "notes": "B 类 entrant。当前最干净的 target-feature 非参数 entrant。"
+    },
+    {
+      "entrant_id": "elasticnet_targetfeat",
+      "tier": "supplement",
+      "status": "mixed_signal",
+      "challenger_id": "elasticnet_targetfeat",
+      "model_id": "elasticnet_targetfeat__scgpt__k32__a0p1__l10p2",
+      "batch_config": "configs/stage1a/challengers/elasticnet_targetfeat_batch.json",
+      "runner_module": "scripts.stage1a.challengers.run_elasticnet_targetfeat_batch",
+      "notes": "B 类 entrant。mixed signal，但输出 contract 已稳定。"
+    },
+    {
+      "entrant_id": "rf_targetfeat_lowrank",
+      "tier": "supplement",
+      "status": "mixed_signal",
+      "challenger_id": "rf_targetfeat_lowrank",
+      "model_id": "rf_targetfeat_lowrank__scgpt__fc32__lr8__md16",
+      "batch_config": "configs/stage1a/challengers/rf_targetfeat_lowrank_batch.json",
+      "runner_module": "scripts.stage1a.challengers.run_rf_targetfeat_lowrank_batch",
+      "notes": "B 类 entrant。mixed signal，但允许纳入补充 entrant 池。"
+    },
+    {
+      "entrant_id": "fixed_late_fusion_v1",
+      "tier": "supplement",
+      "status": "mixed_signal",
+      "challenger_id": "fixed_late_fusion_v1",
+      "model_id": "fixed_late_fusion_v1",
+      "batch_config": "configs/stage1a/challengers/fixed_late_fusion_v1_batch.json",
+      "runner_module": "scripts.stage1a.challengers.run_fixed_late_fusion_batch",
+      "notes": "C 类 entrant。当前作为固定成员的融合 entrant 进入 supplement。"
+    }
+  ]
+}
