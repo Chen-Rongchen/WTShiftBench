@@ -69,14 +69,14 @@
     {
       "dataset_id": "replogle_2022_k562_gwps",
       "tier": "supplement",
-      "usage": "runnable",
+      "usage": "deferred",
       "source_kind": "candidate_formal_like",
       "review_status": "admit_recommended",
       "control_clear": "yes",
       "single_target_fit": "yes",
       "truth_build_feasible": "yes",
-      "recommendation": "run_as_supplement",
-      "notes": "control 与 truth build 已闭合，当前先以 supplement 运行。"
+      "recommendation": "park_as_deferred_supplement",
+      "notes": "control 与 truth build 已闭合，但由于 cells 规模过大，当前轮次先不进入默认运行矩阵。"
     },
     {
       "dataset_id": "norman_2019_raw__single_target",

@@ -73,15 +73,6 @@
       "cell_line": "tian_2021_crispri"
     },
     {
-      "dataset_id": "replogle_2022_k562_gwps",
-      "tier": "supplement",
-      "usage": "runnable",
-      "source_kind": "candidate_formal_like",
-      "review_status": "admit_recommended",
-      "formal_h5ad_path": "data/processed/stage1a/candidate_formal_like/replogle_2022_k562_gwps.h5ad",
-      "cell_line": "replogle_2022_k562_gwps"
-    },
-    {
       "dataset_id": "norman_2019_raw__single_target",
       "tier": "supplement",
       "usage": "runnable",
