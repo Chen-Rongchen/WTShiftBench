@@ -86,11 +86,15 @@
 
 - `tian_2019_ipsc`
 - `tian_2021_crispri`
-- `replogle_2022_k562_gwps`
 - `norman_2019_raw__single_target`
 - `dixit_2016_raw__control_context`
-- 这些数据集统一进入 supplement 层，允许跑 entrant、truth、baseline 与 scoring
+- 这些数据集统一进入 supplement 层，允许默认跑 entrant、truth、baseline 与 scoring
 - 其中 `norman_2019_raw__single_target` 与 `dixit_2016_raw__control_context` 是已经可用的派生子集，不再单列成“待用候选”
+
+#### supplement（deferred）
+
+- `replogle_2022_k562_gwps`
+- 该数据集制度上仍属于 supplement，但由于 cells 规模过大，当前轮次不进入默认运行矩阵
 
 #### supplement（backup_only）
 
@@ -113,14 +117,13 @@
   - `replogle_2022_k562_essential`
   - `replogle_2022_rpe1`
   - `tian_2019_day7neuron`
-- supplement 中纳入运行矩阵的 5 个：
+- supplement 中纳入运行矩阵的 4 个：
   - `tian_2019_ipsc`
   - `tian_2021_crispri`
-  - `replogle_2022_k562_gwps`
   - `norman_2019_raw__single_target`
   - `dixit_2016_raw__control_context`
 
-原始整包 `norman_2019_raw` 与 `dixit_2016_raw` 继续不进这条统一评测矩阵。
+`replogle_2022_k562_gwps` 当前保持 `supplement/deferred`；原始整包 `norman_2019_raw` 与 `dixit_2016_raw` 继续不进这条统一评测矩阵。
 
 ### 6. 当前 challenger 探索边界
 

@@ -65,7 +65,7 @@ def main() -> None:
     frame = pd.DataFrame(payload["datasets"]).loc[:, REQUIRED_COLUMNS].copy()
 
     tier_order = pd.CategoricalDtype(["formal", "supplement"], ordered=True)
-    usage_order = pd.CategoricalDtype(["mainline", "runnable", "backup_only"], ordered=True)
+    usage_order = pd.CategoricalDtype(["mainline", "runnable", "deferred", "backup_only"], ordered=True)
     frame["tier"] = frame["tier"].astype(tier_order)
     frame["usage"] = frame["usage"].astype(usage_order)
     frame = frame.sort_values(["tier", "usage", "dataset_id"]).reset_index(drop=True)
