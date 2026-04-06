@@ -10,6 +10,7 @@
 - `formal` 只保留 3 个主线锚点
 - 其余可用数据统一放进 `supplement`
 - 未筛选原始整包也放在 `supplement`，但只保留 `backup_only` 身份
+- 体量过大的 supplement 数据集可以先标成 `deferred`
 
 这意味着：
 
@@ -20,7 +21,8 @@
 
 同时：
 
+- `replogle_2022_k562_gwps`
 - `norman_2019_raw`
 - `dixit_2016_raw`
 
-继续保留为原始备份与回溯来源，不再进入统一评测矩阵。
+其中 `replogle_2022_k562_gwps` 当前保留为 `supplement/deferred`；原始整包 `norman_2019_raw` 与 `dixit_2016_raw` 继续只作备份与回溯来源。
