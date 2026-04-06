@@ -107,7 +107,7 @@ def load_pass_contracts() -> list:
     return [
         contract
         for contract in load_formal_dataset_contracts(include_auxiliary=True)
-        if contract.status in {"pass", "auxiliary_pass"}
+        if contract.status in {"pass"}
     ]
 
 

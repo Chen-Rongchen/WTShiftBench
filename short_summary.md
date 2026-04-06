@@ -1,20 +1,26 @@
-# 为什么是 3 + 4 + 1
+# 为什么改成 formal / supplement
 
-因为当前要同时满足三个约束：
+因为当前真正需要解决的，不是给数据集堆更多中间标签，而是回答两个问题：
 
-- official formal 不能被一次性扩桶，原有 3 个主线数据集必须继续充当稳定锚点；
-- 新进入视野的数据集需要先回答 source、control、single-target、support floor、truth feasibility 这些 admission 问题，不能先写成 formal 成员；
-- `norman_2019_raw` 的主要价值在 activation / combinatorial side track，它值得单列 annex，但不应直接并入当前 single-target official formal。
+- 哪些数据集已经足够稳定，能进入正式主榜
+- 哪些数据集已经可跑、可审、可比，但还不该和正式主榜混写
 
-因此当前最稳妥的制度化选择是：
+因此当前最简洁的治理方式是：
 
-- `3` 个 official formal 保持不变；
-- `4` 个 next formal-admission batch 逐个审计；
-- `1` 个 Norman side track 单列 annex。
+- `formal` 只保留 3 个主线锚点
+- 其余可用数据统一放进 `supplement`
+- 未筛选原始整包也放在 `supplement`，但只保留 `backup_only` 身份
 
-在不破坏这套 raw 分层的前提下，还可以从原始数据中再切出更接近主线的派生候选：
+这意味着：
 
 - `norman_2019_raw__single_target`
 - `dixit_2016_raw__control_context`
 
-它们解决的是“怎样尽可能把可用部分推进到 formal-like”，不等于把原始整包 raw 数据集直接升格。
+都不再被描述成“还差一步才能用”的对象，而是明确作为可运行的 `supplement` 数据集使用。
+
+同时：
+
+- `norman_2019_raw`
+- `dixit_2016_raw`
+
+继续保留为原始备份与回溯来源，不再进入统一评测矩阵。

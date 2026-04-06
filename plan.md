@@ -19,14 +19,14 @@
 
 ## 本轮目标
 
-把 `Stage 1A` 的数据集治理收紧到 `3 + 4 + 1`，并在不改变 official formal 主线的前提下，先完成“三模型尽可能覆盖所有可用数据集，并判断是否打过 baseline”的工程闭环。
+把 `Stage 1A` 的数据集治理收紧到 `formal + supplement` 两层，并在不改变 official formal 主线的前提下，先完成“三模型尽可能覆盖所有可用数据集，并判断是否打过 baseline”的工程闭环。
 
 ## 本轮不做
 
 - 不新增 formal 主线数据池
 - 不直接展开 `3 datasets × 5 seeds` formal adjudication
 - 不在 admission 未闭合的数据集上产出 formal entrant 结论
-- 不把 next formal-admission batch 或 annex side track 预写成 `auxiliary_pass` 或其他变相升格状态
+- 不把 supplement 结果预写成 formal 通过或其他变相升格状态
 - 不把 adequacy 诊断指标替代 `predicted_shift` formal scoring
 - 不把“single-seed smoke 可运行”直接写成“formal superiority”或“entrant ready”
 
@@ -82,35 +82,21 @@
 - `tian_2019_day7neuron`
 - 这 3 个数据集继续作为 formal 主锚点，不因新候选加入而重写既有结论
 
-#### next formal-admission batch（逐个 admission audit，不提前升格）
+#### supplement（可运行）
 
 - `tian_2019_ipsc`
 - `tian_2021_crispri`
 - `replogle_2022_k562_gwps`
-- `dixit_2016_raw`
-- 对每个数据集统一回答：
-  - perturbation identity 是否清晰
-  - control 语义是否清晰
-  - 是否能限制到 single-guide / single-target 主线
-  - support floor `>=5` 后还剩多少 eligible perturbations
-  - 是否能构建 perturbation-level pseudobulk delta truth
-  - 是否适合进入 official formal
-
-#### side formal / annex
-
-- `norman_2019_raw`
-- 明确作为 activation / combinatorial side track
-- 单独审计其 annex 价值，不并入 current official formal
-
-#### 派生 formalization candidates
-
 - `norman_2019_raw__single_target`
 - `dixit_2016_raw__control_context`
-- 原则：
-  - 派生 candidate 只表示“从 raw 数据中切出了更接近 current single-target formal 主线的问题定义”
-  - 不等于把原始 raw 数据集整体升格
-  - 原始 `norman_2019_raw` 继续保留 annex 定位
-  - 原始 `dixit_2016_raw` 整包继续保持 `reject`
+- 这些数据集统一进入 supplement 层，允许跑 entrant、truth、baseline 与 scoring
+- 其中 `norman_2019_raw__single_target` 与 `dixit_2016_raw__control_context` 是已经可用的派生子集，不再单列成“待用候选”
+
+#### supplement（backup_only）
+
+- `norman_2019_raw`
+- `dixit_2016_raw`
+- 原始整包只保留 raw 回溯、再切分与审计价值，不进入统一评测矩阵
 
 ### 5. 当前 entrant benchmarking 边界
 - 当前 trial run 已满足 entrant benchmarking 的运行闭环，但还不等同于 entrant version-level formal adjudication
@@ -121,17 +107,16 @@
 
 ### 5.1 当前评测矩阵
 
-当前不升格 dataset tier，先跑以下 `3 + 3 + 2`：
+当前先跑以下 `formal + supplement`：
 
-- official formal：
+- formal：
   - `replogle_2022_k562_essential`
   - `replogle_2022_rpe1`
   - `tian_2019_day7neuron`
-- next formal-admission batch 中先纳入运行矩阵的 3 个：
+- supplement 中纳入运行矩阵的 5 个：
   - `tian_2019_ipsc`
   - `tian_2021_crispri`
   - `replogle_2022_k562_gwps`
-- derived candidates：
   - `norman_2019_raw__single_target`
   - `dixit_2016_raw__control_context`
 
@@ -174,11 +159,48 @@
 - `elasticnet_targetfeat`、`rf_targetfeat_lowrank`、`fixed_late_fusion_v1` 都没有跨过“可支撑 formal 下一步”的边界
 - 当前没有任何 challenger 结果足以直接触发 formal `3 datasets × 5 seeds` adjudication
 
+### 6.1 当前 supplement entrant 扩容
+
+当前 entrant 扩容采用以下口径：
+
+- `positive signal`：纳入 supplement entrant 池
+- `mixed signal`：也允许纳入 supplement entrant 池
+- `close-or-worse`：暂不纳入
+- `implementation-equivalent`：不纳入
+
+当前已纳入的 supplement entrants：
+
+- `lm_train_lowrank`
+- `lm_G_scgpt_ridge`
+- `knn_kernel_targetfeat`
+- `elasticnet_targetfeat`
+- `rf_targetfeat_lowrank`
+- `fixed_late_fusion_v1`
+
+当前暂不纳入：
+
+- `residual_over_mean__lm_train_lowrank`
+- `lm_G_geneformer_ridge`
+
+工程上，这些方法已经有独立 registry、统一 runner 和统一汇总入口，不再只作为 challenger backlog 记录。
+
+当前清理动作已完成：
+
+- 删除旧的 `*_supplementary_batch.json`
+- 删除旧的 `*_norman_smoke.json`
+- 删除 `normalize_input_audit.json`
+- 删除 `.claude/` 本地调度状态目录
+
+保留边界：
+
+- challenger registry 与 feature registry 继续保留
+- 当前 supplement entrant 池实际使用的 `*_batch.json` 继续保留
+
 ### 7. 当前数据集治理交付
 
-- 新增 `dataset_tiering.md`，明确 `3 + 4 + 1` 分层
-- 新增 `admission_matrix.tsv`，只输出当前分层所需 admission 结论，不预写主协议升格
-- 新增 `short_summary.md`，简述为何采用 `3 + 4 + 1`
+- 新增 `dataset_tiering.md`，明确 `formal + supplement` 两层分层
+- 新增 `configs/stage1a/dataset_governance.json` 与 `scripts/build_stage1a_dataset_governance.py`，统一渲染 `admission_matrix.tsv`
+- 新增 `short_summary.md`，简述为何采用 `formal + supplement`
 - 删除不符合当前分层的旧 auxiliary / supplementary formal 叙述与衍生产物
 
 ### 7.1 当前全量跑模交付
@@ -362,7 +384,7 @@ sed -n '/## 你接下来先做什么/,/## 本轮验收口径/p' plan.md
 接手时不要改动的结论：
 
 - `residual_over_mean__lm_train_lowrank` 当前与 `lm_train_lowrank` 等价
-- `tian_2019_ipsc / tian_2021_crispri` 当前属于 next formal-admission batch，不能写成 official formal
+- `tian_2019_ipsc / tian_2021_crispri` 当前属于 `supplement/runnable`，不能写成 official formal
 - `lm_train_lowrank / lm_G_scgpt_ridge / lm_G_geneformer_ridge` 的输入侧 normalize 审计已正式关闭，并统一记为 `not_applicable`
 
 ## 本轮验收口径
@@ -373,14 +395,14 @@ sed -n '/## 你接下来先做什么/,/## 本轮验收口径/p' plan.md
 - `support floor` 至少显式绑定 `cells per perturbation`、`cells per control`、`UMI depth`
 - `tian_2019_day7neuron`、`tian_2019_ipsc` 与 `tian_2021_crispri` 的 admission 决议明确，不再混成“统一待重跑”
 - 5 个 Stage 1A 数据集均已完成统一口径的完整性检查
-- formal 主榜仍只消费 official formal 的 3 个主线数据集；其余数据集即使完成审计，也不得写成 `auxiliary_pass` 或变相 formal
+- formal 主榜仍只消费 official formal 的 3 个主线数据集；其余数据集即使完成审计，也不得写成 formal 通过或变相 formal
 - `1 seed × 3 entrants × 3 datasets` 的 trial run 已产出完整 aligned / lane / dataset / pass skeleton 结果
 - `GEARS × day7neuron` 的 export-space 审计已证明：control 无误，但 `predicted_expression_raw` 已偏大，减 control 后放大成不可信 delta
 - 若进入 challenger 探索，文档中已明确：`稳定跑通` 不等于 `正向信号`，`正向信号` 不等于 formal superiority
 - 若进入 challenger 探索，文档中已明确：`feature registry` 与 `challenger registry` 已冻结，后续方法可在 exploratory override 下继续实现
 - challenger 的实现状态、接线状态、smoke 运行状态与是否解锁下一步必须分开记录
 - 若采用 exploratory override，文档中也已明确：“允许继续实现 backlog” 不等于 “允许提升 formal 结论”
-- next formal-admission batch 的 exploratory benchmarking 已明确覆盖 `tian_2019_ipsc / tian_2021_crispri`
+- supplement 上的 exploratory benchmarking 已明确覆盖 `tian_2019_ipsc / tian_2021_crispri`
 - `residual_over_mean__lm_train_lowrank` 的当前等价性与 candidate / annex 轨道上的 coverage-blocked 边界已在文档中明示
 - 输入侧 normalize 审计已正式关闭，且当前三条目标 challenger 已明确定义为 `not_applicable`
 

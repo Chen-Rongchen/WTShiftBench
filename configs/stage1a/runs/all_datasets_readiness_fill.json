@@ -8,18 +8,24 @@
   "datasets": [
     {
       "dataset_id": "tian_2019_ipsc",
+      "tier": "supplement",
+      "usage": "runnable",
       "formal_h5ad_path": "data/processed/stage1a/candidate_formal_like/tian_2019_ipsc.h5ad",
       "include_existing_truth_entry": true,
       "build_comparators": true
     },
     {
       "dataset_id": "tian_2021_crispri",
+      "tier": "supplement",
+      "usage": "runnable",
       "formal_h5ad_path": "data/processed/stage1a/candidate_formal_like/tian_2021_crispri.h5ad",
       "include_existing_truth_entry": true,
       "build_comparators": true
     },
     {
       "dataset_id": "replogle_2022_k562_gwps",
+      "tier": "supplement",
+      "usage": "runnable",
       "formal_h5ad_path": "data/processed/stage1a/candidate_formal_like/replogle_2022_k562_gwps.h5ad",
       "input_path": "data/raw/stage1a/candidates/replogle_2022_k562_gwps.h5ad",
       "formalization_mode": "replogle_gwps",
@@ -29,6 +35,8 @@
     },
     {
       "dataset_id": "norman_2019_raw__single_target",
+      "tier": "supplement",
+      "usage": "runnable",
       "formal_h5ad_path": "data/processed/stage1a/candidate_formal_like/norman_2019_raw__single_target.h5ad",
       "source_formal_h5ad_path": "data/processed/stage1a/candidate_formal_like/norman_2019_raw.h5ad",
       "eligibility_path": "reports/stage1a/candidate_pseudobulk_eligibility/norman_2019_raw/perturbation_eligibility.tsv",
@@ -38,6 +46,8 @@
     },
     {
       "dataset_id": "dixit_2016_raw__control_context",
+      "tier": "supplement",
+      "usage": "runnable",
       "formal_h5ad_path": "data/processed/stage1a/candidate_formal_like/dixit_2016_raw__control_context.h5ad",
       "eligibility_path": "reports/stage1a/candidate_pseudobulk_eligibility/dixit_2016_raw__control_context/perturbation_eligibility.tsv",
       "build_truth": true,

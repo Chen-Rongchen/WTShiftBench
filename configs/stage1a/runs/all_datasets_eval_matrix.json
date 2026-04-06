@@ -8,23 +8,6 @@
   "topk": [50],
   "models": [
     {
-      "adapter": "gears",
-      "environment": "gears",
-      "model_id": "gears_stage1a_formal",
-      "config_overrides": {
-        "device": "auto",
-        "seed": 123,
-        "epochs": 30,
-        "batch_size": 32,
-        "lr": 0.001,
-        "weight_decay": 1e-06,
-        "train_val_fraction": 0.8,
-        "max_control_cells": 2048,
-        "prediction_num_samples": 64,
-        "perturbation_graph_k": 8
-      }
-    },
-    {
       "adapter": "scgpt",
       "environment": "scgpt",
       "model_id": "scgpt_embedding_kernel_formal",
@@ -49,46 +32,70 @@
   "datasets": [
     {
       "dataset_id": "replogle_2022_k562_essential",
-      "tier": "official_formal",
+      "tier": "formal",
+      "usage": "mainline",
+      "source_kind": "official_formal",
+      "review_status": "pass",
       "formal_h5ad_path": "data/processed/stage1a/formal_filtered/replogle_2022_k562_essential.h5ad"
     },
     {
       "dataset_id": "replogle_2022_rpe1",
-      "tier": "official_formal",
+      "tier": "formal",
+      "usage": "mainline",
+      "source_kind": "official_formal",
+      "review_status": "pass",
       "formal_h5ad_path": "data/processed/stage1a/formal_filtered/replogle_2022_rpe1.h5ad"
     },
     {
       "dataset_id": "tian_2019_day7neuron",
-      "tier": "official_formal",
+      "tier": "formal",
+      "usage": "mainline",
+      "source_kind": "official_formal",
+      "review_status": "pass",
       "formal_h5ad_path": "data/processed/stage1a/formal_filtered/tian_2019_day7neuron.h5ad"
     },
     {
       "dataset_id": "tian_2019_ipsc",
-      "tier": "next_formal_admission_batch",
+      "tier": "supplement",
+      "usage": "runnable",
+      "source_kind": "candidate_formal_like",
+      "review_status": "admit_recommended",
       "formal_h5ad_path": "data/processed/stage1a/candidate_formal_like/tian_2019_ipsc.h5ad",
       "cell_line": "tian_2019_ipsc"
     },
     {
       "dataset_id": "tian_2021_crispri",
-      "tier": "next_formal_admission_batch",
+      "tier": "supplement",
+      "usage": "runnable",
+      "source_kind": "candidate_formal_like",
+      "review_status": "admit_recommended",
       "formal_h5ad_path": "data/processed/stage1a/candidate_formal_like/tian_2021_crispri.h5ad",
       "cell_line": "tian_2021_crispri"
     },
     {
       "dataset_id": "replogle_2022_k562_gwps",
-      "tier": "next_formal_admission_batch",
+      "tier": "supplement",
+      "usage": "runnable",
+      "source_kind": "candidate_formal_like",
+      "review_status": "admit_recommended",
       "formal_h5ad_path": "data/processed/stage1a/candidate_formal_like/replogle_2022_k562_gwps.h5ad",
       "cell_line": "replogle_2022_k562_gwps"
     },
     {
       "dataset_id": "norman_2019_raw__single_target",
-      "tier": "derived_candidate",
+      "tier": "supplement",
+      "usage": "runnable",
+      "source_kind": "derived_formal_like",
+      "review_status": "derived_admit_recommended",
       "formal_h5ad_path": "data/processed/stage1a/candidate_formal_like/norman_2019_raw__single_target.h5ad",
       "cell_line": "norman_2019_raw__single_target"
     },
     {
       "dataset_id": "dixit_2016_raw__control_context",
-      "tier": "derived_candidate",
+      "tier": "supplement",
+      "usage": "runnable",
+      "source_kind": "derived_formal_like",
+      "review_status": "derived_admit_recommended",
       "formal_h5ad_path": "data/processed/stage1a/candidate_formal_like/dixit_2016_raw__control_context.h5ad",
       "cell_line": "dixit_2016_raw__control_context"
     }
