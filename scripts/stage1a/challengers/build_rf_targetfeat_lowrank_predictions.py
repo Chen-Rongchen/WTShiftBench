@@ -16,7 +16,6 @@ from scripts.stage1a.adapters.common.runtime import (
     load_run_config,
     resolve_path,
 )
-from scripts.stage1a.benchmark_invariant.catalog import get_formal_dataset_contract
 from scripts.stage1a.benchmark_invariant.prediction_eval_common import json_dump, resolve_project_relative, write_matrix
 from scripts.stage1a.challengers.common import (
     DEFAULT_CHALLENGER_REGISTRY_PATH,
@@ -24,6 +23,7 @@ from scripts.stage1a.challengers.common import (
     get_challenger_entry,
     get_feature_entry,
     read_feature_matrix,
+    resolve_dataset_formal_h5ad_path,
 )
 
 
@@ -64,7 +64,9 @@ def main() -> None:
     latent_rank = int(run_config["latent_rank"])
     max_depth = int(run_config["max_depth"])
     n_estimators = int(run_config["n_estimators"])
-    formal_h5ad_path = resolve_path(str(coalesce_arg(None, run_config, "formal_h5ad_path", get_formal_dataset_contract(dataset_id).path)))
+    formal_h5ad_path = resolve_path(
+        str(coalesce_arg(None, run_config, "formal_h5ad_path", resolve_dataset_formal_h5ad_path(dataset_id)))
+    )
     prediction_path = resolve_path(str(coalesce_arg(None, run_config, "prediction_path", f"{DEFAULT_PREDICTION_ROOT}/{model_id}/{dataset_id}/predicted_shift.tsv.gz")))
     metadata_path = resolve_path(str(coalesce_arg(None, run_config, "metadata_path", prediction_path.with_name("adapter_metadata.json"))))
 
