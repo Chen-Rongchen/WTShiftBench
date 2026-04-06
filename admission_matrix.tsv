@@ -1,11 +1,11 @@
-dataset_id	tier	control_clear	single_target_fit	truth_build_feasible	recommendation
-replogle_2022_k562_essential	official_formal	yes	yes	yes	retain_official
-replogle_2022_rpe1	official_formal	yes	yes	yes	retain_official
-tian_2019_day7neuron	official_formal	yes	yes	yes	retain_official
-tian_2019_ipsc	next_formal_batch	yes	yes	yes	admit
-tian_2021_crispri	next_formal_batch	yes	yes	yes	admit
-replogle_2022_k562_gwps	next_formal_batch	yes	yes	yes	admit
-dixit_2016_raw	next_formal_batch	no_as_single_dataset	no_as_single_dataset	no_as_single_dataset	reject
-norman_2019_raw	side_formal_annex	yes	side_track_only	yes	annex_admit
-norman_2019_raw__single_target	derived_formal_candidate	yes	yes	yes	admit_as_derived_candidate
-dixit_2016_raw__control_context	derived_formal_candidate	yes	yes	yes	admit_as_derived_candidate
+dataset_id	tier	usage	source_kind	review_status	control_clear	single_target_fit	truth_build_feasible	recommendation	notes
+replogle_2022_k562_essential	formal	mainline	official_formal	pass	yes	yes	yes	retain_formal	当前 official formal 主线锚点。
+replogle_2022_rpe1	formal	mainline	official_formal	pass	yes	yes	yes	retain_formal	当前 official formal 主线锚点。
+tian_2019_day7neuron	formal	mainline	official_formal	pass	yes	yes	yes	retain_formal	当前 official formal 主线锚点。
+dixit_2016_raw__control_context	supplement	runnable	derived_formal_like	derived_admit_recommended	yes	yes	yes	run_as_supplement	可运行的派生 control context 子集；原始整包仅保留备份意义。
+norman_2019_raw__single_target	supplement	runnable	derived_formal_like	derived_admit_recommended	yes	yes	yes	run_as_supplement	可运行的派生 single-target 子集；原始整包仅保留备份意义。
+replogle_2022_k562_gwps	supplement	runnable	candidate_formal_like	admit_recommended	yes	yes	yes	run_as_supplement	control 与 truth build 已闭合，当前先以 supplement 运行。
+tian_2019_ipsc	supplement	runnable	candidate_formal_like	admit_recommended	yes	yes	yes	run_as_supplement	candidate formal-like 数据集，当前可进入 supplement 跑模与对比。
+tian_2021_crispri	supplement	runnable	candidate_formal_like	admit_recommended	yes	yes	yes	run_as_supplement	candidate formal-like 数据集，当前可进入 supplement 跑模与对比。
+dixit_2016_raw	supplement	backup_only	raw_backup	backup_only_reject_raw_bundle	no_as_single_dataset	no_as_single_dataset	no_as_single_dataset	keep_as_backup_only	原始整包跨多个 context，只保留为回溯和再切分备份。
+norman_2019_raw	supplement	backup_only	raw_backup	backup_only_annex	yes	side_track_only	yes	keep_as_backup_only	原始整包保留为 annex/back-up，不进入统一评测矩阵。

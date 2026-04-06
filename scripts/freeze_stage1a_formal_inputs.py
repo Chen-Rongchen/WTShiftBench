@@ -46,7 +46,7 @@ def load_admission_pass_dataset_ids() -> set[str]:
     if missing:
         raise ValueError(f"admission manifest 缺少字段: {missing}")
     allowed = manifest.loc[
-        manifest["admission_decision"].astype("string").isin(["pass", "auxiliary_pass"]),
+        manifest["admission_decision"].astype("string").isin(["pass"]),
         "dataset_id",
     ]
     return set(allowed.astype(str).tolist())
@@ -72,7 +72,7 @@ def build_frozen_registry(allowed_dataset_ids: set[str]) -> pd.DataFrame:
             "notes": contract.notes,
         }
         for contract in load_formal_dataset_contracts(include_auxiliary=True)
-        if contract.status in {"pass", "auxiliary_pass"} and contract.dataset_id in allowed_dataset_ids
+        if contract.status in {"pass"} and contract.dataset_id in allowed_dataset_ids
     ]
     return pd.DataFrame(rows).sort_values("dataset_id").reset_index(drop=True)
 

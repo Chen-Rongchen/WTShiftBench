@@ -1,0 +1,130 @@
+{
+  "version": "2026-04-06",
+  "notes": [
+    "Stage 1A 当前只保留 formal 与 supplement 两层 benchmark tier。",
+    "未筛选原始整包数据集可以保留在 supplement，但 usage 必须标为 backup_only，不进入统一评测矩阵。",
+    "派生子集只要 control、single-target 与 truth build 已闭合，就可以作为 supplement/runnable 使用。"
+  ],
+  "datasets": [
+    {
+      "dataset_id": "replogle_2022_k562_essential",
+      "tier": "formal",
+      "usage": "mainline",
+      "source_kind": "official_formal",
+      "review_status": "pass",
+      "control_clear": "yes",
+      "single_target_fit": "yes",
+      "truth_build_feasible": "yes",
+      "recommendation": "retain_formal",
+      "notes": "当前 official formal 主线锚点。"
+    },
+    {
+      "dataset_id": "replogle_2022_rpe1",
+      "tier": "formal",
+      "usage": "mainline",
+      "source_kind": "official_formal",
+      "review_status": "pass",
+      "control_clear": "yes",
+      "single_target_fit": "yes",
+      "truth_build_feasible": "yes",
+      "recommendation": "retain_formal",
+      "notes": "当前 official formal 主线锚点。"
+    },
+    {
+      "dataset_id": "tian_2019_day7neuron",
+      "tier": "formal",
+      "usage": "mainline",
+      "source_kind": "official_formal",
+      "review_status": "pass",
+      "control_clear": "yes",
+      "single_target_fit": "yes",
+      "truth_build_feasible": "yes",
+      "recommendation": "retain_formal",
+      "notes": "当前 official formal 主线锚点。"
+    },
+    {
+      "dataset_id": "tian_2019_ipsc",
+      "tier": "supplement",
+      "usage": "runnable",
+      "source_kind": "candidate_formal_like",
+      "review_status": "admit_recommended",
+      "control_clear": "yes",
+      "single_target_fit": "yes",
+      "truth_build_feasible": "yes",
+      "recommendation": "run_as_supplement",
+      "notes": "candidate formal-like 数据集，当前可进入 supplement 跑模与对比。"
+    },
+    {
+      "dataset_id": "tian_2021_crispri",
+      "tier": "supplement",
+      "usage": "runnable",
+      "source_kind": "candidate_formal_like",
+      "review_status": "admit_recommended",
+      "control_clear": "yes",
+      "single_target_fit": "yes",
+      "truth_build_feasible": "yes",
+      "recommendation": "run_as_supplement",
+      "notes": "candidate formal-like 数据集，当前可进入 supplement 跑模与对比。"
+    },
+    {
+      "dataset_id": "replogle_2022_k562_gwps",
+      "tier": "supplement",
+      "usage": "runnable",
+      "source_kind": "candidate_formal_like",
+      "review_status": "admit_recommended",
+      "control_clear": "yes",
+      "single_target_fit": "yes",
+      "truth_build_feasible": "yes",
+      "recommendation": "run_as_supplement",
+      "notes": "control 与 truth build 已闭合，当前先以 supplement 运行。"
+    },
+    {
+      "dataset_id": "norman_2019_raw__single_target",
+      "tier": "supplement",
+      "usage": "runnable",
+      "source_kind": "derived_formal_like",
+      "review_status": "derived_admit_recommended",
+      "control_clear": "yes",
+      "single_target_fit": "yes",
+      "truth_build_feasible": "yes",
+      "recommendation": "run_as_supplement",
+      "notes": "可运行的派生 single-target 子集；原始整包仅保留备份意义。"
+    },
+    {
+      "dataset_id": "dixit_2016_raw__control_context",
+      "tier": "supplement",
+      "usage": "runnable",
+      "source_kind": "derived_formal_like",
+      "review_status": "derived_admit_recommended",
+      "control_clear": "yes",
+      "single_target_fit": "yes",
+      "truth_build_feasible": "yes",
+      "recommendation": "run_as_supplement",
+      "notes": "可运行的派生 control context 子集；原始整包仅保留备份意义。"
+    },
+    {
+      "dataset_id": "norman_2019_raw",
+      "tier": "supplement",
+      "usage": "backup_only",
+      "source_kind": "raw_backup",
+      "review_status": "backup_only_annex",
+      "control_clear": "yes",
+      "single_target_fit": "side_track_only",
+      "truth_build_feasible": "yes",
+      "recommendation": "keep_as_backup_only",
+      "notes": "原始整包保留为 annex/back-up，不进入统一评测矩阵。"
+    },
+    {
+      "dataset_id": "dixit_2016_raw",
+      "tier": "supplement",
+      "usage": "backup_only",
+      "source_kind": "raw_backup",
+      "review_status": "backup_only_reject_raw_bundle",
+      "control_clear": "no_as_single_dataset",
+      "single_target_fit": "no_as_single_dataset",
+      "truth_build_feasible": "no_as_single_dataset",
+      "recommendation": "keep_as_backup_only",
+      "notes": "原始整包跨多个 context，只保留为回溯和再切分备份。"
+    }
+  ]
+}

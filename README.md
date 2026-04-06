@@ -25,15 +25,10 @@
 
 - 当前固定顺序：`harmonized resource layer -> dataset admission layer -> entrant benchmarking layer`
 - 正式主线使用 `replogle_2022_k562_essential / replogle_2022_rpe1 / tian_2019_day7neuron`
-- 当前数据集治理改为 `3 + 4 + 1`：
-  - official formal：`replogle_2022_k562_essential`、`replogle_2022_rpe1`、`tian_2019_day7neuron`
-  - next formal-admission batch：`tian_2019_ipsc`、`tian_2021_crispri`、`replogle_2022_k562_gwps`、`dixit_2016_raw`
-  - side formal / annex：`norman_2019_raw`
-- 在不改变 raw `3 + 4 + 1` 分层的前提下，允许从 raw 数据集中切出更接近主线问题定义的派生 formalization candidates：
-  - `norman_2019_raw__single_target`
-  - `dixit_2016_raw__control_context`
-- next formal-admission batch 只做 admission audit，不提前升格
-- `norman_2019_raw` 明确作为 activation / combinatorial side track，不并入 current official formal
+- 当前数据集治理改为两层：
+  - `formal`：`replogle_2022_k562_essential`、`replogle_2022_rpe1`、`tian_2019_day7neuron`
+  - `supplement`：`tian_2019_ipsc`、`tian_2021_crispri`、`replogle_2022_k562_gwps`、`norman_2019_raw__single_target`、`dixit_2016_raw__control_context`
+- 未筛选原始整包 `norman_2019_raw`、`dixit_2016_raw` 只保留 `backup_only` 身份，不进入统一评测矩阵
 - 本轮固定 `split_seed: 101`
 - `signal adequacy` 与 `model fidelity` 明确分离：adequacy diagnostics 不替代 `predicted_shift` formal scoring
 - `support floor` 具有 admission 语义，至少显式追踪 `cells per perturbation`、`cells per control`、`UMI depth`
@@ -50,25 +45,25 @@
 - `replogle_2022_k562_essential`：已在 formal 主线中
 - `replogle_2022_rpe1`：已在 formal 主线中
 - `tian_2019_day7neuron`：已完成 formal filtering，admission=`pass`
-- `tian_2019_ipsc`：候选 admission batch，重新按 raw source 审计，不写入 formal registry
-- `tian_2021_crispri`：候选 admission batch，重新按 raw source 审计，不写入 formal registry
-- `replogle_2022_k562_gwps`：候选 admission batch，raw audit 已完成，建议 `admit`
-- `dixit_2016_raw`：候选 admission batch，raw audit 已完成，但整包语义不单一，建议 `reject`
-- `norman_2019_raw`：annex side track，制度定位成立；raw 文件已复核通过
-- `norman_2019_raw__single_target`：派生 candidate，single-target 子集已切出，建议继续送审
-- `dixit_2016_raw__control_context`：派生 candidate，`Control + MOI==1` 子集已切出，建议继续送审
+- `tian_2019_ipsc`：`supplement/runnable`
+- `tian_2021_crispri`：`supplement/runnable`
+- `replogle_2022_k562_gwps`：`supplement/runnable`
+- `norman_2019_raw__single_target`：`supplement/runnable`
+- `dixit_2016_raw__control_context`：`supplement/runnable`
+- `norman_2019_raw`：`supplement/backup_only`
+- `dixit_2016_raw`：`supplement/backup_only`
 
 其中：
 
 - `tian_2019_day7neuron` 当前 raw 统计为 `182790 x 33752`，formal 统计为 `85290 x 33752`，`n_controls=15580`，`n_perturbed=69710`，`n_unique_targets=26`
 - `replogle_2022_rpe1` 当前 formal 统计为 `247914 x 8749`；有 458 行 source `gene_id` 为空，但 formal 主键仍可稳定落在 `target_gene`
 - `tian_2019_ipsc` 的受审来源继续使用 Zenodo `TianKampmann2019_iPSC.h5ad`，不采用 pertpy 稳定版源码中的可疑 `iPad` URL
-- `tian_2021_crispri` raw audit 已证明 control / single-target / target closure 可以闭合，但当前仍只保留 candidate 身份
+- `tian_2021_crispri` raw audit 已证明 control / single-target / target closure 可以闭合，当前作为 runnable supplement 使用
 - `replogle_2022_k562_gwps` raw audit 已证明 `gene == non-targeting` 可稳定定义 control，按 gene-level target 聚合后有 `9863` 个 perturbations 满足 support floor `>= 5`
 - `dixit_2016_raw` 本地 raw audit 证明整包横跨多个 context；即使 `MOI == 1` 下可解析出 `248` 个 support `>= 5` 的 target，也不能把整包直接当成一个 formal 数据集
 - `norman_2019_raw` 当前已切回正确 raw 文件：`111445 x 33694`，其中 `guide_ids == ''` 可作为 control-like 空扰动，single-target support floor `>= 5` 后保留 `105` 个 eligible targets
-- `norman_2019_raw__single_target` 已落盘 formal-like 子集：`69408` cells、`104` 个 eligible targets；它应作为从 annex raw 派生出的独立 candidate，而不是把原始 Norman 整集升格
-- `dixit_2016_raw__control_context` 已落盘 formal-like 子集：`30486` cells、`244` 个 eligible targets；`IFNγ / Co-culture` 子集不进入当前主线
+- `norman_2019_raw__single_target` 已落盘 formal-like 子集：`69408` cells、`104` 个 eligible targets；当前按 runnable supplement 使用
+- `dixit_2016_raw__control_context` 已落盘 formal-like 子集：`30486` cells、`244` 个 eligible targets；`IFNγ / Co-culture` 子集不进入当前主线，当前按 runnable supplement 使用
 
 当前 official formal admission 结果：
 
@@ -131,6 +126,41 @@
 - `scGPT / Geneformer` 当前 adapter 版本未见明显结构性错误，四条 lane 表现整体稳定
 - `GEARS` 当前 version 在 `tian_2019_day7neuron` 上存在明确的 prediction-space instability
 - 四条 lanes 在数据层都可稳定产生产物；当前不稳定主要来自 entrant 表现，而不是 lane 机制本身
+
+## 当前 supplement entrant 池
+
+鉴于现有 3 个 entrant 经常打不过 baseline，当前仓库已把一批 challenger 升格为 `supplement entrants`，用于统一 entrant 比较，但不改写 formal 主榜。
+
+当前 supplement entrants：
+
+- `lm_train_lowrank`
+- `lm_G_scgpt_ridge`
+- `knn_kernel_targetfeat`
+- `elasticnet_targetfeat`
+- `rf_targetfeat_lowrank`
+- `fixed_late_fusion_v1`
+
+当前不纳入 supplement entrant 池：
+
+- `residual_over_mean__lm_train_lowrank`：与 `lm_train_lowrank` 当前实现等价
+- `lm_G_geneformer_ridge`：当前 `close-or-worse`
+
+当前机器可读登记：
+
+- `configs/entrants/supplement_entrants.json`
+
+当前统一入口：
+
+1. `pixi run run-stage1a-supplement-entrants`
+2. `pixi run summarize-stage1a-supplement-entrants`
+
+当前清理状态：
+
+- 旧的 `*_supplementary_batch.json` 已删除
+- 旧的 `*_norman_smoke.json` 已删除
+- `normalize_input_audit.json` 已删除
+- `.claude/` 本地工具状态目录已删除
+- normalize 审计的结论仍保留在文档中，但不再保留旧配置入口
 
 ## 当前 all-datasets 运行起点
 
@@ -207,7 +237,7 @@
 - `rf_targetfeat_lowrank`：coverage-blocked
 - `fixed_late_fusion_v1`：依赖项 blocked，无法构建
 
-当前 next formal-admission batch 上的 frozen feature coverage 边界：
+当前 supplement/runnable 数据集上的 frozen feature coverage 边界：
 
 - `tian_2019_ipsc`：`scGPT / Geneformer` heldout coverage 都是 `0.8333`，共同缺 `ATP5B`
 - `tian_2021_crispri`：`scGPT / Geneformer` heldout coverage 都是 `0.9487`，共同缺 `ATP5C1`、`TMEM55A`
@@ -216,7 +246,7 @@
 因此当前仓库的正式口径应当是：
 
 - challenger exploratory backlog 已补齐
-- next formal-admission batch 的 exploratory 记录已覆盖 `tian_2019_ipsc / tian_2021_crispri`
+- supplement 的 exploratory 记录已覆盖 `tian_2019_ipsc / tian_2021_crispri`
 - `norman_2019_raw` 当前更适合标记为 annex side track：raw audit 已闭合，但 benchmark 解释对 split realization 与 combinatorial 结构敏感
 - 当前没有任何新增结果足以直接触发 formal `3 datasets × 5 seeds` adjudication
 - 下一步优先做结果审计、等价方法去重与 coverage policy 说明，而不是继续扩 challenger 方法池
@@ -418,7 +448,7 @@ pixi run summarize-stage1a-all-datasets-vs-baseline
 3. 再执行 `pixi run run-stage1a-all-datasets-pipeline`，让三模型至少在当前可跑数据集上全覆盖
 4. 执行 `pixi run summarize-stage1a-all-datasets-vs-baseline`，统一查看哪些模型在哪些数据集上打过 `mean_shift_baseline`
 5. 对仍 blocked 的数据集，只补 readiness 缺口，不提前升格 dataset tier
-6. `norman_2019_raw__single_target` 与 `dixit_2016_raw__control_context` 继续作为 derived candidates，看运行结果，不改原始 raw 定位
+6. `norman_2019_raw__single_target` 与 `dixit_2016_raw__control_context` 当前作为 `supplement/runnable` 使用；原始 raw 定位仍保持 backup-only
 7. 是否推进 formal `3 datasets × 5 seeds` adjudication 仍需单独判断
 
 ## 新窗口直接接手
@@ -440,7 +470,7 @@ sed -n '/## 你接下来先做什么/,/## 本轮验收口径/p' plan.md
 接手时应保持以下结论不变：
 
 - `residual_over_mean__lm_train_lowrank` 当前与 `lm_train_lowrank` 等价
-- `tian_2019_ipsc / tian_2021_crispri` 当前属于 next formal-admission batch，不能误写成 official formal 或 supplementary 制度结论
+- `tian_2019_ipsc / tian_2021_crispri` 当前属于 `supplement/runnable`，不能误写成 official formal
 - 输入侧 normalize 审计已关闭，且 `lm_train_lowrank / lm_G_scgpt_ridge / lm_G_geneformer_ridge` 都是 `not_applicable`
 
 ## Registry 层状态（已弃用）

@@ -358,3 +358,11 @@ description = "执行 Stage 1A 单种子 inner validation 收口流水线"
 [tasks.run-stage1a-inner-val-pipeline-5seeds]
 cmd = "python scripts/run_stage1a_inner_val_pipeline.py --config configs/entrants/stage1a_inner_val_pipeline_5seeds.json"
 description = "执行 Stage 1A 五种子 inner validation 收口流水线"
+
+[tasks.run-stage1a-supplement-entrants]
+cmd = "python scripts/run_stage1a_supplement_entrants.py"
+description = "统一运行当前 supplement entrant 池"
+
+[tasks.summarize-stage1a-supplement-entrants]
+cmd = "python scripts/summarize_stage1a_supplement_entrants.py"
+description = "汇总当前 supplement entrant 池结果"
