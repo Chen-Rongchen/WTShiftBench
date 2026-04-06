@@ -13,6 +13,7 @@ from scripts.stage1a.benchmark_invariant.catalog import PROJECT_ROOT
 
 DEFAULT_FEATURE_REGISTRY_PATH = PROJECT_ROOT / "configs/stage1a/challengers/feature_registry.json"
 DEFAULT_CHALLENGER_REGISTRY_PATH = PROJECT_ROOT / "configs/stage1a/challengers/challenger_registry.json"
+DEFAULT_ALL_DATASETS_EVAL_MATRIX_PATH = PROJECT_ROOT / "configs/stage1a/runs/all_datasets_eval_matrix.json"
 
 
 @dataclass(frozen=True)
@@ -58,6 +59,23 @@ def load_json_mapping(path: Path) -> dict[str, Any]:
     if not isinstance(payload, dict):
         raise ValueError(f"{path} 必须是 JSON 对象。")
     return payload
+
+
+def resolve_dataset_formal_h5ad_path(
+    dataset_id: str,
+    matrix_config_path: Path = DEFAULT_ALL_DATASETS_EVAL_MATRIX_PATH,
+) -> Path:
+    payload = load_json_mapping(matrix_config_path)
+    datasets = payload.get("datasets", [])
+    if not isinstance(datasets, list):
+        raise ValueError(f"{matrix_config_path} 的 datasets 必须是列表。")
+    for row in datasets:
+        if isinstance(row, dict) and str(row.get("dataset_id", "")) == dataset_id:
+            formal_h5ad_path = row.get("formal_h5ad_path")
+            if not formal_h5ad_path:
+                break
+            return resolve_path(str(formal_h5ad_path))
+    raise ValueError(f"dataset_id={dataset_id} 未在 {matrix_config_path} 中登记 formal_h5ad_path。")
 
 
 def load_feature_registry(path: Path = DEFAULT_FEATURE_REGISTRY_PATH) -> list[FeatureRegistryEntry]:

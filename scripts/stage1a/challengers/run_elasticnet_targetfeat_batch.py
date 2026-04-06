@@ -7,7 +7,8 @@ import sys
 from pathlib import Path
 
 from scripts.stage1a.adapters.common.runtime import resolve_path
-from scripts.stage1a.benchmark_invariant.catalog import PROJECT_ROOT, get_formal_dataset_contract
+from scripts.stage1a.benchmark_invariant.catalog import PROJECT_ROOT
+from scripts.stage1a.challengers.common import resolve_dataset_formal_h5ad_path
 
 
 DEFAULT_BATCH_CONFIG = PROJECT_ROOT / "configs/stage1a/challengers/elasticnet_targetfeat_batch.json"
@@ -58,7 +59,7 @@ def main() -> None:
     run_configs: list[str] = []
     materialized_specs: list[Path] = []
     for dataset_id in dataset_ids:
-        formal_h5ad_path = str(get_formal_dataset_contract(dataset_id).path.relative_to(PROJECT_ROOT))
+        formal_h5ad_path = str(resolve_dataset_formal_h5ad_path(dataset_id).relative_to(PROJECT_ROOT))
         for n_components in n_components_grid:
             for alpha in alpha_grid:
                 for l1_ratio in l1_ratio_grid:
