@@ -27,7 +27,8 @@
 - 正式主线使用 `replogle_2022_k562_essential / replogle_2022_rpe1 / tian_2019_day7neuron`
 - 当前数据集治理改为两层：
   - `formal`：`replogle_2022_k562_essential`、`replogle_2022_rpe1`、`tian_2019_day7neuron`
-  - `supplement`：`tian_2019_ipsc`、`tian_2021_crispri`、`replogle_2022_k562_gwps`、`norman_2019_raw__single_target`、`dixit_2016_raw__control_context`
+  - `supplement`：`tian_2019_ipsc`、`tian_2021_crispri`、`norman_2019_raw__single_target`、`dixit_2016_raw__control_context`
+- `replogle_2022_k562_gwps` 当前记为 `supplement/deferred`
 - 未筛选原始整包 `norman_2019_raw`、`dixit_2016_raw` 只保留 `backup_only` 身份，不进入统一评测矩阵
 - 本轮固定 `split_seed: 101`
 - `signal adequacy` 与 `model fidelity` 明确分离：adequacy diagnostics 不替代 `predicted_shift` formal scoring
@@ -47,7 +48,7 @@
 - `tian_2019_day7neuron`：已完成 formal filtering，admission=`pass`
 - `tian_2019_ipsc`：`supplement/runnable`
 - `tian_2021_crispri`：`supplement/runnable`
-- `replogle_2022_k562_gwps`：`supplement/runnable`
+- `replogle_2022_k562_gwps`：`supplement/deferred`
 - `norman_2019_raw__single_target`：`supplement/runnable`
 - `dixit_2016_raw__control_context`：`supplement/runnable`
 - `norman_2019_raw`：`supplement/backup_only`
@@ -60,6 +61,7 @@
 - `tian_2019_ipsc` 的受审来源继续使用 Zenodo `TianKampmann2019_iPSC.h5ad`，不采用 pertpy 稳定版源码中的可疑 `iPad` URL
 - `tian_2021_crispri` raw audit 已证明 control / single-target / target closure 可以闭合，当前作为 runnable supplement 使用
 - `replogle_2022_k562_gwps` raw audit 已证明 `gene == non-targeting` 可稳定定义 control，按 gene-level target 聚合后有 `9863` 个 perturbations 满足 support floor `>= 5`
+- 但 `replogle_2022_k562_gwps` 当前 `cells` 规模为 `1989578`，默认跑模成本过高，因此当前轮次先记为 `supplement/deferred`
 - `dixit_2016_raw` 本地 raw audit 证明整包横跨多个 context；即使 `MOI == 1` 下可解析出 `248` 个 support `>= 5` 的 target，也不能把整包直接当成一个 formal 数据集
 - `norman_2019_raw` 当前已切回正确 raw 文件：`111445 x 33694`，其中 `guide_ids == ''` 可作为 control-like 空扰动，single-target support floor `>= 5` 后保留 `105` 个 eligible targets
 - `norman_2019_raw__single_target` 已落盘 formal-like 子集：`69408` cells、`104` 个 eligible targets；当前按 runnable supplement 使用
