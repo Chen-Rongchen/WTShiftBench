@@ -25,6 +25,8 @@ FORMAL_FILTERED_DIR = PROJECT_ROOT / "data/processed/stage1a/formal_filtered"
 OUTPUT_DIR = PROJECT_ROOT / "reports/stage1a/admission"
 TSV_PATH = OUTPUT_DIR / "stage1a_admission_manifest.tsv"
 JSON_PATH = OUTPUT_DIR / "stage1a_admission_manifest.json"
+METADATA_PATH = OUTPUT_DIR / "stage1a_admission_manifest.metadata.json"
+README_PATH = OUTPUT_DIR / "README.md"
 GOVERNANCE_PATH = PROJECT_ROOT / "configs/stage1a_split_governance.yaml"
 
 
@@ -320,8 +322,40 @@ def main() -> None:
         json.dumps(frame.to_dict(orient="records"), ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
     )
+    metadata = {
+        "manifest_id": "stage1a_admission_manifest",
+        "snapshot_status": "historical_snapshot_pending_migration",
+        "status_note": (
+            "该 admission manifest 属于旧 formal/admission 链路快照；其中 dataset_id 可能仍保留旧命名体系，"
+            "当前 formal + supplement 数据集治理应以 dataset_tiering.md、admission_matrix.tsv 与 "
+            "configs/stage1a/dataset_governance.json 为准。"
+        ),
+        "migration_policy": "pending_migration_to_current_dataset_naming",
+        "authoritative_current_sources": [
+            "dataset_tiering.md",
+            "admission_matrix.tsv",
+            "configs/stage1a/dataset_governance.json",
+        ],
+    }
+    METADATA_PATH.write_text(json.dumps(metadata, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    README_PATH.write_text(
+        "\n".join(
+            [
+                "# admission 目录说明",
+                "",
+                "- `stage1a_admission_manifest.tsv/json` 是旧 formal/admission 链路生成的历史快照。",
+                "- 当前这些文件仍可用于回溯旧运行，但不应直接当作现行 `formal + supplement` 命名体系的唯一准据。",
+                "- 当前数据集治理与命名口径以 `dataset_tiering.md`、`admission_matrix.tsv`、`configs/stage1a/dataset_governance.json` 为准。",
+                "- 若要彻底消除歧义，应后续把该 manifest 迁移到新命名体系，而不是继续模糊并存。",
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
     print(f"已写出: {TSV_PATH}")
     print(f"已写出: {JSON_PATH}")
+    print(f"已写出: {METADATA_PATH}")
+    print(f"已写出: {README_PATH}")
     print(frame.to_string(index=False))
 
 
