@@ -5,10 +5,8 @@
     "replogle_2022_k562_essential",
     "replogle_2022_rpe1",
     "tian_2019_day7neuron",
-    "replogle_2022_k562_gwps",
     "tian_2019_ipsc",
     "tian_2021_crispri",
-    "norman_2019_raw__single_target",
     "dixit_2016_raw__control_context"
   ],
   "n_components_grid": [

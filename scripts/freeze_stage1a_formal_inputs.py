@@ -12,7 +12,8 @@ FREEZE_REPORT_DIR = PROJECT_ROOT / "reports/stage1a/freeze"
 DEFAULT_COMBINED_ELIGIBILITY_PATH = (
     PROJECT_ROOT / "reports/stage1a/pseudobulk_eligibility/combined_eligibility.tsv"
 )
-ADMISSION_MANIFEST_PATH = PROJECT_ROOT / "reports/stage1a/admission/stage1a_admission_manifest.tsv"
+FREEZE_METADATA_PATH = FREEZE_REPORT_DIR / "freeze_manifest.metadata.json"
+FREEZE_README_PATH = FREEZE_REPORT_DIR / "README.md"
 ELIGIBILITY_COLUMNS = [
     "dataset_id",
     "target_gene",
@@ -37,19 +38,16 @@ def find_combined_eligibility_path() -> Path:
     return matches[0]
 
 
-def load_admission_pass_dataset_ids() -> set[str]:
-    if not ADMISSION_MANIFEST_PATH.exists():
-        raise FileNotFoundError(f"未找到 admission manifest: {ADMISSION_MANIFEST_PATH}")
-    manifest = pd.read_csv(ADMISSION_MANIFEST_PATH, sep="\t")
-    required = {"dataset_id", "admission_decision"}
-    missing = sorted(required - set(manifest.columns))
-    if missing:
-        raise ValueError(f"admission manifest 缺少字段: {missing}")
-    allowed = manifest.loc[
-        manifest["admission_decision"].astype("string").isin(["pass"]),
-        "dataset_id",
-    ]
-    return set(allowed.astype(str).tolist())
+def load_current_formal_pass_dataset_ids() -> set[str]:
+    """只消费当前 catalog 中的 official formal pass datasets。
+
+    不再依赖磁盘上的 admission manifest，避免被过期快照污染 formal freeze gating。
+    """
+    return {
+        contract.dataset_id
+        for contract in load_formal_dataset_contracts(include_auxiliary=False)
+        if contract.default_in_mainline and contract.status == "pass"
+    }
 
 
 def build_frozen_registry(allowed_dataset_ids: set[str]) -> pd.DataFrame:
@@ -128,6 +126,17 @@ def build_freeze_manifest(
     return {
         "stage": "stage1a_formal",
         "freeze_status": "frozen",
+        "snapshot_status": "historical_snapshot_pending_migration",
+        "status_note": (
+            "该 freeze manifest 由 legacy formal freeze 链路生成，但 gating 已直接消费当前 catalog 中的 official formal pass datasets。"
+        ),
+        "migration_policy": "pending_migration_to_current_dataset_naming",
+        "authoritative_current_sources": [
+            "configs/stage1a_formal_datasets.yaml",
+            "dataset_tiering.md",
+            "admission_matrix.tsv",
+            "configs/stage1a/dataset_governance.json",
+        ],
         "datasets": manifest_datasets,
     }
 
@@ -136,7 +145,7 @@ def main() -> None:
     FROZEN_DIR.mkdir(parents=True, exist_ok=True)
     FREEZE_REPORT_DIR.mkdir(parents=True, exist_ok=True)
 
-    allowed_dataset_ids = load_admission_pass_dataset_ids()
+    allowed_dataset_ids = load_current_formal_pass_dataset_ids()
     frozen_registry = build_frozen_registry(allowed_dataset_ids)
     combined_eligibility_path = find_combined_eligibility_path()
     eligible_targets = load_and_filter_eligible_targets(
@@ -159,11 +168,43 @@ def main() -> None:
         json.dumps(freeze_manifest, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
     )
+    freeze_metadata = {
+        "manifest_id": "freeze_manifest",
+        "snapshot_status": "historical_snapshot_pending_migration",
+        "status_note": (
+            "该 freeze manifest 属于 legacy formal freeze 报告产物；当前 gating 直接消费 configs/stage1a_formal_datasets.yaml 中的 official formal pass datasets。"
+        ),
+        "migration_policy": "pending_migration_to_current_dataset_naming",
+        "authoritative_current_sources": [
+            "configs/stage1a_formal_datasets.yaml",
+            "dataset_tiering.md",
+            "admission_matrix.tsv",
+            "configs/stage1a/dataset_governance.json",
+        ],
+    }
+    FREEZE_METADATA_PATH.write_text(json.dumps(freeze_metadata, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    FREEZE_README_PATH.write_text(
+        "\n".join(
+            [
+                "# freeze 目录说明",
+                "",
+                "- `freeze_manifest.json` 属于 legacy formal freeze 报告产物。",
+                "- formal freeze gating 当前直接消费 `configs/stage1a_formal_datasets.yaml` 中的 official formal pass datasets，不再依赖磁盘上的 admission manifest。",
+                "- 该目录不负责表达当前 `formal + supplement` 全量治理口径。",
+                "- 当前数据集命名与分层应以 `dataset_tiering.md`、`admission_matrix.tsv`、`configs/stage1a/dataset_governance.json` 为准。",
+                "- 后续若继续使用该 freeze 目录，应迁移到新命名体系，而不是继续与现行口径混用。",
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
 
     print(f"combined_eligibility 输入: {combined_eligibility_path}")
     print(f"已写出: {eligible_targets_path}")
     print(f"已写出: {frozen_registry_path}")
     print(f"已写出: {freeze_manifest_path}")
+    print(f"已写出: {FREEZE_METADATA_PATH}")
+    print(f"已写出: {FREEZE_README_PATH}")
 
 
 if __name__ == "__main__":

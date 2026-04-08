@@ -17,7 +17,7 @@
 | 已具备 | 三个 smoke yaml、runtime defaults、checkpoint registry |
 | 已具备 | 三模型 × 三数据集 × seed101 的 formal adapter / ingest / evaluate 主线配置 |
 | 已完成 | `tian_2019_day7neuron` 的 formal filtering 与 formal 统计回填 |
-| 已完成 | `Stage 1A` admission manifest 与 formal freeze gating |
+| 已完成 | `Stage 1A` admission 报告产物与 formal freeze 主线 |
 | 已完成 | `1 seed × 3 entrants × 3 datasets` 的 formal trial run（预测、对齐、评分、pass skeleton） |
 | 暂不进行 | formal multi-dataset × multi-seed adjudication（`3 datasets × 5 seeds`） |
 
@@ -245,6 +245,13 @@
 - `tian_2021_crispri`：`scGPT / Geneformer` heldout coverage 都是 `0.9487`，共同缺 `ATP5C1`、`TMEM55A`
 - 当前 frozen floor=`0.95`，因此相关 challenger 应正式记为 `coverage-blocked`
 
+当前 supplement entrant 单 seed 汇总应按“行级状态”和“数据集 coverage 状态”分开理解：
+
+- 行级 `evaluation_status` 使用 `evaluated / pending / blocked`
+- 数据集级 `coverage_status` 使用 `fully_evaluated / partially_evaluated / all_pending / all_blocked / mixed_pending_blocked`
+- `tian_2019_ipsc / tian_2021_crispri` 当前属于 `partially_evaluated`：`lm_train_lowrank` 已有结果，其余 5 个 entrant 当前仍受 coverage/dependency 边界阻断
+- `norman_2019_raw__single_target / dixit_2016_raw__control_context` 当前尚未出现 supplement entrant 结果；是否属于 `all_pending` 或 `all_blocked` 以汇总脚本读取的 readiness 与 blocker 配置为准
+
 因此当前仓库的正式口径应当是：
 
 - challenger exploratory backlog 已补齐
@@ -358,8 +365,8 @@ formal 解释边界下的推荐解锁顺序：
 
 - 蓝图：`docs/protocol_blueprint.md`
 - 当前计划：`plan.md`
-- admission manifest：`reports/stage1a/admission/stage1a_admission_manifest.tsv`
-- formal freeze manifest：`reports/stage1a/freeze/freeze_manifest.json`
+- admission manifest（报告产物）：`reports/stage1a/admission/stage1a_admission_manifest.tsv`
+- formal freeze manifest（legacy formal freeze 报告）：`reports/stage1a/freeze/freeze_manifest.json`
 - smoke 卡片与 runtime spec：`docs/entrants/`
 - smoke 配置：`configs/entrants/*.yaml`
 - checkpoint registry：`configs/entrants/checkpoint_registry.yaml`

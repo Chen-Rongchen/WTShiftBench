@@ -1,0 +1,49 @@
+{
+  "datasets": [
+    {
+      "cell_line": "HCC38",
+      "depmap_model_id": "ACH-000276",
+      "matrix_path": "data/GSE241115/GSM7716951_matrix_HCC38_aggrMH001-3.mtx.gz",
+      "barcodes_path": "data/GSE241115/GSM7716951_barcodes_HCC38_aggrMH001-3.tsv.gz",
+      "features_path": "data/GSE241115/GSM7716951_features_HCC38_aggrMH001-3.tsv.gz",
+      "protospacer_calls_path": "data/GSE241115/GSM7716951_protospacer_calls_per_cell_HCC38_aggrMH001-3.csv.gz"
+    },
+    {
+      "cell_line": "HCC1143",
+      "depmap_model_id": "ACH-000374",
+      "matrix_path": "data/GSE241115/GSM7716952_matrix_HCC1143_aggrMH004-6.mtx.gz",
+      "barcodes_path": "data/GSE241115/GSM7716952_barcodes_HCC1143_aggrMH004-6.tsv.gz",
+      "features_path": "data/GSE241115/GSM7716952_features_HCC1143_aggrMH004-6.tsv.gz",
+      "protospacer_calls_path": "data/GSE241115/GSM7716952_protospacer_calls_per_cell_HCC1143_aggrMH004-6.csv.gz"
+    }
+  ],
+  "depmap": {
+    "gene_effect_path": "depmap/CRISPRGeneEffect.csv",
+    "gene_dependency_path": "depmap/CRISPRGeneDependency.csv"
+  },
+  "output": {
+    "data_root": "data/processed/stage2_truth_driven_bridge",
+    "report_root": "reports/stage2_truth_driven_bridge"
+  },
+  "filters": {
+    "single_feature_only": true,
+    "control_target_prefix": "intergenic_chr_",
+    "min_target_cells": 20,
+    "min_control_cells": 200
+  },
+  "metrics": {
+    "normalization_target_sum": 10000.0,
+    "deg_abs_log1p_delta_threshold": 0.25,
+    "deg_expression_floor": 0.1,
+    "edistance_n_components": 30
+  },
+  "group_comparison": {
+    "quantile_low": 0.3333333333,
+    "quantile_high": 0.6666666667,
+    "min_group_size": 8
+  },
+  "supplementary_candidates": [
+    "K562",
+    "dixit_2016"
+  ]
+}

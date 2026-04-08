@@ -51,6 +51,7 @@ def main() -> None:
     args = build_parser().parse_args()
     registry = load_registry(resolve_path(args.registry))
     selected = {item for item in args.entrant_id if item}
+    failed_entrants: list[dict[str, object]] = []
 
     for entry in registry:
         entrant_id = str(entry["entrant_id"])
@@ -65,9 +66,26 @@ def main() -> None:
         ]
         if args.skip_build:
             command.append("--skip-build")
-        run_command(command, dry_run=args.dry_run)
+        try:
+            run_command(command, dry_run=args.dry_run)
+        except subprocess.CalledProcessError as exc:
+            failed_entrants.append(
+                {
+                    "entrant_id": entrant_id,
+                    "returncode": int(exc.returncode),
+                    "command": command,
+                }
+            )
+            print(f"[警告] entrant_id={entrant_id} 执行失败，退出码={exc.returncode}，继续后续 entrant。")
+
+    if failed_entrants:
+        print("\n=== supplement entrant 错误报告 ===")
+        for row in failed_entrants:
+            print(
+                f"- entrant_id={row['entrant_id']} returncode={row['returncode']} command={' '.join(row['command'])}"
+            )
+        raise SystemExit(1)
 
 
 if __name__ == "__main__":
     main()
-
