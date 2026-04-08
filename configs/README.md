@@ -36,6 +36,7 @@ Stage 1A 现在按职责分成三类：
 - `stage1a/runs/baseline_ladder_smoke.batch.yaml`
 - `stage1a/runs/batch_scoring_three_models_formal.yaml`（三模型 × 三个主线数据集批量 scoring）
 - `stage1a/runs/all_datasets_eval_matrix.json`（三模型 × `3 + 3 + 2` 数据集评测矩阵配置）
+- `stage1a/runs/supplement_entrants_single_seed_analysis.json`（6 个 supplement entrants 的默认 `7 datasets × seed101` 分析范围）
 
 ## 3. 维护原则
 
@@ -47,7 +48,7 @@ Stage 1A 现在按职责分成三类：
 
 ## 4. entrant recipe configs
 
-- `configs/entrants/registry.yaml`：entrant 注册表（仍为 YAML）
+- `configs/entrants/registry.yaml`：已弃用的历史 registry 样稿，不是当前有效入口
 - `configs/entrants/gears/gears_k562_smoke.json`
 - `configs/entrants/scgpt/scgpt_k562_smoke.json`
 - `configs/entrants/geneformer/geneformer_k562_smoke.json`
@@ -55,4 +56,10 @@ Stage 1A 现在按职责分成三类：
 - `configs/entrants/stage1a_smoke_matrix_3datasets_5seeds.json`
 - `configs/entrants/stage1a_smoke_matrix_3datasets_seed101.json`
 
-这些配置用于 `scripts/run_stage1a_entrant.py`，只覆盖 adapter recipe 层，不改 benchmark-invariant 公共协议。
+当前有效入口是各 `configs/entrants/**/*.json` recipe 文件。
+
+`configs/entrants/registry.yaml` 仅保留为历史样稿：
+
+- 已在文件头显式标记 `deprecated: true`
+- 不应再被表述为当前 smoke 或 supplement 编排入口
+- 若未来恢复 registry-driven orchestration，应重建设计，而不是继续复用该文件

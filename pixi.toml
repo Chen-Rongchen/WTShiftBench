@@ -20,6 +20,7 @@ pip = "*"
 numpy = ">=1.26,<2.0"
 pandas = ">=2.1,<2.3"
 scipy = ">=1.11,<1.14"
+scikit-learn = "*"
 pyyaml = "*"
 rich = "*"
 typer = "*"
@@ -258,6 +259,18 @@ description = "物化 Stage 1A 全数据集评测矩阵配置，并输出 readin
 [tasks.build-stage1a-all-datasets-readiness-assets]
 cmd = "python scripts/build_stage1a_all_datasets_readiness_assets.py"
 description = "补齐 all-datasets 评测矩阵的 candidate truth registry、formal-like h5ad 与 comparators"
+
+[tasks.build-stage2-truth-driven-bridge]
+cmd = "python scripts/build_stage2_truth_driven_bridge.py --config configs/stage2/truth_driven_bridge_hcc38_hcc1143_v1.json"
+description = "构建 Stage 2 truth-driven bridge 主线产物"
+
+[tasks.build-stage2-truth-driven-bridge-with-dixit]
+cmd = "python scripts/build_stage2_truth_driven_bridge.py --config configs/stage2/truth_driven_bridge_hcc38_hcc1143_dixit_v1.json"
+description = "Stage 2 truth bridge：HCC38 + HCC1143 + Dixit（同参数，输出写入同一 stage2 目录）"
+
+[tasks.run-stage2-truth-bridge-sensitivity]
+cmd = "python scripts/run_stage2_truth_bridge_sensitivity.py --config configs/stage2/truth_bridge_sensitivity_v1.json"
+description = "Stage 2 truth bridge：control 子抽样、DEG 阈值扫描等敏感性分析"
 
 [tasks.run-stage1a-all-datasets-pipeline]
 cmd = "python scripts/run_stage1a_all_datasets_pipeline.py --ready-only"
