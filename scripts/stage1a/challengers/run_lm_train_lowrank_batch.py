@@ -4,6 +4,7 @@ import argparse
 import json
 import subprocess
 import sys
+import traceback
 from pathlib import Path
 
 from scripts.stage1a.adapters.common.runtime import resolve_path
@@ -89,21 +90,59 @@ def main() -> None:
                 run_configs.append(str(run_config_path.relative_to(PROJECT_ROOT)))
                 materialized_specs.append(run_config_path)
 
+    successful_run_configs = list(run_configs) if args.skip_build else []
+    failed_runs: list[dict[str, object]] = []
+
     if not args.skip_build:
         for run_config_path in materialized_specs:
-            run_command(
-                [
-                    sys.executable,
-                    "-m",
-                    "scripts.stage1a.challengers.build_lm_train_lowrank_predictions",
-                    "--run-config",
-                    str(run_config_path),
-                ]
-            )
+            command = [
+                sys.executable,
+                "-m",
+                "scripts.stage1a.challengers.build_lm_train_lowrank_predictions",
+                "--run-config",
+                str(run_config_path),
+            ]
+            try:
+                run_command(command)
+                successful_run_configs.append(str(run_config_path.relative_to(PROJECT_ROOT)))
+            except subprocess.CalledProcessError as exc:
+                failed_runs.append(
+                    {
+                        "run_config": str(run_config_path.relative_to(PROJECT_ROOT)),
+                        "returncode": int(exc.returncode),
+                        "error_type": exc.__class__.__name__,
+                        "error_message": str(exc),
+                        "traceback": traceback.format_exc(),
+                    }
+                )
+                print(f"[警告] {run_config_path.name} 构建失败，退出码={exc.returncode}，继续后续配置。")
+
+    report_path = PROJECT_ROOT / "artifacts/stage1a_challengers/lm_train_lowrank/run_batch_report.json"
+    report_path.write_text(
+        json.dumps(
+            {
+                "challenger_id": challenger_id,
+                "batch_config": str(batch_config_path.relative_to(PROJECT_ROOT)),
+                "skip_build": bool(args.skip_build),
+                "requested_run_config_count": len(run_configs),
+                "successful_run_config_count": len(successful_run_configs),
+                "failed_run_config_count": len(failed_runs),
+                "successful_run_configs": successful_run_configs,
+                "failed_runs": failed_runs,
+            },
+            ensure_ascii=False,
+            indent=2,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+    if not successful_run_configs:
+        raise RuntimeError(f"lm_train_lowrank batch 没有可继续 scoring 的成功 run-config。详见 {report_path}")
 
     materialized_batch_path = PROJECT_ROOT / "artifacts/stage1a_challengers/lm_train_lowrank/run_batch_scoring.json"
     materialized_batch_path.write_text(
-        json.dumps({"run_configs": run_configs}, ensure_ascii=False, indent=2) + "\n",
+        json.dumps({"run_configs": successful_run_configs}, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
     )
     run_command(
@@ -117,6 +156,7 @@ def main() -> None:
             "50",
         ]
     )
+    print(f"已写出: {report_path.relative_to(PROJECT_ROOT)}")
 
 
 if __name__ == "__main__":

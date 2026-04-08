@@ -36,6 +36,8 @@
 - `build_stage1a_all_datasets_readiness_assets.py`
 - `run_stage1a_all_datasets_pipeline.py`
 - `summarize_stage1a_all_datasets_vs_baseline.py`
+- `run_stage1a_supplement_entrants.py`
+- `summarize_stage1a_supplement_entrants.py`
 - `ingest_stage1a_model_predictions.py`
 - `evaluate_stage1a_predictions.py`
 - `render_stage1a_pass_skeleton.py`
@@ -55,6 +57,13 @@
 - 再做 readiness 审计
 - 再按环境批量驱动三模型
 - 最后统一汇总 `vs_mean_shift_baseline`
+
+`run_stage1a_supplement_entrants.py` / `summarize_stage1a_supplement_entrants.py`
+则用于当前 supplement entrant 池的默认单 seed 分析：
+
+- 默认数据集范围固定为 `3 formal + 4 supplement/runnable`
+- 默认不包含 `replogle_2022_k562_gwps`
+- 汇总输出拆成 dataset-level、entrant-level、dataset leader 三层
 
 ## 4. 维护原则
 

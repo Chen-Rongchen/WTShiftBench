@@ -7,12 +7,12 @@ from pathlib import Path
 
 import anndata as ad
 import pandas as pd
-import torch
 
-from scripts.stage1a.benchmark_invariant.catalog import load_formal_dataset_contracts
 from scripts.stage1a.challengers.common import (
+    DEFAULT_ALL_DATASETS_EVAL_MATRIX_PATH,
     DEFAULT_FEATURE_REGISTRY_PATH,
     load_feature_registry,
+    load_json_mapping,
     resolve_path,
 )
 
@@ -29,13 +29,34 @@ def build_parser() -> argparse.ArgumentParser:
         default=str(DEFAULT_FEATURE_REGISTRY_PATH),
         help="feature registry JSON 路径。",
     )
+    parser.add_argument(
+        "--matrix-config",
+        default=str(DEFAULT_ALL_DATASETS_EVAL_MATRIX_PATH),
+        help="用于收集 target_gene 全集的评测矩阵配置。",
+    )
+    parser.add_argument(
+        "--feature-id",
+        action="append",
+        default=[],
+        help="只重建指定 feature_id，可重复传入。",
+    )
     return parser
 
 
-def collect_current_smoke_targets() -> list[str]:
+def collect_targets_from_matrix(matrix_config_path: Path) -> list[str]:
+    payload = load_json_mapping(matrix_config_path)
+    datasets = payload.get("datasets", [])
+    if not isinstance(datasets, list) or not datasets:
+        raise ValueError(f"{matrix_config_path} 缺少非空 datasets 列表。")
     targets: set[str] = set()
-    for contract in load_formal_dataset_contracts(include_auxiliary=True):
-        adata = ad.read_h5ad(contract.path)
+    for row in datasets:
+        if not isinstance(row, dict):
+            raise ValueError("matrix dataset entry 必须是对象。")
+        dataset_id = str(row.get("dataset_id", ""))
+        formal_h5ad_path = row.get("formal_h5ad_path")
+        if not dataset_id or not formal_h5ad_path:
+            raise ValueError("matrix dataset entry 缺少 dataset_id 或 formal_h5ad_path。")
+        adata = ad.read_h5ad(resolve_path(str(formal_h5ad_path)))
         try:
             obs = adata.obs.loc[:, ["is_control", "target_gene"]].copy()
             obs["is_control"] = obs["is_control"].astype(bool)
@@ -49,7 +70,7 @@ def collect_current_smoke_targets() -> list[str]:
         finally:
             del adata
     if not targets:
-        raise ValueError("当前 smoke target 集合为空。")
+        raise ValueError("当前 matrix target 集合为空。")
     return sorted(targets)
 
 
@@ -77,6 +98,8 @@ def resolve_geneformer_checkpoint_dir(path: Path) -> Path:
 
 
 def load_geneformer_word_embedding_weight(checkpoint_dir: Path) -> torch.Tensor:
+    import torch
+
     key = "bert.embeddings.word_embeddings.weight"
     bin_path = checkpoint_dir / "pytorch_model.bin"
     safe_path = checkpoint_dir / "model.safetensors"
@@ -96,6 +119,8 @@ def load_geneformer_word_embedding_weight(checkpoint_dir: Path) -> torch.Tensor:
 
 
 def export_scgpt_features(targets: list[str], output_path: Path) -> dict[str, object]:
+    import torch
+
     checkpoint_dir = resolve_path(DEFAULT_SCGPT_CHECKPOINT_DIR)
     vocab_path = checkpoint_dir / "vocab.json"
     checkpoint_path = checkpoint_dir / "best_model.pt"
@@ -203,10 +228,13 @@ def export_symbol_chargram_features(targets: list[str], output_path: Path, dim: 
 def main() -> None:
     args = build_parser().parse_args()
     registry = load_feature_registry(resolve_path(args.feature_registry))
-    targets = collect_current_smoke_targets()
+    targets = collect_targets_from_matrix(resolve_path(args.matrix_config))
+    selected_feature_ids = {item for item in args.feature_id if item}
 
     summaries: list[dict[str, object]] = []
     for entry in registry:
+        if selected_feature_ids and entry.feature_id not in selected_feature_ids:
+            continue
         if entry.feature_id == "scgpt_gene_embedding_human":
             summary = export_scgpt_features(targets, entry.source_path)
         elif entry.feature_id == "geneformer_gene_embedding_gc104m":
@@ -225,7 +253,8 @@ def main() -> None:
     write_summary(
         {
             "stage": "stage1a_challenger_feature_export",
-            "n_current_smoke_targets": len(targets),
+            "matrix_config_path": str(resolve_path(args.matrix_config).relative_to(resolve_path("."))),
+            "n_current_scope_targets": len(targets),
             "targets_sample": targets[:20],
             "features": summaries,
         },
