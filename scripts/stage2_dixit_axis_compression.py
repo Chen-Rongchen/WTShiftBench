@@ -445,10 +445,8 @@ for axis_name, grp in membership.groupby("fine_axis"):
 
 dixit_axis_summary = pd.DataFrame(axis_summary_rows)
 dixit_axis_summary = dixit_axis_summary.sort_values(["n_genes"], ascending=False).reset_index(drop=True)
-dixit_axis_summary.to_csv(OUT_DIR / "dixit_axis_summary.tsv", sep="\t", index=False)
-print(f"dixit_axis_summary.tsv: {len(dixit_axis_summary)} fine axes")
 
-print("\nArchitecture role distribution:")
+print("\nArchitecture role distribution (before annotation):")
 print(dixit_axis_summary["architecture_role"].value_counts())
 
 # ── 5. Structure replication summary ─────────────────────────────────────────
@@ -488,6 +486,34 @@ def summarize_for_comparison(summ_df, label):
         "architecture_class": arch_class,
     }
 
+# ── 5b. Annotate K562 unresolved backbone axes with conservative functional labels ──
+# These are "unresolved" in the automated clustering because the gene set differs
+# from HCC, but manual inspection shows they are interpretable.
+# Provide provisional macro labels (NOT claiming equivalence with HCC labels).
+K562_BACKBONE_ANNOTATIONS = {
+    "unresolved_6": "biosynthetic support / mitochondrial metabolism",
+    "unresolved_8": "mitochondrial OXPHOS / iron-sulfur biogenesis",
+    "unresolved_9": "nucleotide metabolism / mitochondrial energy",
+    "unresolved_2": "translation / chromatin machinery",
+    "unresolved_5": "translation initiation / RNA processing",
+}
+# Update macro_axis for annotated backbone axes
+for ax, label in K562_BACKBONE_ANNOTATIONS.items():
+    mask = dixit_axis_summary["fine_axis"] == ax
+    if mask.any():
+        dixit_axis_summary.loc[mask, "macro_axis"] = label
+        bb_mask = dixit_axis_summary["architecture_role"] == "backbone"
+        dixit_axis_summary.loc[mask & bb_mask, "macro_axis"] = label
+
+# Re-summarize K562 with annotated macro classes
+dixit_rows_annotated = summarize_for_comparison(dixit_axis_summary, "K562_Dixit")
+
+print("\n" + "="*70)
+print("K562 Summary (with provisional backbone annotations)")
+print("="*70)
+for k, v in dixit_rows_annotated.items():
+    print(f"  {k}: {v}")
+
 # Load HCC axis summary — use same architecture role assignment as K562
 hcc_fine = pd.read_csv(Path("reports/stage2_truth_driven_bridge/master_atlas/axis_summary_fine.tsv"), sep="\t")
 
@@ -520,7 +546,7 @@ macro_map = {
 hcc_fine["macro_axis"] = hcc_fine["macro_axis"].apply(lambda x: macro_map.get(x, x))
 
 hcc_rows = summarize_for_comparison(hcc_fine, "HCC38_HCC1143")
-dixit_rows = summarize_for_comparison(dixit_axis_summary, "K562_Dixit")
+dixit_rows = dixit_rows_annotated  # use annotated version
 
 print("\n" + "="*70)
 print("HCC Summary (reconstructed)")
@@ -555,6 +581,11 @@ print("\n" + "="*70)
 print("Structure Replication Summary (K562 vs HCC)")
 print("="*70)
 print(cross_df.to_string(index=False))
+
+# Write dixit_axis_summary AFTER annotation
+dixit_axis_summary.to_csv(OUT_DIR / "dixit_axis_summary.tsv", sep="\t", index=False)
+print(f"\nSaved: dixit_axis_summary.tsv (with annotated macro axes)")
+print(f"  backbone axes now labeled: {[K562_BACKBONE_ANNOTATIONS.get(ax, 'N/A') for ax in dixit_axis_summary[dixit_axis_summary['architecture_role']=='backbone']['fine_axis']]}")
 
 print(f"\nAll outputs → {OUT_DIR}")
 print("  dixit_master_atlas.tsv")
