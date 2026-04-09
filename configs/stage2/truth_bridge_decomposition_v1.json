@@ -1,0 +1,42 @@
+{
+  "input": {
+    "bridge_table_path": "data/processed/stage2_truth_driven_bridge/combined_target_level_bridge_table.tsv.gz",
+    "axis_membership_path": "reports/stage2_truth_driven_bridge/master_atlas/shared_target_axis_membership.tsv",
+    "truth_contract_path": "reports/stage2_truth_driven_bridge/truth_architecture_contract/truth_architecture_contract.tsv"
+  },
+  "analysis": {
+    "cell_lines": [
+      "HCC38",
+      "HCC1143"
+    ],
+    "shift_metric": "real_shift_mean_abs",
+    "depmap_metric": "depmap_gene_dependency",
+    "quantile_low": 0.25,
+    "quantile_high": 0.75,
+    "sensitivity_quantile_pairs": [
+      {
+        "low": 0.2,
+        "high": 0.8
+      },
+      {
+        "low": 0.25,
+        "high": 0.75
+      },
+      {
+        "low": 0.33,
+        "high": 0.67
+      }
+    ],
+    "anchor_min_cell_lines": 2,
+    "shared_anchor_min_mean_quantile": 0.75,
+    "axis_min_targets": 1,
+    "axis_min_targets_for_formal_call": 2,
+    "axis_shared_r2_min": 0.05,
+    "axis_skew_delta_min": 0.03,
+    "axis_bootstrap_replicates": 150,
+    "random_seed": 7
+  },
+  "output": {
+    "report_root": "reports/stage2_truth_bridge_decomposition"
+  }
+}

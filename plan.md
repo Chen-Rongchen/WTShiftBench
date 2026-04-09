@@ -1,420 +1,194 @@
-# WT Benchmark 当前计划
+# WT Benchmark — Active Plan（Truth-First Architecture and Model Recovery）
 
-## 文档定位
+## 1. 项目状态一句话
 
-本文件只写当前最近一批、可以直接开始执行的工作，不写长期制度展开。
+本项目没有放弃原有 `Stage 1A / 1B / 2 / 3` 路线，但当前主线已经重排为 **truth-first**：先在真实 genetic perturbation transcriptomic truth 中冻结可桥接的 architecture contract，再评估模型能否恢复这套 structure，再把 `Stage 1A / 1B` 重新解释为 failure decomposition track，最后才进入 discovery。当前最重要的已完成项是 **truth architecture contract freeze + GEARS entrant-qualified HCC smoke closure + GEARS 有限 backbone sweep 收口 + frozen axis 第一轮 annotation / validation 闭环 + truth bridge decomposition evidence tiering（含 cutoff sensitivity / bootstrap stability）+ SCP542 boundary / Dixit supplement 刷新**；当前最重要的未完成项是 **把现有 bridge tiering 与 axis validation 收束成更正式的主文档结论，并决定后续是进入 failure decomposition 写作，还是给 Dixit/K562 补一版 supplementary evidence tiering**。
 
-- 长期制度看 `docs/protocol_blueprint.md`
-- 当前真实状态看 `README.md`
+## 2. 下次进来先做什么
 
-## 当前主任务
+如果你只看一段，这一段就是当前执行口径。
 
-先冻结 `benchmark-invariant layer`，再在冻结边界上推进 entrant benchmarking 与版本解释审计。
+当前不要扩到 `scGPT / Geneformer`，也不要回到 truth-side 重做 contract。下次进来应直接做：
 
-当前固定顺序：
+1. 先读当前已经收口的三个主结果：
+   - `reports/stage2_gears_backbone_sweep/final_adjudication.md`
+   - `docs/stage2_truth_bridge_integrated_result_v1.md`
+   - `docs/stage2_axis_annotation_result_v1.md`
+2. 把这三条线压成更正式的主文档段落：
+   - `GEARS`：明确写成 `architecture trade-off diagnosis`
+   - `truth bridge`：明确写成 `stable target anchors + limited formal axis evidence + evidence tiers aligned to claim strength`
+   - `axis`：明确写成 `partially supported axes`
+3. 如果进入实现而不是写作，优先只做：
+   - 给 `Dixit/K562` 补一版 supplementary evidence tiering
+   - 提炼更稳定的 axis 命名说明
+   - 继续区分 `supported mechanism` 与 `generic collapse / mixed program risk`
+4. 仍然明确不做：
+   - 新 entrant
+   - 新 truth object
+   - 新评分体系
+   - 回头继续为 `GEARS backbone sweep` 开第二轮无限调参
 
-1. `harmonized resource layer`
-2. `dataset admission layer`
-3. `entrant benchmarking layer`
+### 现在优先打开的文件
 
-## 本轮目标
+下次进来先看这些结果：
 
-把 `Stage 1A` 的数据集治理收紧到 `formal + supplement` 两层，并在不改变 official formal 主线的前提下，先完成“三模型尽可能覆盖所有可用数据集，并判断是否打过 baseline”的工程闭环。
+- `reports/stage2_gears_backbone_sweep/final_adjudication.md`
+- `docs/stage2_truth_bridge_integrated_result_v1.md`
+- `reports/stage2_truth_bridge_decomposition/bridge_decomposition_report.md`
+- `reports/stage2_truth_bridge_decomposition/evidence_tier_summary.tsv`
+- `reports/stage2_real_hcc_smoke/model_comparison.tsv`
+- `docs/stage2_axis_annotation_result_v1.md`
+- `reports/stage2_axis_analysis/axis_validation_summary.md`
+- `reports/stage2_axis_analysis/axis_annotation_brief.md`
+- `reports/stage2_axis_analysis/README.md`
 
-## 本轮不做
+## 3. 当前正式裁决
 
-- 不新增 formal 主线数据池
-- 不直接展开 `3 datasets × 5 seeds` formal adjudication
-- 不在 admission 未闭合的数据集上产出 formal entrant 结论
-- 不把 supplement 结果预写成 formal 通过或其他变相升格状态
-- 不把 adequacy 诊断指标替代 `predicted_shift` formal scoring
-- 不把“single-seed smoke 可运行”直接写成“formal superiority”或“entrant ready”
+当前最稳的项目表述不是“GEARS 已整体胜出”，而是：
 
-## 当前执行批次
+> GEARS 展现出选择性结构优势：它更擅长把 structure 和 context deviation 分开，并在部分 cell line 上更能识别 shift-excess；但在当前 HCC primary adjudication 中，canonical backbone recovery 仍落后于 `shared_mean_baseline`。
 
-### 1. harmonized resource layer 已收口
+这条线当前已经按 stop rule 收口，因此它现在决定的不是“下一步继续怎么调”，而是：
 
-- 固化 `Stage 1A` 数据资源登记、来源、下载口径与 provenance
-- 明确 raw / processed level 边界
-- 保持 formal dataset registry、raw audit 产物、admission manifest 与 README 叙述一致
+- `GEARS` 应固定写成 `architecture trade-off diagnosis`
+- 不再把“再跑一轮 sweep”当默认动作
+- 不把辅助指标升级成新的主裁决层
 
-### 2. dataset admission layer 已收口
-
-- 把 `signal adequacy` 与 `model fidelity` 分开
-- 把 `support floor` 明确为 admission 规则，而不是事后调分规则
-- admission 至少显式追踪：
-  - `cells per perturbation`
-  - `cells per control`
-  - `UMI depth`
-- 前置审计并记录：
-  - `single-target vs multi-target`
-  - `MOI`
-  - `control definition`
-  - `barcode assignment reliability`
-  - `processed/raw level`
-  - `target mapping closure`
-- 统一产出 `reports/stage1a/admission/stage1a_admission_manifest.tsv`
-- 让 formal freeze 仅消费 `admission_decision=pass` 的主线数据集
-
-### 3. single-seed entrant trial run 已完成
-
-- 已完成 `1 seed × 3 entrants × 3 datasets` 的 formal trial run
-- entrants：`GEARS`、`scGPT embedding-kernel`、`Geneformer embedding-kernel`
-- datasets：`replogle_2022_k562_essential`、`replogle_2022_rpe1`、`tian_2019_day7neuron`
-- `split_seed=101`
-- `model/adaptor seed=123`
-- 已落地 aligned prediction、lane summary、dataset score summary 与 entrant-level pass skeleton
-- 已落地 single-seed trial run 解释审计报告
-- 已落地 `GEARS × day7neuron` prediction-space / export-space 审计矩阵
-### 4. 当前数据集分层与 admission 目标
-
-#### `tian_2019_day7neuron`
-
-- 已完成 raw audit
-- 已完成 formal filtering
-- formal 统计已回填：`85290 x 33752`，`n_controls=15580`，`n_perturbed=69710`，`n_unique_targets=26`
-- 已在 admission manifest 中标记为 `pass`
+## 4. 当前 stop rule
 
-#### official formal（保持不变）
-
-- `replogle_2022_k562_essential`
-- `replogle_2022_rpe1`
-- `tian_2019_day7neuron`
-- 这 3 个数据集继续作为 formal 主锚点，不因新候选加入而重写既有结论
-
-#### supplement（可运行）
-
-- `tian_2019_ipsc`
-- `tian_2021_crispri`
-- `norman_2019_raw__single_target`
-- `dixit_2016_raw__control_context`
-- 这些数据集统一进入 supplement 层，允许默认跑 entrant、truth、baseline 与 scoring
-- 其中 `norman_2019_raw__single_target` 与 `dixit_2016_raw__control_context` 是已经可用的派生子集，不再单列成“待用候选”
+这一步必须有停止规则，避免 endless tuning。
 
-#### supplement（deferred）
+如果一轮有限预算 sweep 后，`canonical_backbone recovery` 仍不能接近或追平 `shared_mean_baseline`，且任何改进都以明显损失 `structure/context separation` 为代价，则停止继续把 `GEARS` 推为 HCC primary winner，并将当前结果收口为 architecture trade-off diagnosis。
 
-- `replogle_2022_k562_gwps`
-- 该数据集制度上仍属于 supplement，但由于 cells 规模过大，当前轮次不进入默认运行矩阵
+到那时，最稳的正式结论应写成：
 
-#### supplement（backup_only）
+- `shared_mean_baseline` 仍是 backbone 更强的 primary reference
+- `GEARS` 代表一种 structure/context separation-biased entrant
+- 它的价值在于揭示 architecture trade-off，而不是整体胜出
 
-- `norman_2019_raw`
-- `dixit_2016_raw`
-- 原始整包只保留 raw 回溯、再切分与审计价值，不进入统一评测矩阵
-
-### 5. 当前 entrant benchmarking 边界
-- 当前 trial run 已满足 entrant benchmarking 的运行闭环，但还不等同于 entrant version-level formal adjudication
-- 进入正式多 seed adjudication 前，仍需先完成：
-  - 固化 `GEARS` current version 的 `under audit` explanation boundary
-  - `scGPT / Geneformer` adapter taxonomy 的声明边界确认
-  - 单 seed 结果的 lane-wise 解释与异常排查
-
-### 5.1 当前评测矩阵
-
-当前先跑以下 `formal + supplement`：
-
-- formal：
-  - `replogle_2022_k562_essential`
-  - `replogle_2022_rpe1`
-  - `tian_2019_day7neuron`
-- supplement 中纳入运行矩阵的 4 个：
-  - `tian_2019_ipsc`
-  - `tian_2021_crispri`
-  - `norman_2019_raw__single_target`
-  - `dixit_2016_raw__control_context`
-
-`replogle_2022_k562_gwps` 当前保持 `supplement/deferred`；原始整包 `norman_2019_raw` 与 `dixit_2016_raw` 继续不进这条统一评测矩阵。
-
-### 6. 当前 challenger 探索边界
-
-- 当前只允许在不改变 `Stage 1A smoke` 制度的前提下，检查是否存在任何 challenger 能在 non-formal `single-seed` 设置下初步接近或超过 `mean_shift_baseline`
-- 本轮 challenger 结果仅用于：
-  - 工程接线验证
-  - 可运行性验证
-  - 初步信号筛查
-- 本轮不输出：
-  - formal 通过
-  - stable superiority
-  - entrant ready
-- 方法学路线允许按 `A/B/C` 三层逐步补齐，但当前这一轮 exploratory backlog 已经全部补齐
-- held-out target 的合法 `target-side feature` 来源已经冻结；后续不再需要为 challenger 补基础接线
-- 不接受仅基于训练 targets 的低秩分解、但无法为 held-out targets 提供输入表示的 challenger 定义
-- 当前协议新增一个明确的 exploratory override：
-  - 即使尚未出现“一致正向信号”，也允许继续把 `A` 层后续、`B` 层、`C` 层做成 exploratory backlog
-  - 该 override 只影响“是否继续实现/运行”
-  - 不影响 formal 解释边界，也不自动解锁 adjudication 或 entrant ready 叙述
-
-当前 exploratory challenger 已执行完成，结果收口如下：
-
-- `lm_train_lowrank`：正向信号
-- `lm_G_scgpt_ridge`：mixed signal
-- `lm_G_geneformer_ridge`：close-or-worse
-- `residual_over_mean__lm_train_lowrank`：当前实现下与 `lm_train_lowrank` 等价
-- `fixed_late_fusion_v1`：exploratory override 下的 mixed signal
-- `elasticnet_targetfeat`：exploratory override 下的 mixed signal
-- `knn_kernel_targetfeat`：exploratory override 下的正向信号
-- `rf_targetfeat_lowrank`：exploratory override 下的 mixed signal
-
-当前结论边界：
-
-- `lm_train_lowrank` 与 `knn_kernel_targetfeat` 仍是最值得继续审计的正向线索
-- `residual_over_mean__lm_train_lowrank` 当前不能再视为独立证据，因为它与 `lm_train_lowrank` 的 aligned prediction 完全一致
-- `elasticnet_targetfeat`、`rf_targetfeat_lowrank`、`fixed_late_fusion_v1` 都没有跨过“可支撑 formal 下一步”的边界
-- 当前没有任何 challenger 结果足以直接触发 formal `3 datasets × 5 seeds` adjudication
-
-### 6.1 当前 supplement entrant 扩容
-
-当前 entrant 扩容采用以下口径：
-
-- `positive signal`：纳入 supplement entrant 池
-- `mixed signal`：也允许纳入 supplement entrant 池
-- `close-or-worse`：暂不纳入
-- `implementation-equivalent`：不纳入
-
-当前已纳入的 supplement entrants：
-
-- `lm_train_lowrank`
-- `lm_G_scgpt_ridge`
-- `knn_kernel_targetfeat`
-- `elasticnet_targetfeat`
-- `rf_targetfeat_lowrank`
-- `fixed_late_fusion_v1`
-
-当前暂不纳入：
-
-- `residual_over_mean__lm_train_lowrank`
-- `lm_G_geneformer_ridge`
-
-工程上，这些方法已经有独立 registry、统一 runner 和统一汇总入口，不再只作为 challenger backlog 记录。
-
-当前清理动作已完成：
-
-- 删除旧的 `*_supplementary_batch.json`
-- 删除旧的 `*_norman_smoke.json`
-- 删除 `normalize_input_audit.json`
-- 删除 `.claude/` 本地调度状态目录
-
-保留边界：
-
-- challenger registry 与 feature registry 继续保留
-- 当前 supplement entrant 池实际使用的 `*_batch.json` 继续保留
-
-### 7. 当前数据集治理交付
-
-- 新增 `dataset_tiering.md`，明确 `formal + supplement` 两层分层
-- 新增 `configs/stage1a/dataset_governance.json` 与 `scripts/build_stage1a_dataset_governance.py`，统一渲染 `admission_matrix.tsv`
-- 新增 `short_summary.md`，简述为何采用 `formal + supplement`
-- 删除不符合当前分层的旧 auxiliary / supplementary formal 叙述与衍生产物
-
-### 7.1 当前全量跑模交付
-
-- 先补 candidate readiness，再进入统一运行矩阵
-- 新增 `configs/stage1a/runs/all_datasets_eval_matrix.json`
-- 新增 `configs/stage1a/runs/all_datasets_readiness_fill.json`
-- 新增 `scripts/build_stage1a_all_datasets_eval_matrix.py`
-- 新增 `scripts/build_stage1a_all_datasets_readiness_assets.py`
-- 新增 `scripts/run_stage1a_all_datasets_pipeline.py`
-- 新增 `scripts/summarize_stage1a_all_datasets_vs_baseline.py`
-- `pixi.toml` 已补全对应 task
-- 当前执行顺序固定为：
-  1. `pixi run build-stage1a-all-datasets-readiness-assets`
-  2. `pixi run build-stage1a-all-datasets-eval-matrix`
-  3. `pixi run run-stage1a-all-datasets-pipeline-gears`
-  4. `pixi run run-stage1a-all-datasets-pipeline-scgpt`
-  5. `pixi run run-stage1a-all-datasets-pipeline-geneformer`
-  6. `pixi run summarize-stage1a-all-datasets-vs-baseline-evaluated`
-- 当前第一目标已经从“只写 blocked 原因”推进到“先补齐候选集 readiness，再统一跑模”
-
-### 8. 输入侧 normalize 审计已关闭
-
-- 本轮曾尝试对以下三条 challenger 做 `raw-input vs normalize_log1p-input` 的最小反事实审计：
-  - `lm_train_lowrank`
-  - `lm_G_scgpt_ridge`
-  - `lm_G_geneformer_ridge`
-- 当前该审计已经正式关闭
-- 关闭原因不是“normalize 结果不佳”，而是这三条方法在结构上 `not_applicable`
-
-关闭理由：
-
-- `lm_train_lowrank` 没有独立的单细胞输入特征层；若在 train delta 构造处加入 `normalize+log1p`，会把监督目标从 benchmark `A-space` 改到变换空间，因此越界
-- `lm_G_scgpt_ridge` 与 `lm_G_geneformer_ridge` 当前只使用冻结 target embedding + `A-space` train pseudobulk delta；它们同样没有可单独修改、且不改变监督目标语义的输入编码层
-- 因此这三条方法都不满足“只改输入侧、保持监督目标与最终 `predicted_shift` 仍在 `A-space`”的必要条件
-
-当前应保留的结论：
-
-- 这三条方法统一记为 `not_applicable`
-- 不再继续扩到 `18` 个组合
-- 不再引用先前那组越界的 `K562` normalize exploratory 结果
-
-如果未来要重开 normalize 审计，前提是：
-
-- 必须改用真正存在“单细胞输入 -> 编码层 -> `A-space` 输出”的模型家族
-- 更接近的候选是训练型 perturbation adapter，而不是当前这三条 frozen-feature / low-rank challenger
-- 且只能作为独立 `exploratory / nonformal` 轨道执行，不能修改 formal truth、official baselines/nulls/scoring；当前草案见 `docs/protocols/stage1a_exploratory_input_transform_track.md`
-
-当前 challenger 执行补充约束：
-
-- 任何 challenger 在实现前都必须先落地并冻结两张 registry：
-  - `feature registry`
-  - `challenger registry`
-- `feature registry` 是唯一允许被 challenger 引用的 feature 清单；脚本中不应各自硬编码 feature 路径
-- `feature registry` 至少包含：
-  - `feature_id`
-  - `feature_family`
-  - `source_path`
-  - `entity_type`
-  - `coverage_on_current_smoke`
-  - `missing_policy`
-  - `is_frozen`
-  - `notes`
-- `challenger registry` 是唯一允许被执行主线引用的 challenger 清单
-- `challenger registry` 至少包含：
-  - `challenger_id`
-  - `method_family`
-  - `feature_dependencies`
-  - `train_inputs`
-  - `output_contract`
-  - `status`
-  - `current_scope`
-  - `unlock_prerequisite`
-  - `notes`
-- `target-side feature source` 必须通过 `feature registry` 冻结，而不是散落在方法脚本里
-- 任一 challenger 的输入依赖必须通过 `challenger registry.feature_dependencies` 显式指向 `feature registry.feature_id`
-- 所有 challenger 必须复用当前 smoke 的：
-  - dataset 选择
-  - split seed
-  - frozen truth
-  - aligned evaluable genes
-  - scoring contract
-- 所有 challenger 的工程接口应统一为：
-  - 读取当前 train split
-  - 产出统一 `predicted_shift.tsv.gz`
-  - 直接接入当前 ingest / evaluate / render 主线
-- 结果记录必须区分：
-  - `ran_and_better_than_mean`
-  - `ran_and_close_to_mean`
-  - `ran_and_worse_than_mean`
-  - `failed_runtime`
-  - `unavailable`
-- `接近 mean` 的工作阈值必须在运行前冻结，不能看到结果后再解释
-- 必须显式区分：
-  - `implemented`
-  - `wired_to_eval`
-  - `executed_on_smoke`
-  - `eligible_for_next_step`
-
-当前方法池与解锁顺序：
-
-- 以下“解锁顺序”只保留作 formal 边界记录，不再表示当前待执行事项
-
-- `A` 层：embedding + linear model 家族，为当前主线
-  - `lm_train_lowrank`
-  - `lm_G_scgpt_ridge`
-  - `lm_G_geneformer_ridge`
-  - `residual_over_mean__lm_train_lowrank`
-- `B` 层：传统 ML 家族，只保留最小 exploratory 版本
-  - `elasticnet_targetfeat`
-  - `knn_kernel_targetfeat`
-  - `rf_targetfeat_lowrank`
-- `C` 层：组合方法家族，必须预注册成员与固定规则，禁止事后挑权重
-  - `fixed_late_fusion_v1`
-- 当前默认方法学定义：
-  - `lm_train_lowrank`：`target features -> low-rank shift factors -> full predicted_shift`
-  - `lm_G_scgpt_ridge`：使用 `scGPT` gene embedding 作为 target representation 的 ridge challenger
-  - `lm_G_geneformer_ridge`：使用 `Geneformer` gene embedding 作为 target representation 的 ridge challenger
-  - `residual_over_mean__lm_train_lowrank`：先固定 `mean_shift_baseline`，再仅学习 residual
-  - `elasticnet_targetfeat`：稀疏线性 exploratory challenger
-  - `knn_kernel_targetfeat`：非参数 geometry exploratory challenger
-  - `rf_targetfeat_lowrank`：非线性 low-rank exploratory challenger
-  - `fixed_late_fusion_v1`：固定权重、预注册成员的 late-fusion challenger
-- formal 解释边界下的解锁顺序固定为：
-  1. 先冻结 `feature registry` 与 `challenger registry`
-  2. 再实现并运行 `lm_train_lowrank`
-  3. 只有在 `lm_train_lowrank` 跑通且出现正向信号时，再运行 `lm_G_scgpt_ridge` 与 `lm_G_geneformer_ridge`
-  4. 只有前两步出现正向信号时，再运行 `residual_over_mean__lm_train_lowrank`
-  5. 只有至少两个 challenger 显示互补或近似正向时，再运行 `fixed_late_fusion_v1`
-  6. `elasticnet_targetfeat`、`knn_kernel_targetfeat`、`rf_targetfeat_lowrank` 放在最后
-- exploratory override 生效后的执行口径：
-  1. 仍优先完成 `A` 层最小主线
-  2. 即使 `A` 层没有形成一致正向信号，仍允许继续实现并运行后续 backlog
-  3. 这些结果统一记为 exploratory backlog，不作为 formal 解锁依据
-  4. “继续实现” 与 “支持 formal 下一步” 必须分开记录
-  5. 当前 backlog 已执行完成，因此后续重点不再是“能不能开做”，而是“如何解释与是否值得进入 supplementary benchmarking”
-
-### 9. `正向信号` 的当前工作定义
-
-- `正向信号` 只用于决定是否进入下一步 challenger，不构成 formal superiority 结论
-- 在 exploratory override 生效后，`正向信号` 不再是“是否允许继续实现后续 backlog”的必要条件
-- 但它仍然是“是否值得把后续结果上升为更强方法学主张”的唯一工作门槛
-- 满足以下任一条，可记为出现初步正向信号：
-  1. 至少一个主指标明确优于 `mean_shift_baseline`，且无灾难性退化指标
-  2. 多个主指标整体接近 `mean_shift_baseline`，同时不存在明显退化
-  3. 方法可稳定跑通，且参数网格呈现可解释的改善趋势，并且整体表现未明显劣于 `mean_shift_baseline`
-- `稳定跑通` 是必要条件，不是充分条件
-- `lm_train_lowrank` 当前最小参数网格固定为：
-  - `K ∈ {16, 32, 64}`
-  - `alpha ∈ {0.1, 1.0, 10.0}`
-
-## 你接下来先做什么
-
-按优先级：
-
-1. 审查 challenger 的 `vs_mean` 汇总，形成一份正式的 exploratory / supplementary 审计结论
-2. 在 registry 与文档中明确：`residual_over_mean__lm_train_lowrank` 当前与 `lm_train_lowrank` 等价，不再单独计数
-3. 固化 supplementary 上的 `coverage-blocked` 口径，避免把 blocked 误写成“结果差”
-4. 把 normalize 审计关闭结论保持为最终状态，不再在这三条 challenger 上继续消耗时间
-5. 固化 `GEARS` current version 的 `under audit` 结论，不再把它描述成“暂时无问题”
-6. 确认 `scGPT / Geneformer` 当前 adapter 的 taxonomy 与可声明范围
-7. 整理四条 lanes 的稳定性结论，明确“lane 稳定”与“entrant 表现稳定”是两回事
-8. 是否推进 formal `3 datasets × 5 seeds` adjudication 仍需单独判断
-9. 是否需要调整 frozen feature coverage policy，需单独立项，不在当前文档里默认放宽
-
-## 新窗口直接执行
-
-如果你新开一个终端窗口，直接按下面顺序接手：
-
-1. 先确认当前任务只剩“审计与文档收口”，不是继续扩模型
-2. 先保留 normalize 审计关闭结论，不再在三条目标 challenger 上继续试验
-3. 再围绕 `vs_mean` 汇总、等价方法去重、coverage-blocked 解释边界推进文档
-
-建议直接执行：
-
-```bash
-sed -n '/## 当前 normalize 审计状态/,/当前 challenger 执行补充约束/p' README.md
-sed -n '/## 你接下来先做什么/,/## 本轮验收口径/p' plan.md
-```
-
-接手时不要改动的结论：
-
-- `residual_over_mean__lm_train_lowrank` 当前与 `lm_train_lowrank` 等价
-- `tian_2019_ipsc / tian_2021_crispri` 当前属于 `supplement/runnable`，不能写成 official formal
-- `lm_train_lowrank / lm_G_scgpt_ridge / lm_G_geneformer_ridge` 的输入侧 normalize 审计已正式关闭，并统一记为 `not_applicable`
-
-## 本轮验收口径
-
-- `README.md`、`plan.md`、`configs/stage1a_formal_datasets.yaml`、`reports/stage1a/admission/stage1a_admission_manifest.tsv` 对当前数据集状态描述一致
-- `harmonized resource layer -> dataset admission layer -> entrant benchmarking layer` 的顺序在文档中明确
-- `signal adequacy` 与 `model fidelity` 的边界在文档中明确
-- `support floor` 至少显式绑定 `cells per perturbation`、`cells per control`、`UMI depth`
-- `tian_2019_day7neuron`、`tian_2019_ipsc` 与 `tian_2021_crispri` 的 admission 决议明确，不再混成“统一待重跑”
-- 5 个 Stage 1A 数据集均已完成统一口径的完整性检查
-- formal 主榜仍只消费 official formal 的 3 个主线数据集；其余数据集即使完成审计，也不得写成 formal 通过或变相 formal
-- `1 seed × 3 entrants × 3 datasets` 的 trial run 已产出完整 aligned / lane / dataset / pass skeleton 结果
-- `GEARS × day7neuron` 的 export-space 审计已证明：control 无误，但 `predicted_expression_raw` 已偏大，减 control 后放大成不可信 delta
-- 若进入 challenger 探索，文档中已明确：`稳定跑通` 不等于 `正向信号`，`正向信号` 不等于 formal superiority
-- 若进入 challenger 探索，文档中已明确：`feature registry` 与 `challenger registry` 已冻结，后续方法可在 exploratory override 下继续实现
-- challenger 的实现状态、接线状态、smoke 运行状态与是否解锁下一步必须分开记录
-- 若采用 exploratory override，文档中也已明确：“允许继续实现 backlog” 不等于 “允许提升 formal 结论”
-- supplement 上的 exploratory benchmarking 已明确覆盖 `tian_2019_ipsc / tian_2021_crispri`
-- `residual_over_mean__lm_train_lowrank` 的当前等价性与 candidate / annex 轨道上的 coverage-blocked 边界已在文档中明示
-- 输入侧 normalize 审计已正式关闭，且当前三条目标 challenger 已明确定义为 `not_applicable`
-
-## 你接下来先做什么
-
-1. 先保持 current official formal 的 3 个主锚点不变，不做一次性扩桶。
-2. 再围绕 `tian_2019_ipsc / tian_2021_crispri / replogle_2022_k562_gwps` 做制度升格前的最后复核，只处理“是否正式纳入 official formal”，不重写 admission 事实。
-3. 对派生候选单独处理：
-   - `norman_2019_raw__single_target`：按独立 candidate 送审
-   - `dixit_2016_raw__control_context`：按独立 candidate 送审
-4. 不把 `norman_2019_raw` 整集并入 official formal；它继续留在 annex。
-5. 不把 `dixit_2016_raw` 整包并入 official formal；只保留 `control_context` 这条派生子集继续向 formal 靠近。
+## 5. Governing Roadmap（重排，不是替换）
+
+### Layer A. Truth Architecture Discovery
+
+这一层先回答“真实结构是什么”，而不是“模型表现如何”。
+
+- `HCC` truth bridge layer：在 `HCC38 / HCC1143` 的 14d truth 中定义 primary truth-driven bridge object。
+- axis compression layer：把可桥接结构压缩为可冻结、可审计的 axis / backbone object。
+- SCP542 explanation boundary：作为 calibration / explanation layer，而不是主 biological conclusion。
+- Dixit/K562 external structure replication：作为 supplementary external structure replication，复现的是 architecture / structure，不是 gene identity overlap，也不是与 HCC 并列的 primary conclusion。
+
+这一层的目标是冻结“真实 biology 中存在什么稳定结构”，不是给模型打分。
+
+### Layer B. Model Recovery Adjudication
+
+这是当前最近一步，也是当前 active mainline。
+
+核心问题不是单基因拟合，而是 architecture recovery：
+
+- Backbone recovery：模型能否恢复 frozen canonical backbone。
+- Shift-excess identification：模型能否识别 shift-excess 对象，而不是只学到 shared mean trend。
+- Structure vs context separation：模型能否把 shared backbone 与 context deviation 分开。
+- Architecture-level evaluation：主问题是 structure recovery，而不是用 global Pearson 代替 architecture adjudication。
+
+### Layer C. Failure Decomposition Across Stage 1A / 1B
+
+`Stage 1A / 1B` 仍然有效，但角色已经改变。
+
+- `Stage 1A` 不再只是 leaderboard，而是 short-horizon failure decomposition 的第一层。
+- `Stage 1B` 不再只是时间外推 stress test，而是 long-horizon / temporal structure degradation 的诊断层。
+- 二者当前要回答的问题是：模型丢掉的是 backbone、shift-excess、context specificity，还是出现了 temporal degradation / context averaging。
+
+因此 `Stage 1A / 1B` 不是废弃，而是被重新解释为 frozen truth architecture 下的 failure decomposition track。
+
+### Layer D. Discovery / Phenotype Shifter
+
+discovery 仍然保留，但当前应后置。
+
+- 它必须建立在 truth-side 与 model-side 都闭环之后。
+- 当前不能把它写成 primary active deliverable。
+- 当前阶段只可将其保留为 downstream application layer，而不是 formal near-term mainline。
+
+## 6. Frozen Objects（已冻结对象）
+
+- Truth Architecture Contract：冻结 truth-side bridge object 的主定义与边界，是当前 architecture adjudication 的上位对象。
+- HCC Master Atlas：冻结 HCC 主线 shared structure 的主 atlas，用于后续 model-side 投影与 adjudication。
+- HCC Fine Axes：冻结 HCC 内部更细的 axis / subtype-like structure，用于区分 backbone、shift-excess 与 context deviation。
+- Dixit Master Atlas：冻结 supplementary external structure replication object，用于检验 architecture 是否在外部 context 中可复现。
+- Structure Replication Summary：冻结 HCC 与 supplementary structure replication 的摘要对象，回答“复现的是 architecture，而不是 gene identity overlap”。
+- SCP542 Boundaries：冻结 SCP542 的 explanation / calibration 边界，明确其不是主 biological conclusion。
+
+## 7. What Is Actually Closed vs Not Yet Closed
+
+### Closed / Frozen
+
+- truth-side architecture contract
+- HCC primary structure definition
+- HCC master atlas / fine axes
+- Dixit supplementary structure replication object
+- SCP542 explanation boundaries
+- truth-driven bridge 的主报告边界、dataset role 与 evidence tier governance
+- GEARS HCC38 / HCC1143 real raw output
+- GEARS export to `stage2_truth_aligned_log_shift`
+- GEARS contract validation on HCC38 / HCC1143
+- GEARS entrant-qualified HCC smoke adjudication
+- GEARS 有限预算 backbone sweep 与 stop-rule 裁决
+- HCC 辅助裁决层：`cosine`、`L2`、`top-20 overlap`
+- frozen axis 的第一轮 annotation / validation 闭环
+- truth bridge decomposition 的 cutoff sensitivity / bootstrap stability / evidence tiering
+
+### Not Yet Closed
+
+- GEARS / axis 结果压成主文档正式段落
+- fuller HCC model comparison 的长期解释层
+- `Stage 1A / 1B` 作为 failure decomposition track 的正式解释产物
+- sensitivity full closure（当前仍是 partial / preliminary snapshot）
+- covariate balance closure（当前仍是剩余方法学风险）
+- discovery / phenotype shifter formal deliverable
+
+当前不能把这些未闭环项写成“Stage 2 complete”或“Stage 3 complete”。
+
+## 8. Immediate Priorities
+
+1. 固化 GEARS trade-off diagnosis 的正式文档口径
+2. 固化 truth bridge evidence tiering 的正式文档口径
+3. 给 `Dixit/K562` 补一版 supplementary evidence tiering
+4. 固化 frozen axis annotation / validation 的正式文档口径
+5. 把 `Stage 1A / 1B` failure decomposition 的写作入口接上
+6. 明确 discovery 何时可以进入下一阶段
+
+## 9. Explicit Non-Goals for the Current Phase
+
+- 不把 Dixit/K562 写成与 HCC 并列的 primary biological conclusion
+- 不把 SCP542 写成强机制锚定或主结论层证据
+- 不把 global Pearson 当成 architecture recovery 的替代
+- 不把 phenotype shifter discovery 提前写成 formal deliverable
+- 不把 `Stage 1A / 1B` 视为废弃
+- 不把 model-side recovery 写成已经被证明
+- 不把 `GEARS` 当前结果写成“整体压过 shared_mean_baseline”
+- 不把 `scGPT / Geneformer` 现在拉进 HCC primary mainline
+- 不把 `Stage 2 / 3` 写成 fully complete
+
+## 10. Expected Near-Term Deliverables
+
+- GEARS trade-off diagnosis note
+- truth bridge integrated result note
+- axis annotation / validation result note
+- Dixit supplementary evidence tier note
+- `Stage 1A / 1B` failure decomposition note
+- refreshed report boundary text
+
+## 11. Document Map
+
+- `README.md`：仓库入口，说明当前 active framing、最近一步与 claim boundaries。
+- `plan.md`：当前执行优先级，不展开长期制度。
+- `docs/protocol_blueprint.md`：truth-first 长期蓝图，保留 `Stage 1A / 1B / 2 / 3` 编号但重排主线。
+- `docs/stage2_truth_driven_bridge_v1.md`：truth-driven bridge 的实现边界与敏感性说明。
+- `docs/stage2_truth_bridge_decomposition_v1.md`：truth–DepMap bridge 两层分解与 evidence-tier 规则说明。
+- `docs/stage2_truth_bridge_integrated_result_v1.md`：整合 decomposition、axis validation、SCP542 与 Dixit supplement 的统一结果入口。
+- `reports/stage2_truth_driven_bridge/truth_architecture_contract/`：truth architecture contract 冻结产物。
+- `reports/stage2_truth_driven_bridge/master_atlas/`：HCC master atlas 与 fine axes 冻结产物。
+- `reports/stage2_truth_bridge_decomposition/`：target-level anchors、axis-level structure、cutoff sensitivity、bootstrap stability 与 evidence tiers。
+- `reports/stage2_truth_driven_bridge/dixit_axis_compression/`：supplementary external structure replication 产物。
+- `reports/stage2_truth_driven_bridge/scp542_calibration/`：SCP542 explanation boundary 产物。
+- `reports/stage2_real_hcc_smoke/smoke_report.md`：当前 HCC 主裁决入口。
+- `reports/stage2_real_hcc_smoke/adjudication_summary.md`：当前最稳的中文裁决摘要。

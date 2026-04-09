@@ -2,7 +2,23 @@
 
 ## 1. 目录职责
 
-`scripts/` 仍是仓库的主执行层，但 Stage 1A 现在已经显式拆成两层。
+`scripts/` 仍是仓库的主执行层。当前 active framing 已经改为 truth-first：先冻结 truth-side architecture object，再推进 model-side structure adjudication；`Stage 1A / 1B` 仍保留，但其角色已不只是 benchmark leaderboard。
+
+从执行层看，当前最重要的两条链路是：
+
+- `Stage 1A / 1B` benchmark-invariant + adapter 主线
+- `Stage 2` truth-driven bridge / truth architecture 主线
+
+其中 `Stage 2` 新增了一个更靠近主文档叙事的 decomposition 入口：
+
+- `scripts/run_stage2_truth_bridge_decomposition.py`
+
+它不替代已有 truth bridge / axis freeze，而是把现有 frozen objects 收束成：
+
+- `target-level joint-priority grid`
+- `axis-level shared explanatory structure`
+
+因此这里不再把脚本层单纯描述成“只服务 Stage 1A”。
 
 ## 2. Stage 1A 分层
 
@@ -70,3 +86,5 @@
 - benchmark-invariant 层不引入模型特定假设
 - adapter 层只负责模型原生输入、模型推理、统一输出 `predicted_shift`
 - 旧顶层包装不再新增业务逻辑
+- truth-side freeze 与 model-side adjudication 的脚本边界应保持清楚
+- 不把 supplementary replication 脚本表述成与 HCC primary mainline 并列的主结论入口
