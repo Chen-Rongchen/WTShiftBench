@@ -10,7 +10,7 @@
 
 ## 2. 当前总体判断
 
-当前 sensitivity 不是“完全没做”，而是“已有大半材料，但 formal closure 尚未完成”。
+当前 sensitivity 不是“完全没做”，而是“主支柱材料已经基本齐备，但 full closure 仍未完成”。
 
 更准确地说：
 
@@ -18,18 +18,16 @@
 - `bootstrap stability`
 - `control subsampling`
 
-这三条线已经足够支持一版更正式的 sensitivity 收口；但：
+这三条线已经足够支持一版正式的 sensitivity 收口；与此同时：
 
-- `formal interval claim`
-- `covariate balance closure`
-
-当前仍未完成。
+- `formal interval claim` 已完成配置重复数并达到可引用状态
+- `covariate balance closure` 仍未完成
 
 因此，现阶段更稳的写法不是“robustness 已全面建立”，而是：
 
-**主支柱信号已获得保守稳健性支持，但 sensitivity full closure 仍保留剩余方法学缺口。**
+**主支柱信号已获得保守稳健性支持，formal interval 已可引用，但 sensitivity full closure 仍保留由 covariate closure 带来的剩余方法学缺口。**
 
-这里需要额外固定一条边界：当前 sensitivity 的主要未闭环项，不应再被叙述成“分析框架还不够”，而应被叙述成“formal interval claim 尚未可引用，且 covariate closure 仍受可用元数据上限约束”。
+这里需要额外固定一条边界：当前 sensitivity 的主要未闭环项，不应再被叙述成“分析框架还不够”，而应被叙述成“formal interval claim 已可引用，但 covariate closure 仍受可用元数据上限约束”。
 
 ## 3. 哪些 sensitivity 已经足够关闭
 
@@ -125,24 +123,24 @@
 ### 5.1 formal interval claim
 
 [`reports/stage2_truth_driven_bridge/sensitivity/sensitivity_report.md`](/home/data/gz0705/WTKO/reports/stage2_truth_driven_bridge/sensitivity/sensitivity_report.md)
-当前仍标注：
+当前标注为：
 
 - `configured_replicates = 24`
-- `formal_interval_citable = false`
+- `completed_replicates = 24`
+- `formal_interval_citable = true`
 
-因此，在跑满配置重复数之前：
+因此，当前这条线已经完成从“partial snapshot”到“formal interval citable”的推进，支持：
 
-- 禁止写正式区间结论
-- 禁止写 robustness range established
-- 禁止把当前 partial snapshot 升级成 full formal closure
+- 正式引用 control subsampling 的区间/分位数结果
+- 将 control subsampling 从 supporting stability 升级为可引用的 sensitivity 支柱
 
-这不是实现失败，而是当前必须保留的引用边界。
+但它仍不等于 full formal closure，因为 covariate 线尚未 fully closed。
 
 ## 6. 推荐写法
 
 当前最稳的 sensitivity 收口可写成：
 
-当前 sensitivity 分析表明，truth bridge 的主支柱信号已获得一版保守稳健性支持。具体而言，stable shared anchors 在 cutoff sensitivity 下保持较高稳定性，`transcription / chromatin` 作为唯一 formal positive axis 在 bootstrap 审计下保持稳定，而多数其他 axis 仍应停留在 preliminary 或 mixed-signal 层级。与此同时，shift-based truth metrics 对 control subsampling 整体较稳，说明当前主 bridge 信号并非 control 随机抽样的偶然结果。需要同时强调的是，`DEG burden` 对阈值更敏感，因此更适合作为 supporting metric；此外，covariate balance 审计与 formal interval claim 当前仍未完全关闭，其中前者的剩余缺口还受实验设计元数据上限约束，因而 sensitivity full closure 仍应保留剩余方法学风险与明确 limitation。
+当前 sensitivity 分析表明，truth bridge 的主支柱信号已获得一版保守稳健性支持。具体而言，stable shared anchors 在 cutoff sensitivity 下保持较高稳定性，`transcription / chromatin` 作为唯一 formal positive axis 在 bootstrap 审计下保持稳定，而多数其他 axis 仍应停留在 preliminary 或 mixed-signal 层级。与此同时，shift-based truth metrics 对 control subsampling 整体较稳，且当前已达到配置重复数，使 formal interval 结果可以正式引用，说明当前主 bridge 信号并非 control 随机抽样的偶然结果。需要同时强调的是，`DEG burden` 对阈值更敏感，因此更适合作为 supporting metric；此外，covariate balance 审计当前仍未完全关闭，其剩余缺口还受实验设计元数据上限约束，因而 sensitivity full closure 仍应保留剩余方法学风险与明确 limitation。
 
 ## 7. 渐进披露
 
@@ -160,4 +158,4 @@
 
 ## 8. 一句话收口
 
-当前 sensitivity 已足够支持“主支柱保守稳健、辅助层更敏感、formal closure 尚未完全完成”这一版本的正式写法。
+当前 sensitivity 已足够支持“主支柱保守稳健、formal interval 可引用、但 full closure 仍受 covariate 线限制”这一版本的正式写法。

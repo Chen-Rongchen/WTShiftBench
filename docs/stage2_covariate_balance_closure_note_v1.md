@@ -17,11 +17,11 @@
 - 底层审计函数已经存在
 - CLI 已支持输出
 - 第一轮正式审计已完成
-- 但当前只覆盖 `num_umis_quantile_bin` 这一条 covariate 轴
+- 当前已覆盖 `num_umis_quantile_bin` 与 `num_umis_over_threshold_bin` 两条 covariate 轴
 
 因此，当前更准确的状态是：
 
-**混杂审计已开始形成正式产物，但 full closure 仍未完成。**
+**混杂审计已形成两条已落盘 covariate 轴的正式产物，但 full closure 仍未完成。**
 
 当前更关键的补充是：这条线的主要瓶颈已不再是“没有分析框架”，而是“更深层实验设计元数据的可用性上限”。
 
@@ -43,7 +43,9 @@
 - [`configs/stage2/truth_bridge_covariate_audit_v1.json`](/home/data/gz0705/WTKO/configs/stage2/truth_bridge_covariate_audit_v1.json)
 - [`scripts/run_stage2_covariate_audit.py`](/home/data/gz0705/WTKO/scripts/run_stage2_covariate_audit.py)
 - [`reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/summary.md`](/home/data/gz0705/WTKO/reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/summary.md)
-  - 第一轮 covariate audit 摘要
+  - 当前 `num_umis_quantile_bin` 审计摘要
+- [`reports/stage2_truth_driven_bridge/sensitivity/covariate_balance_threshold_ratio/`](/home/data/gz0705/WTKO/reports/stage2_truth_driven_bridge/sensitivity/covariate_balance_threshold_ratio)
+  - 第二条 `num_umis_over_threshold_bin / threshold_ratio` 审计结果
 
 当前审计逻辑很明确：
 

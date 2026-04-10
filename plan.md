@@ -170,7 +170,7 @@ discovery 仍然保留，但当前应后置。
 ### Not Yet Closed
 
 - 比较：fuller HCC model comparison 的最终主文稿整合
-- 敏感性：sensitivity full closure（当前仍是 partial / preliminary snapshot）
+- 敏感性：sensitivity full closure（当前主支柱与 formal interval 已基本到位，但仍未 fully closed）
 - 混杂：covariate balance closure（当前已完成第一轮多轴审计与对象级降级治理，但仍是剩余方法学风险）
 - 最终边界：终局 claim boundary 与 `final claim matrix -> manuscript wording` 的正式收口
 - discovery：继续保持 phenotype shifter 为 `gated_downstream_layer`
