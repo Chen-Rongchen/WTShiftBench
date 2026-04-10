@@ -19,26 +19,35 @@
 - covariate audit 入口与汇总产物统一
 - 下一阶段 entrant expansion 的文档化交接
 
-更具体地说，建议至少包含：
+如果当前只想提交这一轮“正式口径同步”本身，建议优先采用**最小提交集**：
 
 - [`README.md`](/home/data/gz0705/WTKO/README.md)
 - [`plan.md`](/home/data/gz0705/WTKO/plan.md)
+- [`docs/formal_closeout_single_entry_v1.md`](/home/data/gz0705/WTKO/docs/formal_closeout_single_entry_v1.md)
 - [`docs/project_state_summary_v1.md`](/home/data/gz0705/WTKO/docs/project_state_summary_v1.md)
 - [`docs/final_claim_boundary_and_discovery_gating_note_v1.md`](/home/data/gz0705/WTKO/docs/final_claim_boundary_and_discovery_gating_note_v1.md)
 - [`docs/why_models_do_not_stably_beat_baseline_v1.md`](/home/data/gz0705/WTKO/docs/why_models_do_not_stably_beat_baseline_v1.md)
-- [`docs/model_vs_baseline_deeper_explanation_note_v1.md`](/home/data/gz0705/WTKO/docs/model_vs_baseline_deeper_explanation_note_v1.md)
-- [`docs/model_vs_baseline_next_step_breakdown_v1.md`](/home/data/gz0705/WTKO/docs/model_vs_baseline_next_step_breakdown_v1.md)
 - [`docs/main_manuscript_integrated_narrative_draft_v1.md`](/home/data/gz0705/WTKO/docs/main_manuscript_integrated_narrative_draft_v1.md)
 - [`docs/main_manuscript_results_draft_v1.md`](/home/data/gz0705/WTKO/docs/main_manuscript_results_draft_v1.md)
-- [`docs/finalization_punchlist_v1.md`](/home/data/gz0705/WTKO/docs/finalization_punchlist_v1.md)
-- [`docs/repository_map.md`](/home/data/gz0705/WTKO/docs/repository_map.md)
 - [`docs/stage2_sensitivity_full_closure_note_v1.md`](/home/data/gz0705/WTKO/docs/stage2_sensitivity_full_closure_note_v1.md)
 - [`docs/stage2_covariate_balance_closure_note_v1.md`](/home/data/gz0705/WTKO/docs/stage2_covariate_balance_closure_note_v1.md)
+- [`docs/next_phase_execution_note_v1.md`](/home/data/gz0705/WTKO/docs/next_phase_execution_note_v1.md)
+- [`docs/next_phase_execution_checklist_v1.md`](/home/data/gz0705/WTKO/docs/next_phase_execution_checklist_v1.md)
+- [`docs/finalization_punchlist_v1.md`](/home/data/gz0705/WTKO/docs/finalization_punchlist_v1.md)
+- [`docs/repository_map.md`](/home/data/gz0705/WTKO/docs/repository_map.md)
+- [`docs/current_closeout_commit_note_v1.md`](/home/data/gz0705/WTKO/docs/current_closeout_commit_note_v1.md)
+
+如果要把“下一阶段启动入口”和“entrant expansion 交接文档”也一起带上，再使用**扩展提交集**。扩展集可在最小提交集基础上继续加入：
+
+- [`README.md`](/home/data/gz0705/WTKO/README.md)
+- [`plan.md`](/home/data/gz0705/WTKO/plan.md)
+- [`docs/formal_closeout_single_entry_v1.md`](/home/data/gz0705/WTKO/docs/formal_closeout_single_entry_v1.md)
+- [`docs/model_vs_baseline_deeper_explanation_note_v1.md`](/home/data/gz0705/WTKO/docs/model_vs_baseline_deeper_explanation_note_v1.md)
+- [`docs/model_vs_baseline_next_step_breakdown_v1.md`](/home/data/gz0705/WTKO/docs/model_vs_baseline_next_step_breakdown_v1.md)
 - [`docs/model_expansion_deferral_note_v1.md`](/home/data/gz0705/WTKO/docs/model_expansion_deferral_note_v1.md)
 - [`docs/next_stage_model_entrant_inventory_v1.md`](/home/data/gz0705/WTKO/docs/next_stage_model_entrant_inventory_v1.md)
 - [`docs/next_stage_model_entrant_execution_checklist_v1.md`](/home/data/gz0705/WTKO/docs/next_stage_model_entrant_execution_checklist_v1.md)
-- [`docs/next_phase_execution_note_v1.md`](/home/data/gz0705/WTKO/docs/next_phase_execution_note_v1.md)
-- [`docs/next_phase_execution_checklist_v1.md`](/home/data/gz0705/WTKO/docs/next_phase_execution_checklist_v1.md)
+- [`docs/next_stage_startup_packet_v1.md`](/home/data/gz0705/WTKO/docs/next_stage_startup_packet_v1.md)
 - [`scripts/run_stage2_covariate_audit.py`](/home/data/gz0705/WTKO/scripts/run_stage2_covariate_audit.py)
 - [`configs/stage2/truth_bridge_covariate_audit_v1.json`](/home/data/gz0705/WTKO/configs/stage2/truth_bridge_covariate_audit_v1.json)
 
@@ -67,13 +76,15 @@ docs: finalize closeout boundary and covariate handoff
 
 ## 5. 提交前最后检查
 
-提交前只需要再看三件事：
+提交前只需要再看四件事：
 
 1. [`README.md`](/home/data/gz0705/WTKO/README.md)
    - 入口是否仍指向当前唯一主链
-2. [`docs/final_claim_boundary_and_discovery_gating_note_v1.md`](/home/data/gz0705/WTKO/docs/final_claim_boundary_and_discovery_gating_note_v1.md)
+2. [`docs/formal_closeout_single_entry_v1.md`](/home/data/gz0705/WTKO/docs/formal_closeout_single_entry_v1.md)
+   - 单页总入口是否与主文稿、boundary、execution note 保持同一顺序
+3. [`docs/final_claim_boundary_and_discovery_gating_note_v1.md`](/home/data/gz0705/WTKO/docs/final_claim_boundary_and_discovery_gating_note_v1.md)
    - claim boundary 是否仍与 final claim matrix 一致
-3. [`docs/stage2_covariate_balance_closure_note_v1.md`](/home/data/gz0705/WTKO/docs/stage2_covariate_balance_closure_note_v1.md)
+4. [`docs/stage2_covariate_balance_closure_note_v1.md`](/home/data/gz0705/WTKO/docs/stage2_covariate_balance_closure_note_v1.md)
    - covariate 线是否明确写成“已完成多轴审计，但仍受元数据上限约束”
 
 ## 6. 一句话收口

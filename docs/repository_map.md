@@ -30,19 +30,22 @@
 
 1. `README.md`
 2. `plan.md`
-3. `docs/project_state_summary_v1.md`
-4. `docs/final_claim_boundary_and_discovery_gating_note_v1.md`
-5. `docs/why_models_do_not_stably_beat_baseline_v1.md`
-6. `docs/model_vs_baseline_deeper_explanation_note_v1.md`
-7. `docs/model_vs_baseline_next_step_breakdown_v1.md`
-8. `reports/stage2_gears_backbone_sweep/final_adjudication.md`
-9. `docs/stage2_truth_bridge_integrated_result_v1.md`
-10. `docs/stage2_axis_annotation_result_v1.md`
-11. `reports/stage2_axis_analysis/axis_validation_summary.md`
-12. `docs/current_closeout_commit_note_v1.md`
-13. `docs/protocol_blueprint.md`
-14. `docs/stage1_failure_decomposition_note_v1.md`
-15. `reports/stage2_truth_driven_bridge/`
+3. `docs/formal_closeout_single_entry_v1.md`
+4. `docs/project_state_summary_v1.md`
+5. `docs/final_claim_boundary_and_discovery_gating_note_v1.md`
+6. `docs/next_phase_execution_note_v1.md`
+7. `docs/next_phase_execution_checklist_v1.md`
+8. `docs/why_models_do_not_stably_beat_baseline_v1.md`
+9. `docs/model_vs_baseline_deeper_explanation_note_v1.md`
+10. `docs/model_vs_baseline_next_step_breakdown_v1.md`
+11. `reports/stage2_gears_backbone_sweep/final_adjudication.md`
+12. `docs/stage2_truth_bridge_integrated_result_v1.md`
+13. `docs/stage2_axis_annotation_result_v1.md`
+14. `reports/stage2_axis_analysis/axis_validation_summary.md`
+15. `docs/current_closeout_commit_note_v1.md`
+16. `docs/protocol_blueprint.md`
+17. `docs/stage1_failure_decomposition_note_v1.md`
+18. `reports/stage2_truth_driven_bridge/`
 
 如果你要理解“为什么当前阶段不继续扩模型、下一阶段若恢复 entrant expansion 应怎么做”，建议再看：
 

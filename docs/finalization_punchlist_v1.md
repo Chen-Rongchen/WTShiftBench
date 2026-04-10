@@ -40,6 +40,7 @@
 只处理：
 
 - 将 `claim matrix` 全量同步到主文稿
+- 将 `claim matrix` 全量同步到摘要式写法与入口文档
 - 明确 `allowed wording / disallowed wording`
 - 去掉任何旧的 strongest anchor 写法
 - 去掉任何会把 Dixit 抬成 primary conclusion 的句子
@@ -79,6 +80,7 @@
 
 - sensitivity 仍不是 formal full closure
 - covariate closure 已完成治理，但仍受元数据上限约束
+- discovery 继续保持 `gated_downstream_layer`
 - `model recovery proved / Stage 2 complete / Stage 3 complete` 继续禁写
 - biology-facing explanation 继续停留在 plausible interpretation 层，直到两个更小的方法学问题更清楚
 

@@ -45,6 +45,7 @@
 
 - `covariate closure` 仍不是最终闭环
 - `sensitivity full closure` 仍不是最终闭环
+- `final claim matrix -> manuscript wording` 仍需持续同步到所有入口文档
 - 这不是因为缺少分析框架
 - 而是因为缺少更深层实验设计元数据来继续做 deconfounding
 
@@ -103,4 +104,4 @@
 
 ## 8. 一句话收口
 
-当前主线已经不是“缺结果”，而是“结果边界已经被治理清楚；再往上能不能闭环，取决于未来是否拿得到更高质量实验设计元数据”。
+当前主线已经不是“缺结果”，而是“结果边界已经被治理清楚；剩下要做的是把 claim matrix 同步成 manuscript-ready wording，并承认再往上能不能闭环，取决于未来是否拿得到更高质量实验设计元数据”。
