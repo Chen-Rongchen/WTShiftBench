@@ -47,9 +47,9 @@
 
 需要进一步强调的是，当前更复杂的 entrant 之所以不能稳定胜过 `shared_mean_baseline`，并不应被简单解释为“模型没有正式接入”或“export / coverage 出错”。截至当前版本，`GEARS / scGPT / Geneformer / lm_train_lowrank / lm_G_scgpt_ridge / lm_G_geneformer_ridge` 都已经进入同一份 HCC formal comparison；其中，两条 ridge control 的 target coverage 也均已达到 `1.000`。因此，更稳的解释是：当前 HCC task 中的 `canonical backbone` 本身具有很强的 shared component，而 `shared_mean_baseline` 已能有效捕获这部分主结构。相比之下，复杂 entrant 学到的额外能力更倾向于 `structure/context separation`、`shift-excess identification` 或 context-sensitive deviation，而这些优势并未稳定转化为更强的 backbone recovery。进一步地，pretrained target embedding 的线性 ablation control 表明，冻结 embedding 单独拿出来并不足以稳定恢复 backbone 主方向，因此当前 backbone gap 更像是 `direction-level mismatch`，而不是单纯的 amplitude insufficiency。换句话说，当前最稳的结论不是“复杂模型没有结构价值”，而是“它们的结构优势方向，与当前 adjudication 中最难超越的 shared canonical backbone 并不完全对齐”。
 
-如果后续还要继续推进这条解释线，当前也不应再把问题写回泛泛的“模型为什么打不过 baseline”。更稳的下一步拆法是只追问两个更小的问题：第一，`baseline winner` 是否主要由 shared backbone objective 决定；第二，entrant 的额外能力是否稳定落在 `separation / deviation` 而不是 backbone 上。在这两个方法学问题进一步收紧前，biology-facing interpretation 仍只应保留为 plausible layer。
+如果后续还要继续推进这条解释线，当前也不应再把问题写回泛泛的“模型为什么打不过 baseline”。更稳的默认后续口径是只追问两个更小的问题：第一，`baseline winner` 是否主要由 shared backbone objective 决定；第二，entrant 的额外能力是否稳定落在 `separation / deviation` 而不是 backbone 上。在这两个方法学问题进一步收紧前，biology-facing interpretation 仍只应保留为 plausible layer。
 
-若需要将这一步进一步压成 manuscript-ready wording，可直接写成：后续工作不再把 baseline-vs-model gap 保留为开放式泛问题，而是优先收紧为两个方法学问题，即 `baseline winner` 是否主要由 shared backbone objective 决定，以及 entrant 的额外能力是否稳定落在 `structure/context separation` 与 deviation-related structure，而非更强的 backbone recovery；在此之前，biology-facing interpretation 仍应停留在 plausible layer。
+若需要将这一步进一步压成 manuscript-ready wording，可直接写成：后续工作不再把 baseline-vs-model gap 保留为开放式泛问题，而是默认收紧为两个方法学问题，即 `baseline winner` 是否主要由 shared backbone objective 决定，以及 entrant 的额外能力是否稳定落在 `structure/context separation` 与 deviation-related structure，而非更强的 backbone recovery；在此之前，biology-facing interpretation 仍应停留在 plausible layer。
 
 ## 4. Truth–DepMap bridge：stable anchors 与 limited formal axis evidence
 

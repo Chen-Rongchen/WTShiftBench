@@ -10,7 +10,7 @@
 
 ## 2. 一句话执行口径
 
-**下一阶段仍应优先补“比较、敏感性、混杂、discovery 交付物、最终边界”这五个缺口；entrant expansion 只在 frozen contract 下作为次级并行线推进。**
+**下一阶段仍应优先补“比较、敏感性、混杂、最终边界、discovery 继续 gated”这五个缺口；entrant expansion 只在 frozen contract 下作为次级并行线推进。**
 
 这五项是当前真正决定项目能否进入更稳 formal closure 的主线，而不是再接一个 entrant 或再开一轮 sweep。
 
@@ -77,19 +77,7 @@
 
 当前这条线已经具备多轴、配置驱动、可汇总输出的正式入口，因此下一阶段的重点不再是“补脚本”，而是判断在现有元数据上限下，哪些主张还能保留、哪些必须继续降级。
 
-### 4.4 discovery 交付物
-
-discovery / phenotype shifter 现在仍不能直接写成 formal deliverable。
-
-下一阶段需要决定的是：
-
-- discovery 是否满足进入正式交付的最低条件
-- 如果不满足，应该后置到什么程度
-- 如果满足，正式 deliverable 的边界是什么
-
-也就是说，这一步要解决的不是“马上做 discovery”，而是“discovery 什么时候才有资格进入主线交付物”。
-
-### 4.5 最终边界
+### 4.4 最终边界
 
 当前已经有一批中间边界文档，但还需要一个更终局的 claim boundary 收口。
 
@@ -100,7 +88,19 @@ discovery / phenotype shifter 现在仍不能直接写成 formal deliverable。
 - 哪些必须明确写成 supplementary / downstream
 - 哪些仍然不能写成“model recovery has been demonstrated”
 
-这一项决定的是整篇主文稿最后能写到哪里为止。
+这一项决定的是整篇主文稿最后能写到哪里为止；当前更具体的动作，是把 `final claim matrix` 全量同步到 manuscript-ready wording、摘要式写法与入口文档。
+
+### 4.5 discovery 继续 gated
+
+discovery / phenotype shifter 现在仍不能直接写成 formal deliverable。
+
+下一阶段需要固定的是：
+
+- discovery 当前仍不满足进入正式交付的最低条件
+- 在比较、敏感性、混杂、最终边界都足够稳定前，继续保持后置
+- 当前只能写成 `gated_downstream_layer`，而不是待立即转正的 deliverable
+
+也就是说，这一步要解决的不是“马上做 discovery”，而是“继续明确 discovery 还不能进入主线交付物”。
 
 ## 5. 推荐执行顺序
 
@@ -110,14 +110,14 @@ discovery / phenotype shifter 现在仍不能直接写成 formal deliverable。
 2. 敏感性
 3. 混杂
 4. 最终边界
-5. discovery 交付物
+5. discovery 继续 gated
 
 原因是：
 
 - `比较` 决定当前结果怎样被解释
 - `敏感性` 与 `混杂` 决定这些解释能不能站住
 - `最终边界` 决定主文稿能写到哪里
-- `discovery 交付物` 只能在前面四项足够清楚后再决定是否进入正式交付
+- `discovery 继续 gated` 则确保下游应用想象不提前挤进 formal deliverable
 
 ## 6. 下次进来先做什么
 

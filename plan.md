@@ -8,7 +8,7 @@
 
 如果你只看一段，这一段就是当前执行口径。
 
-当前不要无边界继续扩到 `challengers`，也不要回到 truth-side 重做 contract。`scGPT / Geneformer` 已完成第一轮 HCC entrant 接入；下一阶段的正式口径仍然是：**主线先补“比较、敏感性、混杂、discovery 交付物、最终边界”这五个缺口，entrant expansion 只保留为受控支线。**
+当前不要无边界继续扩到 `challengers`，也不要回到 truth-side 重做 contract。`scGPT / Geneformer` 已完成第一轮 HCC entrant 接入；下一阶段的正式口径仍然是：**主线先补“比较、敏感性、混杂、最终边界、discovery 继续 gated”这五个缺口，entrant expansion 只保留为受控支线。**
 
 下次进来应直接做：
 
@@ -35,7 +35,7 @@
    - `敏感性`
    - `混杂`
    - `最终边界`
-   - `discovery 交付物`
+   - `discovery 继续 gated`
    - 直接执行入口：`docs/next_phase_execution_checklist_v1.md`
 8. 如果继续推进写作，只优先做：
    - 把现有几份 note 压成最终主文稿的一版统一叙事
@@ -172,8 +172,8 @@ discovery 仍然保留，但当前应后置。
 - 比较：fuller HCC model comparison 的最终主文稿整合
 - 敏感性：sensitivity full closure（当前仍是 partial / preliminary snapshot）
 - 混杂：covariate balance closure（当前已完成第一轮多轴审计与对象级降级治理，但仍是剩余方法学风险）
-- discovery：phenotype shifter formal deliverable
-- 最终边界：终局 claim boundary 的正式收口
+- 最终边界：终局 claim boundary 与 `final claim matrix -> manuscript wording` 的正式收口
+- discovery：继续保持 phenotype shifter 为 `gated_downstream_layer`
 
 当前不能把这些未闭环项写成“Stage 2 complete”或“Stage 3 complete”。
 
@@ -182,8 +182,8 @@ discovery 仍然保留，但当前应后置。
 1. 比较：推进 fuller HCC model comparison 的最终整合
 2. 敏感性：完成 sensitivity full closure
 3. 混杂：完成 covariate balance closure
-4. 最终边界：完成终局 claim boundary 收口
-5. discovery：明确 phenotype shifter 是否进入正式交付
+4. 最终边界：完成 `final claim matrix -> manuscript wording` 的全量同步
+5. discovery：继续保持 phenotype shifter 为 `gated_downstream_layer`，不提前进入 formal deliverable
 
 ## 9. Explicit Non-Goals for the Current Phase
 
@@ -218,7 +218,7 @@ discovery 仍然保留，但当前应后置。
 - `README.md`：仓库入口，说明当前 active framing、最近一步与 claim boundaries。
 - `plan.md`：当前执行优先级，不展开长期制度。
 - `docs/protocol_blueprint.md`：truth-first 长期蓝图，保留 `Stage 1A / 1B / 2 / 3` 编号但重排主线。
-- `docs/next_phase_execution_note_v1.md`：下一阶段“比较、敏感性、混杂、discovery 交付物、最终边界”五项缺口的正式执行口径。
+- `docs/next_phase_execution_note_v1.md`：下一阶段“比较、敏感性、混杂、最终边界、discovery 继续 gated”五项缺口的正式执行口径。
 - `docs/next_phase_execution_checklist_v1.md`：把比较、敏感性、混杂三条线压成一页可直接执行的清单。
 - `docs/project_state_summary_v1.md`：当前项目已进入“主张治理稳定化”阶段的阶段性摘要。
 - `docs/finalization_punchlist_v1.md`：下次一次性完成当前项目收口的最终执行清单。
