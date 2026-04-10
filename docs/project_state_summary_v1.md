@@ -49,6 +49,8 @@
 - 这不是因为缺少分析框架
 - 而是因为缺少更深层实验设计元数据来继续做 deconfounding
 
+需要补充的是，sensitivity 线当前已不再停留在“formal interval 不可引用”的阶段。`control subsampling` 已完成 `24/24` 配置重复数并达到 `formal_interval_citable = true`；因此 sensitivity 当前剩余的主缺口，已主要收缩到 covariate closure 仍未 fully closed 这一点。
+
 当前混杂线已经从“单轴提示性审计”推进到“多轴、配置驱动、可汇总输出”的状态：`num_umis_quantile_bin` 与 `num_umis_over_threshold_bin` 都已经进入正式 covariate audit 入口。但这一步解决的是**把风险显式量化并纳入边界治理**，不是把混杂风险宣布为 fully closed。
 
 这两件事必须分开理解：

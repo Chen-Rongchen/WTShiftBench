@@ -47,7 +47,7 @@
 
 ### 3.2 敏感性
 
-当前状态：**已有大半材料，但 formal closure 仍未完成。**
+当前状态：**主支柱与 formal interval 已基本到位，但 full closure 仍未完成。**
 
 现有入口：
 
@@ -60,15 +60,15 @@
 
 - `anchor cutoff stability` 已足够支持主支柱锚点的保守写法
 - `axis bootstrap stability` 已足够支持“formal axis evidence 很有限”的边界
-- `control subsampling` 对多数 shift-based 指标给出正向稳定信号
+- `control subsampling` 对多数 shift-based 指标给出正向稳定信号，且 formal interval 当前已可正式引用
 - `DEG burden` 仍更敏感，应继续保留为辅助层
-- 未跑满 sensitivity replicates 前，禁止写 formal interval claim
+- 当前 sensitivity 的剩余主缺口，已主要收缩到 covariate closure 仍未 fully closed
 
 当前动作：
 
 - 先按“已关闭 / 剩余风险 / limitation”三分法写入主文稿
-- 继续把 sensitivity repeat 跑满到配置重复数
-- 未完成前，不升级为 robustness fully established
+- 将 formal interval 结果并入 manuscript-ready wording
+- 在 covariate 未 fully closed 前，不升级为 robustness fully established
 
 ### 3.3 混杂
 

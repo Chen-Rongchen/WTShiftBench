@@ -53,11 +53,11 @@
 
 ### 4.2 敏感性
 
-当前 sensitivity 仍然只是 partial / preliminary snapshot。
+当前 sensitivity 已不再只是 partial snapshot；主支柱与 control subsampling formal interval 已基本到位，但 full closure 仍未完成。
 
 下一阶段需要做的不是再泛泛提“敏感性存在”，而是决定：
 
-- 哪些 sensitivity 已经足够关闭
+- 哪些 sensitivity 已经足够关闭并可正式引用
 - 哪些 sensitivity 仍是实质风险
 - 哪些 sensitivity 只能降级写成 remaining limitation
 
