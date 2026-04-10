@@ -4,7 +4,7 @@
 
 这份文档只做一件事：
 
-**把“比较、敏感性、混杂、最终边界、discovery 交付物”五个缺口，压成一页可直接执行的清单。**
+**把“比较、敏感性、混杂、最终边界、discovery 继续 gated”五个缺口，压成一页可直接执行的清单。**
 
 它不重写已有结果；entrant expansion 若继续，只能作为 frozen contract 下的次级执行线。
 
@@ -119,7 +119,7 @@
 - 以 claim matrix 为统一口径源继续压主文稿
 - 后续若有新方法学结果，先更新 claim matrix，再改正文措辞
 
-### 3.5 discovery 交付物
+### 3.5 discovery 继续 gated
 
 当前状态：**仍处于 gating，而不是正式 mainline。**
 
@@ -130,11 +130,11 @@
 当前判断：
 
 - discovery 现在还不能直接写成 formal deliverable
-- 只有在比较、敏感性、混杂、最终边界都足够清楚后，才有资格决定是否进入主线交付
+- 只有在比较、敏感性、混杂、最终边界都足够清楚后，才有资格重新评估
 
 当前动作：
 
-- 暂时固定为 downstream application layer
+- 继续固定为 `gated_downstream_layer`
 - 不提前升级为当前阶段 primary deliverable
 
 ## 4. 推荐执行顺序
@@ -143,7 +143,7 @@
 2. 把敏感性收成正式 closure note
 3. 完成 covariate balance 审计与混杂收口
 4. 固定最终 claim boundary
-5. 再决定 discovery 是否进入正式交付
+5. 最后只确认 discovery 继续保持 gated
 
 ## 5. 现在直接看什么
 

@@ -10,7 +10,7 @@
 
 更重要的是，这一 backbone gap 当前不能再简单归因于 entrant 尚未正式接入。到目前为止，`GEARS / scGPT / Geneformer / lm_train_lowrank / lm_G_scgpt_ridge / lm_G_geneformer_ridge` 均已进入同一份 HCC formal comparison，两条 embedding ablation control 也已经实现 `1.000` target coverage。当前更稳的解释是：HCC task 中的 `canonical backbone` 本身具有很强的 shared component，因此 `shared_mean_baseline` 已经是一个很强的 backbone estimator；相比之下，复杂 entrant 所学习到的额外能力更倾向于 `structure/context separation`、`shift-excess identification` 或 context-sensitive deviation，而这些优势并未稳定转化为更强的 backbone recovery。与此一致，`lm_G_scgpt_ridge` 与 `lm_G_geneformer_ridge` 的 backbone failure 都更接近 `direction`，说明当前 gap 更像是 backbone 主方向恢复偏弱，而不是单纯的幅度不足。
 
-因此，若后续仍要继续推进这条解释线，更稳的默认拆法也不再是重复问“模型为什么打不过 baseline”，而是先把两个更小的问题钉死：`baseline winner` 是否主要由 shared backbone objective 决定，以及 entrant 的额外能力是否稳定落在 `separation / deviation` 而不是 backbone 上。在这两点没有进一步收紧前，biology-facing explanation 仍不应升级成主结论。
+因此，若后续仍要继续推进这条解释线，更稳的默认口径也不再是重复问“模型为什么打不过 baseline”，而是先把两个更小的问题钉死：`baseline winner` 是否主要由 shared backbone objective 决定，以及 entrant 的额外能力是否稳定落在 `separation / deviation` 而不是 backbone 上。在这两点没有进一步收紧前，biology-facing explanation 仍不应升级成主结论。
 
 更短的 Results-style 写法可以直接固定为：后续对 baseline-vs-model gap 的推进应优先聚焦于两个方法学问题，即 `baseline winner` 是否主要由 shared backbone objective 决定，以及 entrant gain 是否主要落在 `separation / deviation` 而非 backbone；在此之前，biology-facing explanation 仍只应保留为 plausible interpretation。
 

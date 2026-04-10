@@ -19,7 +19,7 @@ WT Benchmark 是一个 **truth-first** 的 virtual perturbation benchmark 与分
 
 - `GEARS` 已经作为 strongest formal entrant 跑完 `HCC38 / HCC1143` 的真实 HCC smoke
 - `Geneformer` 与三条 linear controls 都已完成第一轮 HCC formal comparison
-- 当前最核心未关闭问题不是再接 entrant，而是如何把比较、敏感性、混杂、Dixit supplementary 与最终边界写成统一收口
+- 当前最核心未关闭问题不是再接 entrant，而是如何把比较、敏感性、混杂、`final claim matrix -> manuscript wording` 同步，以及 discovery 继续 gated，写成统一收口
 
 当前最稳的项目表述是：
 
@@ -34,14 +34,15 @@ WT Benchmark 是一个 **truth-first** 的 virtual perturbation benchmark 与分
 
 如果你下次进来只想知道“直接做什么”，固定顺序就是：
 
-1. `docs/project_state_summary_v1.md`
-2. `docs/final_claim_boundary_and_discovery_gating_note_v1.md`
-3. `docs/why_models_do_not_stably_beat_baseline_v1.md`
-4. `docs/model_vs_baseline_deeper_explanation_note_v1.md`
-5. `docs/model_vs_baseline_next_step_breakdown_v1.md`
-6. `docs/main_manuscript_integrated_narrative_draft_v1.md`
-7. `docs/main_manuscript_results_draft_v1.md`
-8. `docs/current_closeout_commit_note_v1.md`
+1. `docs/formal_closeout_single_entry_v1.md`
+2. `docs/project_state_summary_v1.md`
+3. `docs/final_claim_boundary_and_discovery_gating_note_v1.md`
+4. `docs/why_models_do_not_stably_beat_baseline_v1.md`
+5. `docs/model_vs_baseline_deeper_explanation_note_v1.md`
+6. `docs/model_vs_baseline_next_step_breakdown_v1.md`
+7. `docs/main_manuscript_integrated_narrative_draft_v1.md`
+8. `docs/main_manuscript_results_draft_v1.md`
+9. `docs/current_closeout_commit_note_v1.md`
 
 ## 3. 当前项目结构
 
@@ -99,8 +100,8 @@ discovery / phenotype shifter。它仍保留在 roadmap 中，但当前不是 pr
 - 比较
 - 敏感性
 - 混杂
-- discovery 交付物
 - 最终边界
+- discovery 继续 gated
 
 其中，混杂线当前已经从“只有第一轮单轴提示”推进到“多轴、配置驱动、可汇总输出”的正式审计入口；但这不应被误写成 fully closed。更准确的说法是：**covariate risk 已完成第一轮治理并进入 claim boundary，同步受限于现有实验设计元数据上限。**
 
@@ -128,8 +129,8 @@ discovery / phenotype shifter。它仍保留在 roadmap 中，但当前不是 pr
    - `比较`
    - `敏感性`
    - `混杂`
-   - `discovery 交付物`
    - `最终边界`
+   - `discovery 继续 gated`
 4. 直接执行入口：
    - `docs/next_phase_execution_checklist_v1.md`
 5. 如果目标是一次性收口当前项目，直接执行：
@@ -201,7 +202,8 @@ python scripts/stage2_dixit_axis_compression.py
 - `docs/protocol_blueprint.md`：长期蓝图，保留 `Stage 1A / 1B / 2 / 3` 编号，但按 truth-first 主线重排。
 - `docs/main_manuscript_integrated_narrative_draft_v1.md`：把当前各条结果 note 压成统一主文稿叙事的整合草案。
 - `docs/main_manuscript_results_draft_v1.md`：更接近论文正文 `Results` 风格的压缩版本。
-- `docs/next_phase_execution_note_v1.md`：下一阶段“比较、敏感性、混杂、discovery 交付物、最终边界”五项缺口的正式执行口径。
+- `docs/formal_closeout_single_entry_v1.md`：当前正式收口的单页总入口，压缩唯一主线、五项缺口、禁写边界与默认阅读顺序。
+- `docs/next_phase_execution_note_v1.md`：下一阶段“比较、敏感性、混杂、最终边界、discovery 继续 gated”五项缺口的正式执行口径。
 - `docs/next_phase_execution_checklist_v1.md`：把比较、敏感性、混杂三条线压成一页执行清单的近端入口。
 - `docs/project_state_summary_v1.md`：当前项目已进入“主张治理稳定化”阶段的阶段性摘要。
 - `docs/finalization_punchlist_v1.md`：下次一次性完成主文稿收口、入口统一与边界冻结的最终清单。
