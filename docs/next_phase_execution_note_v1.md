@@ -88,7 +88,7 @@
 - 哪些必须明确写成 supplementary / downstream
 - 哪些仍然不能写成“model recovery has been demonstrated”
 
-这一项决定的是整篇主文稿最后能写到哪里为止；当前更具体的动作，是把 `final claim matrix` 全量同步到 manuscript-ready wording、摘要式写法与入口文档。
+这一项决定的是整篇主文稿最后能写到哪里为止；当前更具体的动作，是把 `final claim matrix` 持续同步到 manuscript-ready wording、摘要式写法与入口文档。
 
 ### 4.5 discovery 继续 gated
 
@@ -145,4 +145,4 @@ discovery / phenotype shifter 现在仍不能直接写成 formal deliverable。
 
 ## 7. 一句话收口
 
-下一阶段的目标不是继续扩模型，而是把当前已经拿到的结构化结果真正补齐成一个可关闭、可防守、可进入 formal deliverable 的项目结论。
+下一阶段的目标不是继续扩模型，而是把当前已经拿到的结构化结果真正补齐成一套可防守、可持续同步、但仍承认部分方法学缺口尚未 fully closed 的项目结论。

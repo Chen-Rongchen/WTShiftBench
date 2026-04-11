@@ -1,0 +1,66 @@
+{
+  "stage": "stage2_hcc_prediction_contract",
+  "version": 1,
+  "scope": "stage2_hcc_model_side_adjudication",
+  "cell_lines": [
+    "HCC38",
+    "HCC1143"
+  ],
+  "prediction_space": "stage2_truth_aligned_log_shift",
+  "normalization_applied_in_export": true,
+  "log1p_applied_in_export": true,
+  "reference_definition": "in-dataset pooled control baseline",
+  "required_first_column": "target_gene",
+  "target_universe_source": "reports/stage2_truth_driven_bridge/master_atlas/shared_target_axis_membership.tsv",
+  "gene_space_source": "reports/stage2_truth_driven_bridge/master_atlas/shared_target_axis_membership.tsv",
+  "target_axis": "rows",
+  "gene_axis": "columns",
+  "target_order_rule": "must_align_to_frozen_architecture_target_order",
+  "gene_order_rule": "must_align_to_axis_member_gene_order",
+  "missing_target_policy": {
+    "allow_missing_targets": false
+  },
+  "missing_gene_policy": {
+    "allow_missing_genes": false
+  },
+  "extra_target_policy": {
+    "allow_extra_targets": true,
+    "alignment_behavior": "ignore_extra_targets_not_in_frozen_architecture"
+  },
+  "extra_gene_policy": {
+    "allow_extra_genes": true,
+    "alignment_behavior": "ignore_extra_genes_not_in_axis_member_gene_space"
+  },
+  "output_paths": {
+    "raw_prediction_root": "data/predictions/stage2_hcc_raw/<model_id>/<cell_line>/",
+    "aligned_prediction_path": "data/predictions/stage2_hcc_aligned/<model_id>/<cell_line>/predicted_shift_aligned.tsv.gz",
+    "scorer_ready_prediction_path": "data/predictions/stage2_hcc_scorer_ready/<model_id>/<cell_line>/predicted_shift.tsv.gz",
+    "manifest_path": "reports/stage2_hcc_prediction_contract/<model_id>/<cell_line>/prediction_manifest.json",
+    "validation_summary_path": "reports/stage2_hcc_prediction_validation/<model_id>/<cell_line>/validation_summary.json"
+  },
+  "required_manifest_fields": [
+    "stage",
+    "cell_line",
+    "model_id",
+    "model_version",
+    "prediction_space",
+    "normalization_applied_in_export",
+    "log1p_applied_in_export",
+    "source_kind",
+    "object_role",
+    "export_script",
+    "export_timestamp",
+    "input_prediction_path",
+    "aligned_prediction_path",
+    "scorer_ready_prediction_path",
+    "target_universe_source",
+    "gene_space_source",
+    "allow_missing_targets",
+    "allow_missing_genes",
+    "contract_pass"
+  ],
+  "notes": {
+    "stage2_truth_space_governs_stage2_model_side": true,
+    "stage1a_x_pseudobulk_delta_is_not_imposed_on_stage2": true
+  }
+}

@@ -6,7 +6,7 @@ platforms = ["linux-64"]
 
 [activation.env]
 PYTHONNOUSERSITE = "1"
-# 使 `from stage1a_catalog` 在 `python -m scripts.*` 下也可用（模块在 scripts/stage1a_catalog.py）
+# 使脚本可直接导入仓库内的 scripts/ 与 src/ 模块
 PYTHONPATH = ".:scripts:src"
 
 # ============================================================
@@ -182,83 +182,8 @@ cmd = "pixi run --environment core versions-core && pixi run --environment gears
 description = "打印所有环境版本信息"
 
 # ============================================================
-# Tasks: Stage 1A 主链路任务（仅在 core 环境）
+# Tasks: Stage 2 / manuscript 主链路任务
 # ============================================================
-[tasks.load-stage1a]
-cmd = "python scripts/load_stage1a_pertpy.py"
-description = "加载 Stage 1A 数据"
-
-[tasks.formal-filter-stage1a]
-cmd = "python scripts/formal_filter_stage1a.py"
-description = "筛选符合条件的数据"
-
-[tasks.render-stage1a-formal-registry]
-cmd = "python scripts/render_stage1a_formal_registry.py"
-description = "渲染正式注册表"
-
-[tasks.analyze-stage1a-pseudobulk-eligibility]
-cmd = "python scripts/analyze_stage1a_pseudobulk_eligibility.py"
-description = "分析假体数据资格"
-
-[tasks.freeze-stage1a-formal-inputs]
-cmd = "python scripts/freeze_stage1a_formal_inputs.py"
-description = "冻结正式输入数据"
-
-[tasks.run-stage1a-formal-freeze-mainline]
-cmd = "python -m scripts.stage1a.benchmark_invariant.formal.run_formal_freeze_mainline"
-description = "运行 Stage 1A benchmark-invariant formal 主线"
-
-[tasks.run-stage1a-truth-space-mainline]
-cmd = "python -m scripts.stage1a.benchmark_invariant.truth_space.run_truth_space_mainline"
-description = "运行 Stage 1A benchmark-invariant truth/evaluation-space 主线"
-
-[tasks.build-stage1a-pseudobulk-delta-truth]
-cmd = "python scripts/build_stage1a_pseudobulk_delta_truth.py"
-description = "构建假体增量真值"
-
-[tasks.freeze-stage1a-truth]
-cmd = "python scripts/freeze_stage1a_truth.py"
-description = "冻结真值数据"
-
-[tasks.build-stage1a-evaluation-space]
-cmd = "python scripts/build_stage1a_evaluation_space.py"
-description = "构建评估空间"
-
-[tasks.build-stage1a-main-aligned-baselines-nulls]
-cmd = "python scripts/build_stage1a_main_aligned_baselines_nulls.py"
-description = "构建基线空值"
-
-[tasks.run-stage1a-truth-to-render-mainline]
-cmd = "python scripts/run_stage1a_truth_to_render_mainline.py"
-description = "兼容入口：共享 truth-space 后执行 scoring"
-
-[tasks.run-stage1a-batch-truth-to-render-mainline]
-cmd = "python scripts/run_stage1a_batch_truth_to_render_mainline.py"
-description = "兼容入口：共享 truth-space 后批量执行 scoring"
-
-[tasks.run-stage1a-scoring-pipeline]
-cmd = "python -m scripts.stage1a.benchmark_invariant.scoring.run_scoring_pipeline"
-description = "运行 Stage 1A benchmark-invariant scoring"
-
-[tasks.run-stage1a-batch-scoring-pipeline]
-cmd = "python -m scripts.stage1a.benchmark_invariant.scoring.run_batch_scoring_pipeline"
-description = "批量运行 Stage 1A benchmark-invariant scoring"
-
-[tasks.run-stage1a-baseline-ladder-smoke]
-cmd = "python -m scripts.stage1a.benchmark_invariant.scoring.run_baseline_ladder_smoke"
-description = "执行 Stage 1A baseline ladder 的最小 smoke"
-
-[tasks.run-stage1a-three-models-pipeline]
-cmd = "python scripts/run_stage1a_three_models_pipeline.py"
-description = "formal freeze 起：三模型×三数据集预测 + 批量 scoring（需已完成 formal-filter）"
-
-[tasks.build-stage1a-all-datasets-eval-matrix]
-cmd = "python scripts/build_stage1a_all_datasets_eval_matrix.py"
-description = "物化 Stage 1A 全数据集评测矩阵配置，并输出 readiness 审计"
-
-[tasks.build-stage1a-all-datasets-readiness-assets]
-cmd = "python scripts/build_stage1a_all_datasets_readiness_assets.py"
-description = "补齐 all-datasets 评测矩阵的 candidate truth registry、formal-like h5ad 与 comparators"
 
 [tasks.build-stage2-truth-driven-bridge]
 cmd = "python scripts/build_stage2_truth_driven_bridge.py --config configs/stage2/truth_driven_bridge_hcc38_hcc1143_v1.json"
@@ -271,111 +196,3 @@ description = "Stage 2 truth bridge：HCC38 + HCC1143 + Dixit（同参数，输�
 [tasks.run-stage2-truth-bridge-sensitivity]
 cmd = "python scripts/run_stage2_truth_bridge_sensitivity.py --config configs/stage2/truth_bridge_sensitivity_v1.json"
 description = "Stage 2 truth bridge：control 子抽样、DEG 阈值扫描等敏感性分析"
-
-[tasks.run-stage1a-all-datasets-pipeline]
-cmd = "python scripts/run_stage1a_all_datasets_pipeline.py --ready-only"
-description = "按 readiness 已闭合的数据集批量执行全数据集评测矩阵"
-
-[tasks.run-stage1a-all-datasets-pipeline-dry-run]
-cmd = "python scripts/run_stage1a_all_datasets_pipeline.py --ready-only --dry-run"
-description = "只打印全数据集评测矩阵将执行的命令"
-
-[tasks.run-stage1a-all-datasets-pipeline-pending]
-cmd = "python scripts/run_stage1a_all_datasets_pipeline.py --ready-only --skip-build --pending-only"
-description = "只运行当前缺少 dataset_score_summary 的全数据集评测任务"
-
-[tasks.run-stage1a-all-datasets-pipeline-gears]
-cmd = "python scripts/run_stage1a_all_datasets_pipeline.py --ready-only --skip-build --pending-only --adapter gears --runs-per-batch 1"
-description = "按单任务分片运行 GEARS 的 ready 数据集评测"
-
-[tasks.run-stage1a-all-datasets-pipeline-scgpt]
-cmd = "python scripts/run_stage1a_all_datasets_pipeline.py --ready-only --skip-build --pending-only --adapter scgpt --runs-per-batch 2"
-description = "按小批次运行 scGPT 的 ready 数据集评测"
-
-[tasks.run-stage1a-all-datasets-pipeline-geneformer]
-cmd = "python scripts/run_stage1a_all_datasets_pipeline.py --ready-only --skip-build --pending-only --adapter geneformer --runs-per-batch 2"
-description = "按小批次运行 Geneformer 的 ready 数据集评测"
-
-[tasks.run-stage1a-all-datasets-pipeline-official-formal]
-cmd = "python scripts/run_stage1a_all_datasets_pipeline.py --ready-only --skip-build --pending-only --tier official_formal --runs-per-batch 1"
-description = "只运行 official formal 三个数据集的未完成评测"
-
-[tasks.summarize-stage1a-all-datasets-vs-baseline]
-cmd = "python scripts/summarize_stage1a_all_datasets_vs_baseline.py"
-description = "汇总全数据集评测矩阵结果，并判断是否打过 mean_shift_baseline"
-
-[tasks.summarize-stage1a-all-datasets-vs-baseline-evaluated]
-cmd = "python scripts/summarize_stage1a_all_datasets_vs_baseline.py --evaluated-only"
-description = "只汇总已完成 evaluation 的全数据集结果"
-
-[tasks.summarize-stage1a-all-datasets-vs-baseline-official-formal]
-cmd = "python scripts/summarize_stage1a_all_datasets_vs_baseline.py --tier official_formal --evaluated-only --output-suffix official_formal"
-description = "只汇总 official formal 三个数据集的已完成结果"
-
-[tasks.summarize-stage1a-all-datasets-vs-baseline-gears]
-cmd = "python scripts/summarize_stage1a_all_datasets_vs_baseline.py --model-id gears_stage1a_formal --evaluated-only --output-suffix gears"
-description = "只汇总 GEARS 的已完成结果"
-
-[tasks.ingest-stage1a-model-predictions]
-cmd = "python -m scripts.stage1a.benchmark_invariant.scoring.ingest_predictions"
-description = "运行 benchmark-invariant ingest"
-
-[tasks.evaluate-stage1a-predictions]
-cmd = "python -m scripts.stage1a.benchmark_invariant.scoring.evaluate_predictions"
-description = "运行 benchmark-invariant evaluate"
-
-[tasks.render-stage1a-pass-skeleton]
-cmd = "python -m scripts.stage1a.benchmark_invariant.scoring.render_pass_skeleton"
-description = "运行 benchmark-invariant render"
-
-[tasks.build-stage1a-mock-predictions]
-cmd = "python -m scripts.stage1a.benchmark_invariant.scoring.build_mock_predictions"
-description = "构建 Stage 1A mock 预测"
-
-[tasks.materialize-stage1a-inner-splits-seed101]
-cmd = "python scripts/materialize_stage1a_inner_splits.py --config configs/entrants/stage1a_inner_split_3datasets_seed101.json"
-description = "物化 Stage 1A 单种子 inner split"
-
-[tasks.materialize-stage1a-inner-splits-5seeds]
-cmd = "python scripts/materialize_stage1a_inner_splits.py --config configs/entrants/stage1a_inner_split_3datasets_5seeds.json"
-description = "物化 Stage 1A 五种子 inner split"
-
-[tasks.run-stage1a-inner-val-matrix-seed101-dry-run]
-cmd = "python scripts/run_stage1a_smoke_matrix.py --config configs/entrants/stage1a_smoke_matrix_3datasets_seed101.json --dry-run"
-description = "预览 Stage 1A 单种子 inner validation 矩阵命令"
-
-[tasks.run-stage1a-inner-val-matrix-seed101]
-cmd = "python scripts/run_stage1a_smoke_matrix.py --config configs/entrants/stage1a_smoke_matrix_3datasets_seed101.json"
-description = "运行 Stage 1A 单种子 inner validation 矩阵"
-
-[tasks.run-stage1a-inner-val-matrix-5seeds-dry-run]
-cmd = "python scripts/run_stage1a_smoke_matrix.py --config configs/entrants/stage1a_smoke_matrix_3datasets_5seeds.json --dry-run"
-description = "预览 Stage 1A 五种子 inner validation 矩阵命令"
-
-[tasks.run-stage1a-inner-val-matrix-5seeds]
-cmd = "python scripts/run_stage1a_smoke_matrix.py --config configs/entrants/stage1a_smoke_matrix_3datasets_5seeds.json"
-description = "运行 Stage 1A 五种子 inner validation 矩阵"
-
-[tasks.audit-stage1a-inner-val-seed101]
-cmd = "python scripts/audit_stage1a_inner_val_runs.py --config configs/entrants/stage1a_smoke_matrix_3datasets_seed101.json --output-dir artifacts/audits/stage1a_inner_val_seed101"
-description = "审计 Stage 1A 单种子 inner validation 产物"
-
-[tasks.audit-stage1a-inner-val-5seeds]
-cmd = "python scripts/audit_stage1a_inner_val_runs.py --config configs/entrants/stage1a_smoke_matrix_3datasets_5seeds.json --output-dir artifacts/audits/stage1a_inner_val_5seeds"
-description = "审计 Stage 1A 五种子 inner validation 产物"
-
-[tasks.run-stage1a-inner-val-pipeline-seed101]
-cmd = "python scripts/run_stage1a_inner_val_pipeline.py --config configs/entrants/stage1a_inner_val_pipeline_seed101.json"
-description = "执行 Stage 1A 单种子 inner validation 收口流水线"
-
-[tasks.run-stage1a-inner-val-pipeline-5seeds]
-cmd = "python scripts/run_stage1a_inner_val_pipeline.py --config configs/entrants/stage1a_inner_val_pipeline_5seeds.json"
-description = "执行 Stage 1A 五种子 inner validation 收口流水线"
-
-[tasks.run-stage1a-supplement-entrants]
-cmd = "python scripts/run_stage1a_supplement_entrants.py"
-description = "统一运行当前 supplement entrant 池"
-
-[tasks.summarize-stage1a-supplement-entrants]
-cmd = "python scripts/summarize_stage1a_supplement_entrants.py"
-description = "汇总当前 supplement entrant 池结果"

@@ -66,7 +66,7 @@
 
 需要补充的是，当前 covariate audit 已经进一步表明：`structural stability` 与 `covariate cleanliness` 不能混写。也就是说，这四个对象当前更准确的角色是 `structurally stable anchors`，而不是已经 fully deconfounded 的最强对象级证据。其中，`PFDN5` 最多只能写成 `primary_but_qualified`；`PMF1`、`PRPF6` 与 `ZNF131` 则应明确写成 `supporting_only`，不再承担 anchor-level strongest wording。
 
-更重要的是，当前混杂线的正式状态应被写成：**已完成第一轮多轴 covariate audit，并据此完成对象级降级治理，但 full closure 仍受实验设计元数据上限约束。** 这一步支持的是 claim governance 的稳定化，而不是把 stable anchors 升级回 fully deconfounded objects。
+更重要的是，当前混杂线的正式状态应被写成：**已完成第一轮多轴 covariate audit，并据此完成对象级降级治理，但 full closure 仍受实验设计元数据上限约束。** 更细一点说，当前已有五条 covariate 轴正式落盘：一条 `barcode_gem_group` design-proxy 轴、两条 protospacer 轴与两条 transcriptome 轴；其中，`barcode_gem_group` 当前只确认到 `HCC38 -> aggrMH001-3` 与 `HCC1143 -> aggrMH004-6`，不能继续上写成单个 `MH00x` 已确认的 run-level 标签。风险已治理进边界，但这一步仍不足以把 stable anchors 升级回 fully deconfounded objects。
 
 第二层是 `axis-level explanatory structure`。这一层当前证据明显更保守：
 
@@ -153,6 +153,7 @@
 - 把 `GEARS` 写成已经整体压过 `shared_mean_baseline`
 - 把 `truth–DepMap bridge` 写成已经全面建立的 shared explanatory architecture
 - 把 stable shared anchors 写成已经 fully deconfounded 的 strongest evidence
+- 把 `barcode_gem_group` 写成已经唯一解析到单个 `MH001...MH006` 的 run-level covariate
 - 把多数 frozen axes 写成同等级、同稳健性的正式闭环
 - 把 `Dixit/K562` 写成与 HCC 并列的 primary biological conclusion
 - 把 `Stage 1A / 1B` 写回只服务 leaderboard / stress test，或反过来写成新的 truth-discovery 层
@@ -171,7 +172,7 @@
 
 ## 9. 可直接进入主文的总收口段
 
-综合当前结果，我们认为本项目已经完成从“现象级相关”到“分层化结构证据”的第一轮收口。首先，在模型侧，`GEARS` 已完成 HCC primary adjudication，其结果更适合被解释为 `architecture trade-off diagnosis`，而不是继续扩模或继续调参的起点；同时，`scGPT / Geneformer / linear controls` 的并入进一步表明，当前 backbone gap 更像是 task structure 与 entrant inductive bias 之间的错位，而不是接入错误或 coverage 缺口。其次，在 truth-side bridge 层，`truth–DepMap bridge` 已不再只是整体相关现象，而是可进一步分解为少数跨 cutoff 稳定的 `target-level anchors` 与有限的 `axis-level formal evidence`；其中，当前可进入更强写法的对象只包括 `PFDN5 = primary_but_qualified` 与 `transcription / chromatin = primary_axis_but_qualified`，而 `PMF1 / PRPF6 / ZNF131` 以及多数其余 axis 仍应保留在 `supporting_only`、supporting、unstable 或 preliminary 层级。当前 covariate audit 进一步提示，这些 anchor 代表的是 `structural stability`，而不是统一意义上的 `fully deconfounded strongest evidence`。第三，frozen axis 已完成第一轮 `annotation + validation + tiering`，从而形成了一套部分得到支持的轴级解释框架，但当前证据仍不足以支撑 `fully established shared explanatory architecture` 的更强主张。第四，`Dixit/K562` 提供了 supplementary external structure replication，支持 architecture existence 在外部 context 中具有一定可复制性，但其 dominant macro-class remains context-specific，因而不能被提升为与 HCC 并列的 primary conclusion。最后，`Stage 1A / 1B` 当前不再只是 leaderboard 与时间外推 stress test，而应被重新解释为 frozen truth architecture 下的 failure decomposition track，用于说明模型究竟丢掉了哪类结构、这些 failure mode 是否在更长时间尺度上进一步放大。整体而言，本阶段最重要的进展不是信号数量的增加，而是 evidence tier、claim strength 与 model-failure explanation 的成功对齐，从而使主结论更加清晰、可信且可防守。
+综合当前结果，我们认为本项目已经完成从“现象级相关”到“分层化结构证据”的第一轮收口。首先，在模型侧，`GEARS` 已完成 HCC primary adjudication，其结果更适合被解释为 `architecture trade-off diagnosis`，而不是继续扩模或继续调参的起点；同时，`scGPT / Geneformer / linear controls` 的并入进一步表明，当前 backbone gap 更像是 task structure 与 entrant inductive bias 之间的错位，而不是接入错误或 coverage 缺口。其次，在 truth-side bridge 层，`truth–DepMap bridge` 已不再只是整体相关现象，而是可进一步分解为少数跨 cutoff 稳定的 `target-level anchors` 与有限的 `axis-level formal evidence`；其中，当前可进入更强写法的对象只包括 `PFDN5 = primary_but_qualified` 与 `transcription / chromatin = primary_axis_but_qualified`，而 `PMF1 / PRPF6 / ZNF131` 以及多数其余 axis 仍应保留在 `supporting_only`、supporting、unstable 或 preliminary 层级。当前 covariate audit 进一步提示，这些 anchor 代表的是 `structural stability`，而不是统一意义上的 `fully deconfounded strongest evidence`；与此同时，`barcode_gem_group` 现已固定写成更接近实验设计 aggregation 结构的 design-proxy axis，而不是单个 `MH00x` 已确认的 run-level covariate。第三，frozen axis 已完成第一轮 `annotation + validation + tiering`，从而形成了一套部分得到支持的轴级解释框架，但当前证据仍不足以支撑 `fully established shared explanatory architecture` 的更强主张。第四，`Dixit/K562` 提供了 supplementary external structure replication，支持 architecture existence 在外部 context 中具有一定可复制性，但其 dominant macro-class remains context-specific，因而不能被提升为与 HCC 并列的 primary conclusion。最后，`Stage 1A / 1B` 当前不再只是 leaderboard 与时间外推 stress test，而应被重新解释为 frozen truth architecture 下的 failure decomposition track，用于说明模型究竟丢掉了哪类结构、这些 failure mode 是否在更长时间尺度上进一步放大。整体而言，本阶段最重要的进展不是信号数量的增加，而是 evidence tier、claim strength 与 model-failure explanation 的成功对齐，从而使主结论更加清晰、可信且可防守。
 
 ## 10. 渐进披露
 

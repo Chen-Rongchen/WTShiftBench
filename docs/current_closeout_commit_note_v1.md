@@ -31,10 +31,11 @@
 - [`docs/main_manuscript_results_draft_v1.md`](/home/data/gz0705/WTKO/docs/main_manuscript_results_draft_v1.md)
 - [`docs/stage2_sensitivity_full_closure_note_v1.md`](/home/data/gz0705/WTKO/docs/stage2_sensitivity_full_closure_note_v1.md)
 - [`docs/stage2_covariate_balance_closure_note_v1.md`](/home/data/gz0705/WTKO/docs/stage2_covariate_balance_closure_note_v1.md)
+- [`docs/stage2_truth_bridge_integrated_result_v1.md`](/home/data/gz0705/WTKO/docs/stage2_truth_bridge_integrated_result_v1.md)
 - [`docs/next_phase_execution_note_v1.md`](/home/data/gz0705/WTKO/docs/next_phase_execution_note_v1.md)
 - [`docs/next_phase_execution_checklist_v1.md`](/home/data/gz0705/WTKO/docs/next_phase_execution_checklist_v1.md)
 - [`docs/finalization_punchlist_v1.md`](/home/data/gz0705/WTKO/docs/finalization_punchlist_v1.md)
-- [`docs/repository_map.md`](/home/data/gz0705/WTKO/docs/repository_map.md)
+- [`scripts/README.md`](/home/data/gz0705/WTKO/scripts/README.md)
 - [`docs/current_closeout_commit_note_v1.md`](/home/data/gz0705/WTKO/docs/current_closeout_commit_note_v1.md)
 
 如果要把“下一阶段启动入口”和“entrant expansion 交接文档”也一起带上，再使用**扩展提交集**。扩展集可在最小提交集基础上继续加入：
@@ -61,6 +62,7 @@ docs: finalize closeout boundary and baseline gap next steps
 
 ```text
 - unify README/plan/manuscript/boundary docs to final claim matrix wording
+- keep `final claim matrix -> manuscript wording` as an ongoing sync, not a one-shot closeout
 - split baseline-vs-model follow-up into two smaller methodology-facing questions
 - freeze anchor/axis/discovery/Dixit wording at the current claim boundary
 - sync sensitivity/covariate limitations to the final closeout wording

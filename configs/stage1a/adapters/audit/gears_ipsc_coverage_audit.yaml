@@ -1,5 +1,0 @@
-dataset_id: tian_2019_day7neuron
-model_id: gears_stage1a_formal
-formal_h5ad_path: data/processed/stage1a/formal_filtered/tian_2019_day7neuron.h5ad
-eligibility_root: reports/stage1a/pseudobulk_eligibility
-output_root: reports/stage1a_audit/gears_coverage_audit

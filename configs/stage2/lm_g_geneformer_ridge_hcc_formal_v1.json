@@ -1,0 +1,48 @@
+{
+  "stage": "stage2_hcc_lm_g_geneformer_ridge_recipe",
+  "version": 1,
+  "dataset_role": "candidate_stage2_linear_control",
+  "entrant_id": "lm_G_geneformer_ridge",
+  "entrant_version": "lm_g_geneformer_ridge_hcc_formal_v1",
+  "model_id": "lm_g_geneformer_ridge_hcc_formal_v1",
+  "model_family": "linear_ridge_external_feature",
+  "claim_scope": "lm_G_geneformer_ridge HCC Stage 2 linear control 的第一版正式 recipe。当前冻结 control identity、feature source、closed-form 线性解与 export contract；用于 explanation-oriented control，不用于 primary winner claim。",
+  "checkpoint_registry_ref": "configs/stage2/checkpoint_registry_v1.yaml",
+  "checkpoint_key": "geneformer_gf_12l_95m_i4096",
+  "stage2_truth_config_path": "configs/stage2/truth_driven_bridge_hcc38_hcc1143_v1.json",
+  "stage2_contract_path": "configs/stage2/hcc_prediction_contract_v1.json",
+  "axis_membership_path": "reports/stage2_truth_driven_bridge/master_atlas/shared_target_axis_membership.tsv",
+  "feature_registry_ref": "configs/stage2/feature_registry_v1.json",
+  "feature_id": "geneformer_gene_embedding_gc104m",
+  "asset_root": "models/pretrained/geneformer_assets/geneformer",
+  "cell_lines": [
+    "HCC38",
+    "HCC1143"
+  ],
+  "input_space_description": "运行时从 Geneformer checkpoint 与 asset_root 解析 target embedding，并在 Stage 2 truth delta 上执行 leave-one-target-out 线性 ridge 闭式解。",
+  "output_space_description": "model-native raw output 必须先导出到 stage2_truth_aligned_log_shift，再进入 scorer-ready prediction contract；当前不允许直接把 model-native output 喂给 scorer。",
+  "preprocessing_identity": {
+    "target_feature_source": "geneformer_checkpoint_embedding_runtime_lookup",
+    "target_feature_family": "pretrained_gene_embedding",
+    "gene_mapping": "gene_symbol_to_ensembl_to_geneformer_token",
+    "heldout_input_policy": "do_not_use_heldout_target_delta_as_training_input"
+  },
+  "adapter_identity": {
+    "adapter_type": "linear_ridge_external_feature_closed_form",
+    "trainable_components": "closed_form_linear_map_only",
+    "backbone_freeze": true
+  },
+  "fallback_policy": {
+    "unmapped_heldout_target": "fallback_to_train_mean_delta_for_unmapped_heldout",
+    "coverage_audit_required": true,
+    "coverage_floor": 0.8
+  },
+  "output_roots": {
+    "raw_prediction_root": "data/predictions/stage2_lm_g_geneformer_ridge_raw",
+    "report_root": "reports/stage2_lm_g_geneformer_ridge_hcc_recipe"
+  },
+  "runtime": {
+    "n_components": 32,
+    "ridge_lambda": 0.1
+  }
+}

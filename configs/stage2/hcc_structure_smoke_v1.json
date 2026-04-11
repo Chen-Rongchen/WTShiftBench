@@ -1,0 +1,6 @@
+{
+  "description": "Stage 2 HCC structure scorer smoke。只验证 scorer contract，不替代真实 entrant adjudication。",
+  "truth_contract_path": "reports/stage2_truth_driven_bridge/truth_architecture_contract/truth_architecture_contract.tsv",
+  "axis_membership_path": "reports/stage2_truth_driven_bridge/master_atlas/shared_target_axis_membership.tsv",
+  "output_dir": "reports/stage2_model_structure_smoke"
+}
