@@ -2,6 +2,7 @@
   "datasets": [
     {
       "cell_line": "dixit_2016_raw__control_context",
+      "dataset_role": "supplementary",
       "depmap_model_id": "ACH-000551",
       "source_kind": "h5ad_obs",
       "h5ad_path": "data/processed/stage1a/candidate_formal_like/dixit_2016_raw__control_context.h5ad"
@@ -17,6 +18,7 @@
   },
   "filters": {
     "single_feature_only": true,
+    "allow_degraded_unverified_single_perturbation": false,
     "control_target_prefix": "intergenic_chr_",
     "min_target_cells": 20,
     "min_control_cells": 200

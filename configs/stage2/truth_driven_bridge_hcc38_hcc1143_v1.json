@@ -2,6 +2,7 @@
   "datasets": [
     {
       "cell_line": "HCC38",
+      "dataset_role": "primary",
       "depmap_model_id": "ACH-000276",
       "matrix_path": "data/GSE241115/GSM7716951_matrix_HCC38_aggrMH001-3.mtx.gz",
       "barcodes_path": "data/GSE241115/GSM7716951_barcodes_HCC38_aggrMH001-3.tsv.gz",
@@ -10,6 +11,7 @@
     },
     {
       "cell_line": "HCC1143",
+      "dataset_role": "primary",
       "depmap_model_id": "ACH-000374",
       "matrix_path": "data/GSE241115/GSM7716952_matrix_HCC1143_aggrMH004-6.mtx.gz",
       "barcodes_path": "data/GSE241115/GSM7716952_barcodes_HCC1143_aggrMH004-6.tsv.gz",
@@ -27,6 +29,7 @@
   },
   "filters": {
     "single_feature_only": true,
+    "allow_degraded_unverified_single_perturbation": false,
     "control_target_prefix": "intergenic_chr_",
     "min_target_cells": 20,
     "min_control_cells": 200

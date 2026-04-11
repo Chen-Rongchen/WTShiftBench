@@ -32,7 +32,12 @@ reports/
 logs/
 
 # Large benchmark data
-data/
+data/*
+!data/stage2/
+data/stage2/*
+!data/stage2/features/
+data/stage2/features/*
+!data/stage2/features/gene_symbol_chargram_v1.tsv.gz
 data/raw/
 data/processed/
 data/predictions/
@@ -43,8 +48,12 @@ data/audit/
 
 # Local model assets
 models/pretrained/
+depmap/
 
 # Result bundles
 results/
+
+# Reference PDFs
+*.pdf
 
 # Keep repo docs/configs/code only

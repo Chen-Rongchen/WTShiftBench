@@ -1,9 +1,0 @@
-dataset_id: replogle_2022_k562_essential
-model_id: mock_truth_plus_noise
-prediction_path: data/predictions/stage1a_mock_raw/mock_truth_plus_noise/replogle_2022_k562_essential/predicted_shift.tsv.gz
-prediction_space: X_pseudobulk_delta
-output_path: data/predictions/stage1a_main_aligned/mock_truth_plus_noise/replogle_2022_k562_essential/predicted_shift_aligned.tsv.gz
-summary_path: reports/stage1a/prediction_alignment/mock_truth_plus_noise/replogle_2022_k562_essential/alignment_summary.json
-manifest_path: reports/stage1a/prediction_alignment/mock_truth_plus_noise/replogle_2022_k562_essential/alignment_manifest.json
-allow_missing_targets: true
-allow_missing_genes: true

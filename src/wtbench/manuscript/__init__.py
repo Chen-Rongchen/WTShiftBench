@@ -1,0 +1,1 @@
+"""Manuscript figure rendering utilities."""

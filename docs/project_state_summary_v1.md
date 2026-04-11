@@ -15,6 +15,8 @@
 - `discovery` 已被成功压回 `gated_downstream_layer`
 - 后续若想继续推进 full closure，主要瓶颈不再是分析框架不足，而是可用实验设计元数据的上限
 
+工程状态也已经同步收口：旧 Stage 1A smoke / freeze / scoring 顶层流程、旧 entrant registry、旧处理后数据和旧 Stage 1A 测试已从当前工作树清理。`scripts/stage1a/` 只保留 Stage 2 入口仍直接复用的 adapter / feature helper；`configs/stage2/` 现在承载当前 registry 与 recipe，`configs/stage1a/` 与 `configs/entrants/` 不再是当前入口。
+
 ## 2. 当前最稳的项目状态标签
 
 当前最稳的一句话状态是：
@@ -46,12 +48,15 @@
 - `covariate closure` 仍不是最终闭环
 - `sensitivity full closure` 仍不是最终闭环
 - `final claim matrix -> manuscript wording` 仍需持续同步到所有入口文档
+- discovery 仍未进入 formal deliverable
 - 这不是因为缺少分析框架
 - 而是因为缺少更深层实验设计元数据来继续做 deconfounding
 
 需要补充的是，sensitivity 线当前已不再停留在“formal interval 不可引用”的阶段。`control subsampling` 已完成 `24/24` 配置重复数并达到 `formal_interval_citable = true`；因此 sensitivity 当前剩余的主缺口，已主要收缩到 covariate closure 仍未 fully closed 这一点。
 
-当前混杂线已经从“单轴提示性审计”推进到“多轴、配置驱动、可汇总输出”的状态：`num_umis_quantile_bin` 与 `num_umis_over_threshold_bin` 都已经进入正式 covariate audit 入口。但这一步解决的是**把风险显式量化并纳入边界治理**，不是把混杂风险宣布为 fully closed。
+当前混杂线已经从“单轴提示性审计”推进到“多轴、配置驱动、可汇总输出”的状态：`barcode_gem_group`、`num_umis_quantile_bin`、`num_umis_over_threshold_bin`、`transcriptome_total_signal_quantile_bin` 与 `transcriptome_detected_genes_quantile_bin` 都已经进入正式 covariate audit 入口。但这一步解决的是**把风险显式量化并纳入边界治理**，不是把混杂风险宣布为 fully closed。
+
+更准确地说，当前状态应写成：五条 covariate 轴已落盘、风险已治理进边界；其中 `barcode_gem_group` 已固定为 design-proxy axis，但主张层面仍不能写成 `fully deconfounded`。
 
 这两件事必须分开理解：
 
@@ -59,6 +64,13 @@
 - 后者是“证据天花板到了”
 
 当前项目更接近后者。
+
+因此，本阶段应明确接受四条现实边界：
+
+- 接受 `design-proxy` 是当前最终口径，不再等待升级
+- 接受 covariate 线当前不会到 `fully clean`
+- 接受论文必须带着这条 limitation 写
+- 接受“是否开始写论文”的门槛应改成文稿与边界是否稳定，而不是数据是否完美
 
 与此同时，model-side entrant 状态也已经从“只有 `GEARS` 进入正式 HCC 裁决”推进到“`GEARS + scGPT + Geneformer + 三条 linear controls` 已进入同一份 HCC comparison”。当前新增 entrant / control 并没有推翻主结论，只是把 entrant family 的第一轮位置明确出来：`Geneformer` 强于 `scGPT`，`lm_g_geneformer_ridge` 能保住一部分 backbone，但当前没有任何对象改写 `shared_mean_baseline` 仍是 backbone primary reference 这一点。
 
@@ -81,7 +93,7 @@
 
 ### 5.3 方法学边界层
 
-现有 covariate closure 受限于仓库中可用的实验设计元数据范围。若无新增元数据源，后续最合理的推进方向应是完成 `claim matrix`、`evidence tier synchronization` 与 manuscript-ready wording，而非无停止规则地继续扩展 covariate 审计轴。当前更准确的口径应是：**混杂风险已完成第一轮多轴治理，但仍受元数据上限约束。**
+现有 covariate closure 受限于仓库中可用的实验设计元数据范围。若无新增元数据源，后续最合理的推进方向应是完成 `claim matrix`、`evidence tier synchronization` 与 manuscript-ready wording，而非无停止规则地继续扩展 covariate 审计轴。当前更准确的口径应是：**混杂风险已完成第一轮多轴治理，但仍受元数据上限约束；其中 `barcode_gem_group` 只能写成 design-proxy axis，而不是单个 `MH00x` 已确认的 run-level covariate。**
 
 `Dixit/K562` 在这一边界下也应固定写成 `supplementary external structure replication`：它支持 architecture-level / structure-level replication，但不支持 `model generalization proved`，也不支持与 HCC 对称的 primary conclusion。
 
@@ -103,6 +115,19 @@
 5. [`docs/model_vs_baseline_next_step_breakdown_v1.md`](/home/data/gz0705/WTKO/docs/model_vs_baseline_next_step_breakdown_v1.md)
 6. [`docs/main_manuscript_integrated_narrative_draft_v1.md`](/home/data/gz0705/WTKO/docs/main_manuscript_integrated_narrative_draft_v1.md)
 7. [`docs/main_manuscript_results_draft_v1.md`](/home/data/gz0705/WTKO/docs/main_manuscript_results_draft_v1.md)
+
+若审查的是“项目整体是否合理”，默认按以下顺序读：
+
+1. [`plan.md`](/home/data/gz0705/WTKO/plan.md)
+2. [`docs/protocol_blueprint.md`](/home/data/gz0705/WTKO/docs/protocol_blueprint.md)
+3. [`docs/project_state_summary_v1.md`](/home/data/gz0705/WTKO/docs/project_state_summary_v1.md)
+4. [`docs/main_manuscript_results_draft_v1.md`](/home/data/gz0705/WTKO/docs/main_manuscript_results_draft_v1.md)
+5. [`docs/manuscript_figure_blueprint_v1.md`](/home/data/gz0705/WTKO/docs/manuscript_figure_blueprint_v1.md)
+6. [`docs/final_claim_boundary_and_discovery_gating_note_v1.md`](/home/data/gz0705/WTKO/docs/final_claim_boundary_and_discovery_gating_note_v1.md)
+7. [`docs/stage2_fuller_hcc_model_comparison_note_v1.md`](/home/data/gz0705/WTKO/docs/stage2_fuller_hcc_model_comparison_note_v1.md)
+8. [`docs/stage2_covariate_balance_closure_note_v1.md`](/home/data/gz0705/WTKO/docs/stage2_covariate_balance_closure_note_v1.md)
+9. [`docs/stage2_dixit_supplementary_evidence_tier_v1.md`](/home/data/gz0705/WTKO/docs/stage2_dixit_supplementary_evidence_tier_v1.md)
+10. [`scripts/README.md`](/home/data/gz0705/WTKO/scripts/README.md) 与 [`configs/README.md`](/home/data/gz0705/WTKO/configs/README.md)
 
 ## 8. 一句话收口
 

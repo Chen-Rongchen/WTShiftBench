@@ -7,6 +7,38 @@ from pathlib import Path
 
 from wtbench.stage2_truth_bridge import load_config, load_depmap_endpoint, resolve_path
 from wtbench.stage2_truth_sensitivity import load_sensitivity_config, run_all_sensitivity_analyses
+from scripts.run_stage2_covariate_audit import write_covariate_outputs
+
+
+def write_sensitivity_report(report_root: Path, summary) -> None:
+    configured = int(summary["configured_replicates"].max()) if not summary.empty else 0
+    completed = int(summary["completed_replicates"].max()) if not summary.empty else 0
+    formal = bool(summary["formal_interval_citable"].all()) if not summary.empty else False
+    claim_status = (
+        "formal_interval_citable"
+        if formal
+        else "partial_preliminary_snapshot"
+    )
+    lines = [
+        "# Stage 2 Truth Bridge Sensitivity",
+        "",
+        "## 状态",
+        "",
+        f"- configured_replicates = `{configured}`",
+        f"- completed_replicates = `{completed}`",
+        f"- formal_interval_citable = `{str(formal).lower()}`",
+        f"- sensitivity_claim_status = `{claim_status}`",
+        "",
+        "## 解释边界",
+        "",
+    ]
+    if formal:
+        lines.append("- 当前 control subsampling 已达到配置重复次数，可正式引用区间/分位数结果。")
+    else:
+        lines.append("- 当前仅为 partial / preliminary sensitivity snapshot。")
+        lines.append("- 未跑满 configured replicates 前，禁止输出正式 interval claim。")
+        lines.append("- 未跑满 configured replicates 前，禁止写 robustness range established。")
+    (report_root / "sensitivity_report.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
 def main() -> None:
@@ -51,8 +83,9 @@ def main() -> None:
     if cov:
         cov_dir = report_root / "covariate_balance"
         cov_dir.mkdir(parents=True, exist_ok=True)
-        for cell_line, frame in cov.items():
-            frame.to_csv(cov_dir / f"{cell_line}_target_control_balance.tsv", sep="\t", index=False)
+        write_covariate_outputs(cov_dir, cov)
+
+    write_sensitivity_report(report_root, out["control_subsample_summary"])
 
     print("Stage 2 truth bridge 敏感性分析完成。")
     print(f"- {report_root}")

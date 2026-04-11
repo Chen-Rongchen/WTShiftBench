@@ -4,14 +4,16 @@ WT Benchmark 是一个 **truth-first** 的 virtual perturbation benchmark 与分
 
 ## 1. 这个仓库现在在做什么
 
-这个仓库最初围绕 `Stage 1A / 1B / 2 / 3` 设计，原始路线并没有被废弃。但当前 active framing 已经重排为 truth-first：先做 truth architecture discovery，再做 model recovery adjudication，再把 `Stage 1A / 1B` 重新解释为 failure decomposition，discovery 则后置为 downstream layer。
+这个仓库最初围绕 `Stage 1A / 1B / 2 / 3` 设计。当前 active framing 已经重排为 truth-first：先做 truth architecture discovery，再做 model recovery adjudication，再把 `Stage 1A / 1B` 重新解释为 failure decomposition，discovery 则后置为 downstream layer。
 
-因此，这个仓库现在同时承载两类东西：
+因此，这个仓库现在主要承载两类东西：
 
-- benchmark-invariant 的 `Stage 1A / 1B` 基础设施与 entrant evaluation 资产
 - `Stage 2` 的 truth-driven bridge、master atlas、structure replication 与 explanation boundary 产物
+- 论文主文与补充图的 evidence governance / claim boundary 文档
 
 当前已经冻结的是 **truth-side architecture objects**；当前已经闭环的是 **GEARS strongest formal entrant 的真实 HCC smoke adjudication 与有限 backbone sweep**；当前最近一步是 **把 `scGPT / Geneformer / lm_train_lowrank / lm_G_scgpt_ridge / lm_G_geneformer_ridge` 都正式接入 HCC Stage 2，完成双 cell line raw output、export、contract validation 与 smoke comparison，并把 Dixit supplementary 入口补成 config-driven startup packet**。与此同时，truth-side 结果层已经进一步收束为：**truth–DepMap bridge decomposition + cutoff sensitivity / bootstrap stability + evidence tiering + SCP542 boundary + Dixit supplementary external structure replication**。
+
+旧 Stage 1A smoke / freeze / scoring 顶层流程、旧 entrant registry 与旧处理后数据已经从当前工作树清理；原始下载数据仍保留在 `data/raw`。`scripts/stage1a/` 仅保留 Stage 2 入口仍复用的少量 helper，不再作为独立主流程入口维护。
 
 ## 2. 一眼先看这里
 
@@ -19,7 +21,30 @@ WT Benchmark 是一个 **truth-first** 的 virtual perturbation benchmark 与分
 
 - `GEARS` 已经作为 strongest formal entrant 跑完 `HCC38 / HCC1143` 的真实 HCC smoke
 - `Geneformer` 与三条 linear controls 都已完成第一轮 HCC formal comparison
-- 当前最核心未关闭问题不是再接 entrant，而是如何把比较、敏感性、混杂、`final claim matrix -> manuscript wording` 同步，以及 discovery 继续 gated，写成统一收口
+- 当前最核心未关闭问题不是再接 entrant，而是如何把比较、敏感性、混杂、`final claim matrix -> manuscript wording` 持续同步，以及 discovery 继续 gated，写成统一收口
+
+如果你下次进来只想知道“先看哪里就够”，固定只看这三个入口：
+
+1. `reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/summary.tsv`
+2. `README.md`
+3. `plan.md`
+
+这三个入口之外，当前不需要先扩读其他材料；默认先用它们刷新方法学状态，再决定是否继续下钻。
+
+如果你是为了审查“整个项目现在是否合理”，按这个顺序读：
+
+1. `plan.md`
+2. `docs/protocol_blueprint.md`
+3. `docs/project_state_summary_v1.md`
+4. `docs/main_manuscript_results_draft_v1.md`
+5. `docs/manuscript_figure_blueprint_v1.md`
+6. `docs/final_claim_boundary_and_discovery_gating_note_v1.md`
+7. `docs/stage2_fuller_hcc_model_comparison_note_v1.md`
+8. `docs/stage2_covariate_balance_closure_note_v1.md`
+9. `docs/stage2_dixit_supplementary_evidence_tier_v1.md`
+10. `scripts/README.md` 与 `configs/README.md`
+
+最短审查路径是：`plan.md`、`docs/protocol_blueprint.md`、`docs/main_manuscript_results_draft_v1.md`、`docs/final_claim_boundary_and_discovery_gating_note_v1.md`。这四个读下来如果闭环，项目主体就基本稳定；其余文档用于审查具体证据边界。
 
 当前最稳的项目表述是：
 
@@ -40,19 +65,40 @@ WT Benchmark 是一个 **truth-first** 的 virtual perturbation benchmark 与分
 4. `docs/why_models_do_not_stably_beat_baseline_v1.md`
 5. `docs/model_vs_baseline_deeper_explanation_note_v1.md`
 6. `docs/model_vs_baseline_next_step_breakdown_v1.md`
-7. `docs/main_manuscript_integrated_narrative_draft_v1.md`
-8. `docs/main_manuscript_results_draft_v1.md`
-9. `docs/current_closeout_commit_note_v1.md`
+7. `docs/manuscript_figure_blueprint_v1.md`
+8. `docs/main_manuscript_integrated_narrative_draft_v1.md`
+9. `docs/main_manuscript_results_draft_v1.md`
+10. `docs/current_closeout_commit_note_v1.md`
+
+如果你下次进来只想知道“方法学本体下一步做什么”，直接记这一版：
+
+1. 先打开 `reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/summary.tsv`
+2. 确认当前已落盘 5 条 covariate 轴：
+   - `barcode_gem_group`
+   - `num_umis_quantile_bin`
+   - `num_umis_over_threshold_bin`
+   - `transcriptome_total_signal_quantile_bin`
+   - `transcriptome_detected_genes_quantile_bin`
+3. 当前默认判断：
+   - `barcode_gem_group` 是更接近实验设计 aggregation 结构的代理轴，且整体更轻
+   - 但它没有改写 anchor tier
+   - 当前仍不能写成 `fully deconfounded`
+4. 因此，下一步只优先做一件事：
+   - 这条追查现已收口：当前能确认 `HCC38 -> aggrMH001-3`、`HCC1143 -> aggrMH004-6`，但仍不能把 `-1/-2/-3` 唯一写成单个 `MH00x`
+5. 在这件事完成前，不继续扩 discovery，不新增 entrant
+6. 因此当前正式口径固定为：
+   - `barcode_gem_group = design-proxy axis`
+   - 不是已确认到单个 `MH00x` 的 run-level label
 
 ## 3. 当前项目结构
 
 ### Stage 1A
 
-short-horizon formal benchmark。它仍然负责 short-horizon 的 formal benchmark infrastructure，但当前更重要的角色是为后续 structure-aware failure decomposition 提供入口，而不只是给出 leaderboard。
+当前不再作为独立执行主线维护。它在主文叙事中保留为 short-horizon failure decomposition 的解释层，工程上只保留 Stage 2 仍直接复用的少量 helper。
 
 ### Stage 1B
 
-long-horizon generalization / stress test。它保留原有编号与制度角色，但当前更适合被理解为 temporal structure degradation 与 failure decomposition 的延伸层。
+long-horizon generalization / stress test 的概念层仍保留在 roadmap 中，但当前不作为近端执行入口。它更适合被理解为 temporal structure degradation 与 failure decomposition 的延伸层。
 
 ### Stage 2
 
@@ -79,7 +125,7 @@ discovery / phenotype shifter。它仍保留在 roadmap 中，但当前不是 pr
 - real HCC smoke（`null < shared_mean_baseline`）：已成立
 - GEARS strongest formal entrant：已完成 `HCC38 / HCC1143` raw output、export、validation 与 real smoke
 - 当前正式 blocker：不是“GEARS 还能不能再调一轮就赢”，而是如何把 `GEARS trade-off diagnosis`、`truth bridge evidence tiers`、`final claim matrix` 与 `frozen axis annotation / validation` 收成同一套正式主文档口径
-- discovery：尚未成为当前 formal mainline
+- discovery：尚未成为当前 formal mainline，也还不能写成 formal deliverable
 
 ## 5. 当前 active question
 
@@ -119,30 +165,41 @@ discovery / phenotype shifter。它仍保留在 roadmap 中，但当前不是 pr
 
 当前不要回到 truth-side，也不要继续加模型。下次进来应直接做：
 
-1. 先看当前已经收口的三个结果：
-   - `reports/stage2_gears_backbone_sweep/final_adjudication.md`
-   - `docs/stage2_truth_bridge_integrated_result_v1.md`
-   - `docs/stage2_axis_annotation_result_v1.md`
-2. 再看下一阶段执行口径：
-   - `docs/next_phase_execution_note_v1.md`
-3. 下一阶段只优先做：
-   - `比较`
-   - `敏感性`
-   - `混杂`
+1. 先看当前最近一次方法学推进的正式产物：
+   - `reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/summary.tsv`
+   - `docs/stage2_covariate_balance_closure_note_v1.md`
+   - `docs/stage2_sensitivity_full_closure_note_v1.md`
+2. 记住当前方法学状态：
+   - 5 条 covariate 轴已落盘
+   - `barcode_gem_group` 已作为设计层代理轴进入正式审计
+   - `PFDN5 = primary_but_qualified`
+   - `PMF1 / PRPF6 / ZNF131 = supporting_only`
+   - `final_claim_matrix.tsv` 当前不改 tier，只继续同步 wording
+3. 下一步只优先做：
+   - 不再继续追查 `barcode_gem_group -> MH00x` 的单个 run 映射
+   - 直接把当前 `barcode_gem_group` 固定写成 design-proxy axis
+   - 把这条边界持续同步到 `final claim matrix -> manuscript wording`
+4. 然后再做：
    - `最终边界`
+   - `main manuscript wording` 持续同步
    - `discovery 继续 gated`
-4. 直接执行入口：
+5. 直接执行入口：
    - `docs/next_phase_execution_checklist_v1.md`
-5. 如果目标是一次性收口当前项目，直接执行：
-   - `docs/finalization_punchlist_v1.md`
-   - `docs/current_closeout_commit_note_v1.md`
-6. 明确仍不做：
+   - `docs/final_claim_boundary_and_discovery_gating_note_v1.md`
+   - `reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.md`
+6. 如果下次进来是为了直接推进论文图片，固定顺序是：
+   - `docs/manuscript_figure_blueprint_v1.md`
+   - `docs/main_manuscript_results_draft_v1.md`
+   - `reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv`
+   - `s41592-025-02772-6.pdf`
+7. 明确仍不做：
    - 新 entrant
    - 新 truth object
    - 新评分体系
    - 无停止规则的继续调参
+   - 在 design-layer mapping 未更清楚前继续扩 discovery
 
-当前不要再把更多 entrant 无边界拉进主线。foundation-model entrant 与第一层 linear controls 都已完成接入；下一步更像是解释层与写作收口，而不是继续扩对象。
+当前不要再把更多 entrant 无边界拉进主线。foundation-model entrant 与第一层 linear controls 都已完成接入；下一步是把 covariate closure 再往前推半步，并把 manuscript 入口维持在同一套边界上。
 
 ### 直接运行
 
@@ -200,6 +257,7 @@ python scripts/stage2_dixit_axis_compression.py
 - `README.md`：仓库入口，说明现在在做什么、当前 active framing 是什么。
 - `plan.md`：当前执行优先级，强调最近一步与未闭环项。
 - `docs/protocol_blueprint.md`：长期蓝图，保留 `Stage 1A / 1B / 2 / 3` 编号，但按 truth-first 主线重排。
+- `docs/manuscript_figure_blueprint_v1.md`：投稿主图蓝图，规定 truth-first 主图顺序、panel 结构、数据源与讲故事方法。
 - `docs/main_manuscript_integrated_narrative_draft_v1.md`：把当前各条结果 note 压成统一主文稿叙事的整合草案。
 - `docs/main_manuscript_results_draft_v1.md`：更接近论文正文 `Results` 风格的压缩版本。
 - `docs/formal_closeout_single_entry_v1.md`：当前正式收口的单页总入口，压缩唯一主线、五项缺口、禁写边界与默认阅读顺序。

@@ -1,4 +1,0 @@
-run_configs:
-  - configs/stage1a/adapters/formal/geneformer_embedding_kernel_formal/replogle_2022_k562_essential.yaml
-  - configs/stage1a/adapters/formal/geneformer_embedding_kernel_formal/replogle_2022_rpe1.yaml
-  - configs/stage1a/adapters/formal/geneformer_embedding_kernel_formal/tian_2019_day7neuron.yaml

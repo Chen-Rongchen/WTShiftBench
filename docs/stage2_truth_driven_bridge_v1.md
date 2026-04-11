@@ -17,12 +17,13 @@
 - **与主线相同 filters/metrics**、且并入 **Dixit**（h5ad）的配置：`configs/stage2/truth_driven_bridge_hcc38_hcc1143_dixit_v1.json` — 产出写入 **同一** `data/processed/stage2_truth_driven_bridge` 与 `reports/stage2_truth_driven_bridge`，并多出 `dixit_2016_raw__control_context` 子目录；跨线一致性为 **逐对** inner join（三数据集时共三对）。
 - CLI：`scripts/build_stage2_truth_driven_bridge.py --config <上述 JSON>`
 - `pixi`：`build-stage2-truth-driven-bridge`（主线） / `build-stage2-truth-driven-bridge-with-dixit`（含 Dixit）
-- supplementary `dixit`（K562 / `ACH-000551`）配置：`configs/stage2/truth_driven_bridge_dixit_k562_supplement.json`；formal-like 自 `data/raw/stage1a/candidates/dixit_2016_raw.h5ad` 经 `scripts/build_stage1a_candidate_formalization.py`（`dixit_context` + `subset_condition: Control`）写出，含 **NO_SITE / non-gene** 等对照（`is_control`）与单扰动细胞；**勿与 HCC 主线并列作主结论**，仅 supplement。
+- supplementary `dixit`（K562 / `ACH-000551`）配置：`configs/stage2/truth_driven_bridge_dixit_k562_supplement.json`；当前输入固定为 `data/processed/stage1a/candidate_formal_like/dixit_2016_raw__control_context.h5ad`，含 **NO_SITE / non-gene** 等对照（`is_control`）与单扰动细胞；**勿与 HCC 主线并列作主结论**，仅 supplement。
 
 ## 关键实现约定
 
 - 主键固定为 `cell_line × target_gene`
 - 只使用 `num_features == 1` 的单扰动细胞
+- 单扰动约束是 **formal protocol 不变量**：对非 control 细胞，必须有显式证据证明其为单扰动；若输入缺少 `is_single_perturbation` / `num_features==1` 之类证据，则默认 **fail-fast**，仅在显式打开 degraded 开关时才允许继续，并必须写入 provenance
 - `intergenic_chr_*` 固定作为同 cell line control proxy
 - `HCC38` 与 `HCC1143` 先各自独立汇总，再做跨 cell line 一致性
 - `gene effect` 与 `gene dependency` 并列输出，不预设单一主轴
@@ -49,6 +50,7 @@
 | 主支柱 | `real_shift_L2`、`real_shift_mean_abs` | 转录位移强度的直接、稳健摘要 |
 | 补充支柱 | `real_Edistance` | 分布层面 complement（不只看均值） |
 | 敏感性 / 辅助 | `real_DEG_burden` | 依赖阈值，宜作敏感性或补充，**不当主桥主证据** |
+| 探索性 | `real_shift_top20_mean`、`real_shift_top50_mean`、`real_shift_top100_mean`、`real_shift_top50_concentration` | 仅 appendix / supplement 使用，**不得自动进入主结论** |
 
 **定义**
 
@@ -56,6 +58,12 @@
 - `real_shift_mean_abs`：target mean shift 的逐基因绝对值均值
 - `real_Edistance`：target cells 与 control cells 在 log-normalized expression SVD embedding 上的 energy distance
 - `real_DEG_burden`：满足表达下限且 `abs(delta)` 超过阈值的基因数
+
+**aligned 方向约定**
+
+- 对 `depmap_gene_effect`：`aligned > 0` 表示 truth metric 越高，gene effect 越负
+- 对 `depmap_gene_dependency`：`aligned > 0` 表示 truth metric 越高，gene dependency 越高
+- 分组比较中的 `aligned_effect_direction > 0` 表示 **high truth 组** 更符合各自 endpoint 的桥接方向
 
 ## mtx_protospacer 路径：矩阵方向与归一化（一次性约定）
 
@@ -74,6 +82,8 @@
 3. **可选协变量审计**：在配置中按 `cell_line` 提供 `covariates`（TSV：`cell_barcode` + 分层列），输出各 target 与 control 在该分层上的 **total variation distance**；无外部 metadata 时可为空。
 
 **输出目录**：`reports/stage2_truth_driven_bridge/sensitivity/`（`control_subsample_*.tsv`、`deg_threshold_sweep.tsv`、可选 `covariate_balance/`）。
+
+**状态同步约定**：敏感性产物必须显式写出 `configured_replicates`、`completed_replicates`、`formal_interval_citable`；当 `completed < configured` 时，只能表述为 **partial / preliminary sensitivity snapshot**，不得输出正式 interval claim。
 
 **性能**：每个 cell line 只做 **一次** `prepare_bridge_inputs`（含 SVD）；总耗时仍随 `n_replicates` 与 target 数近似线性增长，完整配置可能需数十分钟量级，属预期。
 

@@ -20,6 +20,8 @@ Run: pixi run python scripts/stage2_dixit_axis_compression.py
 """
 
 import json
+import os
+import argparse
 from pathlib import Path
 
 import numpy as np
@@ -28,15 +30,56 @@ from scipy import stats
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
 
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_CONFIG_PATH = PROJECT_ROOT / "configs/stage2/dixit_k562_structure_replication_v1.json"
+
+
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(description="运行 Stage 2 Dixit/K562 supplementary structure replication。")
+    parser.add_argument("--config", default=str(DEFAULT_CONFIG_PATH))
+    return parser
+
+
+def resolve_path(path_str: str) -> Path:
+    path = Path(path_str)
+    if path.is_absolute():
+        return path
+    return PROJECT_ROOT / path
+
+
+def load_recipe(path: Path) -> dict[str, object]:
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+ARGS = build_parser().parse_args()
+RECIPE = load_recipe(resolve_path(str(ARGS.config)))
+
 # ── paths ──────────────────────────────────────────────────────────────────
-BRIDGE_TABLE = Path("data/processed/stage2_truth_driven_bridge/dixit_2016_raw__control_context/target_level_bridge_table.tsv.gz")
-HCC_ATLAS    = Path("reports/stage2_truth_driven_bridge/master_atlas/shared_target_master_atlas.tsv")
-HCC_AXIS_SUM = Path("reports/stage2_truth_driven_bridge/master_atlas/axis_summary_macro.tsv")
-OUT_DIR      = Path("reports/stage2_truth_driven_bridge/dixit_axis_compression")
+BRIDGE_TABLE = Path(os.environ.get(
+    "WTKO_DIXIT_BRIDGE_TABLE",
+    str(RECIPE["bridge_table_path"]),
+))
+HCC_ATLAS = Path(os.environ.get(
+    "WTKO_DIXIT_HCC_ATLAS",
+    str(RECIPE.get("hcc_master_atlas_path", "reports/stage2_truth_driven_bridge/master_atlas/shared_target_master_atlas.tsv")),
+))
+HCC_AXIS_SUM = Path(os.environ.get(
+    "WTKO_DIXIT_HCC_AXIS_SUM",
+    str(RECIPE.get("hcc_macro_axis_summary_path", "reports/stage2_truth_driven_bridge/master_atlas/axis_summary_macro.tsv")),
+))
+HCC_FINE_SUM = Path(os.environ.get(
+    "WTKO_DIXIT_HCC_FINE_SUM",
+    str(RECIPE["hcc_fine_axis_summary_path"]),
+))
+OUT_DIR = Path(os.environ.get(
+    "WTKO_DIXIT_OUT_DIR",
+    str(RECIPE["output_dir"]),
+))
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
-PRIMARY_Y = "real_shift_mean_abs"
-PRIMARY_X = "depmap_gene_effect"
+PRIMARY_Y = os.environ.get("WTKO_DIXIT_PRIMARY_Y", "real_shift_mean_abs")
+PRIMARY_X = os.environ.get("WTKO_DIXIT_PRIMARY_X", "depmap_gene_effect")
 
 # Macro architecture categories (comparable across HCC and K562)
 MACRO_CATEGORIES = [
@@ -515,7 +558,7 @@ for k, v in dixit_rows_annotated.items():
     print(f"  {k}: {v}")
 
 # Load HCC axis summary — use same architecture role assignment as K562
-hcc_fine = pd.read_csv(Path("reports/stage2_truth_driven_bridge/master_atlas/axis_summary_fine.tsv"), sep="\t")
+hcc_fine = pd.read_csv(HCC_FINE_SUM, sep="\t")
 
 # Infer architecture_role using the SAME rule as K562:
 # backbone: max(Q1_HCC38, Q1_HCC1143) >= 0.5
@@ -592,3 +635,185 @@ print("  dixit_master_atlas.tsv")
 print("  dixit_axis_membership.tsv")
 print("  dixit_axis_summary.tsv")
 print("  dixit_structure_replication_summary.tsv")
+
+
+def build_evidence_tier_summary(axis_summary: pd.DataFrame, comparison: pd.DataFrame) -> pd.DataFrame:
+    comparison_map = comparison.set_index("comparison_field")["K562_Dixit"].to_dict()
+    rows: list[dict[str, object]] = [
+        {
+            "object_type": "dataset_level",
+            "object_id": "architecture_existence",
+            "observed_pattern": "canonical_backbone_present=True; shift_excess_present=True",
+            "evidence_tier": "supplementary_confirmed",
+            "claim_boundary": "支持 supplementary-level architecture existence，不支持 shared mainline architecture",
+        },
+        {
+            "object_type": "dataset_level",
+            "object_id": "canonical_backbone_present",
+            "observed_pattern": "external backbone-like structure detected",
+            "evidence_tier": "supplementary_confirmed",
+            "claim_boundary": "支持 backbone existence，不支持 backbone macro class 与 HCC 相同",
+        },
+        {
+            "object_type": "dataset_level",
+            "object_id": "shift_excess_present",
+            "observed_pattern": "shift-excess structure detected in K562",
+            "evidence_tier": "supplementary_supporting",
+            "claim_boundary": "支持存在性，不支持 dominant shift-excess macro class 已稳定命名",
+        },
+        {
+            "object_type": "dataset_level",
+            "object_id": "backbone_macro_class",
+            "observed_pattern": str(comparison_map.get("backbone macro class", "unknown")),
+            "evidence_tier": "supplementary_supporting",
+            "claim_boundary": "支持 context-specific backbone replication，不支持与 HCC backbone macro class 对齐",
+        },
+        {
+            "object_type": "dataset_level",
+            "object_id": "architecture_class",
+            "observed_pattern": str(comparison_map.get("architecture class", "unknown")),
+            "evidence_tier": "supplementary_supporting",
+            "claim_boundary": "支持 K562 architecture composition 与 HCC 不同，不支持跨 context 同构",
+        },
+        {
+            "object_type": "dataset_level",
+            "object_id": "shift_excess_macro_class",
+            "observed_pattern": str(comparison_map.get("shift-excess macro class", "unknown")),
+            "evidence_tier": "preliminary",
+            "claim_boundary": "当前不足以写成稳定、可命名的 supplementary positive program",
+        },
+    ]
+
+    axis_rules = {
+        "unresolved_6": ("supplementary_supporting", "支持 K562 backbone 具有 biosynthetic / mitochondrial 倾向，但不是 HCC-equivalent frozen axis"),
+        "unresolved_9": ("supplementary_supporting", "支持局部 backbone-like structure，不足以单独承担 dataset-level claim"),
+        "unresolved_2": ("supplementary_supporting", "支持 backbone heterogeneity，不能直接等同 HCC gene expression machinery"),
+        "unresolved_5": ("preliminary", "轴规模过小，只能作 preliminary supportive line"),
+        "unresolved_4": ("preliminary", "支持 K562 含 shift-excess 成分，但不足以稳定命名 macro class"),
+    }
+    axis_index = axis_summary.set_index("fine_axis")
+    for axis_name, (tier, boundary) in axis_rules.items():
+        if axis_name not in axis_index.index:
+            continue
+        row = axis_index.loc[axis_name]
+        if axis_name == "unresolved_4":
+            pattern = f"shift_excess-like axis; n_genes={int(row['n_genes'])}; fraction_shift_excess={row['fraction_shift_excess']:.3f}"
+        else:
+            pattern = f"{row['macro_axis']} backbone axis; n_genes={int(row['n_genes'])}; fraction_Q1={row['fraction_Q1']:.3f}"
+        rows.append(
+            {
+                "object_type": "axis_level",
+                "object_id": axis_name,
+                "observed_pattern": pattern,
+                "evidence_tier": tier,
+                "claim_boundary": boundary,
+            }
+        )
+    return pd.DataFrame(rows)
+
+
+def build_claim_tiering() -> pd.DataFrame:
+    rows = [
+        {
+            "object": "architecture_existence",
+            "level": "dataset_level",
+            "evidence_tier": "supplementary_confirmed",
+            "allowed_wording": "Dixit/K562 在 supplementary 层面支持 architecture existence；可写成 architecture-level replication 或 structure-level transferability",
+            "disallowed_wording": "Dixit proves model generalization; Dixit is a second primary mainline",
+        },
+        {
+            "object": "canonical_backbone_present",
+            "level": "dataset_level",
+            "evidence_tier": "supplementary_confirmed",
+            "allowed_wording": "外部 context 中存在 backbone-like structure；支持 backbone existence",
+            "disallowed_wording": "backbone macro class is the same as HCC; HCC and Dixit share the same frozen mainline architecture",
+        },
+        {
+            "object": "shift_excess_present",
+            "level": "dataset_level",
+            "evidence_tier": "supplementary_supporting",
+            "allowed_wording": "Dixit/K562 中存在 shift-excess structure 成分；支持存在性",
+            "disallowed_wording": "Dominant shift-excess macro class has been stably named",
+        },
+        {
+            "object": "backbone_macro_class",
+            "level": "dataset_level",
+            "evidence_tier": "supplementary_supporting",
+            "allowed_wording": "K562 的 dominant backbone 更偏 biosynthetic support / mitochondrial metabolism；说明 replication 是 context-specific",
+            "disallowed_wording": "K562 backbone is aligned to HCC gene expression machinery",
+        },
+        {
+            "object": "architecture_class",
+            "level": "dataset_level",
+            "evidence_tier": "supplementary_supporting",
+            "allowed_wording": "K562 更像 backbone_dominant；支持外部结构复现并非与 HCC 同构",
+            "disallowed_wording": "Dixit is an isomorphic replication of the HCC architecture",
+        },
+        {
+            "object": "stable_anchor_like_objects",
+            "level": "object_group",
+            "evidence_tier": "supplementary_supporting",
+            "allowed_wording": "在 Dixit/K562 中可观察到 stable anchor-like objects；支持 anchor-like structure can recur across contexts",
+            "disallowed_wording": "stable anchors were replicated across contexts; the same anchors generalized across datasets",
+        },
+        {
+            "object": "unresolved_6",
+            "level": "axis_level",
+            "evidence_tier": "supplementary_supporting",
+            "allowed_wording": "支持 biosynthetic / mitochondrial 倾向的 backbone-like axis",
+            "disallowed_wording": "可直接等同 HCC frozen axis",
+        },
+        {
+            "object": "unresolved_9",
+            "level": "axis_level",
+            "evidence_tier": "supplementary_supporting",
+            "allowed_wording": "支持局部 backbone-like structure",
+            "disallowed_wording": "可单独承担 dataset-level claim",
+        },
+        {
+            "object": "unresolved_2",
+            "level": "axis_level",
+            "evidence_tier": "supplementary_supporting",
+            "allowed_wording": "支持 translation / chromatin-like backbone heterogeneity",
+            "disallowed_wording": "可直接写成 HCC-equivalent gene expression machinery axis",
+        },
+        {
+            "object": "unresolved_5",
+            "level": "axis_level",
+            "evidence_tier": "preliminary",
+            "allowed_wording": "仅可作 preliminary supportive line",
+            "disallowed_wording": "formal positive supplementary axis",
+        },
+        {
+            "object": "unresolved_4",
+            "level": "axis_level",
+            "evidence_tier": "preliminary",
+            "allowed_wording": "支持 Dixit 含 shift-excess-like component，但仅 preliminary",
+            "disallowed_wording": "稳定命名的 shift-excess macro class",
+        },
+        {
+            "object": "model_generalization_claim",
+            "level": "global",
+            "evidence_tier": "not_supported_by_current_dixit_truth_side",
+            "allowed_wording": "当前 Dixit 只支持框架/结构层泛化，不支持模型泛化",
+            "disallowed_wording": "model cross-context generalization has been demonstrated",
+        },
+    ]
+    return pd.DataFrame(rows)
+
+
+evidence_tier_summary = build_evidence_tier_summary(dixit_axis_summary, cross_df)
+evidence_tier_summary.to_csv(OUT_DIR / "dixit_evidence_tier_summary.tsv", sep="\t", index=False)
+
+claim_tiering = build_claim_tiering()
+claim_tiering.to_csv(OUT_DIR / "dixit_claim_tiering.tsv", sep="\t", index=False)
+
+run_manifest = {
+    "stage": "stage2_dixit_k562_structure_replication",
+    "config_path": str(resolve_path(str(ARGS.config))),
+    "bridge_table_path": str(BRIDGE_TABLE),
+    "hcc_fine_axis_summary_path": str(HCC_FINE_SUM),
+    "output_dir": str(OUT_DIR),
+    "k562_dataset_label": str(RECIPE.get("k562_dataset_label", "dixit_2016_raw__control_context")),
+}
+(OUT_DIR / "run_manifest.json").write_text(json.dumps(run_manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

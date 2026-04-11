@@ -7,11 +7,21 @@
 1. `truth–DepMap bridge decomposition`
 2. `axis annotation / validation`
 3. `SCP542 explanation boundary`
-4. `Dixit/K562 supplementary structure replication`
+4. `Dixit/K562 supplementary external structure replication`
 
 它不重新定义 truth object，也不把 supplementary 层提升为 HCC 主结论。
 
 ## 2. 当前主线结论
+
+综合当前 `Stage 2` 结果，我们已经完成了从“现象级相关”到“分层化结构证据”的第一轮收口。
+
+但这不能被误读成方法学已经 fully closed。当前更准确的状态是：主文稿可保留的结构化结果边界已经基本稳定，而 sensitivity / covariate / final claim wording 仍需继续按正式边界同步。
+
+当前最稳的主文档结论框架应写成三条并列主张：
+
+- `GEARS` 在当前 HCC primary adjudication 中应被定位为 `architecture trade-off diagnosis`，而不是待继续优化的主推进对象。
+- `truth–DepMap bridge` 已不再只是整体相关现象，而是由少数稳定 `target-level anchors` 与有限 `formal axis evidence` 共同支撑的结构化 bridge。
+- frozen axis 已完成第一轮 `annotation + validation + tiering`，但当前仍应保持 `partially supported axes`，而不是 `fully closed architecture`。
 
 当前最稳的项目表述是：
 
@@ -24,9 +34,22 @@
 
 在此约束下，bridge 仍然成立，但它的结构比单个 `Pearson` 更稀疏、更可解释，也更符合当前项目主线。
 
-## 3. 第一层：Target-Level Bridge Decomposition
+## 3. GEARS adjudication：architecture trade-off diagnosis
 
-### 3.1 当前正式定义
+`GEARS` 在当前框架下已完成必要的 backbone sweep 与 adjudication，其结果更适合被解释为一类 `architecture-level trade-off diagnosis`，而非继续通过无停止规则的参数搜索追求单次性能改善。
+
+现阶段证据支持：
+
+- `GEARS` 能恢复部分 backbone-related structure
+- `GEARS` 在 `structure/context separation` 上表现出选择性优势
+- 这类收益与 `canonical_backbone recovery` 的代价并不对称
+- 当前证据不足以推动新一轮主线扩模或重新开启 entrant sweep
+
+因此，`GEARS` 在本阶段的角色应定位为“已完成诊断的代表性 entrant”，而不是“待继续优化的主推进对象”。
+
+## 4. 第一层：Target-Level Bridge Decomposition
+
+### 4.1 当前正式定义
 
 在 `target-level joint-priority grid` 中：
 
@@ -36,31 +59,32 @@
 
 这一口径避免了把中间态 target 误判成 bridge anchor 或 deviation structure。
 
-### 3.2 当前结果
+### 4.2 当前结果
 
 在 `HCC38` 与 `HCC1143` 中，当前仍可识别一组稳定的 `Q1` canonical bridge anchors。当前 shared canonical anchors 主要包括：
 
-- `PRPF6`
-- `PMF1`
-- `ZNF131`
-- `RUVBL2`
-- `ZBTB17`
-- `RPS3`
 - `PFDN5`
+- `PMF1`
+- `PRPF6`
+- `ZNF131`
 
 更稳的写法不是“证明这些基因变化大而且细胞依赖”，而是：
 
 这些 target **支持**在 transcriptomic impact 与 cellular dependency 上同时处于高位。
 
-### 3.3 推荐图表
+其中，`PFDN5`、`PMF1`、`PRPF6` 与 `ZNF131` 是当前最稳的 shared anchors，能够在多组 cutoff 设定下保持 anchor 身份。
+
+但这里的“stable”当前只能写成 structural stability，而不能自动升级成 `fully deconfounded`。按当前 covariate audit 边界，`PFDN5` 最多只能写成 `primary_but_qualified`，而 `PMF1 / PRPF6 / ZNF131` 仍应保留为 `supporting_only`。
+
+### 4.3 推荐图表
 
 - `reports/stage2_truth_bridge_decomposition/HCC38_target_level_joint_grid.png`
 - `reports/stage2_truth_bridge_decomposition/HCC1143_target_level_joint_grid.png`
 - `reports/stage2_truth_bridge_decomposition/truth_bridge_decomposition_overview_mockup.png`
 
-## 4. 第二层：Axis-Level Shared Explanatory Structure
+## 5. 第二层：Axis-Level Shared Explanatory Structure
 
-### 4.1 当前正式定义
+### 5.1 当前正式定义
 
 axis-level 层不采用教科书式 ANOVA，而采用更保守、可审计的 explanatory 近似：
 
@@ -77,22 +101,26 @@ axis-level 层不采用教科书式 ANOVA，而采用更保守、可审计的 ex
 - `n_targets >= 2` 才能进入 `formal axis call`
 - `n_targets = 1` 只记为 `preliminary`
 
-### 4.2 当前结果
+### 5.2 当前结果
 
 按当前 formal 门槛，axis-level 结果比之前更保守：
 
-- 当前 formal shared backbone axis 非常有限
-- `transcription / chromatin` 目前表现为较清楚的 `transcriptomic-heavy` formal axis
+- 当前 formal axis evidence 非常有限
+- `transcription / chromatin` 目前是唯一同时满足 formal criteria 且在 bootstrap 下保持稳定的正向 axis
 - 多条单 target axis 虽然有强信号，但只保留为 `preliminary`
 
 这意味着：
 
 - bridge 的第二层不是“大量 axis 同时封顶成立”
-- 而是“少数 formal axes + 多个 preliminary lines of evidence”
+- 而是“有限 formal evidence + 多个 supporting / preliminary lines of evidence”
 
 这比直接把单 target axis 提升为正式 backbone/module 结论更稳。
 
-### 4.3 与 annotation / validation 的关系
+因此，当前结果支持“存在可治理、可分层的 truth–DepMap bridge structure”，但尚不足以升级为 `fully established shared explanatory architecture`。
+
+与 sensitivity 线合并理解时，更稳的口径应是：当前 formal axis evidence 与 control subsampling formal interval 已可引用进主文稿，但 sensitivity full closure 仍不能被写成 fully closed，因为 covariate 线仍未闭环。
+
+### 5.3 与 annotation / validation 的关系
 
 当前 axis 层已经完成第一轮：
 
@@ -102,7 +130,7 @@ axis-level 层不采用教科书式 ANOVA，而采用更保守、可审计的 ex
 
 因此第二层不再只是结构命名，而已经进入“结构 + 注释 + 一致性”的保守闭环。
 
-## 5. GSEA-like / Annotation / Validation 当前状态
+## 6. GSEA-like / Annotation / Validation 当前状态
 
 当前这条线已经刷新完成，但要明确边界：
 
@@ -133,7 +161,15 @@ axis-level 层不采用教科书式 ANOVA，而采用更保守、可审计的 ex
 
 `多数 frozen axes 已获得部分支持，但整体上仍应保持 partially supported axes 口径。`
 
-## 6. SCP542 当前应如何使用
+更准确地说，当前 axis 分析的主要贡献，不在于证明一个已经完全闭合的模块架构，而在于完成了第一轮 `annotation`、`validation` 与 `evidence tiering`：哪些 axis 可以进入 formal 或 primary 层级，哪些仅能作为 supporting evidence，哪些仍应停留在 preliminary status，现已具备清晰边界。
+
+## 7. 主张边界
+
+需要强调的是，当前结果支持的是“存在少数稳定 anchors 与有限 formal axis evidence 的结构化 bridge”，而不是“多数 axis 已完成正式闭环”或“shared explanatory architecture 已全面建立”。
+
+因此，现阶段主文档应坚持 `evidence-tiered interpretation`，避免将 supporting 或 preliminary 对象上升为与 primary evidence 同等级的结构性结论。
+
+## 8. SCP542 当前应如何使用
 
 `SCP542` 这一层已经刷新，但它的角色仍然必须保持为：
 
@@ -154,7 +190,7 @@ axis-level 层不采用教科书式 ANOVA，而采用更保守、可审计的 ex
 
 因此，`SCP542` 是解释边界，不是主 biological conclusion。
 
-## 7. Dixit/K562 当前应如何使用
+## 9. Dixit/K562 当前应如何使用
 
 `Dixit/K562` 这一层已经刷新，但应继续保持为：
 
@@ -178,7 +214,13 @@ axis-level 层不采用教科书式 ANOVA，而采用更保守、可审计的 ex
 
 `Dixit confirms architecture existence at the supplementary level, but the dominant macro-class remains context-specific.`
 
-## 8. 本轮需要重跑与不需要重跑的判断
+当前这一层现在也已经补上了更正式的 supplementary evidence-tier 口径：
+
+- `architecture existence` 与 `canonical backbone present` 可保留为 `supplementary_confirmed`
+- `shift-excess present` 与 context-specific backbone macro class 更适合保留为 `supplementary_supporting`
+- `shift-excess macro class` 与多数单条 K562 axis 仍应保持 `preliminary`
+
+## 10. 本轮需要重跑与不需要重跑的判断
 
 ### 已重跑
 
@@ -205,13 +247,13 @@ axis-level 层不采用教科书式 ANOVA，而采用更保守、可审计的 ex
 
 而不是发生在上游 truth matrix、filter 或 metric 定义。
 
-## 9. 当前最推荐的正式收口
+## 11. 当前最推荐的正式收口
 
 如果要把当前 `Stage 2` 写成一段项目主线结果，最稳的说法是：
 
-我们将 truth–DepMap bridge 从单一整体相关性进一步分解为两个递进层面：第一层是由少数 canonical anchors 支撑的 target-level joint bridge，第二层是由更有限的 shared / skewed explanatory axes 支撑的结构框架。当前 axis annotation、per-target consistency、SCP542 explanation boundary 与 Dixit supplementary replication 已完成第一轮闭环；其中 HCC 主线结论最稳，SCP542 提供解释边界，Dixit 提供补充性结构复现，而整体 axis 结果仍应保持 `partially supported axes` 的保守口径。
+综合当前 `Stage 2` 结果，我们认为本项目已经完成从“现象级相关”到“分层化结构证据”的第一轮收口。首先，`GEARS` 在当前框架中的角色应被定位为 `architecture trade-off diagnosis`：其 backbone sweep 与 adjudication 已足以支持结构性诊断，但现阶段不宜再以无停止规则的方式继续扩展 entrant 或开启新一轮调参主线。其次，`truth–DepMap bridge` 已不再只是整体相关现象，而是可进一步分解为 `target-level` 的稳定 anchors 与 `axis-level` 的有限 formal evidence。经过 cutoff sensitivity、bootstrap stability 与 evidence tier 治理后，当前 primary evidence 集中于少数跨 cutoff 稳定的 anchors，以及一条经 bootstrap 支撑的 formal positive axis；其余对象则被明确界定为 supporting、unstable 或 preliminary。需要同时强调的是，这里的 stable anchors 当前仍受 covariate audit 边界约束，只能按 `PFDN5 = primary_but_qualified`、`PMF1 / PRPF6 / ZNF131 = supporting_only` 继续分层书写。最后，axis `annotation / validation` 的第一轮工作已完成，并形成了一套部分得到支持的轴级解释框架，但当前证据仍不足以支持 `fully established shared explanatory architecture` 的更强主张。整体而言，本阶段最重要的进展不是信号数量的增加，而是 evidence tier 与 claim strength 的成功对齐，从而使主结论更加清晰、可信且可防守；与此同时，`final claim matrix -> manuscript wording` 仍需继续同步，这不是一次性结束的动作。
 
-## 10. 渐进披露
+## 12. 渐进披露
 
 默认先看：
 
@@ -219,6 +261,7 @@ axis-level 层不采用教科书式 ANOVA，而采用更保守、可审计的 ex
 2. `reports/stage2_axis_analysis/axis_validation_summary.md`
 3. `reports/stage2_truth_driven_bridge/scp542_calibration/scp542_explanation_boundaries.md`
 4. `reports/stage2_truth_driven_bridge/dixit_axis_compression/dixit_structure_replication_summary.tsv`
+5. `docs/stage2_dixit_supplementary_evidence_tier_v1.md`
 
 若要进入图表与细表，再下钻到：
 
@@ -226,4 +269,3 @@ axis-level 层不采用教科书式 ANOVA，而采用更保守、可审计的 ex
 - `reports/stage2_axis_analysis/axis_enrichment.tsv`
 - `reports/stage2_axis_analysis/axis_target_consistency.tsv`
 - `reports/stage2_truth_driven_bridge/dixit_axis_compression/*.tsv`
-

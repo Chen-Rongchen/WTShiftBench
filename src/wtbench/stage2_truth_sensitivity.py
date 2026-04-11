@@ -100,6 +100,52 @@ def audit_covariate_balance(
     return pd.DataFrame(records).sort_values("target_gene").reset_index(drop=True)
 
 
+def run_covariate_audits(
+    calls: pd.DataFrame,
+    covariates: pd.DataFrame,
+    *,
+    barcode_col: str,
+    strat_columns: list[str],
+) -> pd.DataFrame:
+    """对多个 strat 列批量运行 covariate audit，并合并为一张长表。"""
+    if barcode_col not in covariates.columns:
+        raise ValueError(f"covariates 缺少条形码列: {barcode_col}")
+    if not strat_columns:
+        raise ValueError("strat_columns 不能为空。")
+
+    outputs: list[pd.DataFrame] = []
+    for strat_col in strat_columns:
+        if strat_col not in covariates.columns:
+            raise ValueError(f"covariates 缺少分层列: {strat_col}")
+        frame = audit_covariate_balance(
+            calls,
+            covariates,
+            barcode_col=barcode_col,
+            strat_col=strat_col,
+        )
+        frame["strat_column"] = strat_col
+        frame["n_strata"] = int(
+            covariates[strat_col].astype("string").fillna("__missing__").nunique(dropna=False)
+        )
+        outputs.append(frame)
+    return pd.concat(outputs, ignore_index=True)
+
+
+def get_covariate_strat_columns(block: dict[str, Any]) -> list[str]:
+    """兼容旧的 strat_column 与新的 strat_columns 配置。"""
+    if "strat_columns" in block:
+        cols = [str(value) for value in block["strat_columns"]]
+    elif "strat_column" in block:
+        cols = [str(block["strat_column"])]
+    else:
+        raise ValueError("covariate block 缺少 strat_column 或 strat_columns。")
+
+    cols = [value for value in cols if value]
+    if not cols:
+        raise ValueError("covariate block 未提供有效的分层列。")
+    return cols
+
+
 def summarize_replicate_correlations(correlation_long: pd.DataFrame) -> pd.DataFrame:
     """replicate 维上汇总 spearman_rho_aligned（按 cell_line, truth_metric, depmap_endpoint）。"""
     gcols = ["cell_line", "truth_metric", "depmap_endpoint"]
@@ -135,6 +181,30 @@ def summarize_replicate_correlations(correlation_long: pd.DataFrame) -> pd.DataF
             }
         )
     return pd.DataFrame(rows)
+
+
+def add_sensitivity_run_state(
+    summary: pd.DataFrame,
+    *,
+    configured_replicates: int,
+) -> pd.DataFrame:
+    if summary.empty:
+        out = summary.copy()
+        out["configured_replicates"] = configured_replicates
+        out["completed_replicates"] = 0
+        out["formal_interval_citable"] = False
+        out["sensitivity_claim_status"] = "partial_preliminary_snapshot"
+        return out
+    out = summary.copy()
+    out["configured_replicates"] = int(configured_replicates)
+    out["completed_replicates"] = out["n_replicates"].astype(int)
+    out["formal_interval_citable"] = out["completed_replicates"].ge(configured_replicates)
+    out["sensitivity_claim_status"] = np.where(
+        out["formal_interval_citable"],
+        "formal_interval_citable",
+        "partial_preliminary_snapshot",
+    )
+    return out
 
 
 def run_control_subsample_sensitivity(
@@ -227,7 +297,10 @@ def run_control_subsample_sensitivity(
                 )
 
     rep_df = pd.DataFrame(rep_rows)
-    summary = summarize_replicate_correlations(rep_df)
+    summary = add_sensitivity_run_state(
+        summarize_replicate_correlations(rep_df),
+        configured_replicates=n_replicates,
+    )
     rank_df = pd.DataFrame(rank_rows)
     return rep_df, summary, rank_df
 
@@ -300,13 +373,16 @@ def run_covariate_audit_if_configured(
         if not block:
             continue
         path = resolve_path(str(block["path"]))
-        strat = str(block["strat_column"])
         barcode_col = str(block.get("barcode_column", "cell_barcode"))
+        strat_columns = get_covariate_strat_columns(block)
         cov = pd.read_csv(path, sep="\t")
-        if barcode_col not in cov.columns or strat not in cov.columns:
-            raise ValueError(f"{path} 缺少 {barcode_col} 或 {strat}")
         _, _, calls, _, _, _ = prepare_bridge_inputs(spec, base_config, depmap_effect, depmap_dependency)
-        out[spec.cell_line] = audit_covariate_balance(calls, cov, barcode_col=barcode_col, strat_col=strat)
+        out[spec.cell_line] = run_covariate_audits(
+            calls,
+            cov,
+            barcode_col=barcode_col,
+            strat_columns=strat_columns,
+        )
     return out
 
 
@@ -350,12 +426,15 @@ def run_all_sensitivity_analyses(
         block = cov_cfg.get(spec.cell_line) if cov_cfg else None
         if block:
             path = resolve_path(str(block["path"]))
-            strat = str(block["strat_column"])
             barcode_col = str(block.get("barcode_column", "cell_barcode"))
+            strat_columns = get_covariate_strat_columns(block)
             cov = pd.read_csv(path, sep="\t")
-            if barcode_col not in cov.columns or strat not in cov.columns:
-                raise ValueError(f"{path} 缺少 {barcode_col} 或 {strat}")
-            cov_out[spec.cell_line] = audit_covariate_balance(calls, cov, barcode_col=barcode_col, strat_col=strat)
+            cov_out[spec.cell_line] = run_covariate_audits(
+                calls,
+                cov,
+                barcode_col=barcode_col,
+                strat_columns=strat_columns,
+            )
 
         baseline_table = build_bridge_records(
             spec=spec,

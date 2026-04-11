@@ -1,4 +1,0 @@
-run_configs:
-  - configs/stage1a/runs/prediction_run_config.yaml
-  - configs/stage1a/runs/smoke_case_official.yaml
-  - configs/stage1a/runs/smoke_case_degraded.yaml

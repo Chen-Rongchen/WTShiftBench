@@ -29,6 +29,8 @@
 
 这里需要额外固定一条边界：当前 sensitivity 的主要未闭环项，不应再被叙述成“分析框架还不够”，而应被叙述成“formal interval claim 已可引用，但 covariate closure 仍受可用元数据上限约束”。
 
+也就是说，当前 sensitivity 的 formal interval 已经 fully citable，但 sensitivity full closure 仍不能被写成 fully closed。
+
 ## 3. 哪些 sensitivity 已经足够关闭
 
 ### 3.1 target anchor cutoff sensitivity
@@ -115,8 +117,13 @@
 - covariate audit 已完成第一轮量化
 - 但 full closure 仍待完成
 - sensitivity full closure 目前仍不能单独推出 `robustness fully established`
+- formal interval 已可引用，但 full closure 仍被 covariate 未闭环卡住
 
-更准确地说，当前第一轮 `num_umis_quantile_bin` 审计已经提示：部分 stable shared anchors 仍存在不可忽略的 target-control 分布差异，因此混杂线现在应被写成“已有正式审计，但尚未关闭”，而不是“尚未开始”。
+更准确地说，当前新版五轴审计已经提示：部分 stable shared anchors 仍存在不可忽略的 target-control 分布差异，因此混杂线现在应被写成“已有正式审计，但尚未关闭”，而不是“尚未开始”。
+
+当前这条边界现在还有一个更具体的落点：新版 `covariate_balance` 目录下已经补齐 `summary.tsv`、`summary.md`、combined TSV 与按轴拆分 TSV，并且新增了 `barcode_gem_group` 这条更接近实验设计 aggregation 结构的代理轴，以及 transcriptome 总信号与检测基因数两条分层轴。因此“covariate 审计已形成正式产物”现在不再只是原则性表述，而是已被新版正式输出落实。
+
+从最新 summary 看，新增 transcriptome 轴的总体 `mean_tvd` 低于 protospacer `num_umis` 轴，但它们并没有触发对象级 tier 改写；例如 `HCC1143` 的 `PMF1` 在 `transcriptome_detected_genes_quantile_bin` 上仍达到约 `0.2555`。因此，当前可写成“边界更实”，不能写成“混杂已洗净”。
 
 ## 5. 哪些只能降级写成 limitation
 
@@ -150,6 +157,7 @@
 2. [`reports/stage2_truth_bridge_decomposition/evidence_tier_summary.tsv`](/home/data/gz0705/WTKO/reports/stage2_truth_bridge_decomposition/evidence_tier_summary.tsv)
 3. [`reports/stage2_truth_bridge_decomposition/axis_bootstrap_stability.tsv`](/home/data/gz0705/WTKO/reports/stage2_truth_bridge_decomposition/axis_bootstrap_stability.tsv)
 4. [`reports/stage2_truth_driven_bridge/sensitivity/control_subsample_summary.tsv`](/home/data/gz0705/WTKO/reports/stage2_truth_driven_bridge/sensitivity/control_subsample_summary.tsv)
+5. [`reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/summary.tsv`](/home/data/gz0705/WTKO/reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/summary.tsv)
 
 若要继续执行，再看：
 
@@ -158,4 +166,4 @@
 
 ## 8. 一句话收口
 
-当前 sensitivity 已足够支持“主支柱保守稳健、formal interval 可引用、但 full closure 仍受 covariate 线限制”这一版本的正式写法。
+当前 sensitivity 已足够支持“主支柱保守稳健、formal interval 可引用、但 full closure 仍受 covariate 线限制”这一版本的正式写法；它还不能被收口成 fully closed。

@@ -4,7 +4,7 @@
 
 这份文档只做一件事：
 
-**把当前项目的唯一主线、五项缺口、禁写边界与默认阅读顺序压成一页总入口。**
+**把当前项目的唯一主线、当前未闭环事项、禁写边界与默认阅读顺序压成一页总入口。**
 
 它不引入新结果，也不替代更细的结果文档；它只负责把当前正式口径钉死。
 
@@ -43,21 +43,38 @@
 - `sensitivity full closure` 仍未 fully closed
 - `covariate closure` 仍未 fully closed
 - `final claim matrix -> manuscript wording` 仍需持续同步
+- discovery 仍未进入 formal deliverable
 
-这三项的关键边界是：
+这些事项的关键边界是：
 
 - 不是分析框架缺位
 - sensitivity 的 formal interval 现在已可引用
 - 但混杂线仍受实验设计元数据上限约束
+
+更准确地说：
+
+- covariate 线现在是五条轴已落盘、风险已治理进边界；其中 `barcode_gem_group` 已固定为 `design-proxy axis`，但还没到 `fully deconfounded`
+- sensitivity 线现在是 `formal interval` 已可引用，但 full closure 仍被 covariate 未闭环卡住
+- `final claim matrix -> manuscript wording` 是持续同步动作，不是一次性结束
+- discovery 仍只能保留在 `gated_downstream_layer`，还不能写成 formal deliverable
+
+这也意味着，当前阶段默认应接受：
+
+- `design-proxy` 是本阶段最终口径
+- covariate 线不会再等到 `fully clean` 才开写
+- 论文将带着这条 limitation 写
+- 是否开始写论文，取决于文稿与边界是否稳定，而不是数据是否完美
 
 ## 6. 当前明确不能写什么
 
 - `model recovery has been demonstrated`
 - `GEARS` 已整体压过 `shared_mean_baseline`
 - stable anchors 已被 fully deconfounded
+- `barcode_gem_group` 已被解析为单个 `MH00x` run-level covariate
 - 多数 axis 已完成同等级正式闭环
 - `Dixit/K562` 与 HCC 构成对称 primary conclusion
 - discovery 已成为当前正式主交付
+- discovery 已进入 formal deliverable
 - `Stage 2 complete`
 - `Stage 3 complete`
 
@@ -83,4 +100,4 @@
 
 ## 9. 一句话收口
 
-当前最该做的，不是继续扩对象，而是把 `final claim matrix` 彻底同步成 manuscript-ready wording，并在 sensitivity / covariate 尚未 fully closed 的前提下，继续把 discovery 稳定压在 `gated_downstream_layer`。
+当前最该做的，不是继续扩对象，而是持续把 `final claim matrix` 同步成 manuscript-ready wording，并在 sensitivity / covariate 尚未 fully closed 的前提下，继续把 discovery 稳定压在 `gated_downstream_layer`。

@@ -1,0 +1,5 @@
+checkpoints:
+  scgpt_human:
+    local_resolved_path: models/pretrained/scgpt_human
+  geneformer_gf_12l_95m_i4096:
+    local_resolved_path: models/pretrained/geneformer_gf_12l_95m_i4096
