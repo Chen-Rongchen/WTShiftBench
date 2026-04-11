@@ -14,6 +14,7 @@ from wtbench.stage2_truth_bridge import (
     classify_join_status,
     build_dataset_specs,
     parse_target_gene,
+    resolve_single_perturbation_status,
     summarize_correlations,
     summarize_group_comparisons,
 )
@@ -54,6 +55,26 @@ class Stage2TruthBridgeHelpersTests(unittest.TestCase):
         self.assertEqual(specs[0].source_kind, "h5ad_obs")
         self.assertTrue(str(specs[0].h5ad_path).endswith("dixit_2016_raw__control_context.h5ad"))
 
+    def test_resolve_single_perturbation_status_prefers_annotation(self) -> None:
+        obs = pd.DataFrame(
+            {
+                "is_control": [False, True, False],
+                "is_single_perturbation": [True, False, False],
+            }
+        )
+        mask, status, evidence = resolve_single_perturbation_status(
+            obs,
+            allow_degraded_unverified=False,
+        )
+        self.assertEqual(status, "verified_single_perturbation")
+        self.assertEqual(evidence, "is_single_perturbation")
+        self.assertEqual(mask.tolist(), [True, True, False])
+
+    def test_resolve_single_perturbation_status_fails_without_evidence(self) -> None:
+        obs = pd.DataFrame({"is_control": [False, True]})
+        with self.assertRaisesRegex(ValueError, "formal 模式要求显式单扰动证据"):
+            resolve_single_perturbation_status(obs, allow_degraded_unverified=False)
+
 
 class Stage2TruthBridgeAnalysisTests(unittest.TestCase):
     def setUp(self) -> None:
@@ -66,7 +87,7 @@ class Stage2TruthBridgeAnalysisTests(unittest.TestCase):
                 "real_Edistance": [3, 4, 5, 6, 7, 8],
                 "real_DEG_burden": [10, 20, 30, 40, 50, 60],
                 "depmap_gene_effect": [-1, -2, -3, -4, -5, -6],
-                "depmap_gene_dependency": [-2, -3, -4, -5, -6, -7],
+                "depmap_gene_dependency": [2, 3, 4, 5, 6, 7],
             }
         )
         self.bridge_hcc1143 = pd.DataFrame(
@@ -78,20 +99,26 @@ class Stage2TruthBridgeAnalysisTests(unittest.TestCase):
                 "real_Edistance": [2.9, 4.1, 5.2, 6.1, 6.8, 8.2],
                 "real_DEG_burden": [11, 18, 29, 42, 49, 63],
                 "depmap_gene_effect": [-1.1, -1.9, -3.2, -3.8, -5.1, -5.9],
-                "depmap_gene_dependency": [-2.1, -2.9, -4.1, -4.7, -6.2, -6.8],
+                "depmap_gene_dependency": [2.1, 2.9, 4.1, 4.7, 6.2, 6.8],
             }
         )
 
     def test_summarize_correlations_reports_aligned_sign(self) -> None:
         summary = summarize_correlations(self.bridge_hcc38)
-        row = summary.loc[
+        effect_row = summary.loc[
             (summary["truth_metric"].eq("real_shift_L2"))
             & (summary["depmap_endpoint"].eq("depmap_gene_effect"))
         ].iloc[0]
-        self.assertLess(row["spearman_rho_raw"], 0.0)
-        self.assertGreater(row["spearman_rho_aligned"], 0.0)
+        dependency_row = summary.loc[
+            (summary["truth_metric"].eq("real_shift_L2"))
+            & (summary["depmap_endpoint"].eq("depmap_gene_dependency"))
+        ].iloc[0]
+        self.assertLess(effect_row["spearman_rho_raw"], 0.0)
+        self.assertGreater(effect_row["spearman_rho_aligned"], 0.0)
+        self.assertGreater(dependency_row["spearman_rho_raw"], 0.0)
+        self.assertGreater(dependency_row["spearman_rho_aligned"], 0.0)
 
-    def test_summarize_group_comparisons_uses_aligned_low_minus_high(self) -> None:
+    def test_summarize_group_comparisons_uses_aligned_effect_direction(self) -> None:
         summary = summarize_group_comparisons(
             self.bridge_hcc38,
             config={
@@ -106,7 +133,12 @@ class Stage2TruthBridgeAnalysisTests(unittest.TestCase):
             (summary["truth_metric"].eq("real_shift_L2"))
             & (summary["depmap_endpoint"].eq("depmap_gene_effect"))
         ].iloc[0]
-        self.assertGreater(row["aligned_low_minus_high"], 0.0)
+        dependency_row = summary.loc[
+            (summary["truth_metric"].eq("real_shift_L2"))
+            & (summary["depmap_endpoint"].eq("depmap_gene_dependency"))
+        ].iloc[0]
+        self.assertGreater(row["aligned_effect_direction"], 0.0)
+        self.assertGreater(dependency_row["aligned_effect_direction"], 0.0)
 
     def test_build_cross_cell_line_outputs_uses_shared_targets(self) -> None:
         shared, summary = build_cross_cell_line_outputs([self.bridge_hcc38, self.bridge_hcc1143])

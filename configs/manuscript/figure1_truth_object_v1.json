@@ -1,0 +1,15 @@
+{
+  "output_dir": "reports/manuscript_figures/figure1",
+  "panel_a_image": "reports/stage2_truth_bridge_decomposition/HCC38_target_level_joint_grid.png",
+  "panel_b_image": "reports/stage2_truth_bridge_decomposition/HCC1143_target_level_joint_grid.png",
+  "shared_anchor_summary_tsv": "reports/stage2_truth_bridge_decomposition/shared_canonical_anchor_summary.tsv",
+  "target_level_grid_summary_tsv": "reports/stage2_truth_bridge_decomposition/target_level_grid_summary.tsv",
+  "evidence_tier_summary_tsv": "reports/stage2_truth_bridge_decomposition/evidence_tier_summary.tsv",
+  "anchor_claim_tiering_tsv": "reports/stage2_truth_driven_bridge/sensitivity/anchor_claim_tiering.tsv",
+  "figure_title": "Truth-DepMap bridge forms a structured truth object",
+  "single_panel_width_in": 5.2,
+  "single_panel_height_in": 3.8,
+  "combined_width_in": 10.8,
+  "combined_height_in": 9.2,
+  "dpi": 300
+}

@@ -4,7 +4,7 @@
 
 这份清单只回答一个问题：
 
-**如果下次要一次性把当前项目收到可交付状态，应该按什么顺序做完最后几件事？**
+**如果下次要一次性把当前项目收到正式收口状态，应该按什么顺序做完最后几件事？**
 
 它不再扩分析，只处理：
 
@@ -39,8 +39,8 @@
 
 只处理：
 
-- 将 `claim matrix` 全量同步到主文稿
-- 将 `claim matrix` 全量同步到摘要式写法与入口文档
+- 将 `claim matrix` 持续同步到主文稿
+- 将 `claim matrix` 持续同步到摘要式写法与入口文档
 - 明确 `allowed wording / disallowed wording`
 - 去掉任何旧的 strongest anchor 写法
 - 去掉任何会把 Dixit 抬成 primary conclusion 的句子
@@ -79,10 +79,11 @@
 这一步不再新增分析，只冻结边界：
 
 - sensitivity 仍不是 formal full closure
-- covariate closure 已完成治理，但仍受元数据上限约束
+- covariate closure 现阶段是五条轴已落盘、风险已治理进边界；其中 `barcode_gem_group` 固定写成 `design-proxy axis`，但仍受元数据上限约束
 - discovery 继续保持 `gated_downstream_layer`
 - `model recovery proved / Stage 2 complete / Stage 3 complete` 继续禁写
 - biology-facing explanation 继续停留在 plausible interpretation 层，直到两个更小的方法学问题更清楚
+- 开始写论文的门槛固定为“文稿与边界稳定”，而不是“run-level metadata 已补齐”或“数据已完美”
 
 直接确认入口：
 

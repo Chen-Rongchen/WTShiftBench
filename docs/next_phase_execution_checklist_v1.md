@@ -72,12 +72,13 @@
 
 ### 3.3 混杂
 
-当前状态：**第一轮审计产物已存在，但 full closure 仍未完成。**
+当前状态：**第一轮审计产物已存在，`barcode_gem_group` 映射已完成收口，但 full closure 仍未完成。**
 
 现有入口：
 
 - [`docs/stage2_covariate_balance_closure_note_v1.md`](/home/data/gz0705/WTKO/docs/stage2_covariate_balance_closure_note_v1.md)
 - [`reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/summary.md`](/home/data/gz0705/WTKO/reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/summary.md)
+- [`reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/barcode_gem_group_mapping_note.md`](/home/data/gz0705/WTKO/reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/barcode_gem_group_mapping_note.md)
 - [`src/wtbench/stage2_truth_sensitivity.py`](/home/data/gz0705/WTKO/src/wtbench/stage2_truth_sensitivity.py)
 - [`scripts/run_stage2_truth_bridge_sensitivity.py`](/home/data/gz0705/WTKO/scripts/run_stage2_truth_bridge_sensitivity.py)
 - [`configs/stage2/truth_bridge_sensitivity_covariate_template_v1.json`](/home/data/gz0705/WTKO/configs/stage2/truth_bridge_sensitivity_covariate_template_v1.json)
@@ -87,14 +88,15 @@
 当前判断：
 
 - `covariate_balance` 是当前剩余的主要方法学风险
-- 第一轮 `num_umis_quantile_bin` 审计已经落盘
+- 第一轮 `num_umis_quantile_bin` 与 `num_umis_over_threshold_bin` 审计都已经落盘
+- `barcode_gem_group` 现已确认只能收口到 `aggrMH001-3 / aggrMH004-6`，不能唯一展开到单个 `MH00x`
 - 但 stable anchors 中已有对象表现出不可忽略的 target-control 分布差异
 - 因此这条线当前仍不能写成“已关闭”，只能写成“已完成第一轮审计，但仍待更完整 closure”
 
 当前动作：
 
-- 继续补更贴近实验设计的 covariates TSV
-- 在现有 `num_umis` 审计基础上增加新的分层轴
+- 固定 `barcode_gem_group = design-proxy axis`，不再继续追写单个 `MH00x`
+- 若后续仍推进混杂线，继续补新的可获得 covariates TSV
 - 再判断哪些主张可保留，哪些要降级
 
 ### 3.4 最终边界
@@ -110,7 +112,7 @@
 
 当前判断：
 
-- 可写成 primary conclusion 的，是 trade-off diagnosis、stable anchors、limited formal axis evidence
+- 可写成 primary conclusion 的，是 trade-off diagnosis、分层书写后的 retainable anchors、limited formal axis evidence
 - 只能保留为 supporting / preliminary 的，是多数 axis、supplementary replication 的 context-specific 细节
 - 当前仍不能写成“model recovery has been demonstrated”
 
@@ -140,9 +142,9 @@
 ## 4. 推荐执行顺序
 
 1. 把比较并入主文稿
-2. 把敏感性收成正式 closure note
+2. 把敏感性收成正式 closure note，并明确 `formal interval` 可引用但 `full closure` 未完成
 3. 完成 covariate balance 审计与混杂收口
-4. 固定最终 claim boundary
+4. 固定最终 claim boundary，并持续同步 `final claim matrix -> manuscript wording`
 5. 最后只确认 discovery 继续保持 gated
 
 ## 5. 现在直接看什么
