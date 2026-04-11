@@ -25,6 +25,7 @@ pyyaml = "*"
 rich = "*"
 typer = "*"
 anndata = "*"
+pytest = "*"
 
 # GEARS Feature: GEARS Prediction Producer
 [feature.gears.dependencies]
@@ -180,6 +181,10 @@ description = "打印 Geneformer 环境版本信息"
 [tasks.check-all]
 cmd = "pixi run --environment core versions-core && pixi run --environment gears versions-gears && pixi run --environment scgpt versions-scgpt && pixi run --environment geneformer versions-geneformer"
 description = "打印所有环境版本信息"
+
+[tasks.test-stage2]
+cmd = "pytest tests/test_stage2_hcc_prediction_export.py tests/test_stage2_model_structure_scorer.py tests/test_stage2_truth_driven_bridge.py tests/test_stage2_truth_sensitivity.py"
+description = "运行当前 Stage 2 测试"
 
 # ============================================================
 # Tasks: Stage 2 / manuscript 主链路任务
