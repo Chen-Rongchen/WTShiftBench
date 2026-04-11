@@ -19,8 +19,6 @@ def build_parser() -> argparse.ArgumentParser:
         description="检查宿主层与 pixi gears 环境里的 GPU/CUDA 可见性是否稳定。"
     )
     parser.add_argument("--probe-runs", type=int, default=5)
-    parser.add_argument("--launcher-attempts", type=int, default=3)
-    parser.add_argument("--launcher-sleep-seconds", type=float, default=1.0)
     return parser
 
 
@@ -113,28 +111,23 @@ def main() -> int:
     if successful_probes != args.probe_runs:
         failed.append(f"pixi-gears-probe:{successful_probes}/{args.probe_runs}")
 
-    print("== GEARS launcher ==")
+    print("== GEARS Stage 2 entrypoint ==")
     launcher_rc, _ = run_command(
         [
             "python",
-            "scripts/stage1a/adapters/gears/launch_build_predictions.py",
-            "--max-attempts",
-            str(args.launcher_attempts),
-            "--sleep-seconds",
-            str(args.launcher_sleep_seconds),
-            "--",
+            "scripts/run_stage2_gears_hcc_predictions.py",
             "--help",
         ]
     )
     if launcher_rc != 0:
-        failed.append("gears-launcher")
+        failed.append("gears-stage2-entrypoint")
     print()
 
     print("== Summary ==")
     print(f"host_nvidia_smi_ok={nvidia_smi_rc == 0}")
     print(f"host_device_nodes_ok={bool(nodes)}")
     print(f"pixi_gears_probe_successes={successful_probes}/{args.probe_runs}")
-    print(f"gears_launcher_ok={launcher_rc == 0}")
+    print(f"gears_stage2_entrypoint_ok={launcher_rc == 0}")
 
     if failed:
         print("result=FAILED")

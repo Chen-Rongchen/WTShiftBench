@@ -1,7 +1,0 @@
-{
-  "run_configs": [
-    "configs/stage1a/runs/baseline_mean_shift_formal_replogle_2022_k562_essential.json",
-    "configs/stage1a/runs/baseline_mean_shift_formal_replogle_2022_rpe1.json",
-    "configs/stage1a/runs/baseline_mean_shift_formal_tian_2019_day7neuron.json"
-  ]
-}

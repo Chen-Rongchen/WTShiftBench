@@ -1,0 +1,18 @@
+{
+  "base_config": "configs/stage2/truth_driven_bridge_hcc38_hcc1143_v1.json",
+  "output": {
+    "report_root": "reports/stage2_truth_driven_bridge/sensitivity/covariate_balance_threshold_ratio"
+  },
+  "covariates": {
+    "HCC38": {
+      "path": "data/stage2/covariates/HCC38_covariates.tsv",
+      "barcode_column": "cell_barcode",
+      "strat_column": "num_umis_over_threshold_bin"
+    },
+    "HCC1143": {
+      "path": "data/stage2/covariates/HCC1143_covariates.tsv",
+      "barcode_column": "cell_barcode",
+      "strat_column": "num_umis_over_threshold_bin"
+    }
+  }
+}

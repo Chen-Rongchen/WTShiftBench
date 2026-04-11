@@ -8,44 +8,54 @@
 
 如果你只看一段，这一段就是当前执行口径。
 
-当前不要无边界继续扩到 `challengers`，也不要回到 truth-side 重做 contract。`scGPT / Geneformer` 已完成第一轮 HCC entrant 接入；下一阶段的正式口径仍然是：**主线先补“比较、敏感性、混杂、最终边界、discovery 继续 gated”这五个缺口，entrant expansion 只保留为受控支线。**
+当前不要无边界继续扩到 `challengers`，也不要回到 truth-side 重做 contract。`scGPT / Geneformer` 已完成第一轮 HCC entrant 接入；当前近端主线已经进一步收紧为：**先把 covariate closure 从“5 条轴已落盘”推进到“design-layer proxy 是否可映射成更明确 run-level 标签”，再继续同步最终边界与 manuscript wording；discovery 继续 gated。**
+
+如果下次进来只想知道“先看哪里就够”，固定只看这三个入口：
+
+1. `reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/summary.tsv`
+2. `README.md`
+3. `plan.md`
+
+默认先用这三个入口刷新状态，不再从更长的结果清单开始。
 
 下次进来应直接做：
 
-1. 先读当前已经收口的三个主结果：
-   - `reports/stage2_gears_backbone_sweep/final_adjudication.md`
-   - `docs/stage2_truth_bridge_integrated_result_v1.md`
-   - `docs/stage2_axis_annotation_result_v1.md`
-2. 再读两个已经补齐的解释入口：
-   - `docs/stage2_dixit_supplementary_evidence_tier_v1.md`
-   - `docs/stage1_failure_decomposition_note_v1.md`
-3. 再读下一阶段执行口径：
-   - `docs/next_phase_execution_note_v1.md`
-4. 再读当前阶段状态摘要：
-   - `docs/project_state_summary_v1.md`
-5. 如果你要继续追问“为什么模型打不过 baseline”，再读：
-   - `docs/why_models_do_not_stably_beat_baseline_v1.md`
-   - `docs/model_vs_baseline_deeper_explanation_note_v1.md`
-   - `docs/model_vs_baseline_next_step_breakdown_v1.md`
-6. 如果目标是一次性收口当前项目：
+1. 先看当前最近一次 covariate 正式产物：
+   - `reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/summary.tsv`
+   - `docs/stage2_covariate_balance_closure_note_v1.md`
+   - `docs/stage2_sensitivity_full_closure_note_v1.md`
+2. 先记住当前 5 条已落盘 covariate 轴：
+   - `barcode_gem_group`
+   - `num_umis_quantile_bin`
+   - `num_umis_over_threshold_bin`
+   - `transcriptome_total_signal_quantile_bin`
+   - `transcriptome_detected_genes_quantile_bin`
+3. 当前方法学结论先固定为：
+   - `barcode_gem_group` 是更接近实验设计 aggregation 结构的代理轴
+   - 它整体更轻，但没有改写 anchor tier
+   - 当前仍不能写成 `fully deconfounded`
+4. 如果继续推进实现，按这个顺序做：
+   - 当前这一步已完成收口：可确认 `HCC38 -> aggrMH001-3`、`HCC1143 -> aggrMH004-6`
+   - 当前仍不能把 `-1/-2/-3` 唯一映射到单个 `MH001...MH006`
+   - 因此从现在起直接把 `barcode_gem_group` 固定写成 design-proxy axis
+   - 再继续同步 `final claim matrix -> manuscript wording`
+   - `discovery 继续 gated`
+5. 如果继续推进写作，只优先做：
+   - 把 design-proxy / design-mapping 的新状态压进主文稿与边界文档
+   - 继续维持 `PFDN5 = primary_but_qualified`、`PMF1 / PRPF6 / ZNF131 = supporting_only`
+6. 如果继续推进论文图片，只优先做：
+   - 先打开 `docs/manuscript_figure_blueprint_v1.md`
+   - 主图顺序固定为 `truth bridge -> model trade-off -> axis validation -> covariate boundary + Dixit`
+   - 风格参考固定为 `s41592-025-02772-6.pdf`
+7. 如果目标是一次性收口当前项目：
    - `docs/finalization_punchlist_v1.md`
    - `docs/current_closeout_commit_note_v1.md`
-7. 如果继续推进实现，按这个顺序做：
-   - `比较`
-   - `敏感性`
-   - `混杂`
-   - `最终边界`
-   - `discovery 继续 gated`
-   - 直接执行入口：`docs/next_phase_execution_checklist_v1.md`
-8. 如果继续推进写作，只优先做：
-   - 把现有几份 note 压成最终主文稿的一版统一叙事
-   - 提炼更稳定的 axis 命名说明
-   - 继续区分 `supported mechanism` 与 `generic collapse / mixed program risk`
-9. 仍然明确不做：
+8. 仍然明确不做：
    - 新 entrant
    - 新 truth object
    - 新评分体系
    - 回头继续为 `GEARS backbone sweep` 开第二轮无限调参
+   - 在 design-layer mapping 仍不清楚时提前放开发现层
 
 ### 现在优先打开的文件
 
@@ -171,18 +181,22 @@ discovery 仍然保留，但当前应后置。
 
 - 比较：fuller HCC model comparison 的最终主文稿整合
 - 敏感性：sensitivity full closure（当前主支柱与 formal interval 已基本到位，但仍未 fully closed）
-- 混杂：covariate balance closure（当前已完成第一轮多轴审计与对象级降级治理，但仍是剩余方法学风险）
-- 最终边界：终局 claim boundary 与 `final claim matrix -> manuscript wording` 的正式收口
+- 混杂：covariate balance closure
+  - 当前已完成 5 条轴的正式审计，并已补到 `barcode_gem_group` 这条设计层代理轴
+  - 当前已确认 `HCC38 -> aggrMH001-3`、`HCC1143 -> aggrMH004-6`
+  - 但 `-1/-2/-3` 仍不能唯一写成单个 `MH00x`
+  - 因此当前正式口径固定为 `design-proxy axis`，仍是“风险已治理进边界”，不是“fully deconfounded”
+- 最终边界：终局 claim boundary 与 `final claim matrix -> manuscript wording` 的持续同步
 - discovery：继续保持 phenotype shifter 为 `gated_downstream_layer`
 
 当前不能把这些未闭环项写成“Stage 2 complete”或“Stage 3 complete”。
 
 ## 8. Immediate Priorities
 
-1. 比较：推进 fuller HCC model comparison 的最终整合
-2. 敏感性：完成 sensitivity full closure
-3. 混杂：完成 covariate balance closure
-4. 最终边界：完成 `final claim matrix -> manuscript wording` 的全量同步
+1. 混杂：停止继续追写单个 `MH00x` 映射，固定 `barcode_gem_group = design-proxy axis`，并同步到正式措辞
+2. 敏感性：基于最新 5 轴 covariate 状态维持 `formal interval citable but not fully closed`
+3. 最终边界：持续同步 `final claim matrix -> manuscript wording`
+4. 比较：推进 fuller HCC model comparison 的最终整合
 5. discovery：继续保持 phenotype shifter 为 `gated_downstream_layer`，不提前进入 formal deliverable
 
 ## 9. Explicit Non-Goals for the Current Phase
@@ -224,6 +238,7 @@ discovery 仍然保留，但当前应后置。
 - `docs/finalization_punchlist_v1.md`：下次一次性完成当前项目收口的最终执行清单。
 - `docs/model_vs_baseline_deeper_explanation_note_v1.md`：将 baseline 胜出的解释拆成“当前证据支持的方法学解释”与“仍属 plausible 的生物学解释”两层。
 - `docs/model_vs_baseline_next_step_breakdown_v1.md`：将后续推进固定成两个更小的问题，避免回到泛泛讨论“模型为什么打不过 baseline”。
+- `docs/manuscript_figure_blueprint_v1.md`：当前投稿主图的固定蓝图，规定主图顺序、panel 结构、数据源与 truth-first 讲述方式。
 - `docs/main_manuscript_integrated_narrative_draft_v1.md`：当前各条结果 note 的统一主文稿整合草案。
 - `docs/main_manuscript_results_draft_v1.md`：更接近论文正文 `Results` 的压缩版草案。
 - `docs/stage1_failure_decomposition_note_v1.md`：`Stage 1A / 1B` 作为 failure decomposition track 的正式解释入口。

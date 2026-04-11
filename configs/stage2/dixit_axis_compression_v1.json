@@ -1,0 +1,19 @@
+{
+  "stage": "stage2_dixit_axis_compression",
+  "version": 1,
+  "dataset_role": "supplementary_external_structure_replication",
+  "claim_scope": "Dixit/K562 supplementary external structure replication 的可重跑入口。当前目标是复现 architecture existence 与 context-specific macro-class summary，不把 K562 升格为 HCC 对称主结论。",
+  "input_paths": {
+    "bridge_table": "data/processed/stage2_truth_driven_bridge/dixit_2016_raw__control_context/target_level_bridge_table.tsv.gz",
+    "hcc_atlas": "reports/stage2_truth_driven_bridge/master_atlas/shared_target_master_atlas.tsv",
+    "hcc_axis_summary_macro": "reports/stage2_truth_driven_bridge/master_atlas/axis_summary_macro.tsv",
+    "hcc_axis_summary_fine": "reports/stage2_truth_driven_bridge/master_atlas/axis_summary_fine.tsv"
+  },
+  "metrics": {
+    "primary_x": "depmap_gene_effect",
+    "primary_y": "real_shift_mean_abs"
+  },
+  "output": {
+    "report_root": "reports/stage2_truth_driven_bridge/dixit_axis_compression"
+  }
+}

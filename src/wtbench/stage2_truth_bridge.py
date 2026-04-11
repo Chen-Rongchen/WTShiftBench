@@ -32,6 +32,25 @@ DEPMAP_ENDPOINT_COLUMNS = [
     "depmap_gene_effect",
     "depmap_gene_dependency",
 ]
+METRIC_TIERS = {
+    "real_shift_L2": "primary",
+    "real_shift_mean_abs": "primary",
+    "real_Edistance": "supplementary",
+    "real_DEG_burden": "auxiliary",
+    "real_shift_top20_mean": "exploratory",
+    "real_shift_top50_mean": "exploratory",
+    "real_shift_top100_mean": "exploratory",
+    "real_shift_top50_concentration": "exploratory",
+}
+DATASET_ROLE_TO_SECTION = {
+    "primary": "main",
+    "supplementary": "supplement",
+    "exploratory": "appendix",
+}
+DEPMAP_ALIGNMENT_DIRECTION = {
+    "depmap_gene_effect": -1.0,
+    "depmap_gene_dependency": 1.0,
+}
 
 
 @dataclass(frozen=True)
@@ -39,6 +58,7 @@ class DatasetSpec:
     cell_line: str
     depmap_model_id: str
     source_kind: str
+    dataset_role: str = "primary"
     matrix_path: Path | None = None
     barcodes_path: Path | None = None
     features_path: Path | None = None
@@ -70,11 +90,15 @@ def build_dataset_specs(config: dict[str, Any]) -> list[DatasetSpec]:
     specs: list[DatasetSpec] = []
     for item in config["datasets"]:
         source_kind = str(item.get("source_kind", "mtx_protospacer"))
+        dataset_role = str(item.get("dataset_role", "primary"))
+        if dataset_role not in DATASET_ROLE_TO_SECTION:
+            raise ValueError(f"不支持的 dataset_role: {dataset_role}")
         specs.append(
             DatasetSpec(
                 cell_line=str(item["cell_line"]),
                 depmap_model_id=str(item["depmap_model_id"]),
                 source_kind=source_kind,
+                dataset_role=dataset_role,
                 matrix_path=resolve_path(item["matrix_path"]) if item.get("matrix_path") else None,
                 barcodes_path=resolve_path(item["barcodes_path"]) if item.get("barcodes_path") else None,
                 features_path=resolve_path(item["features_path"]) if item.get("features_path") else None,
@@ -152,6 +176,28 @@ def load_single_feature_calls(spec: DatasetSpec, control_prefix: str) -> pd.Data
     return calls.sort_values("cell_barcode").reset_index(drop=True)
 
 
+def resolve_single_perturbation_status(
+    obs: pd.DataFrame,
+    *,
+    allow_degraded_unverified: bool,
+) -> tuple[pd.Series, str, str]:
+    if "is_single_perturbation" in obs.columns:
+        mask = obs["is_control"].astype(bool) | obs["is_single_perturbation"].astype(bool)
+        return mask, "verified_single_perturbation", "is_single_perturbation"
+    if "num_features" in obs.columns:
+        mask = obs["is_control"].astype(bool) | obs["num_features"].eq(1)
+        return mask, "verified_via_num_features_eq_1", "num_features"
+    if allow_degraded_unverified:
+        return (
+            pd.Series(True, index=obs.index),
+            "degraded_unverified_single_perturbation",
+            "unverified",
+        )
+    raise ValueError(
+        "formal 模式要求显式单扰动证据；当前输入既无 is_single_perturbation，也无 num_features==1 可验证。"
+    )
+
+
 def load_expression_for_called_cells(
     spec: DatasetSpec,
     calls: pd.DataFrame,
@@ -180,6 +226,8 @@ def load_expression_for_called_cells(
 def load_expression_from_h5ad(
     spec: DatasetSpec,
     control_prefix: str,
+    *,
+    allow_degraded_unverified: bool,
 ) -> tuple[sparse.csr_matrix, pd.DataFrame, pd.DataFrame]:
     if spec.h5ad_path is None:
         raise ValueError(f"{spec.cell_line} 缺少 h5ad_path。")
@@ -194,9 +242,11 @@ def load_expression_from_h5ad(
 
     obs["target_gene"] = stringify(obs["target_gene"])
     obs["is_control"] = obs["is_control"].astype(bool)
-    if "is_single_perturbation" in obs.columns:
-        is_single = obs["is_single_perturbation"].astype(bool)
-        obs = obs.loc[is_single | obs["is_control"]]
+    single_mask, single_status, single_evidence = resolve_single_perturbation_status(
+        obs,
+        allow_degraded_unverified=allow_degraded_unverified,
+    )
+    obs = obs.loc[single_mask].copy()
     if "formal_like_keep" in obs.columns:
         obs = obs.loc[obs["formal_like_keep"].astype(bool)]
     obs = obs.loc[obs["target_gene"].ne("") | obs["is_control"]]
@@ -205,11 +255,14 @@ def load_expression_from_h5ad(
     obs["target_gene"] = stringify(obs["target_gene"])
     obs["is_control"] = obs["is_control"].astype(bool)
     obs["feature_call"] = obs["target_gene"]
-    obs["num_features"] = 1
+    if "num_features" not in obs.columns:
+        obs["num_features"] = pd.Series(np.nan, index=obs.index)
     obs["num_umis"] = np.nan
     obs["is_control"] = obs["is_control"] | obs["target_gene"].map(
         lambda x: is_control_target(str(x), control_prefix)
     )
+    obs["single_perturbation_filter_status"] = single_status
+    obs["single_perturbation_evidence_source"] = single_evidence
     obs = obs.reset_index(drop=False).rename(columns={"index": "cell_barcode"})
 
     if sparse.issparse(adata.X):
@@ -365,7 +418,14 @@ def build_bridge_records(
                 "truth_source_cell_count": int(normalized.shape[0]),
                 "gene_universe_size": int(normalized.shape[1]),
                 "source_kind": spec.source_kind,
+                "dataset_role": spec.dataset_role,
                 "control_target_prefix": str(filters["control_target_prefix"]),
+                "single_perturbation_filter_status": str(
+                    target_calls["single_perturbation_filter_status"].iloc[0]
+                ),
+                "single_perturbation_evidence_source": str(
+                    target_calls["single_perturbation_evidence_source"].iloc[0]
+                ),
                 "real_shift_L2": float(np.linalg.norm(delta)),
                 "real_shift_mean_abs": float(np.abs(delta).mean()),
                 "real_shift_top20_mean": top_k_mean_abs(delta, 20),
@@ -410,10 +470,15 @@ def prepare_bridge_inputs(
     if spec.source_kind == "mtx_protospacer":
         calls = load_single_feature_calls(spec, control_prefix=str(filters["control_target_prefix"]))
         expression, calls, gene_meta = load_expression_for_called_cells(spec, calls)
+        calls["single_perturbation_filter_status"] = "verified_via_num_features_eq_1"
+        calls["single_perturbation_evidence_source"] = "num_features"
     elif spec.source_kind == "h5ad_obs":
         expression, calls, gene_meta = load_expression_from_h5ad(
             spec,
             control_prefix=str(filters["control_target_prefix"]),
+            allow_degraded_unverified=bool(
+                filters.get("allow_degraded_unverified_single_perturbation", False)
+            ),
         )
     else:
         raise ValueError(f"不支持的 source_kind: {spec.source_kind}")
@@ -482,8 +547,15 @@ def build_bridge_table_for_dataset(
                 "n_targets_with_both_depmap": int(bridge_table["depmap_join_status"].eq("both").sum()),
                 "depmap_both_join_rate": float(bridge_table["depmap_join_status"].eq("both").mean()),
                 "source_kind": spec.source_kind,
+                "dataset_role": spec.dataset_role,
                 "min_target_cells_threshold": min_target_cells,
                 "min_control_cells_threshold": min_control_cells,
+                "single_perturbation_filter_status": str(
+                    calls["single_perturbation_filter_status"].iloc[0]
+                ),
+                "single_perturbation_evidence_source": str(
+                    calls["single_perturbation_evidence_source"].iloc[0]
+                ),
                 "deg_abs_log1p_delta_threshold": float(metrics_cfg["deg_abs_log1p_delta_threshold"]),
                 "deg_expression_floor": float(metrics_cfg["deg_expression_floor"]),
                 "edistance_n_components": int(metrics_cfg["edistance_n_components"]),
@@ -504,10 +576,15 @@ def safe_corr(values_x: pd.Series, values_y: pd.Series, fn) -> tuple[float, floa
 def summarize_correlations(bridge_table: pd.DataFrame) -> pd.DataFrame:
     rows: list[dict[str, Any]] = []
     for truth_metric in TRUTH_METRIC_COLUMNS:
+        if truth_metric not in bridge_table.columns:
+            continue
         for endpoint in DEPMAP_ENDPOINT_COLUMNS:
+            if endpoint not in bridge_table.columns:
+                continue
             subset = bridge_table.loc[:, ["target_gene", truth_metric, endpoint]].dropna()
             spearman_rho, spearman_p = safe_corr(subset[truth_metric], subset[endpoint], spearmanr)
             pearson_rho, pearson_p = safe_corr(subset[truth_metric], subset[endpoint], pearsonr)
+            direction = float(DEPMAP_ALIGNMENT_DIRECTION[endpoint])
             rows.append(
                 {
                     "cell_line": bridge_table["cell_line"].iloc[0],
@@ -518,9 +595,16 @@ def summarize_correlations(bridge_table: pd.DataFrame) -> pd.DataFrame:
                     "spearman_pvalue": spearman_p,
                     "pearson_r_raw": pearson_rho,
                     "pearson_pvalue": pearson_p,
-                    "spearman_rho_aligned": float(-spearman_rho) if not pd.isna(spearman_rho) else np.nan,
-                    "pearson_r_aligned": float(-pearson_rho) if not pd.isna(pearson_rho) else np.nan,
-                    "alignment_note": "aligned>0 表示 truth metric 越高，DepMap 数值越负（更强 dependency/effect）",
+                    "spearman_rho_aligned": float(direction * spearman_rho)
+                    if not pd.isna(spearman_rho)
+                    else np.nan,
+                    "pearson_r_aligned": float(direction * pearson_rho)
+                    if not pd.isna(pearson_rho)
+                    else np.nan,
+                    "alignment_note": (
+                        "depmap_gene_effect: aligned>0 表示 truth metric 越高，gene effect 越负；"
+                        "depmap_gene_dependency: aligned>0 表示 truth metric 越高，gene dependency 越高"
+                    ),
                 }
             )
     return pd.DataFrame(rows)
@@ -539,12 +623,16 @@ def summarize_group_comparisons(bridge_table: pd.DataFrame, config: dict[str, An
     rows: list[dict[str, Any]] = []
     group_cfg = config["group_comparison"]
     for truth_metric in TRUTH_METRIC_COLUMNS:
+        if truth_metric not in bridge_table.columns:
+            continue
         groups = assign_quantile_groups(
             bridge_table[truth_metric],
             q_low=float(group_cfg["quantile_low"]),
             q_high=float(group_cfg["quantile_high"]),
         )
         for endpoint in DEPMAP_ENDPOINT_COLUMNS:
+            if endpoint not in bridge_table.columns:
+                continue
             subset = bridge_table.loc[:, [truth_metric, endpoint]].copy()
             subset["truth_group"] = groups
             subset = subset.loc[subset["truth_group"].isin(["low", "high"])].dropna()
@@ -561,6 +649,7 @@ def summarize_group_comparisons(bridge_table: pd.DataFrame, config: dict[str, An
                 )
             high_median = float(high_values.median()) if not high_values.empty else np.nan
             low_median = float(low_values.median()) if not low_values.empty else np.nan
+            direction = float(DEPMAP_ALIGNMENT_DIRECTION[endpoint])
             rows.append(
                 {
                     "cell_line": bridge_table["cell_line"].iloc[0],
@@ -573,12 +662,15 @@ def summarize_group_comparisons(bridge_table: pd.DataFrame, config: dict[str, An
                     "high_minus_low_raw": high_median - low_median
                     if not (pd.isna(high_median) or pd.isna(low_median))
                     else np.nan,
-                    "aligned_low_minus_high": low_median - high_median
+                    "aligned_effect_direction": direction * (high_median - low_median)
                     if not (pd.isna(high_median) or pd.isna(low_median))
                     else np.nan,
                     "mannwhitney_u": float(statistic) if not pd.isna(statistic) else np.nan,
                     "pvalue": float(pvalue) if not pd.isna(pvalue) else np.nan,
-                    "alignment_note": "aligned_low_minus_high>0 表示 high truth 组的 DepMap 更负",
+                    "alignment_note": (
+                        "aligned_effect_direction>0 表示 high truth 组更符合桥接方向；"
+                        "gene effect 为更负，gene dependency 为更高"
+                    ),
                 }
             )
     return pd.DataFrame(rows)
@@ -632,6 +724,20 @@ def build_cross_cell_line_outputs(bridge_tables: list[pd.DataFrame]) -> tuple[pd
             for variable in variables:
                 lc = f"{variable}_{left_name}"
                 rc = f"{variable}_{right_name}"
+                if lc not in merged.columns or rc not in merged.columns:
+                    summary_rows.append(
+                        {
+                            "cell_line_pair": pair_label,
+                            "variable": variable,
+                            "n_shared_targets": 0,
+                            "pearson_r": np.nan,
+                            "pearson_pvalue": np.nan,
+                            "spearman_rho": np.nan,
+                            "spearman_pvalue": np.nan,
+                            "centered_sign_concordance": np.nan,
+                        }
+                    )
+                    continue
                 subset = pd.DataFrame({"left": merged[lc], "right": merged[rc]}).dropna()
                 if subset.empty:
                     summary_rows.append(
@@ -671,8 +777,12 @@ def build_cross_cell_line_outputs(bridge_tables: list[pd.DataFrame]) -> tuple[pd
             for _, row in merged.iterrows():
                 record: dict[str, Any] = {"target_gene": row["target_gene"]}
                 for variable in variables:
-                    left_value = row[f"{variable}_{left_name}"]
-                    right_value = row[f"{variable}_{right_name}"]
+                    lc = f"{variable}_{left_name}"
+                    rc = f"{variable}_{right_name}"
+                    if lc not in merged.columns or rc not in merged.columns:
+                        continue
+                    left_value = row[lc]
+                    right_value = row[rc]
                     record[f"{variable}_{left_name}"] = left_value
                     record[f"{variable}_{right_name}"] = right_value
                     if not (pd.isna(left_value) or pd.isna(right_value)):
@@ -693,30 +803,62 @@ def build_cross_cell_line_outputs(bridge_tables: list[pd.DataFrame]) -> tuple[pd
     return pd.concat(shared_parts, ignore_index=True), summary_df
 
 
+def metric_rows_for_tier(correlation: pd.DataFrame, tier: str) -> pd.DataFrame:
+    allowed_metrics = [metric for metric, metric_tier in METRIC_TIERS.items() if metric_tier == tier]
+    return correlation.loc[correlation["truth_metric"].isin(allowed_metrics)].sort_values(
+        ["depmap_endpoint", "spearman_rho_aligned"],
+        ascending=[True, False],
+    )
+
+
+def select_summary_rows(correlation: pd.DataFrame, tiers: list[str]) -> pd.DataFrame:
+    parts = [metric_rows_for_tier(correlation, tier) for tier in tiers]
+    return pd.concat(parts, ignore_index=True) if parts else pd.DataFrame()
+
+
 def write_markdown_report(
     report_path: Path,
     per_line_audits: pd.DataFrame,
     correlation_summaries: list[pd.DataFrame],
     group_summaries: list[pd.DataFrame],
     cross_summary: pd.DataFrame,
-    supplementary_candidates: list[str],
 ) -> None:
+    summary_by_cell_line = {
+        frame["cell_line"].iloc[0]: frame.sort_values("spearman_rho_aligned", ascending=False)
+        for frame in correlation_summaries
+    }
+    group_by_cell_line = {
+        frame["cell_line"].iloc[0]: frame.sort_values("aligned_effect_direction", ascending=False)
+        for frame in group_summaries
+    }
+    roles = (
+        per_line_audits.loc[:, ["cell_line", "dataset_role"]]
+        .drop_duplicates()
+        .set_index("cell_line")["dataset_role"]
+        .to_dict()
+    )
+
     lines = [
         "# Stage 2 Truth-Driven Bridge v1",
         "",
         "## 摘要",
         "",
         "- 本报告只覆盖 truth-side bridge，不包含任何 entrant predicted shift。",
-        "- 数据集列表由配置中 `datasets` 决定（主线常为 `HCC38` 与 `HCC1143`，可与 supplement 合并）；`DepMap gene effect` 与 `gene dependency` 并列输出。",
-        f"- supplementary 候选（若配置中列出）：{', '.join(f'`{item}`' for item in supplementary_candidates) if supplementary_candidates else '（无）'}。",
-        "",
-        "## 主结论",
-        "",
+        "- `DepMap gene effect` 与 `gene dependency` 并列输出；主报告严格按 dataset role 与 evidence tier 分层。",
+        "- 主结论只允许 primary datasets 的 primary truth metrics；supplementary datasets 与非 primary metrics 不进入主结论。",
     ]
-
-    for correlation in correlation_summaries:
-        cell_line = correlation["cell_line"].iloc[0]
-        best = correlation.sort_values("spearman_rho_aligned", ascending=False).head(4)
+    primary_datasets = [name for name, role in roles.items() if role == "primary"]
+    if primary_datasets:
+        lines.extend(
+            [
+                "",
+                "## 主结论",
+                "",
+            ]
+        )
+    for cell_line in primary_datasets:
+        correlation = summary_by_cell_line[cell_line]
+        best = select_summary_rows(correlation, ["primary"])
         lines.append(f"### {cell_line}")
         audit_row = per_line_audits.loc[per_line_audits["cell_line"].eq(cell_line)].iloc[0]
         lines.append(
@@ -725,27 +867,79 @@ def write_markdown_report(
         lines.append(
             f"- DepMap 双端点同时 join 成功率：`{audit_row['depmap_both_join_rate']:.1%}`。"
         )
+        lines.append(
+            f"- 单扰动判定：`{audit_row['single_perturbation_filter_status']}`（evidence=`{audit_row['single_perturbation_evidence_source']}`）。"
+        )
         for row in best.itertuples(index=False):
             lines.append(
                 f"- `{row.truth_metric}` vs `{row.depmap_endpoint}` 的 aligned Spearman = `{row.spearman_rho_aligned:.3f}`（n=`{row.n_targets}`）。"
             )
         lines.append("")
 
-    lines.extend(
-        [
-            "## 分组比较",
-            "",
+    if primary_datasets:
+        lines.extend(
+            [
+                "## 补充证据",
+                "",
+            ]
+        )
+    for cell_line in primary_datasets:
+        correlation = summary_by_cell_line[cell_line]
+        supplementary = select_summary_rows(correlation, ["supplementary", "auxiliary"])
+        lines.append(f"### {cell_line}")
+        if supplementary.empty:
+            lines.append("- 无 supplementary / auxiliary 指标可报告。")
+        for row in supplementary.itertuples(index=False):
+            lines.append(
+                f"- `{row.truth_metric}`（{METRIC_TIERS[row.truth_metric]}）vs `{row.depmap_endpoint}` 的 aligned Spearman = `{row.spearman_rho_aligned:.3f}`（n=`{row.n_targets}`）。"
+            )
+        lines.append("")
+
+    if primary_datasets:
+        lines.extend(
+            [
+                "## 分组比较",
+                "",
+            ]
+        )
+    for cell_line in primary_datasets:
+        group_summary = group_by_cell_line[cell_line]
+        best = group_summary.loc[
+            group_summary["truth_metric"].isin(
+                ["real_shift_L2", "real_shift_mean_abs", "real_Edistance", "real_DEG_burden"]
+            )
         ]
-    )
-    for group_summary in group_summaries:
-        cell_line = group_summary["cell_line"].iloc[0]
-        best = group_summary.sort_values("aligned_low_minus_high", ascending=False).head(4)
         lines.append(f"### {cell_line}")
         for row in best.itertuples(index=False):
             lines.append(
-                f"- `{row.truth_metric}` 分层后，`{row.depmap_endpoint}` 的 aligned_low_minus_high = `{row.aligned_low_minus_high:.3f}`（high=`{row.n_high}`，low=`{row.n_low}`）。"
+                f"- `{row.truth_metric}` 分层后，`{row.depmap_endpoint}` 的 aligned_effect_direction = `{row.aligned_effect_direction:.3f}`（high=`{row.n_high}`，low=`{row.n_low}`）。"
             )
         lines.append("")
+
+    supplementary_datasets = [name for name, role in roles.items() if role == "supplementary"]
+    if supplementary_datasets:
+        lines.extend(
+            [
+                "## 外部补充复现",
+                "",
+            ]
+        )
+        for cell_line in supplementary_datasets:
+            correlation = summary_by_cell_line[cell_line]
+            audit_row = per_line_audits.loc[per_line_audits["cell_line"].eq(cell_line)].iloc[0]
+            best = select_summary_rows(correlation, ["primary", "supplementary", "auxiliary"]).head(4)
+            lines.append(f"### {cell_line}")
+            lines.append(
+                f"- dataset role: `{audit_row['dataset_role']}`；single-feature cells: `{int(audit_row['n_cells_with_single_feature'])}`；control cells: `{int(audit_row['n_control_cells'])}`；可分析 targets: `{int(audit_row['n_targets_in_bridge_table'])}`。"
+            )
+            lines.append(
+                f"- 单扰动判定：`{audit_row['single_perturbation_filter_status']}`（evidence=`{audit_row['single_perturbation_evidence_source']}`）。"
+            )
+            for row in best.itertuples(index=False):
+                lines.append(
+                    f"- `{row.truth_metric}`（{METRIC_TIERS[row.truth_metric]}）vs `{row.depmap_endpoint}` 的 aligned Spearman = `{row.spearman_rho_aligned:.3f}`（n=`{row.n_targets}`）。"
+                )
+            lines.append("")
 
     lines.extend(
         [
@@ -756,7 +950,12 @@ def write_markdown_report(
     if cross_summary.empty:
         lines.append("- 本配置仅含单个 cell line / 数据集，未计算跨 cell line 一致性。")
     else:
-        top_cross = cross_summary.sort_values("spearman_rho", ascending=False, na_position="last")
+        allowed_cross = [*DEPMAP_ENDPOINT_COLUMNS, "real_shift_L2", "real_shift_mean_abs", "real_Edistance", "real_DEG_burden"]
+        top_cross = cross_summary.loc[cross_summary["variable"].isin(allowed_cross)].sort_values(
+            "spearman_rho",
+            ascending=False,
+            na_position="last",
+        )
         for row in top_cross.itertuples(index=False):
             n_shared = int(row.n_shared_targets) if not pd.isna(row.n_shared_targets) else 0
             if n_shared < 3:
@@ -773,7 +972,7 @@ def write_markdown_report(
             "",
             "## 附录",
             "",
-            "- `aligned` 方向统一定义为：truth metric 越高，DepMap 数值越负，记作桥接更强。",
+            "- `aligned` 方向按 endpoint 区分：`gene effect` 为更负，`gene dependency` 为更高。",
             "- `real_DEG_burden` 在 v1 中按 `abs(log1p-normalized delta) >= threshold` 且表达达到 floor 的基因数定义。",
             "- `real_Edistance` 在 v1 中基于同 cell line 单扰动细胞的 log-normalized expression SVD embedding 计算。",
         ]
@@ -859,7 +1058,6 @@ def run_from_config(config_path: Path) -> dict[str, Path]:
         correlation_summaries=correlation_tables,
         group_summaries=group_tables,
         cross_summary=cross_summary,
-        supplementary_candidates=[str(item) for item in config.get("supplementary_candidates", [])],
     )
 
     return {
