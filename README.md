@@ -1,17 +1,17 @@
 # WTKO / WT Benchmark
 
-WT Benchmark 是一个 **truth-first** 的 virtual perturbation benchmark 与分析框架：先在真实 perturbation transcriptomic truth 中冻结可桥接 phenotype 的 structure，再评估模型能否恢复这些 structure，最后才进入 discovery。
+WT Benchmark 是一个 **truth-first** 的 virtual perturbation benchmark 与分析框架：先在真实 perturbation transcriptomic truth 中定义可桥接到 cellular fitness / dependency（DepMap）的结构化对象，再评估模型能否恢复这些 bridge architecture，最后才进入 discovery。
 
 ## 1. 这个仓库现在在做什么
 
-这个仓库最初围绕 `Stage 1A / 1B / 2 / 3` 设计。当前 active framing 已经重排为 truth-first：先做 truth architecture discovery，再做 model recovery adjudication，再把 `Stage 1A / 1B` 重新解释为 failure decomposition，discovery 则后置为 downstream layer。
+这个仓库最初围绕 `Stage 1A / 1B / 2 / 3` 设计。当前 active framing 已经重排为 truth-first fitness-bridge architecture：先做 transcriptomic perturbation structure 到 DepMap fitness / dependency 的 bridge discovery，再做 model recovery adjudication，再把 `Stage 1A / 1B` 重新解释为 failure decomposition，discovery 则后置为 downstream layer。
 
 因此，这个仓库现在主要承载两类东西：
 
 - `Stage 2` 的 truth-driven bridge、master atlas、structure replication 与 explanation boundary 产物
 - 论文主文与补充图的 evidence governance / claim boundary 文档
 
-当前已经冻结的是 **truth-side architecture objects**；当前已经闭环的是 **GEARS strongest formal entrant 的真实 HCC smoke adjudication 与有限 backbone sweep**；当前最近一步是 **把 `scGPT / Geneformer / lm_train_lowrank / lm_G_scgpt_ridge / lm_G_geneformer_ridge` 都正式接入 HCC Stage 2，完成双 cell line raw output、export、contract validation 与 smoke comparison，并把 Dixit supplementary 入口补成 config-driven startup packet**。与此同时，truth-side 结果层已经进一步收束为：**truth–DepMap bridge decomposition + cutoff sensitivity / bootstrap stability + evidence tiering + SCP542 boundary + Dixit supplementary external structure replication**。
+当前已经冻结的是 **HCC truth-side bridge architecture objects**；当前已经闭环的是 **GEARS strongest formal entrant 的真实 HCC smoke adjudication 与有限 backbone sweep**；当前最近一步是 **把 `scGPT / Geneformer / lm_train_lowrank / lm_G_scgpt_ridge / lm_G_geneformer_ridge` 都正式接入 HCC Stage 2，完成双 cell line raw output、export、contract validation 与 smoke comparison，并把 Dixit supplementary 入口补成 config-driven startup packet**。与此同时，truth-side 结果层已经进一步收束为：**truth–DepMap bridge decomposition + cutoff sensitivity / bootstrap stability + evidence tiering + SCP542 boundary + Dixit supplementary external structure replication**。下一步需要把核心主张从“转录组内部有结构”明确收紧为：**长期扰动转录组结构中是否存在能桥接 DepMap fitness/dependency 的 architecture**。
 
 旧 Stage 1A smoke / freeze / scoring 顶层流程、旧 entrant registry 与旧处理后数据已经从当前工作树清理；原始下载数据仍保留在 `data/raw`。`scripts/stage1a/` 仅保留 Stage 2 入口仍复用的少量 helper，不再作为独立主流程入口维护。
 
@@ -21,7 +21,7 @@ WT Benchmark 是一个 **truth-first** 的 virtual perturbation benchmark 与分
 
 - `GEARS` 已经作为 strongest formal entrant 跑完 `HCC38 / HCC1143` 的真实 HCC smoke
 - `Geneformer` 与三条 linear controls 都已完成第一轮 HCC formal comparison
-- 当前最核心未关闭问题不是再接 entrant，而是如何把比较、敏感性、混杂、`final claim matrix -> manuscript wording` 持续同步，以及 discovery 继续 gated，写成统一收口
+- 当前最核心未关闭问题不是再接 entrant，而是先把 `transcriptomic perturbation structure -> DepMap fitness/dependency` 的 bridge 主张、Dixit K562 13d-only feasibility、混杂边界与 `final claim matrix -> manuscript wording` 写成统一收口
 
 如果你下次进来只想知道“先看哪里就够”，固定只看这三个入口：
 
@@ -85,10 +85,16 @@ WT Benchmark 是一个 **truth-first** 的 virtual perturbation benchmark 与分
    - 当前仍不能写成 `fully deconfounded`
 4. 因此，下一步只优先做一件事：
    - 这条追查现已收口：当前能确认 `HCC38 -> aggrMH001-3`、`HCC1143 -> aggrMH004-6`，但仍不能把 `-1/-2/-3` 唯一写成单个 `MH00x`
-5. 在这件事完成前，不继续扩 discovery，不新增 entrant
-6. 因此当前正式口径固定为：
+5. 如果要推进 Dixit/K562，只做 `GSE90063` feasibility check：
+   - 确认能否可靠拆出 `K562 13d-only`
+   - 确认 count matrix、sample metadata、guide-cell assignment、target gene mapping 是否足够
+   - `13d` 只写成与 DepMap `~14-21d` fitness screen 的 `time-scale compatible`，不写成 matched endpoint
+   - Dixit 2016 可作为 CRISPR knockout perturbation 处理，但必须标注 TF-enriched target library 的边界
+6. 在这件事完成前，不继续扩 discovery，不新增 entrant
+7. 因此当前正式口径固定为：
    - `barcode_gem_group = design-proxy axis`
    - 不是已确认到单个 `MH00x` 的 run-level label
+   - `Dixit 7d` 与 `Replogle 7d CRISPRi` 暂时只作为 temporal / cross-modality exploration，不作为 primary closure
 
 ## 3. 当前项目结构
 
@@ -104,10 +110,10 @@ long-horizon generalization / stress test 的概念层仍保留在 roadmap 中�
 
 truth-driven bridge。当前概念上分成两部分：
 
-- truth architecture discovery
+- fitness-relevant truth architecture discovery
 - model recovery adjudication
 
-其中 truth-side 已冻结了一批 architecture object；model-side 的 contract / scorer / 真实 HCC input bridge 与 GEARS entrant smoke 已跑通，`GEARS` 的有限 backbone sweep 也已按 stop rule 收口，但整个 `Stage 2` 仍未因为此而“全部完成”，因为当前还处在结果收束与 failure decomposition 解释层。
+其中 HCC truth-side 已冻结了一批 bridge architecture object；model-side 的 contract / scorer / 真实 HCC input bridge 与 GEARS entrant smoke 已跑通，`GEARS` 的有限 backbone sweep 也已按 stop rule 收口，但整个 `Stage 2` 仍未因为此而“全部完成”，因为当前还处在结果收束、Dixit K562 13d-only 可行性判断与 failure decomposition 解释层。
 
 ### Stage 3
 
@@ -117,7 +123,7 @@ discovery / phenotype shifter。它仍保留在 roadmap 中，但当前不是 pr
 
 - truth-side architecture contract：已冻结
 - HCC mainline truth architecture：已冻结
-- Dixit/K562：作为 supplementary external structure replication object 已冻结
+- Dixit/K562：现有混合时间点版本作为 supplementary external structure replication object 已冻结；`K562 13d-only` 仍是待 feasibility check 的候选外部 bridge context
 - SCP542：作为 explanation boundary 已冻结
 - model-side structure scorer：已落地
 - Stage 2 HCC prediction contract：已冻结为 `stage2_truth_aligned_log_shift`
@@ -131,15 +137,16 @@ discovery / phenotype shifter。它仍保留在 roadmap 中，但当前不是 pr
 
 当前最近一步不是“再接一个 entrant”，而是：
 
-**在有限预算 sweep 已完成的前提下，将 GEARS 在 HCC primary 上正式收口为 architecture trade-off diagnosis，并把主线切到 truth bridge evidence tiering + frozen axis 的 annotation / validation 结果收束。**
+**在有限预算 sweep 已完成的前提下，将 GEARS 在 HCC primary 上正式收口为 architecture trade-off diagnosis，并把项目主卖点固定为 fitness-relevant transcriptomic bridge architecture：扰动转录组结构能否桥接 DepMap cellular fitness/dependency。**
 
 当前最关键的三个问题是：
 
 - backbone recovery
 - shift-excess identification
 - structure vs context separation
+- transcriptomic architecture 是否能桥接 DepMap fitness/dependency
 
-因此当前 benchmark 主问题已经从“整体拟合好不好”转成了“architecture recovery 是否成立”。
+因此当前 benchmark 主问题已经从“整体拟合好不好”转成了“模型是否能恢复 fitness-relevant bridge architecture”。具体 anchor / axis 属于 bridge content 层，仍然要保持 HCC-specific 与 qualified。
 
 而下一阶段的执行重点已经进一步收紧为：
 
@@ -180,6 +187,7 @@ discovery / phenotype shifter。它仍保留在 roadmap 中，但当前不是 pr
    - 直接把当前 `barcode_gem_group` 固定写成 design-proxy axis
    - 把这条边界持续同步到 `final claim matrix -> manuscript wording`
 4. 然后再做：
+   - `GSE90063` Dixit K562 13d-only feasibility check 与 positive / partial / negative 判据冻结
    - `最终边界`
    - `main manuscript wording` 持续同步
    - `discovery 继续 gated`
@@ -194,12 +202,12 @@ discovery / phenotype shifter。它仍保留在 roadmap 中，但当前不是 pr
    - `s41592-025-02772-6.pdf`
 7. 明确仍不做：
    - 新 entrant
-   - 新 truth object
+   - 无 feasibility check 与预冻结判据的新 truth object
    - 新评分体系
    - 无停止规则的继续调参
    - 在 design-layer mapping 未更清楚前继续扩 discovery
 
-当前不要再把更多 entrant 无边界拉进主线。foundation-model entrant 与第一层 linear controls 都已完成接入；下一步是把 covariate closure 再往前推半步，并把 manuscript 入口维持在同一套边界上。
+当前不要再把更多 entrant 无边界拉进主线。foundation-model entrant 与第一层 linear controls 都已完成接入；下一步是把核心主张、Dixit K562 13d-only feasibility、covariate boundary 与 manuscript 入口维持在同一套边界上。
 
 ### 直接运行
 
