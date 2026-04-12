@@ -35,7 +35,7 @@
 - `PFDN5` 最多只能写成 `primary_but_qualified`
 - `PMF1 / PRPF6 / ZNF131` 当前只能写成 `supporting_only`
 - `transcription / chromatin` 最多只能写成 `primary_axis_but_qualified`
-- `Dixit/K562` 只能写成 `supplementary external structure replication`
+- `Dixit/K562` 只能写成基于 `GSE90063 K562 13d-only` 的 `supplementary external structure replication`，并且当前最稳地支持的是 supplementary-level 的 architecture-form / bridge-form support
 - discovery 当前只能写成 `gated_downstream_layer`
 
 ## 5. 当前真正还没 fully closed 的
@@ -73,6 +73,7 @@
 - `barcode_gem_group` 已被解析为单个 `MH00x` run-level covariate
 - 多数 axis 已完成同等级正式闭环
 - `Dixit/K562` 与 HCC 构成对称 primary conclusion
+- `Dixit/K562` 已经建立 shared mainline architecture content 或 broad cross-context validation
 - discovery 已成为当前正式主交付
 - discovery 已进入 formal deliverable
 - `Stage 2 complete`
@@ -97,6 +98,26 @@
 6. [`docs/model_vs_baseline_next_step_breakdown_v1.md`](/home/data/gz0705/WTKO/docs/model_vs_baseline_next_step_breakdown_v1.md)
 7. [`docs/main_manuscript_integrated_narrative_draft_v1.md`](/home/data/gz0705/WTKO/docs/main_manuscript_integrated_narrative_draft_v1.md)
 8. [`docs/main_manuscript_results_draft_v1.md`](/home/data/gz0705/WTKO/docs/main_manuscript_results_draft_v1.md)
+
+## 8.1 默认执行顺序
+
+如果当前不是继续扩结果，而是把收口主线变成稳定可执行入口，默认先跑：
+
+```bash
+pixi run --environment core run-stage2-closure-pipeline
+pixi run --environment core validate-stage2-closure-artifacts
+```
+
+再按需刷新：
+
+```bash
+pixi run --environment core build-stage2-truth-bridge-decomposition
+pixi run --environment core build-stage2-truth-driven-bridge-dixit-supplement
+pixi run --environment core run-stage2-dixit-axis-compression
+pixi run --environment core render-manuscript-figure1
+```
+
+默认不把运行后新产生的 `reports/`、`data/processed/`、`results/` 内容纳入提交；这些路径受 `.gitignore` 管理。当前 git 提交应聚焦于 `scripts/`、`configs/`、`docs/` 与必要 `tests/` 的变更。
 
 ## 9. 一句话收口
 

@@ -41,17 +41,8 @@ def write_sensitivity_report(report_root: Path, summary) -> None:
     (report_root / "sensitivity_report.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
-def main() -> None:
-    parser = argparse.ArgumentParser(description="Stage 2 truth-driven bridge 敏感性分析。")
-    parser.add_argument(
-        "--config",
-        type=Path,
-        default=Path("configs/stage2/truth_bridge_sensitivity_v1.json"),
-        help="敏感性分析配置 JSON。",
-    )
-    args = parser.parse_args()
-
-    sens = load_sensitivity_config(args.config)
+def run_sensitivity_from_config(config_path: Path) -> tuple[Path, dict]:
+    sens = load_sensitivity_config(config_path)
     base = load_config(resolve_path(sens["base_config"]))
 
     depmap_effect = load_depmap_endpoint(resolve_path(base["depmap"]["gene_effect_path"]))
@@ -86,6 +77,20 @@ def main() -> None:
         write_covariate_outputs(cov_dir, cov)
 
     write_sensitivity_report(report_root, out["control_subsample_summary"])
+    return report_root, out
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description="Stage 2 truth-driven bridge 敏感性分析。")
+    parser.add_argument(
+        "--config",
+        type=Path,
+        default=Path("configs/stage2/truth_bridge_sensitivity_v1.json"),
+        help="敏感性分析配置 JSON。",
+    )
+    args = parser.parse_args()
+
+    report_root, _ = run_sensitivity_from_config(args.config)
 
     print("Stage 2 truth bridge 敏感性分析完成。")
     print(f"- {report_root}")
