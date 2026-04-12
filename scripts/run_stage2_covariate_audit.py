@@ -77,17 +77,8 @@ def write_covariate_outputs(report_root: Path, outputs: dict[str, pd.DataFrame])
     (report_root / "summary.md").write_text("\n".join(md_lines), encoding="utf-8")
 
 
-def main() -> None:
-    parser = argparse.ArgumentParser(description="运行 Stage 2 covariate balance audit。")
-    parser.add_argument(
-        "--config",
-        type=Path,
-        default=Path("configs/stage2/truth_bridge_covariate_audit_v1.json"),
-        help="covariate audit 配置 JSON。",
-    )
-    args = parser.parse_args()
-
-    cfg = load_covariate_config(args.config)
+def run_covariate_audit_from_config(config_path: Path) -> tuple[Path, dict[str, pd.DataFrame]]:
+    cfg = load_covariate_config(config_path)
     base = load_config(resolve_path(cfg["base_config"]))
     out_dir = resolve_path(cfg["output"]["report_root"])
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -109,6 +100,20 @@ def main() -> None:
             strat_columns=strat_columns,
         )
     write_covariate_outputs(out_dir, out)
+    return out_dir, out
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description="运行 Stage 2 covariate balance audit。")
+    parser.add_argument(
+        "--config",
+        type=Path,
+        default=Path("configs/stage2/truth_bridge_covariate_audit_v1.json"),
+        help="covariate audit 配置 JSON。",
+    )
+    args = parser.parse_args()
+
+    out_dir, out = run_covariate_audit_from_config(args.config)
 
     print("Stage 2 covariate audit 完成。")
     for cell_line in sorted(out):

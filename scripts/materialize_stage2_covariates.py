@@ -179,6 +179,17 @@ def materialize_one(dataset: dict, control_prefix: str, n_bins: int) -> Path:
     return output_path
 
 
+def materialize_covariates_from_config(config_path: Path) -> list[Path]:
+    config = load_config(config_path)
+    control_prefix = str(config.get("control_target_prefix", "intergenic_chr_"))
+    n_bins = int(config.get("quantile_bins", config.get("num_umis_quantile_bins", 4)))
+
+    outputs: list[Path] = []
+    for dataset in config["datasets"]:
+        outputs.append(materialize_one(dataset, control_prefix=control_prefix, n_bins=n_bins))
+    return outputs
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="物化 Stage 2 covariates TSV。")
     parser.add_argument(
@@ -189,13 +200,7 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    config = load_config(args.config)
-    control_prefix = str(config.get("control_target_prefix", "intergenic_chr_"))
-    n_bins = int(config.get("quantile_bins", config.get("num_umis_quantile_bins", 4)))
-
-    outputs: list[Path] = []
-    for dataset in config["datasets"]:
-        outputs.append(materialize_one(dataset, control_prefix=control_prefix, n_bins=n_bins))
+    outputs = materialize_covariates_from_config(args.config)
 
     print("Stage 2 covariates 物化完成。")
     for path in outputs:

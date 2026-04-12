@@ -15,13 +15,19 @@ WT Benchmark 是一个 **truth-first** 的 virtual perturbation benchmark 与分
 
 旧 Stage 1A smoke / freeze / scoring 顶层流程、旧 entrant registry 与旧处理后数据已经从当前工作树清理；原始下载数据仍保留在 `data/raw`。`scripts/stage1a/` 仅保留 Stage 2 入口仍复用的少量 helper，不再作为独立主流程入口维护。
 
+### 数据身份警报（2026-04）
+
+- `data/raw/stage1a/candidates/dixit_2016_raw.h5ad` 与 Dixit 2016 / GSE90063 K562 TF pool 的公开描述不匹配，当前更接近 Frangieh 2021 风格对象（`~218k` cells、`IFNγ/Co-culture/Control`、20 蛋白通道）。
+- 它不是 `norman_2019_raw`，但也不能继续作为 `Dixit/K562` supplementary replication 的有效输入。
+- 基于该对象派生的 `data/processed/stage1a/candidate_formal_like/dixit_2016_raw__control_context.h5ad` 当前统一按 **legacy / 暂停引用** 处理；Dixit 相关 bridge 结论以 `GSE90063` 重建后的 `K562 13d-only` 为准。
+
 ## 2. 一眼先看这里
 
 如果你是下一次进来的人，先看这三句：
 
 - `GEARS` 已经作为 strongest formal entrant 跑完 `HCC38 / HCC1143` 的真实 HCC smoke
 - `Geneformer` 与三条 linear controls 都已完成第一轮 HCC formal comparison
-- 当前最核心未关闭问题不是再接 entrant，而是先把 `transcriptomic perturbation structure -> DepMap fitness/dependency` 的 bridge 主张、Dixit K562 13d-only feasibility、混杂边界与 `final claim matrix -> manuscript wording` 写成统一收口
+- 当前最核心未关闭问题不是再接 entrant，而是先把 `transcriptomic perturbation structure -> DepMap fitness/dependency` 的 bridge 主张、Dixit K562 13d-only admission wording freeze、混杂边界与 `final claim matrix -> manuscript wording` 写成统一收口
 
 如果你下次进来只想知道“先看哪里就够”，固定只看这三个入口：
 
@@ -85,9 +91,10 @@ WT Benchmark 是一个 **truth-first** 的 virtual perturbation benchmark 与分
    - 当前仍不能写成 `fully deconfounded`
 4. 因此，下一步只优先做一件事：
    - 这条追查现已收口：当前能确认 `HCC38 -> aggrMH001-3`、`HCC1143 -> aggrMH004-6`，但仍不能把 `-1/-2/-3` 唯一写成单个 `MH00x`
-5. 如果要推进 Dixit/K562，只做 `GSE90063` feasibility check：
-   - 确认能否可靠拆出 `K562 13d-only`
-   - 确认 count matrix、sample metadata、guide-cell assignment、target gene mapping 是否足够
+5. 如果要推进 Dixit/K562，不再做 feasibility（已通过），而是做 wording freeze 与 manuscript sync：
+  - `GSE90063 K562 13d-only` 已作为 formal supplementary external evidence 纳入正式证据体系
+  - 定位是 `formal supplementary, not formal primary`：A0 architecture form 已 confirmed，A1 bridge form 当前为 supporting / partial-support
+   - 剩余工作：冻结 admission note、positive/partial/negative 判据 wording，同步进 `final claim matrix`
    - `13d` 只写成与 DepMap `~14-21d` fitness screen 的 `time-scale compatible`，不写成 matched endpoint
    - Dixit 2016 可作为 CRISPR knockout perturbation 处理，但必须标注 TF-enriched target library 的边界
 6. 在这件事完成前，不继续扩 discovery，不新增 entrant
@@ -113,7 +120,7 @@ truth-driven bridge。当前概念上分成两部分：
 - fitness-relevant truth architecture discovery
 - model recovery adjudication
 
-其中 HCC truth-side 已冻结了一批 bridge architecture object；model-side 的 contract / scorer / 真实 HCC input bridge 与 GEARS entrant smoke 已跑通，`GEARS` 的有限 backbone sweep 也已按 stop rule 收口，但整个 `Stage 2` 仍未因为此而“全部完成”，因为当前还处在结果收束、Dixit K562 13d-only 可行性判断与 failure decomposition 解释层。
+其中 HCC truth-side 已冻结了一批 bridge architecture object；model-side 的 contract / scorer / 真实 HCC input bridge 与 GEARS entrant smoke 已跑通，`GEARS` 的有限 backbone sweep 也已按 stop rule 收口，但整个 `Stage 2` 仍未因为此而“全部完成”，因为当前还处在结果收束、Dixit K562 13d-only supplementary wording / claim tiering 收紧与 failure decomposition 解释层。
 
 ### Stage 3
 
@@ -123,7 +130,7 @@ discovery / phenotype shifter。它仍保留在 roadmap 中，但当前不是 pr
 
 - truth-side architecture contract：已冻结
 - HCC mainline truth architecture：已冻结
-- Dixit/K562：现有混合时间点版本作为 supplementary external structure replication object 已冻结；`K562 13d-only` 仍是待 feasibility check 的候选外部 bridge context
+- Dixit/K562：历史 `dixit_2016_raw__control_context` 输入当前按 **legacy / 暂停引用** 处理；`K562 13d-only`（`GSE90063`）当前最稳地支持 supplementary-level 的 architecture-form / bridge-form support：A0 architecture form 已 confirmed，A1 bridge form 当前为 supporting / partial-support。它复现了 `backbone + shift-excess` 架构形式，并在 `n=10` 个可桥接 targets 上呈现出与 DepMap 方向一致、时间尺度兼容的 bridge 信号；但由于当前 target 数仍有限、主导 macro class 与 HCC 仍表现出明显的 context specificity，这些结果不能升级为 shared mainline architecture content、broad cross-context validation 或与 HCC 对称的 primary conclusion
 - SCP542：作为 explanation boundary 已冻结
 - model-side structure scorer：已落地
 - Stage 2 HCC prediction contract：已冻结为 `stage2_truth_aligned_log_shift`
@@ -187,7 +194,7 @@ discovery / phenotype shifter。它仍保留在 roadmap 中，但当前不是 pr
    - 直接把当前 `barcode_gem_group` 固定写成 design-proxy axis
    - 把这条边界持续同步到 `final claim matrix -> manuscript wording`
 4. 然后再做：
-   - `GSE90063` Dixit K562 13d-only feasibility check 与 positive / partial / negative 判据冻结
+   - `GSE90063` Dixit K562 13d-only admission wording freeze 与 positive / partial / negative 判据冻结
    - `最终边界`
    - `main manuscript wording` 持续同步
    - `discovery 继续 gated`
@@ -207,9 +214,23 @@ discovery / phenotype shifter。它仍保留在 roadmap 中，但当前不是 pr
    - 无停止规则的继续调参
    - 在 design-layer mapping 未更清楚前继续扩 discovery
 
-当前不要再把更多 entrant 无边界拉进主线。foundation-model entrant 与第一层 linear controls 都已完成接入；下一步是把核心主张、Dixit K562 13d-only feasibility、covariate boundary 与 manuscript 入口维持在同一套边界上。
+当前不要再把更多 entrant 无边界拉进主线。foundation-model entrant 与第一层 linear controls 都已完成接入；下一步是把核心主张、Dixit K562 13d-only admission wording freeze、covariate boundary 与 manuscript 入口维持在同一套边界上。
 
 ### 直接运行
+
+如果你下次进来要按当前收口主线直接执行，默认先用 `pixi`：
+
+```bash
+pixi run --environment core run-stage2-closure-pipeline
+pixi run --environment core validate-stage2-closure-artifacts
+```
+
+这两步的职责分别是：
+
+- `run-stage2-closure-pipeline`：串联 `covariates -> sensitivity -> covariate audit`
+- `validate-stage2-closure-artifacts`：校验 `claim/tier` 关键 TSV 与边界文档没有漂移
+
+注意：运行产物默认落到 `reports/`、`data/processed/` 与 `data/stage2/`；这些路径受 `.gitignore` 约束，默认不作为版本管理对象提交。当前 git 版本管理应聚焦于 `scripts/`、`configs/`、`docs/` 与必要的 `tests/` 变更，而不是把本地重跑产物一并纳入仓库。
 
 如果你下次进来要直接刷新当前 axis 主线，而不是回头重跑 GEARS sweep，按这个顺序执行：
 
@@ -231,7 +252,7 @@ PYTHONPATH=src python scripts/materialize_stage2_per_target_signature.py --confi
 PYTHONPATH=src python scripts/run_stage2_axis_target_consistency.py --config configs/stage2/axis_target_consistency_template_v1.json
 PYTHONPATH=src python scripts/summarize_stage2_axis_validation.py --config configs/stage2/axis_validation_summary_v1.json
 python scripts/stage2_freeze_scp542_explanation_boundaries.py
-python scripts/stage2_dixit_axis_compression.py
+PYTHONPATH=src python scripts/run_stage2_dixit_axis_compression.py --config configs/stage2/dixit_axis_compression_v1.json
 ```
 
 如果你只想先看当前主线结果，先打开：
@@ -280,6 +301,7 @@ python scripts/stage2_dixit_axis_compression.py
 - `docs/stage2_truth_bridge_decomposition_v1.md`：将 truth–DepMap bridge 分解为 `target-level joint grid` 与 `axis-level shared explanatory structure` 的正式说明。
 - `docs/stage2_truth_bridge_decomposition_result_v1.md`：可直接进入主文写作的结果段落与图注草稿。
 - `docs/stage2_truth_bridge_integrated_result_v1.md`：整合 decomposition、axis validation、SCP542 与 Dixit supplement 的统一结果入口。
+- `docs/stage2_dixit_admission_contract_v1.md`：冻结 `Dixit/K562` 在当前主线里的 admission status，明确 `13d / 7d / legacy` 三层准入边界。
 - `docs/stage2_dixit_supplementary_evidence_tier_v1.md`：Dixit/K562 supplementary external structure replication 的证据分层口径。
 - `docs/stage2_dixit_supplementary_startup_packet_v1.md`：Dixit/K562 supplementary replication 的可重跑启动包。
 - `docs/stage2_fuller_hcc_model_comparison_note_v1.md`：HCC primary adjudication 中 fuller model comparison 的解释层说明。
@@ -309,7 +331,7 @@ python scripts/stage2_dixit_axis_compression.py
 - `docs/stage2_lm_g_geneformer_ridge_hcc_recipe_freeze_v1.md`：`lm_G_geneformer_ridge` 的 HCC Stage 2 linear control freeze 与当前接入状态。
 - `configs/stage2/lm_g_geneformer_ridge_hcc_formal_v1.json`：`lm_G_geneformer_ridge` HCC Stage 2 control 配置。
 - `scripts/run_stage2_lm_g_geneformer_ridge_hcc_predictions.py`：`lm_G_geneformer_ridge` HCC Stage 2 raw output producer 入口。
-- `configs/stage2/dixit_axis_compression_v1.json`：Dixit supplementary axis compression 的 machine-readable 配置。
+- `configs/stage2/dixit_axis_compression_v1.json`：Dixit supplementary axis compression 的默认 machine-readable 配置，当前固定指向 `GSE90063 K562 13d-only`。
 - `scripts/run_stage2_dixit_axis_compression.py`：Dixit supplementary axis compression 的 config-driven 运行入口。
 - `docs/stage2_axis_annotation_and_validation_rule.md`：功能轴的发现、注释与验证规则。
 - `docs/stage2_axis_analysis_minimal_template.md`：axis shared signature -> enrichment -> consistency audit 的最小执行模板。
@@ -356,7 +378,59 @@ python scripts/stage2_dixit_axis_compression.py
 - `configs/stage2/gears_hcc_backbone_sweep_v1.json`
 - `configs/stage2/gears_hcc_formal_v1.json`
 
-## 10. Claim Boundaries
+## 10. 指标体系：主线定义 bridge，补充层解释 bridge
+
+### 10.1 主裁决三指标（必须同场，不拆分）
+
+这三个指标共同定义 architecture-aware adjudication，单独任何一个都不能完整概括模型表现：
+
+| 指标 | 回答的问题 |
+|------|-----------|
+| `backbone_recovery_score` | 模型是否恢复了跨扰动最稳定的共享结构 |
+| `shift_excess_identification_score` | 模型是否能识别超出 backbone 预测的过度偏移 |
+| `structure_vs_context_separation_score` | 模型是否把 backbone 和 context deviation 分开，而不是混在一起 |
+
+**三指标同时用，才能显式拆出 architecture trade-off**：
+- `shared_mean_baseline` 在 backbone 上更强（0.807 vs 最高 0.660）
+- GEARS 在 separation 上更强（0.468 vs baseline 0.353）
+- 任何单一指标都会掩盖这个结构性 trade-off
+
+### 10.2 补充审计四模块（降位使用，不抢主线）
+
+这些指标仍然需要，但位置是补充解释层，不是 headline：
+
+| 模块 | 定位 |
+|------|------|
+| `Spearman(E, ΔT)`（rank-based association）| bridge-form scalar association 主关联指标 |
+| `E-distance`（embedding-space displacement）| embedding 层面的 state displacement 审计；与 Spearman 为**互补维度**，不是竞争关系 |
+| Essentiality stratification（tier 1–4）| 解释 bridge 为什么非线性、分层；是**可解释性 scaffold**，不是 orthogonal validation |
+| Stress-removed sensitivity | 判断 bridge 是否只是"濒死程序"驱动 |
+
+**禁止表述**：
+> `E-distance underperforms Spearman as a headline metric`
+
+**正确表述**：
+> E-distance is retained as an embedding-level scalar audit of state displacement, whereas Spearman(E, ΔT) is retained as the primary rank-based association summary. They are complementary rather than competing headline metrics.
+
+**禁止表述**：
+> essentiality stratification independently validates the architecture-level adjudication
+
+**正确表述**：
+> Essentiality stratification provides an interpretable decomposition scaffold for why the truth–DepMap bridge is non-linear and tiered, and is retained as a supplementary explanation layer rather than an orthogonal validation layer.
+
+### 10.3 K562 13d 的正式分层
+
+`GSE90063 K562 13d-only` 的 formal tiering（三层）：
+
+| 层 | 状态 | 含义 |
+|----|------|------|
+| A0 architecture form | **confirmed** | backbone + shift-excess 结构可复制 |
+| A1 bridge form | **supporting / partial-support** | Spearman ~0.50，与 DepMap 方向一致但弱于 HCC primary |
+| B bridge content | **not eligible** | macro class context-specific，target overlap 低 |
+
+进入的是 `formal supplementary external evidence`，不是 `formal primary co-pillar`。
+
+## 11. Claim Boundaries
 
 - 当前项目**尚未**证明 model predictions 能恢复 frozen architecture。
 - 当前已完成的是 `GEARS` 的 entrant-qualified HCC smoke，不是“GEARS 已整体胜出”。
@@ -402,7 +476,7 @@ python scripts/stage2_dixit_axis_compression.py
 
 - `reports/stage2_truth_driven_bridge/truth_architecture_contract/`
 - `reports/stage2_truth_driven_bridge/master_atlas/`
-- `reports/stage2_truth_driven_bridge/dixit_axis_compression/`
+- `reports/stage2_truth_driven_bridge/dixit_axis_compression_gse90063_13d/`
 - `reports/stage2_truth_driven_bridge/scp542_calibration/`
 
 ## 12. 当前一句话主线

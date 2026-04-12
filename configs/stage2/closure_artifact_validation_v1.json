@@ -1,0 +1,141 @@
+{
+  "artifacts": [
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv",
+      "required_columns": [
+        "object",
+        "level",
+        "structural_stability",
+        "cutoff_stability",
+        "bootstrap_status",
+        "covariate_status",
+        "evidence_tier",
+        "allowed_wording",
+        "disallowed_wording"
+      ],
+      "allowed_values": {
+        "evidence_tier": [
+          "retainable_global_claim",
+          "methodological_boundary",
+          "primary_conclusion",
+          "primary_but_qualified",
+          "supporting_only",
+          "supporting_but_sensitive",
+          "primary_axis_but_qualified",
+          "supporting_or_preliminary",
+          "A0_confirmed_A1_supporting",
+          "A0_confirmed",
+          "A1_supporting",
+          "gated_downstream_layer"
+        ]
+      },
+      "required_rows": [
+        {
+          "match": {
+            "object": "GEARS_tradeoff_diagnosis",
+            "evidence_tier": "primary_conclusion"
+          }
+        },
+        {
+          "match": {
+            "object": "PFDN5",
+            "evidence_tier": "primary_but_qualified"
+          }
+        },
+        {
+          "match": {
+            "object": "Dixit_K562_supplementary",
+            "evidence_tier": "A0_confirmed_A1_supporting"
+          }
+        }
+      ]
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/anchor_claim_tiering.tsv",
+      "required_columns": [
+        "target_gene",
+        "structural_stability",
+        "covariate_cleanliness",
+        "final_wording_tier",
+        "recommended_writeup"
+      ],
+      "allowed_values": {
+        "final_wording_tier": [
+          "primary_but_qualified",
+          "supporting_only",
+          "supporting_but_sensitive"
+        ]
+      },
+      "required_rows": [
+        {
+          "match": {
+            "target_gene": "PFDN5",
+            "final_wording_tier": "primary_but_qualified"
+          }
+        },
+        {
+          "match": {
+            "target_gene": "PMF1",
+            "final_wording_tier": "supporting_only"
+          }
+        }
+      ]
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/dixit_axis_compression_gse90063_13d/dixit_claim_tiering.tsv",
+      "required_columns": [
+        "object",
+        "level",
+        "evidence_tier",
+        "allowed_wording",
+        "disallowed_wording"
+      ],
+      "allowed_values": {
+        "evidence_tier": [
+          "supplementary_confirmed",
+          "supplementary_supporting",
+          "preliminary",
+          "not_supported_by_current_dixit_truth_side"
+        ]
+      },
+      "required_rows": [
+        {
+          "match": {
+            "object": "architecture_existence",
+            "evidence_tier": "supplementary_confirmed"
+          }
+        },
+        {
+          "match": {
+            "object": "shift_excess_present",
+            "evidence_tier": "supplementary_supporting"
+          }
+        }
+      ]
+    },
+    {
+      "path": "docs/final_claim_boundary_and_discovery_gating_note_v1.md",
+      "required_substrings": [
+        "A0 architecture form 已 confirmed",
+        "n=10",
+        "gated_downstream_layer"
+      ]
+    },
+    {
+      "path": "docs/stage2_dixit_supplementary_evidence_tier_v1.md",
+      "required_substrings": [
+        "A0 confirmed / A1 supporting / B not eligible",
+        "n=10",
+        "transcription regulation"
+      ]
+    },
+    {
+      "path": "docs/stage1_failure_decomposition_note_v1.md",
+      "required_substrings": [
+        "Stage 1A / 1B failure decomposition note",
+        "short-horizon failure decomposition",
+        "temporal failure decomposition layer"
+      ]
+    }
+  ]
+}

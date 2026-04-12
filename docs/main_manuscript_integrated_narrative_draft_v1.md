@@ -101,7 +101,7 @@
 
 因此，当前 axis 层最重要的成果不是“闭合了一个完整模块架构”，而是完成了第一轮 `annotation`、`validation` 与 `evidence tiering`，使哪些轴可以写得更强、哪些轴必须保持保守，已经具备清晰边界。
 
-## 6. SCP542 与 Dixit/K562：解释边界与 supplementary replication
+## 6. SCP542 与 Dixit/K562：解释边界与 formal supplementary external evidence（A0/A1/B tiering）
 
 当前 `SCP542` 与 `Dixit/K562` 已经分别被明确压到各自合适的位置，二者不能混写。
 
@@ -115,18 +115,18 @@
 
 - `K562` 中同样可以观察到 `canonical backbone`
 - `K562` 中同样可以观察到 `shift-excess`
-- 但其 dominant backbone 更偏 `biosynthetic support / mitochondrial metabolism`
+- 但其 dominant backbone 更偏 `transcription regulation`
 - 因而它支持的是 architecture existence 的外部复现，而不是与 HCC 对称的主线 architecture
 
-按当前更正式的 supplementary tiering 口径：
+按当前 formal supplementary tiering（A0/A1/B 三层）：
 
-- `architecture existence` 与 `canonical backbone present` 可保留为 `supplementary_confirmed`
-- `shift-excess present` 与 context-specific backbone macro class 更适合保留为 `supplementary_supporting`
-- `shift-excess macro class` 以及多数单条 K562 axis 仍应保持 `preliminary`
+- `architecture existence` 与 `canonical backbone present`：**A0 architecture form → confirmed**
+- `shift-excess present`、`architecture class = backbone_plus_shift_excess` 与 context-specific backbone macro class：**A1 bridge form → supporting / partial-support**
+- `shift-excess macro class` 以及多数单条 K562 axis：**B 层 content-level replication → not eligible**
 
-因此，当前最稳的写法应始终是：
+因此，`Dixit/K562` 当前进入的是 **formal supplementary external evidence**，最稳写法是：
 
-**supplementary replication supports architecture existence, but the dominant macro-class remains context-specific.**
+**K562 13d supports formal supplementary-level architecture-form / bridge-form support（A0 confirmed / A1 supporting / B not eligible）；其 bridge-form 证据当前建立在 `n=10` 个可桥接 targets 上，因此仍应保留 supportive rather than content-generalizing 的写法，而不是 formal primary co-pillar 或 content-level replication confirmed。**
 
 ## 7. Stage 1A / 1B：failure decomposition track
 
@@ -172,7 +172,7 @@
 
 ## 9. 可直接进入主文的总收口段
 
-综合当前结果，我们认为本项目已经完成从“现象级相关”到“分层化结构证据”的第一轮收口。首先，在模型侧，`GEARS` 已完成 HCC primary adjudication，其结果更适合被解释为 `architecture trade-off diagnosis`，而不是继续扩模或继续调参的起点；同时，`scGPT / Geneformer / linear controls` 的并入进一步表明，当前 backbone gap 更像是 task structure 与 entrant inductive bias 之间的错位，而不是接入错误或 coverage 缺口。其次，在 truth-side bridge 层，`truth–DepMap bridge` 已不再只是整体相关现象，而是可进一步分解为少数跨 cutoff 稳定的 `target-level anchors` 与有限的 `axis-level formal evidence`；其中，当前可进入更强写法的对象只包括 `PFDN5 = primary_but_qualified` 与 `transcription / chromatin = primary_axis_but_qualified`，而 `PMF1 / PRPF6 / ZNF131` 以及多数其余 axis 仍应保留在 `supporting_only`、supporting、unstable 或 preliminary 层级。当前 covariate audit 进一步提示，这些 anchor 代表的是 `structural stability`，而不是统一意义上的 `fully deconfounded strongest evidence`；与此同时，`barcode_gem_group` 现已固定写成更接近实验设计 aggregation 结构的 design-proxy axis，而不是单个 `MH00x` 已确认的 run-level covariate。第三，frozen axis 已完成第一轮 `annotation + validation + tiering`，从而形成了一套部分得到支持的轴级解释框架，但当前证据仍不足以支撑 `fully established shared explanatory architecture` 的更强主张。第四，`Dixit/K562` 提供了 supplementary external structure replication，支持 architecture existence 在外部 context 中具有一定可复制性，但其 dominant macro-class remains context-specific，因而不能被提升为与 HCC 并列的 primary conclusion。最后，`Stage 1A / 1B` 当前不再只是 leaderboard 与时间外推 stress test，而应被重新解释为 frozen truth architecture 下的 failure decomposition track，用于说明模型究竟丢掉了哪类结构、这些 failure mode 是否在更长时间尺度上进一步放大。整体而言，本阶段最重要的进展不是信号数量的增加，而是 evidence tier、claim strength 与 model-failure explanation 的成功对齐，从而使主结论更加清晰、可信且可防守。
+综合当前结果，我们认为本项目已经完成从“现象级相关”到“分层化结构证据”的第一轮收口。首先，在模型侧，`GEARS` 已完成 HCC primary adjudication，其结果更适合被解释为 `architecture trade-off diagnosis`，而不是继续扩模或继续调参的起点；同时，`scGPT / Geneformer / linear controls` 的并入进一步表明，当前 backbone gap 更像是 task structure 与 entrant inductive bias 之间的错位，而不是接入错误或 coverage 缺口。其次，在 truth-side bridge 层，`truth–DepMap bridge` 已不再只是整体相关现象，而是可进一步分解为少数跨 cutoff 稳定的 `target-level anchors` 与有限的 `axis-level formal evidence`；其中，当前可进入更强写法的对象只包括 `PFDN5 = primary_but_qualified` 与 `transcription / chromatin = primary_axis_but_qualified`，而 `PMF1 / PRPF6 / ZNF131` 以及多数其余 axis 仍应保留在 `supporting_only`、supporting、unstable 或 preliminary 层级。当前 covariate audit 进一步提示，这些 anchor 代表的是 `structural stability`，而不是统一意义上的 `fully deconfounded strongest evidence`；与此同时，`barcode_gem_group` 现已固定写成更接近实验设计 aggregation 结构的 design-proxy axis，而不是单个 `MH00x` 已确认的 run-level covariate。第三，frozen axis 已完成第一轮 `annotation + validation + tiering`，从而形成了一套部分得到支持的轴级解释框架，但当前证据仍不足以支撑 `fully established shared explanatory architecture` 的更强主张。第四，`Dixit/K562` 提供了基于 `GSE90063 K562 13d-only` 的 supplementary external structure replication：它在 supplementary 层面复现了 `backbone + shift-excess` 的架构形式，并为外部 context 下的 bridge form 提供了方向一致、时间尺度兼容的支持；但由于当前 target 数仍有限、dominant macro-class remains context-specific，这些结果只能写成 supplementary-level 的 architecture-form / bridge-form support，而不能被提升为与 HCC 并列的 primary conclusion、shared mainline architecture content 或 broad cross-context validation。最后，`Stage 1A / 1B` 当前不再只是 leaderboard 与时间外推 stress test，而应被重新解释为 frozen truth architecture 下的 failure decomposition track，用于说明模型究竟丢掉了哪类结构、这些 failure mode 是否在更长时间尺度上进一步放大。整体而言，本阶段最重要的进展不是信号数量的增加，而是 evidence tier、claim strength 与 model-failure explanation 的成功对齐，从而使主结论更加清晰、可信且可防守。
 
 ## 10. 渐进披露
 
@@ -188,5 +188,5 @@
 - [`reports/stage2_gears_backbone_sweep/final_adjudication.md`](/home/data/gz0705/WTKO/reports/stage2_gears_backbone_sweep/final_adjudication.md)
 - [`reports/stage2_truth_bridge_decomposition/bridge_decomposition_report.md`](/home/data/gz0705/WTKO/reports/stage2_truth_bridge_decomposition/bridge_decomposition_report.md)
 - [`reports/stage2_axis_analysis/axis_validation_summary.md`](/home/data/gz0705/WTKO/reports/stage2_axis_analysis/axis_validation_summary.md)
-- [`reports/stage2_truth_driven_bridge/dixit_axis_compression/dixit_evidence_tier_summary.tsv`](/home/data/gz0705/WTKO/reports/stage2_truth_driven_bridge/dixit_axis_compression/dixit_evidence_tier_summary.tsv)
+- [`reports/stage2_truth_driven_bridge/dixit_axis_compression_gse90063_13d/dixit_evidence_tier_summary.tsv`](/home/data/gz0705/WTKO/reports/stage2_truth_driven_bridge/dixit_axis_compression_gse90063_13d/dixit_evidence_tier_summary.tsv)
 - [`docs/model_vs_baseline_next_step_breakdown_v1.md`](/home/data/gz0705/WTKO/docs/model_vs_baseline_next_step_breakdown_v1.md)

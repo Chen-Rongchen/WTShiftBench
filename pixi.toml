@@ -186,6 +186,14 @@ description = "打印所有环境版本信息"
 cmd = "pytest tests/test_stage2_hcc_prediction_export.py tests/test_stage2_model_structure_scorer.py tests/test_stage2_truth_driven_bridge.py tests/test_stage2_truth_sensitivity.py"
 description = "运行当前 Stage 2 测试"
 
+[tasks.download-gse90063-supplementary-dry-run]
+cmd = "python scripts/download_geo_supplementary.py --config configs/stage2/gse90063_supplementary_download_v1.json --dry-run --test-records"
+description = "离线测试 GSE90063 supplementary 下载入口，不访问网络或下载大文件"
+
+[tasks.download-gse90063-supplementary]
+cmd = "python scripts/download_geo_supplementary.py --config configs/stage2/gse90063_supplementary_download_v1.json"
+description = "下载 GSE90063 supplementary 全量文件"
+
 # ============================================================
 # Tasks: Stage 2 / manuscript 主链路任务
 # ============================================================
@@ -201,3 +209,39 @@ description = "Stage 2 truth bridge：HCC38 + HCC1143 + Dixit（同参数，输�
 [tasks.run-stage2-truth-bridge-sensitivity]
 cmd = "python scripts/run_stage2_truth_bridge_sensitivity.py --config configs/stage2/truth_bridge_sensitivity_v1.json"
 description = "Stage 2 truth bridge：control 子抽样、DEG 阈值扫描等敏感性分析"
+
+[tasks.run-stage2-truth-bridge-sensitivity-hcc-full]
+cmd = "python scripts/run_stage2_truth_bridge_sensitivity.py --config configs/stage2/truth_bridge_sensitivity_hcc_full_v1.json"
+description = "Stage 2 truth bridge：HCC full closure sensitivity（含 5 条 covariate 轴）"
+
+[tasks.materialize-stage2-covariates]
+cmd = "python scripts/materialize_stage2_covariates.py --config configs/stage2/hcc_covariates_v1.json"
+description = "物化 HCC Stage 2 covariates TSV"
+
+[tasks.run-stage2-covariate-audit]
+cmd = "python scripts/run_stage2_covariate_audit.py --config configs/stage2/truth_bridge_covariate_audit_v1.json"
+description = "运行 HCC Stage 2 covariate balance audit"
+
+[tasks.run-stage2-closure-pipeline]
+cmd = "python scripts/run_stage2_closure_pipeline.py --config configs/stage2/stage2_closure_pipeline_v1.json"
+description = "串联 HCC covariates、sensitivity 与 covariate audit"
+
+[tasks.validate-stage2-closure-artifacts]
+cmd = "python scripts/validate_stage2_closure_artifacts.py --config configs/stage2/closure_artifact_validation_v1.json"
+description = "校验 Stage 2 closure 关键产物与固定边界"
+
+[tasks.build-stage2-truth-bridge-decomposition]
+cmd = "python scripts/run_stage2_truth_bridge_decomposition.py --config configs/stage2/truth_bridge_decomposition_v1.json"
+description = "构建 Stage 2 truth bridge decomposition 产物"
+
+[tasks.build-stage2-truth-driven-bridge-dixit-supplement]
+cmd = "python scripts/build_stage2_truth_driven_bridge.py --config configs/stage2/truth_driven_bridge_dixit_k562_supplement.json"
+description = "构建 Dixit/K562 13d supplementary truth bridge"
+
+[tasks.run-stage2-dixit-axis-compression]
+cmd = "python scripts/run_stage2_dixit_axis_compression.py --config configs/stage2/dixit_axis_compression_v1.json"
+description = "运行 Dixit/K562 13d supplementary axis compression"
+
+[tasks.render-manuscript-figure1]
+cmd = "python scripts/render_manuscript_figure1.py --config configs/manuscript/figure1_truth_object_v1.json"
+description = "渲染 manuscript Figure 1 truth object"
