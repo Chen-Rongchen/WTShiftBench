@@ -11,6 +11,8 @@
 
 它不重新定义 truth object，也不把 supplementary 层提升为 HCC 主结论。
 
+> 数据身份更新（2026-04）：`Dixit/K562 supplementary` 的默认正式入口现已切换到 `GSE90063` 重建的 `K562 13d-only`；历史 `dixit_2016_raw__control_context` 仅保留为 `legacy / 暂停引用` lineage。具体准入边界与默认执行链见 `docs/stage2_dixit_admission_contract_v1.md` 与 `docs/stage2_dixit_supplementary_startup_packet_v1.md`。
+
 ## 2. 当前主线结论
 
 综合当前 `Stage 2` 结果，我们已经完成了从“现象级相关”到“分层化结构证据”的第一轮收口。
@@ -199,7 +201,7 @@ axis-level 层不采用教科书式 ANOVA，而采用更保守、可审计的 ex
 当前结果支持：
 
 - K562 也存在 backbone 与 shift-excess 的结构成分
-- 但其 dominant backbone 更偏 `biosynthetic support / mitochondrial metabolism`
+- 但其 dominant backbone 更偏 `transcription regulation`
 - 与 HCC 的 `gene expression machinery` 主 backbone 不同
 
 因此它支持的是：
@@ -212,7 +214,7 @@ axis-level 层不采用教科书式 ANOVA，而采用更保守、可审计的 ex
 
 更准确的写法是：
 
-`Dixit confirms architecture existence at the supplementary level, but the dominant macro-class remains context-specific.`
+`GSE90063` 重建的 `K562 TF pool 13d-only` 结果当前最稳地支持：`Dixit/K562` 可在 supplementary 层面复现 `backbone + shift-excess` 的架构形式，因此为外部 context 下的 architecture-form replication 提供支持。按当前 evidence tier，更准确的分层是：A0 architecture form 已 confirmed，A1 bridge form 当前为 supporting / partial-support。与此同时，该对象在 `n=10` 个可桥接 targets 上与 DepMap readout 呈现出方向一致、时间尺度兼容的 bridge 信号；但由于当前 target 数仍有限、主导 macro class 与 HCC 仍表现出明显的 context specificity，这些结果只能写成 supplementary-level 的 architecture-form / bridge-form support，而不能升级为 shared mainline architecture content、broad cross-context validation 或与 HCC 对称的 primary conclusion。
 
 当前这一层现在也已经补上了更正式的 supplementary evidence-tier 口径：
 
@@ -260,7 +262,7 @@ axis-level 层不采用教科书式 ANOVA，而采用更保守、可审计的 ex
 1. `reports/stage2_truth_bridge_decomposition/bridge_decomposition_report.md`
 2. `reports/stage2_axis_analysis/axis_validation_summary.md`
 3. `reports/stage2_truth_driven_bridge/scp542_calibration/scp542_explanation_boundaries.md`
-4. `reports/stage2_truth_driven_bridge/dixit_axis_compression/dixit_structure_replication_summary.tsv`
+4. `reports/stage2_truth_driven_bridge/dixit_axis_compression_gse90063_13d/dixit_structure_replication_summary.tsv`
 5. `docs/stage2_dixit_supplementary_evidence_tier_v1.md`
 
 若要进入图表与细表，再下钻到：
@@ -268,4 +270,4 @@ axis-level 层不采用教科书式 ANOVA，而采用更保守、可审计的 ex
 - `reports/stage2_truth_bridge_decomposition/*.png`
 - `reports/stage2_axis_analysis/axis_enrichment.tsv`
 - `reports/stage2_axis_analysis/axis_target_consistency.tsv`
-- `reports/stage2_truth_driven_bridge/dixit_axis_compression/*.tsv`
+- `reports/stage2_truth_driven_bridge/dixit_axis_compression_gse90063_13d/*.tsv`
