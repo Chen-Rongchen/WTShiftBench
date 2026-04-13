@@ -242,6 +242,10 @@ description = "构建 Dixit/K562 13d supplementary truth bridge"
 cmd = "python scripts/run_stage2_dixit_axis_compression.py --config configs/stage2/dixit_axis_compression_v1.json"
 description = "运行 Dixit/K562 13d supplementary axis compression"
 
+[tasks.run-stage2-k562-13d-minimal-tradeoff-audit]
+cmd = "python scripts/run_stage2_k562_13d_minimal_tradeoff_audit.py --config configs/stage2/k562_13d_minimal_model_tradeoff_audit_v1.json"
+description = "运行 GSE90063 K562 13d 最小 model-side architecture trade-off 方向审计"
+
 [tasks.render-manuscript-figure1]
 cmd = "python scripts/render_manuscript_figure1.py --config configs/manuscript/figure1_truth_object_v1.json"
 description = "渲染 manuscript Figure 1 truth object"
