@@ -32,7 +32,9 @@
 
 - `GEARS` 在 HCC primary adjudication 中应被定位为 `architecture trade-off diagnosis`
 - `shared_mean_baseline` 仍是 backbone 更强的 primary reference
-- 复杂 entrant 当前不能稳定胜过 baseline，最稳的解释是：shared canonical backbone 本身较强，而 entrant 的额外优势更偏 separation / deviation，尚未稳定转化为 backbone superiority
+- 这是一条非对称 trade-off，不是“GEARS 和 baseline 各赢一半”：`shared_mean_baseline` 是更稳定、更主导的 backbone primary reference，`GEARS` 是 deviation / separation-biased entrant
+- 复杂 entrant 当前不能稳定胜过 baseline，最稳的解释是：shared canonical backbone 本身较强，而 entrant 的额外优势更偏 separation / `shift-excess` / context-specific deviation，尚未稳定转化为 backbone superiority
+- `GSE90063 K562 13d-only` 的 model-side 最小审计只能写成 `partial recurrence / partial-support`：backbone-vs-separation 主方向复现，但 `shift-excess` 分量未复现
 - `truth–DepMap bridge` 由少数分层书写的 shared anchors 与有限 formal axis evidence 共同支撑
 - `PFDN5` 最多只能写成 `primary_but_qualified`
 - `transcription / chromatin` 最多只能写成 `primary_axis_but_qualified`
@@ -57,6 +59,9 @@
 
 - “model recovery has been demonstrated”
 - “GEARS 已整体压过 shared_mean_baseline”
+- “GEARS 和 shared_mean_baseline 只是对称各赢一半”
+- “K562 13d 完整复现了 HCC model-side trade-off 的三个分量”
+- “K562 13d 已证明 external model-side generalization”
 - “复杂模型没赢 baseline 只是因为没正式接入、coverage 不足或 export 失配”
 - “当前已经证明了复杂模型不稳定胜过 baseline 的唯一根因”
 - “shared explanatory architecture 已全面建立”
@@ -104,7 +109,7 @@ discovery 当前仍不是 formal mainline，而且当前默认动作不是“决
 
 当前最稳的终局边界可写成：
 
-本阶段已经完成从现象级相关到分层化结构证据的第一轮收口，但仍未完成对 model recovery 的最终证明。当前 primary conclusion 应保留在 `GEARS` 的 architecture trade-off diagnosis、`shared_mean_baseline` 仍是 backbone 更强的 primary reference、复杂 entrant 未能稳定胜过 baseline 的正式 explanation layer、`PFDN5 = primary_but_qualified`、`transcription / chromatin = primary_axis_but_qualified`，以及有限 formal axis evidence 这一层级；其中，`PMF1 / PRPF6 / ZNF131` 等对象仍只能作为 `supporting_only`，anchor-level strongest wording 必须继续受到 covariate audit 边界约束。`Dixit/K562` 基于 `GSE90063 K562 13d-only` 的结果当前最稳地支持 supplementary-level 的 architecture-form / bridge-form support：A0 architecture form 已 confirmed，A1 bridge form 当前为 supporting / partial-support。它复现了 `backbone + shift-excess` 的架构形式，并在 `n=10` 个可桥接 targets 上呈现与 DepMap 方向一致、时间尺度兼容的 bridge 信号；但由于 target 数仍有限且 dominant macro-class remains context-specific，这些结果不能升级为 primary conclusion、shared mainline architecture content 或 broad cross-context validation。多数 axis 解释、supplementary replication 的 context-specific 细节，以及 discovery / phenotype shifter 的下游应用，则应继续保留在 supporting、preliminary 或 `gated_downstream_layer`。因而，当前项目最重要的任务不是继续扩模型或提前交付 discovery，而是先把比较、敏感性、混杂与最终边界收成一套可防守的正式口径，并持续把 `final claim matrix` 同步到 manuscript wording。
+本阶段已经完成从现象级相关到分层化结构证据的第一轮收口，但仍未完成对 model recovery 的最终证明。当前 primary conclusion 应保留在 `GEARS` 的 architecture trade-off diagnosis、`shared_mean_baseline` 仍是 backbone 更强的 primary reference、复杂 entrant 未能稳定胜过 baseline 的正式 explanation layer、`PFDN5 = primary_but_qualified`、`transcription / chromatin = primary_axis_but_qualified`，以及有限 formal axis evidence 这一层级；其中，`PMF1 / PRPF6 / ZNF131` 等对象仍只能作为 `supporting_only`，anchor-level strongest wording 必须继续受到 covariate audit 边界约束。baseline-vs-GEARS 必须写成非对称 trade-off：`shared_mean_baseline` 是 shared backbone winner，GEARS 是 deviation / separation-biased entrant；shared trend / overall displacement 不能和超出 backbone 可解释部分的 `shift-excess` 混成一层。K562 13d 的 model-side 最小审计只能写成 partial recurrence：backbone-vs-separation 主方向复现，但 `shift-excess` 分量未复现，因此 full three-component recurrence 与 external model-side generalization 均未建立。`Dixit/K562` 固定写成：`GSE90063 K562 13d-only` provides formal supplementary external support for architecture form, with bridge-form support remaining supporting / partial-support; bridge content is not eligible. 因此这些结果不能升级为 primary conclusion、shared mainline architecture content 或 broad cross-context validation。多数 axis 解释、supplementary replication 的 context-specific 细节，以及 discovery / phenotype shifter 的下游应用，则应继续保留在 supporting、preliminary 或 `gated_downstream_layer`。因而，当前项目最重要的任务不是继续扩模型或提前交付 discovery，而是先把比较、敏感性、混杂与最终边界收成一套可防守的正式口径，并持续把 `final claim matrix` 同步到 manuscript wording。
 
 如果要回答“何时开始写论文”，当前更稳的标准是：
 

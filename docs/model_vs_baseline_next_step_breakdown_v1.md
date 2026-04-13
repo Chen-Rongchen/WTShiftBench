@@ -21,6 +21,8 @@
 1. `baseline winner` 是否主要由 shared backbone objective 决定
 2. entrant 的额外能力是否稳定落在 `separation / deviation` 而不是 backbone 上
 
+这两个问题必须按非对称 trade-off 来理解：`shared_mean_baseline` 是 backbone primary reference，`GEARS` 是 deviation / separation-biased entrant；`shift-excess` 指超出 shared backbone 可解释部分的过度偏移，不等于 shared trend / overall displacement。
+
 只有这两个问题更清楚后，biology-facing interpretation 才值得继续往前推进。
 
 ## 3. 先固定解释边界

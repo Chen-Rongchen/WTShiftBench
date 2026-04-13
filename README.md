@@ -23,6 +23,8 @@ WT Benchmark 是一个 **truth-first** 的 virtual perturbation benchmark 与分
 
 ## 2. 一眼先看这里
 
+`README.md` 只承担仓库入口职责：说明当前 active framing、主张边界和最短定位路径。近端执行顺序以 `plan.md` 为准；阶段性状态裁决以 `docs/project_state_summary_v1.md` 为准；最终 wording 边界以 `docs/final_claim_boundary_and_discovery_gating_note_v1.md` 与 `final_claim_matrix.tsv` 为准。
+
 如果你是下一次进来的人，先看这三句：
 
 - `GEARS` 已经作为 strongest formal entrant 跑完 `HCC38 / HCC1143` 的真实 HCC smoke
@@ -55,6 +57,8 @@ WT Benchmark 是一个 **truth-first** 的 virtual perturbation benchmark 与分
 当前最稳的项目表述是：
 
 > GEARS 展现出选择性结构优势：它更擅长把 structure 和 context deviation 分开，并在部分 cell line 上更能识别 shift-excess；但在当前 HCC primary adjudication 中，canonical backbone recovery 仍落后于 `shared_mean_baseline`。
+
+这不是“GEARS 和 baseline 各赢一半”的对称竞争。更准确地说，`shared_mean_baseline` 是当前更稳定、更主导的 backbone primary reference；`GEARS` 是 deviation / separation-biased entrant。`shift` 也必须拆开：整体位移大小或 shared trend 这一层 baseline 并不差，GEARS 的相对强项更接近超出 backbone 可解释部分的 `shift-excess` / context-specific deviation。
 
 因此，`GEARS` 在本阶段的角色应定位为“已完成诊断的代表性 entrant”，而不是“待继续优化的主推进对象”。
 
@@ -92,8 +96,7 @@ WT Benchmark 是一个 **truth-first** 的 virtual perturbation benchmark 与分
 4. 因此，下一步只优先做一件事：
    - 这条追查现已收口：当前能确认 `HCC38 -> aggrMH001-3`、`HCC1143 -> aggrMH004-6`，但仍不能把 `-1/-2/-3` 唯一写成单个 `MH00x`
 5. 如果要推进 Dixit/K562，不再做 feasibility（已通过），而是做 wording freeze 与 manuscript sync：
-  - `GSE90063 K562 13d-only` 已作为 formal supplementary external evidence 纳入正式证据体系
-  - 定位是 `formal supplementary, not formal primary`：A0 architecture form 已 confirmed，A1 bridge form 当前为 supporting / partial-support
+   - 固定模板：`GSE90063 K562 13d-only` provides formal supplementary external support for architecture form, with bridge-form support remaining supporting / partial-support; bridge content is not eligible.
    - 剩余工作：冻结 admission note、positive/partial/negative 判据 wording，同步进 `final claim matrix`
    - `13d` 只写成与 DepMap `~14-21d` fitness screen 的 `time-scale compatible`，不写成 matched endpoint
    - Dixit 2016 可作为 CRISPR knockout perturbation 处理，但必须标注 TF-enriched target library 的边界
@@ -130,9 +133,10 @@ discovery / phenotype shifter。它仍保留在 roadmap 中，但当前不是 pr
 
 - truth-side architecture contract：已冻结
 - HCC mainline truth architecture：已冻结
-- Dixit/K562：历史 `dixit_2016_raw__control_context` 输入当前按 **legacy / 暂停引用** 处理；`K562 13d-only`（`GSE90063`）当前最稳地支持 supplementary-level 的 architecture-form / bridge-form support：A0 architecture form 已 confirmed，A1 bridge form 当前为 supporting / partial-support。它复现了 `backbone + shift-excess` 架构形式，并在 `n=10` 个可桥接 targets 上呈现出与 DepMap 方向一致、时间尺度兼容的 bridge 信号；但由于当前 target 数仍有限、主导 macro class 与 HCC 仍表现出明显的 context specificity，这些结果不能升级为 shared mainline architecture content、broad cross-context validation 或与 HCC 对称的 primary conclusion
+- Dixit/K562：历史 `dixit_2016_raw__control_context` 输入当前按 **legacy / 暂停引用** 处理；固定模板是：`GSE90063 K562 13d-only` provides formal supplementary external support for architecture form, with bridge-form support remaining supporting / partial-support; bridge content is not eligible. 因此它不能升级为 shared mainline architecture content、broad cross-context validation 或与 HCC 对称的 primary conclusion
 - SCP542：作为 explanation boundary 已冻结
 - model-side structure scorer：已落地
+- K562 13d model-side 最小审计：`shared_mean_baseline` 再次在 backbone recovery 上占优，而 `GEARS` 在 structure-vs-context separation 上更强；但 `shift-excess` 分量未复现。因此只能写成 `partial recurrence / partial-support`，不能写成 full three-component recurrence 或 external model-side generalization 已建立
 - Stage 2 HCC prediction contract：已冻结为 `stage2_truth_aligned_log_shift`
 - 真实 HCC adjudication input bridge：已跑通
 - real HCC smoke（`null < shared_mean_baseline`）：已成立
@@ -146,11 +150,16 @@ discovery / phenotype shifter。它仍保留在 roadmap 中，但当前不是 pr
 
 **在有限预算 sweep 已完成的前提下，将 GEARS 在 HCC primary 上正式收口为 architecture trade-off diagnosis，并把项目主卖点固定为 fitness-relevant transcriptomic bridge architecture：扰动转录组结构能否桥接 DepMap cellular fitness/dependency。**
 
-当前最关键的三个问题是：
+这里必须拆成两层，避免把 model recovery adjudication triad 与 A1 bridge-form 主问题混在一起。
+
+**Model recovery adjudication triad** 回答“模型是否恢复 frozen architecture”：
 
 - backbone recovery
 - shift-excess identification
 - structure vs context separation
+
+**A1 bridge-form 主问题** 回答“真实扰动转录组结构能否桥接 DepMap fitness/dependency”：
+
 - transcriptomic architecture 是否能桥接 DepMap fitness/dependency
 
 因此当前 benchmark 主问题已经从“整体拟合好不好”转成了“模型是否能恢复 fitness-relevant bridge architecture”。具体 anchor / axis 属于 bridge content 层，仍然要保持 HCC-specific 与 qualified。
@@ -393,7 +402,9 @@ PYTHONPATH=src python scripts/run_stage2_dixit_axis_compression.py --config conf
 **三指标同时用，才能显式拆出 architecture trade-off**：
 - `shared_mean_baseline` 在 backbone 上更强（0.807 vs 最高 0.660）
 - GEARS 在 separation 上更强（0.468 vs baseline 0.353）
-- 任何单一指标都会掩盖这个结构性 trade-off
+- 这个 trade-off 是非对称的：baseline 是 backbone primary reference，GEARS 是 deviation / separation-biased entrant
+- `shift` 不能混成一层；shared trend / overall displacement 不等于 `shift-excess`，后者才是 GEARS 相对强项更可能出现的位置
+- 任何单一总分都会掩盖这个结构性分工
 
 ### 10.2 补充审计四模块（降位使用，不抢主线）
 
@@ -420,24 +431,28 @@ PYTHONPATH=src python scripts/run_stage2_dixit_axis_compression.py --config conf
 
 ### 10.3 K562 13d 的正式分层
 
-`GSE90063 K562 13d-only` 的 formal tiering（三层）：
+`GSE90063 K562 13d-only` 的固定模板是：provides formal supplementary external support for architecture form, with bridge-form support remaining supporting / partial-support; bridge content is not eligible.
+
+对应 formal tiering（三层）：
 
 | 层 | 状态 | 含义 |
 |----|------|------|
 | A0 architecture form | **confirmed** | backbone + shift-excess 结构可复制 |
-| A1 bridge form | **supporting / partial-support** | Spearman ~0.50，与 DepMap 方向一致但弱于 HCC primary |
+| A1 bridge form | **supporting / partial-support** | 与 DepMap 方向一致、时间尺度兼容，但弱于 HCC primary |
 | B bridge content | **not eligible** | macro class context-specific，target overlap 低 |
 
-进入的是 `formal supplementary external evidence`，不是 `formal primary co-pillar`。
+进入的是 formal supplementary external support for architecture form，不是 `formal primary co-pillar`；A1 bridge form 只能保持 supporting / partial-support，B bridge content 不进入。
 
 ## 11. Claim Boundaries
 
 - 当前项目**尚未**证明 model predictions 能恢复 frozen architecture。
 - 当前已完成的是 `GEARS` 的 entrant-qualified HCC smoke，不是“GEARS 已整体胜出”。
+- 当前 `GEARS` 与 `shared_mean_baseline` 的差异不是对称各赢一半；`shared_mean_baseline` 仍是 backbone primary reference，`GEARS` 只可写成 deviation / separation-biased entrant。
+- K562 13d 支持的是 model-side trade-off 的 partial recurrence：backbone-vs-separation 主方向复现，但 `shift-excess` 分量未复现；因此不能写成 full external validation 或 complete model-side generalization。
 - 当前结果支持的是“少数分层书写的 stable anchors 与有限 formal axis evidence 的结构化 bridge”，不是“多数 axis 已正式闭环”。
 - `PFDN5` 当前最多只能写成 `primary_but_qualified`；`PMF1 / PRPF6 / ZNF131` 当前只能写成 `supporting_only`。
 - `transcription / chromatin` 当前最多只能写成 `primary_axis_but_qualified`；其余多数 axis 继续停留在 `supporting_or_preliminary`。
-- Dixit/K562 只支持 supplementary-level 的 architecture replication / structure-level transferability，不支持 `model generalization proved`，也不是与 HCC 并列的主 biological conclusion。
+- Dixit/K562 固定写成 `GSE90063 K562 13d-only` provides formal supplementary external support for architecture form, with bridge-form support remaining supporting / partial-support; bridge content is not eligible；不支持 `model generalization proved`，也不是与 HCC 并列的主 biological conclusion。
 - architecture recovery 不等同于 single-gene correlation，也不等同于 global Pearson。
 - discovery / phenotype shifter 仍然是 downstream layer，必须晚于 model-side closure。
 - `cosine / L2 / top-20 overlap` 现在是辅助裁决层，不替代 backbone / shift-excess / separation 三个主裁决问题。
