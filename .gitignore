@@ -30,6 +30,11 @@ tmp/
 artifacts/
 reports/
 logs/
+downloads/
+
+# Generated local smoke outputs
+tests/test_gears_dixit/
+tests/test_gears_gse90063/
 
 # Large benchmark data
 data/*

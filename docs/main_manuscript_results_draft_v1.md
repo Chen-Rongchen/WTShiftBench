@@ -6,6 +6,8 @@
 
 具体来说，`GEARS` 在 `structure vs context separation` 上稳定优于 `shared_mean_baseline`，并在 `HCC1143` 上表现出更强的 `shift-excess identification`；然而，在两个 cell line 上，`canonical_backbone recovery` 均仍落后于 `shared_mean_baseline`。跨细胞系均值上，`shared_mean_baseline` 的 backbone recovery 为 `0.807`，而正式 `GEARS` recipe 为 `0.660`；相对地，`GEARS` 的 structure-vs-context separation 为 `0.428`，高于 `shared_mean_baseline` 的 `0.353`。因此，`GEARS` 当前更像一个 `structure/context separation` 偏置的 entrant，而不是 backbone recovery 更强的主胜者。
 
+在外部 `K562 13d` 最小 model-side 审计中，这一模型侧架构 trade-off 只得到部分复现：`shared_mean_baseline` 再次在 backbone recovery 上占优，而 `GEARS` 仍在 structure-vs-context separation 上更强；但 `shift-excess` 分量未得到复现。因此，当前外部结果可写成 `partial recurrence / partial-support`，而不能写成 full three-component recurrence 或 external model-side generalization 已建立。
+
 在完成有限预算 backbone sweep 后，这一判断进一步稳定。虽然若干 sweep 候选继续提升了 `shift-excess identification` 或 `structure vs context separation`，但没有任何候选接近或追平 `shared_mean_baseline` 的 backbone recovery，也没有候选超过当前正式 `GEARS` recipe 的 backbone 表现。预先冻结的 stop rule 因而被触发，使 `GEARS` 在本阶段的最合理定位收敛为 `architecture trade-off diagnosis`。
 
 更重要的是，这一 backbone gap 当前不能再简单归因于 entrant 尚未正式接入。到目前为止，`GEARS / scGPT / Geneformer / lm_train_lowrank / lm_G_scgpt_ridge / lm_G_geneformer_ridge` 均已进入同一份 HCC formal comparison，两条 embedding ablation control 也已经实现 `1.000` target coverage。当前更稳的解释是：HCC task 中的 `canonical backbone` 本身具有很强的 shared component，因此 `shared_mean_baseline` 已经是一个很强的 backbone estimator；相比之下，复杂 entrant 所学习到的额外能力更倾向于 `structure/context separation`、`shift-excess identification` 或 context-sensitive deviation，而这些优势并未稳定转化为更强的 backbone recovery。与此一致，`lm_G_scgpt_ridge` 与 `lm_G_geneformer_ridge` 的 backbone failure 都更接近 `direction`，说明当前 gap 更像是 backbone 主方向恢复偏弱，而不是单纯的幅度不足。
