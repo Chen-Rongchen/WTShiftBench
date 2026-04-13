@@ -57,6 +57,8 @@
 1. `shared_mean_baseline` 的 backbone 优势是真实存在的，而不是“模型还没完全接入”造成的假象。
 2. 复杂模型并非没有结构能力，但这些能力没有稳定转化为更强的 `canonical backbone recovery`。
 
+因此这里的 trade-off 必须写成非对称：`shared_mean_baseline` 更像 shared backbone winner，`GEARS` 更像 deviation / separation-biased entrant。不能把它写成“GEARS 和 baseline 各赢一半”，也不能把 shared trend / overall displacement 与超出 backbone 可解释部分的 `shift-excess` 混成同一层。
+
 ## 3. 当前已经排除的简单解释
 
 ### 3.1 不是因为 entrant 没有正式接入
@@ -132,6 +134,8 @@
 - 它没有赢 backbone
 - 但稳定赢了 `structure_vs_context_separation`
 - 并且在 `HCC1143` 上对 `shift-excess` 更强
+
+这里的 `shift-excess` 指超出 shared backbone 可解释部分的过度偏移或 context-specific deviation；它不等于整体位移大小，也不等于 shared trend。
 
 这说明它学到的不是“错误的东西”，而是：
 

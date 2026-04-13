@@ -20,6 +20,8 @@
 
 **在这个 HCC Stage 2 contract 下，`shared_mean_baseline` 已经抓住了很强的 shared canonical backbone；复杂模型学到的额外能力更多落在 `separation / deviation / context-sensitive structure` 上，但这些优势没有稳定转化成更强的 backbone recovery。**
 
+这是一条非对称 trade-off：baseline 不是“全方位更好”，GEARS 也不是“整体更强”。当前更稳的分工是 `shared_mean_baseline = backbone primary reference`，`GEARS = deviation / separation-biased entrant`。
+
 因此，当前 backbone gap 更像是：
 
 - 任务结构与裁决目标偏向 baseline
@@ -81,6 +83,8 @@
 - 它没有赢 backbone
 - 但它赢了 `structure_vs_context_separation`
 - 并且在部分 cell line 上更能识别 `shift-excess`
+
+这里的 `shift-excess` 不等于 shared trend / overall displacement，而是超出 backbone 可解释部分的过度偏移或 context-specific deviation。
 
 这说明它学到的不是“错误结构”，而是另一类结构：
 

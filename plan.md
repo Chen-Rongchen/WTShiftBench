@@ -42,8 +42,8 @@
    - `discovery 继续 gated`
 5. 如果继续推进 Dixit / K562，不再做 feasibility（已通过），而是直接做 wording freeze 与 manuscript sync：
    - 历史 `dixit_2016_raw__control_context` 入口当前按 `legacy / 暂停引用` 处理，不再作为可写入主文的 Dixit 证据
-  - `GSE90063 K562 13d-only` 已作为 formal supplementary external evidence 纳入项目正式证据体系
-  - 定位是 `formal supplementary, not formal primary`：A0 architecture form 已 confirmed，A1 bridge form 当前为 supporting / partial-support，但不是与 HCC 对称的 co-primary
+   - 固定模板：`GSE90063 K562 13d-only` provides formal supplementary external support for architecture form, with bridge-form support remaining supporting / partial-support; bridge content is not eligible.
+   - 它不是与 HCC 对称的 co-primary，也不能写成 shared mainline architecture content 或 broad cross-context validation
    - 剩余工作：冻结 admission note、positive/partial/negative 判据 wording，同步进 `final claim matrix` 与 `manuscript wording`
    - `13d` 只能写成与 DepMap `~14-21d` fitness screen 的 `time-scale compatible`，不能写成 `matched endpoint`
    - `Dixit 7d` 与 `Replogle 7d CRISPRi` 暂时只作为 temporal / cross-modality exploration，不进入 primary closure
@@ -91,9 +91,14 @@
 
 > GEARS 展现出选择性结构优势：它更擅长把 structure 和 context deviation 分开，并在部分 cell line 上更能识别 shift-excess；但在当前 HCC primary adjudication 中，canonical backbone recovery 仍落后于 `shared_mean_baseline`。
 
+这条 trade-off 必须写成非对称：`shared_mean_baseline` 是当前更稳定、更主导的 backbone primary reference；`GEARS` 是 deviation / separation-biased entrant。不要把它写成“GEARS 和 baseline 各赢一半”，也不要把 `shift` 混成一层：shared trend / overall displacement 与超出 backbone 可解释部分的 `shift-excess` 是两件事，GEARS 的相对强项更接近后者。
+
+`GSE90063 K562 13d-only` 的 model-side 最小审计给出的是 `partial recurrence / partial-support`：`shared_mean_baseline` 再次在 backbone recovery 上占优，而 `GEARS` 仍在 structure-vs-context separation 上更强；但 `shift-excess` 分量未复现。因此它只加固 framework-level 的 backbone-vs-separation trade-off，不支持 full three-component recurrence 或 external model-side generalization。
+
 这条线当前已经按 stop rule 收口，因此它现在决定的不是“下一步继续怎么调”，而是：
 
 - `GEARS` 应固定写成 `architecture trade-off diagnosis`
+- 这是一条非对称 trade-off：baseline 是 backbone winner，GEARS 是 deviation / separation-biased entrant
 - 不再把“再跑一轮 sweep”当默认动作
 - 不把辅助指标升级成新的主裁决层
 - 不再为“为什么模型没稳定赢 baseline”继续扩对象
@@ -119,7 +124,7 @@
 - `HCC` truth bridge layer：在 `HCC38 / HCC1143` 的 14d truth 中定义 primary truth-driven bridge object。
 - axis compression layer：把可桥接结构压缩为可冻结、可审计的 axis / backbone object。
 - SCP542 explanation boundary：作为 calibration / explanation layer，而不是主 biological conclusion。
-- Dixit/K562 external structure replication：`GSE90063 K562 13d-only` 已完成 feasibility check，作为 architecture-to-DepMap bridge 的 formal supplementary external context；剩余工作是 wording freeze 与 manuscript sync。它复现的是 bridge architecture form（A0 confirmed / A1 supporting），不是 HCC anchor gene identity overlap（B 层 not eligible）。
+- Dixit/K562 external structure replication：`GSE90063 K562 13d-only` 已完成 feasibility check；固定模板是 formal supplementary external support for architecture form, with bridge-form support remaining supporting / partial-support; bridge content is not eligible。剩余工作是 wording freeze 与 manuscript sync。
 
 这一层的目标是冻结“真实 perturbation transcriptomic structure 中哪些成分能以时间尺度兼容的方式桥接 DepMap fitness/dependency”，不是给模型打分。
 
@@ -131,7 +136,7 @@
 **主裁决三指标**（必须同场，共同定义 architecture-aware adjudication）：
 
 - `backbone_recovery_score`：模型是否恢复 frozen canonical backbone
-- `shift_excess_identification_score`：模型是否能识别超出 backbone 预测的过度偏移
+- `shift_excess_identification_score`：模型是否能识别超出 backbone 预测的过度偏移；这里的 `shift-excess` 不等同于 shared trend / overall displacement
 - `structure_vs_context_separation_score`：模型是否把 backbone 与 context deviation 分开
 
 **补充审计四模块**（降位使用，是解释层，不是主裁决层）：
@@ -188,7 +193,7 @@ discovery 仍然保留，但当前应后置。
 - Dixit Master Atlas：历史对象来自 `dixit_2016_raw__control_context` 输入，当前按 `legacy / 暂停引用` 处理；后续需由 `GSE90063` 重建后再恢复为可冻结对象。
 - Structure Replication Summary：冻结 HCC 与 supplementary external structure replication 的摘要对象，回答”复现的是 architecture，而不是 gene identity overlap”。
 - SCP542 Boundaries：冻结 SCP542 的 explanation / calibration 边界，明确其不是主 biological conclusion。
-- Dixit K562 13d Supplementary Bridge：truth-side bridge 与 axis compression 已完成第一轮运行，当前作为 formal supplementary external evidence（A0 architecture form confirmed；A1 bridge form supporting / partial-support；B 层 not eligible）；剩余工作是 admission note wording freeze、positive / partial / negative 判据冻结与 manuscript sync。
+- Dixit K562 13d Supplementary Bridge：truth-side bridge 与 axis compression 已完成第一轮运行；固定模板是 formal supplementary external support for architecture form, with bridge-form support remaining supporting / partial-support; bridge content is not eligible。剩余工作是 admission note wording freeze、positive / partial / negative 判据冻结与 manuscript sync。
 
 ## 7. What Is Actually Closed vs Not Yet Closed
 
@@ -222,8 +227,8 @@ discovery 仍然保留，但当前应后置。
 - Dixit K562 13d-only：
   - 历史 `dixit_2016_raw__control_context` 对象与 GSE90063 K562 TF pool 不一致，当前不能继续作为 Dixit 证据引用
   - 当前混合时间点版本不能直接升级为 primary
-  - `GSE90063` 重建的 `K562 13d-only` 当前最稳地支持 supplementary-level 的 architecture-form / bridge-form support：A0 architecture form 已 confirmed，A1 bridge form 当前为 supporting / partial-support；它可复现 `backbone + shift-excess` 架构形式，并在 `n=10` 个可桥接 targets 上呈现与 DepMap 方向一致、时间尺度兼容的 bridge 信号
-  - 但由于 target 数仍有限、主导 macro class 与 HCC 仍表现出明显的 context specificity，这些结果不能升级为 shared mainline architecture content、broad cross-context validation 或与 HCC 对称的 primary conclusion
+  - 固定模板：`GSE90063 K562 13d-only` provides formal supplementary external support for architecture form, with bridge-form support remaining supporting / partial-support; bridge content is not eligible
+  - 因此它不能升级为 shared mainline architecture content、broad cross-context validation 或与 HCC 对称的 primary conclusion
   - `13d` 与 DepMap `~14-21d` 只能写成 `time-scale compatible`，不是 `matched endpoint`
   - 若结果为 negative，不能事后降级为“只是 supplement”；应按预冻结标准诚实报告 tested condition 下未复现 bridge
 
@@ -276,6 +281,7 @@ pixi run --environment core render-manuscript-figure1
 - 不把现有混合时间点 Dixit/K562 写成与 HCC 并列的 primary biological conclusion
 - 不把 `Dixit K562 13d` 写成 HCC anchor / axis content 复现；它最多检验 architecture-to-DepMap bridge form
 - 不把 `13d` 写成与 DepMap `~14-21d` 的严格 matched endpoint，只写成 time-scale compatible
+- 不把 `K562 13d` 的 model-side partial recurrence 写成 full recurrence 或 external model-side generalization
 - 不把 `Dixit 7d` 或 `Replogle 7d CRISPRi` 提前纳入 primary closure；它们只适合作为 temporal / cross-modality exploration
 - 不把 SCP542 写成强机制锚定或主结论层证据
 - 不把 global Pearson 当成 architecture recovery 的替代
