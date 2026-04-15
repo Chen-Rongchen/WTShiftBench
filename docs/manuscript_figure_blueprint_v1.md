@@ -23,6 +23,8 @@
 3. 风格向 `Nature Methods Brief Communication` 靠齐：高密度、低装饰、强分组、强层次
 4. limitation 必须进入主图体系，不能只藏在正文
 
+所有 figure title、panel label 与 legend 必须继续服从 `final_claim_matrix.tsv`。图中允许出现的是分层证据和 limitation-bounded closure；不允许把模型侧写成 recovery proved，不允许把 HCC anchors 写成 fully deconfounded，不允许把 K562 写成 primary co-pillar，也不允许把 RNAi 写成 primary evidence。
+
 因此，当前正式主图顺序固定为：
 
 1. `truth object exists`
@@ -76,6 +78,12 @@
 
 当前 truth–DepMap bridge 不是松散相关，而是一个可进入 adjudication 的结构化 truth object。
 
+**Legend 边界**
+
+- `PFDN5` 只能写成 `primary_but_qualified`
+- `PMF1 / PRPF6 / ZNF131` 只能写成 `supporting_only`
+- 不写 `fully deconfounded anchors`
+
 ### Fig. 2
 
 **标题**
@@ -104,6 +112,12 @@
 **唯一判断**
 
 现有 entrant 的主要价值不是胜出，而是暴露 `backbone vs separation` 的结构 trade-off。
+
+**Legend 边界**
+
+- 不写 `model recovery proved`
+- 不写 `GEARS overall winner`
+- 写成 `shared_mean_baseline` 是 backbone primary reference，GEARS 是 separation/deviation-biased entrant
 
 ### Fig. 3
 
@@ -134,6 +148,12 @@ truth object 的解释层已经推进到哪里，哪里仍然只能保守写。
 
 axis 解释层不是 fully closed architecture，而是一套清楚分层后的 `partially supported axes`。
 
+**Legend 边界**
+
+- `transcription / chromatin` 最多写成 `primary_axis_but_qualified`
+- 多数 axes 写成 supporting / preliminary / mixed
+- 不写 `fully established shared explanatory architecture`
+
 ### Fig. 4
 
 **标题**
@@ -149,8 +169,9 @@ axis 解释层不是 fully closed architecture，而是一套清楚分层后的 
 - `a` 五条 covariate 轴在 `HCC38 / HCC1143` 的 summary
 - `b` anchor-level covariate tier
 - `c` `barcode_gem_group = design-proxy axis` 的边界 panel
-- `d` Dixit/K562 supplementary replication summary
-- `e` final claim boundary / allowed wording 小 panel
+- `d` GSE90063 K562 13d/7d temporal panel 的 supplementary replication summary
+- `e` CRISPR DepMap vs RNAi DEMETER2 endpoint hierarchy
+- `f` final claim boundary / allowed wording 小 panel
 
 **建议数据源**
 
@@ -159,10 +180,19 @@ axis 解释层不是 fully closed architecture，而是一套清楚分层后的 
 - [`reports/stage2_truth_driven_bridge/sensitivity/anchor_claim_tiering.tsv`](/home/data/gz0705/WTKO/reports/stage2_truth_driven_bridge/sensitivity/anchor_claim_tiering.tsv)
 - [`reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/barcode_gem_group_mapping_note.md`](/home/data/gz0705/WTKO/reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/barcode_gem_group_mapping_note.md)
 - `reports/stage2_truth_driven_bridge/dixit_axis_compression_gse90063_13d/*.tsv`
+- [`reports/stage2_truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_panel_report.md`](/home/data/gz0705/WTKO/reports/stage2_truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_panel_report.md)
+- [`reports/stage2_truth_driven_bridge/endpoint_consistency_summary_table.md`](/home/data/gz0705/WTKO/reports/stage2_truth_driven_bridge/endpoint_consistency_summary_table.md)
 
 **唯一判断**
 
 当前项目的终点不是 `fully deconfounded closure`，而是 `limitation-bounded closure`。
+
+**Legend 边界**
+
+- K562 写成 `GSE90063 K562 13d/7d temporal panel` 的 supplementary-level architecture-form / bridge-form support
+- `13d` 是 primary formal supplementary bridge test，`7d` 是 temporal sensitivity / early-bridge probe
+- CRISPR DepMap 是 formal primary bridge readout，RNAi DEMETER2 是 weaker cross-platform sensitivity endpoint
+- 不写 primary co-pillar、content-level replication、broad cross-context validation 或 external model-side generalization proved
 
 ## 5. 补充图方案
 
@@ -173,8 +203,9 @@ axis 解释层不是 fully closed architecture，而是一套清楚分层后的 
 3. anchor cutoff sensitivity
 4. control subsampling / formal interval
 5. full axis enrichment / consistency detail
-6. Dixit/K562 detailed supplementary axes
-7. per-axis / per-target covariate detail
+6. GSE90063 K562 13d/7d temporal panel details
+7. CRISPR DepMap vs RNAi DEMETER2 endpoint hierarchy details
+8. per-axis / per-target covariate detail
 
 ## 6. 统一叙事顺序
 
@@ -213,3 +244,17 @@ axis 解释层不是 fully closed architecture，而是一套清楚分层后的 
 ## 9. 一句话收口
 
 当前论文图片主线必须先证明 truth object 值得被恢复，再展示 entrant recovery 的有限性，最后把解释层与 limitation 一起画清楚。
+
+## 10. 图注禁写清单
+
+所有主图与补充图 legend 均不得出现以下 stronger-than-evidence 写法：
+
+- `model recovery proved`
+- `GEARS overall winner`
+- `fully deconfounded`
+- `fully established shared explanatory architecture`
+- `K562 primary co-pillar`
+- `content-level replication confirmed`
+- `broad cross-context validation`
+- `RNAi primary evidence`
+- `external model-side generalization proved`
