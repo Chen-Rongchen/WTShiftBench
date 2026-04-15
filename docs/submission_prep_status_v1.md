@@ -32,19 +32,106 @@
 4. **Supplementary table / figure numbering**：需与正文图表编号体系对齐
 5. **Figure cross-references**：draft 中未插入 "(Fig. X)" 引用，需在正式稿中补入
 
+## 投稿 skeleton
+
+### 1. Title 候选
+
+以下题目只作为编辑候选，不改变 claim boundary：
+
+1. Truth-first evaluation reveals architecture trade-offs in virtual perturbation models
+2. Fitness-bridge architecture exposes limited recovery by current perturbation models
+3. Architecture-aware perturbation benchmarking identifies a transcriptomic bridge to cellular fitness
+
+当前更稳的 title 方向是第 1 个：强调 truth-first evaluation 与 architecture trade-off，不提前承诺 model recovery。
+
+### 2. Author / affiliation 占位
+
+| 字段 | 状态 | 备注 |
+|------|------|------|
+| Corresponding author | 待人工填写 | 需要真实姓名、邮箱与单位 |
+| Author list | 待人工填写 | 需按实际贡献排序 |
+| Affiliations | 待人工填写 | 不从仓库内容推断 |
+| Contributions | 待人工填写 | 建议按 conceptualization / data curation / software / analysis / writing 分项 |
+| Competing interests | 待人工确认 | 若无，正式稿写 `The authors declare no competing interests.` |
+
+### 3. 正文图编号草案
+
+| 编号 | 图题定位 | 对应 blueprint |
+|------|----------|----------------|
+| Fig. 1 | truth-DepMap bridge 的结构化 truth object | `truth object exists` |
+| Fig. 2 | entrant recovery limited / architecture trade-off | `entrant recovery is limited / trade-off bounded` |
+| Fig. 3 | axis interpretation partial / tiered | `axis interpretation is partial` |
+| Fig. 4 | covariate + supplementary boundary / endpoint hierarchy | `boundary is explicit` |
+
+正文引用建议：
+
+- Result 1 引 `Fig. 2`
+- Result 2 引 `Fig. 1`
+- Result 3 引 `Fig. 3`
+- Result 4 和 Result 5 引 `Fig. 4`
+- Result 6 保持正文解释层，不抢主图 headline
+
+### 4. Supplementary 编号草案
+
+| 编号 | 内容 |
+|------|------|
+| Supplementary Fig. 1 | fuller entrant comparison |
+| Supplementary Fig. 2 | GEARS sweep candidates |
+| Supplementary Fig. 3 | anchor cutoff sensitivity |
+| Supplementary Fig. 4 | control subsampling / formal interval |
+| Supplementary Fig. 5 | full axis enrichment / consistency detail |
+| Supplementary Fig. 6 | GSE90063 K562 13d/7d temporal panel details |
+| Supplementary Fig. 7 | CRISPR DepMap vs RNAi DEMETER2 endpoint hierarchy details |
+| Supplementary Fig. 8 | per-axis / per-target covariate detail |
+| Supplementary Table 1 | final claim matrix |
+| Supplementary Table 2 | anchor claim tiering |
+| Supplementary Table 3 | HCC entrant comparison |
+| Supplementary Table 4 | axis validation summary |
+| Supplementary Table 5 | covariate balance summary |
+| Supplementary Table 6 | Dixit/K562 supplementary tiering |
+| Supplementary Table 7 | K562 entrant summary |
+
+### 5. References 待补清单
+
+正式稿至少需要补入以下类别引用：
+
+- DepMap / CRISPR dependency datasets
+- DEMETER2 / RNAi dependency processing
+- GEARS
+- scGPT
+- Geneformer
+- GSE241115 / HCC Perturb-seq source
+- GSE90063 / Dixit K562 TF perturbation source
+- Replogle CRISPRi datasets（若在 discussion 或 future work 中保留）
+- Perturbation / virtual cell benchmarking 相关方法文献
+
+### 6. Data / code availability 草案
+
+当前可写成：
+
+本研究使用的公开输入数据、配置化分析入口与主要中间产物路径在仓库中逐项列出。所有 Stage 2 主线运行入口位于 `scripts/`，可调参数位于 `configs/stage2/`，核心实现位于 `src/wtbench/`。关键 claim boundary 由 `reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv` 与 `configs/stage2/closure_artifact_validation_v1.json` 共同约束。
+
+正式投稿前仍需补充：
+
+- 代码仓库 URL / DOI
+- 数据下载 URL / accession 列表
+- 大文件或未纳入 git 的产物存放位置
+- 环境复现说明是否以 `pixi` 为主
+
 ## 投稿前编辑检查清单
 
-- [ ] Paper title 拟定并确认
+- [x] Paper title 候选拟定
+- [ ] Paper title 最终确认
 - [ ] Author list 与 affiliation 填写
 - [ ] Abstract 末尾否定句保留
 - [ ] Discussion 结尾主动划界句保留
 - [ ] Figure 标题限制性修饰语保留（partially / rather than / limitation-bounded）
-- [ ] 各 figure legend 与正文 claim 强度一致
+- [x] 各 figure legend 与正文 claim 强度一致性规则补入 blueprint
 - [ ] References 补入
-- [ ] Supplementary table / figure 编号体系统一
-- [ ] 正文图表交叉引用补入
+- [x] Supplementary table / figure 编号草案补入
+- [x] 正文图表交叉引用草案补入
 - [ ] 句式风格统一（中英文语气一致）
-- [ ] 冗长句压缩（尤其是 Result Summary 段）
+- [x] 冗长句压缩（尤其是 Result Summary 段）
 
 ## 禁止再做的动作
 
