@@ -35,7 +35,7 @@
 - `PFDN5` 最多只能写成 `primary_but_qualified`
 - `PMF1 / PRPF6 / ZNF131` 当前只能写成 `supporting_only`
 - `transcription / chromatin` 最多只能写成 `primary_axis_but_qualified`
-- `Dixit/K562` 只能写成基于 `GSE90063 K562 13d-only` 的 `supplementary external structure replication`，并且当前最稳地支持的是 supplementary-level 的 architecture-form / bridge-form support
+- `Dixit/K562` 只能写成基于 `GSE90063 K562 13d/7d temporal panel` 的 `supplementary external structure replication`；其中 `13d` 是 primary formal supplementary bridge test，`7d` 是 temporal sensitivity / early-bridge probe，bridge content is not eligible
 - discovery 当前只能写成 `gated_downstream_layer`
 
 ## 5. 当前真正还没 fully closed 的

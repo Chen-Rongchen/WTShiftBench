@@ -99,6 +99,9 @@ class Stage2ClosureArtifactValidationTests(unittest.TestCase):
                                     "n=10",
                                     "gated_downstream_layer",
                                 ],
+                                "forbidden_substrings": [
+                                    "model recovery has been demonstrated",
+                                ],
                             },
                         ]
                     }
@@ -108,6 +111,32 @@ class Stage2ClosureArtifactValidationTests(unittest.TestCase):
 
             validated = validate_artifacts_from_config(config_path)
             self.assertEqual(len(validated), 2)
+
+    def test_validate_artifacts_from_config_rejects_forbidden_markdown(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            note = root / "boundary.md"
+            note.write_text("model recovery has been demonstrated\n", encoding="utf-8")
+
+            config_path = root / "validation.json"
+            config_path.write_text(
+                json.dumps(
+                    {
+                        "artifacts": [
+                            {
+                                "path": str(note),
+                                "forbidden_substrings": [
+                                    "model recovery has been demonstrated",
+                                ],
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            with self.assertRaisesRegex(ValueError, "禁写短语"):
+                validate_artifacts_from_config(config_path)
 
 
 if __name__ == "__main__":

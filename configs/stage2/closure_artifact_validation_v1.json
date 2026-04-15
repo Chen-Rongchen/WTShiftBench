@@ -123,6 +123,58 @@
       ]
     },
     {
+      "path": "README.md",
+      "required_substrings": [
+        "GSE90063 K562 13d/7d temporal panel",
+        "bridge content is not eligible",
+        "discovery / phenotype shifter 仍然是 downstream layer",
+        "当前不能把 `Stage 2 / 3` 写成 fully complete"
+      ],
+      "forbidden_substrings": [
+        "Dixit/K562 13d-only",
+        "基于 `GSE90063 K562 13d-only`",
+        "model recovery has been demonstrated"
+      ]
+    },
+    {
+      "path": "docs/formal_closeout_single_entry_v1.md",
+      "required_substrings": [
+        "GSE90063 K562 13d/7d temporal panel",
+        "7d` 是 temporal sensitivity / early-bridge probe",
+        "bridge content is not eligible",
+        "gated_downstream_layer"
+      ],
+      "forbidden_substrings": [
+        "基于 `GSE90063 K562 13d-only` 的 `supplementary external structure replication`"
+      ]
+    },
+    {
+      "path": "docs/main_manuscript_results_draft_v1.md",
+      "required_substrings": [
+        "GSE90063 K562 13d/7d temporal panel",
+        "A0 confirmed / A1 supporting / B not eligible",
+        "当前结果不支持 \"model recovery proved\"",
+        "RNAi 为 weaker cross-platform sensitivity endpoint"
+      ],
+      "forbidden_substrings": [
+        "基于 `GSE90063` 重建的 `Dixit/K562 13d-only` supplementary external structure replication 对象",
+        "`Dixit/K562` 基于 `GSE90063 K562 13d-only` 的结果"
+      ]
+    },
+    {
+      "path": "docs/main_manuscript_integrated_narrative_draft_v1.md",
+      "required_substrings": [
+        "GSE90063 K562 13d/7d temporal panel",
+        "A0 confirmed / A1 supporting / B not eligible",
+        "当前结果不支持 \"model recovery proved\"",
+        "RNAi 为 weaker cross-platform sensitivity endpoint"
+      ],
+      "forbidden_substrings": [
+        "基于 `GSE90063` 重建的 `Dixit/K562 13d-only` supplementary external structure replication 对象",
+        "`Dixit/K562` 基于 `GSE90063 K562 13d-only` 的结果"
+      ]
+    },
+    {
       "path": "docs/stage2_dixit_supplementary_evidence_tier_v1.md",
       "required_substrings": [
         "A0 confirmed / A1 supporting / B not eligible",

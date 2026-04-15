@@ -55,15 +55,23 @@ def ensure_required_substrings(text: str, required_substrings: list[str], *, pat
         raise ValueError(f"{path} 缺少关键短语: {missing}")
 
 
+def ensure_forbidden_substrings(text: str, forbidden_substrings: list[str], *, path: Path) -> None:
+    observed = [value for value in forbidden_substrings if value in text]
+    if observed:
+        raise ValueError(f"{path} 出现禁写短语: {observed}")
+
+
 def validate_one_artifact(artifact: dict[str, Any]) -> Path:
     path = resolve_path(str(artifact["path"]))
     if not path.exists():
         raise FileNotFoundError(f"缺少校验产物: {path}")
 
     required_substrings = artifact.get("required_substrings")
-    if required_substrings:
+    forbidden_substrings = artifact.get("forbidden_substrings")
+    if required_substrings or forbidden_substrings:
         text = path.read_text(encoding="utf-8")
-        ensure_required_substrings(text, list(required_substrings), path=path)
+        ensure_required_substrings(text, list(required_substrings or []), path=path)
+        ensure_forbidden_substrings(text, list(forbidden_substrings or []), path=path)
         return path
 
     frame = pd.read_csv(path, sep="\t")
