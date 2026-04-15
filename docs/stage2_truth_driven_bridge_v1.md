@@ -14,10 +14,10 @@
 ## 默认入口
 
 - 主线配置（肝癌两条线）：`configs/stage2/truth_driven_bridge_hcc38_hcc1143_v1.json`
-- **与主线相同 filters/metrics**、且并入 **Dixit**（h5ad）的配置：`configs/stage2/truth_driven_bridge_hcc38_hcc1143_dixit_v1.json` — 产出写入 **同一** `data/processed/stage2_truth_driven_bridge` 与 `reports/stage2_truth_driven_bridge`，并多出 `dixit_2016_raw__control_context` 子目录；跨线一致性为 **逐对** inner join（三数据集时共三对）。
+- **与主线相同 filters/metrics**、且并入 **Dixit**（h5ad）的配置：`configs/stage2/truth_driven_bridge_hcc38_hcc1143_dixit_v1.json` — 产出写入 **同一** `data/processed/stage2_truth_driven_bridge` 与 `reports/stage2_truth_driven_bridge`，并多出 `dixit_2016_raw__control_context` 子目录；跨线一致性为 **逐对** inner join（三数据集时共三对）。该入口当前仅作 legacy 复现实验，不作可引用 Dixit 主证据。
 - CLI：`scripts/build_stage2_truth_driven_bridge.py --config <上述 JSON>`
 - `pixi`：`build-stage2-truth-driven-bridge`（主线） / `build-stage2-truth-driven-bridge-with-dixit`（含 Dixit）
-- supplementary `dixit`（K562 / `ACH-000551`）配置：`configs/stage2/truth_driven_bridge_dixit_k562_supplement.json`；当前输入固定为 `data/processed/stage1a/candidate_formal_like/dixit_2016_raw__control_context.h5ad`，含 **NO_SITE / non-gene** 等对照（`is_control`）与单扰动细胞；**勿与 HCC 主线并列作主结论**，仅 supplement。
+- supplementary `dixit`（K562 / `ACH-000551`）默认配置：`configs/stage2/truth_driven_bridge_dixit_k562_supplement.json`。该泛名入口当前已固定指向 `GSE90063` 重建的 `K562 13d-only` 输入，作为 formal supplementary path；`7d` 通过 `GSE90063 K562 13d/7d temporal panel` 保留为 temporal sensitivity / early-bridge probe，legacy lineage 只允许显式使用 `configs/stage2/truth_driven_bridge_dixit_k562_legacy_v1.json`，**不得**继续作为 Dixit 证据写入主文或补充结论。准入边界见 `docs/stage2_dixit_admission_contract_v1.md`。
 
 ## 关键实现约定
 
@@ -45,10 +45,23 @@
 
 **证据等级（写结果时勿四指标平行陈列，避免证据强度被误读为相同）**
 
+**指标关系声明（防误读）**
+
+`Spearman(E, ΔT)` 与 `E-distance` 均在 correlation_summary 中输出，但二者**不是同类竞争指标**，而是**不同审计维度的互补关系**：
+
+- `Spearman(E, ΔT)`（即 correlation_summary 中的 `spearman_rho_aligned`）：**rank-based scalar association 主指标**，衡量 bridge signal 的方向一致性
+- `E-distance`：**embedding-space state displacement 审计指标**，衡量 target 细胞在 latent space 相对 control 的整体位移幅度
+
+报告时应避免：
+> `E-distance underperforms Spearman as a headline metric`
+
+更稳的写法是：
+> E-distance is retained as an embedding-level scalar audit of state displacement, whereas Spearman(E, ΔT) is retained as the primary rank-based association summary. They are complementary rather than competing headline metrics.
+
 | 等级 | 指标 | 角色 |
 |------|------|------|
 | 主支柱 | `real_shift_L2`、`real_shift_mean_abs` | 转录位移强度的直接、稳健摘要 |
-| 补充支柱 | `real_Edistance` | 分布层面 complement（不只看均值） |
+| 补充支柱 | `real_Edistance` | embedding-space 位移审计（互补维度，非主指标弱化版） |
 | 敏感性 / 辅助 | `real_DEG_burden` | 依赖阈值，宜作敏感性或补充，**不当主桥主证据** |
 | 探索性 | `real_shift_top20_mean`、`real_shift_top50_mean`、`real_shift_top100_mean`、`real_shift_top50_concentration` | 仅 appendix / supplement 使用，**不得自动进入主结论** |
 

@@ -13,8 +13,10 @@ from wtbench.stage2_truth_bridge import (
     build_cross_cell_line_outputs,
     classify_join_status,
     build_dataset_specs,
+    mean_pairwise_distance,
     parse_target_gene,
     resolve_single_perturbation_status,
+    resolve_edistance_pairwise_max_points,
     summarize_correlations,
     summarize_group_comparisons,
 )
@@ -74,6 +76,14 @@ class Stage2TruthBridgeHelpersTests(unittest.TestCase):
         obs = pd.DataFrame({"is_control": [False, True]})
         with self.assertRaisesRegex(ValueError, "formal 模式要求显式单扰动证据"):
             resolve_single_perturbation_status(obs, allow_degraded_unverified=False)
+
+    def test_edistance_pairwise_cap_is_configurable(self) -> None:
+        self.assertEqual(resolve_edistance_pairwise_max_points({}), 5000)
+        self.assertIsNone(resolve_edistance_pairwise_max_points({"edistance_pairwise_max_points": None}))
+        values = np.arange(20, dtype=float).reshape(10, 2)
+        capped = mean_pairwise_distance(values, max_points=4)
+        exact = mean_pairwise_distance(values, max_points=None)
+        self.assertNotEqual(capped, exact)
 
 
 class Stage2TruthBridgeAnalysisTests(unittest.TestCase):

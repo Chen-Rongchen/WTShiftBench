@@ -1,0 +1,34 @@
+{
+  "stage": "stage2_geo_supplementary_download",
+  "version": 1,
+  "series_accession": "GSE90063",
+  "output_dir": "data/raw/gse90063_full",
+  "manifest_path": "reports/stage2_gse90063_qc/gse90063_supplementary_manifest.tsv",
+  "include_sample_supplementary": true,
+  "include_series_supplementary": true,
+  "proxies": {
+    "https_proxy": "http://10.10.10.215:7897",
+    "http_proxy": "http://10.10.10.215:7897",
+    "all_proxy": "socks5://10.10.10.215:7897",
+    "use_all_proxy": false
+  },
+  "download": {
+    "resume": true,
+    "overwrite": false,
+    "fallback_without_proxy": true,
+    "retry": 3,
+    "connect_timeout_seconds": 30
+  },
+  "test_records": [
+    {
+      "scope": "sample",
+      "accession": "GSM2396858",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/samples/GSM2396nnn/GSM2396858/suppl/GSM2396858_k562_tfs_7.mtx.txt.gz"
+    },
+    {
+      "scope": "sample",
+      "accession": "GSM2396858",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/samples/GSM2396nnn/GSM2396858/suppl/GSM2396858_k562_tfs_7_cbc_gbc_dict.csv.gz"
+    }
+  ]
+}

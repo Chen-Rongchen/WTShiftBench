@@ -120,6 +120,18 @@
 - `insufficient_axis_size`
   axis 规模不足，不做正式判断。
 
+### 正式关系声明：tier decomposition 与主裁决的关系
+
+这里输出的 tier 1–4（Q1/Q2/Q3/Q4）分层**不是**独立于主裁决的 orthogonal validation，而是一个**可解释性脚手架**（interpretable scaffold）。
+
+具体而言：
+- tier decomposition 的价值在于**解释为什么 bridge 不是简单线性**——它把 anchor / shift-excess / depmap-excess 的结构性差异拆成了可理解的象限组合
+- 它回答的是：为什么某个基因落在 Q1 而非 Q3？为什么 backbone recovery 和 shift-excess identification 会表现出 trade-off？
+- 它**不能**写成：tier decomposition independently validates the architecture-level adjudication
+
+正式关系应统一为：
+> Essentiality stratification provides an interpretable decomposition scaffold for why the truth–DepMap bridge is non-linear and tiered, and is retained as a supplementary explanation layer rather than an orthogonal validation layer.
+
 ### 正式口径收紧
 
 为了避免单基因 axis 被直接写成正式 backbone，这里增加一层治理边界：

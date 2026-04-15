@@ -26,6 +26,7 @@
           "A0_confirmed_A1_supporting",
           "A0_confirmed",
           "A1_supporting",
+          "admission_required",
           "gated_downstream_layer"
         ]
       },
@@ -116,8 +117,8 @@
     {
       "path": "docs/final_claim_boundary_and_discovery_gating_note_v1.md",
       "required_substrings": [
-        "A0 architecture form 已 confirmed",
-        "n=10",
+        "GSE90063 K562 13d/7d temporal panel",
+        "bridge content is not eligible",
         "gated_downstream_layer"
       ]
     },

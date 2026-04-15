@@ -158,7 +158,7 @@ axis 解释层不是 fully closed architecture，而是一套清楚分层后的 
 - [`reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv`](/home/data/gz0705/WTKO/reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv)
 - [`reports/stage2_truth_driven_bridge/sensitivity/anchor_claim_tiering.tsv`](/home/data/gz0705/WTKO/reports/stage2_truth_driven_bridge/sensitivity/anchor_claim_tiering.tsv)
 - [`reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/barcode_gem_group_mapping_note.md`](/home/data/gz0705/WTKO/reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/barcode_gem_group_mapping_note.md)
-- `reports/stage2_truth_driven_bridge/dixit_axis_compression/*.tsv`
+- `reports/stage2_truth_driven_bridge/dixit_axis_compression_gse90063_13d/*.tsv`
 
 **唯一判断**
 

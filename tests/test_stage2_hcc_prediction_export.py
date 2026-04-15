@@ -89,7 +89,7 @@ class Stage2HccPredictionExportTests(unittest.TestCase):
 
             pd.DataFrame(
                 {
-                    "gene_name": ["B", "A", "EXTRA"],
+                    "target_gene": ["B", "A", "EXTRA"],
                     "B": [2.0, 4.0, 9.0],
                     "A": [1.0, 3.0, 8.0],
                     "EXTRA": [5.0, 6.0, 7.0],
@@ -125,9 +125,84 @@ class Stage2HccPredictionExportTests(unittest.TestCase):
             self.assertEqual(manifest["object_role"], "entrant")
             self.assertEqual(manifest["source_checkpoint"], "local-test")
             self.assertEqual(manifest["export_status"], "contract_validated")
+            self.assertEqual(manifest["raw_alignment_summary"]["raw_extra_targets"], ["EXTRA"])
+            self.assertEqual(manifest["raw_alignment_summary"]["raw_extra_genes"], ["EXTRA"])
 
             validation = json.loads(validation_path.read_text(encoding="utf-8"))
             self.assertTrue(validation["contract_pass"])
+
+    def test_export_external_prediction_rejects_non_target_gene_first_column(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            axis_membership_path = root / "axis_membership.tsv"
+            contract_path = root / "contract.json"
+            raw_input_path = root / "incoming.tsv"
+            pd.DataFrame({"target_gene": ["A"], "fine_axis": ["axis_a"]}).to_csv(
+                axis_membership_path,
+                sep="\t",
+                index=False,
+            )
+            contract_path.write_text(
+                json.dumps(
+                    {
+                        "required_first_column": "target_gene",
+                        "prediction_space": "stage2_truth_aligned_log_shift",
+                        "normalization_applied_in_export": True,
+                        "log1p_applied_in_export": True,
+                        "target_universe_source": "axis_membership.tsv",
+                        "gene_space_source": "axis_membership.tsv",
+                        "missing_target_policy": {"allow_missing_targets": False},
+                        "missing_gene_policy": {"allow_missing_genes": False},
+                        "required_manifest_fields": [
+                            "stage",
+                            "cell_line",
+                            "model_id",
+                            "model_version",
+                            "prediction_space",
+                            "normalization_applied_in_export",
+                            "log1p_applied_in_export",
+                            "source_kind",
+                            "object_role",
+                            "export_script",
+                            "export_timestamp",
+                            "input_prediction_path",
+                            "aligned_prediction_path",
+                            "scorer_ready_prediction_path",
+                            "target_universe_source",
+                            "gene_space_source",
+                            "allow_missing_targets",
+                            "allow_missing_genes",
+                            "contract_pass",
+                        ],
+                        "output_paths": {
+                            "raw_prediction_root": str(root / "raw" / "<model_id>" / "<cell_line>"),
+                            "aligned_prediction_path": str(root / "aligned" / "<model_id>" / "<cell_line>" / "x.tsv.gz"),
+                            "scorer_ready_prediction_path": str(root / "ready" / "<model_id>" / "<cell_line>" / "x.tsv.gz"),
+                            "manifest_path": str(root / "manifest" / "<model_id>" / "<cell_line>" / "manifest.json"),
+                            "validation_summary_path": str(root / "validation" / "<model_id>" / "<cell_line>" / "summary.json"),
+                        },
+                    },
+                    ensure_ascii=False,
+                ),
+                encoding="utf-8",
+            )
+            pd.DataFrame({"gene_name": ["A"], "A": [1.0]}).to_csv(raw_input_path, sep="\t", index=False)
+
+            with self.assertRaisesRegex(ValueError, "首列必须是 target_gene"):
+                export_external_stage2_hcc_prediction(
+                    cell_line="HCC38",
+                    model_id="bad_input",
+                    model_version="vtest",
+                    object_role="entrant",
+                    export_timestamp="2026-04-09T00:00:00+00:00",
+                    raw_source=RawPredictionSource(
+                        prediction_path=raw_input_path,
+                        source_kind="test_input",
+                        export_script="tests",
+                    ),
+                    contract_path=contract_path,
+                    axis_membership_path=axis_membership_path,
+                )
 
 
 if __name__ == "__main__":

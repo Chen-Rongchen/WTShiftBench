@@ -38,7 +38,8 @@
 - `transcription / chromatin = primary_axis_but_qualified`：固定
 - `claim matrix`：已成形，并已接回主文稿与 boundary 文档
 - discovery：已明确 `gated`
-- `Dixit/K562`：已固定为 `GSE90063 K562 13d-only` provides formal supplementary external support for architecture form, with bridge-form support remaining supporting / partial-support; bridge content is not eligible
+- `Dixit/K562`：已固定为 `GSE90063 K562 13d/7d temporal panel`；`13d` provides formal supplementary external support for architecture form, with bridge-form support remaining supporting / partial-support；`7d` is a temporal sensitivity / early-bridge probe；bridge content is not eligible
+- `K562 RNAi endpoint sensitivity`：DEMETER2 RNAi 只作为 `GSE90063 K562 7d/13d CRISPR KO truth` 的 cross-platform sensitivity endpoint；`CRISPR DepMap` 仍是 matched primary endpoint，RNAi 不替代主线，也不提供等价 primary evidence
 - foundation-model entrant family：已形成 `Geneformer > scGPT`
 - 第一层 linear controls：已形成 `lm_g_geneformer_ridge > lm_train_lowrank > lm_g_scgpt_ridge`
 - 禁写边界：`model recovery proved` / `Stage 2 complete` / `Stage 3 complete` 已固定
@@ -99,7 +100,9 @@ baseline-vs-GEARS 的 trade-off 必须写成非对称。当前不是“GEARS 和
 
 现有 covariate closure 受限于仓库中可用的实验设计元数据范围。若无新增元数据源，后续最合理的推进方向应是完成 `claim matrix`、`evidence tier synchronization` 与 manuscript-ready wording，而非无停止规则地继续扩展 covariate 审计轴。当前更准确的口径应是：**混杂风险已完成第一轮多轴治理，但仍受元数据上限约束；其中 `barcode_gem_group` 只能写成 design-proxy axis，而不是单个 `MH00x` 已确认的 run-level covariate。**
 
-`Dixit/K562` 在这一边界下也应固定写成：`GSE90063 K562 13d-only` provides formal supplementary external support for architecture form, with bridge-form support remaining supporting / partial-support; bridge content is not eligible. 因此这些结果不支持 `model generalization proved`，也不支持与 HCC 对称的 primary conclusion、shared mainline architecture content 或 broad cross-context validation。
+`Dixit/K562` 在这一边界下也应固定写成：`GSE90063 K562 13d/7d temporal panel` 支持 architecture form 的时间稳定性与 bridge readout 的 temporal stratification；`13d` 是 primary formal supplementary bridge test，`7d` 是 temporal sensitivity / early-bridge probe，bridge content is not eligible。因此这些结果不支持 `13d` 全面强于 `7d`、`model generalization proved`，也不支持与 HCC 对称的 primary conclusion、shared mainline architecture content、content-level convergence 或 broad cross-context validation。
+
+DEMETER2 RNAi endpoint sensitivity 只能在这一层之后阅读：它用于检查 `7d/13d CRISPR KO truth` 接到 RNAi-derived dependency endpoint 时是否保留方向兼容或 endpoint robustness。它不能改变已冻结的 CRISPR DepMap 主线，也不能把 RNAi 写成 matched endpoint、primary closure 或等价 primary evidence。
 
 ### 5.4 指标治理层级
 

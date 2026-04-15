@@ -54,6 +54,7 @@ data/audit/
 # Local model assets
 models/pretrained/
 depmap/
+RNAi/
 
 # Result bundles
 results/

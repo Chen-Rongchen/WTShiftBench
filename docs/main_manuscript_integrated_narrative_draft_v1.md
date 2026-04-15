@@ -14,6 +14,10 @@
 - 不把 supplementary 对象升格为 HCC primary conclusion
 - 不把 supporting / preliminary evidence 上升为与 primary evidence 同等级的结构性主张
 
+## Abstract
+
+我们提出并验证了一个 truth-first architecture-aware 框架，用于评估扰动应答转录组模型能否恢复可桥接到 DepMap CRISPR 适应度的结构化 truth object。核心发现是：当前的 perturbation foundation model 在 canonical backbone recovery 上尚未稳定胜过共享均值基线，暴露了一种非对称 architecture trade-off——模型的优势更偏向于 structure/context separation 而非 backbone 主方向的精确拟合。在 HCC38/HCC1143 两条 primary cell line 中，共享均值基线的 backbone recovery（ρ̄=0.807）持续优于正式 GEARS recipe（ρ̄=0.660），而 GEARS 在 structure-vs-context separation 上反超（0.428 vs 0.353）。HCC 主线 anchors（PFDN5、PMF1、PRPF6、ZNF131）在 transcriptomic shift 与 DepMap dependency 上共同维持高位，但经五轴 covariate audit 后仅 PFDN5 可保留为 `primary_but_qualified`；`transcription / chromatin` 是 bootstrap 下唯一稳定的 formal positive axis。GSE90063 K562 13d/7d temporal panel 在外部 context 下确认了 `backbone + shift-excess` architecture form 的时间稳定性（7d rank alignment 更强；13d mean shift 更大），提供了 supplementary-level architecture-form support（A0 confirmed / A1 supporting / B not eligible）。跨四个 context（HCC38/HCC1143/K562 7d/K562 13d）的 endpoint hierarchy 显示 CRISPR DepMap（bridge Spearman 0.51–0.78）一致强于 RNAi DEMETER2（0.28–0.38），确立 CRISPR 为 formal primary bridge readout，RNAi 为 weaker cross-platform sensitivity endpoint。当前结果不支持 "model recovery proved"，不支持 GEARS 整体压过共享均值基线，也不支持 K562 作为 HCC 对称的 primary co-pillar 或 content-level replication。
+
 ## 2. 当前总括性结论
 
 当前最稳的总体结论是：本项目已经完成从“现象级相关”到“分层化结构证据”的第一轮收口，但尚未完成对 model recovery 的最终证明。
@@ -24,6 +28,7 @@
 - 在 truth-side bridge 层，`truth–DepMap bridge` 已不再只是整体相关现象，而是由少数结构上稳定的 `target-level anchors` 与有限 `formal axis evidence` 共同支撑的结构化 bridge。
 - 在 axis 层，第一轮 `annotation + validation + tiering` 已完成，但整体仍应保持 `partially supported axes`，而不是 `fully established shared explanatory architecture`。
 - 在 supplementary 层，`Dixit/K562` 支持 architecture existence 在外部 context 中具有一定可复制性，但其 dominant macro-class remains context-specific。
+- `GSE90063 K562 13d/7d temporal panel` 支持同一外部 context 下 architecture form 的时间稳定性，并提示 bridge readout 存在 temporal stratification：`7d` rank alignment 更强，`13d` mean shift 更大。
 - 在 benchmark 解释层，`Stage 1A / 1B` 不再只承担 leaderboard / stress test 角色，而应被重写为 frozen truth architecture 下的 `failure decomposition track`。
 
 因此，当前阶段最重要的进展不是信号数量继续增加，而是 `evidence tier` 与 `claim strength` 已经被明确对齐。
@@ -115,6 +120,8 @@
 
 - `K562` 中同样可以观察到 `canonical backbone`
 - `K562` 中同样可以观察到 `shift-excess`
+- `7d` 和 `13d` 均确认 `architecture class = backbone_plus_shift_excess`
+- `7d` rank alignment 更强，而 `13d` mean shift 更大，支持 bridge readout 的 temporal stratification
 - 但其 dominant backbone 更偏 `transcription regulation`
 - 因而它支持的是 architecture existence 的外部复现，而不是与 HCC 对称的主线 architecture
 
@@ -126,9 +133,19 @@
 
 因此，`Dixit/K562` 当前进入的是 **formal supplementary external evidence**，最稳写法是：
 
-**K562 13d supports formal supplementary-level architecture-form / bridge-form support（A0 confirmed / A1 supporting / B not eligible）；其 bridge-form 证据当前建立在 `n=10` 个可桥接 targets 上，因此仍应保留 supportive rather than content-generalizing 的写法，而不是 formal primary co-pillar 或 content-level replication confirmed。**
+**K562 13d/7d supports formal supplementary-level architecture-form / bridge-form support（A0 confirmed / A1 supporting / B not eligible）；其 bridge-form 证据当前建立在每个时间点 `n=10` 个可桥接 targets 上，并呈现 `7d` rank alignment 更强、`13d` mean shift 更大的 temporal stratification，因此仍应保留 supportive rather than content-generalizing 的写法，而不是 formal primary co-pillar、content-level replication confirmed 或 external model-side generalization proved。**
 
-## 7. Stage 1A / 1B：failure decomposition track
+进一步地，K562 7d/13d 同时做了 CRISPR DepMap vs RNAi DEMETER2 的 parallel endpoint 对照。结果在 K562 两个时间点均显示 CRISPR bridge（0.52–0.73）明显强于 RNAi（0.30–0.33），CRISPR vs RNAi endpoint Spearman 为 0.45。与 HCC38/1143 的平行结果合并后，四个 context 的 call 全部为 `rnai_bridge_weaker_than_crispr_sensitivity`，且 HCC 的 CRISPR vs RNAi endpoint 一致性（0.14/0.23）显著低于 K562（0.45），说明 cross-platform robustness 是 context-dependent 的。据此，**CRISPR DepMap = formal primary bridge readout**；**RNAi DEMETER2 = weaker cross-platform sensitivity endpoint**；RNAi 不替代 CRISPR 主线，也不提供等价 primary evidence。
+
+## 7. Endpoint hierarchy：CRISPR DepMap 是 formal primary bridge readout，RNAi DEMETER2 是跨 context 一致的 weaker sensitivity endpoint
+
+为进一步建立 endpoint hierarchy 并评估跨平台 robustness，我们在 HCC38、HCC1143、K562 7d 和 K562 13d 四个 context 中对 CRISPR DepMap 与 RNAi DEMETER2 两种 endpoint 进行了 parallel bridge 对接。结果在所有四个 context 中高度一致：CRISPR DepMap 的 truth–dependency bridge Spearman（0.51–0.78）均明显强于 RNAi DEMETER2（0.28–0.38），且所有 call 均为 `rnai_bridge_weaker_than_crispr_sensitivity`。这一 pattern 并非 K562 的偶然，而是跨 HCC + K562 的 framework-level observation。
+
+关键发现是：CRISPR vs RNAi endpoint Spearman 在 HCC 中（0.14 / 0.23）显著低于 K562（0.45 / 0.45），说明 cross-platform robustness 本身是 context-dependent 的。在 K562 中 CRISPR 与 RNAi 平台间一致性为 moderate；但在 HCC 中这种一致性更弱，提示 RNAi 在 HCC 语境下与 CRISPR 的 divergence 更大。
+
+因此，**CRISPR DepMap = formal primary bridge readout**；**RNAi DEMETER2 = weaker cross-platform sensitivity endpoint**。这一层级定位已在四个 context 中稳定复现，不是事后挑选，也不是单一 dataset 特判。它支持的是 architecture-aware evaluation framework 的 proof-of-concept，而不是 broad external generalization proved。RNAi 不替代 CRISPR 主线，也不提供等价 primary evidence；其在 HCC 中更弱的平台间一致性进一步说明 endpoint 替换不能在不同 context 中一致保留 bridge strength 或 target ranking。
+
+## 8. Stage 1A / 1B：failure decomposition track
 
 在当前 truth-first 主线下，`Stage 1A / 1B` 的解释角色已经改变。
 
@@ -158,6 +175,9 @@
 - 把 `Dixit/K562` 写成与 HCC 并列的 primary biological conclusion
 - 把 `Stage 1A / 1B` 写回只服务 leaderboard / stress test，或反过来写成新的 truth-discovery 层
 - 把 global Pearson 或单次分数波动替代 architecture-level adjudication
+- 把 RNAi DEMETER2 写成 primary evidence 或 CRISPR 主线替代品（实际：CRISPR DepMap = formal primary bridge readout，RNAi = weaker cross-platform sensitivity endpoint）
+- 把 HCC CRISPR vs RNAi endpoint 一致性写成与 K562 等价（实际：HCC = 0.14/0.23，K562 = 0.45，HCC 显著更低）
+- 把 endpoint hierarchy 写成 broad external generalization proved（实际：这是 framework-level proof-of-concept，跨 context 一致但仍受 context-dependence 约束）
 
 当前结果支持的是：
 
@@ -172,7 +192,7 @@
 
 ## 9. 可直接进入主文的总收口段
 
-综合当前结果，我们认为本项目已经完成从“现象级相关”到“分层化结构证据”的第一轮收口。首先，在模型侧，`GEARS` 已完成 HCC primary adjudication，其结果更适合被解释为 `architecture trade-off diagnosis`，而不是继续扩模或继续调参的起点；同时，`scGPT / Geneformer / linear controls` 的并入进一步表明，当前 backbone gap 更像是 task structure 与 entrant inductive bias 之间的错位，而不是接入错误或 coverage 缺口。其次，在 truth-side bridge 层，`truth–DepMap bridge` 已不再只是整体相关现象，而是可进一步分解为少数跨 cutoff 稳定的 `target-level anchors` 与有限的 `axis-level formal evidence`；其中，当前可进入更强写法的对象只包括 `PFDN5 = primary_but_qualified` 与 `transcription / chromatin = primary_axis_but_qualified`，而 `PMF1 / PRPF6 / ZNF131` 以及多数其余 axis 仍应保留在 `supporting_only`、supporting、unstable 或 preliminary 层级。当前 covariate audit 进一步提示，这些 anchor 代表的是 `structural stability`，而不是统一意义上的 `fully deconfounded strongest evidence`；与此同时，`barcode_gem_group` 现已固定写成更接近实验设计 aggregation 结构的 design-proxy axis，而不是单个 `MH00x` 已确认的 run-level covariate。第三，frozen axis 已完成第一轮 `annotation + validation + tiering`，从而形成了一套部分得到支持的轴级解释框架，但当前证据仍不足以支撑 `fully established shared explanatory architecture` 的更强主张。第四，`Dixit/K562` 提供了基于 `GSE90063 K562 13d-only` 的 supplementary external structure replication：它在 supplementary 层面复现了 `backbone + shift-excess` 的架构形式，并为外部 context 下的 bridge form 提供了方向一致、时间尺度兼容的支持；但由于当前 target 数仍有限、dominant macro-class remains context-specific，这些结果只能写成 supplementary-level 的 architecture-form / bridge-form support，而不能被提升为与 HCC 并列的 primary conclusion、shared mainline architecture content 或 broad cross-context validation。最后，`Stage 1A / 1B` 当前不再只是 leaderboard 与时间外推 stress test，而应被重新解释为 frozen truth architecture 下的 failure decomposition track，用于说明模型究竟丢掉了哪类结构、这些 failure mode 是否在更长时间尺度上进一步放大。整体而言，本阶段最重要的进展不是信号数量的增加，而是 evidence tier、claim strength 与 model-failure explanation 的成功对齐，从而使主结论更加清晰、可信且可防守。
+综合当前结果，我们认为本项目已经完成从”现象级相关”到”分层化结构证据”的第一轮收口。首先，在模型侧，`GEARS` 已完成 HCC primary adjudication，其结果更适合被解释为 `architecture trade-off diagnosis`，而不是继续扩模或继续调参的起点；同时，`scGPT / Geneformer / linear controls` 的并入进一步表明，当前 backbone gap 更像是 task structure 与 entrant inductive bias 之间的错位，而不是接入错误或 coverage 缺口。其次，在 truth-side bridge 层，`truth–DepMap bridge` 已不再只是整体相关现象，而是可进一步分解为少数跨 cutoff 稳定的 `target-level anchors` 与有限的 `axis-level formal evidence`；其中，当前可进入更强写法的对象只包括 `PFDN5 = primary_but_qualified` 与 `transcription / chromatin = primary_axis_but_qualified`，而 `PMF1 / PRPF6 / ZNF131` 以及多数其余 axis 仍应保留在 `supporting_only`、supporting、unstable 或 preliminary 层级。当前 covariate audit 进一步提示，这些 anchor 代表的是 `structural stability`，而不是统一意义上的 `fully deconfounded strongest evidence`；与此同时，`barcode_gem_group` 现已固定写成更接近实验设计 aggregation 结构的 design-proxy axis，而不是单个 `MH00x` 已确认的 run-level covariate。第三，frozen axis 已完成第一轮 `annotation + validation + tiering`，从而形成了一套部分得到支持的轴级解释框架，但当前证据仍不足以支撑 `fully established shared explanatory architecture` 的更强主张。第四，`Dixit/K562` 提供了基于 `GSE90063 K562 13d/7d temporal panel` 的 supplementary external structure replication：两个时间点均确认 `backbone_plus_shift_excess`，支持同一外部 context 下 architecture form 的时间稳定性；同时，`7d` rank alignment 更强而 `13d` mean shift 更大，支持 bridge readout 的 temporal stratification，而不是 later timepoint 单调更强。由于当前 target 数仍有限、dominant macro-class remains context-specific，这些结果只能写成 supplementary-level 的 architecture-form / bridge-form support，而不能被提升为与 HCC 并列的 primary conclusion、shared mainline architecture content、content-level convergence 或 broad cross-context validation。第五，在 endpoint hierarchy 层，跨 HCC38、HCC1143、K562 7d 和 K562 13d 四个 context 的 parallel bridge 对接显示，CRISPR DepMap 的 truth–dependency bridge Spearman（0.51–0.78）一致强于 RNAi DEMETER2（0.28–0.38），且 CRISPR vs RNAi endpoint Spearman 在 HCC（0.14/0.23）显著低于 K562（0.45），说明 cross-platform robustness 是 context-dependent 的，从而将 RNAi 定位为 weaker cross-platform sensitivity endpoint 而非 primary evidence。最后，`Stage 1A / 1B` 当前不再只是 leaderboard 与时间外推 stress test，而应被重新解释为 frozen truth architecture 下的 failure decomposition track，用于说明模型究竟丢掉了哪类结构、这些 failure mode 是否在更长时间尺度上进一步放大。整体而言，本阶段最重要的进展不是信号数量的增加，而是 evidence tier、claim strength、endpoint hierarchy 与 model-failure explanation 的成功对齐，从而使主结论更加清晰、可信且可防守。
 
 ## 10. 渐进披露
 

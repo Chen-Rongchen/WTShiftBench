@@ -51,6 +51,7 @@ DEPMAP_ALIGNMENT_DIRECTION = {
     "depmap_gene_effect": -1.0,
     "depmap_gene_dependency": 1.0,
 }
+DEFAULT_EDISTANCE_PAIRWISE_MAX_POINTS = 5000
 
 
 @dataclass(frozen=True)
@@ -254,7 +255,12 @@ def load_expression_from_h5ad(
     obs = adata.obs.copy()
     obs["target_gene"] = stringify(obs["target_gene"])
     obs["is_control"] = obs["is_control"].astype(bool)
-    obs["feature_call"] = obs["target_gene"]
+    if "sgRNA" in obs.columns:
+        obs["feature_call"] = stringify(obs["sgRNA"])
+    elif "perturbation_label_raw" in obs.columns:
+        obs["feature_call"] = stringify(obs["perturbation_label_raw"])
+    else:
+        obs["feature_call"] = obs["target_gene"]
     if "num_features" not in obs.columns:
         obs["num_features"] = pd.Series(np.nan, index=obs.index)
     obs["num_umis"] = np.nan
@@ -307,15 +313,41 @@ def compute_embedding(matrix: sparse.csr_matrix, n_components: int) -> np.ndarra
     return svd.fit_transform(matrix)
 
 
-def mean_pairwise_distance(values: np.ndarray) -> float:
+def resolve_edistance_pairwise_max_points(metrics_cfg: dict[str, Any]) -> int | None:
+    value = metrics_cfg.get("edistance_pairwise_max_points", DEFAULT_EDISTANCE_PAIRWISE_MAX_POINTS)
+    if value is None:
+        return None
+    max_points = int(value)
+    if max_points < 2:
+        raise ValueError("edistance_pairwise_max_points 必须 >= 2，或设为 null 以使用精确全量距离。")
+    return max_points
+
+
+def subsample_rows_for_pairwise_distance(values: np.ndarray, max_points: int | None) -> np.ndarray:
+    if max_points is None or values.shape[0] <= max_points:
+        return values
+    positions = np.linspace(0, values.shape[0] - 1, num=max_points, dtype=np.int64)
+    return values[np.unique(positions)]
+
+
+def mean_pairwise_distance(values: np.ndarray, max_points: int | None = None) -> float:
     if values.shape[0] <= 1:
         return 0.0
-    return float(distance.cdist(values, values, metric="euclidean").mean())
+    sampled = subsample_rows_for_pairwise_distance(values, max_points)
+    return float(distance.cdist(sampled, sampled, metric="euclidean").mean())
 
 
-def energy_distance(target_values: np.ndarray, control_values: np.ndarray, control_within: float) -> float:
-    cross_mean = float(distance.cdist(target_values, control_values, metric="euclidean").mean())
-    target_within = mean_pairwise_distance(target_values)
+def energy_distance(
+    target_values: np.ndarray,
+    control_values: np.ndarray,
+    control_within: float,
+    *,
+    max_points: int | None = None,
+) -> float:
+    target_sample = subsample_rows_for_pairwise_distance(target_values, max_points)
+    control_sample = subsample_rows_for_pairwise_distance(control_values, max_points)
+    cross_mean = float(distance.cdist(target_sample, control_sample, metric="euclidean").mean())
+    target_within = mean_pairwise_distance(target_values, max_points=max_points)
     return float((2.0 * cross_mean) - target_within - control_within)
 
 
@@ -389,7 +421,11 @@ def build_bridge_records(
     control_matrix = normalized[control_positions]
     control_embedding = embeddings[control_positions]
     control_mean = mean_vector(control_matrix)
-    control_within = mean_pairwise_distance(control_embedding)
+    edistance_pairwise_max_points = resolve_edistance_pairwise_max_points(metrics_cfg)
+    control_within = mean_pairwise_distance(
+        control_embedding,
+        max_points=edistance_pairwise_max_points,
+    )
 
     records: list[dict[str, Any]] = []
     for target_gene, target_calls in calls.loc[~calls["is_control"]].groupby("target_gene", sort=True):
@@ -432,7 +468,12 @@ def build_bridge_records(
                 "real_shift_top50_mean": top_k_mean_abs(delta, 50),
                 "real_shift_top100_mean": top_k_mean_abs(delta, 100),
                 "real_shift_top50_concentration": top_k_concentration_ratio(delta, 50),
-                "real_Edistance": energy_distance(target_embedding, control_embedding, control_within),
+                "real_Edistance": energy_distance(
+                    target_embedding,
+                    control_embedding,
+                    control_within,
+                    max_points=edistance_pairwise_max_points,
+                ),
                 "real_DEG_burden": count_deg_burden(
                     delta,
                     control_mean,
@@ -535,6 +576,7 @@ def build_bridge_table_for_dataset(
         effect_series=effect_series,
         dependency_series=dependency_series,
     )
+    edistance_pairwise_max_points = resolve_edistance_pairwise_max_points(metrics_cfg)
 
     audit = pd.DataFrame(
         [
@@ -559,6 +601,9 @@ def build_bridge_table_for_dataset(
                 "deg_abs_log1p_delta_threshold": float(metrics_cfg["deg_abs_log1p_delta_threshold"]),
                 "deg_expression_floor": float(metrics_cfg["deg_expression_floor"]),
                 "edistance_n_components": int(metrics_cfg["edistance_n_components"]),
+                "edistance_pairwise_max_points": edistance_pairwise_max_points
+                if edistance_pairwise_max_points is not None
+                else "exact_full_pairwise",
                 "n_gene_features": int(len(gene_meta)),
             }
         ]

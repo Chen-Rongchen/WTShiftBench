@@ -16,7 +16,9 @@ NOT required:
   - fine-axis correspondence with HCC
   - SCP542 basal explanation (not evaluable for K562)
 
-Run: pixi run python scripts/stage2_dixit_axis_compression.py
+Run:
+  pixi run python scripts/stage2_dixit_axis_compression.py \
+    --config configs/stage2/dixit_k562_tf_13d_structure_replication_gse90063_v1.json
 """
 
 import json
@@ -32,11 +34,16 @@ from sklearn.preprocessing import StandardScaler
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_CONFIG_PATH = PROJECT_ROOT / "configs/stage2/dixit_k562_structure_replication_v1.json"
+DEFAULT_CONFIG_PATH = PROJECT_ROOT / "configs/stage2/dixit_k562_tf_13d_structure_replication_gse90063_v1.json"
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="运行 Stage 2 Dixit/K562 supplementary structure replication。")
+    parser = argparse.ArgumentParser(
+        description=(
+            "运行 Stage 2 Dixit/K562 supplementary structure replication。"
+            " 默认配置固定为 GSE90063 K562 13d-only；legacy recipe 请显式传入 historical-only 配置。"
+        )
+    )
     parser.add_argument("--config", default=str(DEFAULT_CONFIG_PATH))
     return parser
 
@@ -208,7 +215,7 @@ KNOWN_SETS = {
 }
 
 
-def compute_ols_params(df: pd.DataFrame, x_col: str, y_col: str) -> dict:
+def compute_ols_params(df: pd.DataFrame, x_col: str, y_col: str) -> dict | None:
     """Compute OLS parameters for grid cutoffs from a dataframe."""
     sub = df[[x_col, y_col]].dropna()
     if len(sub) < 10:
@@ -226,6 +233,23 @@ def compute_ols_params(df: pd.DataFrame, x_col: str, y_col: str) -> dict:
         "y_lo": y_q25,
         "y_hi": y_q75,
         "n_genes": len(sub),
+    }
+
+
+def compute_fallback_params(df: pd.DataFrame, x_col: str, y_col: str) -> dict:
+    """Fallback params when valid points are too few for stable OLS."""
+    sub = df[[x_col, y_col]].dropna()
+    if len(sub) == 0:
+        raise ValueError("K562 bridge table 缺少可用于阈值分层的 DepMap+shift 联合观测。")
+    return {
+        "beta0": float(sub[y_col].median()),
+        "beta1": 0.0,
+        "x_lo": float(sub[x_col].quantile(0.25)),
+        "x_hi": float(sub[x_col].quantile(0.75)),
+        "y_lo": float(sub[y_col].quantile(0.25)),
+        "y_hi": float(sub[y_col].quantile(0.75)),
+        "n_genes": int(len(sub)),
+        "fallback": True,
     }
 
 
@@ -263,15 +287,32 @@ df = pd.read_csv(BRIDGE_TABLE, sep="\t")
 print(f"\nK562 bridge table: {len(df)} targets, {df['target_gene'].nunique()} unique genes")
 
 # Filter to single-condition K562
-df_k = df[df["cell_line"] == "dixit_2016_raw__control_context"].copy()
+k562_dataset_label = str(RECIPE.get("k562_dataset_label", "")).strip()
+if k562_dataset_label:
+    df_k = df[df["cell_line"] == k562_dataset_label].copy()
+else:
+    unique_cell_lines = sorted(df["cell_line"].dropna().astype(str).unique().tolist())
+    if len(unique_cell_lines) == 1:
+        df_k = df.copy()
+        k562_dataset_label = unique_cell_lines[0]
+    else:
+        raise ValueError(
+            "配置未提供 k562_dataset_label，且 bridge table 含多个 cell_line，无法唯一确定 K562 对象。"
+        )
+if df_k.empty:
+    raise ValueError(f"bridge table 中找不到 k562_dataset_label={k562_dataset_label} 的记录。")
 
 # Compute OLS params from K562 data itself
 ols_params = compute_ols_params(df_k, PRIMARY_X, PRIMARY_Y)
+if ols_params is None:
+    ols_params = compute_fallback_params(df_k, PRIMARY_X, PRIMARY_Y)
 print(f"\nOLS params (K562-specific):")
 print(f"  beta0={ols_params['beta0']:.6f}, beta1={ols_params['beta1']:.6f}")
 print(f"  x_lo={ols_params['x_lo']:.4f}, x_hi={ols_params['x_hi']:.4f}")
 print(f"  y_lo={ols_params['y_lo']:.4f}, y_hi={ols_params['y_hi']:.4f}")
 print(f"  n_genes_for_ols={ols_params['n_genes']}")
+if ols_params.get("fallback", False):
+    print("  mode=fallback_quantile_cutoffs (insufficient points for stable OLS)")
 
 # Compute aligned liability = -effect (higher = stronger DepMap liability)
 df_k["liability"] = -df_k[PRIMARY_X]
@@ -424,10 +465,12 @@ for _, row in no_depmap.iterrows():
     no_depmap_rows.append(row)
 
 no_depmap_assigned = pd.DataFrame(no_depmap_rows)
+if no_depmap_assigned.empty:
+    no_depmap_assigned = pd.DataFrame(columns=["target_gene", "cluster_id", "fine_axis"])
 
 # Combine
 all_genes_df = pd.concat([clust_df[["target_gene", "cluster_id", "fine_axis"]],
-                          no_depmap_assigned[["target_gene", "cluster_id", "fine_axis"]]],
+                           no_depmap_assigned[["target_gene", "cluster_id", "fine_axis"]]],
                          ignore_index=True)
 
 # Final atlas
@@ -814,6 +857,6 @@ run_manifest = {
     "bridge_table_path": str(BRIDGE_TABLE),
     "hcc_fine_axis_summary_path": str(HCC_FINE_SUM),
     "output_dir": str(OUT_DIR),
-    "k562_dataset_label": str(RECIPE.get("k562_dataset_label", "dixit_2016_raw__control_context")),
+    "k562_dataset_label": str(RECIPE.get("k562_dataset_label", "dixit_2016_k562_tf_13d_gse90063")),
 }
 (OUT_DIR / "run_manifest.json").write_text(json.dumps(run_manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
