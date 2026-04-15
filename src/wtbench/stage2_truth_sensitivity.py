@@ -530,6 +530,10 @@ def run_all_sensitivity_analyses(
 
     rep_df = pd.DataFrame(rep_rows)
     summary = summarize_replicate_correlations(rep_df)
+    summary = add_sensitivity_run_state(
+        summary,
+        configured_replicates=n_replicates,
+    )
     rank_df = pd.DataFrame(rank_rows)
     deg_df = pd.DataFrame(deg_rows) if deg_rows else pd.DataFrame()
     return {

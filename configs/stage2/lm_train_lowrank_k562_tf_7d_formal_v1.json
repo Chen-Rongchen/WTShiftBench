@@ -1,0 +1,45 @@
+{
+  "stage": "stage2_k562_7d_lm_train_lowrank_recipe",
+  "version": 1,
+  "dataset_role": "candidate_stage2_linear_control",
+  "entrant_id": "lm_train_lowrank",
+  "entrant_version": "lm_train_lowrank_k562_tf_7d_formal_v1",
+  "model_id": "lm_train_lowrank_k562_tf_7d_formal_v1",
+  "model_family": "linear_lowrank_external_feature",
+  "claim_scope": "lm_train_lowrank K562 7d Stage 2 linear control 的第一版正式 recipe。用于 explanation-oriented control，不用于 primary winner claim。",
+  "stage2_truth_config_path": "configs/stage2/truth_driven_bridge_dixit_k562_tf_7d_gse90063_v1.json",
+  "stage2_contract_path": "configs/stage2/k562_7d_prediction_contract_v1.json",
+  "prediction_gene_id_type": "hgnc_symbol",
+  "requires_symbol_to_ensembl_alignment": true,
+  "alignment_mapping_ref": "configs/stage2/gene_id_mapping_k562_v1.tsv",
+  "axis_membership_path": "reports/stage2_truth_driven_bridge/master_atlas/shared_target_axis_membership.tsv",
+  "feature_registry_ref": "configs/stage2/feature_registry_v1.json",
+  "feature_id": "gene_symbol_chargram_v1",
+  "cell_lines": [
+    "dixit_2016_k562_tf_7d_gse90063"
+  ],
+  "input_space_description": "冻结 gene_symbol_chargram_v1 target-side feature；在 Stage 2 truth delta 上执行 leave-one-target-out 线性 low-rank 闭式解。",
+  "output_space_description": "model-native raw output 必须先导出到 stage2_truth_aligned_log_shift，再进入 scorer-ready prediction contract。",
+  "preprocessing_identity": {
+    "target_feature_source": "gene_symbol_chargram_v1",
+    "target_feature_family": "symbolic_target_feature",
+    "heldout_input_policy": "do_not_use_heldout_target_delta_as_training_input"
+  },
+  "adapter_identity": {
+    "adapter_type": "linear_lowrank_external_feature_closed_form",
+    "trainable_components": "closed_form_linear_map_only",
+    "backbone_freeze": true
+  },
+  "fallback_policy": {
+    "unmapped_heldout_target": "error_if_missing",
+    "coverage_audit_required": true
+  },
+  "output_roots": {
+    "raw_prediction_root": "data/predictions/stage2_lm_train_lowrank_k562_7d_raw",
+    "report_root": "reports/stage2_lm_train_lowrank_k562_7d_recipe"
+  },
+  "runtime": {
+    "n_components": 32,
+    "ridge_lambda": 0.1
+  }
+}
