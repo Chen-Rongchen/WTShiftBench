@@ -38,7 +38,8 @@
     "normalization_target_sum": 10000.0,
     "deg_abs_log1p_delta_threshold": 0.25,
     "deg_expression_floor": 0.1,
-    "edistance_n_components": 30
+    "edistance_n_components": 30,
+    "edistance_pairwise_max_points": 5000
   },
   "group_comparison": {
     "quantile_low": 0.3333333333,

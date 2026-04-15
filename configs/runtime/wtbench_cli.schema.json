@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "WTBench CLI registry",
+  "type": "object",
+  "required": ["schema_version", "runtime", "commands"],
+  "properties": {
+    "schema_version": {"type": "integer"},
+    "runtime": {"type": "string"},
+    "docker_policy": {"type": "object"},
+    "commands": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": ["callable", "default_config"],
+        "properties": {
+          "description": {"type": "string"},
+          "callable": {
+            "type": "string",
+            "pattern": "^[A-Za-z_][A-Za-z0-9_.]*:[A-Za-z_][A-Za-z0-9_]*$"
+          },
+          "default_config": {"type": "string"},
+          "config_env": {
+            "type": "string",
+            "pattern": "^WTBENCH_[A-Z0-9_]+$"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

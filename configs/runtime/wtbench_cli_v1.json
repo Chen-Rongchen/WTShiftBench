@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "runtime": "pixi",
+  "docker_policy": {
+    "docker_hub_image": null,
+    "fallback": "pixi",
+    "version_source": "pixi.toml workspace.version"
+  },
+  "commands": {
+    "stage2.truth_bridge": {
+      "description": "构建 Stage 2 truth-driven bridge 主线产物。",
+      "callable": "wtbench.stage2_truth_bridge:run_from_config",
+      "default_config": "configs/stage2/truth_driven_bridge_hcc38_hcc1143_v1.json",
+      "config_env": "WTBENCH_STAGE2_TRUTH_BRIDGE_CONFIG"
+    },
+    "stage2.sensitivity": {
+      "description": "运行 Stage 2 truth bridge sensitivity。",
+      "callable": "scripts.run_stage2_truth_bridge_sensitivity:run_sensitivity_from_config",
+      "default_config": "configs/stage2/truth_bridge_sensitivity_hcc_full_v1.json",
+      "config_env": "WTBENCH_STAGE2_SENSITIVITY_CONFIG"
+    },
+    "stage2.closure": {
+      "description": "串联 HCC covariates、sensitivity 与 covariate audit。",
+      "callable": "scripts.run_stage2_closure_pipeline:run_closure_pipeline_from_config",
+      "default_config": "configs/stage2/stage2_closure_pipeline_v1.json",
+      "config_env": "WTBENCH_STAGE2_CLOSURE_CONFIG"
+    },
+    "stage2.materialize_covariates": {
+      "description": "物化 HCC Stage 2 covariates TSV。",
+      "callable": "scripts.materialize_stage2_covariates:materialize_covariates_from_config",
+      "default_config": "configs/stage2/hcc_covariates_v1.json",
+      "config_env": "WTBENCH_STAGE2_COVARIATES_CONFIG"
+    },
+    "stage2.covariate_audit": {
+      "description": "运行 HCC Stage 2 covariate balance audit。",
+      "callable": "scripts.run_stage2_covariate_audit:run_covariate_audit_from_config",
+      "default_config": "configs/stage2/truth_bridge_covariate_audit_v1.json",
+      "config_env": "WTBENCH_STAGE2_COVARIATE_AUDIT_CONFIG"
+    },
+    "stage2.validate_closure": {
+      "description": "校验 Stage 2 closure 关键产物与固定边界。",
+      "callable": "scripts.validate_stage2_closure_artifacts:validate_artifacts_from_config",
+      "default_config": "configs/stage2/closure_artifact_validation_v1.json",
+      "config_env": "WTBENCH_STAGE2_VALIDATION_CONFIG"
+    },
+    "stage2.bridge_decomposition": {
+      "description": "构建 Stage 2 truth bridge decomposition 产物。",
+      "callable": "wtbench.stage2_bridge_decomposition:run_from_config",
+      "default_config": "configs/stage2/truth_bridge_decomposition_v1.json",
+      "config_env": "WTBENCH_STAGE2_BRIDGE_DECOMPOSITION_CONFIG"
+    },
+    "stage2.rnai_demeter2_conversion": {
+      "description": "把 DEMETER2 RNAi 分数转换为 DepMap-style endpoint 宽表。",
+      "callable": "scripts.convert_rnai_demeter2_to_depmap_endpoints:run_from_config",
+      "default_config": "configs/stage2/rnai_demeter2_conversion_v1.json",
+      "config_env": "WTBENCH_STAGE2_RNAI_DEMETER2_CONVERSION_CONFIG"
+    },
+    "stage2.k562_rnai_endpoint_consistency": {
+      "description": "汇总 GSE90063 K562 7d/13d 的 CRISPR DepMap vs DEMETER2 RNAi endpoint consistency。",
+      "callable": "scripts.run_stage2_k562_rnai_endpoint_consistency:run_from_config",
+      "default_config": "configs/stage2/k562_rnai_endpoint_consistency_v1.json",
+      "config_env": "WTBENCH_STAGE2_K562_RNAI_ENDPOINT_CONSISTENCY_CONFIG"
+    },
+    "stage2.dixit_axis_compression": {
+      "description": "运行 Dixit/K562 13d supplementary axis compression。",
+      "callable": "scripts.run_stage2_dixit_axis_compression:run_from_config",
+      "default_config": "configs/stage2/dixit_axis_compression_v1.json",
+      "config_env": "WTBENCH_STAGE2_DIXIT_AXIS_COMPRESSION_CONFIG"
+    },
+    "stage2.dixit_temporal_panel": {
+      "description": "汇总 GSE90063 K562 13d/7d temporal panel。",
+      "callable": "scripts.run_stage2_dixit_temporal_panel:run_from_config",
+      "default_config": "configs/stage2/dixit_k562_temporal_panel_gse90063_v1.json",
+      "config_env": "WTBENCH_STAGE2_DIXIT_TEMPORAL_PANEL_CONFIG"
+    },
+    "manuscript.figure1": {
+      "description": "渲染 manuscript Figure 1 truth object。",
+      "callable": "wtbench.manuscript.figure1_truth_object:run_from_config",
+      "default_config": "configs/manuscript/figure1_truth_object_v1.json",
+      "config_env": "WTBENCH_MANUSCRIPT_FIGURE1_CONFIG"
+    }
+  }
+}

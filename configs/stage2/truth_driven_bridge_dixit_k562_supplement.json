@@ -1,11 +1,11 @@
 {
   "datasets": [
     {
-      "cell_line": "dixit_2016_raw__control_context",
+      "cell_line": "dixit_2016_k562_tf_13d_gse90063",
       "dataset_role": "supplementary",
       "depmap_model_id": "ACH-000551",
       "source_kind": "h5ad_obs",
-      "h5ad_path": "data/processed/stage1a/candidate_formal_like/dixit_2016_raw__control_context.h5ad"
+      "h5ad_path": "data/processed/stage2_gse90063/dixit_2016_k562_tf_13d_gse90063.h5ad"
     }
   ],
   "depmap": {
@@ -13,9 +13,10 @@
     "gene_dependency_path": "depmap/CRISPRGeneDependency.csv"
   },
   "output": {
-    "data_root": "data/processed/stage2_truth_driven_bridge_dixit",
-    "report_root": "reports/stage2_truth_driven_bridge_dixit"
+    "data_root": "data/processed/stage2_truth_driven_bridge_gse90063_13d",
+    "report_root": "reports/stage2_truth_driven_bridge_gse90063_13d"
   },
+  "admission_status": "formal_default_gse90063_13d",
   "filters": {
     "single_feature_only": true,
     "allow_degraded_unverified_single_perturbation": false,
@@ -27,7 +28,8 @@
     "normalization_target_sum": 10000.0,
     "deg_abs_log1p_delta_threshold": 0.25,
     "deg_expression_floor": 0.1,
-    "edistance_n_components": 30
+    "edistance_n_components": 30,
+    "edistance_pairwise_max_points": 5000
   },
   "group_comparison": {
     "quantile_low": 0.3333333333,
@@ -36,6 +38,7 @@
   },
   "supplementary_candidates": [
     "dixit_2016",
-    "K562"
+    "K562",
+    "13d"
   ]
 }

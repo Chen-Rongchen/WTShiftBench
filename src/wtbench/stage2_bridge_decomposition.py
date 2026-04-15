@@ -1060,9 +1060,8 @@ def write_markdown_report(
     )
 
 
-def main() -> None:
-    args = build_parser().parse_args()
-    config = parse_config(resolve_path(args.config))
+def run_from_config(config_path: Path) -> dict[str, Any]:
+    config = parse_config(resolve_path(config_path))
     config.report_root.mkdir(parents=True, exist_ok=True)
 
     bridge, membership, truth_contract = load_inputs(config)
@@ -1121,7 +1120,17 @@ def main() -> None:
         json.dumps(run_summary, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
     )
-    print(f"bridge decomposition 已写出到 {config.report_root.relative_to(PROJECT_ROOT)}")
+    return {
+        "report_root": config.report_root,
+        "run_summary": config.report_root / "run_summary.json",
+        "outputs": [config.report_root / item for item in run_summary["outputs"]],
+    }
+
+
+def main() -> None:
+    args = build_parser().parse_args()
+    outputs = run_from_config(Path(args.config))
+    print(f"bridge decomposition 已写出到 {outputs['report_root'].relative_to(PROJECT_ROOT)}")
 
 
 if __name__ == "__main__":

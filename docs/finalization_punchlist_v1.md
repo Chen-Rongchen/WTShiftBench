@@ -24,8 +24,10 @@
 - `PFDN5 = primary_but_qualified`
 - `PMF1 / PRPF6 / ZNF131 = supporting_only`
 - `transcription / chromatin = primary_axis_but_qualified`
-- `Dixit/K562` 已固定为基于 `GSE90063 K562 13d-only` 的 `supplementary external structure replication`
-- `K562 13d` 当前最稳的分层是：`A0 architecture form confirmed / A1 bridge form supporting / B not eligible`
+- `Dixit/K562` 已固定为 `GSE90063 K562 13d/7d temporal panel`
+- `K562 13d/7d` 当前最稳的分层是：`A0 architecture form confirmed / A1 bridge form supporting / B not eligible`，且 bridge readout 呈现 `7d` rank alignment 更强、`13d` mean shift 更大的 temporal stratification
+- `DEMETER2 RNAi` 对 `GSE90063 K562 7d/13d` 只作为 cross-platform sensitivity endpoint；`CRISPR DepMap` 仍是 matched primary endpoint，RNAi 不替代主线，也不提供等价 primary evidence
+- `Replogle/RNAi` 扩展层需要在正式主文作图前完成准入合同与最小 metadata check，但不得改写 HCC primary 或 GSE90063 temporal panel 主线
 - `discovery = gated_downstream_layer`
 - 统一口径源已形成：[`reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv`](/home/data/gz0705/WTKO/reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv)
 
@@ -33,10 +35,10 @@
 
 当前“项目完成”不等于：
 
-- 新 entrant 继续扩完
 - covariate 风险彻底消失
 - discovery 正式启动
 - 所有 biological explanation 都被完全证明
+- 无合同地继续扩新 entrant 或新 truth object
 
 当前更准确的“完成”定义是：
 
@@ -45,9 +47,11 @@
 3. sensitivity / covariate / discovery gating 的边界已经冻结且不再摇摆
 4. `Dixit/K562` 的 supplementary 证据层级已经固定，不再被误写成 primary
 5. `Stage 1A / 1B` 已完成 failure decomposition 的正式解释归位
-6. 图稿与总入口文档已经和上述边界一致
+6. `GSE90063 K562 7d/13d` 的 DEMETER2 RNAi endpoint sensitivity 已完成测试或明确写成未执行的推荐补充层
+7. `Replogle/RNAi` external expansion 已完成 admission contract 与最小 metadata check；若数据下载后满足准入，再完成正式 bridge / entrant run，若不满足则写成 tested boundary
+8. 图稿与总入口文档已经和上述边界一致
 
-只要这 6 条成立，项目就应视为当前阶段 formal complete。
+只要这 7 条成立，项目就应视为当前阶段 formal complete。
 
 ## 4. 最近先做什么
 
@@ -59,10 +63,10 @@
 
 这三件事完成前：
 
-- 不继续扩 entrant
 - 不回头重做 truth object
 - 不把 discovery 提前升级
 - 不再把“为什么模型没赢 baseline”保留为开放式泛问题
+- 不无合同扩 entrant 或新外部数据；`Replogle/RNAi` 只能先进入预冻结 admission contract
 
 ## 5. 从现在到完成的固定顺序
 
@@ -177,7 +181,43 @@
 - [`docs/project_state_summary_v1.md`](/home/data/gz0705/WTKO/docs/project_state_summary_v1.md)
 - [`docs/formal_closeout_single_entry_v1.md`](/home/data/gz0705/WTKO/docs/formal_closeout_single_entry_v1.md)
 
-### 5.7 第七步：论文图稿与提交包同步
+### 5.7 第七步：K562 RNAi endpoint sensitivity 执行
+
+目标：
+
+- 把 `GSE90063 K562 7d/13d CRISPR KO truth` 对 `DEMETER2 RNAi endpoint` 的 cross-platform sensitivity 做成可测试补充层
+
+完成标准：
+
+- `7d CRISPR KO truth -> DEMETER2 RNAi endpoint` 与 `13d CRISPR KO truth -> DEMETER2 RNAi endpoint` 已运行或明确记录为未执行
+- `CRISPR DepMap vs DEMETER2 RNAi endpoint consistency table` 已生成或明确记录为未执行
+- 文档固定写成：`CRISPR DepMap = matched primary endpoint`；`RNAi DEMETER2 = cross-platform sensitivity endpoint`；`RNAi` 不替代主线、不提供等价 primary evidence
+
+直接入口：
+
+- `pixi run --environment core build-stage2-truth-driven-bridge-k562-7d-rnai-demeter2`
+- `pixi run --environment core build-stage2-truth-driven-bridge-k562-13d-rnai-demeter2`
+- `pixi run --environment core run-stage2-k562-rnai-endpoint-consistency`
+
+### 5.8 第八步：Replogle/RNAi external expansion 准入与执行
+
+目标：
+
+- 在正式主文作图前完成 `Replogle 7d CRISPRi + DepMap RNAi/shRNA dependency` 的扩展层准入
+
+完成标准：
+
+- 已冻结 `Replogle/RNAi` admission contract
+- 已确认 DepMap 侧端点只能写成 RNAi/shRNA-derived dependency endpoint，不写成 siRNA matched endpoint
+- 已完成 cell line / gene namespace / target overlap 的最小 metadata check
+- 若满足准入，再下载并运行正式 bridge / entrant；若不满足，写成 not admitted 或 tested boundary
+- 现有 entrant 只允许在 truth-side admission 后接入，不新增 entrant family
+
+直接入口：
+
+- [`docs/stage2_replogle_rnai_expansion_admission_contract_v1.md`](/home/data/gz0705/WTKO/docs/stage2_replogle_rnai_expansion_admission_contract_v1.md)
+
+### 5.9 第九步：论文图稿与提交包同步
 
 目标：
 
@@ -196,13 +236,14 @@
 
 ## 6. 完成前不要再做什么
 
-- 不再扩 entrant
-- 不再新增 truth object
+- 不无 admission contract 扩 entrant
+- 不无 admission contract 新增 truth object
 - 不再把 `Dixit/K562` 接回模型主线
 - 不再为 covariate closure 无停止规则地继续加审计轴
 - 不提前写 `model recovery proved`
 - 不把 `Stage 2 complete` 或 `Stage 3 complete` 提前写进正文
 - 不把 discovery 提前写成 formal deliverable
+- 不把 `Replogle/RNAi` 写成 siRNA matched endpoint、primary closure 或 external model-side generalization proved
 
 ## 7. 默认阅读顺序
 
@@ -216,8 +257,9 @@
 6. [`docs/stage2_sensitivity_full_closure_note_v1.md`](/home/data/gz0705/WTKO/docs/stage2_sensitivity_full_closure_note_v1.md)
 7. [`docs/stage2_dixit_supplementary_evidence_tier_v1.md`](/home/data/gz0705/WTKO/docs/stage2_dixit_supplementary_evidence_tier_v1.md)
 8. [`docs/stage1_failure_decomposition_note_v1.md`](/home/data/gz0705/WTKO/docs/stage1_failure_decomposition_note_v1.md)
-9. [`docs/manuscript_figure_blueprint_v1.md`](/home/data/gz0705/WTKO/docs/manuscript_figure_blueprint_v1.md)
+9. [`docs/stage2_replogle_rnai_expansion_admission_contract_v1.md`](/home/data/gz0705/WTKO/docs/stage2_replogle_rnai_expansion_admission_contract_v1.md)
+10. [`docs/manuscript_figure_blueprint_v1.md`](/home/data/gz0705/WTKO/docs/manuscript_figure_blueprint_v1.md)
 
 ## 8. 一句话收口
 
-从现在到项目完成，不再是继续找新结果，而是按 `claim matrix -> 主文稿 -> covariate / sensitivity 边界 -> Dixit supplementary 边界 -> Stage 1A / 1B 解释归位 -> 仓库入口统一 -> 图稿与提交包同步` 这条固定链，把当前结果收成一套 manuscript-ready、边界稳定、可防守的正式交付。
+从现在到项目完成，不再是无边界继续找新结果，而是按 `claim matrix -> 主文稿 -> covariate / sensitivity 边界 -> Dixit supplementary 边界 -> Stage 1A / 1B 解释归位 -> 仓库入口统一 -> K562 RNAi endpoint sensitivity -> Replogle/RNAi 扩展准入与执行 -> 图稿与提交包同步` 这条固定链，把当前结果收成一套 manuscript-ready、边界稳定、可防守的正式交付。
