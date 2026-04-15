@@ -1,0 +1,11 @@
+{
+  "stage": "stage2_dixit_k562_structure_replication",
+  "version": 1,
+  "dataset_role": "supplementary_external_structure_replication",
+  "admission_status": "historical_only",
+  "claim_scope": "历史 Dixit/K562 legacy structure replication direct-script recipe，仅用于 historical replay，不作为可引用的 supplementary 证据路径。",
+  "bridge_table_path": "data/processed/stage2_truth_driven_bridge_dixit_legacy/dixit_2016_raw__control_context/target_level_bridge_table.tsv.gz",
+  "hcc_fine_axis_summary_path": "reports/stage2_truth_driven_bridge/master_atlas/axis_summary_fine.tsv",
+  "output_dir": "reports/stage2_truth_driven_bridge/dixit_axis_compression_legacy",
+  "k562_dataset_label": "dixit_2016_raw__control_context"
+}

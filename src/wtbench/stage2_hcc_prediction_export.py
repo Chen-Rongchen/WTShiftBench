@@ -233,10 +233,12 @@ def align_prediction_to_stage2_contract(
 ) -> pd.DataFrame:
     target_order, gene_order = expected_target_and_gene_order(axis_membership)
     if prediction.columns[0] != "target_gene":
-        prediction = prediction.rename(columns={prediction.columns[0]: "target_gene"})
+        raise ValueError("prediction 首列必须是 target_gene。")
     frame = prediction.copy()
     frame["target_gene"] = frame["target_gene"].astype(str)
-    frame = frame.drop_duplicates(subset=["target_gene"], keep="first")
+    duplicate_targets = frame.loc[frame["target_gene"].duplicated(), "target_gene"].drop_duplicates().tolist()
+    if duplicate_targets:
+        raise ValueError(f"prediction 出现重复 target_gene: {duplicate_targets}")
     if any(target not in set(frame["target_gene"]) for target in target_order):
         missing_targets = [target for target in target_order if target not in set(frame["target_gene"])]
         raise ValueError(f"prediction 缺少 frozen targets: {missing_targets}")
@@ -245,6 +247,28 @@ def align_prediction_to_stage2_contract(
         raise ValueError(f"prediction 缺少 axis-member genes: {missing_genes}")
     aligned = frame.set_index("target_gene").loc[target_order, gene_order].reset_index()
     return aligned
+
+
+def summarize_raw_prediction_alignment(
+    prediction: pd.DataFrame,
+    axis_membership: pd.DataFrame,
+) -> dict[str, Any]:
+    expected_targets, expected_genes = expected_target_and_gene_order(axis_membership)
+    first_column = str(prediction.columns[0]) if len(prediction.columns) else ""
+    actual_targets = prediction.iloc[:, 0].astype(str).tolist() if not prediction.empty else []
+    actual_genes = [str(col) for col in prediction.columns[1:]]
+    target_series = pd.Series(actual_targets, dtype="string")
+    duplicate_targets = target_series.loc[target_series.duplicated()].drop_duplicates().astype(str).tolist()
+    return {
+        "first_column": first_column,
+        "raw_target_count": len(actual_targets),
+        "raw_gene_count": len(actual_genes),
+        "raw_duplicate_targets": duplicate_targets,
+        "raw_missing_targets": [target for target in expected_targets if target not in set(actual_targets)],
+        "raw_missing_genes": [gene for gene in expected_genes if gene not in set(actual_genes)],
+        "raw_extra_targets": [target for target in actual_targets if target not in set(expected_targets)],
+        "raw_extra_genes": [gene for gene in actual_genes if gene not in set(expected_genes)],
+    }
 
 
 def write_prediction_matrix(frame: pd.DataFrame, path: Path) -> None:
@@ -398,6 +422,7 @@ def _finalize_export(
     )
 
     try:
+        raw_alignment_summary = summarize_raw_prediction_alignment(raw_prediction, axis_membership)
         aligned = align_prediction_to_stage2_contract(raw_prediction, axis_membership)
     except Exception as exc:
         manifest["export_status"] = EXPORT_STATUS_ALIGNMENT_FAILED
@@ -405,6 +430,7 @@ def _finalize_export(
         write_json(manifest, artifacts.manifest_path)
         raise
 
+    manifest["raw_alignment_summary"] = raw_alignment_summary
     write_prediction_matrix(aligned, artifacts.aligned_prediction_path)
     write_prediction_matrix(aligned, artifacts.scorer_ready_prediction_path)
     validation_summary = validate_stage2_prediction_contract(aligned, contract, manifest, axis_membership)

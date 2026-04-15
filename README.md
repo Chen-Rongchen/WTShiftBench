@@ -1,5 +1,7 @@
 # WTKO / WT Benchmark
 
+**Phase（2026-04-15 冻结）：pre-submission editorial convergence ready — analysis closure 基本完成，infrastructure closure 完成，claim boundary 冻结，wording audit clean，四敏感位置终审 clean，remaining work = 编辑性压缩与投稿准备。**
+
 WT Benchmark 是一个 **truth-first** 的 virtual perturbation benchmark 与分析框架：先在真实 perturbation transcriptomic truth 中定义可桥接到 cellular fitness / dependency（DepMap）的结构化对象，再评估模型能否恢复这些 bridge architecture，最后才进入 discovery。
 
 ## 1. 这个仓库现在在做什么
@@ -19,7 +21,7 @@ WT Benchmark 是一个 **truth-first** 的 virtual perturbation benchmark 与分
 
 - `data/raw/stage1a/candidates/dixit_2016_raw.h5ad` 与 Dixit 2016 / GSE90063 K562 TF pool 的公开描述不匹配，当前更接近 Frangieh 2021 风格对象（`~218k` cells、`IFNγ/Co-culture/Control`、20 蛋白通道）。
 - 它不是 `norman_2019_raw`，但也不能继续作为 `Dixit/K562` supplementary replication 的有效输入。
-- 基于该对象派生的 `data/processed/stage1a/candidate_formal_like/dixit_2016_raw__control_context.h5ad` 当前统一按 **legacy / 暂停引用** 处理；Dixit 相关 bridge 结论以 `GSE90063` 重建后的 `K562 13d-only` 为准。
+- 基于该对象派生的 `data/processed/stage1a/candidate_formal_like/dixit_2016_raw__control_context.h5ad` 当前统一按 **legacy / 暂停引用** 处理；Dixit 相关 bridge 结论以 `GSE90063 K562 13d/7d temporal panel` 为准，其中 `13d` 是 primary formal supplementary bridge test，`7d` 是 temporal sensitivity / early-bridge probe。
 
 ## 2. 一眼先看这里
 
@@ -29,7 +31,8 @@ WT Benchmark 是一个 **truth-first** 的 virtual perturbation benchmark 与分
 
 - `GEARS` 已经作为 strongest formal entrant 跑完 `HCC38 / HCC1143` 的真实 HCC smoke
 - `Geneformer` 与三条 linear controls 都已完成第一轮 HCC formal comparison
-- 当前最核心未关闭问题不是再接 entrant，而是先把 `transcriptomic perturbation structure -> DepMap fitness/dependency` 的 bridge 主张、Dixit K562 13d-only admission wording freeze、混杂边界与 `final claim matrix -> manuscript wording` 写成统一收口
+- **当前项目状态：pre-submission editorial convergence ready（2026-04-15 冻结）；analysis closure 基本完成，infrastructure closure 完成，claim boundary 冻结，remaining work = 编辑性压缩与投稿准备**
+- 详细状态记录见 `docs/submission_prep_status_v1.md`
 
 如果你下次进来只想知道“先看哪里就够”，固定只看这三个入口：
 
@@ -58,6 +61,8 @@ WT Benchmark 是一个 **truth-first** 的 virtual perturbation benchmark 与分
 
 > GEARS 展现出选择性结构优势：它更擅长把 structure 和 context deviation 分开，并在部分 cell line 上更能识别 shift-excess；但在当前 HCC primary adjudication 中，canonical backbone recovery 仍落后于 `shared_mean_baseline`。
 
+与此同时，endpoint hierarchy 已跨 HCC38/HCC1143/K562 7d/K562 13d 四个 context 稳定验证：CRISPR DepMap = formal primary bridge readout，RNAi DEMETER2 = weaker cross-platform sensitivity endpoint，cross-platform robustness 本身是 context-dependent 的（HCC CRISPR vs RNAi = 0.14/0.23，K562 = 0.45）。
+
 这不是“GEARS 和 baseline 各赢一半”的对称竞争。更准确地说，`shared_mean_baseline` 是当前更稳定、更主导的 backbone primary reference；`GEARS` 是 deviation / separation-biased entrant。`shift` 也必须拆开：整体位移大小或 shared trend 这一层 baseline 并不差，GEARS 的相对强项更接近超出 backbone 可解释部分的 `shift-excess` / context-specific deviation。
 
 因此，`GEARS` 在本阶段的角色应定位为“已完成诊断的代表性 entrant”，而不是“待继续优化的主推进对象”。
@@ -67,7 +72,7 @@ WT Benchmark 是一个 **truth-first** 的 virtual perturbation benchmark 与分
 - `docs/project_state_summary_v1.md`
 - `docs/finalization_punchlist_v1.md`
 
-如果你下次进来只想知道“直接做什么”，固定顺序就是：
+如果你下次进来只想知道”直接做什么”，固定顺序就是：
 
 1. `docs/formal_closeout_single_entry_v1.md`
 2. `docs/project_state_summary_v1.md`
@@ -78,7 +83,8 @@ WT Benchmark 是一个 **truth-first** 的 virtual perturbation benchmark 与分
 7. `docs/manuscript_figure_blueprint_v1.md`
 8. `docs/main_manuscript_integrated_narrative_draft_v1.md`
 9. `docs/main_manuscript_results_draft_v1.md`
-10. `docs/current_closeout_commit_note_v1.md`
+10. `reports/stage2_truth_driven_bridge/endpoint_consistency_summary_table.md`
+11. `docs/current_closeout_commit_note_v1.md`
 
 如果你下次进来只想知道“方法学本体下一步做什么”，直接记这一版：
 
@@ -95,16 +101,22 @@ WT Benchmark 是一个 **truth-first** 的 virtual perturbation benchmark 与分
    - 当前仍不能写成 `fully deconfounded`
 4. 因此，下一步只优先做一件事：
    - 这条追查现已收口：当前能确认 `HCC38 -> aggrMH001-3`、`HCC1143 -> aggrMH004-6`，但仍不能把 `-1/-2/-3` 唯一写成单个 `MH00x`
-5. 如果要推进 Dixit/K562，不再做 feasibility（已通过），而是做 wording freeze 与 manuscript sync：
-   - 固定模板：`GSE90063 K562 13d-only` provides formal supplementary external support for architecture form, with bridge-form support remaining supporting / partial-support; bridge content is not eligible.
-   - 剩余工作：冻结 admission note、positive/partial/negative 判据 wording，同步进 `final claim matrix`
+5. Dixit/K562 feasibility 与 `GSE90063 K562 13d/7d temporal panel` 第一轮结果组织已完成；现在只做 wording sync 与 claim matrix 同步：
+   - 固定模板：`13d` provides formal supplementary external support for architecture form, with bridge-form support remaining supporting / partial-support；`7d` is a temporal sensitivity / early-bridge probe；bridge content is not eligible.
+   - 冻结解释：`7d` 和 `13d` 均确认 `backbone_plus_shift_excess`，支持同一外部 K562 context 下 architecture form 的时间稳定性
+   - 冻结解释：`7d` rank alignment 更强，而 `13d` mean shift 更大，支持 bridge readout 的 temporal stratification，而不是 later timepoint 单调更强
+   - 剩余工作：同步进 `final claim matrix` 与 manuscript wording
    - `13d` 只写成与 DepMap `~14-21d` fitness screen 的 `time-scale compatible`，不写成 matched endpoint
+   - `7d` 不写成 primary closure、matched endpoint 或 external model-side generalization proved
+   - 在当前项目对象层与现行 admission/bridgeability 规则下，`7d` 与 `13d` 目前各有 10 个正式 bridgeable targets 进入 DepMap 对接；这一数字不应与原始实验设计中的 target / guide 数直接等同
    - Dixit 2016 可作为 CRISPR knockout perturbation 处理，但必须标注 TF-enriched target library 的边界
+   - `DEMETER2 RNAi` 只作为 `GSE90063 K562 7d/13d CRISPR KO truth` 的 cross-platform sensitivity endpoint；`CRISPR DepMap` 仍是 matched primary endpoint，RNAi 不替代主线，也不提供等价 primary evidence
 6. 在这件事完成前，不继续扩 discovery，不新增 entrant
 7. 因此当前正式口径固定为：
    - `barcode_gem_group = design-proxy axis`
    - 不是已确认到单个 `MH00x` 的 run-level label
-   - `Dixit 7d` 与 `Replogle 7d CRISPRi` 暂时只作为 temporal / cross-modality exploration，不作为 primary closure
+   - `Dixit 7d` 只作为 GSE90063 temporal panel 内的 temporal sensitivity / early-bridge probe；`Replogle 7d CRISPRi` 只作为后续 short-horizon / modality-compatible external expansion 候选，不作为 primary closure
+   - `Replogle 7d CRISPRi` 若推进，先看 `docs/stage2_replogle_rnai_expansion_admission_contract_v1.md`；DepMap 对应端点只预设为 RNAi/shRNA-derived dependency endpoint，不写成 siRNA matched endpoint
 
 ## 3. 当前项目结构
 
@@ -123,7 +135,7 @@ truth-driven bridge。当前概念上分成两部分：
 - fitness-relevant truth architecture discovery
 - model recovery adjudication
 
-其中 HCC truth-side 已冻结了一批 bridge architecture object；model-side 的 contract / scorer / 真实 HCC input bridge 与 GEARS entrant smoke 已跑通，`GEARS` 的有限 backbone sweep 也已按 stop rule 收口，但整个 `Stage 2` 仍未因为此而“全部完成”，因为当前还处在结果收束、Dixit K562 13d-only supplementary wording / claim tiering 收紧与 failure decomposition 解释层。
+其中 HCC truth-side 已冻结了一批 bridge architecture object；model-side 的 contract / scorer / 真实 HCC input bridge 与 GEARS entrant smoke 已跑通，`GEARS` 的有限 backbone sweep 也已按 stop rule 收口，但整个 `Stage 2` 仍未因为此而“全部完成”，因为当前还处在结果收束、Dixit K562 13d/7d temporal panel wording / claim tiering 收紧与 failure decomposition 解释层。
 
 ### Stage 3
 
@@ -131,22 +143,31 @@ discovery / phenotype shifter。它仍保留在 roadmap 中，但当前不是 pr
 
 ## 4. 当前状态
 
+- **状态**：pre-submission editorial convergence ready（2026-04-15 冻结）
+- analysis closure：基本完成
+- infrastructure closure：**已完成**（含 K562 gene ID mapping、scorer alignment policy、prediction contract、GEARS 13d formal config）
+- claim boundary：已冻结
+- wording audit：Clean
+- 四敏感位置终审：Clean（Abstract 首句、Figure 标题 × 4、Abstract 结尾否定句、Discussion 结尾）
 - truth-side architecture contract：已冻结
 - HCC mainline truth architecture：已冻结
-- Dixit/K562：历史 `dixit_2016_raw__control_context` 输入当前按 **legacy / 暂停引用** 处理；固定模板是：`GSE90063 K562 13d-only` provides formal supplementary external support for architecture form, with bridge-form support remaining supporting / partial-support; bridge content is not eligible. 因此它不能升级为 shared mainline architecture content、broad cross-context validation 或与 HCC 对称的 primary conclusion
+- Dixit/K562：历史 `dixit_2016_raw__control_context` 输入当前按 **legacy / 暂停引用** 处理；当前正式收口为 `GSE90063 K562 13d/7d temporal panel`，其中 `13d` 是 primary formal supplementary bridge test，`7d` 是 temporal sensitivity / early-bridge probe。当前结果显示两个时间点均确认 `backbone_plus_shift_excess`，`7d` rank alignment 更强，`13d` mean shift 更大。固定模板是：支持 architecture form 的时间稳定性与 bridge readout 的 temporal stratification；bridge content is not eligible. 因此它不能升级为 shared mainline architecture content、broad cross-context validation、content-level convergence 或与 HCC 对称的 primary conclusion
+- K562 RNAi endpoint sensitivity：当前已作为可测试补充层接入；固定写成 `CRISPR DepMap = matched primary endpoint`、`RNAi DEMETER2 = cross-platform sensitivity endpoint`，不写成 CRISPR 主线替代或等价 primary evidence
 - SCP542：作为 explanation boundary 已冻结
 - model-side structure scorer：已落地
-- K562 13d model-side 最小审计：`shared_mean_baseline` 再次在 backbone recovery 上占优，而 `GEARS` 在 structure-vs-context separation 上更强；但 `shift-excess` 分量未复现。因此只能写成 `partial recurrence / partial-support`，不能写成 full three-component recurrence 或 external model-side generalization 已建立
+- K562 13d model-side 最小审计：`shared_mean_baseline` 再次在 backbone recovery 上占优，而 `GEARS` 在 structure-vs-context separation 上更强；但 `shift-excess` 分量未复现。因此只能写成 `partial recurrence / partial-support`，不能写成 full three-component recurrence 或 external model-side generalization 已建立；`7d` 在 temporal panel 中只用于同 context temporal sensitivity，不改变这条 model-side 边界
 - Stage 2 HCC prediction contract：已冻结为 `stage2_truth_aligned_log_shift`
 - 真实 HCC adjudication input bridge：已跑通
 - real HCC smoke（`null < shared_mean_baseline`）：已成立
 - GEARS strongest formal entrant：已完成 `HCC38 / HCC1143` raw output、export、validation 与 real smoke
-- 当前正式 blocker：不是“GEARS 还能不能再调一轮就赢”，而是如何把 `GEARS trade-off diagnosis`、`truth bridge evidence tiers`、`final claim matrix` 与 `frozen axis annotation / validation` 收成同一套正式主文档口径
+- 当前剩余工作：**编辑性压缩与投稿准备**（不再是新分析执行）
 - discovery：尚未成为当前 formal mainline，也还不能写成 formal deliverable
 
 ## 5. 当前 active question
 
-当前最近一步不是“再接一个 entrant”，而是：
+**当前 active question 已从”分析执行”转为”编辑收敛”：wording synchronization 基本完成，remaining work = 编辑性压缩与投稿准备。**
+
+最近一步不是”再接一个 entrant”，而是：
 
 **在有限预算 sweep 已完成的前提下，将 GEARS 在 HCC primary 上正式收口为 architecture trade-off diagnosis，并把项目主卖点固定为 fitness-relevant transcriptomic bridge architecture：扰动转录组结构能否桥接 DepMap cellular fitness/dependency。**
 
@@ -186,44 +207,33 @@ discovery / phenotype shifter。它仍保留在 roadmap 中，但当前不是 pr
 
 ## 6. 当前下一步
 
-当前不要回到 truth-side，也不要继续加模型。下次进来应直接做：
+**当前已明确不需要新的分析执行。** 下次进来只做投稿前编辑收敛：
 
-1. 先看当前最近一次方法学推进的正式产物：
-   - `reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/summary.tsv`
-   - `docs/stage2_covariate_balance_closure_note_v1.md`
-   - `docs/stage2_sensitivity_full_closure_note_v1.md`
-2. 记住当前方法学状态：
-   - 5 条 covariate 轴已落盘
-   - `barcode_gem_group` 已作为设计层代理轴进入正式审计
-   - `PFDN5 = primary_but_qualified`
-   - `PMF1 / PRPF6 / ZNF131 = supporting_only`
-   - `final_claim_matrix.tsv` 当前不改 tier，只继续同步 wording
-3. 下一步只优先做：
-   - 不再继续追查 `barcode_gem_group -> MH00x` 的单个 run 映射
-   - 直接把当前 `barcode_gem_group` 固定写成 design-proxy axis
-   - 把这条边界持续同步到 `final claim matrix -> manuscript wording`
-4. 然后再做：
-   - `GSE90063` Dixit K562 13d-only admission wording freeze 与 positive / partial / negative 判据冻结
-   - `最终边界`
-   - `main manuscript wording` 持续同步
-   - `discovery 继续 gated`
-5. 直接执行入口：
-   - `docs/next_phase_execution_checklist_v1.md`
-   - `docs/final_claim_boundary_and_discovery_gating_note_v1.md`
-   - `reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.md`
-6. 如果下次进来是为了直接推进论文图片，固定顺序是：
+1. 投稿前编辑检查清单（见 `docs/submission_prep_status_v1.md`）：
+   - Paper title 拟定并确认
+   - Author list 与 affiliation 填写
+   - Abstract 末尾否定句保留
+   - Discussion 结尾主动划界句保留
+   - Figure 标题限制性修饰语保留
+   - 各 figure legend 与正文 claim 强度一致
+   - References 补入
+   - Supplementary table / figure 编号体系统一
+   - 正文图表交叉引用补入
+   - 句式风格统一
+   - 冗长句压缩（尤其是 Result Summary 段）
+2. 论文图片执行顺序（固定不变）：
    - `docs/manuscript_figure_blueprint_v1.md`
    - `docs/main_manuscript_results_draft_v1.md`
    - `reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv`
    - `s41592-025-02772-6.pdf`
-7. 明确仍不做：
-   - 新 entrant
-   - 无 feasibility check 与预冻结判据的新 truth object
-   - 新评分体系
-   - 无停止规则的继续调参
-   - 在 design-layer mapping 未更清楚前继续扩 discovery
+3. 明确禁止：
+   - 不新增分析结果
+   - 不引入新 claim
+   - 不改动 claim matrix 已冻结的 allowed/disallowed wording
+   - 不把 supplementary 对象升格为主线
+   - 不添加超越 architecture-level 的 mechanism recovery 表述
 
-当前不要再把更多 entrant 无边界拉进主线。foundation-model entrant 与第一层 linear controls 都已完成接入；下一步是把核心主张、Dixit K562 13d-only admission wording freeze、covariate boundary 与 manuscript 入口维持在同一套边界上。
+当前不要再把更多 entrant 无边界拉进主线。foundation-model entrant 与第一层 linear controls 都已完成接入；下一步是把核心主张、Dixit K562 13d/7d temporal panel wording freeze、covariate boundary 与 manuscript 入口维持在同一套边界上。
 
 ### 直接运行
 
@@ -340,7 +350,7 @@ PYTHONPATH=src python scripts/run_stage2_dixit_axis_compression.py --config conf
 - `docs/stage2_lm_g_geneformer_ridge_hcc_recipe_freeze_v1.md`：`lm_G_geneformer_ridge` 的 HCC Stage 2 linear control freeze 与当前接入状态。
 - `configs/stage2/lm_g_geneformer_ridge_hcc_formal_v1.json`：`lm_G_geneformer_ridge` HCC Stage 2 control 配置。
 - `scripts/run_stage2_lm_g_geneformer_ridge_hcc_predictions.py`：`lm_G_geneformer_ridge` HCC Stage 2 raw output producer 入口。
-- `configs/stage2/dixit_axis_compression_v1.json`：Dixit supplementary axis compression 的默认 machine-readable 配置，当前固定指向 `GSE90063 K562 13d-only`。
+- `configs/stage2/dixit_axis_compression_v1.json`：Dixit supplementary axis compression 的默认 machine-readable 配置，当前 `13d` formal supplementary path 固定指向 `GSE90063 K562 13d-only`；`7d` 通过 temporal panel 配置承担 temporal sensitivity / early-bridge probe。
 - `scripts/run_stage2_dixit_axis_compression.py`：Dixit supplementary axis compression 的 config-driven 运行入口。
 - `docs/stage2_axis_annotation_and_validation_rule.md`：功能轴的发现、注释与验证规则。
 - `docs/stage2_axis_analysis_minimal_template.md`：axis shared signature -> enrichment -> consistency audit 的最小执行模板。
@@ -358,6 +368,7 @@ PYTHONPATH=src python scripts/run_stage2_dixit_axis_compression.py --config conf
 - `scripts/`：CLI 与执行脚本入口。
 - `src/`：核心实现。
 - `reports/`：冻结输出、bridge summary、master atlas、supplementary external structure replication。
+- `docs/stage2_replogle_rnai_expansion_admission_contract_v1.md`：Replogle 7d CRISPRi + DepMap RNAi/shRNA dependency 的扩展层准入合同；先做 metadata check，再决定是否需要用户下载数据。
 
 ## 9. 当前先看哪些文件
 
@@ -429,9 +440,9 @@ PYTHONPATH=src python scripts/run_stage2_dixit_axis_compression.py --config conf
 **正确表述**：
 > Essentiality stratification provides an interpretable decomposition scaffold for why the truth–DepMap bridge is non-linear and tiered, and is retained as a supplementary explanation layer rather than an orthogonal validation layer.
 
-### 10.3 K562 13d 的正式分层
+### 10.3 K562 13d/7d 的正式分层
 
-`GSE90063 K562 13d-only` 的固定模板是：provides formal supplementary external support for architecture form, with bridge-form support remaining supporting / partial-support; bridge content is not eligible.
+`GSE90063 K562 13d/7d temporal panel` 的固定模板是：`13d` provides formal supplementary external support for architecture form, with bridge-form support remaining supporting / partial-support；`7d` is a temporal sensitivity / early-bridge probe；bridge content is not eligible。当前 frozen interpretation 是：两个时间点均确认 `backbone_plus_shift_excess`，`7d` rank alignment 更强，`13d` mean shift 更大，因此支持 architecture form 的时间稳定性与 bridge readout 的 temporal stratification。
 
 对应 formal tiering（三层）：
 
@@ -445,34 +456,41 @@ PYTHONPATH=src python scripts/run_stage2_dixit_axis_compression.py --config conf
 
 ## 11. Claim Boundaries
 
+详细 submission prep 状态见 `docs/submission_prep_status_v1.md`。
+
 - 当前项目**尚未**证明 model predictions 能恢复 frozen architecture。
-- 当前已完成的是 `GEARS` 的 entrant-qualified HCC smoke，不是“GEARS 已整体胜出”。
+- 当前已完成的是 `GEARS` 的 entrant-qualified HCC smoke，不是”GEARS 已整体胜出”。
 - 当前 `GEARS` 与 `shared_mean_baseline` 的差异不是对称各赢一半；`shared_mean_baseline` 仍是 backbone primary reference，`GEARS` 只可写成 deviation / separation-biased entrant。
 - K562 13d 支持的是 model-side trade-off 的 partial recurrence：backbone-vs-separation 主方向复现，但 `shift-excess` 分量未复现；因此不能写成 full external validation 或 complete model-side generalization。
-- 当前结果支持的是“少数分层书写的 stable anchors 与有限 formal axis evidence 的结构化 bridge”，不是“多数 axis 已正式闭环”。
+- 当前结果支持的是”少数分层书写的 stable anchors 与有限 formal axis evidence 的结构化 bridge”，不是”多数 axis 已正式闭环”。
 - `PFDN5` 当前最多只能写成 `primary_but_qualified`；`PMF1 / PRPF6 / ZNF131` 当前只能写成 `supporting_only`。
 - `transcription / chromatin` 当前最多只能写成 `primary_axis_but_qualified`；其余多数 axis 继续停留在 `supporting_or_preliminary`。
-- Dixit/K562 固定写成 `GSE90063 K562 13d-only` provides formal supplementary external support for architecture form, with bridge-form support remaining supporting / partial-support; bridge content is not eligible；不支持 `model generalization proved`，也不是与 HCC 并列的主 biological conclusion。
+- Dixit/K562 固定写成 `GSE90063 K562 13d/7d temporal panel` supports architecture form 的时间稳定性与 bridge readout 的 temporal stratification；`13d` 是 primary formal supplementary bridge test，`7d` 是 temporal sensitivity / early-bridge probe，bridge content is not eligible；不支持 `13d` 全面强于 `7d`、`model generalization proved`、content-level convergence，也不是与 HCC 并列的主 biological conclusion。
+- K562 RNAi endpoint sensitivity 只用于 endpoint robustness / cross-platform sensitivity；不写成 matched endpoint、primary closure、主线替代或等价 primary evidence。
+- Replogle/RNAi 若推进，只能写成 short-horizon / modality-compatible external expansion；DepMap 侧是 RNAi/shRNA-derived dependency endpoint，不写成 siRNA matched endpoint、primary closure 或 external model-side generalization proved。
 - architecture recovery 不等同于 single-gene correlation，也不等同于 global Pearson。
 - discovery / phenotype shifter 仍然是 downstream layer，必须晚于 model-side closure。
 - `cosine / L2 / top-20 overlap` 现在是辅助裁决层，不替代 backbone / shift-excess / separation 三个主裁决问题。
 - `scGPT` 与 `Geneformer` 都已进入 HCC primary comparison；当前 `Geneformer` 强于 `scGPT`，但两者都不是 stronger entrant。
-- sensitivity 当前是“主支柱保守稳健，但 formal full closure 尚未完成”，不是“robustness 已全面建立”。
+- sensitivity 当前是”主支柱保守稳健，但 formal full closure 尚未完成”，不是”robustness 已全面建立”。
 - covariate audit 已形成正式治理产物，但受元数据上限约束，当前不能写成 `covariate closure complete`。
 - 当前不能把 `Stage 2 / 3` 写成 fully complete。
 
 ## 11. Minimal Orientation
 
+**当前 phase（2026-04-15 冻结）：pre-submission editorial convergence ready。**
+
 如果你想快速定位当前 truth-first 主线，建议按下面顺序看：
 
-1. `plan.md`
-2. `docs/protocol_blueprint.md`
-3. `docs/stage2_truth_driven_bridge_v1.md`
-4. `docs/stage2_truth_bridge_decomposition_v1.md`
-5. `docs/stage2_truth_bridge_integrated_result_v1.md`
-6. `docs/stage2_model_structure_scorer_contract.md`
-7. `docs/stage2_hcc_prediction_contract.md`
-8. `reports/stage2_real_hcc_smoke/smoke_report.md`
+1. `docs/submission_prep_status_v1.md`（**先看这个**，当前状态总览）
+2. `plan.md`
+3. `docs/protocol_blueprint.md`
+4. `docs/stage2_truth_driven_bridge_v1.md`
+5. `docs/stage2_truth_bridge_decomposition_v1.md`
+6. `docs/stage2_truth_bridge_integrated_result_v1.md`
+7. `docs/stage2_model_structure_scorer_contract.md`
+8. `docs/stage2_hcc_prediction_contract.md`
+9. `reports/stage2_real_hcc_smoke/smoke_report.md`
 
 如果你想看代码位置：
 

@@ -298,11 +298,21 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def main() -> None:
-    args = parse_args()
-    config = load_config(Path(args.config))
+def run_from_config(config_path: Path) -> dict[str, Path]:
+    config = load_config(Path(config_path))
     config.output_dir.mkdir(parents=True, exist_ok=True)
     apply_style()
     save_single_panels(config)
     save_combined(config)
+    return {
+        "output_dir": config.output_dir,
+        "combined_png": config.output_dir / "figure1_truth_object_combined.png",
+        "combined_pdf": config.output_dir / "figure1_truth_object_combined.pdf",
+    }
+
+
+def main() -> None:
+    args = parse_args()
+    run_from_config(Path(args.config))
+    config = load_config(Path(args.config))
     print(f"Wrote Figure 1 panels to {config.output_dir}")

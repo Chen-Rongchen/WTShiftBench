@@ -11,7 +11,7 @@
 
 它不重新定义 truth object，也不把 supplementary 层提升为 HCC 主结论。
 
-> 数据身份更新（2026-04）：`Dixit/K562 supplementary` 的默认正式入口现已切换到 `GSE90063` 重建的 `K562 13d-only`；历史 `dixit_2016_raw__control_context` 仅保留为 `legacy / 暂停引用` lineage。具体准入边界与默认执行链见 `docs/stage2_dixit_admission_contract_v1.md` 与 `docs/stage2_dixit_supplementary_startup_packet_v1.md`。
+> 数据身份更新（2026-04）：`Dixit/K562 supplementary` 的默认正式入口现已切换到 `GSE90063 K562 13d/7d temporal panel`；其中 `13d` 是 primary formal supplementary bridge test，`7d` 是 temporal sensitivity / early-bridge probe。历史 `dixit_2016_raw__control_context` 仅保留为 `legacy / 暂停引用` lineage。具体准入边界与默认执行链见 `docs/stage2_dixit_admission_contract_v1.md` 与 `docs/stage2_dixit_supplementary_startup_packet_v1.md`。
 
 ## 2. 当前主线结论
 
@@ -214,7 +214,7 @@ axis-level 层不采用教科书式 ANOVA，而采用更保守、可审计的 ex
 
 更准确的写法是：
 
-`GSE90063` 重建的 `K562 TF pool 13d-only` 结果当前最稳地支持：`Dixit/K562` 可在 supplementary 层面复现 `backbone + shift-excess` 的架构形式，因此为外部 context 下的 architecture-form replication 提供支持。按当前 evidence tier，更准确的分层是：A0 architecture form 已 confirmed，A1 bridge form 当前为 supporting / partial-support。与此同时，该对象在 `n=10` 个可桥接 targets 上与 DepMap readout 呈现出方向一致、时间尺度兼容的 bridge 信号；但由于当前 target 数仍有限、主导 macro class 与 HCC 仍表现出明显的 context specificity，这些结果只能写成 supplementary-level 的 architecture-form / bridge-form support，而不能升级为 shared mainline architecture content、broad cross-context validation 或与 HCC 对称的 primary conclusion。
+`GSE90063` 重建的 `K562 TF pool 13d/7d temporal panel` 结果当前最稳地支持：`Dixit/K562` 可在 supplementary 层面复现 `backbone + shift-excess` 的架构形式，因此为外部 context 下的 architecture-form replication 提供支持。按当前 evidence tier，更准确的分层是：A0 architecture form 已 confirmed，A1 bridge form 当前为 supporting / partial-support。与此同时，`13d` primary supplementary bridge test 在 `n=10` 个可桥接 targets 上与 DepMap readout 呈现出方向一致、时间尺度兼容的 bridge 信号；`7d` temporal sensitivity / early-bridge probe 则显示更强 rank alignment，而 `13d` 显示更强 mean shift。因此更稳的解释是 bridge readout 存在 temporal stratification，而不是 later timepoint 单调更强。由于当前 target 数仍有限、主导 macro class 与 HCC 仍表现出明显的 context specificity，这些结果只能写成 supplementary-level 的 architecture-form / bridge-form support，而不能升级为 shared mainline architecture content、content-level convergence、broad cross-context validation 或与 HCC 对称的 primary conclusion。
 
 当前这一层现在也已经补上了更正式的 supplementary evidence-tier 口径：
 
