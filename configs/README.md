@@ -9,7 +9,7 @@
 - `configs/stage2/feature_registry_v1.json`：Stage 2 linear control 使用的 target-side feature registry。
 - `configs/runtime/wtbench_cli_v1.json`：`python -m wtbench` / `pixi run --environment core wtbench` 使用的动态命令注册表。
 - `configs/runtime/wtbench_cli.schema.json`：统一 CLI 注册表的结构说明。
-- `configs/manuscript/*.json`：论文图生成配置。
+- `configs/manuscript/*.json`：论文图、Extended Data、supplementary tables 与 submission package 生成配置。
 
 旧 `configs/stage1a/`、旧 `configs/entrants/` 与 Stage 1A formal/split/prediction contract 配置已从当前工作树清理。原始数据保留在 `data/raw`；不再使用的处理后数据与旧预测缓存已删除。
 
@@ -42,7 +42,14 @@
 - `stage2/closure_artifact_validation_v1.json`：Stage 2 closure 关键 TSV / 文档边界的轻量校验配置。
 - `stage2/axis_validation_summary_v1.json`：axis validation summary 配置。
 
-## 3. 维护原则
+## 3. Manuscript / submission package 配置
+
+- `manuscript/main_figures_v2.json`：主文 Fig. 1-Fig. 6 的生成配置。
+- `manuscript/extended_data_figures_v1.json`：Extended Data Fig. 1-Fig. 10 的生成配置。
+- `manuscript/supplementary_tables_v1.json`：supplementary table group 与冻结来源文件索引配置。
+- `manuscript/submission_package_v1.json`：Genome Biology submission package manifest 与 Supplementary Tables workbook 生成配置。
+
+## 4. 维护原则
 
 - 新 recipe 优先使用 JSON。
 - 少数现有代码已经固定读取 YAML 的 registry 可以保留 YAML，但只用于 registry，不再扩展成长参数表。
@@ -55,7 +62,7 @@
 - 不把 discovery 提前写成当前配置层的 primary deliverable。
 - 不把 enrichment 单独写成 axis discovery 的主证据；axis analysis 配置默认只服务 annotation 与 validation。
 
-## 4. 与 pixi 的对应关系
+## 5. 与 pixi 的对应关系
 
 当前推荐把下面几份配置视为 `pixi run --environment core` 的默认执行入口：
 
@@ -71,3 +78,7 @@
 - `stage2/dixit_k562_temporal_panel_gse90063_v1.json`：对应 `run-stage2-dixit-temporal-panel`
 - `stage2/closure_artifact_validation_v1.json`：对应 `validate-stage2-closure-artifacts`
 - `manuscript/figure1_truth_object_v1.json`：对应 `render-manuscript-figure1`
+- `manuscript/main_figures_v2.json`：对应 `python scripts/manuscript/build_all_main_figures.py`
+- `manuscript/extended_data_figures_v1.json`：对应 `python scripts/manuscript/build_all_extended_data_figures.py`
+- `manuscript/supplementary_tables_v1.json`：对应 `python scripts/manuscript/build_supplementary_table_index.py`
+- `manuscript/submission_package_v1.json`：对应 `python scripts/manuscript/build_submission_package.py`

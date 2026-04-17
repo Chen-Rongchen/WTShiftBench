@@ -132,7 +132,3 @@ Stage 2 HCC adjudication 当前要求所有 entrant 都满足同一套 formal co
 2. [`docs/next_phase_execution_note_v1.md`](/home/data/gz0705/WTKO/docs/next_phase_execution_note_v1.md)
 3. [`docs/stage2_hcc_prediction_contract.md`](/home/data/gz0705/WTKO/docs/stage2_hcc_prediction_contract.md)
 4. [`docs/project_state_summary_v1.md`](/home/data/gz0705/WTKO/docs/project_state_summary_v1.md)
-
-若要继续 entrant 盘点，再看：
-
-- [`docs/next_stage_model_entrant_inventory_v1.md`](/home/data/gz0705/WTKO/docs/next_stage_model_entrant_inventory_v1.md)

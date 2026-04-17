@@ -1,0 +1,79 @@
+{
+  "output_dir": "reports/manuscript_submission_package_v1",
+  "supplementary_table_index": "reports/manuscript_supplementary_tables_v1/supplementary_table_file_index.tsv",
+  "supplementary_table_summary": "reports/manuscript_supplementary_tables_v1/supplementary_table_summary.tsv",
+  "workbook_name": "supplementary_tables_v1.xlsx",
+  "manifest_name": "submission_package_file_manifest.tsv",
+  "summary_name": "submission_package_summary.tsv",
+  "json_name": "submission_package_manifest.json",
+  "items": [
+    {
+      "category": "manuscript_text",
+      "paths": [
+        "docs/main_manuscript_submission_draft_v2.md",
+        "docs/genome_biology_manuscript_draft_v1.md",
+        "docs/genome_biology_cover_letter_v1.md",
+        "docs/genome_biology_submission_checklist_v1.md",
+        "docs/genome_biology_figure_legends_v1.md",
+        "docs/baseline_model_interpretation_and_journal_strategy_v1.md",
+        "docs/main_manuscript_figure_legends_v1.md",
+        "docs/extended_data_figure_legends_v1.md",
+        "docs/main_manuscript_availability_and_reproducibility_v1.md"
+      ]
+    },
+    {
+      "category": "submission_notes",
+      "paths": [
+        "README.md",
+        "plan.md",
+        "scripts/README.md",
+        "configs/README.md",
+        "docs/submission_package_index_v1.md",
+        "docs/submission_readiness_checklist_v1.md",
+        "docs/manuscript_complete_figure_plan_v1.md",
+        "docs/manuscript_figure_generation_record_v1.md",
+        "docs/extended_data_execution_plan_v1.md"
+      ]
+    },
+    {
+      "category": "configs",
+      "paths": [
+        "configs/manuscript/main_figures_v2.json",
+        "configs/manuscript/extended_data_figures_v1.json",
+        "configs/manuscript/supplementary_tables_v1.json",
+        "configs/manuscript/submission_package_v1.json"
+      ]
+    },
+    {
+      "category": "figure_code",
+      "globs": [
+        "scripts/manuscript/*.py",
+        "src/wtbench/manuscript/*.py"
+      ]
+    },
+    {
+      "category": "main_figures",
+      "globs": [
+        "reports/manuscript_figures_v2/**/*"
+      ]
+    },
+    {
+      "category": "extended_data_figures",
+      "globs": [
+        "reports/manuscript_extended_data_v1/**/*"
+      ]
+    },
+    {
+      "category": "supplementary_tables",
+      "globs": [
+        "reports/manuscript_supplementary_tables_v1/*"
+      ]
+    },
+    {
+      "category": "reference_template",
+      "paths": [
+        "s41592-025-02772-6.pdf"
+      ]
+    }
+  ]
+}
