@@ -1,30 +1,36 @@
 # WT Benchmark — Active Plan（Truth-First Architecture and Model Recovery）
 
-**Phase label（2026-04-17 更新）：Genome Biology Submission Package Phase — analysis closure 完成，infrastructure closure 完成，main figures / Extended Data / source data / supplementary workbook / submission manifest 已生成，claim boundary 已冻结。**
+**Phase label（2026-04-17 更新）：Genome Biology Reviewer-Risk Reduction Phase — analysis closure 完成，infrastructure closure 完成，main figures / Extended Data / source data / supplementary workbook / submission manifest 已生成，claim boundary 已冻结；正式投稿前新增 A/B/C 三档 17 项执行清单。**
 
-**No additional analytical execution is currently required; the remaining task is author metadata, references, declarations, public archive DOI and final human approval for Genome Biology submission.**
+**当前不再假设只剩作者元信息和格式项。正式投稿前必须先完成 `docs/genome_biology_submission_execution_plan_v1.md` 中 A1-A12；B13-B16 强烈建议完成；C17 仅在 5-7 天内可干净闭环时执行，否则留到 revision。**
 
 ## 1. 项目状态一句话
 
-本项目没有放弃原有 `Stage 1A / 1B / 2 / 3` 路线，但当前主线已经重排为 **truth-first fitness-bridge architecture**：先在真实 genetic perturbation transcriptomic truth 中定义可桥接到 cellular fitness / dependency（DepMap）的结构化对象，再评估模型能否恢复这套 structure，再把 `Stage 1A / 1B` 重新解释为 failure decomposition track，最后才进入 discovery。当前最重要的已完成项是 **HCC truth bridge architecture contract freeze + GEARS entrant-qualified HCC smoke closure + GEARS 有限 backbone sweep 收口 + `scGPT / Geneformer` 第一轮 HCC formal integration + `lm_train_lowrank / lm_G_scgpt_ridge / lm_G_geneformer_ridge` 第一轮 HCC formal integration + frozen axis annotation / validation 闭环 + truth bridge decomposition evidence tiering（含 cutoff sensitivity / bootstrap stability）+ covariate boundary + K562 temporal and endpoint sensitivity + final claim matrix + Genome Biology 专版手稿 + 6 张主图 + 10 张 Extended Data + supplementary workbook + submission package manifest**。当前最重要的未完成项是 **作者元信息、references、declarations、公开归档 DOI、Additional files 编号与最终人工确认**。新增数据口径警报：`data/raw/stage1a/candidates/dixit_2016_raw.h5ad` 与 GSE90063 K562 TF pool 描述不匹配，当前按 Frangieh-like legacy object 处理，不再作为有效 Dixit 输入引用。
+本项目没有放弃原有 `Stage 1A / 1B / 2 / 3` 路线，但当前主线已经重排为 **truth-first fitness-bridge architecture**：先在真实 genetic perturbation transcriptomic truth 中定义可桥接到 cellular fitness / dependency（DepMap）的结构化对象，再评估模型能否恢复这套 structure，再把 `Stage 1A / 1B` 重新解释为 failure decomposition track，最后才进入 discovery。当前最重要的已完成项是 **HCC truth bridge architecture contract freeze + GEARS entrant-qualified HCC smoke closure + GEARS 有限 backbone sweep 收口 + `scGPT / Geneformer` 第一轮 HCC formal integration + `lm_train_lowrank / lm_G_scgpt_ridge / lm_G_geneformer_ridge` 第一轮 HCC formal integration + frozen axis annotation / validation 闭环 + truth bridge decomposition evidence tiering（含 cutoff sensitivity / bootstrap stability）+ covariate boundary + K562 temporal and endpoint sensitivity + final claim matrix + Genome Biology 专版手稿 + 6 张主图 + 10 张 Extended Data + supplementary workbook + submission package manifest**。当前最重要的未完成项是 **Genome Biology reviewer-risk reduction 清单、作者元信息、references、declarations、公开归档 DOI、Additional files 编号与最终人工确认**。新增数据口径警报：`data/raw/stage1a/candidates/dixit_2016_raw.h5ad` 与 GSE90063 K562 TF pool 描述不匹配，当前按 Frangieh-like legacy object 处理，不再作为有效 Dixit 输入引用。
 
 ## 2. 下次进来先做什么
 
 如果你只看一段，这一段就是当前执行口径。
 
-当前不要无边界继续扩到 `challengers`，也不要回到 HCC truth-side 重做 contract。`scGPT / Geneformer` 已完成第一轮 HCC entrant 接入；Genome Biology 专版材料已经生成。当前近端主线已经进一步收紧为：**主投 Genome Biology；Science Advances 仅作为需要 broad-impact 改写的冲刺备选；Advanced Science 不作为优先目标；后续只补作者元信息、references、declarations、公开归档 DOI 和最终人工确认。**
+当前不要无边界继续扩到 `challengers`，也不要回到 HCC truth-side 重做 contract。`scGPT / Geneformer` 已完成第一轮 HCC entrant 接入；Genome Biology 专版材料已经生成。当前近端主线已经进一步收紧为：**主投 Genome Biology；Science Advances 仅作为需要 broad-impact 改写的冲刺备选；Advanced Science 不作为优先目标；后续先完成 reviewer-risk reduction 清单，再补作者元信息、references、declarations、公开归档 DOI 和最终人工确认。**
 
-如果下次进来只想知道“先看哪里就够”，固定只看这三个入口：
+如果下次进来只想知道“先看哪里就够”，固定先看这四个入口：
 
-1. `docs/genome_biology_manuscript_draft_v1.md`
-2. `docs/submission_readiness_checklist_v1.md`
-3. `reports/manuscript_submission_package_v1/submission_package_manifest.json`
+1. `docs/genome_biology_submission_execution_plan_v1.md`
+2. `docs/genome_biology_manuscript_draft_v1.md`
+3. `docs/submission_readiness_checklist_v1.md`
+4. `reports/manuscript_submission_package_v1/submission_package_manifest.json`
 
-默认先用这三个入口刷新状态，不再从更长的结果清单开始。
+默认先用这四个入口刷新状态，不再从更长的结果清单开始。
 
 下次进来应直接做：
 
-0. 先按 Genome Biology 投稿闭环补齐人工信息：
+0. 先按 `docs/genome_biology_submission_execution_plan_v1.md` 完成 A1-A12，并尽量完成 B13-B16：
+   - A 类：framing、prior art、GEARS sweep 透明化、metric diagnostic、baseline artifact appendix、legacy 澄清、limitations、复现入口、reviewer Q&A
+   - B 类：三指标 permutation null、design-proxy residualization、relaxed cutoff sensitivity、revision round admission contract confirmation
+   - C 类：adjudication kit 仅在 5-7 天内能干净闭环时执行
+
+1. 再按 Genome Biology 投稿闭环补齐人工信息：
    - 作者姓名、单位、通讯作者邮箱
    - Funding
    - Competing interests
@@ -35,7 +41,7 @@
    - AI use statement 是否保留与最终措辞
    - Additional files 编号与上传命名
 
-1. 先看当前最近一次 covariate 正式产物：
+2. 先看当前最近一次 covariate 正式产物：
    - `reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/summary.tsv`
    - `docs/stage2_covariate_balance_closure_note_v1.md`
    - `docs/stage2_sensitivity_full_closure_note_v1.md`
