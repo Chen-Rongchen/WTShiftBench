@@ -1,0 +1,65 @@
+{
+  "output_root": "reports/manuscript_extended_data_v1",
+  "figures": [
+    {
+      "figure_id": "extended_data_figure1",
+      "name": "dataset_and_endpoint_admission",
+      "script": "scripts/manuscript/build_extended_data_figure1.py",
+      "output_dir": "reports/manuscript_extended_data_v1/edfig1_dataset_endpoint_admission"
+    },
+    {
+      "figure_id": "extended_data_figure2",
+      "name": "full_target_level_joint_grid",
+      "script": "scripts/manuscript/build_extended_data_figure2.py",
+      "output_dir": "reports/manuscript_extended_data_v1/edfig2_full_target_grid"
+    },
+    {
+      "figure_id": "extended_data_figure3",
+      "name": "anchor_sensitivity_and_claim_tiering",
+      "script": "scripts/manuscript/build_extended_data_figure3.py",
+      "output_dir": "reports/manuscript_extended_data_v1/edfig3_anchor_sensitivity"
+    },
+    {
+      "figure_id": "extended_data_figure4",
+      "name": "full_hcc_model_recovery_detail",
+      "script": "scripts/manuscript/build_extended_data_figure4.py",
+      "output_dir": "reports/manuscript_extended_data_v1/edfig4_model_detail"
+    },
+    {
+      "figure_id": "extended_data_figure5",
+      "name": "gears_sweep_and_stop_rule",
+      "script": "scripts/manuscript/build_extended_data_figure5.py",
+      "output_dir": "reports/manuscript_extended_data_v1/edfig5_gears_sweep"
+    },
+    {
+      "figure_id": "extended_data_figure6",
+      "name": "axis_annotation_and_bootstrap",
+      "script": "scripts/manuscript/build_extended_data_figure6.py",
+      "output_dir": "reports/manuscript_extended_data_v1/edfig6_axis_annotation"
+    },
+    {
+      "figure_id": "extended_data_figure7",
+      "name": "k562_temporal_evidence_detail",
+      "script": "scripts/manuscript/build_extended_data_figure7.py",
+      "output_dir": "reports/manuscript_extended_data_v1/edfig7_k562_temporal"
+    },
+    {
+      "figure_id": "extended_data_figure8",
+      "name": "crispr_versus_rnai_endpoint_detail",
+      "script": "scripts/manuscript/build_extended_data_figure8.py",
+      "output_dir": "reports/manuscript_extended_data_v1/edfig8_endpoint_hierarchy"
+    },
+    {
+      "figure_id": "extended_data_figure9",
+      "name": "covariate_audit_and_wording_boundary",
+      "script": "scripts/manuscript/build_extended_data_figure9.py",
+      "output_dir": "reports/manuscript_extended_data_v1/edfig9_covariate_audit"
+    },
+    {
+      "figure_id": "extended_data_figure10",
+      "name": "reproducibility_and_claim_governance",
+      "script": "scripts/manuscript/build_extended_data_figure10.py",
+      "output_dir": "reports/manuscript_extended_data_v1/edfig10_reproducibility"
+    }
+  ]
+}

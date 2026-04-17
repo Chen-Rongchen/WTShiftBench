@@ -163,8 +163,6 @@
 如果后续决定恢复 entrant expansion，先看：
 
 1. [`docs/model_expansion_deferral_note_v1.md`](/home/data/gz0705/WTKO/docs/model_expansion_deferral_note_v1.md)
-2. [`docs/next_stage_model_entrant_inventory_v1.md`](/home/data/gz0705/WTKO/docs/next_stage_model_entrant_inventory_v1.md)
-3. [`docs/next_stage_model_entrant_execution_checklist_v1.md`](/home/data/gz0705/WTKO/docs/next_stage_model_entrant_execution_checklist_v1.md)
 
 ## 6. 一句话收口
 
