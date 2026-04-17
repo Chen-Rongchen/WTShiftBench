@@ -41,6 +41,36 @@
 8. References 正式列表。
 9. Additional files 的最终命名和文件说明。
 
+## 投稿前 reviewer-risk reduction 必做
+
+执行入口：`docs/genome_biology_submission_execution_plan_v1.md`。
+
+正式投稿前必须完成：
+
+1. Title / Abstract / Cover letter 重新定位为 framework/resource/adjudication。
+2. 2024-2026 prior-art literature scan。
+3. prior-art positioning 段落。
+4. GEARS sweep budget sanity check。
+5. GEARS finite-budget / stop-rule 透明化写作。
+6. 三指标相关性 quick check。
+7. metric diagnostic 图或补充呈现。
+8. shared_mean_baseline leakage / artifact appendix。
+9. dixit legacy 一次性澄清。
+10. Discussion Limitations 四条正面写入。
+11. 顶层 `MANUSCRIPT_REPRODUCIBILITY.md`。
+12. 内部 Top-10 reviewer questions 文档。
+
+强烈建议完成：
+
+13. 三指标 permutation null。
+14. `barcode_gem_group` design-proxy residualization check。
+15. relaxed cutoff sensitivity for shared anchors。
+16. Frangieh / Replogle revision-round admission contract confirmation。
+
+有余力再做：
+
+17. 最小 community adjudication kit；若 5-7 天内不能干净闭环，留到 revision。
+
 ## 建议 Additional files
 
 - Additional file 1：Supplementary Tables workbook，`supplementary_tables_v1.xlsx`。
