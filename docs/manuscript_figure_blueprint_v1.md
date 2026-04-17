@@ -1,5 +1,7 @@
 # 论文主图蓝图 v1
 
+> **上位替代提示（2026-04-17）**：本文件描述的是 4 图版 truth-first 主图蓝图，当前主图方案已升级为 6 主图 + 10 Extended Data；结构 of record 以 [`docs/manuscript_complete_figure_plan_v1.md`](/home/data/gz0705/WTKO/docs/manuscript_complete_figure_plan_v1.md) 为准。本文件保留为 truth-first 讲述方法论模板，不再作为当前图版结构入口。
+
 ## 1. 文档定位
 
 这份文档只做一件事：

@@ -9,6 +9,11 @@
 - `convert_rnai_demeter2_to_depmap_endpoints.py`：把 DEMETER2 RNAi 分数转换成现有 truth bridge loader 可读取的 DepMap endpoint 宽表。
 - `run_stage2_k562_rnai_endpoint_consistency.py`：汇总 GSE90063 K562 7d/13d 的 CRISPR DepMap 与 DEMETER2 RNAi endpoint consistency。
 - `render_manuscript_figure*.py`：论文图生成入口。
+- `scripts/manuscript/build_*.py`：当前主文 Fig. 1-Fig. 6 的 panel 级图版生成入口。
+- `scripts/manuscript/build_all_main_figures.py`：按 `configs/manuscript/main_figures_v2.json` 顺序重建全部主文图。
+- `scripts/manuscript/build_all_extended_data_figures.py`：按 `configs/manuscript/extended_data_figures_v1.json` 顺序重建 Extended Data Fig. 1-10。
+- `scripts/manuscript/build_supplementary_table_index.py`：按 `configs/manuscript/supplementary_tables_v1.json` 重建 supplementary table index。
+- `scripts/manuscript/build_submission_package.py`：按 `configs/manuscript/submission_package_v1.json` 重建 submission package manifest 与 Supplementary Tables workbook。
 
 当前为了配合 `pixi` 分阶段执行，还补了两条收口专用 CLI：
 
@@ -54,6 +59,10 @@
 - `pixi run --environment core wtbench run stage2.validate_closure`
 - `pixi run --environment core wtbench run stage2.dixit_temporal_panel`
 - `pixi run --environment core wtbench run manuscript.figure1`
+- `pixi run --environment core python scripts/manuscript/build_all_main_figures.py`
+- `pixi run --environment core python scripts/manuscript/build_all_extended_data_figures.py`
+- `pixi run --environment core python scripts/manuscript/build_supplementary_table_index.py`
+- `pixi run --environment core python scripts/manuscript/build_submission_package.py`
 
 统一入口的注册表见 `configs/runtime/wtbench_cli_v1.json`；若需要临时替换配置，优先使用 `--config` 或命令专属环境变量，而不是改脚本默认值。
 
@@ -70,6 +79,13 @@
 - `pixi run --environment core run-stage2-dixit-axis-compression`
 - `pixi run --environment core run-stage2-dixit-temporal-panel`
 - `pixi run --environment core render-manuscript-figure1`
+
+Genome Biology 当前投稿包已经生成，默认不再新增分析执行；若文档、图或补充表发生变化，重跑顺序固定为：
+
+1. `pixi run --environment core python scripts/manuscript/build_all_main_figures.py`
+2. `pixi run --environment core python scripts/manuscript/build_all_extended_data_figures.py`
+3. `pixi run --environment core python scripts/manuscript/build_supplementary_table_index.py`
+4. `pixi run --environment core python scripts/manuscript/build_submission_package.py`
 
 若只想单独刷新 HCC sensitivity / covariate 线，也可直接用：
 

@@ -159,10 +159,6 @@ PYTHONPATH=src python scripts/run_stage2_geneformer_hcc_predictions.py \
 2. 决定 foundation-model entrant family 是否到此收口
 3. 如果继续 entrant expansion，只在明确 stop rule 下考虑 challengers
 
-直接执行清单见：
-
-- [`docs/next_stage_model_entrant_execution_checklist_v1.md`](/home/data/gz0705/WTKO/docs/next_stage_model_entrant_execution_checklist_v1.md)
-
 ## 9. 一句话收口
 
 `Geneformer` 的 HCC Stage 2 第一版 freeze 已经从“只钉 identity 与 contract”推进到“真实 HCC entrant 已落地”；当前结论不是“它能赢”，而是“它已经被公平纳入同一裁决，且当前强于 scGPT，但仍不是 stronger entrant”。
