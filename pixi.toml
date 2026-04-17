@@ -286,3 +286,19 @@ description = "运行 GSE90063 K562 13d 最小 model-side architecture trade-off
 [tasks.render-manuscript-figure1]
 cmd = "python scripts/render_manuscript_figure1.py --config configs/manuscript/figure1_truth_object_v1.json"
 description = "渲染 manuscript Figure 1 truth object"
+
+[tasks.build-manuscript-main-figures]
+cmd = "python scripts/manuscript/build_all_main_figures.py --config configs/manuscript/main_figures_v2.json"
+description = "重跑全部 6 张主图（manuscript_figures_v2）"
+
+[tasks.build-manuscript-extended-data]
+cmd = "python scripts/manuscript/build_all_extended_data_figures.py --config configs/manuscript/extended_data_figures_v1.json"
+description = "重跑全部 10 张 Extended Data 图（manuscript_extended_data_v1）"
+
+[tasks.build-supplementary-table-index]
+cmd = "python scripts/manuscript/build_supplementary_table_index.py --config configs/manuscript/supplementary_tables_v1.json"
+description = "重建补充表 index / workbook"
+
+[tasks.build-submission-package]
+cmd = "python scripts/manuscript/build_submission_package.py --config configs/manuscript/submission_package_v1.json"
+description = "汇编 Genome Biology 投稿包 manifest"

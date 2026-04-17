@@ -187,10 +187,6 @@ PYTHONPATH=src python scripts/validate_stage2_hcc_prediction_contract.py \
 
 `HCC1143` 只需要替换 `cell_line` 路径。
 
-直接执行清单见：
-
-- [`docs/next_stage_model_entrant_execution_checklist_v1.md`](/home/data/gz0705/WTKO/docs/next_stage_model_entrant_execution_checklist_v1.md)
-
 ## 9. 一句话收口
 
 `scGPT` 的 HCC Stage 2 第一版 freeze 已经从“只钉 identity 与 contract”推进到“真实 HCC entrant 已落地”；当前结论不是“它能赢”，而是“它已经被公平纳入同一裁决，但现阶段不是 stronger entrant”。

@@ -140,8 +140,6 @@ discovery / phenotype shifter 现在仍不能直接写成 formal deliverable。
 如果后续决定继续 entrant expansion，不要直接回到 HCC 主线开跑；先看：
 
 1. [`docs/model_expansion_deferral_note_v1.md`](/home/data/gz0705/WTKO/docs/model_expansion_deferral_note_v1.md)
-2. [`docs/next_stage_model_entrant_inventory_v1.md`](/home/data/gz0705/WTKO/docs/next_stage_model_entrant_inventory_v1.md)
-3. [`docs/next_stage_model_entrant_execution_checklist_v1.md`](/home/data/gz0705/WTKO/docs/next_stage_model_entrant_execution_checklist_v1.md)
 
 ## 7. 一句话收口
 

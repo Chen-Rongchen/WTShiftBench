@@ -224,11 +224,3 @@ HCC 预测对象必须按 cell line 分开冻结：
 5. 最后才进入 real HCC smoke comparison
 
 若缺少其中任一步，就不应直接进入正式 HCC primary adjudication。
-
-直接执行清单见：
-
-- [`docs/next_stage_model_entrant_execution_checklist_v1.md`](/home/data/gz0705/WTKO/docs/next_stage_model_entrant_execution_checklist_v1.md)
-
-候选 entrant 盘点见：
-
-- [`docs/next_stage_model_entrant_inventory_v1.md`](/home/data/gz0705/WTKO/docs/next_stage_model_entrant_inventory_v1.md)

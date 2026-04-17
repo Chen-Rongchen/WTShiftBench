@@ -1,0 +1,130 @@
+{
+  "output_dir": "reports/manuscript_supplementary_tables_v1",
+  "tables": [
+    {
+      "table_id": "supp_table_1_truth_bridge_hcc",
+      "title": "HCC truth-DepMap bridge summaries",
+      "claim_layer": "truth_object",
+      "paths": [
+        "reports/stage2_truth_driven_bridge/HCC38/correlation_summary.tsv",
+        "reports/stage2_truth_driven_bridge/HCC1143/correlation_summary.tsv",
+        "reports/stage2_truth_driven_bridge/HCC38/group_comparison_summary.tsv",
+        "reports/stage2_truth_driven_bridge/HCC1143/group_comparison_summary.tsv",
+        "reports/stage2_truth_driven_bridge/cross_cell_line_consistency_summary.tsv"
+      ]
+    },
+    {
+      "table_id": "supp_table_2_truth_decomposition",
+      "title": "Target-level and axis-level truth decomposition",
+      "claim_layer": "truth_object_decomposition",
+      "paths": [
+        "reports/stage2_truth_bridge_decomposition/target_level_grid_summary.tsv",
+        "reports/stage2_truth_bridge_decomposition/shared_canonical_anchor_summary.tsv",
+        "reports/stage2_truth_bridge_decomposition/evidence_tier_summary.tsv",
+        "reports/stage2_truth_bridge_decomposition/axis_level_shared_explanatory_summary.tsv",
+        "reports/stage2_truth_bridge_decomposition/axis_bootstrap_stability.tsv"
+      ]
+    },
+    {
+      "table_id": "supp_table_3_anchor_claim_governance",
+      "title": "Anchor tiering, sensitivity and final claim matrix",
+      "claim_layer": "claim_governance",
+      "paths": [
+        "reports/stage2_truth_driven_bridge/sensitivity/anchor_claim_tiering.tsv",
+        "reports/stage2_truth_driven_bridge/sensitivity/control_subsample_summary.tsv",
+        "reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv"
+      ]
+    },
+    {
+      "table_id": "supp_table_4_model_comparison",
+      "title": "HCC model comparison and GEARS diagnostic summaries",
+      "claim_layer": "model_recovery",
+      "paths": [
+        "reports/stage2_real_hcc_smoke/model_comparison.tsv",
+        "reports/stage2_real_hcc_smoke/gears_backbone_diagnostic_summary.tsv",
+        "reports/stage2_real_hcc_smoke/smoke_summary.tsv",
+        "reports/stage2_model_structure_smoke/smoke_summary.tsv"
+      ]
+    },
+    {
+      "table_id": "supp_table_5_gears_sweep_and_controls",
+      "title": "GEARS sweep and linear-control support tables",
+      "claim_layer": "model_controls",
+      "paths": [
+        "reports/stage2_gears_backbone_sweep/candidate_manifest.tsv",
+        "reports/stage2_gears_backbone_sweep/batch_run/batch_status.tsv",
+        "reports/stage2_gears_backbone_sweep/final_adjudication.md",
+        "reports/stage2_lm_train_lowrank_hcc_recipe/HCC38/coverage_audit.json",
+        "reports/stage2_lm_train_lowrank_hcc_recipe/HCC1143/coverage_audit.json",
+        "reports/stage2_lm_g_geneformer_ridge_hcc_recipe/HCC38/coverage_audit.json",
+        "reports/stage2_lm_g_geneformer_ridge_hcc_recipe/HCC1143/coverage_audit.json",
+        "reports/stage2_lm_g_scgpt_ridge_hcc_recipe/HCC38/coverage_audit.json",
+        "reports/stage2_lm_g_scgpt_ridge_hcc_recipe/HCC1143/coverage_audit.json"
+      ]
+    },
+    {
+      "table_id": "supp_table_6_axis_annotation",
+      "title": "Axis annotation and validation",
+      "claim_layer": "axis_interpretation",
+      "paths": [
+        "reports/stage2_axis_analysis/axis_summary.tsv",
+        "reports/stage2_axis_analysis/axis_validation_summary.tsv",
+        "reports/stage2_axis_analysis/axis_enrichment.tsv"
+      ]
+    },
+    {
+      "table_id": "supp_table_7_k562_temporal",
+      "title": "K562 7d and 13d temporal supplementary evidence",
+      "claim_layer": "supplementary_external",
+      "paths": [
+        "reports/stage2_truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_bridge_summary.tsv",
+        "reports/stage2_truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_structure_summary.tsv",
+        "reports/stage2_truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_panel_calls.tsv",
+        "reports/stage2_truth_driven_bridge/dixit_axis_compression_gse90063_13d/dixit_evidence_tier_summary.tsv",
+        "reports/stage2_truth_driven_bridge/dixit_axis_compression_gse90063_7d/dixit_evidence_tier_summary.tsv"
+      ]
+    },
+    {
+      "table_id": "supp_table_8_endpoint_hierarchy",
+      "title": "CRISPR versus RNAi endpoint hierarchy",
+      "claim_layer": "endpoint_boundary",
+      "paths": [
+        "reports/stage2_truth_driven_bridge/hcc38_hcc1143_rnai_endpoint_consistency/endpoint_consistency_summary.tsv",
+        "reports/stage2_truth_driven_bridge/k562_rnai_endpoint_consistency/endpoint_consistency_summary.tsv",
+        "reports/stage2_rnai_demeter2_conversion/summary.tsv"
+      ]
+    },
+    {
+      "table_id": "supp_table_9_covariate_audit",
+      "title": "Covariate audit and barcode-gem-group boundary",
+      "claim_layer": "covariate_boundary",
+      "paths": [
+        "reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/summary.tsv",
+        "reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/barcode_gem_group_mapping_note.md"
+      ]
+    },
+    {
+      "table_id": "supp_table_10_figure_reproducibility",
+      "title": "Main figure source data and manifests",
+      "claim_layer": "reproducibility",
+      "paths": [
+        "reports/manuscript_figures_v2/fig1_truth_object/figure1_panel_manifest.json",
+        "reports/manuscript_figures_v2/fig2_anchor_tiering/figure2_panel_manifest.json",
+        "reports/manuscript_figures_v2/fig3_model_tradeoff/figure3_panel_manifest.json",
+        "reports/manuscript_figures_v2/fig4_sweep_controls/figure4_panel_manifest.json",
+        "reports/manuscript_figures_v2/fig5_axis_interpretation/figure5_panel_manifest.json",
+        "reports/manuscript_figures_v2/fig6_boundary/figure6_panel_manifest.json",
+        "reports/manuscript_extended_data_v1/edfig1_dataset_endpoint_admission/edfig1_panel_manifest.json",
+        "reports/manuscript_extended_data_v1/edfig2_full_target_grid/edfig2_panel_manifest.json",
+        "reports/manuscript_extended_data_v1/edfig3_anchor_sensitivity/edfig3_panel_manifest.json",
+        "reports/manuscript_extended_data_v1/edfig4_model_detail/edfig4_panel_manifest.json",
+        "reports/manuscript_extended_data_v1/edfig5_gears_sweep/edfig5_panel_manifest.json",
+        "reports/manuscript_extended_data_v1/edfig6_axis_annotation/edfig6_panel_manifest.json",
+        "reports/manuscript_extended_data_v1/edfig7_k562_temporal/edfig7_panel_manifest.json",
+        "reports/manuscript_extended_data_v1/edfig8_endpoint_hierarchy/edfig8_panel_manifest.json",
+        "reports/manuscript_extended_data_v1/edfig9_covariate_audit/edfig9_panel_manifest.json",
+        "reports/manuscript_extended_data_v1/edfig10_reproducibility/edfig10_panel_manifest.json"
+      ]
+    }
+  ]
+}

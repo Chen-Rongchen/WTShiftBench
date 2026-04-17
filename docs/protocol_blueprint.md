@@ -8,6 +8,8 @@
 
 **Phase（2026-04-15 冻结）：pre-submission editorial convergence ready — analysis closure 基本完成，infrastructure closure 完成，claim boundary 冻结，wording audit clean，四敏感位置终审 clean，remaining work = 编辑性压缩与投稿准备。**
 
+> **阶段状态以 `plan.md` 为准**（2026-04-17 更新提示）：本文件描述的是长期协议蓝图与制度边界，其"Phase"头为制度落款，不随每次短期状态变化更新。当前短期阶段状态以 [`plan.md`](/home/data/gz0705/WTKO/plan.md) 与 [`README.md`](/home/data/gz0705/WTKO/README.md) 为准（例如当前已推进至 Genome Biology submission package ready）。图版结构 of record 以 [`docs/manuscript_complete_figure_plan_v1.md`](/home/data/gz0705/WTKO/docs/manuscript_complete_figure_plan_v1.md) 为准。
+
 当前近端执行口径已经从”分析执行”推进到”编辑收敛”：
 
 - `GEARS` 已经完成 HCC primary mainline 的 entrant smoke，并已按 stop rule 收口为 `architecture trade-off diagnosis`

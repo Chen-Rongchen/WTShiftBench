@@ -1,6 +1,6 @@
 # WTKO / WT Benchmark
 
-**Phase（2026-04-15 冻结）：pre-submission editorial convergence ready — analysis closure 基本完成，infrastructure closure 完成，claim boundary 冻结，wording audit clean，四敏感位置终审 clean，remaining work = 编辑性压缩与投稿准备。**
+**Phase（2026-04-17 更新）：Genome Biology submission package ready — analysis closure 完成，figure/source-data/reproducibility package 完成，claim boundary 冻结，remaining work = 作者元信息、references、公开归档 DOI 与最终人工确认。**
 
 WT Benchmark 是一个 **truth-first** 的 virtual perturbation benchmark 与分析框架：先在真实 perturbation transcriptomic truth 中定义可桥接到 cellular fitness / dependency（DepMap）的结构化对象，再评估模型能否恢复这些 bridge architecture，最后才进入 discovery。
 
@@ -13,7 +13,7 @@ WT Benchmark 是一个 **truth-first** 的 virtual perturbation benchmark 与分
 - `Stage 2` 的 truth-driven bridge、master atlas、structure replication 与 explanation boundary 产物
 - 论文主文与补充图的 evidence governance / claim boundary 文档
 
-当前已经冻结的是 **HCC truth-side bridge architecture objects**；当前已经闭环的是 **GEARS strongest formal entrant 的真实 HCC smoke adjudication 与有限 backbone sweep**；当前最近一步是 **把 `scGPT / Geneformer / lm_train_lowrank / lm_G_scgpt_ridge / lm_G_geneformer_ridge` 都正式接入 HCC Stage 2，完成双 cell line raw output、export、contract validation 与 smoke comparison，并把 Dixit supplementary 入口补成 config-driven startup packet**。与此同时，truth-side 结果层已经进一步收束为：**truth–DepMap bridge decomposition + cutoff sensitivity / bootstrap stability + evidence tiering + SCP542 boundary + Dixit supplementary external structure replication**。下一步需要把核心主张从“转录组内部有结构”明确收紧为：**长期扰动转录组结构中是否存在能桥接 DepMap fitness/dependency 的 architecture**。
+当前已经冻结的是 **HCC truth-side bridge architecture objects**；当前已经闭环的是 **GEARS strongest formal entrant 的真实 HCC smoke adjudication 与有限 backbone sweep**；`scGPT / Geneformer / lm_train_lowrank / lm_G_scgpt_ridge / lm_G_geneformer_ridge` 已正式接入 HCC Stage 2，并完成双 cell line raw output、export、contract validation 与 smoke comparison。与此同时，truth-side 结果层已经收束为：**truth-DepMap bridge decomposition + cutoff sensitivity / bootstrap stability + evidence tiering + covariate boundary + K562 temporal and endpoint sensitivity + figure-level reproducibility package**。当前主文投稿目标已固定为 **Genome Biology Research**，定位为 truth-anchored functional-genomics benchmark/resource；Science Advances 仅作为需要大幅 broad-impact 改写的冲刺备选，Advanced Science 不作为优先目标。
 
 旧 Stage 1A smoke / freeze / scoring 顶层流程、旧 entrant registry 与旧处理后数据已经从当前工作树清理；原始下载数据仍保留在 `data/raw`。`scripts/stage1a/` 仅保留 Stage 2 入口仍复用的少量 helper，不再作为独立主流程入口维护。
 
@@ -30,15 +30,15 @@ WT Benchmark 是一个 **truth-first** 的 virtual perturbation benchmark 与分
 如果你是下一次进来的人，先看这三句：
 
 - `GEARS` 已经作为 strongest formal entrant 跑完 `HCC38 / HCC1143` 的真实 HCC smoke
-- `Geneformer` 与三条 linear controls 都已完成第一轮 HCC formal comparison
-- **当前项目状态：pre-submission editorial convergence ready（2026-04-15 冻结）；analysis closure 基本完成，infrastructure closure 完成，claim boundary 冻结，remaining work = 编辑性压缩与投稿准备**
-- 详细状态记录见 `docs/submission_prep_status_v1.md`
+- `Geneformer` 与三条 linear controls 都已完成第一轮 HCC formal comparison；Geneformer 保留 partial deviation/separation signal，但没有超过 shared-mean baseline 的 primary backbone recovery
+- **当前项目状态：Genome Biology submission package ready（2026-04-17 更新）；6 张主图、10 张 Extended Data、补充表 workbook、source-data manifest 与 submission package manifest 均已生成**
+- 详细状态记录见 `docs/submission_readiness_checklist_v1.md`、`docs/submission_package_index_v1.md` 与 `docs/baseline_model_interpretation_and_journal_strategy_v1.md`
 
 如果你下次进来只想知道“先看哪里就够”，固定只看这三个入口：
 
-1. `reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/summary.tsv`
-2. `README.md`
-3. `plan.md`
+1. `docs/genome_biology_manuscript_draft_v1.md`
+2. `docs/submission_readiness_checklist_v1.md`
+3. `reports/manuscript_submission_package_v1/submission_package_manifest.json`
 
 这三个入口之外，当前不需要先扩读其他材料；默认先用它们刷新方法学状态，再决定是否继续下钻。
 
@@ -48,7 +48,7 @@ WT Benchmark 是一个 **truth-first** 的 virtual perturbation benchmark 与分
 2. `docs/protocol_blueprint.md`
 3. `docs/project_state_summary_v1.md`
 4. `docs/main_manuscript_results_draft_v1.md`
-5. `docs/manuscript_figure_blueprint_v1.md`
+5. `docs/manuscript_complete_figure_plan_v1.md`（6 主图 + 10 Extended Data 结构 of record；旧 4 图版 `docs/manuscript_figure_blueprint_v1.md` 仅保留为 truth-first 讲述方法论模板）
 6. `docs/final_claim_boundary_and_discovery_gating_note_v1.md`
 7. `docs/stage2_fuller_hcc_model_comparison_note_v1.md`
 8. `docs/stage2_covariate_balance_closure_note_v1.md`
@@ -74,17 +74,13 @@ WT Benchmark 是一个 **truth-first** 的 virtual perturbation benchmark 与分
 
 如果你下次进来只想知道”直接做什么”，固定顺序就是：
 
-1. `docs/formal_closeout_single_entry_v1.md`
-2. `docs/project_state_summary_v1.md`
-3. `docs/final_claim_boundary_and_discovery_gating_note_v1.md`
-4. `docs/why_models_do_not_stably_beat_baseline_v1.md`
-5. `docs/model_vs_baseline_deeper_explanation_note_v1.md`
-6. `docs/model_vs_baseline_next_step_breakdown_v1.md`
-7. `docs/manuscript_figure_blueprint_v1.md`
-8. `docs/main_manuscript_integrated_narrative_draft_v1.md`
-9. `docs/main_manuscript_results_draft_v1.md`
-10. `reports/stage2_truth_driven_bridge/endpoint_consistency_summary_table.md`
-11. `docs/current_closeout_commit_note_v1.md`
+1. `docs/genome_biology_manuscript_draft_v1.md`
+2. `docs/genome_biology_cover_letter_v1.md`
+3. `docs/genome_biology_figure_legends_v1.md`
+4. `docs/genome_biology_submission_checklist_v1.md`
+5. `docs/baseline_model_interpretation_and_journal_strategy_v1.md`
+6. `docs/submission_package_index_v1.md`
+7. `reports/manuscript_submission_package_v1/submission_package_manifest.json`
 
 如果你下次进来只想知道“方法学本体下一步做什么”，直接记这一版：
 
@@ -120,9 +116,9 @@ discovery / phenotype shifter。它仍保留在 roadmap 中，但当前不是 pr
 
 ## 4. 当前状态
 
-- **状态**：pre-submission editorial convergence ready（2026-04-15 冻结）
-- analysis closure：基本完成
-- infrastructure closure：**已完成**（含 K562 gene ID mapping、scorer alignment policy、prediction contract、GEARS 13d formal config）
+- **状态**：Genome Biology submission package ready（2026-04-17 更新）
+- analysis closure：已完成
+- infrastructure closure：**已完成**（含 K562 gene ID mapping、scorer alignment policy、prediction contract、GEARS 13d formal config、主图/Extended Data/source-data/manifest 生成链）
 - claim boundary：已冻结
 - wording audit：Clean
 - 四敏感位置终审：Clean（Abstract 首句、Figure 标题 × 4、Abstract 结尾否定句、Discussion 结尾）
@@ -137,12 +133,12 @@ discovery / phenotype shifter。它仍保留在 roadmap 中，但当前不是 pr
 - 真实 HCC adjudication input bridge：已跑通
 - real HCC smoke（`null < shared_mean_baseline`）：已成立
 - GEARS strongest formal entrant：已完成 `HCC38 / HCC1143` raw output、export、validation 与 real smoke
-- 当前剩余工作：**编辑性压缩与投稿准备**（不再是新分析执行）
+- 当前剩余工作：**作者元信息、references、公开归档 DOI、declarations 与最终人工确认**（不再是新分析执行）
 - discovery：尚未成为当前 formal mainline，也还不能写成 formal deliverable
 
 ## 5. 当前 active question
 
-**当前 active question 已从”分析执行”转为”编辑收敛”：wording synchronization 基本完成，remaining work = 编辑性压缩与投稿准备。**
+**当前 active question 已从”分析执行”转为”Genome Biology 投稿闭环”：wording synchronization 和图版/补充表/manifest package 已完成，remaining work = 作者元信息、references、公开归档 DOI、declarations 与最终人工确认。**
 
 最近一步不是”再接一个 entrant”，而是：
 
@@ -184,10 +180,36 @@ discovery / phenotype shifter。它仍保留在 roadmap 中，但当前不是 pr
 
 ## 6. 当前下一步
 
-**当前已明确不需要新的分析执行。** 下次进来只做投稿前编辑收敛：
+**当前已明确不需要新的分析执行。** 下次进来只做 Genome Biology 投稿闭环：
 
-1. 投稿前编辑检查清单（见 `docs/submission_prep_status_v1.md`）：
-   - Paper title 拟定并确认
+1. 投稿前人工信息补齐（见 `docs/genome_biology_submission_checklist_v1.md`）：
+   - Author list 与 affiliation 填写
+   - Corresponding author 信息
+   - Funding
+   - Competing interests
+   - Authors' contributions
+   - Acknowledgements
+   - References
+   - Public repository / archive DOI
+   - AI use statement 是否保留与最终措辞
+2. 当前已完成的可重跑入口：
+   - 主图：`pixi run --environment core python scripts/manuscript/build_all_main_figures.py`
+   - Extended Data：`pixi run --environment core python scripts/manuscript/build_all_extended_data_figures.py`
+   - Supplementary table index：`pixi run --environment core python scripts/manuscript/build_supplementary_table_index.py`
+   - Submission package：`pixi run --environment core python scripts/manuscript/build_submission_package.py`
+3. 仍需人工确认：
+   - 是否保留 6 张主图
+   - 是否按 Genome Biology submission system 将 supplementary files 编号为 Additional file 1/2/3...
+   - 是否按目标上传系统要求导出 Word/PDF 版本
+4. 明确禁止：
+   - 不新增分析结果
+   - 不引入新 claim
+   - 不改动 claim matrix 已冻结的 allowed/disallowed wording
+   - 不把 supplementary 对象升格为主线
+   - 不添加超越 architecture-level 的 mechanism recovery 表述
+
+历史编辑检查项仍可参考：
+   - Paper title 已有 Genome Biology 版本，但需作者确认
    - Author list 与 affiliation 填写
    - Abstract 末尾否定句保留
    - Discussion 结尾主动划界句保留
@@ -198,19 +220,7 @@ discovery / phenotype shifter。它仍保留在 roadmap 中，但当前不是 pr
    - 正文图表交叉引用补入
    - 句式风格统一
    - 冗长句压缩（尤其是 Result Summary 段）
-2. 论文图片执行顺序（固定不变）：
-   - `docs/manuscript_figure_blueprint_v1.md`
-   - `docs/main_manuscript_results_draft_v1.md`
-   - `reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv`
-   - `s41592-025-02772-6.pdf`
-3. 明确禁止：
-   - 不新增分析结果
-   - 不引入新 claim
-   - 不改动 claim matrix 已冻结的 allowed/disallowed wording
-   - 不把 supplementary 对象升格为主线
-   - 不添加超越 architecture-level 的 mechanism recovery 表述
-
-当前不要再把更多 entrant 无边界拉进主线。foundation-model entrant 与第一层 linear controls 都已完成接入；下一步是把核心主张、Dixit K562 13d/7d temporal panel wording freeze、covariate boundary 与 manuscript 入口维持在同一套边界上。
+当前不要再把更多 entrant 无边界拉进主线。foundation-model entrant 与第一层 linear controls 都已完成接入；下一步是把 Genome Biology 投稿材料、公开归档和作者声明闭合。
 
 ### 直接运行
 
@@ -283,13 +293,15 @@ PYTHONPATH=src python scripts/run_stage2_dixit_axis_compression.py --config conf
 
 | 目的 | 入口 |
 |------|------|
-| 当前任务与阶段状态 | `plan.md`、`docs/project_state_summary_v1.md`、`docs/formal_closeout_single_entry_v1.md` |
+| 当前任务与阶段状态 | `plan.md`、`docs/submission_readiness_checklist_v1.md`、`docs/submission_package_index_v1.md` |
+| Genome Biology 投稿材料 | `docs/genome_biology_manuscript_draft_v1.md`、`docs/genome_biology_cover_letter_v1.md`、`docs/genome_biology_figure_legends_v1.md`、`docs/genome_biology_submission_checklist_v1.md` |
+| 投稿包与补充表 | `reports/manuscript_submission_package_v1/submission_package_manifest.json`、`reports/manuscript_submission_package_v1/supplementary_tables_v1.xlsx` |
 | 终局边界与禁写口径 | `docs/final_claim_boundary_and_discovery_gating_note_v1.md`、`reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv` |
-| 主文稿 | `docs/main_manuscript_results_draft_v1.md`、`docs/main_manuscript_integrated_narrative_draft_v1.md`、`docs/manuscript_figure_blueprint_v1.md` |
+| 主图与 Extended Data 重跑 | `scripts/manuscript/build_all_main_figures.py`、`scripts/manuscript/build_all_extended_data_figures.py`、`configs/manuscript/main_figures_v2.json`、`configs/manuscript/extended_data_figures_v1.json` |
 | HCC model-side adjudication | `reports/stage2_gears_backbone_sweep/final_adjudication.md`、`reports/stage2_real_hcc_smoke/model_comparison.tsv` |
 | truth-side bridge 与 axis | `docs/stage2_truth_bridge_integrated_result_v1.md`、`docs/stage2_axis_annotation_result_v1.md`、`reports/stage2_axis_analysis/axis_validation_summary.md` |
 | Dixit/K562 supplementary | `docs/stage2_dixit_admission_contract_v1.md`、`docs/stage2_dixit_supplementary_evidence_tier_v1.md`、`docs/stage2_dixit_supplementary_startup_packet_v1.md` |
-| 执行入口 | `scripts/`、`configs/stage2/`、`src/wtbench/` |
+| 执行入口 | `scripts/`、`configs/`、`src/wtbench/` |
 
 如果要直接进代码，优先看：
 
