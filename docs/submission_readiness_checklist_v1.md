@@ -1,5 +1,29 @@
 # 投稿前 readiness checklist v1
 
+## 当前执行口径更新（2026-04-17）
+
+正式投稿前不再只剩作者信息与格式项。当前新增一组 Genome Biology reviewer-risk reduction 任务，执行入口为：
+
+- `docs/genome_biology_submission_execution_plan_v1.md`
+- `MANUSCRIPT_REPRODUCIBILITY.md`（待 A11 完成）
+
+当前第一版投稿前必须完成 A1-A12：
+
+1. 重写 Title / Abstract / Cover letter framing。
+2. prior-art literature scan。
+3. prior-art positioning 段落。
+4. GEARS sweep budget sanity check。
+5. GEARS sweep / stop-rule 透明化写作。
+6. metric orthogonality quick check。
+7. metric diagnostic 最终呈现。
+8. shared_mean_baseline leakage / artifact appendix。
+9. dixit legacy 澄清。
+10. Discussion Limitations 四条重写。
+11. `MANUSCRIPT_REPRODUCIBILITY.md` 单入口整理。
+12. Top-10 anticipated reviewer questions。
+
+B13-B16 强烈建议在第一版投稿前完成；C17 仅在 5-7 天内能干净闭环时执行，否则留到 revision。
+
 ## 已完成
 
 ### 手稿文本
@@ -91,7 +115,7 @@
 
 如果目标是先形成可审阅版本，当前材料已经足够内部审阅。
 
-如果目标是正式投稿，还需要最后做：
+如果目标是正式投稿，除作者信息、references、declarations、公开归档 DOI 和 Additional files 编号之外，还需要按 `docs/genome_biology_submission_execution_plan_v1.md` 完成 A 类任务，并尽量完成 B 类任务。
 
 1. 选择目标期刊格式。
 2. 按期刊模板整理 references 和 declarations。
