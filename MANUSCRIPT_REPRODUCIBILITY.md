@@ -18,6 +18,8 @@
 - Cover letter 草案：`docs/genome_biology_cover_letter_v1.md`
 - Genome Biology 投稿清单：`docs/genome_biology_submission_checklist_v1.md`
 - 投稿执行计划：`docs/genome_biology_submission_execution_plan_v1.md`
+- 投稿收口 handoff：`docs/genome_biology_finalization_handoff_v1.md`
+- references 整理队列：`docs/genome_biology_reference_formatting_queue_v1.md`
 - 投稿 readiness checklist：`docs/submission_readiness_checklist_v1.md`
 - Availability 与复现说明：`docs/main_manuscript_availability_and_reproducibility_v1.md`
 
