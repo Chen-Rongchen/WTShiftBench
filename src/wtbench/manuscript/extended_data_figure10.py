@@ -312,7 +312,6 @@ def render_combined(root: Path, sources: dict[str, pd.DataFrame], panel_outputs:
     axes = [fig.add_subplot(gs[i, j]) for i in range(4) for j in range(2)]
     for ax, panel_id in zip(axes, list("abcdefgh")):
         render_panel_by_id(panel_id)(ax, sources[panel_id])
-    fig.suptitle(FIGURE_TITLE, x=0.02, y=0.995, ha="left", fontsize=10, fontweight="bold")
     png_path = out / "edfig10.png"
     pdf_path = out / "edfig10.pdf"
     output_paths = save_figure(fig, png_path, pdf_path)

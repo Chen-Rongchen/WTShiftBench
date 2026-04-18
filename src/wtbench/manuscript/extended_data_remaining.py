@@ -75,7 +75,6 @@ def _assemble(
     axes = [fig.add_subplot(gs[i, j]) for i in range(4) for j in range(2)]
     for ax, panel_id in zip(axes, list("abcdefgh")):
         renders[panel_id](ax, sources[panel_id])
-    fig.suptitle(figure_title, x=0.02, y=0.995, ha="left", fontsize=10, fontweight="bold")
     output_paths = save_figure(fig, out_dir / f"{figure_key}.png", out_dir / f"{figure_key}.pdf")
     write_figure_manifest(
         manifest_path=out_dir / f"{figure_key}_panel_manifest.json",
