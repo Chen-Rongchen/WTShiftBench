@@ -36,6 +36,10 @@
 - `docs/top10_anticipated_reviewer_questions_v1.md`
 - `docs/community_adjudication_kit_v1.md`
 - `docs/genome_biology_figure_text_audit_v1.md`
+- `docs/genome_biology_final_wording_audit_v1.md`
+- `docs/genome_biology_word_count_v1.md`
+- `docs/genome_biology_preprint_role_audit_v1.md`
+- `docs/genome_biology_submission_final_index_v1.md`
 
 ## 下一步只做投稿格式收口
 
@@ -69,7 +73,8 @@
 
 - 正式 References 草案已插入 `docs/genome_biology_manuscript_draft_v1.md`。
 - 正文 Background 已加入编号引用。
-- 仍需作者确认 preprint 引用是否保留。
+- 两个非必要 preprint 已从正式 References 草案中移除。
+- 仍需作者确认是否恢复任何 preprint 引用。
 
 必查 reference 组：
 

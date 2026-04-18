@@ -22,6 +22,10 @@
 - references 整理队列：`docs/genome_biology_reference_formatting_queue_v1.md`
 - Additional files 说明：`docs/genome_biology_additional_files_v1.md`
 - 图文一致性审计：`docs/genome_biology_figure_text_audit_v1.md`
+- Final wording audit：`docs/genome_biology_final_wording_audit_v1.md`
+- Word count：`docs/genome_biology_word_count_v1.md`
+- Preprint role audit：`docs/genome_biology_preprint_role_audit_v1.md`
+- Submission final index：`docs/genome_biology_submission_final_index_v1.md`
 - 投稿 readiness checklist：`docs/submission_readiness_checklist_v1.md`
 - Availability 与复现说明：`docs/main_manuscript_availability_and_reproducibility_v1.md`
 
