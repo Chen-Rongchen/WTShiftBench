@@ -1,13 +1,13 @@
 # 投稿前 readiness checklist v1
 
-## 当前执行口径更新（2026-04-17）
+## 当前执行口径更新（2026-04-18）
 
-正式投稿前不再只剩作者信息与格式项。当前新增一组 Genome Biology reviewer-risk reduction 任务，执行入口为：
+Genome Biology reviewer-risk reduction 已完成并版本化。执行入口为：
 
 - `docs/genome_biology_submission_execution_plan_v1.md`
-- `MANUSCRIPT_REPRODUCIBILITY.md`（待 A11 完成）
+- `MANUSCRIPT_REPRODUCIBILITY.md`
 
-当前第一版投稿前必须完成 A1-A12：
+已完成 A1-A12：
 
 1. 重写 Title / Abstract / Cover letter framing。
 2. prior-art literature scan。
@@ -22,7 +22,18 @@
 11. `MANUSCRIPT_REPRODUCIBILITY.md` 单入口整理。
 12. Top-10 anticipated reviewer questions。
 
-B13-B16 强烈建议在第一版投稿前完成；C17 仅在 5-7 天内能干净闭环时执行，否则留到 revision。
+已完成 B13-B16：
+
+13. 三指标 permutation null。
+14. `barcode_gem_group` design-proxy residualization check。
+15. relaxed cutoff sensitivity for shared anchors。
+16. Frangieh / Replogle revision-round admission readiness。
+
+已完成 C17：
+
+17. 最小 community adjudication kit。
+
+当前不再需要新增分析来支撑第一版投稿。剩余事项是作者元信息、references、declarations、公开归档 DOI、Additional files 编号与最终人工确认。
 
 ## 已完成
 
@@ -32,6 +43,7 @@ B13-B16 强烈建议在第一版投稿前完成；C17 仅在 5-7 天内能干净
 - Genome Biology 正文草案：`docs/genome_biology_manuscript_draft_v1.md`
 - Genome Biology cover letter：`docs/genome_biology_cover_letter_v1.md`
 - Genome Biology 投稿清单：`docs/genome_biology_submission_checklist_v1.md`
+- Genome Biology 投稿收口 handoff：`docs/genome_biology_finalization_handoff_v1.md`
 - Genome Biology figure legends：`docs/genome_biology_figure_legends_v1.md`
 - Baseline 与投稿策略说明：`docs/baseline_model_interpretation_and_journal_strategy_v1.md`
 - 主文 figure legends：`docs/main_manuscript_figure_legends_v1.md`
@@ -115,7 +127,7 @@ B13-B16 强烈建议在第一版投稿前完成；C17 仅在 5-7 天内能干净
 
 如果目标是先形成可审阅版本，当前材料已经足够内部审阅。
 
-如果目标是正式投稿，除作者信息、references、declarations、公开归档 DOI 和 Additional files 编号之外，还需要按 `docs/genome_biology_submission_execution_plan_v1.md` 完成 A 类任务，并尽量完成 B 类任务。
+如果目标是正式投稿，当前主要剩余项是作者信息、references、declarations、公开归档 DOI 和 Additional files 编号。
 
 1. 选择目标期刊格式。
 2. 按期刊模板整理 references 和 declarations。
