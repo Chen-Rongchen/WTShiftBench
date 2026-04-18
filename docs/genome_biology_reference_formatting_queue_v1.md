@@ -4,7 +4,11 @@
 
 更新日期：2026-04-18。
 
-本文档是正式 references 列表的整理队列，不是最终排版版本。最终提交前需要按 Genome Biology / BMC reference style 统一格式、排序和编号。
+本文档是 references 列表的整理队列。当前正式草案已写入：
+
+- `docs/genome_biology_manuscript_draft_v1.md`
+
+最终提交前仍需由作者确认 preprint 引用是否保留，并按 Genome Biology / BMC reference style 做最后格式核对。
 
 ## 必须引用
 
@@ -90,3 +94,4 @@
 
 - 是否正式引用 PerturbArena / systematic comparison preprint。
 - Genome Biology 要求的 reference style 是否使用 article title。
+- 作者最终确认 Dempster Project Achilles preprint 是否保留为 DepMap 背景引用。

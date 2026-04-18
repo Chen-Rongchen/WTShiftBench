@@ -35,6 +35,7 @@
 - `docs/submission_readiness_checklist_v1.md`
 - `docs/top10_anticipated_reviewer_questions_v1.md`
 - `docs/community_adjudication_kit_v1.md`
+- `docs/genome_biology_figure_text_audit_v1.md`
 
 ## 下一步只做投稿格式收口
 
@@ -63,6 +64,12 @@
 当前整理队列：
 
 - `docs/genome_biology_reference_formatting_queue_v1.md`
+
+当前状态：
+
+- 正式 References 草案已插入 `docs/genome_biology_manuscript_draft_v1.md`。
+- 正文 Background 已加入编号引用。
+- 仍需作者确认 preprint 引用是否保留。
 
 必查 reference 组：
 
@@ -107,6 +114,12 @@
 - `submission_package_file_manifest.tsv`：约 112 KB。
 
 三者均低于 BMC Additional file 20 MB 单文件上限。
+
+当前状态：
+
+- Submission package 已在 Nature Methods 风格重绘后重建。
+- Additional files staging 目录已刷新。
+- `docs/genome_biology_additional_files_v1.md` 已更新最新 SHA256。
 
 ### 4. 图文一致性
 
