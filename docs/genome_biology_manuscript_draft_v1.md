@@ -200,3 +200,7 @@ The datasets and source data supporting the conclusions of this article are incl
 ### Authors' information
 
 Not applicable.
+
+## References
+
+[Formal reference list to be inserted before submission. Current formatting queue: `docs/genome_biology_reference_formatting_queue_v1.md`.]
