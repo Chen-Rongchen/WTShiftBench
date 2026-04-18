@@ -80,18 +80,33 @@
 
 ### 3. Additional files
 
+当前说明文档：
+
+- `docs/genome_biology_additional_files_v1.md`
+
+当前上传 staging 目录：
+
+- `reports/genome_biology_submission_upload_v1/`
+
 建议编号：
 
 - Additional file 1：`reports/manuscript_submission_package_v1/supplementary_tables_v1.xlsx`
 - Additional file 2：`reports/manuscript_submission_package_v1/submission_package_manifest.json`
-- Additional file 3：主图与 Extended Data source-data manifest index。
-- Additional file 4：code and configuration manifest。
+- Additional file 3：`reports/manuscript_submission_package_v1/submission_package_file_manifest.tsv`
 
 需要最终确认：
 
-- Genome Biology 是否接受当前 `xlsx + json + manifest` 组合。
+- Genome Biology 是否接受当前 `xlsx + json + tsv` 组合。
 - Additional files 文件名是否需要重命名为期刊系统要求的 `Additional file 1` 样式。
 - source data 是否作为 figure source data 单独上传，还是作为 Additional file 汇总上传。
+
+当前文件大小：
+
+- `supplementary_tables_v1.xlsx`：约 103 KB。
+- `submission_package_manifest.json`：约 215 KB。
+- `submission_package_file_manifest.tsv`：约 112 KB。
+
+三者均低于 BMC Additional file 20 MB 单文件上限。
 
 ### 4. 图文一致性
 
