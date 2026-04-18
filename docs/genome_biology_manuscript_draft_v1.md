@@ -46,9 +46,9 @@ Single-cell perturbation profiling has made it possible to observe how genetic p
 
 This distinction is important for functional genomics. A perturbation response can contain a shared backbone that is recurrent across cell contexts, context-specific deviations, and biological axes that are only partially aligned with dependency. A model may recover one component while missing another. Conversely, a simple baseline can perform strongly when the evaluated object is dominated by shared structure. Without defining the phenotype-relevant truth object before model comparison, model leaderboards risk conflating expression reconstruction, endpoint alignment and biological interpretation.
 
-Prior perturbation-prediction benchmarks have already shown that expression-level recovery by deep learning or foundation-model entrants can be matched or exceeded by simple baselines [8-12]. These studies provide essential context for interpreting model-side results, but they ask a different question from the one addressed here. They evaluate transcriptome prediction accuracy, whereas the present benchmark first freezes a phenotype-relevant truth object by aligning perturbation transcriptomic shifts to cancer dependency endpoints. Model recovery is then decomposed into backbone recovery, shift-excess identification and structure-versus-context separation. The resulting claim is not that complex models fail in a unidirectional sense, but that current entrants occupy different parts of a frozen fitness-bridge architecture.
+Prior perturbation-prediction benchmarks have already shown that expression-level recovery by deep learning or foundation-model entrants can be matched or exceeded by simple baselines [8-11]. These studies provide essential context for interpreting model-side results, but they ask a different question from the one addressed here. They evaluate transcriptome prediction accuracy, whereas the present benchmark first freezes a phenotype-relevant truth object by aligning perturbation transcriptomic shifts to cancer dependency endpoints. Model recovery is then decomposed into backbone recovery, shift-excess identification and structure-versus-context separation. The resulting claim is not that complex models fail in a unidirectional sense, but that current entrants occupy different parts of a frozen fitness-bridge architecture.
 
-Cancer dependency resources provide an opportunity to make this evaluation more direct. CRISPR DepMap endpoints capture gene-level fitness effects across cancer cell lines and can be aligned with perturbation transcriptomic shifts [13,14]. RNAi DEMETER2 endpoints provide a related but noisier cross-platform sensitivity readout [15]. However, these endpoints are not interchangeable, and bridge claims require governance: target anchors, covariate boundaries and external recurrence must be separated from causal or mechanistic overinterpretation.
+Cancer dependency resources provide an opportunity to make this evaluation more direct. CRISPR DepMap endpoints capture gene-level fitness effects across cancer cell lines and can be aligned with perturbation transcriptomic shifts [12]. RNAi DEMETER2 endpoints provide a related but noisier cross-platform sensitivity readout [13]. However, these endpoints are not interchangeable, and bridge claims require governance: target anchors, covariate boundaries and external recurrence must be separated from causal or mechanistic overinterpretation.
 
 We therefore built a truth-anchored benchmark for perturbation transcriptome models in cancer functional genomics. In HCC38 and HCC1143, real perturbation transcriptomic shifts were aligned to CRISPR DepMap dependency endpoints to define a frozen truth bridge before model evaluation. The bridge was decomposed into target-level grids, shared anchors, axis-level interpretation, covariate boundaries and endpoint hierarchy. Model predictions from GEARS, single-cell foundation-model entrants and linear controls were then evaluated against this frozen architecture. The study asks a narrow but important question: which components of a phenotype-relevant perturbation architecture are recovered by current transcriptome models, and which claims remain unsupported?
 
@@ -171,7 +171,7 @@ pixi run --environment core python scripts/manuscript/build_submission_package.p
 
 ### Use of artificial intelligence tools
 
-[To be confirmed by the authors before submission.] Drafting and project organization were assisted by a large language model. All analyses, data interpretation, generated files and final manuscript wording require author review and approval. No large language model is listed as an author.
+Draft organization, wording review and editorial checklist preparation were assisted by a large language model. All analyses, generated files, data interpretation and final manuscript wording were reviewed and remain the responsibility of the authors. No large language model is listed as an author.
 
 ## Abbreviations
 
@@ -235,13 +235,9 @@ Not applicable.
 
 11. Kedzierska KZ, Crawford L, Amini AP, Lu AX, et al. Zero-shot evaluation reveals limitations of single-cell foundation models. Genome Biol. 2025;26:101. doi:10.1186/s13059-025-03574-x.
 
-12. Li L, You Y, Fu Y, Liao W, et al. A systematic comparison of single-cell perturbation response prediction models. bioRxiv. 2024. Preprint.
+12. Meyers RM, Bryan JG, McFarland JM, Weir BA, Sizemore AE, Xu H, et al. Computational correction of copy-number effect improves specificity of CRISPR-Cas9 essentiality screens in cancer cells. Nat Genet. 2017;49:1779-1784. doi:10.1038/ng.3984.
 
-13. Meyers RM, Bryan JG, McFarland JM, Weir BA, Sizemore AE, Xu H, et al. Computational correction of copy-number effect improves specificity of CRISPR-Cas9 essentiality screens in cancer cells. Nat Genet. 2017;49:1779-1784. doi:10.1038/ng.3984.
-
-14. Dempster JM, Rossen J, Kazachkova M, Pan J, Kugener G, Root DE, et al. Extracting biological insights from the Project Achilles genome-scale CRISPR screens in cancer cell lines. bioRxiv. 2019. doi:10.1101/720243. Preprint.
-
-15. McFarland JM, Ho ZV, Kugener G, Dempster JM, Montgomery PG, Bryan JG, et al. Improved estimation of cancer dependencies from large-scale RNAi screens using model-based normalization and data integration. Nat Commun. 2018;9:4610. doi:10.1038/s41467-018-06916-5.
+13. McFarland JM, Ho ZV, Kugener G, Dempster JM, Montgomery PG, Bryan JG, et al. Improved estimation of cancer dependencies from large-scale RNAi screens using model-based normalization and data integration. Nat Commun. 2018;9:4610. doi:10.1038/s41467-018-06916-5.
 
 ## Additional files
 
