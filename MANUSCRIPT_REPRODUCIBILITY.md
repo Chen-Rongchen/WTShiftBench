@@ -20,6 +20,7 @@
 - 投稿执行计划：`docs/genome_biology_submission_execution_plan_v1.md`
 - 投稿收口 handoff：`docs/genome_biology_finalization_handoff_v1.md`
 - references 整理队列：`docs/genome_biology_reference_formatting_queue_v1.md`
+- Additional files 说明：`docs/genome_biology_additional_files_v1.md`
 - 投稿 readiness checklist：`docs/submission_readiness_checklist_v1.md`
 - Availability 与复现说明：`docs/main_manuscript_availability_and_reproducibility_v1.md`
 
@@ -64,6 +65,7 @@ Extended Data 目录：`reports/manuscript_extended_data_v1/`
 - Submission package summary：`reports/manuscript_submission_package_v1/submission_package_summary.tsv`
 - Submission package file manifest：`reports/manuscript_submission_package_v1/submission_package_file_manifest.tsv`
 - Submission package manifest：`reports/manuscript_submission_package_v1/submission_package_manifest.json`
+- Genome Biology upload staging directory：`reports/genome_biology_submission_upload_v1/`
 
 ## 投稿前补充诊断
 

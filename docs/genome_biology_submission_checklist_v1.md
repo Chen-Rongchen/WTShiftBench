@@ -13,6 +13,7 @@
 - Cover letter 草案：`docs/genome_biology_cover_letter_v1.md`
 - 投稿清单：`docs/genome_biology_submission_checklist_v1.md`
 - 投稿收口 handoff：`docs/genome_biology_finalization_handoff_v1.md`
+- Additional files 说明：`docs/genome_biology_additional_files_v1.md`
 - 主图 legends：`docs/main_manuscript_figure_legends_v1.md`
 - Extended Data legends：`docs/extended_data_figure_legends_v1.md`
 - 投稿包总清单：`reports/manuscript_submission_package_v1/submission_package_manifest.json`
@@ -20,7 +21,7 @@
 
 ## Genome Biology 格式核对
 
-- 100 词以内非结构化 Abstract：已满足。
+- 250 词以内结构化 Abstract，包含 Background / Results / Conclusions：已满足。
 - Keywords 3-10 个：已满足。
 - Background / Results / Discussion / Conclusions / Methods：已满足。
 - Methods 放在 Conclusions 后：已满足。
@@ -28,7 +29,7 @@
 - Declarations：已加入全部必需小标题。
 - Figures 按文中首次出现顺序编号：当前满足。
 - 多 panel 图作为单个 composite file：当前整图 PDF/PNG 已生成。
-- Additional files 需要按 Additional file 1 等命名：待最终导出。
+- Additional files 需要按 Additional file 1 等命名，并在正文单独列出文件名、格式、标题和说明：正文已加入草案，待最终导出。
 
 ## 投稿前必须补齐
 
@@ -78,8 +79,11 @@
 
 - Additional file 1：Supplementary Tables workbook，`supplementary_tables_v1.xlsx`。
 - Additional file 2：Submission package manifest，`submission_package_manifest.json`。
-- Additional file 3：Main and Extended Data figure source-data manifest index，来自总 manifest。
-- Additional file 4：Code and configuration manifest，来自总 manifest 中 `figure_code` 和 `configs` 类别。
+- Additional file 3：Submission package file manifest，`submission_package_file_manifest.tsv`。
+
+当前三个文件均小于 BMC Additional file 20 MB 单文件上限。若期刊系统要求 source data 逐图上传，则以 `reports/manuscript_figures_v2/` 与 `reports/manuscript_extended_data_v1/` 中的 panel-level source data / manifest 为准。
+
+上传 staging 目录：`reports/genome_biology_submission_upload_v1/`。
 
 ## 当前不需要重做的部分
 
