@@ -13,8 +13,8 @@
 - 上传文件名：`Additional_file_1_supplementary_tables_v1.xlsx`
 - 原始文件：`reports/manuscript_submission_package_v1/supplementary_tables_v1.xlsx`
 - 格式：`.xlsx`
-- 大小：约 103 KB
-- SHA256：`a5d647a0d015915b48b194abffcae84dd56604f57f5c6dd721d84e4ba529bdc7`
+- 大小：约 104 KB
+- SHA256：`a4b5e9c7ca6cedf0224755d52e4ee13dcaff333e2e948364617658fa494de1e4`
 - 标题：Supplementary Tables workbook
 - 说明：This workbook contains the frozen supplementary tables supporting the main and Extended Data figures.
 
@@ -23,8 +23,8 @@
 - 上传文件名：`Additional_file_2_submission_package_manifest.json`
 - 原始文件：`reports/manuscript_submission_package_v1/submission_package_manifest.json`
 - 格式：`.json`
-- 大小：约 215 KB
-- SHA256：`3ec60a8a66efb4dd1b223a2804e70c5ac096f67f48a62a3a306fad48541d8c77`
+- 大小：约 213 KB
+- SHA256：`e7aa2f4b42ab41103145b992a705a1ea8e1bdc40f7477759612f6134befcb6b8`
 - 标题：Submission package manifest
 - 说明：This manifest records the submission package file inventory and hashes.
 
@@ -34,7 +34,7 @@
 - 原始文件：`reports/manuscript_submission_package_v1/submission_package_file_manifest.tsv`
 - 格式：`.tsv`
 - 大小：约 112 KB
-- SHA256：`9c8f3df99205f8ef6befd2ba62f98409553ed8377322235af089e75bc58aba96`
+- SHA256：`17920b8bbc44df50bd340de79e7251282cc2bad71abface78102ea6d1e7f127e`
 - 标题：Submission package file manifest
 - 说明：This table provides a reviewer-readable index of the files included in the submission package.
 

@@ -42,13 +42,13 @@ Perturb-seq; functional genomics; cancer dependency; DepMap; single-cell transcr
 
 ## Background
 
-Single-cell perturbation profiling has made it possible to observe how genetic perturbations reshape transcriptomic state at scale. These datasets have supported graph neural networks, single-cell foundation models and embedding-based decoders that aim to predict expression responses to perturbation. Such models are often assessed by expression-level reconstruction accuracy or local agreement with observed transcriptional shifts. These metrics are necessary but incomplete: they do not directly test whether a model recovers transcriptomic structures that are relevant to downstream cellular phenotypes such as fitness, dependency or liability.
+Single-cell perturbation profiling has made it possible to observe how genetic perturbations reshape transcriptomic state at scale [1-3]. These datasets have supported graph neural networks, single-cell foundation models and embedding-based decoders that aim to predict expression responses to perturbation [4-7]. Such models are often assessed by expression-level reconstruction accuracy or local agreement with observed transcriptional shifts. These metrics are necessary but incomplete: they do not directly test whether a model recovers transcriptomic structures that are relevant to downstream cellular phenotypes such as fitness, dependency or liability.
 
 This distinction is important for functional genomics. A perturbation response can contain a shared backbone that is recurrent across cell contexts, context-specific deviations, and biological axes that are only partially aligned with dependency. A model may recover one component while missing another. Conversely, a simple baseline can perform strongly when the evaluated object is dominated by shared structure. Without defining the phenotype-relevant truth object before model comparison, model leaderboards risk conflating expression reconstruction, endpoint alignment and biological interpretation.
 
-Prior perturbation-prediction benchmarks have already shown that expression-level recovery by deep learning or foundation-model entrants can be matched or exceeded by simple baselines. These studies provide essential context for interpreting model-side results, but they ask a different question from the one addressed here. They evaluate transcriptome prediction accuracy, whereas the present benchmark first freezes a phenotype-relevant truth object by aligning perturbation transcriptomic shifts to cancer dependency endpoints. Model recovery is then decomposed into backbone recovery, shift-excess identification and structure-versus-context separation. The resulting claim is not that complex models fail in a unidirectional sense, but that current entrants occupy different parts of a frozen fitness-bridge architecture.
+Prior perturbation-prediction benchmarks have already shown that expression-level recovery by deep learning or foundation-model entrants can be matched or exceeded by simple baselines [8-12]. These studies provide essential context for interpreting model-side results, but they ask a different question from the one addressed here. They evaluate transcriptome prediction accuracy, whereas the present benchmark first freezes a phenotype-relevant truth object by aligning perturbation transcriptomic shifts to cancer dependency endpoints. Model recovery is then decomposed into backbone recovery, shift-excess identification and structure-versus-context separation. The resulting claim is not that complex models fail in a unidirectional sense, but that current entrants occupy different parts of a frozen fitness-bridge architecture.
 
-Cancer dependency resources provide an opportunity to make this evaluation more direct. CRISPR DepMap endpoints capture gene-level fitness effects across cancer cell lines and can be aligned with perturbation transcriptomic shifts. RNAi DEMETER2 endpoints provide a related but noisier cross-platform sensitivity readout. However, these endpoints are not interchangeable, and bridge claims require governance: target anchors, covariate boundaries and external recurrence must be separated from causal or mechanistic overinterpretation.
+Cancer dependency resources provide an opportunity to make this evaluation more direct. CRISPR DepMap endpoints capture gene-level fitness effects across cancer cell lines and can be aligned with perturbation transcriptomic shifts [13,14]. RNAi DEMETER2 endpoints provide a related but noisier cross-platform sensitivity readout [15]. However, these endpoints are not interchangeable, and bridge claims require governance: target anchors, covariate boundaries and external recurrence must be separated from causal or mechanistic overinterpretation.
 
 We therefore built a truth-anchored benchmark for perturbation transcriptome models in cancer functional genomics. In HCC38 and HCC1143, real perturbation transcriptomic shifts were aligned to CRISPR DepMap dependency endpoints to define a frozen truth bridge before model evaluation. The bridge was decomposed into target-level grids, shared anchors, axis-level interpretation, covariate boundaries and endpoint hierarchy. Model predictions from GEARS, single-cell foundation-model entrants and linear controls were then evaluated against this frozen architecture. The study asks a narrow but important question: which components of a phenotype-relevant perturbation architecture are recovered by current transcriptome models, and which claims remain unsupported?
 
@@ -213,7 +213,35 @@ Not applicable.
 
 ## References
 
-[Formal reference list to be inserted before submission. Current formatting queue: `docs/genome_biology_reference_formatting_queue_v1.md`.]
+1. Dixit A, Parnas O, Li B, Chen J, Fulco CP, Jerby-Arnon L, et al. Perturb-Seq: dissecting molecular circuits with scalable single-cell RNA profiling of pooled genetic screens. Cell. 2016;167:1853-1866.e17. doi:10.1016/j.cell.2016.11.038.
+
+2. Replogle JM, Saunders RA, Pogson AN, Hussmann JA, Lenail A, Guna A, et al. Mapping information-rich genotype-phenotype landscapes with genome-scale Perturb-seq. Cell. 2022;185:2559-2575.e28. doi:10.1016/j.cell.2022.05.013.
+
+3. Peidli S, Green TD, Shen C, Gross T, Min J, Buettner F, et al. scPerturb: harmonized single-cell perturbation data. Nat Methods. 2024;21:531-540. doi:10.1038/s41592-023-02144-y.
+
+4. Roohani Y, Huang K, Leskovec J. Predicting transcriptional outcomes of novel multigene perturbations with GEARS. Nat Biotechnol. 2024;42:927-935. doi:10.1038/s41587-023-01905-6.
+
+5. Cui H, Wang C, Maan H, Pang K, Luo F, Duan N, et al. scGPT: toward building a foundation model for single-cell multi-omics using generative AI. Nat Methods. 2024;21:1470-1480. doi:10.1038/s41592-024-02201-0.
+
+6. Theodoris CV, Xiao L, Chopra A, Chaffin MD, Al Sayed ZR, Hill MC, et al. Transfer learning enables predictions in network biology. Nature. 2023;618:616-624. doi:10.1038/s41586-023-06139-9.
+
+7. Hao M, Gong J, Zeng X, Liu C, Guo Y, Cheng X, et al. Large-scale foundation model on single-cell transcriptomics. Nat Methods. 2024;21:1481-1491. doi:10.1038/s41592-024-02305-7.
+
+8. Ahlmann-Eltze C, Huber W, Anders S. Deep-learning-based gene perturbation effect prediction does not yet outperform simple linear baselines. Nat Methods. 2025;22:1657-1661. doi:10.1038/s41592-025-02772-6.
+
+9. Wong DR. Simple controls exceed best deep learning algorithms and reveal foundation model effectiveness for predicting genetic perturbations. Bioinformatics. 2025;41:btaf317. doi:10.1093/bioinformatics/btaf317.
+
+10. Wei Z, Wang Y, Gao Y, Wang S, et al. Benchmarking algorithms for generalizable single-cell perturbation response prediction. Nat Methods. 2026;23:451-464. doi:10.1038/s41592-025-02980-0.
+
+11. Kedzierska KZ, Crawford L, Amini AP, Lu AX, et al. Zero-shot evaluation reveals limitations of single-cell foundation models. Genome Biol. 2025;26:101. doi:10.1186/s13059-025-03574-x.
+
+12. Li L, You Y, Fu Y, Liao W, et al. A systematic comparison of single-cell perturbation response prediction models. bioRxiv. 2024. Preprint.
+
+13. Meyers RM, Bryan JG, McFarland JM, Weir BA, Sizemore AE, Xu H, et al. Computational correction of copy-number effect improves specificity of CRISPR-Cas9 essentiality screens in cancer cells. Nat Genet. 2017;49:1779-1784. doi:10.1038/ng.3984.
+
+14. Dempster JM, Rossen J, Kazachkova M, Pan J, Kugener G, Root DE, et al. Extracting biological insights from the Project Achilles genome-scale CRISPR screens in cancer cell lines. bioRxiv. 2019. doi:10.1101/720243. Preprint.
+
+15. McFarland JM, Ho ZV, Kugener G, Dempster JM, Montgomery PG, Bryan JG, et al. Improved estimation of cancer dependencies from large-scale RNAi screens using model-based normalization and data integration. Nat Commun. 2018;9:4610. doi:10.1038/s41467-018-06916-5.
 
 ## Additional files
 
