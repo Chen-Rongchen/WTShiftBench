@@ -4,17 +4,23 @@ import matplotlib.pyplot as plt
 
 
 COLORS = {
-    "baseline": "#222222",
-    "gears": "#2F6B9A",
-    "gears_sweep": "#77A7C8",
-    "foundation": "#8AA6A3",
-    "linear": "#A7A7A7",
-    "null": "#D8D8D8",
-    "primary_qualified": "#2E7D52",
-    "supporting": "#B59B2B",
-    "boundary": "#B65A5A",
-    "grid": "#E6E6E6",
-    "text": "#222222",
+    "baseline": "#2B2B2B",
+    "gears": "#4C78A8",
+    "gears_sweep": "#8DB7D6",
+    "foundation": "#72A39A",
+    "linear": "#A6A6A6",
+    "null": "#D9D9D9",
+    "primary_qualified": "#4B8A5A",
+    "supporting": "#B8A64A",
+    "boundary": "#C65A4A",
+    "grid": "#EDEDED",
+    "text": "#1F1F1F",
+    "point": "#8F8F8F",
+    "point_light": "#C9C9C9",
+    "accent_red": "#D95F4B",
+    "accent_blue": "#5DA5DA",
+    "accent_orange": "#E6A05A",
+    "accent_purple": "#9C89C9",
 }
 
 
@@ -23,7 +29,7 @@ def apply_manuscript_style() -> None:
         {
             "font.family": "DejaVu Sans",
             "font.size": 7,
-            "axes.titlesize": 8,
+            "axes.titlesize": 7.5,
             "axes.labelsize": 7,
             "xtick.labelsize": 6,
             "ytick.labelsize": 6,
@@ -31,6 +37,23 @@ def apply_manuscript_style() -> None:
             "axes.linewidth": 0.6,
             "xtick.major.width": 0.6,
             "ytick.major.width": 0.6,
+            "xtick.major.size": 2.2,
+            "ytick.major.size": 2.2,
+            "axes.edgecolor": "#4A4A4A",
+            "axes.labelcolor": COLORS["text"],
+            "xtick.color": "#4A4A4A",
+            "ytick.color": "#4A4A4A",
+            "text.color": COLORS["text"],
+            "axes.facecolor": "white",
+            "figure.facecolor": "white",
+            "axes.titleweight": "normal",
+            "axes.titlepad": 3,
+            "legend.frameon": False,
+            "legend.handlelength": 1.2,
+            "legend.handletextpad": 0.4,
+            "patch.linewidth": 0.5,
+            "lines.linewidth": 0.9,
+            "lines.markersize": 3.0,
             "pdf.fonttype": 42,
             "ps.fonttype": 42,
             "savefig.dpi": 300,
@@ -41,15 +64,18 @@ def apply_manuscript_style() -> None:
 def clean_axes(ax: plt.Axes) -> None:
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
+    ax.spines["left"].set_linewidth(0.6)
+    ax.spines["bottom"].set_linewidth(0.6)
+    ax.tick_params(axis="both", which="major", length=2.2, width=0.6, pad=1.5)
 
 
-def add_panel_label(ax: plt.Axes, label: str, x: float = -0.12, y: float = 1.06) -> None:
+def add_panel_label(ax: plt.Axes, label: str, x: float = -0.10, y: float = 1.04) -> None:
     ax.text(
         x,
         y,
         label,
         transform=ax.transAxes,
-        fontsize=10,
+        fontsize=8.5,
         fontweight="bold",
         va="bottom",
         ha="left",
@@ -90,4 +116,3 @@ def short_model_label(model_id: str) -> str:
         "gears_hcc_formal_v1_e40_lr1e-03_wd1e-06": "GEARS\nsweep E",
     }
     return labels.get(model_id, model_id.replace("_hcc_formal_v1", "").replace("_", "\n"))
-
