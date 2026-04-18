@@ -12,6 +12,7 @@
 - Genome Biology 正文草案：`docs/genome_biology_manuscript_draft_v1.md`
 - Cover letter 草案：`docs/genome_biology_cover_letter_v1.md`
 - 投稿清单：`docs/genome_biology_submission_checklist_v1.md`
+- 投稿收口 handoff：`docs/genome_biology_finalization_handoff_v1.md`
 - 主图 legends：`docs/main_manuscript_figure_legends_v1.md`
 - Extended Data legends：`docs/extended_data_figure_legends_v1.md`
 - 投稿包总清单：`reports/manuscript_submission_package_v1/submission_package_manifest.json`
@@ -45,7 +46,9 @@
 
 执行入口：`docs/genome_biology_submission_execution_plan_v1.md`。
 
-正式投稿前必须完成：
+状态：已完成并提交为 `174c809 Prepare Genome Biology submission readiness docs`。
+
+已完成：
 
 1. Title / Abstract / Cover letter 重新定位为 framework/resource/adjudication。
 2. 2024-2026 prior-art literature scan。
@@ -60,16 +63,16 @@
 11. 顶层 `MANUSCRIPT_REPRODUCIBILITY.md`。
 12. 内部 Top-10 reviewer questions 文档。
 
-强烈建议完成：
+已完成：
 
 13. 三指标 permutation null。
 14. `barcode_gem_group` design-proxy residualization check。
 15. relaxed cutoff sensitivity for shared anchors。
 16. Frangieh / Replogle revision-round admission contract confirmation。
 
-有余力再做：
+已完成：
 
-17. 最小 community adjudication kit；若 5-7 天内不能干净闭环，留到 revision。
+17. 最小 community adjudication kit。
 
 ## 建议 Additional files
 
