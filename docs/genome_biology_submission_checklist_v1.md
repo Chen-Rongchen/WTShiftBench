@@ -14,6 +14,7 @@
 - 投稿清单：`docs/genome_biology_submission_checklist_v1.md`
 - 投稿收口 handoff：`docs/genome_biology_finalization_handoff_v1.md`
 - Additional files 说明：`docs/genome_biology_additional_files_v1.md`
+- 图文一致性审计：`docs/genome_biology_figure_text_audit_v1.md`
 - 主图 legends：`docs/main_manuscript_figure_legends_v1.md`
 - Extended Data legends：`docs/extended_data_figure_legends_v1.md`
 - 投稿包总清单：`reports/manuscript_submission_package_v1/submission_package_manifest.json`
@@ -40,8 +41,8 @@
 5. Acknowledgements。
 6. Public repository 链接、数据 accession、代码 archive DOI。
 7. 是否保留 Methods 中的 AI use statement，以及具体措辞。
-8. References 正式列表。
-9. Additional files 的最终命名和文件说明。
+8. References 正式列表：草案已插入正文，仍需作者确认 preprint 是否保留。
+9. Additional files 的最终命名和文件说明：已完成 staging 和 hash 说明，仍需按投稿系统最终上传方式确认。
 
 ## 投稿前 reviewer-risk reduction 必做
 

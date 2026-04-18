@@ -21,6 +21,7 @@
 - 投稿收口 handoff：`docs/genome_biology_finalization_handoff_v1.md`
 - references 整理队列：`docs/genome_biology_reference_formatting_queue_v1.md`
 - Additional files 说明：`docs/genome_biology_additional_files_v1.md`
+- 图文一致性审计：`docs/genome_biology_figure_text_audit_v1.md`
 - 投稿 readiness checklist：`docs/submission_readiness_checklist_v1.md`
 - Availability 与复现说明：`docs/main_manuscript_availability_and_reproducibility_v1.md`
 
