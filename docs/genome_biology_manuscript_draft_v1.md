@@ -24,7 +24,17 @@ A truth-anchored framework and resource for evaluating transcriptomic perturbati
 
 ## Abstract
 
-Perturbation transcriptome models are usually evaluated by expression reconstruction, but this does not establish recovery of phenotype-relevant biology. We built a truth-anchored framework and resource that aligns perturbation transcriptomic shifts with cancer dependency endpoints before model comparison. In HCC38 and HCC1143, the benchmark retained a structured CRISPR fitness bridge with qualified target anchors and partial axis-level interpretation. Architecture-aware adjudication decomposed recovery into backbone recovery, shift-excess identification and structure-versus-context separation, revealing a backbone-vs-separation trade-off rather than a single leaderboard result. K562 temporal and RNAi analyses supported bounded external and endpoint sensitivity. This resource provides a reproducible framework for extending phenotype-aligned perturbation-model adjudication to future contexts, endpoints and entrants while preserving explicit claim boundaries.
+### Background
+
+Perturbation transcriptome models are usually evaluated by expression reconstruction, but this does not establish recovery of phenotype-relevant biology.
+
+### Results
+
+We built a truth-anchored framework and resource that aligns perturbation transcriptomic shifts with cancer dependency endpoints before model comparison. In HCC38 and HCC1143, the benchmark retained a structured CRISPR fitness bridge with qualified target anchors and partial axis-level interpretation. Architecture-aware adjudication decomposed recovery into backbone recovery, shift-excess identification and structure-versus-context separation, revealing a backbone-vs-separation trade-off rather than a single leaderboard result. K562 temporal and RNAi analyses supported bounded external and endpoint sensitivity.
+
+### Conclusions
+
+This resource provides a reproducible framework for extending phenotype-aligned perturbation-model adjudication to future contexts, endpoints and entrants while preserving explicit claim boundaries.
 
 ## Keywords
 
@@ -179,7 +189,7 @@ Not applicable.
 
 ### Availability of data and materials
 
-The datasets and source data supporting the conclusions of this article are included in the manuscript package and additional files. Main figure source data are provided under `reports/manuscript_figures_v2/`; Extended Data source data are provided under `reports/manuscript_extended_data_v1/`; supplementary table indexes and file hashes are provided under `reports/manuscript_supplementary_tables_v1/`; and the submission package manifest is provided under `reports/manuscript_submission_package_v1/`. Public repository links, accession identifiers and archived DOI links will be inserted before submission.
+The datasets supporting the conclusions of this article are included within the article and its additional files. Main figure source data are provided under `reports/manuscript_figures_v2/`; Extended Data source data are provided under `reports/manuscript_extended_data_v1/`; supplementary table indexes and file hashes are provided under `reports/manuscript_supplementary_tables_v1/`; and the submission package manifest is provided under `reports/manuscript_submission_package_v1/`. Public repository links, accession identifiers and archived DOI links will be inserted before submission.
 
 ### Competing interests
 
@@ -204,3 +214,11 @@ Not applicable.
 ## References
 
 [Formal reference list to be inserted before submission. Current formatting queue: `docs/genome_biology_reference_formatting_queue_v1.md`.]
+
+## Additional files
+
+Additional file 1: `.xlsx`; Supplementary Tables workbook. This workbook contains the frozen supplementary tables supporting the main and Extended Data figures.
+
+Additional file 2: `.json`; Submission package manifest. This manifest records the submission package file inventory and hashes.
+
+Additional file 3: `.tsv`; Submission package file manifest. This table provides a reviewer-readable index of the files included in the submission package.
