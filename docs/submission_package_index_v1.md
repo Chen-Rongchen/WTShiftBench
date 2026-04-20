@@ -1,15 +1,28 @@
 # 投稿包索引 v1
 
+## 当前单入口工作区
+
+当前投稿前整理入口为：
+
+- `manuscript/README.md`
+- `manuscript/file_index.txt`
+
+该目录已把正文草案、cover letter、figure legends、主图、Extended Data、panel a-h、小图 source data / manifest、Additional files、source-data manifests 与 audit 文档集中到一个工作区。`docs/` 与 `reports/` 保留为生成来源、审计来源和可重跑来源。
+
 ## 当前主入口
 
 主文正文草案：
 
+- `manuscript/text/manuscript_draft_v1.md`
 - `docs/main_manuscript_submission_draft_v1.md`
 - `docs/main_manuscript_submission_draft_v2.md`
 - `docs/genome_biology_manuscript_draft_v1.md`
 
 Genome Biology 专用投稿材料：
 
+- `manuscript/text/cover_letter_v1.md`
+- `manuscript/text/figure_legends_v1.md`
+- `manuscript/text/availability_and_reproducibility_v1.md`
 - `docs/genome_biology_cover_letter_v1.md`
 - `docs/genome_biology_submission_checklist_v1.md`
 - `docs/genome_biology_figure_legends_v1.md`
@@ -55,6 +68,11 @@ Data / Code availability 与复现说明：
 
 投稿包总清单与补充表 workbook：
 
+- `manuscript/source_data_manifests/submission_package_file_manifest.tsv`
+- `manuscript/source_data_manifests/submission_package_manifest.json`
+- `manuscript/additional_files/Additional_file_1_supplementary_tables_v1.xlsx`
+- `manuscript/additional_files/Additional_file_2_submission_package_manifest.json`
+- `manuscript/additional_files/Additional_file_3_submission_package_file_manifest.tsv`
 - `configs/manuscript/submission_package_v1.json`
 - `reports/manuscript_submission_package_v1/submission_package_file_manifest.tsv`
 - `reports/manuscript_submission_package_v1/submission_package_summary.tsv`
@@ -82,6 +100,7 @@ Extended Data 执行计划：
 
 主图目录：
 
+- 投稿前整理目录：`manuscript/figures/`
 - Fig. 1：`reports/manuscript_figures_v2/fig1_truth_object/`
 - Fig. 2：`reports/manuscript_figures_v2/fig2_anchor_tiering/`
 - Fig. 3：`reports/manuscript_figures_v2/fig3_model_tradeoff/`
@@ -99,6 +118,8 @@ Extended Data 执行计划：
 - 1 个整图 PDF。
 - 1 个整图 source-data TSV。
 - 1 个整图 panel-manifest JSON。
+
+`manuscript/figures/Figure_*/panels/` 中另存了每张主图的 panel a-h，包含 PNG、PDF、source data TSV 和 manifest JSON，便于逐 panel 审稿或上传系统要求拆分时使用。
 
 ## 重跑入口
 
