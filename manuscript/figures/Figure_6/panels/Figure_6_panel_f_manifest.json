@@ -1,0 +1,71 @@
+{
+  "claim_boundary": "Final claims are limitation-bounded: CRISPR is primary, RNAi is sensitivity, K562 is supplementary, discovery is gated.",
+  "generated_at_utc": "2026-04-18T14:52:29.094417+00:00",
+  "git": {
+    "commit": "a36af44e93a89ace31da398ffc018e268aa0d3c3",
+    "status_short": "M src/wtbench/manuscript/figure1_truth_object_v2.py\n M src/wtbench/manuscript/figure2_anchor_tiering.py\n M src/wtbench/manuscript/figure3_model_tradeoff.py\n M src/wtbench/manuscript/figure4_sweep_controls.py\n M src/wtbench/manuscript/figure5_axis_interpretation.py\n M src/wtbench/manuscript/figure6_boundary.py\n M src/wtbench/manuscript/manuscript_style.py\n?? docs/nature_methods_2025_figure_style_note_v1.md"
+  },
+  "inputs": [
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/summary.tsv",
+      "sha256": "0ff680f9d41bc0e3dfdf77db3a3639ac6bd719648fe09da4c94102d722667f7b"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/barcode_gem_group_mapping_note.md",
+      "sha256": "118331d823ed6e1adcf50cf1fcff84b80335789b16c69c65be5964676cfdb6aa"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/anchor_claim_tiering.tsv",
+      "sha256": "098b9ce811ed99575dd84c1c4c4c7a057884365425d65a320e270dfb36b43ef9"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_bridge_summary.tsv",
+      "sha256": "89c33d689c4b507f477e8d6d972f0aa4513d536e2fc616acc99f67e6d09c9de0"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_panel_calls.tsv",
+      "sha256": "a294d7c139fcb0f2cc5c48dc9143d348c1a1d80c8d3d3a572cf79c304102b11e"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_structure_summary.tsv",
+      "sha256": "8ad805e3250e54bb5bbc62d4140f28ead55d505b5ff4a45a181b720bf7fc8a6f"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/dixit_axis_compression_gse90063_13d/dixit_evidence_tier_summary.tsv",
+      "sha256": "28086e998fa432f369c16f411ca68930915ad0b1d95461c522e6e713f3cf2ea1"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/dixit_axis_compression_gse90063_7d/dixit_evidence_tier_summary.tsv",
+      "sha256": "456ec91dcbd5970623b82f943eda2e22e33962e57f4f3de74477aa0ebb53aaac"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/hcc38_hcc1143_rnai_endpoint_consistency/endpoint_consistency_summary.tsv",
+      "sha256": "612bd16ed8d12dd9089190b52848bde215507d93355b1cb40b9abccf231925c4"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/k562_rnai_endpoint_consistency/endpoint_consistency_summary.tsv",
+      "sha256": "be9fcfdb0f7fcdc298f98c5d4c1a82bdb7758e5367092e85975461ea2e336700"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv",
+      "sha256": "62327f0fc81574920d1e6e33b78abd8fc63b2ec05fa8cd9a6d1f88f84f7ec6a5"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "reports/manuscript_figures_v2/fig6_boundary/panels/figure6_panelf.png",
+      "sha256": "fe0410aebc0c76a6882858e2aa0836161fe0dc9e3c70be6c3b841ca3af28a238"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig6_boundary/panels/figure6_panelf.pdf",
+      "sha256": "d71bfef7fd725666569ed5f202f99413b104d487e3f50e5ec15a5b7112268a84"
+    }
+  ],
+  "panel_id": "figure6f",
+  "panel_title": "K562 A0/A1/B tiering",
+  "script": "scripts/manuscript/build_figure6_boundary.py",
+  "source_data": {
+    "path": "reports/manuscript_figures_v2/fig6_boundary/panels/figure6_panelf_source_data.tsv",
+    "sha256": "2bd1ddb0708812aca124ecf282b8be0f76786f468adfa0ab67dfab11bc91ae48"
+  }
+}

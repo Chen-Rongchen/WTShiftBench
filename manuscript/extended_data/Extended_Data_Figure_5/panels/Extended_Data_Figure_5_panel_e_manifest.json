@@ -1,0 +1,39 @@
+{
+  "claim_boundary": "GEARS sweep is finite-budget control and training is not rerun during figure generation.",
+  "generated_at_utc": "2026-04-18T14:55:09.660077+00:00",
+  "git": {
+    "commit": "a36af44e93a89ace31da398ffc018e268aa0d3c3",
+    "status_short": "M src/wtbench/manuscript/extended_data_figure10.py\n M src/wtbench/manuscript/extended_data_figure3.py\n M src/wtbench/manuscript/extended_data_figure6.py\n M src/wtbench/manuscript/extended_data_figure9.py\n M src/wtbench/manuscript/extended_data_remaining.py\n M src/wtbench/manuscript/figure1_truth_object_v2.py\n M src/wtbench/manuscript/figure2_anchor_tiering.py\n M src/wtbench/manuscript/figure3_model_tradeoff.py\n M src/wtbench/manuscript/figure4_sweep_controls.py\n M src/wtbench/manuscript/figure5_axis_interpretation.py\n M src/wtbench/manuscript/figure6_boundary.py\n M src/wtbench/manuscript/manuscript_style.py\n?? docs/nature_methods_2025_figure_style_note_v1.md"
+  },
+  "inputs": [
+    {
+      "path": "reports/stage2_gears_backbone_sweep/candidate_manifest.tsv",
+      "sha256": "e30c87b3f6bfcee5e09821642bcdd950a1669c2760fd4cf4b26071357f5b9b84"
+    },
+    {
+      "path": "reports/stage2_gears_backbone_sweep/batch_run/batch_status.tsv",
+      "sha256": "203f01a6ff0fe579f7c0730a7038a3b78aa5c0e0458549d38fc15bb067c6e19d"
+    },
+    {
+      "path": "reports/stage2_real_hcc_smoke/model_comparison.tsv",
+      "sha256": "790934f722a63cc2754978335f081c913d78ca83eea0f39d85d2f7915bfe3a9d"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig5_gears_sweep/panels/edfig5_panele.png",
+      "sha256": "58cbef350a4da042ff09646e90d70111b85fadc5738eb243ceccd742c7662269"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig5_gears_sweep/panels/edfig5_panele.pdf",
+      "sha256": "9af946420b3a63054e8bb4e0336564216877b4624d4ec9f370964849d0822ca5"
+    }
+  ],
+  "panel_id": "EDFIG5e",
+  "panel_title": "Trade-off",
+  "script": "scripts/manuscript/build_extended_data_figure5.py",
+  "source_data": {
+    "path": "reports/manuscript_extended_data_v1/edfig5_gears_sweep/panels/edfig5_panele_source_data.tsv",
+    "sha256": "e738b9c48a3ee3bdbf121dc643ca368244f2e425b26a095075698821a287c634"
+  }
+}

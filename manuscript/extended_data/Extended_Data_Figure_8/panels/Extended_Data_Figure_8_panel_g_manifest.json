@@ -1,0 +1,43 @@
+{
+  "claim_boundary": "CRISPR is the primary bridge endpoint; RNAi is a weaker sensitivity endpoint.",
+  "generated_at_utc": "2026-04-18T14:55:28.873757+00:00",
+  "git": {
+    "commit": "a36af44e93a89ace31da398ffc018e268aa0d3c3",
+    "status_short": "M src/wtbench/manuscript/extended_data_figure10.py\n M src/wtbench/manuscript/extended_data_figure3.py\n M src/wtbench/manuscript/extended_data_figure6.py\n M src/wtbench/manuscript/extended_data_figure9.py\n M src/wtbench/manuscript/extended_data_remaining.py\n M src/wtbench/manuscript/figure1_truth_object_v2.py\n M src/wtbench/manuscript/figure2_anchor_tiering.py\n M src/wtbench/manuscript/figure3_model_tradeoff.py\n M src/wtbench/manuscript/figure4_sweep_controls.py\n M src/wtbench/manuscript/figure5_axis_interpretation.py\n M src/wtbench/manuscript/figure6_boundary.py\n M src/wtbench/manuscript/manuscript_style.py\n?? docs/nature_methods_2025_figure_style_note_v1.md"
+  },
+  "inputs": [
+    {
+      "path": "reports/stage2_truth_driven_bridge/hcc38_hcc1143_rnai_endpoint_consistency/endpoint_consistency_summary.tsv",
+      "sha256": "612bd16ed8d12dd9089190b52848bde215507d93355b1cb40b9abccf231925c4"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/k562_rnai_endpoint_consistency/endpoint_consistency_summary.tsv",
+      "sha256": "be9fcfdb0f7fcdc298f98c5d4c1a82bdb7758e5367092e85975461ea2e336700"
+    },
+    {
+      "path": "reports/stage2_rnai_demeter2_conversion/summary.tsv",
+      "sha256": "859f3aae3e34b4a8cffa08eb1f3e1070087bbc4cc64803c2535e8cf505ff99c4"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv",
+      "sha256": "62327f0fc81574920d1e6e33b78abd8fc63b2ec05fa8cd9a6d1f88f84f7ec6a5"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig8_endpoint_hierarchy/panels/edfig8_panelg.png",
+      "sha256": "bd9486ca19d8fa679a1799e996c7cfbe7591fdb3007c83156fa1ed176f8241ac"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig8_endpoint_hierarchy/panels/edfig8_panelg.pdf",
+      "sha256": "44065465c127fcc4cfc7e12f081c7d18cd8164b6162fb30c2756e3a6cdc91c20"
+    }
+  ],
+  "panel_id": "EDFIG8g",
+  "panel_title": "Gap",
+  "script": "scripts/manuscript/build_extended_data_figure8.py",
+  "source_data": {
+    "path": "reports/manuscript_extended_data_v1/edfig8_endpoint_hierarchy/panels/edfig8_panelg_source_data.tsv",
+    "sha256": "7a098d823686f8df5602d503e6c8c226bef46e83ebdd49497eeae47e85818906"
+  }
+}

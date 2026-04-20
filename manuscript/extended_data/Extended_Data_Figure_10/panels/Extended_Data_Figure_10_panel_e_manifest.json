@@ -1,0 +1,79 @@
+{
+  "claim_boundary": "This Extended Data figure indexes reproducibility artifacts and claim-governance boundaries; it adds no new biological claim.",
+  "generated_at_utc": "2026-04-18T14:55:42.427957+00:00",
+  "git": {
+    "commit": "a36af44e93a89ace31da398ffc018e268aa0d3c3",
+    "status_short": "M src/wtbench/manuscript/extended_data_figure10.py\n M src/wtbench/manuscript/extended_data_figure3.py\n M src/wtbench/manuscript/extended_data_figure6.py\n M src/wtbench/manuscript/extended_data_figure9.py\n M src/wtbench/manuscript/extended_data_remaining.py\n M src/wtbench/manuscript/figure1_truth_object_v2.py\n M src/wtbench/manuscript/figure2_anchor_tiering.py\n M src/wtbench/manuscript/figure3_model_tradeoff.py\n M src/wtbench/manuscript/figure4_sweep_controls.py\n M src/wtbench/manuscript/figure5_axis_interpretation.py\n M src/wtbench/manuscript/figure6_boundary.py\n M src/wtbench/manuscript/manuscript_style.py\n?? docs/nature_methods_2025_figure_style_note_v1.md"
+  },
+  "inputs": [
+    {
+      "path": "configs/manuscript/main_figures_v2.json",
+      "sha256": "ac765461125b5732d9abcca5cd96d6fe59662671efbcbe8bcb8b22f25ec21a3d"
+    },
+    {
+      "path": "configs/manuscript/supplementary_tables_v1.json",
+      "sha256": "24bb13f57777da95c66fa9ef2577f130a4d8570b15af6f72a38f6c35a278c3a6"
+    },
+    {
+      "path": "configs/manuscript/extended_data_figures_v1.json",
+      "sha256": "4c5e084ff02b33d937325a5c8b45e9cb2b8b8c00b1567c2561925908c87ae669"
+    },
+    {
+      "path": "reports/manuscript_supplementary_tables_v1/supplementary_table_summary.tsv",
+      "sha256": "6fb8f0687f4009261e94ef395f1cd8c7899db6fd53df42ca8da1e722b64bdd39"
+    },
+    {
+      "path": "reports/manuscript_supplementary_tables_v1/supplementary_table_file_index.tsv",
+      "sha256": "82ab12fae93b4ff5e0c6278e3c81e3406876a8a2678049f4858f9c87b9d9ba2d"
+    },
+    {
+      "path": "reports/manuscript_supplementary_tables_v1/supplementary_table_manifest.json",
+      "sha256": "1643ab9c0827d2de760705f239798a08abc37912dd1f1818296f054817633f57"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv",
+      "sha256": "62327f0fc81574920d1e6e33b78abd8fc63b2ec05fa8cd9a6d1f88f84f7ec6a5"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig1_truth_object/figure1_panel_manifest.json",
+      "sha256": "47be8ba0af33ddb4cbece2ade4d7831131e9f15e0fdbbba361b49a4ce7b3d4f3"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig2_anchor_tiering/figure2_panel_manifest.json",
+      "sha256": "acf167a30716e1a8a551fb9b9e5e1d0e592d9408393026464185c2ba468ede2c"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig3_model_tradeoff/figure3_panel_manifest.json",
+      "sha256": "508da14cbdad540a17e1da4d04e3997f1af1ffaba4be87dd7abd15b510eb0e0b"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig4_sweep_controls/figure4_panel_manifest.json",
+      "sha256": "f754ddc2f75282d8719853c8d845d6a2c5751a7bca23c21ba6372ae475a87bd7"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig5_axis_interpretation/figure5_panel_manifest.json",
+      "sha256": "a6af7482f6a4a00fc9bef282e9b65a6355fc332002411668086fe7b5b9d771fe"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig6_boundary/figure6_panel_manifest.json",
+      "sha256": "d0a751bb9809ebcc8d85478b148facc28769f9e98d45431484e4fd0c5edbab2c"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig10_reproducibility/panels/edfig10_panele.png",
+      "sha256": "afdc2d5c03d0fda028975c64f91fbc40bd0f732c6e01ea001a3d83c8696bc6bf"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig10_reproducibility/panels/edfig10_panele.pdf",
+      "sha256": "751cd0a3f187e11e6e3adb5527f509f28021c2b57c03940f4164b4c2d69f19ec"
+    }
+  ],
+  "panel_id": "ED10e",
+  "panel_title": "Allowed wording",
+  "script": "scripts/manuscript/build_extended_data_figure10.py",
+  "source_data": {
+    "path": "reports/manuscript_extended_data_v1/edfig10_reproducibility/panels/edfig10_panele_source_data.tsv",
+    "sha256": "102a13353975a89e5cfbbb9b137dc1532ba6b4f9ff9625b9e0eec220d3486141"
+  }
+}

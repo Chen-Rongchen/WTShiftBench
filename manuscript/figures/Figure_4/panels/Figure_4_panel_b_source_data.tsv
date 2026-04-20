@@ -1,0 +1,15 @@
+model_id	model_label	plot_color	backbone_recovery_score	structure_vs_context_separation_score
+shared_mean_baseline	"shared mean
+baseline"	#2B2B2B	0.8066666666666666	0.3526145586462627
+gears_hcc_formal_v1	"GEARS
+formal"	#4C78A8	0.6599999999999999	0.4284153807253488
+gears_hcc_formal_v1_e30_lr2e-03_wd1e-06	"GEARS
+sweep A"	#8DB7D6	0.6433333333333333	0.4485243810877402
+gears_hcc_formal_v1_e20_lr1e-03_wd1e-06	"GEARS
+sweep B"	#8DB7D6	0.6266666666666667	0.4591562997768912
+gears_hcc_formal_v1_e30_lr1e-03_wd1e-05	"GEARS
+sweep C"	#8DB7D6	0.6133333333333333	0.427833160600328
+gears_hcc_formal_v1_e30_lr5e-04_wd1e-06	"GEARS
+sweep D"	#8DB7D6	0.53	0.4458928896160027
+gears_hcc_formal_v1_e40_lr1e-03_wd1e-06	"GEARS
+sweep E"	#8DB7D6	0.4933333333333333	0.4684217036980002

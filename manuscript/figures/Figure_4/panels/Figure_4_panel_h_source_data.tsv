@@ -1,0 +1,5 @@
+claim	status
+finite sweep does not close backbone gap	supported
+linear controls have complete target coverage	supported
+hidden recipe winner	not_supported
+coverage explains backbone gap	not_supported

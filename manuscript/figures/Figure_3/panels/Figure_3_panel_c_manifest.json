@@ -1,0 +1,39 @@
+{
+  "claim_boundary": "GEARS is an architecture trade-off diagnosis; shared_mean_baseline is the backbone primary reference; do not claim model recovery proved.",
+  "generated_at_utc": "2026-04-18T14:52:00.137320+00:00",
+  "git": {
+    "commit": "a36af44e93a89ace31da398ffc018e268aa0d3c3",
+    "status_short": "M src/wtbench/manuscript/figure1_truth_object_v2.py\n M src/wtbench/manuscript/figure2_anchor_tiering.py\n M src/wtbench/manuscript/figure3_model_tradeoff.py\n M src/wtbench/manuscript/figure4_sweep_controls.py\n M src/wtbench/manuscript/figure5_axis_interpretation.py\n M src/wtbench/manuscript/figure6_boundary.py\n M src/wtbench/manuscript/manuscript_style.py\n?? docs/nature_methods_2025_figure_style_note_v1.md"
+  },
+  "inputs": [
+    {
+      "path": "reports/stage2_real_hcc_smoke/model_comparison.tsv",
+      "sha256": "790934f722a63cc2754978335f081c913d78ca83eea0f39d85d2f7915bfe3a9d"
+    },
+    {
+      "path": "reports/stage2_real_hcc_smoke/backbone_diagnosis.tsv",
+      "sha256": "7c12133290484ac22a5e16269c7e1cfd19fbc9d6a40469fe0d8f9c06a938910a"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv",
+      "sha256": "62327f0fc81574920d1e6e33b78abd8fc63b2ec05fa8cd9a6d1f88f84f7ec6a5"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "reports/manuscript_figures_v2/fig3_model_tradeoff/panels/figure3_panelc.png",
+      "sha256": "dbdb4f9661249549288cb81a59e3df3cd3daca3231024625872e4069a25256cd"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig3_model_tradeoff/panels/figure3_panelc.pdf",
+      "sha256": "27919064f27eb39620f34c7744e37761b2fef6e9706971bd8ffea2924ee30087"
+    }
+  ],
+  "panel_id": "figure3c",
+  "panel_title": "Baseline versus GEARS headline comparison",
+  "script": "scripts/manuscript/build_figure3_model_tradeoff.py",
+  "source_data": {
+    "path": "reports/manuscript_figures_v2/fig3_model_tradeoff/panels/figure3_panelc_source_data.tsv",
+    "sha256": "54166ba99153bf13f5b019d84f7152eec2f0757d55b556aca07a048033b5b81e"
+  }
+}

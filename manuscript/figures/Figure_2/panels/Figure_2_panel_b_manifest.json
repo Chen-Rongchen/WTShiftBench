@@ -1,0 +1,51 @@
+{
+  "claim_boundary": "Shared anchors support the bridge but must not be described as fully deconfounded primary objects.",
+  "generated_at_utc": "2026-04-18T14:51:51.258405+00:00",
+  "git": {
+    "commit": "a36af44e93a89ace31da398ffc018e268aa0d3c3",
+    "status_short": "M src/wtbench/manuscript/figure1_truth_object_v2.py\n M src/wtbench/manuscript/figure2_anchor_tiering.py\n M src/wtbench/manuscript/figure3_model_tradeoff.py\n M src/wtbench/manuscript/figure4_sweep_controls.py\n M src/wtbench/manuscript/figure5_axis_interpretation.py\n M src/wtbench/manuscript/figure6_boundary.py\n M src/wtbench/manuscript/manuscript_style.py\n?? docs/nature_methods_2025_figure_style_note_v1.md"
+  },
+  "inputs": [
+    {
+      "path": "reports/stage2_truth_bridge_decomposition/shared_canonical_anchor_summary.tsv",
+      "sha256": "b90db78fa900093a4daca4e42e413e6bc67118c557b7201954bbf58a181d2600"
+    },
+    {
+      "path": "reports/stage2_truth_bridge_decomposition/target_level_joint_grid.tsv",
+      "sha256": "38c3c4f8b13828ad32a0fe615cf372b2f68bbf30164e07ed80d84faa4812c1a7"
+    },
+    {
+      "path": "reports/stage2_truth_bridge_decomposition/shared_anchor_stability.tsv",
+      "sha256": "05b95f5a4d67384b5ba1b08d88177760d26721138fd7a4e09124d6316edb7b1c"
+    },
+    {
+      "path": "reports/stage2_truth_bridge_decomposition/anchor_cutoff_sensitivity.tsv",
+      "sha256": "80f0392d645faf6d38bc324aef0dcc989a0d5a6c759bf328f412ee92fcc8c378"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/anchor_claim_tiering.tsv",
+      "sha256": "098b9ce811ed99575dd84c1c4c4c7a057884365425d65a320e270dfb36b43ef9"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv",
+      "sha256": "62327f0fc81574920d1e6e33b78abd8fc63b2ec05fa8cd9a6d1f88f84f7ec6a5"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "reports/manuscript_figures_v2/fig2_anchor_tiering/panels/figure2_panelb.png",
+      "sha256": "4dd3499c74146259f0c98143dc47469ab35c104427101692690463142c2e02c1"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig2_anchor_tiering/panels/figure2_panelb.pdf",
+      "sha256": "4f19f4bd08715b641ac5f20f5468c619cd2b7be2c73cfbbab0e84b3c17053b5b"
+    }
+  ],
+  "panel_id": "figure2b",
+  "panel_title": "Stable anchor recurrence",
+  "script": "scripts/manuscript/build_figure2_anchor_tiering.py",
+  "source_data": {
+    "path": "reports/manuscript_figures_v2/fig2_anchor_tiering/panels/figure2_panelb_source_data.tsv",
+    "sha256": "b23206948cf761c1d40db0d3c2f5e9aceed547b39457507e2d3b9fd7cdef9d9d"
+  }
+}

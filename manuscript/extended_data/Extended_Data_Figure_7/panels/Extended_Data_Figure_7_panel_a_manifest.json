@@ -1,0 +1,47 @@
+{
+  "claim_boundary": "K562 is supplementary temporal architecture evidence, not a primary co-pillar.",
+  "generated_at_utc": "2026-04-18T14:55:22.491344+00:00",
+  "git": {
+    "commit": "a36af44e93a89ace31da398ffc018e268aa0d3c3",
+    "status_short": "M src/wtbench/manuscript/extended_data_figure10.py\n M src/wtbench/manuscript/extended_data_figure3.py\n M src/wtbench/manuscript/extended_data_figure6.py\n M src/wtbench/manuscript/extended_data_figure9.py\n M src/wtbench/manuscript/extended_data_remaining.py\n M src/wtbench/manuscript/figure1_truth_object_v2.py\n M src/wtbench/manuscript/figure2_anchor_tiering.py\n M src/wtbench/manuscript/figure3_model_tradeoff.py\n M src/wtbench/manuscript/figure4_sweep_controls.py\n M src/wtbench/manuscript/figure5_axis_interpretation.py\n M src/wtbench/manuscript/figure6_boundary.py\n M src/wtbench/manuscript/manuscript_style.py\n?? docs/nature_methods_2025_figure_style_note_v1.md"
+  },
+  "inputs": [
+    {
+      "path": "reports/stage2_truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_bridge_summary.tsv",
+      "sha256": "89c33d689c4b507f477e8d6d972f0aa4513d536e2fc616acc99f67e6d09c9de0"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_structure_summary.tsv",
+      "sha256": "8ad805e3250e54bb5bbc62d4140f28ead55d505b5ff4a45a181b720bf7fc8a6f"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_panel_calls.tsv",
+      "sha256": "a294d7c139fcb0f2cc5c48dc9143d348c1a1d80c8d3d3a572cf79c304102b11e"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/dixit_axis_compression_gse90063_7d/dixit_evidence_tier_summary.tsv",
+      "sha256": "456ec91dcbd5970623b82f943eda2e22e33962e57f4f3de74477aa0ebb53aaac"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/dixit_axis_compression_gse90063_13d/dixit_evidence_tier_summary.tsv",
+      "sha256": "28086e998fa432f369c16f411ca68930915ad0b1d95461c522e6e713f3cf2ea1"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig7_k562_temporal/panels/edfig7_panela.png",
+      "sha256": "18f9e72665a2093b8e7b71b1453a2cb547da42a189e416695fb088d91ac095f1"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig7_k562_temporal/panels/edfig7_panela.pdf",
+      "sha256": "18634cf0cfdabb60e5914075457f4bd8e63687d961c62c97154b560d1a959ffb"
+    }
+  ],
+  "panel_id": "EDFIG7a",
+  "panel_title": "7d bridge",
+  "script": "scripts/manuscript/build_extended_data_figure7.py",
+  "source_data": {
+    "path": "reports/manuscript_extended_data_v1/edfig7_k562_temporal/panels/edfig7_panela_source_data.tsv",
+    "sha256": "faa1c09f868b591c8b71fff7e54d6de6abdbfe60eaec5cf1848486e779072a78"
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "claim_boundary": "The truth-DepMap bridge is retained as a structured truth object, not as fully deconfounded causal proof.",
+  "combined_source_data": {
+    "path": "reports/manuscript_figures_v2/fig1_truth_object/figure1_source_data.tsv",
+    "sha256": "91b4f7ea3b7186f32d9c95f9ae4922de81b75bdc306110d57c1437a2a0349f87"
+  },
+  "figure_id": "figure1",
+  "figure_title": "A truth-first benchmark defines the fitness-relevant transcriptomic bridge object",
+  "generated_at_utc": "2026-04-18T14:51:49.086021+00:00",
+  "git": {
+    "commit": "a36af44e93a89ace31da398ffc018e268aa0d3c3",
+    "status_short": "M src/wtbench/manuscript/figure1_truth_object_v2.py\n M src/wtbench/manuscript/figure2_anchor_tiering.py\n M src/wtbench/manuscript/figure3_model_tradeoff.py\n M src/wtbench/manuscript/figure4_sweep_controls.py\n M src/wtbench/manuscript/figure5_axis_interpretation.py\n M src/wtbench/manuscript/figure6_boundary.py\n M src/wtbench/manuscript/manuscript_style.py\n?? docs/nature_methods_2025_figure_style_note_v1.md"
+  },
+  "inputs": [
+    {
+      "path": "reports/stage2_truth_bridge_decomposition/target_level_joint_grid.tsv",
+      "sha256": "38c3c4f8b13828ad32a0fe615cf372b2f68bbf30164e07ed80d84faa4812c1a7"
+    },
+    {
+      "path": "reports/stage2_truth_bridge_decomposition/target_level_grid_summary.tsv",
+      "sha256": "2b4257a87104e0f26ae32e19fa78bd633b90005288bf69dd463dad5b471c0fe2"
+    },
+    {
+      "path": "reports/stage2_truth_bridge_decomposition/run_summary.json",
+      "sha256": "b53b74cad9dc725bb776dd4d9a0c6dd91358bc96f6426c4f79f2702c1af3e1cd"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/HCC38/correlation_summary.tsv",
+      "sha256": "9f017f8812398533a1a7a84382f1673d6bf5a17931d07e14f97971e878d8b158"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/HCC1143/correlation_summary.tsv",
+      "sha256": "95ecbda82aedd847a29d71f4ba787d377c0561512463615b03b91bae69a3cf87"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv",
+      "sha256": "62327f0fc81574920d1e6e33b78abd8fc63b2ec05fa8cd9a6d1f88f84f7ec6a5"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "reports/manuscript_figures_v2/fig1_truth_object/figure1.png",
+      "sha256": "0549bb994d720d6b27fdcd78823311fe02d1c6eb6b5b0d019048aae924effe32"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig1_truth_object/figure1.pdf",
+      "sha256": "fd268addbf23080faff5a410a604506b2a3a0d57f2c5ca67e00550b955c8edb3"
+    }
+  ],
+  "panel_manifests": [
+    {
+      "path": "reports/manuscript_figures_v2/fig1_truth_object/panels/figure1_panela_manifest.json",
+      "sha256": "9e5ac2a10e2b6726453e28fa220a532fec1dad7ca398ce0c6c8553aafa09e61e"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig1_truth_object/panels/figure1_panelb_manifest.json",
+      "sha256": "b3296c9df4af3a9e22823c0bbb1bea40161feb75248eae48ef0a90f3a6b6aa98"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig1_truth_object/panels/figure1_panelc_manifest.json",
+      "sha256": "bea620a36e5a8b40877a574a98e628e3dff4a85fa0ecb5ed11a5ecbd651865f8"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig1_truth_object/panels/figure1_paneld_manifest.json",
+      "sha256": "0b92580072084ce0c76082d9dac5c6d3ddc006883cf2a1310312117a5505a93d"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig1_truth_object/panels/figure1_panele_manifest.json",
+      "sha256": "c8cbc4fae77a27034b59c072612b7e04e13f406d7fd0177be1c765ffa88a5bc1"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig1_truth_object/panels/figure1_panelf_manifest.json",
+      "sha256": "5f9310a0924e849f84e8833ad5acf0860cc6c39ff0947d43fadc9b5f0d586888"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig1_truth_object/panels/figure1_panelg_manifest.json",
+      "sha256": "b20558b2c23c9f7e39ae245230953974aaa088766f44fc89c84f110b5edd6f85"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig1_truth_object/panels/figure1_panelh_manifest.json",
+      "sha256": "72c37542e2ffda54e0295c48afe0f241c7d562531c3c32046ae677ccd4b2aa77"
+    }
+  ],
+  "script": "scripts/manuscript/build_figure1_truth_object.py"
+}

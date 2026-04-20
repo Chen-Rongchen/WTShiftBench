@@ -1,0 +1,6 @@
+region	shift_band	depmap_band
+Q1_anchor	high	high
+Q2_transcriptomic_excess	high	low
+Q3_dependency_excess	low	high
+Q4_low_information	low	low
+middle	middle_any	middle_any

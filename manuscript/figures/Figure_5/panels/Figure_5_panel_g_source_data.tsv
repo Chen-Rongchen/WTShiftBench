@@ -1,0 +1,15 @@
+axis_id	call_tier	explanatory_call	sharedness_delta	shift_r2_mean	depmap_r2_mean
+RNA processing / transcription	preliminary	preliminary_dependency_heavy_axis	-0.1092413165704069	0.0053510116361707	0.1145923282065776
+ribosomal / translation	preliminary	preliminary_dependency_heavy_axis	-0.0920855769651985	0.0237625515304477	0.1158481284956462
+proteostasis / chaperone	preliminary	preliminary_dependency_heavy_axis	-0.052006257920671	0.0351846655998828	0.0871909235205539
+chromatin remodeling	formal	mixed_or_low_signal_axis	-0.0059371065144651	0.0457102885494596	0.0516473950639248
+NF-κB / MAPK signaling	preliminary	preliminary_mixed_or_low_signal_axis	-0.0059244223131025	0.0023197200472579	0.0082441423603604
+transcription regulation	formal	mixed_or_low_signal_axis	-0.0052572811964264	0.0119799375335992	0.0172372187300257
+growth / proliferation	preliminary	preliminary_mixed_or_low_signal_axis	-0.0019242719964406	0.0019107990652549	0.0038350710616956
+signaling / oncogene	preliminary	preliminary_mixed_or_low_signal_axis	-0.0016506360664933	0.006162566499227	0.0078132025657203
+oxidative stress / mitochondrial	preliminary	preliminary_mixed_or_low_signal_axis	-0.0015670096498856	0.0034392429600541	0.0050062526099397
+JAK-STAT signaling	preliminary	preliminary_mixed_or_low_signal_axis	0.0012678609230077	0.0098463022917731	0.0085784413687654
+cell cycle / replication	preliminary	preliminary_mixed_or_low_signal_axis	0.0039241038786066	0.0135146831560443	0.0095905792774376
+growth factor / proliferation	preliminary	preliminary_mixed_or_low_signal_axis	0.0042145641000379	0.0119657754361656	0.0077512113361277
+synaptic / signaling	preliminary	preliminary_mixed_or_low_signal_axis	0.005047363984224	0.0133845565928478	0.0083371926086237
+oxidative stress / antioxidant	preliminary	preliminary_mixed_or_low_signal_axis	0.0050785229863098	0.0058663755681859	0.0007878525818761

@@ -1,0 +1,70 @@
+model_id	model_label	plot_color	backbone_recovery_score	panel	structure_vs_context_separation_score	shift_excess_identification_score	variant_id	epochs	lr	weight_decay	candidate_rank	config_path	control	tested_component	cell_line	feature_id	target_vocab_coverage	mapped_targets	total_targets	fallback_policy	source_path	claim	status
+shared_mean_baseline	"shared mean
+baseline"	#2B2B2B	0.8066666666666666	a																			
+gears_hcc_formal_v1	"GEARS
+formal"	#4C78A8	0.6599999999999999	a																			
+gears_hcc_formal_v1_e30_lr2e-03_wd1e-06	"GEARS
+sweep A"	#8DB7D6	0.6433333333333333	a																			
+gears_hcc_formal_v1_e20_lr1e-03_wd1e-06	"GEARS
+sweep B"	#8DB7D6	0.6266666666666667	a																			
+gears_hcc_formal_v1_e30_lr1e-03_wd1e-05	"GEARS
+sweep C"	#8DB7D6	0.6133333333333333	a																			
+gears_hcc_formal_v1_e30_lr5e-04_wd1e-06	"GEARS
+sweep D"	#8DB7D6	0.53	a																			
+gears_hcc_formal_v1_e40_lr1e-03_wd1e-06	"GEARS
+sweep E"	#8DB7D6	0.4933333333333333	a																			
+shared_mean_baseline	"shared mean
+baseline"	#2B2B2B	0.8066666666666666	b	0.3526145586462627																		
+gears_hcc_formal_v1	"GEARS
+formal"	#4C78A8	0.6599999999999999	b	0.4284153807253488																		
+gears_hcc_formal_v1_e30_lr2e-03_wd1e-06	"GEARS
+sweep A"	#8DB7D6	0.6433333333333333	b	0.4485243810877402																		
+gears_hcc_formal_v1_e20_lr1e-03_wd1e-06	"GEARS
+sweep B"	#8DB7D6	0.6266666666666667	b	0.4591562997768912																		
+gears_hcc_formal_v1_e30_lr1e-03_wd1e-05	"GEARS
+sweep C"	#8DB7D6	0.6133333333333333	b	0.427833160600328																		
+gears_hcc_formal_v1_e30_lr5e-04_wd1e-06	"GEARS
+sweep D"	#8DB7D6	0.53	b	0.4458928896160027																		
+gears_hcc_formal_v1_e40_lr1e-03_wd1e-06	"GEARS
+sweep E"	#8DB7D6	0.4933333333333333	b	0.4684217036980002																		
+shared_mean_baseline	"shared mean
+baseline"	#2B2B2B	0.8066666666666666	c		0.3333333333333333																	
+gears_hcc_formal_v1	"GEARS
+formal"	#4C78A8	0.6599999999999999	c		0.3333333333333333																	
+gears_hcc_formal_v1_e30_lr2e-03_wd1e-06	"GEARS
+sweep A"	#8DB7D6	0.6433333333333333	c		0.8333333333333333																	
+gears_hcc_formal_v1_e20_lr1e-03_wd1e-06	"GEARS
+sweep B"	#8DB7D6	0.6266666666666667	c		0.5																	
+gears_hcc_formal_v1_e30_lr1e-03_wd1e-05	"GEARS
+sweep C"	#8DB7D6	0.6133333333333333	c		0.9166666666666669																	
+gears_hcc_formal_v1_e30_lr5e-04_wd1e-06	"GEARS
+sweep D"	#8DB7D6	0.53	c		0.9166666666666669																	
+gears_hcc_formal_v1_e40_lr1e-03_wd1e-06	"GEARS
+sweep E"	#8DB7D6	0.4933333333333333	c		0.6666666666666667																	
+gears_hcc_formal_v1_e30_lr1e-03_wd1e-06				d			e30_lr1e-03_wd1e-06	30.0	0.001	1e-06	1.0	configs/stage2/generated/gears_hcc_backbone_sweep_v1/e30_lr1e-03_wd1e-06.json											
+gears_hcc_formal_v1_e30_lr1e-03_wd1e-05				d			e30_lr1e-03_wd1e-05	30.0	0.001	1e-05	2.0	configs/stage2/generated/gears_hcc_backbone_sweep_v1/e30_lr1e-03_wd1e-05.json											
+gears_hcc_formal_v1_e30_lr5e-04_wd1e-06				d			e30_lr5e-04_wd1e-06	30.0	0.0005	1e-06	3.0	configs/stage2/generated/gears_hcc_backbone_sweep_v1/e30_lr5e-04_wd1e-06.json											
+gears_hcc_formal_v1_e30_lr2e-03_wd1e-06				d			e30_lr2e-03_wd1e-06	30.0	0.002	1e-06	4.0	configs/stage2/generated/gears_hcc_backbone_sweep_v1/e30_lr2e-03_wd1e-06.json											
+gears_hcc_formal_v1_e20_lr1e-03_wd1e-06				d			e20_lr1e-03_wd1e-06	20.0	0.001	1e-06	5.0	configs/stage2/generated/gears_hcc_backbone_sweep_v1/e20_lr1e-03_wd1e-06.json											
+gears_hcc_formal_v1_e40_lr1e-03_wd1e-06				d			e40_lr1e-03_wd1e-06	40.0	0.001	1e-06	6.0	configs/stage2/generated/gears_hcc_backbone_sweep_v1/e40_lr1e-03_wd1e-06.json											
+				e									lm_train_lowrank	train-derived low-rank structure									
+				e									lm_G_geneformer_ridge	frozen Geneformer target embedding									
+				e									lm_G_scgpt_ridge	frozen scGPT target embedding									
+shared_mean_baseline	"shared mean
+baseline"	#2B2B2B	0.8066666666666666	f	0.3526145586462627	0.3333333333333333																	
+lm_g_geneformer_ridge_hcc_formal_v1	"LM +
+Geneformer G"	#A6A6A6	0.6266666666666666	f	0.3256623817641846	0.1666666666666666																	
+lm_train_lowrank_hcc_formal_v1	"LM
+low-rank"	#A6A6A6	0.5366666666666666	f	0.2862358413992706	0.5833333333333333																	
+lm_g_scgpt_ridge_hcc_formal_v1	"LM +
+scGPT G"	#A6A6A6	0.4666666666666667	f	0.2589613597519035	0.1666666666666666																	
+lm_g_scgpt_ridge_hcc_formal_v1				g											HCC38	scgpt_gene_embedding_human	1.0	47.0	47.0	fallback_to_train_mean_delta_for_unmapped_heldout	reports/stage2_lm_g_scgpt_ridge_hcc_recipe/HCC38/coverage_audit.json		
+lm_g_scgpt_ridge_hcc_formal_v1				g											HCC1143	scgpt_gene_embedding_human	1.0	47.0	47.0	fallback_to_train_mean_delta_for_unmapped_heldout	reports/stage2_lm_g_scgpt_ridge_hcc_recipe/HCC1143/coverage_audit.json		
+lm_g_geneformer_ridge_hcc_formal_v1				g											HCC38	geneformer_gene_embedding_gc104m	1.0	47.0	47.0	fallback_to_train_mean_delta_for_unmapped_heldout	reports/stage2_lm_g_geneformer_ridge_hcc_recipe/HCC38/coverage_audit.json		
+lm_g_geneformer_ridge_hcc_formal_v1				g											HCC1143	geneformer_gene_embedding_gc104m	1.0	47.0	47.0	fallback_to_train_mean_delta_for_unmapped_heldout	reports/stage2_lm_g_geneformer_ridge_hcc_recipe/HCC1143/coverage_audit.json		
+lm_train_lowrank_hcc_formal_v1				g											HCC38	gene_symbol_chargram_v1	1.0	47.0	47.0	error_if_missing	reports/stage2_lm_train_lowrank_hcc_recipe/HCC38/coverage_audit.json		
+lm_train_lowrank_hcc_formal_v1				g											HCC1143	gene_symbol_chargram_v1	1.0	47.0	47.0	error_if_missing	reports/stage2_lm_train_lowrank_hcc_recipe/HCC1143/coverage_audit.json		
+				h																		finite sweep does not close backbone gap	supported
+				h																		linear controls have complete target coverage	supported
+				h																		hidden recipe winner	not_supported
+				h																		coverage explains backbone gap	not_supported

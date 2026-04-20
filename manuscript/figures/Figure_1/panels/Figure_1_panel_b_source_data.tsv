@@ -1,0 +1,3 @@
+context	truth_metric	endpoint	targets
+HCC38	real_shift_mean_abs	CRISPR DepMap dependency	47
+HCC1143	real_shift_mean_abs	CRISPR DepMap dependency	48

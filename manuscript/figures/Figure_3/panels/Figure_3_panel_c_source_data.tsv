@@ -1,0 +1,5 @@
+model_id	object_role	backbone_recovery_score	shift_excess_identification_score	structure_vs_context_separation_score	cosine_similarity_mean	l2_distance_mean	top20_overlap_mean	model_label	plot_color	model_family	is_formal_gears	is_gears_sweep
+shared_mean_baseline	baseline	0.8066666666666666	0.3333333333333333	0.3526145586462627	0.1579778409413746	0.4882821857207529	0.5696808510638298	"shared mean
+baseline"	#2B2B2B	baseline	False	False
+gears_hcc_formal_v1	entrant	0.6599999999999999	0.3333333333333333	0.4284153807253488	0.1317778083197487	0.6269034496650597	0.5090425531914894	"GEARS
+formal"	#4C78A8	GEARS formal	True	False

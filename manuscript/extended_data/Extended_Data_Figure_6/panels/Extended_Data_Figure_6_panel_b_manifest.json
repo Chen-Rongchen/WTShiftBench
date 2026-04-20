@@ -1,0 +1,51 @@
+{
+  "claim_boundary": "Axis interpretation remains partial; transcription / chromatin is primary but qualified.",
+  "generated_at_utc": "2026-04-18T14:55:14.310862+00:00",
+  "git": {
+    "commit": "a36af44e93a89ace31da398ffc018e268aa0d3c3",
+    "status_short": "M src/wtbench/manuscript/extended_data_figure10.py\n M src/wtbench/manuscript/extended_data_figure3.py\n M src/wtbench/manuscript/extended_data_figure6.py\n M src/wtbench/manuscript/extended_data_figure9.py\n M src/wtbench/manuscript/extended_data_remaining.py\n M src/wtbench/manuscript/figure1_truth_object_v2.py\n M src/wtbench/manuscript/figure2_anchor_tiering.py\n M src/wtbench/manuscript/figure3_model_tradeoff.py\n M src/wtbench/manuscript/figure4_sweep_controls.py\n M src/wtbench/manuscript/figure5_axis_interpretation.py\n M src/wtbench/manuscript/figure6_boundary.py\n M src/wtbench/manuscript/manuscript_style.py\n?? docs/nature_methods_2025_figure_style_note_v1.md"
+  },
+  "inputs": [
+    {
+      "path": "reports/stage2_truth_bridge_decomposition/axis_level_shared_explanatory_summary.tsv",
+      "sha256": "2c969aade5ffc4e9638638ab5c2cb6ffb64ba8037a462ab9b5225b56fe1891c6"
+    },
+    {
+      "path": "reports/stage2_truth_bridge_decomposition/axis_bootstrap_stability.tsv",
+      "sha256": "13d84f21eadb1feb78a678ca5885cfaed3294ef70dc6407d71a1e616a4612a33"
+    },
+    {
+      "path": "reports/stage2_axis_analysis/axis_summary.tsv",
+      "sha256": "d18ba55452310976e152edc71eb18a728f9fb39cc9253403a675f64b56ddeb10"
+    },
+    {
+      "path": "reports/stage2_axis_analysis/axis_validation_summary.tsv",
+      "sha256": "3f5143096d8c0e968e8aca6de41c585cc7668ecfe3c9eb8ceeeb6580165dd1e4"
+    },
+    {
+      "path": "reports/stage2_axis_analysis/axis_enrichment.tsv",
+      "sha256": "96474e95ff248ea7749662f43c5bd0e0d7e99d391e2f74599a2c720a8f0f28ea"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv",
+      "sha256": "62327f0fc81574920d1e6e33b78abd8fc63b2ec05fa8cd9a6d1f88f84f7ec6a5"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig6_axis_annotation/panels/edfig6_panelb.png",
+      "sha256": "4162c2aa50790ac5707621cab09c234213fc171fef3f569d05434b91a8d03d2b"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig6_axis_annotation/panels/edfig6_panelb.pdf",
+      "sha256": "3bad512f3c7e0a8d65eae6bc56362770232c9a701fb5b50c736c997d9af013f6"
+    }
+  ],
+  "panel_id": "ED6b",
+  "panel_title": "Full bootstrap stability",
+  "script": "scripts/manuscript/build_extended_data_figure6.py",
+  "source_data": {
+    "path": "reports/manuscript_extended_data_v1/edfig6_axis_annotation/panels/edfig6_panelb_source_data.tsv",
+    "sha256": "8c4dc4c13e2a20e27eaadba24d717fe894b1d0615144f26a6ad611e7feaa0d4c"
+  }
+}

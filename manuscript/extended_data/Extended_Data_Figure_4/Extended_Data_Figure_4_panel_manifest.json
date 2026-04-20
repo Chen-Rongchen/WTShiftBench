@@ -1,0 +1,69 @@
+{
+  "claim_boundary": "Full model details support a backbone-separation trade-off, not model recovery proof.",
+  "combined_source_data": {
+    "path": "reports/manuscript_extended_data_v1/edfig4_model_detail/edfig4_source_data.tsv",
+    "sha256": "5f1189948431e1ae80dc0bac5938587b192c72fe9c9c20e2569ece6355ead1e1"
+  },
+  "figure_id": "extended_data_figure4",
+  "figure_title": "Full HCC model recovery detail",
+  "generated_at_utc": "2026-04-18T14:55:07.134309+00:00",
+  "git": {
+    "commit": "a36af44e93a89ace31da398ffc018e268aa0d3c3",
+    "status_short": "M src/wtbench/manuscript/extended_data_figure10.py\n M src/wtbench/manuscript/extended_data_figure3.py\n M src/wtbench/manuscript/extended_data_figure6.py\n M src/wtbench/manuscript/extended_data_figure9.py\n M src/wtbench/manuscript/extended_data_remaining.py\n M src/wtbench/manuscript/figure1_truth_object_v2.py\n M src/wtbench/manuscript/figure2_anchor_tiering.py\n M src/wtbench/manuscript/figure3_model_tradeoff.py\n M src/wtbench/manuscript/figure4_sweep_controls.py\n M src/wtbench/manuscript/figure5_axis_interpretation.py\n M src/wtbench/manuscript/figure6_boundary.py\n M src/wtbench/manuscript/manuscript_style.py\n?? docs/nature_methods_2025_figure_style_note_v1.md"
+  },
+  "inputs": [
+    {
+      "path": "reports/stage2_real_hcc_smoke/model_comparison.tsv",
+      "sha256": "790934f722a63cc2754978335f081c913d78ca83eea0f39d85d2f7915bfe3a9d"
+    },
+    {
+      "path": "reports/stage2_real_hcc_smoke/smoke_summary.tsv",
+      "sha256": "2a7cd0c666c9998343892cf5ea3e5f4fbdde1b52da467a9dd9d4d7a06c666f6c"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig4_model_detail/edfig4.png",
+      "sha256": "7dfae2d2e31d538f0fc5f2df76a0c7926d13e14fe89215bab83e07542759f4d1"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig4_model_detail/edfig4.pdf",
+      "sha256": "571b44af6a7ca2758d23a1442f1e571427555a53e7fc2a9e21a0a95b2598af3a"
+    }
+  ],
+  "panel_manifests": [
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig4_model_detail/panels/edfig4_panela_manifest.json",
+      "sha256": "5d942af9d98fa42378dd23e60a76a82cd296a9c67f0a39b51565b597a8357dd8"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig4_model_detail/panels/edfig4_panelb_manifest.json",
+      "sha256": "b387b2a16f359fdc586b9abfc5aaaae0c28365bf170a44f7235c612f405ebb80"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig4_model_detail/panels/edfig4_panelc_manifest.json",
+      "sha256": "364db3d341a68c27d22139f1b6032952e2920505ed8197c88bc3ca800dbb594d"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig4_model_detail/panels/edfig4_paneld_manifest.json",
+      "sha256": "7f427358287c0fe0e14ddb587d2dc530ede84f397078da731c119ea9f130a19a"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig4_model_detail/panels/edfig4_panele_manifest.json",
+      "sha256": "644858999317c7951c5748d366b165ca67386c52e02d4d15a64c335ec3e1dfb4"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig4_model_detail/panels/edfig4_panelf_manifest.json",
+      "sha256": "87f59cd8351e95954b4c820ffc7f77e207340abac8c236379da443527de9a011"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig4_model_detail/panels/edfig4_panelg_manifest.json",
+      "sha256": "95351dcdba7ffc2156fbffd03416b57c1f17827d7aa32864f55189f151ef6398"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig4_model_detail/panels/edfig4_panelh_manifest.json",
+      "sha256": "dcec8df2c4acd7cc2ee8fbf6dfc47764959856c7ece737fce04d4003ca78ae5a"
+    }
+  ],
+  "script": "scripts/manuscript/build_extended_data_figure4.py"
+}

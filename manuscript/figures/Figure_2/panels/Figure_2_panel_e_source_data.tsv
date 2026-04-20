@@ -1,0 +1,6 @@
+target_gene	shared_anchor_stability_fraction	stability_call
+RPS3	0.6666666666666666	cutoff_sensitive_shared_anchor
+RUVBL2	0.6666666666666666	cutoff_sensitive_shared_anchor
+ZBTB17	0.6666666666666666	cutoff_sensitive_shared_anchor
+ENY2	0.3333333333333333	cutoff_sensitive_shared_anchor
+NPM1	0.3333333333333333	cutoff_sensitive_shared_anchor

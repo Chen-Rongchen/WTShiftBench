@@ -1,0 +1,4 @@
+control	tested_component
+lm_train_lowrank	train-derived low-rank structure
+lm_G_geneformer_ridge	frozen Geneformer target embedding
+lm_G_scgpt_ridge	frozen scGPT target embedding

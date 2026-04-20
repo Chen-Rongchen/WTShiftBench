@@ -1,0 +1,39 @@
+{
+  "claim_boundary": "GEARS is an architecture trade-off diagnosis; shared_mean_baseline is the backbone primary reference; do not claim model recovery proved.",
+  "generated_at_utc": "2026-04-18T14:51:59.452876+00:00",
+  "git": {
+    "commit": "a36af44e93a89ace31da398ffc018e268aa0d3c3",
+    "status_short": "M src/wtbench/manuscript/figure1_truth_object_v2.py\n M src/wtbench/manuscript/figure2_anchor_tiering.py\n M src/wtbench/manuscript/figure3_model_tradeoff.py\n M src/wtbench/manuscript/figure4_sweep_controls.py\n M src/wtbench/manuscript/figure5_axis_interpretation.py\n M src/wtbench/manuscript/figure6_boundary.py\n M src/wtbench/manuscript/manuscript_style.py\n?? docs/nature_methods_2025_figure_style_note_v1.md"
+  },
+  "inputs": [
+    {
+      "path": "reports/stage2_real_hcc_smoke/model_comparison.tsv",
+      "sha256": "790934f722a63cc2754978335f081c913d78ca83eea0f39d85d2f7915bfe3a9d"
+    },
+    {
+      "path": "reports/stage2_real_hcc_smoke/backbone_diagnosis.tsv",
+      "sha256": "7c12133290484ac22a5e16269c7e1cfd19fbc9d6a40469fe0d8f9c06a938910a"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv",
+      "sha256": "62327f0fc81574920d1e6e33b78abd8fc63b2ec05fa8cd9a6d1f88f84f7ec6a5"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "reports/manuscript_figures_v2/fig3_model_tradeoff/panels/figure3_panelb.png",
+      "sha256": "d9249352ffe71e794369d48a99033d133b20dd450dea6b0f4e13f1c1cb06fe82"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig3_model_tradeoff/panels/figure3_panelb.pdf",
+      "sha256": "b24e194c3910419dbee5df7501186d1ba653e1c8292eadbe1294256053dac4d4"
+    }
+  ],
+  "panel_id": "figure3b",
+  "panel_title": "Three-metric model adjudication heatmap",
+  "script": "scripts/manuscript/build_figure3_model_tradeoff.py",
+  "source_data": {
+    "path": "reports/manuscript_figures_v2/fig3_model_tradeoff/panels/figure3_panelb_source_data.tsv",
+    "sha256": "7719808787ec5b395b2f2925e8ebb4c575010c6b52d824a9074a76792d8bcfaf"
+  }
+}

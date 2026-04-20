@@ -1,0 +1,39 @@
+{
+  "claim_boundary": "Full target grid supports the bridge but does not remove covariate boundaries.",
+  "generated_at_utc": "2026-04-18T14:54:51.600967+00:00",
+  "git": {
+    "commit": "a36af44e93a89ace31da398ffc018e268aa0d3c3",
+    "status_short": "M src/wtbench/manuscript/extended_data_figure10.py\n M src/wtbench/manuscript/extended_data_figure3.py\n M src/wtbench/manuscript/extended_data_figure6.py\n M src/wtbench/manuscript/extended_data_figure9.py\n M src/wtbench/manuscript/extended_data_remaining.py\n M src/wtbench/manuscript/figure1_truth_object_v2.py\n M src/wtbench/manuscript/figure2_anchor_tiering.py\n M src/wtbench/manuscript/figure3_model_tradeoff.py\n M src/wtbench/manuscript/figure4_sweep_controls.py\n M src/wtbench/manuscript/figure5_axis_interpretation.py\n M src/wtbench/manuscript/figure6_boundary.py\n M src/wtbench/manuscript/manuscript_style.py\n?? docs/nature_methods_2025_figure_style_note_v1.md"
+  },
+  "inputs": [
+    {
+      "path": "reports/stage2_truth_bridge_decomposition/target_level_joint_grid.tsv",
+      "sha256": "38c3c4f8b13828ad32a0fe615cf372b2f68bbf30164e07ed80d84faa4812c1a7"
+    },
+    {
+      "path": "reports/stage2_truth_bridge_decomposition/target_level_grid_summary.tsv",
+      "sha256": "2b4257a87104e0f26ae32e19fa78bd633b90005288bf69dd463dad5b471c0fe2"
+    },
+    {
+      "path": "reports/stage2_truth_bridge_decomposition/evidence_tier_summary.tsv",
+      "sha256": "39fae443c0813ec536990bf77f9d77de9f30b1aa0fe2031f10b6405e96435a40"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig2_full_target_grid/panels/edfig2_panelb.png",
+      "sha256": "1d354b0464dee474743deacfc1cb9b98c30a91956fd91cf916f5f3d77b819629"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig2_full_target_grid/panels/edfig2_panelb.pdf",
+      "sha256": "1fca1a2b4b61e1b2217f32476947fb8c3a070f7252e84cfad42fb6f237dad662"
+    }
+  ],
+  "panel_id": "EDFIG2b",
+  "panel_title": "HCC1143 grid",
+  "script": "scripts/manuscript/build_extended_data_figure2.py",
+  "source_data": {
+    "path": "reports/manuscript_extended_data_v1/edfig2_full_target_grid/panels/edfig2_panelb_source_data.tsv",
+    "sha256": "43c9720d60d413fe3cdced10b024a55a7fc7a522c917425d0120705ec85e3b2b"
+  }
+}

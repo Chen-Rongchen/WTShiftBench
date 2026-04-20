@@ -1,0 +1,47 @@
+{
+  "claim_boundary": "Anchor stability supports the bridge, but covariate-aware governance prevents fully deconfounded anchor wording.",
+  "generated_at_utc": "2026-04-18T14:54:57.353819+00:00",
+  "git": {
+    "commit": "a36af44e93a89ace31da398ffc018e268aa0d3c3",
+    "status_short": "M src/wtbench/manuscript/extended_data_figure10.py\n M src/wtbench/manuscript/extended_data_figure3.py\n M src/wtbench/manuscript/extended_data_figure6.py\n M src/wtbench/manuscript/extended_data_figure9.py\n M src/wtbench/manuscript/extended_data_remaining.py\n M src/wtbench/manuscript/figure1_truth_object_v2.py\n M src/wtbench/manuscript/figure2_anchor_tiering.py\n M src/wtbench/manuscript/figure3_model_tradeoff.py\n M src/wtbench/manuscript/figure4_sweep_controls.py\n M src/wtbench/manuscript/figure5_axis_interpretation.py\n M src/wtbench/manuscript/figure6_boundary.py\n M src/wtbench/manuscript/manuscript_style.py\n?? docs/nature_methods_2025_figure_style_note_v1.md"
+  },
+  "inputs": [
+    {
+      "path": "reports/stage2_truth_bridge_decomposition/shared_canonical_anchor_summary.tsv",
+      "sha256": "b90db78fa900093a4daca4e42e413e6bc67118c557b7201954bbf58a181d2600"
+    },
+    {
+      "path": "reports/stage2_truth_bridge_decomposition/evidence_tier_summary.tsv",
+      "sha256": "39fae443c0813ec536990bf77f9d77de9f30b1aa0fe2031f10b6405e96435a40"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/control_subsample_summary.tsv",
+      "sha256": "192f98c32e94e5603699f2ab8c2c4ec5ade23119a93408dc620d2956d4706592"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/anchor_claim_tiering.tsv",
+      "sha256": "098b9ce811ed99575dd84c1c4c4c7a057884365425d65a320e270dfb36b43ef9"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv",
+      "sha256": "62327f0fc81574920d1e6e33b78abd8fc63b2ec05fa8cd9a6d1f88f84f7ec6a5"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig3_anchor_sensitivity/panels/edfig3_panela.png",
+      "sha256": "2e066cc4702a3f7024cc82419c3ec3ff0a8128a19bdb096054aeebe4b7b2c077"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig3_anchor_sensitivity/panels/edfig3_panela.pdf",
+      "sha256": "51c02304110dbfb35351a66f05aa3dca1d419d1c53a245e7a456ffd5166acd27"
+    }
+  ],
+  "panel_id": "ED3a",
+  "panel_title": "Full target-level anchor distribution",
+  "script": "scripts/manuscript/build_extended_data_figure3.py",
+  "source_data": {
+    "path": "reports/manuscript_extended_data_v1/edfig3_anchor_sensitivity/panels/edfig3_panela_source_data.tsv",
+    "sha256": "cee54be09cb6499b6a0c236dcafeabc97aa1716655790cc3b222046867a1b5cb"
+  }
+}

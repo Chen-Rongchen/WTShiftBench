@@ -1,0 +1,67 @@
+figure_id	n_panel_manifests	n_inputs	n_outputs	combined_source_sha256	png_sha256	pdf_sha256	git_commit	panel	table_id	title	claim_layer	n_files	total_bytes	tsv_files	suffix	evidence_tier	n_objects	object	allowed_wording	disallowed_wording	scope	short_command	command	reruns_gears_training	n_disallowed_phrases	boundary	status	basis
+figure1	8.0	6.0	2.0	91b4f7ea3b7186f32d9c95f9ae4922de81b75bdc306110d57c1437a2a0349f87	0549bb994d720d6b27fdcd78823311fe02d1c6eb6b5b0d019048aae924effe32	fd268addbf23080faff5a410a604506b2a3a0d57f2c5ca67e00550b955c8edb3	a36af44e93a89ace31da398ffc018e268aa0d3c3	a																				
+figure2	8.0	6.0	2.0	c308401aec75799db7677c9ce92b7b7db2f109b37f6eca19b33b8845c69d8ef9	15dd6db0a0087ec8677c197e3bf162bcbb4df9ea10eb0149767e8ddf46ee1138	76e7606e66e22fe37bac6c1141cafc1c7ca23626ef7f610b839430811e151419	a36af44e93a89ace31da398ffc018e268aa0d3c3	a																				
+figure3	8.0	3.0	2.0	f780a5a01ac1f04b7b5dd96b76fe04b4d3fc2ea0aa5ac13ddb430fd526802b54	70299c737083c3bf1fea2fcfd5f4199e3a82138242f13c18c76cb3b856c86fa0	1535409701081fae81d2273f82901b2896b8aa7d1edb30f1106b9a7b2b07e0ba	a36af44e93a89ace31da398ffc018e268aa0d3c3	a																				
+figure4	8.0	12.0	2.0	1ca3fb1c5a0246ca3c5189866a81c0e20c3bce5f1154d3a1b9dbff49212ebe36	4a93f968b38bd16b91972df2bfc5f8da4735dd9acee59f91da6f9c9e15fcdb79	26c3204c0b907076a4e2403e3cc09634d6d2ea7278a71b64a06d68d29257bb26	a36af44e93a89ace31da398ffc018e268aa0d3c3	a																				
+figure5	8.0	5.0	2.0	dc07e34a12daaaf51acc0fc2afe2577af1054a426285789161464f91fe9a195b	e0a798b4d6c97b6195c5254928c8615268c7d1942e1f67c652e8ad0936d015d9	ff90b891dbe5577290fd1b6b70b0c800187367a2892931bae0f4445a429dffe8	a36af44e93a89ace31da398ffc018e268aa0d3c3	a																				
+figure6	8.0	11.0	2.0	2909b7b267c193fb2caf803144bfe174c81e4919108cf456498c363983e22d7c	360c83dec3e7be6d65d08062e5ed94b8a82f0839000a8dfa57c3821c56f4627c	4f7f666787eaa70e08e3b8a97a03a97687a7da938831948e39ed30ea2f54efa7	a36af44e93a89ace31da398ffc018e268aa0d3c3	a																				
+								b	supp_table_10_figure_reproducibility	Main figure source data and manifests	reproducibility	16.0	87845.0	0.0														
+								b	supp_table_1_truth_bridge_hcc	HCC truth-DepMap bridge summaries	truth_object	5.0	22019.0	5.0														
+								b	supp_table_2_truth_decomposition	Target-level and axis-level truth decomposition	truth_object_decomposition	5.0	25549.0	5.0														
+								b	supp_table_3_anchor_claim_governance	Anchor tiering, sensitivity and final claim matrix	claim_governance	3.0	12434.0	3.0														
+								b	supp_table_4_model_comparison	HCC model comparison and GEARS diagnostic summaries	model_recovery	4.0	12241.0	4.0														
+								b	supp_table_5_gears_sweep_and_controls	GEARS sweep and linear-control support tables	model_controls	9.0	12621.0	2.0														
+								b	supp_table_6_axis_annotation	Axis annotation and validation	axis_interpretation	3.0	74983.0	3.0														
+								b	supp_table_7_k562_temporal	K562 7d and 13d temporal supplementary evidence	supplementary_external	5.0	7166.0	5.0														
+								b	supp_table_8_endpoint_hierarchy	CRISPR versus RNAi endpoint hierarchy	endpoint_boundary	3.0	8335.0	3.0														
+								b	supp_table_9_covariate_audit	Covariate audit and barcode-gem-group boundary	covariate_boundary	2.0	6163.0	1.0														
+								c				22.0	90555.0		json													
+								c				2.0	6438.0		md													
+								c				31.0	172363.0		tsv													
+								d								A0_confirmed	1.0											
+								d								A1_supporting	1.0											
+								d								admission_required	1.0											
+								d								boundary_frozen	1.0											
+								d								gated_downstream_layer	1.0											
+								d								methodological_boundary	1.0											
+								d								primary_axis_but_qualified	1.0											
+								d								primary_but_qualified	1.0											
+								d								primary_conclusion	1.0											
+								d								retainable_global_claim	1.0											
+								d								supporting_but_sensitive	1.0											
+								d								supporting_or_preliminary	1.0											
+								d								A0_confirmed_A1_supporting	2.0											
+								d								supporting_only	3.0											
+								e								primary_conclusion		GEARS_tradeoff_diagnosis	GEARS 应被定位为 architecture trade-off diagnosis，而不是 primary winner	GEARS is the overall HCC primary winner; model recovery has been demonstrated								
+								e								primary_but_qualified		PFDN5	PFDN5 可保留为相对更轻风险的 stable anchor，但必须带方法学谨慎	PFDN5 is a fully deconfounded strongest anchor								
+								e								supporting_only		PMF1	PMF1 保留结构稳定 anchor 身份，但当前仅适合作为 supporting evidence	PMF1 is a clean primary anchor; PMF1 alone nails down the bridge								
+								e								supporting_only		PRPF6	PRPF6 保留结构稳定 anchor 身份，但当前仅适合作为 supporting evidence	PRPF6 is a clean primary anchor; PRPF6 alone nails down the bridge								
+								e								supporting_only		ZNF131	ZNF131 保留结构稳定 anchor 身份，但当前仅适合作为 supporting evidence	ZNF131 is a clean primary anchor; ZNF131 alone nails down the bridge								
+								e								primary_axis_but_qualified		transcription_chromatin_axis	transcription / chromatin 是当前唯一更稳的 formal positive axis	transcription / chromatin is fully deconfounded and fully established beyond current boundary								
+								e								A0_confirmed_A1_supporting		Dixit_K562_temporal_panel	7d 和 13d 均确认 backbone_plus_shift_excess；7d rank alignment 更强，13d mean shift 更大；只能写成 architecture form 时间稳定性与 bridge readout temporal stratification	13d is uniformly stronger than 7d; temporal panel proves external model-side generalization; K562 temporal panel establishes content-level convergence								
+								e								admission_required		Replogle_RNAi_expansion_candidate	Replogle 7d CRISPRi + DepMap RNAi/shRNA dependency 只能作为 short-horizon / modality-compatible external expansion；先完成 cell line/gene namespace/target overlap/endpoint metadata check，再决定是否下载并正式运行	Replogle RNAi expansion is primary closure; DepMap RNAi is a siRNA matched endpoint; Replogle expansion proves external model-side generalization								
+								e								gated_downstream_layer		discovery_phenotype_shifter	discovery 当前只能写成 gated downstream layer	discovery is a current formal primary deliverable								
+								f													main_figures	build_all_main_figures.py	pixi run --environment core python scripts/manuscript/build_all_main_figures.py	no				
+								f													supplementary_tables	build_supplementary_table_index.py	pixi run --environment core python scripts/manuscript/build_supplementary_table_index.py	no				
+								f													extended_data_figure10	build_extended_data_figure10.py	pixi run --environment core python scripts/manuscript/build_extended_data_figure10.py	no				
+								g								retainable_global_claim		global_truth_depmap_bridge		bridge has been fully deconfounded; bridge is proved without meaningful confounding risk					2.0			
+								g								methodological_boundary		barcode_gem_group_design_proxy		barcode_gem_group has been uniquely resolved to MH001 through MH006; barcode_gem_group is a fully resolved run-level covariate					2.0			
+								g								primary_conclusion		GEARS_tradeoff_diagnosis		GEARS is the overall HCC primary winner; model recovery has been demonstrated					2.0			
+								g								primary_but_qualified		PFDN5		PFDN5 is a fully deconfounded strongest anchor					1.0			
+								g								supporting_only		PMF1		PMF1 is a clean primary anchor; PMF1 alone nails down the bridge					2.0			
+								g								supporting_only		PRPF6		PRPF6 is a clean primary anchor; PRPF6 alone nails down the bridge					2.0			
+								g								supporting_only		ZNF131		ZNF131 is a clean primary anchor; ZNF131 alone nails down the bridge					2.0			
+								g								supporting_but_sensitive		cutoff_sensitive_anchor_set		cutoff-sensitive anchors can be elevated to primary anchor set					1.0			
+								g								primary_axis_but_qualified		transcription_chromatin_axis		transcription / chromatin is fully deconfounded and fully established beyond current boundary					1.0			
+								g								supporting_or_preliminary		other_axes		most axes are fully established at the same level as transcription / chromatin					1.0			
+								g								A0_confirmed_A1_supporting		Dixit_K562_supplementary		Dixit/K562 provides a symmetric primary conclusion with HCC; K562 provides content-level replication established					2.0			
+								g								A0_confirmed_A1_supporting		Dixit_K562_temporal_panel		13d is uniformly stronger than 7d; temporal panel proves external model-side generalization; K562 temporal panel establishes content-level convergence					3.0			
+								g								admission_required		Replogle_RNAi_expansion_candidate		Replogle RNAi expansion is primary closure; DepMap RNAi is a siRNA matched endpoint; Replogle expansion proves external model-side generalization					3.0			
+								g								A0_confirmed		Dixit_architecture_replication		Dixit proves model generalization across contexts					1.0			
+								g								A1_supporting		Dixit_anchor_like_objects		stable anchors were strictly replicated across contexts					1.0			
+								g								gated_downstream_layer		discovery_phenotype_shifter		discovery is a current formal primary deliverable					1.0			
+								g								boundary_frozen		shift_interpretation_band		把 shift 写成单一层；把 shared trend / overall displacement 等同于 shift-excess；把 GEARS 的 shift-excess 相对优势写成整体 shift recovery proved					1.0			
+								h																		GEARS training	exempt from figure-stage rerun	runtime cost; frozen predictions and scores hashed
+								h																		figure source data	rerun	all main figures and ED10 rebuild source data from frozen reports
+								h																		hash manifests	recorded	input, source data and output SHA256 tracked
+								h																		claim wording	governed	final claim matrix controls allowed and disallowed wording

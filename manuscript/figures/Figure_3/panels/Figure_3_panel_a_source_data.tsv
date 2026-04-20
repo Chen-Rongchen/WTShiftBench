@@ -1,0 +1,24 @@
+model_id	object_role	model_label	plot_color	backbone_recovery_score
+shared_mean_baseline	baseline	"shared mean
+baseline"	#2B2B2B	0.8066666666666666
+gears_hcc_formal_v1	entrant	"GEARS
+formal"	#4C78A8	0.6599999999999999
+gears_hcc_formal_v1_e30_lr2e-03_wd1e-06	entrant	"GEARS
+sweep A"	#8DB7D6	0.6433333333333333
+gears_hcc_formal_v1_e20_lr1e-03_wd1e-06	entrant	"GEARS
+sweep B"	#8DB7D6	0.6266666666666667
+lm_g_geneformer_ridge_hcc_formal_v1	entrant	"LM +
+Geneformer G"	#A6A6A6	0.6266666666666666
+gears_hcc_formal_v1_e30_lr1e-03_wd1e-05	entrant	"GEARS
+sweep C"	#8DB7D6	0.6133333333333333
+lm_train_lowrank_hcc_formal_v1	entrant	"LM
+low-rank"	#A6A6A6	0.5366666666666666
+geneformer_hcc_formal_v1	entrant	Geneformer	#72A39A	0.5333333333333333
+gears_hcc_formal_v1_e30_lr5e-04_wd1e-06	entrant	"GEARS
+sweep D"	#8DB7D6	0.53
+null_model		null	#D9D9D9	0.5
+gears_hcc_formal_v1_e40_lr1e-03_wd1e-06	entrant	"GEARS
+sweep E"	#8DB7D6	0.4933333333333333
+lm_g_scgpt_ridge_hcc_formal_v1	entrant	"LM +
+scGPT G"	#A6A6A6	0.4666666666666667
+scgpt_hcc_formal_v1	entrant	scGPT	#72A39A	0.4466666666666667

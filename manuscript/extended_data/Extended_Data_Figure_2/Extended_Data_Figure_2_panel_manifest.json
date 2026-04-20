@@ -1,0 +1,73 @@
+{
+  "claim_boundary": "Full target grid supports the bridge but does not remove covariate boundaries.",
+  "combined_source_data": {
+    "path": "reports/manuscript_extended_data_v1/edfig2_full_target_grid/edfig2_source_data.tsv",
+    "sha256": "7433b6fc47ce64196f71598a8d2c4108cf26b5aedf2873428ddd8a6aaf04acd6"
+  },
+  "figure_id": "extended_data_figure2",
+  "figure_title": "Full target-level joint grid",
+  "generated_at_utc": "2026-04-18T14:54:55.628717+00:00",
+  "git": {
+    "commit": "a36af44e93a89ace31da398ffc018e268aa0d3c3",
+    "status_short": "M src/wtbench/manuscript/extended_data_figure10.py\n M src/wtbench/manuscript/extended_data_figure3.py\n M src/wtbench/manuscript/extended_data_figure6.py\n M src/wtbench/manuscript/extended_data_figure9.py\n M src/wtbench/manuscript/extended_data_remaining.py\n M src/wtbench/manuscript/figure1_truth_object_v2.py\n M src/wtbench/manuscript/figure2_anchor_tiering.py\n M src/wtbench/manuscript/figure3_model_tradeoff.py\n M src/wtbench/manuscript/figure4_sweep_controls.py\n M src/wtbench/manuscript/figure5_axis_interpretation.py\n M src/wtbench/manuscript/figure6_boundary.py\n M src/wtbench/manuscript/manuscript_style.py\n?? docs/nature_methods_2025_figure_style_note_v1.md"
+  },
+  "inputs": [
+    {
+      "path": "reports/stage2_truth_bridge_decomposition/target_level_joint_grid.tsv",
+      "sha256": "38c3c4f8b13828ad32a0fe615cf372b2f68bbf30164e07ed80d84faa4812c1a7"
+    },
+    {
+      "path": "reports/stage2_truth_bridge_decomposition/target_level_grid_summary.tsv",
+      "sha256": "2b4257a87104e0f26ae32e19fa78bd633b90005288bf69dd463dad5b471c0fe2"
+    },
+    {
+      "path": "reports/stage2_truth_bridge_decomposition/evidence_tier_summary.tsv",
+      "sha256": "39fae443c0813ec536990bf77f9d77de9f30b1aa0fe2031f10b6405e96435a40"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig2_full_target_grid/edfig2.png",
+      "sha256": "285f47104971721e003625c5f3e61c50c2848e64357bbae6f0e10beab2cb3365"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig2_full_target_grid/edfig2.pdf",
+      "sha256": "9d89eb868f8071e5779050eccabb07f7121aba280f7ae0202e66d1fa8c08c017"
+    }
+  ],
+  "panel_manifests": [
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig2_full_target_grid/panels/edfig2_panela_manifest.json",
+      "sha256": "93011c7154354695a3de62bd08a16d82ea331e26e2cbc8e192ceecb77b692604"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig2_full_target_grid/panels/edfig2_panelb_manifest.json",
+      "sha256": "cfba79468732b84e94d9a4ddb2102944a18cd6746ec8a82f61f93b66e7d9da9c"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig2_full_target_grid/panels/edfig2_panelc_manifest.json",
+      "sha256": "749f95e6f15e1e71f35e227cd1c4bb4bbaf7fa8f4182f51a93c33e6aabab0bbb"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig2_full_target_grid/panels/edfig2_paneld_manifest.json",
+      "sha256": "e127b924636a783c1fa6622262fd65983b1aa69d5ec22972d152751fa3bf6315"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig2_full_target_grid/panels/edfig2_panele_manifest.json",
+      "sha256": "4e6b7c66245540dd936b8eb4630c17234dd71604c371be71352f88a0fddb4da1"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig2_full_target_grid/panels/edfig2_panelf_manifest.json",
+      "sha256": "bb871b3ce227f7cdda45f8393f7d1a04a79dabe52640244e26c21dda12667171"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig2_full_target_grid/panels/edfig2_panelg_manifest.json",
+      "sha256": "f3eabcb7063684e1bb44c1fbf76e76e4508ada1e3a16cd9af7342193c4b0ec4e"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig2_full_target_grid/panels/edfig2_panelh_manifest.json",
+      "sha256": "55263fa482bf384c37d389eed99f8d6a6d4329e1e76869a7e3ea17677cf12dfd"
+    }
+  ],
+  "script": "scripts/manuscript/build_extended_data_figure2.py"
+}

@@ -1,0 +1,15 @@
+model_id	model_label	plot_color	shift_excess_identification_score	backbone_recovery_score
+shared_mean_baseline	"shared mean
+baseline"	#2B2B2B	0.3333333333333333	0.8066666666666666
+gears_hcc_formal_v1	"GEARS
+formal"	#4C78A8	0.3333333333333333	0.6599999999999999
+gears_hcc_formal_v1_e30_lr2e-03_wd1e-06	"GEARS
+sweep A"	#8DB7D6	0.8333333333333333	0.6433333333333333
+gears_hcc_formal_v1_e20_lr1e-03_wd1e-06	"GEARS
+sweep B"	#8DB7D6	0.5	0.6266666666666667
+gears_hcc_formal_v1_e30_lr1e-03_wd1e-05	"GEARS
+sweep C"	#8DB7D6	0.9166666666666669	0.6133333333333333
+gears_hcc_formal_v1_e30_lr5e-04_wd1e-06	"GEARS
+sweep D"	#8DB7D6	0.9166666666666669	0.53
+gears_hcc_formal_v1_e40_lr1e-03_wd1e-06	"GEARS
+sweep E"	#8DB7D6	0.6666666666666667	0.4933333333333333

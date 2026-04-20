@@ -1,0 +1,47 @@
+{
+  "claim_boundary": "Anchor stability supports the bridge, but covariate-aware governance prevents fully deconfounded anchor wording.",
+  "generated_at_utc": "2026-04-18T14:55:00.426521+00:00",
+  "git": {
+    "commit": "a36af44e93a89ace31da398ffc018e268aa0d3c3",
+    "status_short": "M src/wtbench/manuscript/extended_data_figure10.py\n M src/wtbench/manuscript/extended_data_figure3.py\n M src/wtbench/manuscript/extended_data_figure6.py\n M src/wtbench/manuscript/extended_data_figure9.py\n M src/wtbench/manuscript/extended_data_remaining.py\n M src/wtbench/manuscript/figure1_truth_object_v2.py\n M src/wtbench/manuscript/figure2_anchor_tiering.py\n M src/wtbench/manuscript/figure3_model_tradeoff.py\n M src/wtbench/manuscript/figure4_sweep_controls.py\n M src/wtbench/manuscript/figure5_axis_interpretation.py\n M src/wtbench/manuscript/figure6_boundary.py\n M src/wtbench/manuscript/manuscript_style.py\n?? docs/nature_methods_2025_figure_style_note_v1.md"
+  },
+  "inputs": [
+    {
+      "path": "reports/stage2_truth_bridge_decomposition/shared_canonical_anchor_summary.tsv",
+      "sha256": "b90db78fa900093a4daca4e42e413e6bc67118c557b7201954bbf58a181d2600"
+    },
+    {
+      "path": "reports/stage2_truth_bridge_decomposition/evidence_tier_summary.tsv",
+      "sha256": "39fae443c0813ec536990bf77f9d77de9f30b1aa0fe2031f10b6405e96435a40"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/control_subsample_summary.tsv",
+      "sha256": "192f98c32e94e5603699f2ab8c2c4ec5ade23119a93408dc620d2956d4706592"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/anchor_claim_tiering.tsv",
+      "sha256": "098b9ce811ed99575dd84c1c4c4c7a057884365425d65a320e270dfb36b43ef9"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv",
+      "sha256": "62327f0fc81574920d1e6e33b78abd8fc63b2ec05fa8cd9a6d1f88f84f7ec6a5"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig3_anchor_sensitivity/panels/edfig3_panelh.png",
+      "sha256": "6b0d2d41846e6a485c1d535727ad032ab4112a5165ff8d5b7ec42fd4fc4e6c75"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig3_anchor_sensitivity/panels/edfig3_panelh.pdf",
+      "sha256": "ddb2806954d4e53bcfcb2428c1d8e39971d6ef469389507271bb9b0fe43d9713"
+    }
+  ],
+  "panel_id": "ED3h",
+  "panel_title": "Anchor claim boundary",
+  "script": "scripts/manuscript/build_extended_data_figure3.py",
+  "source_data": {
+    "path": "reports/manuscript_extended_data_v1/edfig3_anchor_sensitivity/panels/edfig3_panelh_source_data.tsv",
+    "sha256": "62327f0fc81574920d1e6e33b78abd8fc63b2ec05fa8cd9a6d1f88f84f7ec6a5"
+  }
+}
