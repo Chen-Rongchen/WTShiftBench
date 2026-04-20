@@ -1,11 +1,14 @@
 # 投稿前 readiness checklist v1
 
-## 当前执行口径更新（2026-04-18）
+## 当前执行口径更新（2026-04-20）
 
 Genome Biology reviewer-risk reduction 已完成并版本化。执行入口为：
 
+- `manuscript/README.md`
 - `docs/genome_biology_submission_execution_plan_v1.md`
-- `MANUSCRIPT_REPRODUCIBILITY.md`
+- `manuscript/source_data_manifests/MANUSCRIPT_REPRODUCIBILITY.md`
+
+`manuscript/` 已整理为投稿前单入口工作区，包含 610 个文件，约 22 MB；主图、Extended Data 和 panel a-h 的 PDF/PNG/source data/manifest 均已集中复制到该目录。
 
 已完成 A1-A12：
 
@@ -49,11 +52,13 @@ Genome Biology reviewer-risk reduction 已完成并版本化。执行入口为�
 - 主文 figure legends：`docs/main_manuscript_figure_legends_v1.md`
 - Extended Data figure legends：`docs/extended_data_figure_legends_v1.md`
 - Data / Code availability 与复现说明：`docs/main_manuscript_availability_and_reproducibility_v1.md`
+- 投稿前单入口副本：`manuscript/text/`
 
 ### 图版
 
 - 主图 Fig. 1-6 已生成：`reports/manuscript_figures_v2/`
 - Extended Data Fig. 1-10 已生成：`reports/manuscript_extended_data_v1/`
+- 投稿前整理副本：`manuscript/figures/` 与 `manuscript/extended_data/`
 - 每张图均为 8 panel。
 - 每个 panel 均有 PNG、PDF、source data TSV、manifest JSON。
 - 每张整图均有 PNG、PDF、combined source data TSV、figure-level manifest JSON。
@@ -63,6 +68,9 @@ Genome Biology reviewer-risk reduction 已完成并版本化。执行入口为�
 - Supplementary table index：`reports/manuscript_supplementary_tables_v1/`
 - Supplementary Tables workbook：`reports/manuscript_submission_package_v1/supplementary_tables_v1.xlsx`
 - Submission package manifest：`reports/manuscript_submission_package_v1/submission_package_manifest.json`
+- 投稿前 Additional files 副本：`manuscript/additional_files/`
+- 投稿前 source-data manifest 副本：`manuscript/source_data_manifests/`
+- 投稿前总索引：`manuscript/file_index.txt`
 - 补充表配置：`configs/manuscript/supplementary_tables_v1.json`
 - 投稿包配置：`configs/manuscript/submission_package_v1.json`
 - 主图配置：`configs/manuscript/main_figures_v2.json`
