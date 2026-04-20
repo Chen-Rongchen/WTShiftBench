@@ -8,7 +8,7 @@
 
 ## 当前判断
 
-稿件主线已经逻辑闭环：
+稿件主线已经逻辑闭环，并且本轮 boundary / grammar audit 已经落入当前主稿：
 
 - Fig. 1 定义 phenotype-relevant benchmark truth object。
 - Fig. 2 管理 shared anchor 证据层级。
@@ -17,12 +17,12 @@
 - Fig. 5 给出 qualified axis-level interpretation。
 - Fig. 6 用 covariate、K562 temporal panel 和 RNAi endpoint sensitivity 收住最终 claim ceiling。
 
-但当前稿件仍应视为 strong editorial draft，而不是最终 submission-ready 版本。剩余风险集中在四类：
+当前正文与图注不再是待 hardening 草稿，而是投稿前文字 source of truth。剩余工作已经从 claim grammar 转入两类：
 
-1. 对象身份与缩写风险。
-2. Genome Biology submission blocker。
-3. Introduction / Results 对 framework/resource 的主语强度不足。
-4. Methods 仍需推进到公式、阈值和判定规则级别。
+1. Genome Biology submission blocker。
+2. 按当前正文和图注重新用代码绘制图版。
+
+当前图像文件仍是上一轮生成产物，不视为最终视觉版。
 
 ## 第一优先级：修正 HCC38/HCC1143 身份风险
 
@@ -99,6 +99,8 @@ Introduction 的 root-cause 句式应从：
 
 ## 第五优先级：Methods 推进到 operational definition 级
 
+状态：已完成并落入 `manuscript/text/manuscript_draft_v1.md`。本节保留为审计记录。
+
 Methods 至少需要明确以下对象的可复现定义：
 
 - absolute mean perturbation shift。
@@ -119,6 +121,8 @@ Methods 至少需要明确以下对象的可复现定义：
 目标是让 benchmark object 成为 operational object，而不是 verbal construct。
 
 ## 第六优先级：两处 overclaim 降档
+
+状态：已完成并落入 Results、Discussion、Figure legends。以下保留为审计记录。
 
 ### GEARS gap 解释
 
@@ -142,12 +146,19 @@ Methods 至少需要明确以下对象的可复现定义：
 
 ## 执行顺序
 
-1. 先修 HCC38/HCC1143 身份与缩写风险。
-2. 补齐 submission blocker 清单和占位位置。
-3. 重写 Abstract / Introduction 前半段，使 framework/resource 成为第一主语。
-4. 重写每个 Results 小节首句和末句。
-5. 扩 Methods 到 operational definition 级。
-6. 最后再统一图题、panel title、Discussion 和 cover letter。
+已完成：
+
+1. HCC38/HCC1143 身份与缩写风险已在当前主稿中收口。
+2. Abstract / Background / Results / Methods / Discussion / Conclusions 已完成 grammar 同步。
+3. Figure 1-6 与 Extended Data Fig. 1-10 图注已完成 boundary 同步。
+4. Methods 已推进到 operational definition 级。
+
+剩余执行顺序：
+
+1. 按 `docs/manuscript_figure_redesign_plan_v1.md` 重画 Figure 1-6 与 Extended Data Fig. 1-10。
+2. 作者人工补齐 author metadata、funding、competing interests、contributions、acknowledgements。
+3. 补齐 public repository / archive DOI 与公开 Data / Code availability。
+4. 最终导出投稿版 PDF/Word、图版文件和 Additional files。
 
 ## 当前不做
 
@@ -156,4 +167,5 @@ Methods 至少需要明确以下对象的可复现定义：
 - 不新增 entrant family。
 - 不升级 K562 或 RNAi endpoint 地位。
 - 不扩 Stage 3 discovery。
-- 不重画整套图版，除非文字修订要求图中文字同步。
+- 不在图版重画阶段新增分析或改变 source data。
+- 不把图版重画与 claim boundary 修改混在一起。

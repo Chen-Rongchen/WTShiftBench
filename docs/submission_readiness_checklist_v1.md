@@ -41,6 +41,23 @@ Genome Biology reviewer-risk reduction 已完成并版本化。执行入口为�
 
 新增 hardening 风险：HCC38 和 HCC1143 是乳腺癌细胞系，不能把 `HCC` 定义为 hepatocellular carcinoma；投稿文本应优先写成 `HCC38/HCC1143 breast-cancer cell-line contexts` 或 `the two primary breast-cancer contexts`。
 
+## 当前执行口径更新（2026-04-21）
+
+主稿文本与图注已经完成本轮 boundary / grammar audit。当前唯一正文 source of truth 为：
+
+- `manuscript/text/manuscript_draft_v1.md`
+- `manuscript/text/figure_legends_v1.md`
+
+版本管理说明见：
+
+- `docs/manuscript_version_control_note_v1.md`
+
+下一阶段工作已经从文字 hardening 转入 figure redesign：
+
+- `docs/manuscript_figure_redesign_plan_v1.md`
+
+该阶段只重画图，不新增分析、不改变 source data、不改变 claim boundary。
+
 ## 已完成
 
 ### 手稿文本
@@ -59,12 +76,13 @@ Genome Biology reviewer-risk reduction 已完成并版本化。执行入口为�
 
 ### 图版
 
-- 主图 Fig. 1-6 已生成：`reports/manuscript_figures_v2/`
-- Extended Data Fig. 1-10 已生成：`reports/manuscript_extended_data_v1/`
+- 主图 Fig. 1-6 已生成上一轮版本：`reports/manuscript_figures_v2/`
+- Extended Data Fig. 1-10 已生成上一轮版本：`reports/manuscript_extended_data_v1/`
 - 投稿前整理副本：`manuscript/figures/` 与 `manuscript/extended_data/`
 - 每张图均为 8 panel。
 - 每个 panel 均有 PNG、PDF、source data TSV、manifest JSON。
 - 每张整图均有 PNG、PDF、combined source data TSV、figure-level manifest JSON。
+- 当前图像视觉设计未冻结为最终投稿版，需按当前正文和图注重新用代码绘制。
 
 ### 补充表与复现
 
@@ -136,11 +154,12 @@ Genome Biology reviewer-risk reduction 已完成并版本化。执行入口为�
 
 ## 当前建议
 
-如果目标是先形成可审阅版本，当前材料已经足够内部审阅。
+如果目标是先形成可审阅文字版本，当前主稿和图注已经足够内部审阅。
 
-如果目标是正式投稿，当前主要剩余项是作者信息、references、declarations、公开归档 DOI 和 Additional files 编号。
+如果目标是正式投稿，当前主要剩余项是作者信息、references、declarations、公开归档 DOI、Additional files 编号，以及按当前图注重新绘制图版。
 
 1. 选择目标期刊格式。
 2. 按期刊模板整理 references 和 declarations。
 3. 决定 Supplementary Tables 的提交格式。
-4. 做一次全图版式审阅和最终导出。
+4. 按 `docs/manuscript_figure_redesign_plan_v1.md` 重画 Figure 1-6 与 Extended Data Fig. 1-10。
+5. 做一次全图版式审阅和最终导出。
