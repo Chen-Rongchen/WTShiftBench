@@ -9,6 +9,11 @@
 
 ## 已整理文件
 
+- 投稿前单入口工作区：`manuscript/README.md`
+- 投稿前文件总索引：`manuscript/file_index.txt`
+- 投稿前正文副本：`manuscript/text/manuscript_draft_v1.md`
+- 投稿前 cover letter 副本：`manuscript/text/cover_letter_v1.md`
+- 投稿前 figure legends 副本：`manuscript/text/figure_legends_v1.md`
 - Genome Biology 正文草案：`docs/genome_biology_manuscript_draft_v1.md`
 - Cover letter 草案：`docs/genome_biology_cover_letter_v1.md`
 - 投稿清单：`docs/genome_biology_submission_checklist_v1.md`
@@ -23,6 +28,10 @@
 - Extended Data legends：`docs/extended_data_figure_legends_v1.md`
 - 投稿包总清单：`reports/manuscript_submission_package_v1/submission_package_manifest.json`
 - Supplementary Tables workbook：`reports/manuscript_submission_package_v1/supplementary_tables_v1.xlsx`
+- 投稿前主图与 panel 文件：`manuscript/figures/`
+- 投稿前 Extended Data 与 panel 文件：`manuscript/extended_data/`
+- 投稿前 Additional files：`manuscript/additional_files/`
+- 投稿前 source-data manifests：`manuscript/source_data_manifests/`
 
 ## Genome Biology 格式核对
 
@@ -88,7 +97,7 @@
 
 当前三个文件均小于 BMC Additional file 20 MB 单文件上限。若期刊系统要求 source data 逐图上传，则以 `reports/manuscript_figures_v2/` 与 `reports/manuscript_extended_data_v1/` 中的 panel-level source data / manifest 为准。
 
-上传 staging 目录：`reports/genome_biology_submission_upload_v1/`。
+上传 staging 目录：优先使用 `manuscript/additional_files/`。`reports/genome_biology_submission_upload_v1/` 保留为生成来源副本。
 
 ## 当前不需要重做的部分
 

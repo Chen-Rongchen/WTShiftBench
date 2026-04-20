@@ -2,9 +2,16 @@
 
 ## 状态
 
-更新日期：2026-04-18。
+更新日期：2026-04-20。
 
 本文档只记录 A/B/C reviewer-risk reduction 完成后的投稿收口事项。它不新增分析任务，也不改变 frozen claim boundary。
+
+当前投稿前单入口工作区已经整理完成：
+
+- `manuscript/README.md`
+- `manuscript/file_index.txt`
+
+该目录包含 610 个文件，约 22 MB；主图、Extended Data、panel a-h、source data、manifest、Additional files 和 audit 文档均已集中到一个工作区。整理提交为 `b335d2c Organize Genome Biology manuscript workspace`。
 
 ## 当前已冻结
 
@@ -20,6 +27,7 @@
 当前 reviewer-risk reduction 版本：
 
 - commit：`174c809 Prepare Genome Biology submission readiness docs`
+- manuscript workspace commit：`b335d2c Organize Genome Biology manuscript workspace`
 
 完成项：
 
@@ -29,8 +37,12 @@
 
 核心入口：
 
+- `manuscript/README.md`
+- `manuscript/text/manuscript_draft_v1.md`
+- `manuscript/text/figure_legends_v1.md`
+- `manuscript/source_data_manifests/submission_package_manifest.json`
 - `docs/genome_biology_submission_execution_plan_v1.md`
-- `MANUSCRIPT_REPRODUCIBILITY.md`
+- `manuscript/source_data_manifests/MANUSCRIPT_REPRODUCIBILITY.md`
 - `docs/genome_biology_submission_checklist_v1.md`
 - `docs/submission_readiness_checklist_v1.md`
 - `docs/top10_anticipated_reviewer_questions_v1.md`
@@ -98,13 +110,13 @@
 
 当前上传 staging 目录：
 
-- `reports/genome_biology_submission_upload_v1/`
+- `manuscript/additional_files/`
 
 建议编号：
 
-- Additional file 1：`reports/manuscript_submission_package_v1/supplementary_tables_v1.xlsx`
-- Additional file 2：`reports/manuscript_submission_package_v1/submission_package_manifest.json`
-- Additional file 3：`reports/manuscript_submission_package_v1/submission_package_file_manifest.tsv`
+- Additional file 1：`manuscript/additional_files/Additional_file_1_supplementary_tables_v1.xlsx`
+- Additional file 2：`manuscript/additional_files/Additional_file_2_submission_package_manifest.json`
+- Additional file 3：`manuscript/additional_files/Additional_file_3_submission_package_file_manifest.tsv`
 
 需要最终确认：
 
