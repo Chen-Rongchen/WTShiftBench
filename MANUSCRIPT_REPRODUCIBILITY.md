@@ -26,6 +26,7 @@
 - Word count：`docs/genome_biology_word_count_v1.md`
 - Preprint role audit：`docs/genome_biology_preprint_role_audit_v1.md`
 - Submission final index：`docs/genome_biology_submission_final_index_v1.md`
+- Shared anchor role note：`docs/shared_anchor_role_note_v1.md`
 - 投稿 readiness checklist：`docs/submission_readiness_checklist_v1.md`
 - Availability 与复现说明：`docs/main_manuscript_availability_and_reproducibility_v1.md`
 

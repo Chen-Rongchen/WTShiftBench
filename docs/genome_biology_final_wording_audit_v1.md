@@ -64,7 +64,7 @@
 
 ### 不建议修改
 
-- `architecture-form confirmation` 保留。它是 A0 tier 的正式内部术语，且用于 supplementary K562 architecture-form 层，不等同于 content-level validation。
+- `architecture-form confirmation` 已在正文和 GB legends 中改为 `architecture-form recurrence`，进一步降低 confirmation 过强的误读风险。
 - `validation summary` 保留在 Extended Data axis legend 中。这里指 axis annotation / validation summary 表，不承担主 claim。
 
 ## 当前结论
