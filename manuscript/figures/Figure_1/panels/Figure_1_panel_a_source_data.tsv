@@ -1,0 +1,6 @@
+step	name
+1	real perturbation truth
+2	DepMap fitness endpoint
+3	frozen bridge object
+4	model recovery adjudication
+5	gated discovery

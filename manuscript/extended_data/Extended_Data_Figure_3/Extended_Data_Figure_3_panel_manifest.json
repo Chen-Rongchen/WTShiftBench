@@ -1,0 +1,81 @@
+{
+  "claim_boundary": "Anchor stability supports the bridge, but covariate-aware governance prevents fully deconfounded anchor wording.",
+  "combined_source_data": {
+    "path": "reports/manuscript_extended_data_v1/edfig3_anchor_sensitivity/edfig3_source_data.tsv",
+    "sha256": "083c460fbe8e68801d1634d8293c28846984411c3f9f25ae9ae1016ddced9395"
+  },
+  "figure_id": "extended_data_figure3",
+  "figure_title": "Anchor sensitivity and claim tiering",
+  "generated_at_utc": "2026-04-18T14:55:02.563091+00:00",
+  "git": {
+    "commit": "a36af44e93a89ace31da398ffc018e268aa0d3c3",
+    "status_short": "M src/wtbench/manuscript/extended_data_figure10.py\n M src/wtbench/manuscript/extended_data_figure3.py\n M src/wtbench/manuscript/extended_data_figure6.py\n M src/wtbench/manuscript/extended_data_figure9.py\n M src/wtbench/manuscript/extended_data_remaining.py\n M src/wtbench/manuscript/figure1_truth_object_v2.py\n M src/wtbench/manuscript/figure2_anchor_tiering.py\n M src/wtbench/manuscript/figure3_model_tradeoff.py\n M src/wtbench/manuscript/figure4_sweep_controls.py\n M src/wtbench/manuscript/figure5_axis_interpretation.py\n M src/wtbench/manuscript/figure6_boundary.py\n M src/wtbench/manuscript/manuscript_style.py\n?? docs/nature_methods_2025_figure_style_note_v1.md"
+  },
+  "inputs": [
+    {
+      "path": "reports/stage2_truth_bridge_decomposition/shared_canonical_anchor_summary.tsv",
+      "sha256": "b90db78fa900093a4daca4e42e413e6bc67118c557b7201954bbf58a181d2600"
+    },
+    {
+      "path": "reports/stage2_truth_bridge_decomposition/evidence_tier_summary.tsv",
+      "sha256": "39fae443c0813ec536990bf77f9d77de9f30b1aa0fe2031f10b6405e96435a40"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/control_subsample_summary.tsv",
+      "sha256": "192f98c32e94e5603699f2ab8c2c4ec5ade23119a93408dc620d2956d4706592"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/anchor_claim_tiering.tsv",
+      "sha256": "098b9ce811ed99575dd84c1c4c4c7a057884365425d65a320e270dfb36b43ef9"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv",
+      "sha256": "62327f0fc81574920d1e6e33b78abd8fc63b2ec05fa8cd9a6d1f88f84f7ec6a5"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig3_anchor_sensitivity/edfig3.png",
+      "sha256": "d243268672b2b2890ec29c842d2007524d09aa486c83724528a0ce4a103e15ea"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig3_anchor_sensitivity/edfig3.pdf",
+      "sha256": "a17a38302948722eb9d01fe0519a61173b29425e4269f006de783396219c2003"
+    }
+  ],
+  "panel_manifests": [
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig3_anchor_sensitivity/panels/edfig3_panela_manifest.json",
+      "sha256": "da570fc12cd3e2b4e1aa91e6911620224a287ecf81d021c4a7f87360e1027059"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig3_anchor_sensitivity/panels/edfig3_panelb_manifest.json",
+      "sha256": "f7ffdefa77d04db333bb238345a93464b15a40c4028cb0c3eeb1405988cd9f32"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig3_anchor_sensitivity/panels/edfig3_panelc_manifest.json",
+      "sha256": "52cc372f19970af5a10f364dc88aa8252569c38a630811d4066246bb55e0e338"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig3_anchor_sensitivity/panels/edfig3_paneld_manifest.json",
+      "sha256": "939bd6b677b7a219f7c631cecc2ab46be3253aa69996eac19b9b07c5daa03def"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig3_anchor_sensitivity/panels/edfig3_panele_manifest.json",
+      "sha256": "ce192bc5f0b273c473e9e3a986b46d9cbfa32272e7d17efa4815c70fd34c8489"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig3_anchor_sensitivity/panels/edfig3_panelf_manifest.json",
+      "sha256": "674a1853e0ec190d6266ef292275920166977ba0095c82d90fde64287e15b19f"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig3_anchor_sensitivity/panels/edfig3_panelg_manifest.json",
+      "sha256": "2467f71b54f0ac2ea7a0ad62a2e34c273aa11a02cbeb699ff3b33205708cf6de"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig3_anchor_sensitivity/panels/edfig3_panelh_manifest.json",
+      "sha256": "359a7340baa9115d1b70ed3735a232a561d103924f4c93cd46f1bfaba709d19f"
+    }
+  ],
+  "script": "scripts/manuscript/build_extended_data_figure3.py"
+}

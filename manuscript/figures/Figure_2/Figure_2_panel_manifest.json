@@ -1,0 +1,85 @@
+{
+  "claim_boundary": "Shared anchors support the bridge but must not be described as fully deconfounded primary objects.",
+  "combined_source_data": {
+    "path": "reports/manuscript_figures_v2/fig2_anchor_tiering/figure2_source_data.tsv",
+    "sha256": "c308401aec75799db7677c9ce92b7b7db2f109b37f6eca19b33b8845c69d8ef9"
+  },
+  "figure_id": "figure2",
+  "figure_title": "Shared anchors form a tiered target-level bridge rather than clean primary objects",
+  "generated_at_utc": "2026-04-18T14:51:56.955014+00:00",
+  "git": {
+    "commit": "a36af44e93a89ace31da398ffc018e268aa0d3c3",
+    "status_short": "M src/wtbench/manuscript/figure1_truth_object_v2.py\n M src/wtbench/manuscript/figure2_anchor_tiering.py\n M src/wtbench/manuscript/figure3_model_tradeoff.py\n M src/wtbench/manuscript/figure4_sweep_controls.py\n M src/wtbench/manuscript/figure5_axis_interpretation.py\n M src/wtbench/manuscript/figure6_boundary.py\n M src/wtbench/manuscript/manuscript_style.py\n?? docs/nature_methods_2025_figure_style_note_v1.md"
+  },
+  "inputs": [
+    {
+      "path": "reports/stage2_truth_bridge_decomposition/shared_canonical_anchor_summary.tsv",
+      "sha256": "b90db78fa900093a4daca4e42e413e6bc67118c557b7201954bbf58a181d2600"
+    },
+    {
+      "path": "reports/stage2_truth_bridge_decomposition/target_level_joint_grid.tsv",
+      "sha256": "38c3c4f8b13828ad32a0fe615cf372b2f68bbf30164e07ed80d84faa4812c1a7"
+    },
+    {
+      "path": "reports/stage2_truth_bridge_decomposition/shared_anchor_stability.tsv",
+      "sha256": "05b95f5a4d67384b5ba1b08d88177760d26721138fd7a4e09124d6316edb7b1c"
+    },
+    {
+      "path": "reports/stage2_truth_bridge_decomposition/anchor_cutoff_sensitivity.tsv",
+      "sha256": "80f0392d645faf6d38bc324aef0dcc989a0d5a6c759bf328f412ee92fcc8c378"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/anchor_claim_tiering.tsv",
+      "sha256": "098b9ce811ed99575dd84c1c4c4c7a057884365425d65a320e270dfb36b43ef9"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv",
+      "sha256": "62327f0fc81574920d1e6e33b78abd8fc63b2ec05fa8cd9a6d1f88f84f7ec6a5"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "reports/manuscript_figures_v2/fig2_anchor_tiering/figure2.png",
+      "sha256": "15dd6db0a0087ec8677c197e3bf162bcbb4df9ea10eb0149767e8ddf46ee1138"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig2_anchor_tiering/figure2.pdf",
+      "sha256": "76e7606e66e22fe37bac6c1141cafc1c7ca23626ef7f610b839430811e151419"
+    }
+  ],
+  "panel_manifests": [
+    {
+      "path": "reports/manuscript_figures_v2/fig2_anchor_tiering/panels/figure2_panela_manifest.json",
+      "sha256": "62a13c5503aac9c316eeb1040eb65dbf0a4366c5e1b5fa9ee0d8fdda4ad7e2cc"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig2_anchor_tiering/panels/figure2_panelb_manifest.json",
+      "sha256": "5cf57585a8e98d1a082cb87cf8ab52be6434b3ef96274c8292df707b338bde30"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig2_anchor_tiering/panels/figure2_panelc_manifest.json",
+      "sha256": "a369ef9744ff0b596cc1a03a9aaa663624a2a0865ba3271efb0940a6bd517354"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig2_anchor_tiering/panels/figure2_paneld_manifest.json",
+      "sha256": "e67eee7741750e4ea515d80c31af17889310ae0693585a227fd5001e966d77c4"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig2_anchor_tiering/panels/figure2_panele_manifest.json",
+      "sha256": "3c0820d5a98da2ebda61dd105e1451054e1918d095ce962c943e07c972442c8d"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig2_anchor_tiering/panels/figure2_panelf_manifest.json",
+      "sha256": "4c2cdcf0f51c9c3725e8dd08dfa5ce15e6061b9ee46673c4fe5081b92e50db35"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig2_anchor_tiering/panels/figure2_panelg_manifest.json",
+      "sha256": "c1553b517a64aed4317b711cfe497cefb4f71f022ac06e18f65f02e335ebc919"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig2_anchor_tiering/panels/figure2_panelh_manifest.json",
+      "sha256": "3d78a786f9cf3c620a72f5b1a90cb48e92e83d622488df793bbbc50592714b84"
+    }
+  ],
+  "script": "scripts/manuscript/build_figure2_anchor_tiering.py"
+}

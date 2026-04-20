@@ -1,0 +1,48 @@
+target_gene	shift_quantile_mean	depmap_quantile_mean	q1_anchor_count	panel	cell_line	is_q1_anchor	n_cutoff_pairs	n_shared_anchor_calls	min_shift_quantile_mean	min_depmap_quantile_mean	max_shift_quantile_mean	max_depmap_quantile_mean	shared_anchor_stability_fraction	stability_call	shift_value_mean	depmap_strength_mean	target_or_group	evidence_tier	allowed_wording	disallowed_wording	structural_stability	covariate_cleanliness	final_wording_tier	recommended_writeup	object
+PRPF6	0.9895833333333331	0.9524601063829788	2.0	a																					
+PMF1	0.9153368794326242	0.9162234042553192	2.0	a																					
+ZNF131	0.905363475177305	0.8526152482269503	2.0	a																					
+RUVBL2	0.8623670212765957	0.9418218085106382	2.0	a																					
+ZBTB17	0.8413120567375887	0.799645390070922	2.0	a																					
+RPS3	0.8322251773049645	0.97905585106383	2.0	a																					
+PFDN5	0.8315602836879432	0.8840868794326242	2.0	a																					
+PFDN5				b	HCC1143	True																			
+PMF1				b	HCC1143	True																			
+PRPF6				b	HCC1143	True																			
+ZNF131				b	HCC1143	True																			
+PFDN5				b	HCC38	True																			
+PMF1				b	HCC38	True																			
+PRPF6				b	HCC38	True																			
+ZNF131				b	HCC38	True																			
+RPS3				c			3.0	2.0	0.8322251773049645	0.97905585106383	0.8322251773049645	0.97905585106383	0.6666666666666666	cutoff_sensitive_shared_anchor											
+RUVBL2				c			3.0	2.0	0.8623670212765957	0.9418218085106382	0.8623670212765957	0.9418218085106382	0.6666666666666666	cutoff_sensitive_shared_anchor											
+ZBTB17				c			3.0	2.0	0.8413120567375887	0.799645390070922	0.8413120567375887	0.799645390070922	0.6666666666666666	cutoff_sensitive_shared_anchor											
+ENY2				c			3.0	1.0	0.9055851063829788	0.7586436170212766	0.9055851063829788	0.7586436170212766	0.3333333333333333	cutoff_sensitive_shared_anchor											
+NPM1				c			3.0	1.0	0.8435283687943262	0.8113918439716312	0.8435283687943262	0.8113918439716312	0.3333333333333333	cutoff_sensitive_shared_anchor											
+PFDN5				c			3.0	3.0	0.8315602836879432	0.8840868794326242	0.8315602836879432	0.8840868794326242	1.0	stable_shared_anchor											
+PMF1				c			3.0	3.0	0.9153368794326242	0.9162234042553192	0.9153368794326242	0.9162234042553192	1.0	stable_shared_anchor											
+PRPF6				c			3.0	3.0	0.9895833333333331	0.9524601063829788	0.9895833333333331	0.9524601063829788	1.0	stable_shared_anchor											
+ZNF131				c			3.0	3.0	0.905363475177305	0.8526152482269503	0.905363475177305	0.8526152482269503	1.0	stable_shared_anchor											
+PRPF6	0.9895833333333331	0.9524601063829788		d											0.0149455319000838	0.9986398078273973									
+PMF1	0.9153368794326242	0.9162234042553192		d											0.0109882755714093	0.9744461229672754									
+ZNF131	0.905363475177305	0.8526152482269503		d											0.0101988361608718	0.8043337303914575									
+PFDN5	0.8315602836879432	0.8840868794326242		d											0.0096754645617479	0.8948474981425748									
+RPS3				e									0.6666666666666666	cutoff_sensitive_shared_anchor											
+RUVBL2				e									0.6666666666666666	cutoff_sensitive_shared_anchor											
+ZBTB17				e									0.6666666666666666	cutoff_sensitive_shared_anchor											
+ENY2				e									0.3333333333333333	cutoff_sensitive_shared_anchor											
+NPM1				e									0.3333333333333333	cutoff_sensitive_shared_anchor											
+				f													PFDN5	primary_but_qualified	PFDN5 可保留为相对更轻风险的 stable anchor，但必须带方法学谨慎	PFDN5 is a fully deconfounded strongest anchor					
+				f													PMF1	supporting_only	PMF1 保留结构稳定 anchor 身份，但当前仅适合作为 supporting evidence	PMF1 is a clean primary anchor; PMF1 alone nails down the bridge					
+				f													PRPF6	supporting_only	PRPF6 保留结构稳定 anchor 身份，但当前仅适合作为 supporting evidence	PRPF6 is a clean primary anchor; PRPF6 alone nails down the bridge					
+				f													ZNF131	supporting_only	ZNF131 保留结构稳定 anchor 身份，但当前仅适合作为 supporting evidence	ZNF131 is a clean primary anchor; ZNF131 alone nails down the bridge					
+				f													cutoff_sensitive_anchor_set	supporting_but_sensitive	ENY2/NPM1/RPS3/RUVBL2/ZBTB17 只可作为 supporting but sensitive objects	cutoff-sensitive anchors can be elevated to primary anchor set					
+PFDN5				g																	stable_shared_anchor	retain_with_caution	primary_but_qualified	可保留为相对更轻风险的 stable anchor，但不得写成 fully deconfounded strongest anchor	
+PMF1				g																	stable_shared_anchor	supporting_but_covariate_exposed	supporting_only	保留结构稳定性价值，但不得继续承担 strongest wording	
+PRPF6				g																	stable_shared_anchor	supporting_but_covariate_exposed	supporting_only	保留结构稳定性价值，但不得继续承担 strongest wording	
+ZNF131				g																	stable_shared_anchor	supporting_but_covariate_exposed	supporting_only	保留结构稳定性价值，但不得继续承担 strongest wording	
+				h														primary_but_qualified	PFDN5 可保留为相对更轻风险的 stable anchor，但必须带方法学谨慎	PFDN5 is a fully deconfounded strongest anchor					PFDN5
+				h														supporting_only	PMF1 保留结构稳定 anchor 身份，但当前仅适合作为 supporting evidence	PMF1 is a clean primary anchor; PMF1 alone nails down the bridge					PMF1
+				h														supporting_only	PRPF6 保留结构稳定 anchor 身份，但当前仅适合作为 supporting evidence	PRPF6 is a clean primary anchor; PRPF6 alone nails down the bridge					PRPF6
+				h														supporting_only	ZNF131 保留结构稳定 anchor 身份，但当前仅适合作为 supporting evidence	ZNF131 is a clean primary anchor; ZNF131 alone nails down the bridge					ZNF131
+				h														supporting_but_sensitive	ENY2/NPM1/RPS3/RUVBL2/ZBTB17 只可作为 supporting but sensitive objects	cutoff-sensitive anchors can be elevated to primary anchor set					cutoff_sensitive_anchor_set

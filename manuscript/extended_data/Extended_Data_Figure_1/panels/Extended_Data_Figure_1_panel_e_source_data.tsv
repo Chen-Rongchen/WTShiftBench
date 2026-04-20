@@ -1,0 +1,4 @@
+endpoint	role	tier
+CRISPR DepMap	primary bridge readout	primary
+RNAi DEMETER2	cross-platform sensitivity	sensitivity
+K562 GSE90063	supplementary temporal panel	supplementary

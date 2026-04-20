@@ -1,0 +1,47 @@
+{
+  "claim_boundary": "Only transcription / chromatin is a formal positive axis, and it remains primary but qualified.",
+  "generated_at_utc": "2026-04-18T14:52:21.719458+00:00",
+  "git": {
+    "commit": "a36af44e93a89ace31da398ffc018e268aa0d3c3",
+    "status_short": "M src/wtbench/manuscript/figure1_truth_object_v2.py\n M src/wtbench/manuscript/figure2_anchor_tiering.py\n M src/wtbench/manuscript/figure3_model_tradeoff.py\n M src/wtbench/manuscript/figure4_sweep_controls.py\n M src/wtbench/manuscript/figure5_axis_interpretation.py\n M src/wtbench/manuscript/figure6_boundary.py\n M src/wtbench/manuscript/manuscript_style.py\n?? docs/nature_methods_2025_figure_style_note_v1.md"
+  },
+  "inputs": [
+    {
+      "path": "reports/stage2_truth_bridge_decomposition/axis_level_shared_explanatory_summary.tsv",
+      "sha256": "2c969aade5ffc4e9638638ab5c2cb6ffb64ba8037a462ab9b5225b56fe1891c6"
+    },
+    {
+      "path": "reports/stage2_truth_bridge_decomposition/axis_bootstrap_stability.tsv",
+      "sha256": "13d84f21eadb1feb78a678ca5885cfaed3294ef70dc6407d71a1e616a4612a33"
+    },
+    {
+      "path": "reports/stage2_axis_analysis/axis_validation_summary.tsv",
+      "sha256": "3f5143096d8c0e968e8aca6de41c585cc7668ecfe3c9eb8ceeeb6580165dd1e4"
+    },
+    {
+      "path": "reports/stage2_axis_analysis/axis_summary.tsv",
+      "sha256": "d18ba55452310976e152edc71eb18a728f9fb39cc9253403a675f64b56ddeb10"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv",
+      "sha256": "62327f0fc81574920d1e6e33b78abd8fc63b2ec05fa8cd9a6d1f88f84f7ec6a5"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "reports/manuscript_figures_v2/fig5_axis_interpretation/panels/figure5_panelh.png",
+      "sha256": "d2106ba36180ab8848461c9e60248438b16eef0c453e208a1ecc1c7b1ee65d9b"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig5_axis_interpretation/panels/figure5_panelh.pdf",
+      "sha256": "c7ed3709c7971252c99f8e732b7ad1b5077d485a6f80739da2cbcb0be7d3b5a6"
+    }
+  ],
+  "panel_id": "figure5h",
+  "panel_title": "Axis claim boundary",
+  "script": "scripts/manuscript/build_figure5_axis_interpretation.py",
+  "source_data": {
+    "path": "reports/manuscript_figures_v2/fig5_axis_interpretation/panels/figure5_panelh_source_data.tsv",
+    "sha256": "a688081fee1968046111ba319801ac49b21712dbc230e099df0606ebfcb8f9a0"
+  }
+}

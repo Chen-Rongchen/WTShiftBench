@@ -1,0 +1,6 @@
+target_or_group	evidence_tier	allowed_wording	disallowed_wording
+PFDN5	primary_but_qualified	PFDN5 可保留为相对更轻风险的 stable anchor，但必须带方法学谨慎	PFDN5 is a fully deconfounded strongest anchor
+PMF1	supporting_only	PMF1 保留结构稳定 anchor 身份，但当前仅适合作为 supporting evidence	PMF1 is a clean primary anchor; PMF1 alone nails down the bridge
+PRPF6	supporting_only	PRPF6 保留结构稳定 anchor 身份，但当前仅适合作为 supporting evidence	PRPF6 is a clean primary anchor; PRPF6 alone nails down the bridge
+ZNF131	supporting_only	ZNF131 保留结构稳定 anchor 身份，但当前仅适合作为 supporting evidence	ZNF131 is a clean primary anchor; ZNF131 alone nails down the bridge
+cutoff_sensitive_anchor_set	supporting_but_sensitive	ENY2/NPM1/RPS3/RUVBL2/ZBTB17 只可作为 supporting but sensitive objects	cutoff-sensitive anchors can be elevated to primary anchor set
