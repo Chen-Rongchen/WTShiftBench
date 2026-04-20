@@ -41,6 +41,7 @@
 - `manuscript/text/manuscript_draft_v1.md`
 - `manuscript/text/figure_legends_v1.md`
 - `manuscript/source_data_manifests/submission_package_manifest.json`
+- `docs/manuscript_hardening_plan_v1.md`
 - `docs/genome_biology_submission_execution_plan_v1.md`
 - `manuscript/source_data_manifests/MANUSCRIPT_REPRODUCIBILITY.md`
 - `docs/genome_biology_submission_checklist_v1.md`
@@ -54,6 +55,16 @@
 - `docs/genome_biology_submission_final_index_v1.md`
 
 ## 下一步只做投稿格式收口
+
+### 0. Manuscript hardening
+
+当前稿件应视为 strong editorial draft，而不是最终 submission-ready 版本。下一轮先按 `docs/manuscript_hardening_plan_v1.md` 执行：
+
+- 修正 HCC38/HCC1143 是乳腺癌细胞系这一身份表述，移除 `HCC = hepatocellular carcinoma` 和单独 `HCC context` 的投稿文本用法。
+- 把文章主语固定为 framework/resource，而不是 model leaderboard。
+- 补齐 public repository / archive DOI / declarations 等 submission blocker。
+- 将 Methods 扩到 operational definition 级，包括 shift、dependency alignment、grid bin、三指标、baseline、tiering、bootstrap 和 permutation null。
+- 降档两处 interpretation-level overclaim：GEARS gap 解释和 baseline/canonical-backbone 解释。
 
 ### 1. 作者与 declarations
 

@@ -13,7 +13,7 @@ WT Benchmark 是一个 **truth-first** 的 virtual perturbation benchmark 与分
 - `Stage 2` 的 truth-driven bridge、master atlas、structure replication 与 explanation boundary 产物
 - 论文主文与补充图的 evidence governance / claim boundary 文档
 
-当前已经冻结的是 **HCC truth-side bridge architecture objects**；当前已经闭环的是 **GEARS strongest formal entrant 的真实 HCC smoke adjudication 与有限 backbone sweep**；`scGPT / Geneformer / lm_train_lowrank / lm_G_scgpt_ridge / lm_G_geneformer_ridge` 已正式接入 HCC Stage 2，并完成双 cell line raw output、export、contract validation 与 smoke comparison。与此同时，truth-side 结果层已经收束为：**truth-DepMap bridge decomposition + cutoff sensitivity / bootstrap stability + evidence tiering + covariate boundary + K562 temporal and endpoint sensitivity + figure-level reproducibility package**。当前主文投稿目标已固定为 **Genome Biology Research**，定位为 truth-anchored functional-genomics benchmark/resource；Science Advances 仅作为需要大幅 broad-impact 改写的冲刺备选，Advanced Science 不作为优先目标。
+当前已经冻结的是 **HCC38/HCC1143 breast-cancer cell-line truth-side bridge architecture objects**；当前已经闭环的是 **GEARS strongest formal entrant 的真实 HCC38/HCC1143 smoke adjudication 与有限 backbone sweep**；`scGPT / Geneformer / lm_train_lowrank / lm_G_scgpt_ridge / lm_G_geneformer_ridge` 已正式接入 HCC38/HCC1143 Stage 2，并完成双 cell line raw output、export、contract validation 与 smoke comparison。与此同时，truth-side 结果层已经收束为：**truth-DepMap bridge decomposition + cutoff sensitivity / bootstrap stability + evidence tiering + covariate boundary + K562 temporal and endpoint sensitivity + figure-level reproducibility package**。当前主文投稿目标已固定为 **Genome Biology Research**，定位为 truth-anchored functional-genomics framework/resource；Science Advances 仅作为需要大幅 broad-impact 改写的冲刺备选，Advanced Science 不作为优先目标。
 
 旧 Stage 1A smoke / freeze / scoring 顶层流程、旧 entrant registry 与旧处理后数据已经从当前工作树清理；原始下载数据仍保留在 `data/raw`。`scripts/stage1a/` 仅保留 Stage 2 入口仍复用的少量 helper，不再作为独立主流程入口维护。
 
@@ -59,9 +59,9 @@ WT Benchmark 是一个 **truth-first** 的 virtual perturbation benchmark 与分
 
 当前最稳的项目表述是：
 
-> GEARS 展现出选择性结构优势：它更擅长把 structure 和 context deviation 分开，并在部分 cell line 上更能识别 shift-excess；但在当前 HCC primary adjudication 中，canonical backbone recovery 仍落后于 `shared_mean_baseline`。
+> GEARS 展现出选择性结构优势：它更擅长把 structure 和 context deviation 分开，并在部分 cell line 上更能识别 shift-excess；但在当前 HCC38/HCC1143 primary adjudication 中，canonical backbone recovery 仍落后于 `shared_mean_baseline`。
 
-与此同时，endpoint hierarchy 已跨 HCC38/HCC1143/K562 7d/K562 13d 四个 context 稳定验证：CRISPR DepMap = formal primary bridge readout，RNAi DEMETER2 = weaker cross-platform sensitivity endpoint，cross-platform robustness 本身是 context-dependent 的（HCC CRISPR vs RNAi = 0.14/0.23，K562 = 0.45）。
+与此同时，endpoint hierarchy 已跨 HCC38/HCC1143/K562 7d/K562 13d 四个 context 稳定验证：CRISPR DepMap = formal primary bridge readout，RNAi DEMETER2 = weaker cross-platform sensitivity endpoint，cross-platform robustness 本身是 context-dependent 的（HCC38/HCC1143 CRISPR vs RNAi = 0.14/0.23，K562 = 0.45）。
 
 这不是“GEARS 和 baseline 各赢一半”的对称竞争。更准确地说，`shared_mean_baseline` 是当前更稳定、更主导的 backbone primary reference；`GEARS` 是 deviation / separation-biased entrant。`shift` 也必须拆开：整体位移大小或 shared trend 这一层 baseline 并不差，GEARS 的相对强项更接近超出 backbone 可解释部分的 `shift-excess` / context-specific deviation。
 
@@ -81,6 +81,12 @@ WT Benchmark 是一个 **truth-first** 的 virtual perturbation benchmark 与分
 5. `manuscript/source_data_manifests/submission_package_manifest.json`
 6. `docs/genome_biology_submission_checklist_v1.md`
 7. `docs/baseline_model_interpretation_and_journal_strategy_v1.md`
+
+当前 manuscript hardening 的新增入口：
+
+- `docs/manuscript_hardening_plan_v1.md`
+
+这份文档固定最后一轮文字治理顺序：先修 HCC38/HCC1143 乳腺癌细胞系身份和 `HCC` 缩写风险，再补 submission blocker，再把 Introduction、Results 和 Methods 压到 framework/resource 与 operational definition 级别。
 
 如果你下次进来只想知道“方法学本体下一步做什么”，直接记这一版：
 
@@ -142,7 +148,7 @@ discovery / phenotype shifter。它仍保留在 roadmap 中，但当前不是 pr
 
 最近一步不是”再接一个 entrant”，而是：
 
-**在有限预算 sweep 已完成的前提下，将 GEARS 在 HCC primary 上正式收口为 architecture trade-off diagnosis，并把项目主卖点固定为 fitness-relevant transcriptomic bridge architecture：扰动转录组结构能否桥接 DepMap cellular fitness/dependency。**
+**在有限预算 sweep 已完成的前提下，将 GEARS 在 HCC38/HCC1143 primary 上正式收口为 architecture trade-off diagnosis，并把项目主卖点固定为 fitness-relevant transcriptomic bridge architecture：扰动转录组结构能否桥接 DepMap cellular fitness/dependency。**
 
 这里必须拆成两层，避免把 model recovery adjudication triad 与 A1 bridge-form 主问题混在一起。
 
@@ -274,7 +280,7 @@ PYTHONPATH=src python scripts/run_stage2_dixit_axis_compression.py --config conf
 
 ## 7. 当前 stop rule
 
-如果一轮有限预算 sweep 后，`canonical_backbone recovery` 仍不能接近或追平 `shared_mean_baseline`，且任何改进都以明显损失 `structure/context separation` 为代价，则停止继续把 `GEARS` 推为 HCC primary winner，并将当前结果收口为 architecture trade-off diagnosis。
+如果一轮有限预算 sweep 后，`canonical_backbone recovery` 仍不能接近或追平 `shared_mean_baseline`，且任何改进都以明显损失 `structure/context separation` 为代价，则停止继续把 `GEARS` 推为 HCC38/HCC1143 primary winner，并将当前结果收口为 architecture trade-off diagnosis。
 
 当前这条 stop rule 已经触发，相关正式产物见：
 
@@ -301,7 +307,7 @@ PYTHONPATH=src python scripts/run_stage2_dixit_axis_compression.py --config conf
 | Extended Data 与小图 panel | `manuscript/extended_data/` |
 | 终局边界与禁写口径 | `docs/final_claim_boundary_and_discovery_gating_note_v1.md`、`reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv` |
 | 主图与 Extended Data 重跑 | `scripts/manuscript/build_all_main_figures.py`、`scripts/manuscript/build_all_extended_data_figures.py`、`configs/manuscript/main_figures_v2.json`、`configs/manuscript/extended_data_figures_v1.json` |
-| HCC model-side adjudication | `reports/stage2_gears_backbone_sweep/final_adjudication.md`、`reports/stage2_real_hcc_smoke/model_comparison.tsv` |
+| HCC38/HCC1143 model-side adjudication | `reports/stage2_gears_backbone_sweep/final_adjudication.md`、`reports/stage2_real_hcc_smoke/model_comparison.tsv` |
 | truth-side bridge 与 axis | `docs/stage2_truth_bridge_integrated_result_v1.md`、`docs/stage2_axis_annotation_result_v1.md`、`reports/stage2_axis_analysis/axis_validation_summary.md` |
 | Dixit/K562 supplementary | `docs/stage2_dixit_admission_contract_v1.md`、`docs/stage2_dixit_supplementary_evidence_tier_v1.md`、`docs/stage2_dixit_supplementary_startup_packet_v1.md` |
 | 执行入口 | `scripts/`、`configs/`、`src/wtbench/` |
@@ -367,7 +373,7 @@ PYTHONPATH=src python scripts/run_stage2_dixit_axis_compression.py --config conf
 | 层 | 状态 | 含义 |
 |----|------|------|
 | A0 architecture form | **confirmed** | backbone + shift-excess 结构可复制 |
-| A1 bridge form | **supporting / partial-support** | 与 DepMap 方向一致、时间尺度兼容，但弱于 HCC primary |
+| A1 bridge form | **supporting / partial-support** | 与 DepMap 方向一致、时间尺度兼容，但弱于 HCC38/HCC1143 primary |
 | B bridge content | **not eligible** | macro class context-specific，target overlap 低 |
 
 进入的是 formal supplementary external support for architecture form，不是 `formal primary co-pillar`；A1 bridge form 只能保持 supporting / partial-support，B bridge content 不进入。
@@ -389,7 +395,7 @@ PYTHONPATH=src python scripts/run_stage2_dixit_axis_compression.py --config conf
 - architecture recovery 不等同于 single-gene correlation，也不等同于 global Pearson。
 - discovery / phenotype shifter 仍然是 downstream layer，必须晚于 model-side closure。
 - `cosine / L2 / top-20 overlap` 现在是辅助裁决层，不替代 backbone / shift-excess / separation 三个主裁决问题。
-- `scGPT` 与 `Geneformer` 都已进入 HCC primary comparison；当前 `Geneformer` 强于 `scGPT`，但两者都不是 stronger entrant。
+- `scGPT` 与 `Geneformer` 都已进入 HCC38/HCC1143 primary comparison；当前 `Geneformer` 强于 `scGPT`，但两者都不是 stronger entrant。
 - sensitivity 当前是”主支柱保守稳健，但 formal full closure 尚未完成”，不是”robustness 已全面建立”。
 - covariate audit 已形成正式治理产物，但受元数据上限约束，当前不能写成 `covariate closure complete`。
 - 当前不能把 `Stage 2 / 3` 写成 fully complete。
