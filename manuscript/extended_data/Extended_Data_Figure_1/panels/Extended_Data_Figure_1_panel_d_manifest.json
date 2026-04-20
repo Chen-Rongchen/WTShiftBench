@@ -1,0 +1,51 @@
+{
+  "claim_boundary": "Dataset and endpoint admission separates primary HCC evidence, supplementary K562 evidence and RNAi sensitivity.",
+  "generated_at_utc": "2026-04-18T14:54:47.068621+00:00",
+  "git": {
+    "commit": "a36af44e93a89ace31da398ffc018e268aa0d3c3",
+    "status_short": "M src/wtbench/manuscript/extended_data_figure10.py\n M src/wtbench/manuscript/extended_data_figure3.py\n M src/wtbench/manuscript/extended_data_figure6.py\n M src/wtbench/manuscript/extended_data_figure9.py\n M src/wtbench/manuscript/extended_data_remaining.py\n M src/wtbench/manuscript/figure1_truth_object_v2.py\n M src/wtbench/manuscript/figure2_anchor_tiering.py\n M src/wtbench/manuscript/figure3_model_tradeoff.py\n M src/wtbench/manuscript/figure4_sweep_controls.py\n M src/wtbench/manuscript/figure5_axis_interpretation.py\n M src/wtbench/manuscript/figure6_boundary.py\n M src/wtbench/manuscript/manuscript_style.py\n?? docs/nature_methods_2025_figure_style_note_v1.md"
+  },
+  "inputs": [
+    {
+      "path": "reports/stage2_truth_driven_bridge/HCC38/correlation_summary.tsv",
+      "sha256": "9f017f8812398533a1a7a84382f1673d6bf5a17931d07e14f97971e878d8b158"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/HCC1143/correlation_summary.tsv",
+      "sha256": "95ecbda82aedd847a29d71f4ba787d377c0561512463615b03b91bae69a3cf87"
+    },
+    {
+      "path": "reports/stage2_gse90063_qc/dixit_2016_k562_tf_7d_summary.tsv",
+      "sha256": "d52c66644b802f65935be0bfce3c7bcd554d0c48eeabe089420fcfd4a426a6f0"
+    },
+    {
+      "path": "reports/stage2_gse90063_qc/dixit_2016_k562_tf_13d_summary.tsv",
+      "sha256": "749db9f1be3a8fffe72388ce77a3f697ec368110125da8a536055ec8c5d0f008"
+    },
+    {
+      "path": "reports/stage2_rnai_demeter2_conversion/summary.tsv",
+      "sha256": "859f3aae3e34b4a8cffa08eb1f3e1070087bbc4cc64803c2535e8cf505ff99c4"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv",
+      "sha256": "62327f0fc81574920d1e6e33b78abd8fc63b2ec05fa8cd9a6d1f88f84f7ec6a5"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig1_dataset_endpoint_admission/panels/edfig1_paneld.png",
+      "sha256": "be825574cb733660fd51fb29a247ba1dc70193635fcb87269eafc4e77a1d2885"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig1_dataset_endpoint_admission/panels/edfig1_paneld.pdf",
+      "sha256": "19ca16c6e28efefad4729cf97ef634510633f4a7195b2fa7ec78ac1b764c5a5a"
+    }
+  ],
+  "panel_id": "EDFIG1d",
+  "panel_title": "Admission status",
+  "script": "scripts/manuscript/build_extended_data_figure1.py",
+  "source_data": {
+    "path": "reports/manuscript_extended_data_v1/edfig1_dataset_endpoint_admission/panels/edfig1_paneld_source_data.tsv",
+    "sha256": "02c68160d4499b77b2eb6b23b01ae8d43d1d2e54c725dae51d14da5a85afd983"
+  }
+}

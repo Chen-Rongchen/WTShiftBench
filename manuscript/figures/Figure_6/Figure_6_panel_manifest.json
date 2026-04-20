@@ -1,0 +1,105 @@
+{
+  "claim_boundary": "Final claims are limitation-bounded: CRISPR is primary, RNAi is sensitivity, K562 is supplementary, discovery is gated.",
+  "combined_source_data": {
+    "path": "reports/manuscript_figures_v2/fig6_boundary/figure6_source_data.tsv",
+    "sha256": "2909b7b267c193fb2caf803144bfe174c81e4919108cf456498c363983e22d7c"
+  },
+  "figure_id": "figure6",
+  "figure_title": "Covariate, temporal and endpoint analyses define the final claim boundary",
+  "generated_at_utc": "2026-04-18T14:52:32.790186+00:00",
+  "git": {
+    "commit": "a36af44e93a89ace31da398ffc018e268aa0d3c3",
+    "status_short": "M src/wtbench/manuscript/figure1_truth_object_v2.py\n M src/wtbench/manuscript/figure2_anchor_tiering.py\n M src/wtbench/manuscript/figure3_model_tradeoff.py\n M src/wtbench/manuscript/figure4_sweep_controls.py\n M src/wtbench/manuscript/figure5_axis_interpretation.py\n M src/wtbench/manuscript/figure6_boundary.py\n M src/wtbench/manuscript/manuscript_style.py\n?? docs/nature_methods_2025_figure_style_note_v1.md"
+  },
+  "inputs": [
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/summary.tsv",
+      "sha256": "0ff680f9d41bc0e3dfdf77db3a3639ac6bd719648fe09da4c94102d722667f7b"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/barcode_gem_group_mapping_note.md",
+      "sha256": "118331d823ed6e1adcf50cf1fcff84b80335789b16c69c65be5964676cfdb6aa"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/anchor_claim_tiering.tsv",
+      "sha256": "098b9ce811ed99575dd84c1c4c4c7a057884365425d65a320e270dfb36b43ef9"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_bridge_summary.tsv",
+      "sha256": "89c33d689c4b507f477e8d6d972f0aa4513d536e2fc616acc99f67e6d09c9de0"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_panel_calls.tsv",
+      "sha256": "a294d7c139fcb0f2cc5c48dc9143d348c1a1d80c8d3d3a572cf79c304102b11e"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_structure_summary.tsv",
+      "sha256": "8ad805e3250e54bb5bbc62d4140f28ead55d505b5ff4a45a181b720bf7fc8a6f"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/dixit_axis_compression_gse90063_13d/dixit_evidence_tier_summary.tsv",
+      "sha256": "28086e998fa432f369c16f411ca68930915ad0b1d95461c522e6e713f3cf2ea1"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/dixit_axis_compression_gse90063_7d/dixit_evidence_tier_summary.tsv",
+      "sha256": "456ec91dcbd5970623b82f943eda2e22e33962e57f4f3de74477aa0ebb53aaac"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/hcc38_hcc1143_rnai_endpoint_consistency/endpoint_consistency_summary.tsv",
+      "sha256": "612bd16ed8d12dd9089190b52848bde215507d93355b1cb40b9abccf231925c4"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/k562_rnai_endpoint_consistency/endpoint_consistency_summary.tsv",
+      "sha256": "be9fcfdb0f7fcdc298f98c5d4c1a82bdb7758e5367092e85975461ea2e336700"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv",
+      "sha256": "62327f0fc81574920d1e6e33b78abd8fc63b2ec05fa8cd9a6d1f88f84f7ec6a5"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "reports/manuscript_figures_v2/fig6_boundary/figure6.png",
+      "sha256": "360c83dec3e7be6d65d08062e5ed94b8a82f0839000a8dfa57c3821c56f4627c"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig6_boundary/figure6.pdf",
+      "sha256": "4f7f666787eaa70e08e3b8a97a03a97687a7da938831948e39ed30ea2f54efa7"
+    }
+  ],
+  "panel_manifests": [
+    {
+      "path": "reports/manuscript_figures_v2/fig6_boundary/panels/figure6_panela_manifest.json",
+      "sha256": "7da57e7193114a8dc979d0c79e450227e98fa12885fa5af11040c946df9ba844"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig6_boundary/panels/figure6_panelb_manifest.json",
+      "sha256": "73a09ed0d621063865cff530c265a6e87c2ea1262d1893b11f511a739eef13ee"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig6_boundary/panels/figure6_panelc_manifest.json",
+      "sha256": "c5ef25c1f5ba9414d7ee911c9d5c504a3fdef4edbafa715486fd4d75d3d05cbb"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig6_boundary/panels/figure6_paneld_manifest.json",
+      "sha256": "3ac798491adcf0040135a50527e9ada9d5c8b32a74910c0a7f35363890bfb9cb"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig6_boundary/panels/figure6_panele_manifest.json",
+      "sha256": "1c32129412d086fb923463f4b22abe48e6525ba34c4f934911884664b8dceb38"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig6_boundary/panels/figure6_panelf_manifest.json",
+      "sha256": "9687f6dbaed1c727eef1fa22e033eafa35c2edeaa30d0ed6ef31ef36e9939c70"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig6_boundary/panels/figure6_panelg_manifest.json",
+      "sha256": "49df3de7afc47ea2fa9242b6731b45f2cd0ca3958557b14d0c7f868a8898ddf8"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig6_boundary/panels/figure6_panelh_manifest.json",
+      "sha256": "d553219cef68d976febda660da452f21a2773cc7ceea296d06b132b80d65e103"
+    }
+  ],
+  "script": "scripts/manuscript/build_figure6_boundary.py"
+}

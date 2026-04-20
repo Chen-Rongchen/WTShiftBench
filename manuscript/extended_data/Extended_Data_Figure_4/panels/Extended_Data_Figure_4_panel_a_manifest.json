@@ -1,0 +1,35 @@
+{
+  "claim_boundary": "Full model details support a backbone-separation trade-off, not model recovery proof.",
+  "generated_at_utc": "2026-04-18T14:55:03.980940+00:00",
+  "git": {
+    "commit": "a36af44e93a89ace31da398ffc018e268aa0d3c3",
+    "status_short": "M src/wtbench/manuscript/extended_data_figure10.py\n M src/wtbench/manuscript/extended_data_figure3.py\n M src/wtbench/manuscript/extended_data_figure6.py\n M src/wtbench/manuscript/extended_data_figure9.py\n M src/wtbench/manuscript/extended_data_remaining.py\n M src/wtbench/manuscript/figure1_truth_object_v2.py\n M src/wtbench/manuscript/figure2_anchor_tiering.py\n M src/wtbench/manuscript/figure3_model_tradeoff.py\n M src/wtbench/manuscript/figure4_sweep_controls.py\n M src/wtbench/manuscript/figure5_axis_interpretation.py\n M src/wtbench/manuscript/figure6_boundary.py\n M src/wtbench/manuscript/manuscript_style.py\n?? docs/nature_methods_2025_figure_style_note_v1.md"
+  },
+  "inputs": [
+    {
+      "path": "reports/stage2_real_hcc_smoke/model_comparison.tsv",
+      "sha256": "790934f722a63cc2754978335f081c913d78ca83eea0f39d85d2f7915bfe3a9d"
+    },
+    {
+      "path": "reports/stage2_real_hcc_smoke/smoke_summary.tsv",
+      "sha256": "2a7cd0c666c9998343892cf5ea3e5f4fbdde1b52da467a9dd9d4d7a06c666f6c"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig4_model_detail/panels/edfig4_panela.png",
+      "sha256": "dad1cf5d2a5a45c2c2d55cc6283c7e80d78f39b55b49f3a6f510b842c4fe1d86"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig4_model_detail/panels/edfig4_panela.pdf",
+      "sha256": "3e48031f4c83373486ee63b7d3c5e1cd6ffdd04a542c2aea16887d8a0e28f249"
+    }
+  ],
+  "panel_id": "EDFIG4a",
+  "panel_title": "Ranking",
+  "script": "scripts/manuscript/build_extended_data_figure4.py",
+  "source_data": {
+    "path": "reports/manuscript_extended_data_v1/edfig4_model_detail/panels/edfig4_panela_source_data.tsv",
+    "sha256": "169cc6e50d0e5d37f9433ecc922c9f684c765cb035872e7eb91c210c23561685"
+  }
+}

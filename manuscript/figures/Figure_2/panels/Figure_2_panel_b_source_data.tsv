@@ -1,0 +1,9 @@
+target_gene	cell_line	is_q1_anchor
+PFDN5	HCC1143	True
+PMF1	HCC1143	True
+PRPF6	HCC1143	True
+ZNF131	HCC1143	True
+PFDN5	HCC38	True
+PMF1	HCC38	True
+PRPF6	HCC38	True
+ZNF131	HCC38	True

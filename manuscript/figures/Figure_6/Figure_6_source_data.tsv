@@ -1,0 +1,52 @@
+cell_line	strat_column	n_targets	n_strata	mean_tvd	median_tvd	n_targets_tvd_gt_0.15	n_targets_tvd_gt_0.25	report_path	panel	target_gene	structural_stability	covariate_cleanliness	final_wording_tier	recommended_writeup	aggregation	boundary	timepoint	role	n_formal_bridgeable_targets	n_cells_with_single_feature	n_control_cells	aligned_spearman	mean_truth_metric	median_truth_metric	object_type	object_id	observed_pattern	evidence_tier	claim_boundary	tier_group	context	platform_pair	spearman	n_shared_targets	object	allowed_wording	disallowed_wording
+HCC1143	barcode_gem_group	50.0	3.0	0.0553688001480439	0.04943644796777	0.0	0.0	/home/data/gz0705/WTKO/reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/HCC1143_barcode_gem_group_target_control_balance.tsv	a																												
+HCC1143	num_umis_over_threshold_bin	50.0	4.0	0.1038378228257645	0.0822786816030881	9.0	3.0	/home/data/gz0705/WTKO/reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/HCC1143_num_umis_over_threshold_bin_target_control_balance.tsv	a																												
+HCC1143	num_umis_quantile_bin	50.0	4.0	0.1331656892393771	0.1270131410936646	18.0	2.0	/home/data/gz0705/WTKO/reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/HCC1143_num_umis_quantile_bin_target_control_balance.tsv	a																												
+HCC1143	transcriptome_detected_genes_quantile_bin	50.0	4.0	0.0763635715127252	0.0643932036186256	6.0	1.0	/home/data/gz0705/WTKO/reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/HCC1143_transcriptome_detected_genes_quantile_bin_target_control_balance.tsv	a																												
+HCC1143	transcriptome_total_signal_quantile_bin	50.0	4.0	0.0779806104417702	0.0632640516191688	5.0	0.0	/home/data/gz0705/WTKO/reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/HCC1143_transcriptome_total_signal_quantile_bin_target_control_balance.tsv	a																												
+HCC38	barcode_gem_group	50.0	3.0	0.0529180609984402	0.0422997207243601	3.0	2.0	/home/data/gz0705/WTKO/reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/HCC38_barcode_gem_group_target_control_balance.tsv	a																												
+HCC38	num_umis_over_threshold_bin	50.0	4.0	0.0926564213166551	0.0575314999730691	6.0	3.0	/home/data/gz0705/WTKO/reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/HCC38_num_umis_over_threshold_bin_target_control_balance.tsv	a																												
+HCC38	num_umis_quantile_bin	50.0	4.0	0.1087842315983835	0.0743581581316291	9.0	6.0	/home/data/gz0705/WTKO/reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/HCC38_num_umis_quantile_bin_target_control_balance.tsv	a																												
+HCC38	transcriptome_detected_genes_quantile_bin	50.0	4.0	0.0576238872498433	0.0448482811520195	1.0	0.0	/home/data/gz0705/WTKO/reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/HCC38_transcriptome_detected_genes_quantile_bin_target_control_balance.tsv	a																												
+HCC38	transcriptome_total_signal_quantile_bin	50.0	4.0	0.0706879015433831	0.0504229109277646	3.0	2.0	/home/data/gz0705/WTKO/reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/HCC38_transcriptome_total_signal_quantile_bin_target_control_balance.tsv	a																												
+									b	PFDN5	stable_shared_anchor	retain_with_caution	primary_but_qualified	可保留为相对更轻风险的 stable anchor，但不得写成 fully deconfounded strongest anchor																							
+									b	PMF1	stable_shared_anchor	supporting_but_covariate_exposed	supporting_only	保留结构稳定性价值，但不得继续承担 strongest wording																							
+									b	PRPF6	stable_shared_anchor	supporting_but_covariate_exposed	supporting_only	保留结构稳定性价值，但不得继续承担 strongest wording																							
+									b	ZNF131	stable_shared_anchor	supporting_but_covariate_exposed	supporting_only	保留结构稳定性价值，但不得继续承担 strongest wording																							
+HCC38									c						aggrMH001-3	design proxy, not run resolved																					
+HCC1143									c						aggrMH004-6	design proxy, not run resolved																					
+									d								7d	temporal_sensitivity_early_bridge_probe	10.0	28034.0	5381.0																
+									d								13d	primary_formal_supplementary_bridge_test	10.0	15849.0	3491.0																
+									e								7d	temporal_sensitivity_early_bridge_probe				0.7333333333333332	0.0030991873866114	0.0029023397479872													
+									e								13d	primary_formal_supplementary_bridge_test				0.5151515151515151	0.004382685449453	0.0044183505802962													
+									f								7d								dataset_level	architecture_existence	canonical_backbone_present=True; shift_excess_present=True	supplementary_confirmed	支持 supplementary-level architecture existence，不支持 shared mainline architecture	A0 confirmed							
+									f								7d								dataset_level	canonical_backbone_present	external backbone-like structure detected	supplementary_confirmed	支持 backbone existence，不支持 backbone macro class 与 HCC 相同	A0 confirmed							
+									f								7d								dataset_level	shift_excess_present	shift-excess structure detected in K562	supplementary_supporting	支持存在性，不支持 dominant shift-excess macro class 已稳定命名	A1 supporting							
+									f								7d								dataset_level	backbone_macro_class	transcription regulation	supplementary_supporting	支持 context-specific backbone replication，不支持与 HCC backbone macro class 对齐	A1 supporting							
+									f								7d								dataset_level	architecture_class	backbone_plus_shift_excess	supplementary_supporting	支持 K562 architecture composition 与 HCC 不同，不支持跨 context 同构	A1 supporting							
+									f								7d								dataset_level	shift_excess_macro_class	signaling / stress	preliminary	当前不足以写成稳定、可命名的 supplementary positive program	B not eligible							
+									f								7d								axis_level	unresolved_2	translation / chromatin machinery backbone axis; n_genes=1; fraction_Q1=1.000	supplementary_supporting	支持 backbone heterogeneity，不能直接等同 HCC gene expression machinery	A1 supporting							
+									f								7d								axis_level	unresolved_5	translation initiation / RNA processing backbone axis; n_genes=2; fraction_Q1=0.000	preliminary	轴规模过小，只能作 preliminary supportive line	B not eligible							
+									f								7d								axis_level	unresolved_4	shift_excess-like axis; n_genes=1; fraction_shift_excess=0.000	preliminary	支持 K562 含 shift-excess 成分，但不足以稳定命名 macro class	B not eligible							
+									f								13d								dataset_level	architecture_existence	canonical_backbone_present=True; shift_excess_present=True	supplementary_confirmed	支持 supplementary-level architecture existence，不支持 shared mainline architecture	A0 confirmed							
+									f								13d								dataset_level	canonical_backbone_present	external backbone-like structure detected	supplementary_confirmed	支持 backbone existence，不支持 backbone macro class 与 HCC 相同	A0 confirmed							
+									f								13d								dataset_level	shift_excess_present	shift-excess structure detected in K562	supplementary_supporting	支持存在性，不支持 dominant shift-excess macro class 已稳定命名	A1 supporting							
+									f								13d								dataset_level	backbone_macro_class	transcription regulation	supplementary_supporting	支持 context-specific backbone replication，不支持与 HCC backbone macro class 对齐	A1 supporting							
+									f								13d								dataset_level	architecture_class	backbone_plus_shift_excess	supplementary_supporting	支持 K562 architecture composition 与 HCC 不同，不支持跨 context 同构	A1 supporting							
+									f								13d								dataset_level	shift_excess_macro_class	translation / chromatin machinery	preliminary	当前不足以写成稳定、可命名的 supplementary positive program	B not eligible							
+									f								13d								axis_level	unresolved_2	translation / chromatin machinery backbone axis; n_genes=2; fraction_Q1=0.000	supplementary_supporting	支持 backbone heterogeneity，不能直接等同 HCC gene expression machinery	A1 supporting							
+									f								13d								axis_level	unresolved_5	translation initiation / RNA processing backbone axis; n_genes=1; fraction_Q1=0.000	preliminary	轴规模过小，只能作 preliminary supportive line	B not eligible							
+									f								13d								axis_level	unresolved_4	shift_excess-like axis; n_genes=1; fraction_shift_excess=0.000	preliminary	支持 K562 含 shift-excess 成分，但不足以稳定命名 macro class	B not eligible							
+									f								7d								dataset_level	architecture_class	CONFIRMED	supplementary_confirmed	architecture form confirmed; content-level replication not eligible	A0 confirmed							
+									f								13d								dataset_level	architecture_class	CONFIRMED	supplementary_confirmed	architecture form confirmed; content-level replication not eligible	A0 confirmed							
+									g																						HCC38	crispr	0.7257957275155708	47.0			
+									g																						HCC38	rnai	0.2763786365610073	48.0			
+									g																						HCC1143	crispr	0.7792497165337711	48.0			
+									g																						HCC1143	rnai	0.3844984802431611	48.0			
+									g																						K562 7d	crispr	0.7333333333333332	10.0			
+									g																						K562 7d	rnai	0.3333333333333333	9.0			
+									g																						K562 13d	crispr	0.5151515151515151	10.0			
+									g																						K562 13d	rnai	0.3	9.0			
+									h																			A0_confirmed_A1_supporting							Dixit_K562_supplementary	K562 13d/7d 支持 formal supplementary external evidence：A0 architecture form confirmed / A1 bridge form supporting / B content-level not eligible；NOT primary co-pillar	Dixit/K562 provides a symmetric primary conclusion with HCC; K562 provides content-level replication established
+									h																			A0_confirmed_A1_supporting							Dixit_K562_temporal_panel	7d 和 13d 均确认 backbone_plus_shift_excess；7d rank alignment 更强，13d mean shift 更大；只能写成 architecture form 时间稳定性与 bridge readout temporal stratification	13d is uniformly stronger than 7d; temporal panel proves external model-side generalization; K562 temporal panel establishes content-level convergence
+									h																			gated_downstream_layer							discovery_phenotype_shifter	discovery 当前只能写成 gated downstream layer	discovery is a current formal primary deliverable

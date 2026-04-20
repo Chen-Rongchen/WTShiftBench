@@ -1,0 +1,73 @@
+{
+  "claim_boundary": "GEARS is an architecture trade-off diagnosis; shared_mean_baseline is the backbone primary reference; do not claim model recovery proved.",
+  "combined_source_data": {
+    "path": "reports/manuscript_figures_v2/fig3_model_tradeoff/figure3_source_data.tsv",
+    "sha256": "f780a5a01ac1f04b7b5dd96b76fe04b4d3fc2ea0aa5ac13ddb430fd526802b54"
+  },
+  "figure_id": "figure3",
+  "figure_title": "Current entrants do not outperform the backbone baseline but reveal a recovery trade-off",
+  "generated_at_utc": "2026-04-18T14:52:06.274738+00:00",
+  "git": {
+    "commit": "a36af44e93a89ace31da398ffc018e268aa0d3c3",
+    "status_short": "M src/wtbench/manuscript/figure1_truth_object_v2.py\n M src/wtbench/manuscript/figure2_anchor_tiering.py\n M src/wtbench/manuscript/figure3_model_tradeoff.py\n M src/wtbench/manuscript/figure4_sweep_controls.py\n M src/wtbench/manuscript/figure5_axis_interpretation.py\n M src/wtbench/manuscript/figure6_boundary.py\n M src/wtbench/manuscript/manuscript_style.py\n?? docs/nature_methods_2025_figure_style_note_v1.md"
+  },
+  "inputs": [
+    {
+      "path": "reports/stage2_real_hcc_smoke/model_comparison.tsv",
+      "sha256": "790934f722a63cc2754978335f081c913d78ca83eea0f39d85d2f7915bfe3a9d"
+    },
+    {
+      "path": "reports/stage2_real_hcc_smoke/backbone_diagnosis.tsv",
+      "sha256": "7c12133290484ac22a5e16269c7e1cfd19fbc9d6a40469fe0d8f9c06a938910a"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv",
+      "sha256": "62327f0fc81574920d1e6e33b78abd8fc63b2ec05fa8cd9a6d1f88f84f7ec6a5"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "reports/manuscript_figures_v2/fig3_model_tradeoff/figure3.png",
+      "sha256": "70299c737083c3bf1fea2fcfd5f4199e3a82138242f13c18c76cb3b856c86fa0"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig3_model_tradeoff/figure3.pdf",
+      "sha256": "1535409701081fae81d2273f82901b2896b8aa7d1edb30f1106b9a7b2b07e0ba"
+    }
+  ],
+  "panel_manifests": [
+    {
+      "path": "reports/manuscript_figures_v2/fig3_model_tradeoff/panels/figure3_panela_manifest.json",
+      "sha256": "61d9b3550003e3841e3c5f6407c5eec9d624c9edd4778d9737fe0f6cb4217bd4"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig3_model_tradeoff/panels/figure3_panelb_manifest.json",
+      "sha256": "360db0831de420873fe19e50ea927d7302f6e9564c0a521e48973d933a09eb6a"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig3_model_tradeoff/panels/figure3_panelc_manifest.json",
+      "sha256": "47bf311e30381ad20457c410b498d110e56af5f44af707b6d507b57374d35f36"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig3_model_tradeoff/panels/figure3_paneld_manifest.json",
+      "sha256": "a683d4302cac0f73c14b5a48bc4fa771d26556cfedd92d258963224655226c0e"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig3_model_tradeoff/panels/figure3_panele_manifest.json",
+      "sha256": "c2f3a4f2962c13d0ac0177ec359e2a00900b5962b6d2fa32191ef7f8a83d914b"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig3_model_tradeoff/panels/figure3_panelf_manifest.json",
+      "sha256": "ca6e40e1672452d366d957c39e868b8b2c3d33dc38d7abf016cd5aa057979d6e"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig3_model_tradeoff/panels/figure3_panelg_manifest.json",
+      "sha256": "39118aafa96d90658e5458803fd0cdbb9c74b8d677df760918e33aad4a234856"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig3_model_tradeoff/panels/figure3_panelh_manifest.json",
+      "sha256": "542e34e712c96b6c2365ec44469c88554029476da34468c9252384a6ff97b7ed"
+    }
+  ],
+  "script": "scripts/manuscript/build_figure3_model_tradeoff.py"
+}

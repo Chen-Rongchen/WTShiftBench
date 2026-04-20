@@ -1,0 +1,73 @@
+{
+  "claim_boundary": "GEARS sweep is finite-budget control and training is not rerun during figure generation.",
+  "combined_source_data": {
+    "path": "reports/manuscript_extended_data_v1/edfig5_gears_sweep/edfig5_source_data.tsv",
+    "sha256": "793079df973cac46298e2158d881c3115344cf7b38f71feef5c20b665cc5bb2c"
+  },
+  "figure_id": "extended_data_figure5",
+  "figure_title": "GEARS sweep and stop rule",
+  "generated_at_utc": "2026-04-18T14:55:12.045079+00:00",
+  "git": {
+    "commit": "a36af44e93a89ace31da398ffc018e268aa0d3c3",
+    "status_short": "M src/wtbench/manuscript/extended_data_figure10.py\n M src/wtbench/manuscript/extended_data_figure3.py\n M src/wtbench/manuscript/extended_data_figure6.py\n M src/wtbench/manuscript/extended_data_figure9.py\n M src/wtbench/manuscript/extended_data_remaining.py\n M src/wtbench/manuscript/figure1_truth_object_v2.py\n M src/wtbench/manuscript/figure2_anchor_tiering.py\n M src/wtbench/manuscript/figure3_model_tradeoff.py\n M src/wtbench/manuscript/figure4_sweep_controls.py\n M src/wtbench/manuscript/figure5_axis_interpretation.py\n M src/wtbench/manuscript/figure6_boundary.py\n M src/wtbench/manuscript/manuscript_style.py\n?? docs/nature_methods_2025_figure_style_note_v1.md"
+  },
+  "inputs": [
+    {
+      "path": "reports/stage2_gears_backbone_sweep/candidate_manifest.tsv",
+      "sha256": "e30c87b3f6bfcee5e09821642bcdd950a1669c2760fd4cf4b26071357f5b9b84"
+    },
+    {
+      "path": "reports/stage2_gears_backbone_sweep/batch_run/batch_status.tsv",
+      "sha256": "203f01a6ff0fe579f7c0730a7038a3b78aa5c0e0458549d38fc15bb067c6e19d"
+    },
+    {
+      "path": "reports/stage2_real_hcc_smoke/model_comparison.tsv",
+      "sha256": "790934f722a63cc2754978335f081c913d78ca83eea0f39d85d2f7915bfe3a9d"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig5_gears_sweep/edfig5.png",
+      "sha256": "cf88168ee6256939b291fcf564a6a6bd011003d7798197bd12901e1a545ff8ab"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig5_gears_sweep/edfig5.pdf",
+      "sha256": "cce79f66baf633629cb50f61c6f05b74c668b0ce76ecf187c6fe3632a5030b6a"
+    }
+  ],
+  "panel_manifests": [
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig5_gears_sweep/panels/edfig5_panela_manifest.json",
+      "sha256": "9a9cc212162660c0a3dc57afb9a4e5c7ba6c1770bc87eff31046e6040af4876c"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig5_gears_sweep/panels/edfig5_panelb_manifest.json",
+      "sha256": "eaa442650e6e662ffecf221c651aca6d92c54f0153adff956a1d7e2d71f5761c"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig5_gears_sweep/panels/edfig5_panelc_manifest.json",
+      "sha256": "a1d419c2af5d26f13a4ec7648cffbd9295a6dc78ab3d163883223b104e475f49"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig5_gears_sweep/panels/edfig5_paneld_manifest.json",
+      "sha256": "14e35c2886b06c0bcb42c3d9e74fca4e0a725fad25587c3d2442d9995a34966b"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig5_gears_sweep/panels/edfig5_panele_manifest.json",
+      "sha256": "b4e6111a74604031a3c66a1f146490eedc7d21724f42b7a3f072e391a1dffad7"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig5_gears_sweep/panels/edfig5_panelf_manifest.json",
+      "sha256": "9c75566d75f7578116d2efa03e1e444c2db6fc69137d87f1a5c08d8231778cf8"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig5_gears_sweep/panels/edfig5_panelg_manifest.json",
+      "sha256": "78f840b213bc541154507ed87e3587e48f28ab7b12dfa07f790ffe47e805fc69"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig5_gears_sweep/panels/edfig5_panelh_manifest.json",
+      "sha256": "bb8bd588171a79c79debdabdc2f000d83acd33c8b5525963d7527719ac4389ce"
+    }
+  ],
+  "script": "scripts/manuscript/build_extended_data_figure5.py"
+}

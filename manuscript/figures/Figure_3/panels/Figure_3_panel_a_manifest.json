@@ -1,0 +1,39 @@
+{
+  "claim_boundary": "GEARS is an architecture trade-off diagnosis; shared_mean_baseline is the backbone primary reference; do not claim model recovery proved.",
+  "generated_at_utc": "2026-04-18T14:51:58.724245+00:00",
+  "git": {
+    "commit": "a36af44e93a89ace31da398ffc018e268aa0d3c3",
+    "status_short": "M src/wtbench/manuscript/figure1_truth_object_v2.py\n M src/wtbench/manuscript/figure2_anchor_tiering.py\n M src/wtbench/manuscript/figure3_model_tradeoff.py\n M src/wtbench/manuscript/figure4_sweep_controls.py\n M src/wtbench/manuscript/figure5_axis_interpretation.py\n M src/wtbench/manuscript/figure6_boundary.py\n M src/wtbench/manuscript/manuscript_style.py\n?? docs/nature_methods_2025_figure_style_note_v1.md"
+  },
+  "inputs": [
+    {
+      "path": "reports/stage2_real_hcc_smoke/model_comparison.tsv",
+      "sha256": "790934f722a63cc2754978335f081c913d78ca83eea0f39d85d2f7915bfe3a9d"
+    },
+    {
+      "path": "reports/stage2_real_hcc_smoke/backbone_diagnosis.tsv",
+      "sha256": "7c12133290484ac22a5e16269c7e1cfd19fbc9d6a40469fe0d8f9c06a938910a"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv",
+      "sha256": "62327f0fc81574920d1e6e33b78abd8fc63b2ec05fa8cd9a6d1f88f84f7ec6a5"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "reports/manuscript_figures_v2/fig3_model_tradeoff/panels/figure3_panela.png",
+      "sha256": "58f40d8290fe5cdb7c60d05380cc474de03043a69150826fad0be7c688d6cd40"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig3_model_tradeoff/panels/figure3_panela.pdf",
+      "sha256": "7fa32a35da9663b1c9150fe71e4cd6d7614e93d16aea5adb569759e0e2850485"
+    }
+  ],
+  "panel_id": "figure3a",
+  "panel_title": "Formal HCC model comparison by backbone recovery",
+  "script": "scripts/manuscript/build_figure3_model_tradeoff.py",
+  "source_data": {
+    "path": "reports/manuscript_figures_v2/fig3_model_tradeoff/panels/figure3_panela_source_data.tsv",
+    "sha256": "9715d95c2f39809e9353462de9733c18cef115136c310a8721381f875d9d1915"
+  }
+}
