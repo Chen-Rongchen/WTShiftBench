@@ -6,7 +6,7 @@
 
 ## 1. 项目状态一句话
 
-本项目没有放弃原有 `Stage 1A / 1B / 2 / 3` 路线，但当前主线已经重排为 **truth-first fitness-bridge architecture**：先在真实 genetic perturbation transcriptomic truth 中定义可桥接到 cellular fitness / dependency（DepMap）的结构化对象，再评估模型能否恢复这套 structure，再把 `Stage 1A / 1B` 重新解释为 failure decomposition track，最后才进入 discovery。当前最重要的已完成项是 **HCC truth bridge architecture contract freeze + GEARS entrant-qualified HCC smoke closure + GEARS 有限 backbone sweep 收口 + `scGPT / Geneformer` 第一轮 HCC formal integration + `lm_train_lowrank / lm_G_scgpt_ridge / lm_G_geneformer_ridge` 第一轮 HCC formal integration + frozen axis annotation / validation 闭环 + truth bridge decomposition evidence tiering（含 cutoff sensitivity / bootstrap stability）+ covariate boundary + K562 temporal and endpoint sensitivity + final claim matrix + Genome Biology 专版手稿 + 6 张主图 + 10 张 Extended Data + supplementary workbook + submission package manifest + A/B/C 17 项 reviewer-risk reduction + `manuscript/` 投稿前单入口工作区**。当前最重要的未完成项是 **作者元信息、declarations、公开归档 DOI、Additional files 最终上传命名与最终人工确认**。新增数据口径警报：`data/raw/stage1a/candidates/dixit_2016_raw.h5ad` 与 GSE90063 K562 TF pool 描述不匹配，当前按 Frangieh-like legacy object 处理，不再作为有效 Dixit 输入引用。
+本项目没有放弃原有 `Stage 1A / 1B / 2 / 3` 路线，但当前主线已经重排为 **truth-first fitness-bridge architecture**：先在真实 genetic perturbation transcriptomic truth 中定义可桥接到 cellular fitness / dependency（DepMap）的结构化对象，再评估模型能否恢复这套 structure，再把 `Stage 1A / 1B` 重新解释为 failure decomposition track，最后才进入 discovery。当前最重要的已完成项是 **HCC38/HCC1143 breast-cancer truth bridge architecture contract freeze + GEARS entrant-qualified HCC38/HCC1143 smoke closure + GEARS 有限 backbone sweep 收口 + `scGPT / Geneformer` 第一轮 HCC38/HCC1143 formal integration + `lm_train_lowrank / lm_G_scgpt_ridge / lm_G_geneformer_ridge` 第一轮 HCC38/HCC1143 formal integration + frozen axis annotation / validation 闭环 + truth bridge decomposition evidence tiering（含 cutoff sensitivity / bootstrap stability）+ covariate boundary + K562 temporal and endpoint sensitivity + final claim matrix + Genome Biology 专版手稿 + 6 张主图 + 10 张 Extended Data + supplementary workbook + submission package manifest + A/B/C 17 项 reviewer-risk reduction + `manuscript/` 投稿前单入口工作区**。当前最重要的未完成项是 **HCC38/HCC1143 乳腺癌细胞系身份 wording 全量同步、作者元信息、declarations、公开归档 DOI、Additional files 最终上传命名与最终人工确认**。新增数据口径警报：`data/raw/stage1a/candidates/dixit_2016_raw.h5ad` 与 GSE90063 K562 TF pool 描述不匹配，当前按 Frangieh-like legacy object 处理，不再作为有效 Dixit 输入引用。
 
 ## 2. 下次进来先做什么
 
@@ -22,6 +22,12 @@
 4. `manuscript/source_data_manifests/submission_package_manifest.json`
 
 默认先用这四个入口刷新投稿对象状态，不再从更长的结果清单开始。`docs/` 与 `reports/` 仍是生成来源和审计来源；`manuscript/` 是当前投稿前整理入口。
+
+当前 manuscript hardening 入口：
+
+- `docs/manuscript_hardening_plan_v1.md`
+
+最新执行口径：不新增分析；先修 `HCC` 缩写和 HCC38/HCC1143 乳腺癌细胞系身份风险，再补 public repository / DOI / declarations 等 submission blocker，随后把 Introduction / Results / Methods 推进到 framework/resource 和 operational definition 级别。
 
 下次进来应直接做：
 
@@ -131,7 +137,7 @@
 
 当前最稳的项目表述不是“GEARS 已整体胜出”，而是：
 
-> GEARS 展现出选择性结构优势：它更擅长把 structure 和 context deviation 分开，并在部分 cell line 上更能识别 shift-excess；但在当前 HCC primary adjudication 中，canonical backbone recovery 仍落后于 `shared_mean_baseline`。
+> GEARS 展现出选择性结构优势：它更擅长把 structure 和 context deviation 分开，并在部分 cell line 上更能识别 shift-excess；但在当前 HCC38/HCC1143 primary adjudication 中，canonical backbone recovery 仍落后于 `shared_mean_baseline`。
 
 这条 trade-off 必须写成非对称：`shared_mean_baseline` 是当前更稳定、更主导的 backbone primary reference；`GEARS` 是 deviation / separation-biased entrant。不要把它写成“GEARS 和 baseline 各赢一半”，也不要把 `shift` 混成一层：shared trend / overall displacement 与超出 backbone 可解释部分的 `shift-excess` 是两件事，GEARS 的相对强项更接近后者。
 
@@ -149,7 +155,7 @@
 
 这一步必须有停止规则，避免 endless tuning。
 
-如果一轮有限预算 sweep 后，`canonical_backbone recovery` 仍不能接近或追平 `shared_mean_baseline`，且任何改进都以明显损失 `structure/context separation` 为代价，则停止继续把 `GEARS` 推为 HCC primary winner，并将当前结果收口为 architecture trade-off diagnosis。
+如果一轮有限预算 sweep 后，`canonical_backbone recovery` 仍不能接近或追平 `shared_mean_baseline`，且任何改进都以明显损失 `structure/context separation` 为代价，则停止继续把 `GEARS` 推为 HCC38/HCC1143 primary winner，并将当前结果收口为 architecture trade-off diagnosis。
 
 到那时，最稳的正式结论应写成：
 
@@ -245,7 +251,7 @@ discovery 仍然保留，但当前应后置。
 ### Closed / Frozen
 
 - truth-side architecture contract ✅
-- HCC primary structure definition ✅
+- HCC38/HCC1143 primary structure definition ✅
 - HCC master atlas / fine axes ✅
 - SCP542 explanation boundaries ✅
 - truth-driven bridge 的主报告边界、dataset role 与 evidence tier governance ✅
@@ -257,7 +263,7 @@ discovery 仍然保留，但当前应后置。
 - GEARS trade-off diagnosis 主文档收束 ✅
 - HCC 辅助裁决层：`cosine`、`L2`、`top-20 overlap` ✅
 - frozen axis annotation / validation 闭环 ✅
-- fuller HCC model comparison 第一轮 ✅
+- fuller HCC38/HCC1143 model comparison 第一轮 ✅
 - truth bridge decomposition 的 cutoff sensitivity / bootstrap stability / evidence tiering ✅
 - Endpoint hierarchy ✅：CRISPR DepMap = formal primary bridge readout；RNAi DEMETER2 = weaker cross-platform sensitivity endpoint。跨四个 context 一致。
 - Stage 1A / 1B failure decomposition 正式解释层 ✅

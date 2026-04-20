@@ -18,7 +18,7 @@
 
 进入这份路线图时，默认以下状态已经成立：
 
-- `HCC` 仍是 primary mainline
+- HCC38/HCC1143 breast-cancer cell-line contexts 仍是 primary mainline；投稿文本不得把 `HCC` 定义为 hepatocellular carcinoma
 - `GEARS` 已正式收口为 `architecture trade-off diagnosis`
 - `truth–DepMap bridge` 可保留，但必须按 evidence tier 书写
 - `PFDN5 = primary_but_qualified`
@@ -55,11 +55,12 @@
 
 ## 4. 最近先做什么
 
-最近只优先做下面 3 件事：
+最近只优先做下面 4 件事：
 
-1. `final claim matrix -> manuscript wording`
-2. `covariate balance closure`
-3. `sensitivity full closure`
+1. `HCC38/HCC1143 breast-cancer identity wording -> manuscript / legends / abbreviations`
+2. `final claim matrix -> manuscript wording`
+3. `covariate balance closure`
+4. `sensitivity full closure`
 
 这三件事完成前：
 
