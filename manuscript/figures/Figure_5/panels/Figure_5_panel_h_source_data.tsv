@@ -1,0 +1,3 @@
+object	evidence_tier	allowed_wording	disallowed_wording
+transcription_chromatin_axis	primary_axis_but_qualified	transcription / chromatin 是当前唯一更稳的 formal positive axis	transcription / chromatin is fully deconfounded and fully established beyond current boundary
+other_axes	supporting_or_preliminary	多数其余 axis 仍应写成 supporting 或 preliminary axes	most axes are fully established at the same level as transcription / chromatin

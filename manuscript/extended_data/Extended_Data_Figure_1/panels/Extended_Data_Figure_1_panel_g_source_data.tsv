@@ -1,0 +1,3 @@
+cell_line	truth_metric	depmap_endpoint	spearman_rho_aligned
+HCC38	real_shift_mean_abs	depmap_gene_dependency	0.7257957275155708
+HCC1143	real_shift_mean_abs	depmap_gene_dependency	0.7792497165337711

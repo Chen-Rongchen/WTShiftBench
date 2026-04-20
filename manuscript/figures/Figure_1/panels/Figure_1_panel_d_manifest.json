@@ -1,0 +1,51 @@
+{
+  "claim_boundary": "The truth-DepMap bridge is retained as a structured truth object, not as fully deconfounded causal proof.",
+  "generated_at_utc": "2026-04-18T14:51:45.034181+00:00",
+  "git": {
+    "commit": "a36af44e93a89ace31da398ffc018e268aa0d3c3",
+    "status_short": "M src/wtbench/manuscript/figure1_truth_object_v2.py\n M src/wtbench/manuscript/figure2_anchor_tiering.py\n M src/wtbench/manuscript/figure3_model_tradeoff.py\n M src/wtbench/manuscript/figure4_sweep_controls.py\n M src/wtbench/manuscript/figure5_axis_interpretation.py\n M src/wtbench/manuscript/figure6_boundary.py\n M src/wtbench/manuscript/manuscript_style.py\n?? docs/nature_methods_2025_figure_style_note_v1.md"
+  },
+  "inputs": [
+    {
+      "path": "reports/stage2_truth_bridge_decomposition/target_level_joint_grid.tsv",
+      "sha256": "38c3c4f8b13828ad32a0fe615cf372b2f68bbf30164e07ed80d84faa4812c1a7"
+    },
+    {
+      "path": "reports/stage2_truth_bridge_decomposition/target_level_grid_summary.tsv",
+      "sha256": "2b4257a87104e0f26ae32e19fa78bd633b90005288bf69dd463dad5b471c0fe2"
+    },
+    {
+      "path": "reports/stage2_truth_bridge_decomposition/run_summary.json",
+      "sha256": "b53b74cad9dc725bb776dd4d9a0c6dd91358bc96f6426c4f79f2702c1af3e1cd"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/HCC38/correlation_summary.tsv",
+      "sha256": "9f017f8812398533a1a7a84382f1673d6bf5a17931d07e14f97971e878d8b158"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/HCC1143/correlation_summary.tsv",
+      "sha256": "95ecbda82aedd847a29d71f4ba787d377c0561512463615b03b91bae69a3cf87"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv",
+      "sha256": "62327f0fc81574920d1e6e33b78abd8fc63b2ec05fa8cd9a6d1f88f84f7ec6a5"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "reports/manuscript_figures_v2/fig1_truth_object/panels/figure1_paneld.png",
+      "sha256": "8267a9807c6dd641b25713b5b2993591a4c115eabc1a6575b95424b58646e15d"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig1_truth_object/panels/figure1_paneld.pdf",
+      "sha256": "b06ca5f321e622850da8120355f8888dd9b772414fac9a9fef614a611361f72d"
+    }
+  ],
+  "panel_id": "figure1d",
+  "panel_title": "HCC38 target-level joint grid",
+  "script": "scripts/manuscript/build_figure1_truth_object.py",
+  "source_data": {
+    "path": "reports/manuscript_figures_v2/fig1_truth_object/panels/figure1_paneld_source_data.tsv",
+    "sha256": "9f61e435aa8054814726083d564199bea5d1339be5949e694816aa7a19c6d1cd"
+  }
+}

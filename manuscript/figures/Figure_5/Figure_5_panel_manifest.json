@@ -1,0 +1,81 @@
+{
+  "claim_boundary": "Only transcription / chromatin is a formal positive axis, and it remains primary but qualified.",
+  "combined_source_data": {
+    "path": "reports/manuscript_figures_v2/fig5_axis_interpretation/figure5_source_data.tsv",
+    "sha256": "dc07e34a12daaaf51acc0fc2afe2577af1054a426285789161464f91fe9a195b"
+  },
+  "figure_id": "figure5",
+  "figure_title": "Axis-level interpretation is partial and claim-bounded",
+  "generated_at_utc": "2026-04-18T14:52:24.744616+00:00",
+  "git": {
+    "commit": "a36af44e93a89ace31da398ffc018e268aa0d3c3",
+    "status_short": "M src/wtbench/manuscript/figure1_truth_object_v2.py\n M src/wtbench/manuscript/figure2_anchor_tiering.py\n M src/wtbench/manuscript/figure3_model_tradeoff.py\n M src/wtbench/manuscript/figure4_sweep_controls.py\n M src/wtbench/manuscript/figure5_axis_interpretation.py\n M src/wtbench/manuscript/figure6_boundary.py\n M src/wtbench/manuscript/manuscript_style.py\n?? docs/nature_methods_2025_figure_style_note_v1.md"
+  },
+  "inputs": [
+    {
+      "path": "reports/stage2_truth_bridge_decomposition/axis_level_shared_explanatory_summary.tsv",
+      "sha256": "2c969aade5ffc4e9638638ab5c2cb6ffb64ba8037a462ab9b5225b56fe1891c6"
+    },
+    {
+      "path": "reports/stage2_truth_bridge_decomposition/axis_bootstrap_stability.tsv",
+      "sha256": "13d84f21eadb1feb78a678ca5885cfaed3294ef70dc6407d71a1e616a4612a33"
+    },
+    {
+      "path": "reports/stage2_axis_analysis/axis_validation_summary.tsv",
+      "sha256": "3f5143096d8c0e968e8aca6de41c585cc7668ecfe3c9eb8ceeeb6580165dd1e4"
+    },
+    {
+      "path": "reports/stage2_axis_analysis/axis_summary.tsv",
+      "sha256": "d18ba55452310976e152edc71eb18a728f9fb39cc9253403a675f64b56ddeb10"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv",
+      "sha256": "62327f0fc81574920d1e6e33b78abd8fc63b2ec05fa8cd9a6d1f88f84f7ec6a5"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "reports/manuscript_figures_v2/fig5_axis_interpretation/figure5.png",
+      "sha256": "e0a798b4d6c97b6195c5254928c8615268c7d1942e1f67c652e8ad0936d015d9"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig5_axis_interpretation/figure5.pdf",
+      "sha256": "ff90b891dbe5577290fd1b6b70b0c800187367a2892931bae0f4445a429dffe8"
+    }
+  ],
+  "panel_manifests": [
+    {
+      "path": "reports/manuscript_figures_v2/fig5_axis_interpretation/panels/figure5_panela_manifest.json",
+      "sha256": "cdc85ea655393bc071cdad29dd09b6b4e4f7e209c0b191b009a16f1a8456e7d1"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig5_axis_interpretation/panels/figure5_panelb_manifest.json",
+      "sha256": "a9f7b707bcca8330d07cbc9a5ab42d50896f4e500235f66c8a9baaf6e0643b70"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig5_axis_interpretation/panels/figure5_panelc_manifest.json",
+      "sha256": "6f31b0633ba80c884e3ea5caa99867f5f88c8456a1c20a79ed12a51280de49c6"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig5_axis_interpretation/panels/figure5_paneld_manifest.json",
+      "sha256": "f6aba90430eadd4b33ff144f3492ba103f93ba64f4eca0908877daa582881112"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig5_axis_interpretation/panels/figure5_panele_manifest.json",
+      "sha256": "66ff243339206d1526f09120f299515c8e43fcf54cb4e49c539da524796470ee"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig5_axis_interpretation/panels/figure5_panelf_manifest.json",
+      "sha256": "8dfa887248939609026f8e04a02f5376e161d8626888edc9cb963856fcc601f2"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig5_axis_interpretation/panels/figure5_panelg_manifest.json",
+      "sha256": "fe56fa5803965744e846f38986a0429c1abd31aef35ebc5fb53bef524283b3cd"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig5_axis_interpretation/panels/figure5_panelh_manifest.json",
+      "sha256": "1fc12fc0eae5f0c04f8b8f8c9966256acb6c7524c80774612a702d281c02b73b"
+    }
+  ],
+  "script": "scripts/manuscript/build_figure5_axis_interpretation.py"
+}

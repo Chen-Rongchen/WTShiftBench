@@ -1,0 +1,47 @@
+{
+  "claim_boundary": "Only transcription / chromatin is a formal positive axis, and it remains primary but qualified.",
+  "generated_at_utc": "2026-04-18T14:52:20.495807+00:00",
+  "git": {
+    "commit": "a36af44e93a89ace31da398ffc018e268aa0d3c3",
+    "status_short": "M src/wtbench/manuscript/figure1_truth_object_v2.py\n M src/wtbench/manuscript/figure2_anchor_tiering.py\n M src/wtbench/manuscript/figure3_model_tradeoff.py\n M src/wtbench/manuscript/figure4_sweep_controls.py\n M src/wtbench/manuscript/figure5_axis_interpretation.py\n M src/wtbench/manuscript/figure6_boundary.py\n M src/wtbench/manuscript/manuscript_style.py\n?? docs/nature_methods_2025_figure_style_note_v1.md"
+  },
+  "inputs": [
+    {
+      "path": "reports/stage2_truth_bridge_decomposition/axis_level_shared_explanatory_summary.tsv",
+      "sha256": "2c969aade5ffc4e9638638ab5c2cb6ffb64ba8037a462ab9b5225b56fe1891c6"
+    },
+    {
+      "path": "reports/stage2_truth_bridge_decomposition/axis_bootstrap_stability.tsv",
+      "sha256": "13d84f21eadb1feb78a678ca5885cfaed3294ef70dc6407d71a1e616a4612a33"
+    },
+    {
+      "path": "reports/stage2_axis_analysis/axis_validation_summary.tsv",
+      "sha256": "3f5143096d8c0e968e8aca6de41c585cc7668ecfe3c9eb8ceeeb6580165dd1e4"
+    },
+    {
+      "path": "reports/stage2_axis_analysis/axis_summary.tsv",
+      "sha256": "d18ba55452310976e152edc71eb18a728f9fb39cc9253403a675f64b56ddeb10"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv",
+      "sha256": "62327f0fc81574920d1e6e33b78abd8fc63b2ec05fa8cd9a6d1f88f84f7ec6a5"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "reports/manuscript_figures_v2/fig5_axis_interpretation/panels/figure5_panelf.png",
+      "sha256": "d3ecd4be20b18b310123c4b26327636d1d79188c5d9d48bac2292c18c738f280"
+    },
+    {
+      "path": "reports/manuscript_figures_v2/fig5_axis_interpretation/panels/figure5_panelf.pdf",
+      "sha256": "4ff0c4dd9b31b6d606ec9ecb5895614bfe20f440a500ad0353a07bcb3b9e7c79"
+    }
+  ],
+  "panel_id": "figure5f",
+  "panel_title": "Partial support by axis family",
+  "script": "scripts/manuscript/build_figure5_axis_interpretation.py",
+  "source_data": {
+    "path": "reports/manuscript_figures_v2/fig5_axis_interpretation/panels/figure5_panelf_source_data.tsv",
+    "sha256": "d86b935e056e3689218bccf21b3a8d3a1bfb15c29472e96eddc6d913495b984e"
+  }
+}

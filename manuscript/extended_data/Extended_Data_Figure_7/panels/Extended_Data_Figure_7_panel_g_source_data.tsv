@@ -1,0 +1,2 @@
+panel_question	primary_truth_metric	primary_depmap_endpoint	rank_bridge_call	mean_shift_call	interpretation_boundary
+same_context_temporal_bridge	real_shift_mean_abs	depmap_gene_dependency	rank_bridge_not_stronger_at_13d	mean_shift_stronger_at_13d	13d is the primary formal supplementary bridge test; 7d is a temporal sensitivity / early-bridge probe.

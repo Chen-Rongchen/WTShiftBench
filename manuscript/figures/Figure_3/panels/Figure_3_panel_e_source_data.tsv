@@ -1,0 +1,3 @@
+model_id	cell_line	backbone_recovery	baseline_backbone_recovery	structure_vs_context_separation	baseline_structure_vs_context_separation	failure_mode_call
+gears_hcc_formal_v1	HCC38	0.6	0.7733333333333333	0.4257862954100095	0.356991953371764	mixed
+gears_hcc_formal_v1	HCC1143	0.7199999999999999	0.84	0.4310444660406881	0.3482371639207613	tradeoff
