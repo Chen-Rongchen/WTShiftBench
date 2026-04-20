@@ -10,6 +10,14 @@
 - 本目录不改变任何分析结果或 claim boundary。
 - 每张整图和每个 panel 小图都已单独整理。
 
+## 当前版本管理
+
+当前投稿前主稿以 `manuscript/text/manuscript_draft_v1.md` 和 `manuscript/text/figure_legends_v1.md` 为唯一正文 source of truth。`docs/` 下的早期 manuscript draft 文件保留为历史草稿或路线记录，不再作为当前投稿稿的同步源。
+
+版本说明见：`docs/manuscript_version_control_note_v1.md`。
+
+当前正文和图注已完成 boundary / grammar audit；现有图像文件仍是上一轮生成产物，后续需要按当前正文和图注重新用代码绘制。图版重画计划见：`docs/manuscript_figure_redesign_plan_v1.md`。
+
 ## Text
 
 目录：`manuscript/text/`

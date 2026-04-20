@@ -4,6 +4,22 @@
 
 **Phase label（2026-04-15 冻结）：pre-submission editorial convergence ready — analysis closure 基本完成，infrastructure closure 完成，claim boundary 冻结，wording audit clean，四敏感位置终审 clean，remaining work = 编辑性压缩与投稿准备。**
 
+## 当前执行口径更新（2026-04-21）
+
+本轮 manuscript boundary / grammar audit 已完成。当前唯一正文 source of truth 为：
+
+- `manuscript/text/manuscript_draft_v1.md`
+- `manuscript/text/figure_legends_v1.md`
+
+当前状态：
+
+- Abstract、Background、Results、Methods、Discussion、Conclusions 已围绕同一套 benchmark grammar 同步。
+- Figure 1-6 与 Extended Data Fig. 1-10 图注已完成 claim-boundary 同步。
+- `docs/` 下早期 manuscript draft 文件保留为历史草稿，不再作为当前投稿稿同步源。
+- 现有 `manuscript/figures/` 与 `manuscript/extended_data/` 图像文件为上一轮生成产物，后续需要按当前正文和图注重新用代码绘制。
+
+下一阶段不是新增分析，而是 figure redesign / regenerated artifacts：更新绘图代码、图中文字、panel 布局和导出文件，同时保持 source data、claim boundary 和 endpoint hierarchy 不变。
+
 ## 当前已就绪
 
 | 层级 | 状态 |
@@ -13,7 +29,10 @@
 | Claim boundary | 冻结 |
 | Wording audit | Clean |
 | 四敏感位置终审 | Clean |
-| Abstract / Results / Discussion / Figure blueprint | 同构，无 wording drift |
+| Abstract / Background / Results / Methods / Discussion / Conclusions | 同构，无 wording drift |
+| Figure 1-6 legends | Clean |
+| Extended Data Fig. 1-10 legends | Clean |
+| Current figure image design | 待按当前图注重新绘制 |
 
 ## 四敏感位置终审结论
 
@@ -31,6 +50,7 @@
 3. **References**：draft 中未引用，需在正式写作时补入
 4. **Supplementary table / figure numbering**：需与正文图表编号体系对齐
 5. **Figure cross-references**：draft 中未插入 "(Fig. X)" 引用，需在正式稿中补入
+6. **Figure visual design**：当前图像需要按已收口正文和图注重新绘制，不能仅沿用上一轮视觉版。
 
 ## 投稿 skeleton
 
