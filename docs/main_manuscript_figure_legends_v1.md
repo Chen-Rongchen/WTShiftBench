@@ -102,7 +102,7 @@
 
 **e,** Temporal stratification. The 7d panel shows stronger rank alignment, whereas 13d shows larger mean shift.
 
-**f,** A0/A1/B supplementary tiering for K562 evidence. The temporal panel supports architecture-form confirmation and bridge-form support, but not content-level replication.
+**f,** A0/A1/B supplementary tiering for K562 evidence. The temporal panel supports architecture-form recurrence and bridge-form support, but not content-level replication.
 
 **g,** Endpoint hierarchy across HCC38, HCC1143, K562 7d and K562 13d. CRISPR DepMap endpoints retain stronger bridge Spearman than RNAi DEMETER2 endpoints in every context.
 
