@@ -5,6 +5,7 @@
 Genome Biology reviewer-risk reduction 已完成并版本化。执行入口为：
 
 - `manuscript/README.md`
+- `docs/manuscript_hardening_plan_v1.md`
 - `docs/genome_biology_submission_execution_plan_v1.md`
 - `manuscript/source_data_manifests/MANUSCRIPT_REPRODUCIBILITY.md`
 
@@ -37,6 +38,8 @@ Genome Biology reviewer-risk reduction 已完成并版本化。执行入口为�
 17. 最小 community adjudication kit。
 
 当前不再需要新增分析来支撑第一版投稿。剩余事项是作者元信息、references、declarations、公开归档 DOI、Additional files 编号与最终人工确认。
+
+新增 hardening 风险：HCC38 和 HCC1143 是乳腺癌细胞系，不能把 `HCC` 定义为 hepatocellular carcinoma；投稿文本应优先写成 `HCC38/HCC1143 breast-cancer cell-line contexts` 或 `the two primary breast-cancer contexts`。
 
 ## 已完成
 

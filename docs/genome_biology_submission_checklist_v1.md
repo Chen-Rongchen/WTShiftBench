@@ -47,6 +47,7 @@
 
 ## 投稿前必须补齐
 
+0. HCC38/HCC1143 身份 wording：二者是乳腺癌细胞系；投稿文本不得把 `HCC` 定义为 hepatocellular carcinoma，也不应单独写 `HCC context` 而不说明 HCC38/HCC1143。
 1. 作者姓名、单位、通讯作者邮箱。
 2. Competing interests。
 3. Funding。
@@ -117,3 +118,9 @@
 - K562 是 supplementary architecture-form evidence。
 - CRISPR DepMap 是 primary bridge readout。
 - RNAi DEMETER2 是 weaker sensitivity endpoint。
+
+## Manuscript hardening 入口
+
+- `docs/manuscript_hardening_plan_v1.md`
+
+该文档记录最后一轮文字治理：HCC38/HCC1143 乳腺癌细胞系身份、framework/resource positioning、Methods operational definitions、submission blocker 和两处 overclaim 降档。

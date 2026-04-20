@@ -1,16 +1,16 @@
 # Genome Biology figure legends v1
 
-## Fig. 1. A truth-anchored HCC benchmark defines the perturbation-fitness recovery object
+## Fig. 1. A truth-anchored HCC38/HCC1143 breast-cancer benchmark defines the perturbation-fitness recovery object
 
-**a,** Benchmark workflow. Real perturbation transcriptomic shifts are aligned to CRISPR DepMap dependency endpoints to define a frozen phenotype-relevant bridge before model evaluation. **b,** Primary HCC benchmark contexts and endpoint definitions. HCC38 and HCC1143 are evaluated using absolute mean transcriptomic shift and aligned CRISPR dependency. **c,** Joint shift-dependency grid used to define anchor, excess, low-information and middle-band target categories. **d,** HCC38 target-level joint grid. **e,** HCC1143 target-level joint grid. **f,** Grid composition across HCC contexts, including 9 Q1 anchors in HCC38 and 10 Q1 anchors in HCC1143. **g,** CRISPR truth-DepMap bridge strength across HCC38 and HCC1143. **h,** Claim boundary for the benchmark object. The bridge is retained as a structured functional-genomic recovery object, not as fully deconfounded causal proof.
+**a,** Benchmark workflow. Real perturbation transcriptomic shifts are aligned to CRISPR DepMap dependency endpoints to define a frozen phenotype-relevant bridge before model evaluation. **b,** Primary HCC38/HCC1143 breast-cancer benchmark contexts and endpoint definitions. HCC38 and HCC1143 are evaluated using absolute mean transcriptomic shift and aligned CRISPR dependency. **c,** Joint shift-dependency grid used to define anchor, excess, low-information and middle-band target categories. **d,** HCC38 target-level joint grid. **e,** HCC1143 target-level joint grid. **f,** Grid composition across HCC38/HCC1143 contexts, including 9 Q1 anchors in HCC38 and 10 Q1 anchors in HCC1143. **g,** CRISPR truth-DepMap bridge strength across HCC38 and HCC1143. **h,** Claim boundary for the benchmark object. The bridge is retained as a structured functional-genomic recovery object, not as fully deconfounded causal proof.
 
 ## Fig. 2. Shared anchor tiering separates recurrent bridge support from target proof
 
-**a,** Shared canonical anchor ranking across HCC38 and HCC1143. **b,** Anchor recurrence across the two HCC benchmark contexts. **c,** Cutoff stability of recurrent anchors. PFDN5, PMF1, PRPF6 and ZNF131 retain stable shared-anchor status under the current sensitivity analysis. **d,** Representative contrast between PFDN5 and supporting anchors. **e,** Cutoff-sensitive supporting objects, including ENY2, NPM1, RPS3, RUVBL2 and ZBTB17. **f,** Evidence-tier composition after structural and covariate-aware governance. **g,** Anchor claim matrix. PFDN5 remains primary but qualified, whereas PMF1, PRPF6 and ZNF131 are retained as supporting-only evidence. **h,** Anchor-level claim boundary. Shared anchors support the perturbation-fitness bridge, but no individual anchor is sufficient to prove a fully deconfounded bridge.
+**a,** Shared canonical anchor ranking across HCC38 and HCC1143. **b,** Anchor recurrence across the two HCC38/HCC1143 breast-cancer contexts. **c,** Cutoff stability of recurrent anchors. PFDN5, PMF1, PRPF6 and ZNF131 retain stable shared-anchor status under the current sensitivity analysis. **d,** Representative contrast between PFDN5 and supporting anchors. **e,** Cutoff-sensitive supporting objects, including ENY2, NPM1, RPS3, RUVBL2 and ZBTB17. **f,** Evidence-tier composition after structural and covariate-aware governance. **g,** Anchor claim matrix. PFDN5 remains primary but qualified, whereas PMF1, PRPF6 and ZNF131 are retained as supporting-only evidence. **h,** Anchor-level claim boundary. Shared anchors support the perturbation-fitness bridge, but no individual anchor is sufficient to prove a fully deconfounded bridge.
 
 ## Fig. 3. Model recovery reveals a backbone-separation trade-off
 
-**a,** HCC formal model comparison by backbone recovery score. **b,** Three-dimensional recovery summary including backbone recovery, shift-excess identification and structure-versus-context separation. **c,** Headline comparison between the shared-mean baseline and formal GEARS recipe. The baseline has stronger backbone recovery, whereas GEARS has stronger structure-versus-context separation. **d,** Backbone recovery versus structure-versus-context separation across entrants. **e,** Per-context comparison between the baseline and GEARS. **f,** Shift-excess recovery across model entrants. **g,** Model-family grouping across baseline, GEARS, foundation-model and linear-control entrants. **h,** Model-side claim boundary. GEARS is interpreted as an architecture trade-off diagnosis, not as the HCC primary winner.
+**a,** HCC38/HCC1143 formal model comparison by backbone recovery score. **b,** Three-dimensional recovery summary including backbone recovery, shift-excess identification and structure-versus-context separation. **c,** Headline comparison between the shared-mean baseline and formal GEARS recipe. The baseline has stronger backbone recovery, whereas GEARS has stronger structure-versus-context separation. **d,** Backbone recovery versus structure-versus-context separation across entrants. **e,** Per-context comparison between the baseline and GEARS. **f,** Shift-excess recovery across model entrants. **g,** Model-family grouping across baseline, GEARS, foundation-model and linear-control entrants. **h,** Model-side claim boundary. GEARS is interpreted as an architecture trade-off diagnosis, not as the HCC38/HCC1143 primary winner.
 
 ## Fig. 4. Recipe and embedding controls do not close the backbone recovery gap
 
@@ -26,19 +26,19 @@
 
 ## Extended Data Fig. 1. Dataset and endpoint admission
 
-**a,** HCC38 and HCC1143 primary bridge admission using aligned transcriptomic shift versus CRISPR DepMap dependency. **b,** GSE90063 K562 7d and 13d kept-cell counts after single-guide filtering. **c,** DEMETER2 RNAi conversion summary. **d,** Admission status for the global bridge, K562 temporal panel and RNAi expansion candidate. **e,** Endpoint hierarchy separating primary, sensitivity and supplementary evidence. **f,** K562 cell accounting across matrix cells, kept cells and unassigned cells. **g,** Primary HCC endpoint strength. **h,** Boundary showing that K562 and discovery layers are not primary co-pillars.
+**a,** HCC38 and HCC1143 breast-cancer primary bridge admission using aligned transcriptomic shift versus CRISPR DepMap dependency. **b,** GSE90063 K562 7d and 13d kept-cell counts after single-guide filtering. **c,** DEMETER2 RNAi conversion summary. **d,** Admission status for the global bridge, K562 temporal panel and RNAi expansion candidate. **e,** Endpoint hierarchy separating primary, sensitivity and supplementary evidence. **f,** K562 cell accounting across matrix cells, kept cells and unassigned cells. **g,** Primary HCC38/HCC1143 endpoint strength. **h,** Boundary showing that K562 and discovery layers are not primary co-pillars.
 
 ## Extended Data Fig. 2. Full target-level joint grid
 
-**a,** HCC38 full target-level shift-dependency grid. **b,** HCC1143 full target-level shift-dependency grid. **c,** Grid category counts across HCC38 and HCC1143. **d,** All Q1 anchors observed across the HCC grids. **e,** Transcriptomic-excess targets under the current formal grid. **f,** Dependency-excess targets under the current formal grid. **g,** Target-level evidence-tier composition. **h,** Grid summary table by cell line and category.
+**a,** HCC38 full target-level shift-dependency grid. **b,** HCC1143 full target-level shift-dependency grid. **c,** Grid category counts across HCC38 and HCC1143. **d,** All Q1 anchors observed across the HCC38/HCC1143 grids. **e,** Transcriptomic-excess targets under the current formal grid. **f,** Dependency-excess targets under the current formal grid. **g,** Target-level evidence-tier composition. **h,** Grid summary table by cell line and category.
 
 ## Extended Data Fig. 3. Anchor sensitivity and claim tiering
 
 **a,** Full target-level anchor distribution. **b,** Shared canonical anchors. **c,** Cutoff-sensitive supporting objects. **d,** Control subsampling intervals for the primary bridge metric. **e,** Covariate-aware anchor wording. **f,** Evidence-tier composition. **g,** Anchor downgrade rationale. **h,** Allowed and disallowed anchor claims.
 
-## Extended Data Fig. 4. Full HCC model recovery detail
+## Extended Data Fig. 4. Full HCC38/HCC1143 model recovery detail
 
-**a,** Full HCC model backbone recovery ranking. **b,** Per-cell-line backbone recovery. **c,** Per-cell-line shift-excess identification. **d,** Per-cell-line structure-versus-context separation. **e,** Baseline top-20 overlap. **f,** GEARS top-20 overlap. **g,** Foundation-model top-20 overlap. **h,** Null-model top-20 overlap.
+**a,** Full HCC38/HCC1143 model backbone recovery ranking. **b,** Per-cell-line backbone recovery. **c,** Per-cell-line shift-excess identification. **d,** Per-cell-line structure-versus-context separation. **e,** Baseline top-20 overlap. **f,** GEARS top-20 overlap. **g,** Foundation-model top-20 overlap. **h,** Null-model top-20 overlap.
 
 ## Extended Data Fig. 5. GEARS sweep and stop rule
 
@@ -54,7 +54,7 @@
 
 ## Extended Data Fig. 8. CRISPR versus RNAi endpoint detail
 
-**a,** HCC CRISPR and RNAi truth-endpoint bridge strengths. **b,** K562 CRISPR and RNAi truth-endpoint bridge strengths. **c,** CRISPR-RNAi endpoint agreement. **d,** DEMETER2 conversion summary. **e,** Endpoint hierarchy across HCC and K562 contexts. **f,** RNAi sensitivity boundary. **g,** CRISPR-RNAi bridge gap. **h,** Endpoint claim boundary.
+**a,** HCC38/HCC1143 CRISPR and RNAi truth-endpoint bridge strengths. **b,** K562 CRISPR and RNAi truth-endpoint bridge strengths. **c,** CRISPR-RNAi endpoint agreement. **d,** DEMETER2 conversion summary. **e,** Endpoint hierarchy across HCC38/HCC1143 and K562 contexts. **f,** RNAi sensitivity boundary. **g,** CRISPR-RNAi bridge gap. **h,** Endpoint claim boundary.
 
 ## Extended Data Fig. 9. Covariate audit details and wording boundary
 
