@@ -1,9 +1,9 @@
 {
   "claim_boundary": "Shared anchors support the bridge but must not be described as fully deconfounded primary objects.",
-  "generated_at_utc": "2026-04-18T14:51:53.522938+00:00",
+  "generated_at_utc": "2026-04-23T06:47:41.670906+00:00",
   "git": {
-    "commit": "a36af44e93a89ace31da398ffc018e268aa0d3c3",
-    "status_short": "M src/wtbench/manuscript/figure1_truth_object_v2.py\n M src/wtbench/manuscript/figure2_anchor_tiering.py\n M src/wtbench/manuscript/figure3_model_tradeoff.py\n M src/wtbench/manuscript/figure4_sweep_controls.py\n M src/wtbench/manuscript/figure5_axis_interpretation.py\n M src/wtbench/manuscript/figure6_boundary.py\n M src/wtbench/manuscript/manuscript_style.py\n?? docs/nature_methods_2025_figure_style_note_v1.md"
+    "commit": "5a9bc6507755a2ebc1f860b7d56e8541c5f6db54",
+    "status_short": "M README.md\n M configs/runtime/wtbench_cli_v1.json\n M docs/genome_biology_figure_legends_v1.md\n M docs/genome_biology_manuscript_draft_v1.md\n M docs/main_manuscript_figure_legends_v1.md\n M docs/main_manuscript_submission_draft_v1.md\n M docs/main_manuscript_submission_draft_v2.md\n M docs/manuscript_figure_generation_record_v1.md\n M docs/manuscript_figure_redesign_plan_v1.md\n M docs/submission_package_index_v1.md\n M docs/submission_prep_status_v1.md\n M manuscript/README.md\n M manuscript/figures/Figure_1/Figure_1.png\n M manuscript/figures/Figure_1/Figure_1_panel_manifest.json\n M manuscript/figures/Figure_1/Figure_1_source_data.tsv\n M manuscript/figures/Figure_1/panels/Figure_1_panel_a.png\n M manuscript/figures/Figure_1/panels/Figure_1_panel_a_manifest.json\n M manuscript/figures/Figure_1/panels/Figure_1_panel_a_source_data.tsv\n M manuscript/figures/Figure_1/panels/Figure_1_panel_b.png\n M manuscript/figures/Figure_1/panels/Figure_1_panel_b_manifest.json\n M manuscript/figures/Figure_1/panels/Figure_1_panel_b_source_data.tsv\n M manuscript/figures/Figure_1/panels/Figure_1_panel_c.png\n M manuscript/figures/Figure_1/panels/Figure_1_panel_c_manifest.json\n M manuscript/figures/Figure_1/panels/Figure_1_panel_c_source_data.tsv\n M manuscript/figures/Figure_1/panels/Figure_1_panel_d.png\n M manuscript/figures/Figure_1/panels/Figure_1_panel_d_manifest.json\n M manuscript/figures/Figure_1/panels/Figure_1_panel_d_source_data.tsv\n M manuscript/figures/Figure_1/panels/Figure_1_panel_e.png\n M manuscript/figures/Figure_1/panels/Figure_1_panel_e_manifest.json\n M manuscript/figures/Figure_1/panels/Figure_1_panel_e_source_data.tsv\n M manuscript/figures/Figure_1/panels/Figure_1_panel_f.png\n M manuscript/figures/Figure_1/panels/Figure_1_panel_f_manifest.json\n M manuscript/figures/Figure_1/panels/Figure_1_panel_f_source_data.tsv\n D manuscript/figures/Figure_1/panels/Figure_1_panel_g.png\n D manuscript/figures/Figure_1/panels/Figure_1_panel_g_manifest.json\n D manuscript/figures/Figure_1/panels/Figure_1_panel_g_source_data.tsv\n D manuscript/figures/Figure_1/panels/Figure_1_panel_h.png\n D manuscript/figures/Figure_1/panels/Figure_1_panel_h_manifest.json\n D manuscript/figures/Figure_1/panels/Figure_1_panel_h_source_data.tsv\n M manuscript/figures/Figure_2/Figure_2.png\n M manuscript/figures/Figure_2/Figure_2_panel_manifest.json\n M manuscript/figures/Figure_2/Figure_2_source_data.tsv\n M manuscript/figures/Figure_2/panels/Figure_2_panel_a.png\n M manuscript/figures/Figure_2/panels/Figure_2_panel_a_manifest.json\n M manuscript/figures/Figure_2/panels/Figure_2_panel_a_source_data.tsv\n M manuscript/figures/Figure_2/panels/Figure_2_panel_b.png\n M manuscript/figures/Figure_2/panels/Figure_2_panel_b_manifest.json\n M manuscript/figures/Figure_2/panels/Figure_2_panel_b_source_data.tsv\n M manuscript/figures/Figure_2/panels/Figure_2_panel_c.png\n M manuscript/figures/Figure_2/panels/Figure_2_panel_c_manifest.json\n M manuscript/figures/Figure_2/panels/Figure_2_panel_c_source_data.tsv\n M manuscript/figures/Figure_2/panels/Figure_2_panel_d.png\n M manuscript/figures/Figure_2/panels/Figure_2_panel_d_manifest.json\n M manuscript/figures/Figure_2/panels/Figure_2_panel_d_source_data.tsv\n M manuscript/figures/Figure_2/panels/Figure_2_panel_e.png\n M manuscript/figures/Figure_2/panels/Figure_2_panel_e_manifest.json\n M manuscript/figures/Figure_2/panels/Figure_2_panel_e_source_data.tsv\n M manuscript/figures/Figure_2/panels/Figure_2_panel_f.png\n M manuscript/figures/Figure_2/panels/Figure_2_panel_f_manifest.json\n M manuscript/figures/Figure_2/panels/Figure_2_panel_f_source_data.tsv\n D manuscript/figures/Figure_2/panels/Figure_2_panel_g.png\n D manuscript/figures/Figure_2/panels/Figure_2_panel_g_manifest.json\n D manuscript/figures/Figure_2/panels/Figure_2_panel_g_source_data.tsv\n D manuscript/figures/Figure_2/panels/Figure_2_panel_h.png\n D manuscript/figures/Figure_2/panels/Figure_2_panel_h_manifest.json\n D manuscript/figures/Figure_2/panels/Figure_2_panel_h_source_data.tsv\n M manuscript/figures/Figure_3/Figure_3.png\n M manuscript/figures/Figure_3/Figure_3_panel_manifest.json\n M manuscript/figures/Figure_3/Figure_3_source_data.tsv\n M manuscript/figures/Figure_3/panels/Figure_3_panel_a.png\n M manuscript/figures/Figure_3/panels/Figure_3_panel_a_manifest.json\n M manuscript/figures/Figure_3/panels/Figure_3_panel_a_source_data.tsv\n M manuscript/figures/Figure_3/panels/Figure_3_panel_b.png\n M manuscript/figures/Figure_3/panels/Figure_3_panel_b_manifest.json\n M manuscript/figures/Figure_3/panels/Figure_3_panel_b_source_data.tsv\n M manuscript/figures/Figure_3/panels/Figure_3_panel_c.png\n M manuscript/figures/Figure_3/panels/Figure_3_panel_c_manifest.json\n M manuscript/figures/Figure_3/panels/Figure_3_panel_c_source_data.tsv\n M manuscript/figures/Figure_3/panels/Figure_3_panel_d.png\n M manuscript/figures/Figure_3/panels/Figure_3_panel_d_manifest.json\n M manuscript/figures/Figure_3/panels/Figure_3_panel_d_source_data.tsv\n D manuscript/figures/Figure_3/panels/Figure_3_panel_e.png\n D manuscript/figures/Figure_3/panels/Figure_3_panel_e_manifest.json\n D manuscript/figures/Figure_3/panels/Figure_3_panel_e_source_data.tsv\n D manuscript/figures/Figure_3/panels/Figure_3_panel_f.png\n D manuscript/figures/Figure_3/panels/Figure_3_panel_f_manifest.json\n D manuscript/figures/Figure_3/panels/Figure_3_panel_f_source_data.tsv\n D manuscript/figures/Figure_3/panels/Figure_3_panel_g.png\n D manuscript/figures/Figure_3/panels/Figure_3_panel_g_manifest.json\n D manuscript/figures/Figure_3/panels/Figure_3_panel_g_source_data.tsv\n D manuscript/figures/Figure_3/panels/Figure_3_panel_h.png\n D manuscript/figures/Figure_3/panels/Figure_3_panel_h_manifest.json\n D manuscript/figures/Figure_3/panels/Figure_3_panel_h_source_data.tsv\n M manuscript/figures/Figure_4/Figure_4.png\n M manuscript/figures/Figure_4/Figure_4_panel_manifest.json\n M manuscript/figures/Figure_4/Figure_4_source_data.tsv\n M manuscript/figures/Figure_4/panels/Figure_4_panel_a.png\n M manuscript/figures/Figure_4/panels/Figure_4_panel_a_manifest.json\n M manuscript/figures/Figure_4/panels/Figure_4_panel_a_source_data.tsv\n M manuscript/figures/Figure_4/panels/Figure_4_panel_b.png\n M manuscript/figures/Figure_4/panels/Figure_4_panel_b_manifest.json\n M manuscript/figures/Figure_4/panels/Figure_4_panel_b_source_data.tsv\n M manuscript/figures/Figure_4/panels/Figure_4_panel_c.png\n M manuscript/figures/Figure_4/panels/Figure_4_panel_c_manifest.json\n M manuscript/figures/Figure_4/panels/Figure_4_panel_c_source_data.tsv\n M manuscript/figures/Figure_4/panels/Figure_4_panel_d.png\n M manuscript/figures/Figure_4/panels/Figure_4_panel_d_manifest.json\n M manuscript/figures/Figure_4/panels/Figure_4_panel_d_source_data.tsv\n D manuscript/figures/Figure_4/panels/Figure_4_panel_e.png\n D manuscript/figures/Figure_4/panels/Figure_4_panel_e_manifest.json\n D manuscript/figures/Figure_4/panels/Figure_4_panel_e_source_data.tsv\n D manuscript/figures/Figure_4/panels/Figure_4_panel_f.png\n D manuscript/figures/Figure_4/panels/Figure_4_panel_f_manifest.json\n D manuscript/figures/Figure_4/panels/Figure_4_panel_f_source_data.tsv\n D manuscript/figures/Figure_4/panels/Figure_4_panel_g.png\n D manuscript/figures/Figure_4/panels/Figure_4_panel_g_manifest.json\n D manuscript/figures/Figure_4/panels/Figure_4_panel_g_source_data.tsv\n D manuscript/figures/Figure_4/panels/Figure_4_panel_h.png\n D manuscript/figures/Figure_4/panels/Figure_4_panel_h_manifest.json\n D manuscript/figures/Figure_4/panels/Figure_4_panel_h_source_data.tsv\n M manuscript/file_index.txt\n M manuscript/source_data_manifests/submission_package_file_manifest.tsv\n M manuscript/source_data_manifests/submission_package_manifest.json\n M manuscript/text/figure_legends_v1.md\n M manuscript/text/manuscript_draft_v1.md\n M plan.md\n D scripts/render_manuscript_figure1.py\n D src/wtbench/manuscript/figure1_truth_object.py\n M src/wtbench/manuscript/figure1_truth_object_v2.py\n M src/wtbench/manuscript/figure2_anchor_tiering.py\n M src/wtbench/manuscript/figure3_model_tradeoff.py\n M src/wtbench/manuscript/figure4_sweep_controls.py\n?? manuscript/extended_data/Extended_Data_Figure_5/edfig5_redesign_freeze.md\n?? manuscript/figures/Figure_1/figure1.png\n?? manuscript/figures/Figure_4/figure4_redesign_freeze.md\n?? scripts/run_bridge_rho_permutation_null.py\n?? src/wtbench/manuscript/_palette.py"
   },
   "inputs": [
     {
@@ -29,23 +29,63 @@
     {
       "path": "reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv",
       "sha256": "62327f0fc81574920d1e6e33b78abd8fc63b2ec05fa8cd9a6d1f88f84f7ec6a5"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/HCC38_barcode_gem_group_target_control_balance.tsv",
+      "sha256": "af424c558ee994aabe11f7dcb5890f8e238abd5b2dbe7512b0dbaf2d9f2223ff"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/HCC38_num_umis_over_threshold_bin_target_control_balance.tsv",
+      "sha256": "cd5d1db66c5f09f5e6c1786aa0ece2448d9c45de33114fc4a16600ffed7b6964"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/HCC38_num_umis_quantile_bin_target_control_balance.tsv",
+      "sha256": "e7d82339b9e2f3c8c28de3f16b95b050b02b61295fb1632c83d556ea2d4f8514"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/HCC38_transcriptome_detected_genes_quantile_bin_target_control_balance.tsv",
+      "sha256": "e49a306432d0f66569ff1eb0209548885e65f2a4f54d1b713fd4e12ed0be2044"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/HCC38_transcriptome_total_signal_quantile_bin_target_control_balance.tsv",
+      "sha256": "e58d0996723c104af0c76ab6d3d3611bd0e8a5d7118bc8cc2a4bcd8dfecf54a8"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/HCC1143_barcode_gem_group_target_control_balance.tsv",
+      "sha256": "ee6c23736566efad148beeb0db8655c31b3c3e60484f4a021c305ebfd2dddeb7"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/HCC1143_num_umis_over_threshold_bin_target_control_balance.tsv",
+      "sha256": "c460d88622c17239cf5ac28f2350611ec7d9d7a8dbd214e99b228649b4b7fe8f"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/HCC1143_num_umis_quantile_bin_target_control_balance.tsv",
+      "sha256": "70527cf71cbf417aa003f696fd3bc17ef38c3883ebe612f12b22f9332e488d1c"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/HCC1143_transcriptome_detected_genes_quantile_bin_target_control_balance.tsv",
+      "sha256": "aca4119c322175e8ec04814d423741a59f5647b21879e7360b19c45213c87f22"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/HCC1143_transcriptome_total_signal_quantile_bin_target_control_balance.tsv",
+      "sha256": "98f827610265015afe3f5d5c0309a2275037d843c863d26bb48950d2f74c0d9a"
     }
   ],
   "outputs": [
     {
       "path": "reports/manuscript_figures_v2/fig2_anchor_tiering/panels/figure2_panelf.png",
-      "sha256": "b0070cc1bb8998a458b13436cf6de3a75abb43088e193b838e1e1c49402d6207"
+      "sha256": "ee126d3a0c36721ddbd63c50c94985cf1bef108e23269bc80e1cf6a7bee3a984"
     },
     {
       "path": "reports/manuscript_figures_v2/fig2_anchor_tiering/panels/figure2_panelf.pdf",
-      "sha256": "0bf3a44ec3752989293e022d257cd0da7ea403f0e892d661b418629b3c867def"
+      "sha256": "f75c25437c66d2b4eb5b18e57bca9580866df344c7e4672a90d2d3d5f9fe749e"
     }
   ],
   "panel_id": "figure2f",
-  "panel_title": "Evidence-tier summary",
+  "panel_title": "Anchor claim matrix",
   "script": "scripts/manuscript/build_figure2_anchor_tiering.py",
   "source_data": {
     "path": "reports/manuscript_figures_v2/fig2_anchor_tiering/panels/figure2_panelf_source_data.tsv",
-    "sha256": "1a37cee9578d23db002d3850784cc902b040ea8bdfb9cffa26ef19ffda8bfd70"
+    "sha256": "098b9ce811ed99575dd84c1c4c4c7a057884365425d65a320e270dfb36b43ef9"
   }
 }

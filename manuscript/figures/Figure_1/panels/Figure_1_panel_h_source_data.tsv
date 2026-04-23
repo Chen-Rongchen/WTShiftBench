@@ -1,2 +1,0 @@
-object	evidence_tier	allowed_wording	disallowed_wording
-global_truth_depmap_bridge	retainable_global_claim	当前证据支持 truth-DepMap bridge 在整体与结构层面上成立；该结论在现有 covariate audit 下仍可保留	bridge has been fully deconfounded; bridge is proved without meaningful confounding risk

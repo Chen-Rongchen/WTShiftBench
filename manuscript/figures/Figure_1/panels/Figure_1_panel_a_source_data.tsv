@@ -1,6 +1,4 @@
 step	name
-1	real perturbation truth
-2	DepMap fitness endpoint
-3	frozen bridge object
-4	model recovery adjudication
-5	gated discovery
+1	perturbation truth
+2	aligned CRISPR dependency
+3	fixed target categories
