@@ -360,9 +360,9 @@ def render_joint_grid(ax: plt.Axes, df: pd.DataFrame, cell_line: str, label: str
     ax.scatter(
         background["shift_quantile"],
         background["depmap_quantile"],
-        c="#D2D2D2",
-        s=18,
-        alpha=0.80,
+        c="#9A9A9A",
+        s=22,
+        alpha=0.62,
         edgecolor="none",
         zorder=2,
     )
@@ -370,20 +370,20 @@ def render_joint_grid(ax: plt.Axes, df: pd.DataFrame, cell_line: str, label: str
         unlabeled_q1["shift_quantile"],
         unlabeled_q1["depmap_quantile"],
         c=GRID_COLORS["Q1_anchor"],
-        s=31,
+        s=50,
         alpha=1.0,
         edgecolor="white",
-        linewidth=0.35,
+        linewidth=0.55,
         zorder=4,
     )
     ax.scatter(
         labeled_q1["shift_quantile"],
         labeled_q1["depmap_quantile"],
         c=GRID_COLORS["Q1_anchor"],
-        s=33,
+        s=52,
         alpha=1.0,
         edgecolor="white",
-        linewidth=0.35,
+        linewidth=0.55,
         zorder=4,
     )
 
@@ -556,7 +556,7 @@ def render_panel_bridge_strength(ax: plt.Axes, df: pd.DataFrame) -> None:
     null_lo = float(ordered["null_q025"].min())
     null_hi = float(ordered["null_q975"].max())
     null_iter = int(ordered["null_iterations"].max())
-    ax.axhspan(null_lo, null_hi, color="#ECECEC", zorder=0)
+    ax.axhspan(null_lo, null_hi, color="#DEDEDE", zorder=0)
     ax.axhline(0.0, color="#B0B0B0", linewidth=0.4, linestyle="--", zorder=0.5)
     ax.errorbar(
         x,
