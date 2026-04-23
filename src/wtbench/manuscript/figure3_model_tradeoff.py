@@ -363,7 +363,7 @@ def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
     # and is NOT used for scoring or adjudication; see Fig. 3 caption.
     absence = mpatches.Rectangle(
         (0.75, 0.40),
-        0.88 - 0.75,
+        0.90 - 0.75,
         0.54 - 0.40,
         fill=True,
         color="#F5F5F5",
@@ -385,10 +385,10 @@ def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
         # Headline points (baseline + GEARS formal) carry the core trade-off
         # claim; enlarged so they read as visual anchors even when surrounded
         # by the sweep/linear/null background cloud.
-        size = 150 if is_headline else (55 if is_named else 28)
+        size = 185 if is_headline else (55 if is_named else 28)
         edge = "#111111" if is_headline else ("#333333" if is_named else "white")
-        lw = 1.1 if is_headline else 0.6
-        alpha = 1.0 if is_named else 0.70
+        lw = 1.4 if is_headline else 0.6
+        alpha = 1.0 if is_named else 0.78
         ax.scatter(
             row.backbone_recovery_score,
             row.structure_vs_context_separation_score,
@@ -427,7 +427,7 @@ def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
         "Entrants occupy a backbone–separation trade-off space",
         loc="left",
     )
-    ax.set_xlim(0.40, 0.88)
+    ax.set_xlim(0.40, 0.90)
     ax.set_ylim(0.20, 0.54)
     clean_axes(ax)
     ax.grid(color="#F2F2F2", linewidth=0.4)

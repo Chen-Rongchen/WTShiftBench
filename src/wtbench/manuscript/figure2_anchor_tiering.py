@@ -210,11 +210,20 @@ def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
             zorder=1,
         )
 
-    # Cutoff-range whiskers (shift + dependency combined envelope).
+    # Cutoff-range whiskers (shift + dependency combined envelope): rendered
+    # as a dashed auxiliary line so they read as a reference range rather
+    # than as primary data (shift/dependency dots carry the primary signal).
     for yi, row in zip(y, plot.itertuples()):
         lo = min(row.min_shift_quantile_mean, row.min_depmap_quantile_mean)
         hi = max(row.max_shift_quantile_mean, row.max_depmap_quantile_mean)
-        ax.plot([lo, hi], [yi, yi], color="#C9C9C9", linewidth=2.2, alpha=0.6, zorder=0.5)
+        ax.plot(
+            [lo, hi], [yi, yi],
+            color="#B8B8B8",
+            linewidth=1.2,
+            linestyle=(0, (3, 2)),
+            alpha=0.75,
+            zorder=0.5,
+        )
 
     ax.scatter(
         plot["shift_quantile_mean"],
@@ -261,7 +270,7 @@ def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
             [0], [0], marker="o", linestyle="none", markerfacecolor="#2F2F2F",
             markeredgecolor="#FFFFFF", markeredgewidth=0.35, markersize=4.6, label="dependency",
         ),
-        plt.Line2D([0], [0], color="#C9C9C9", linewidth=2.2, alpha=0.6, label="cutoff range (P25\u2013P75)"),
+        plt.Line2D([0], [0], color="#B8B8B8", linewidth=1.2, linestyle=(0, (3, 2)), alpha=0.75, label="cutoff range (P25\u2013P75)"),
     ]
     ax.legend(
         handles=legend_handles,
@@ -544,6 +553,20 @@ def render_claim_matrix(ax: plt.Axes, df: pd.DataFrame) -> None:
         color = TIER_COLORS.get(tier, "#CCCCCC")
         # Gene name (bold for primary-qualified).
         is_primary = tier == "primary_but_qualified"
+        # Pale green band behind the PFDN5 row so the primary-qualified
+        # anchor reads as an anchor in the otherwise flat claim matrix.
+        if is_primary:
+            ax.add_patch(
+                plt.Rectangle(
+                    (0.005, y - row_gap * 0.42),
+                    0.99,
+                    row_gap * 0.84,
+                    transform=ax.transAxes,
+                    facecolor=PRIMARY_GREEN_FILL,
+                    edgecolor="none",
+                    zorder=0,
+                )
+            )
         ax.text(
             0.02,
             y,
@@ -626,8 +649,8 @@ def render_tvd_matrix(ax: plt.Axes, df: pd.DataFrame) -> None:
                 0.88,
                 facecolor=face,
                 alpha=alpha_face,
-                edgecolor="#8A8A8A" if exposed else "#CFCFCF",
-                linewidth=0.7 if exposed else 0.4,
+                edgecolor="#B8860B" if exposed else "#CFCFCF",
+                linewidth=1.5 if exposed else 0.4,
                 zorder=2,
             )
             ax.add_patch(rect)
