@@ -1,6 +1,41 @@
-target_gene	shared_anchor_stability_fraction	stability_call
-RPS3	0.6666666666666666	cutoff_sensitive_shared_anchor
-RUVBL2	0.6666666666666666	cutoff_sensitive_shared_anchor
-ZBTB17	0.6666666666666666	cutoff_sensitive_shared_anchor
-ENY2	0.3333333333333333	cutoff_sensitive_shared_anchor
-NPM1	0.3333333333333333	cutoff_sensitive_shared_anchor
+cell_line	target_gene	strat_column	n_target_cells	n_control_cells	total_variation_distance	n_strata
+HCC1143	PFDN5	barcode_gem_group	57	1325	0.0042767295597484	3
+HCC1143	PFDN5	num_umis_over_threshold_bin	57	1325	0.1900562727573651	4
+HCC1143	PFDN5	num_umis_quantile_bin	57	1325	0.1202118503806686	4
+HCC1143	PFDN5	transcriptome_detected_genes_quantile_bin	57	1325	0.1508639523336643	4
+HCC1143	PFDN5	transcriptome_total_signal_quantile_bin	57	1325	0.1376100628930817	4
+HCC38	PFDN5	barcode_gem_group	67	1666	0.0292236297504076	3
+HCC38	PFDN5	num_umis_over_threshold_bin	67	1666	0.1471125763738331	4
+HCC38	PFDN5	num_umis_quantile_bin	67	1666	0.1578362688358925	4
+HCC38	PFDN5	transcriptome_detected_genes_quantile_bin	67	1666	0.0827704216014764	4
+HCC38	PFDN5	transcriptome_total_signal_quantile_bin	67	1666	0.077198043396463	4
+HCC1143	PMF1	barcode_gem_group	40	1325	0.145566037735849	3
+HCC1143	PMF1	num_umis_over_threshold_bin	40	1325	0.2133018867924528	4
+HCC1143	PMF1	num_umis_quantile_bin	40	1325	0.1714150943396226	4
+HCC1143	PMF1	transcriptome_detected_genes_quantile_bin	40	1325	0.2554716981132076	4
+HCC1143	PMF1	transcriptome_total_signal_quantile_bin	40	1325	0.1026415094339622	4
+HCC38	PMF1	barcode_gem_group	94	1666	0.1347092028300682	3
+HCC38	PMF1	num_umis_over_threshold_bin	94	1666	0.4809072565196292	4
+HCC38	PMF1	num_umis_quantile_bin	94	1666	0.4913795305356184	4
+HCC38	PMF1	transcriptome_detected_genes_quantile_bin	94	1666	0.0632295471380041	4
+HCC38	PMF1	transcriptome_total_signal_quantile_bin	94	1666	0.1489361702127659	4
+HCC1143	PRPF6	barcode_gem_group	23	1325	0.0681870385561936	3
+HCC1143	PRPF6	num_umis_over_threshold_bin	23	1325	0.3438228055783429	4
+HCC1143	PRPF6	num_umis_quantile_bin	23	1325	0.1922559474979491	4
+HCC1143	PRPF6	transcriptome_detected_genes_quantile_bin	23	1325	0.1234126333059884	4
+HCC1143	PRPF6	transcriptome_total_signal_quantile_bin	23	1325	0.0261525840853158	4
+HCC38	PRPF6	barcode_gem_group	25	1666	0.1526530612244897	3
+HCC38	PRPF6	num_umis_over_threshold_bin	25	1666	0.197406962785114	4
+HCC38	PRPF6	num_umis_quantile_bin	25	1666	0.3078031212484994	4
+HCC38	PRPF6	transcriptome_detected_genes_quantile_bin	25	1666	0.0993997599039615	4
+HCC38	PRPF6	transcriptome_total_signal_quantile_bin	25	1666	0.26	4
+HCC1143	ZNF131	barcode_gem_group	43	1325	0.0732426502852128	3
+HCC1143	ZNF131	num_umis_over_threshold_bin	43	1325	0.3549451513821852	4
+HCC1143	ZNF131	num_umis_quantile_bin	43	1325	0.3975778850372971	4
+HCC1143	ZNF131	transcriptome_detected_genes_quantile_bin	43	1325	0.0666432645897323	4
+HCC1143	ZNF131	transcriptome_total_signal_quantile_bin	43	1325	0.1109609477841158	4
+HCC38	ZNF131	barcode_gem_group	118	1666	0.0510102346023155	3
+HCC38	ZNF131	num_umis_over_threshold_bin	118	1666	0.2320792723869209	4
+HCC38	ZNF131	num_umis_quantile_bin	118	1666	0.3144952896412802	4
+HCC38	ZNF131	transcriptome_detected_genes_quantile_bin	118	1666	0.1137709321016541	4
+HCC38	ZNF131	transcriptome_total_signal_quantile_bin	118	1666	0.1252467088530327	4
