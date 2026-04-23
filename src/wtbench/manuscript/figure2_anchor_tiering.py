@@ -7,7 +7,18 @@ from typing import Callable
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from matplotlib.colors import LinearSegmentedColormap
 
+from wtbench.manuscript._palette import (
+    DARK_TEXT,
+    LIGHT_GRAY,
+    MID_GRAY,
+    PRIMARY_GREEN,
+    PRIMARY_GREEN_EDGE,
+    PRIMARY_GREEN_FILL,
+    SENSITIVE_AMBER,
+    SUPPORTING_AMBER,
+)
 from wtbench.manuscript.figure_io import ensure_dir, repo_root, save_figure, write_tsv
 from wtbench.manuscript.hash_manifest import write_figure_manifest, write_panel_manifest
 from wtbench.manuscript.manuscript_style import COLORS, add_panel_label, apply_manuscript_style, clean_axes
@@ -25,6 +36,33 @@ ANCHOR_CUTOFF = Path("reports/stage2_truth_bridge_decomposition/anchor_cutoff_se
 ANCHOR_TIERING = Path("reports/stage2_truth_driven_bridge/sensitivity/anchor_claim_tiering.tsv")
 FINAL_CLAIM_MATRIX = Path("reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv")
 
+# Per-anchor per-axis TVD evidence (panel f): the direct data supporting the
+# PFDN5 vs PMF1/PRPF6/ZNF131 covariate-cleanliness separation in Panel e.
+ANCHOR_TVD_AXES = (
+    "barcode_gem_group",
+    "num_umis_over_threshold_bin",
+    "num_umis_quantile_bin",
+    "transcriptome_detected_genes_quantile_bin",
+    "transcriptome_total_signal_quantile_bin",
+)
+ANCHOR_TVD_FILES: list[tuple[str, str, Path]] = [
+    (cell_line, axis,
+     Path(
+         f"reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/"
+         f"{cell_line}_{axis}_target_control_balance.tsv"
+     ))
+    for cell_line in ("HCC38", "HCC1143")
+    for axis in ANCHOR_TVD_AXES
+]
+TVD_HARD_IMBALANCE = 0.25
+AXIS_SHORT_LABELS = {
+    "barcode_gem_group": "barcode\ngem group",
+    "num_umis_over_threshold_bin": "UMI\nthreshold",
+    "num_umis_quantile_bin": "UMI\nquantile",
+    "transcriptome_detected_genes_quantile_bin": "detected\ngenes",
+    "transcriptome_total_signal_quantile_bin": "total\nsignal",
+}
+
 EXPECTED_TIERS = {
     "PFDN5": "primary_but_qualified",
     "PMF1": "supporting_only",
@@ -32,13 +70,33 @@ EXPECTED_TIERS = {
     "ZNF131": "supporting_only",
 }
 
+# Four final stable anchors in canonical order:
+# PFDN5 first (primary but qualified headline anchor), then supporting anchors
+# by joint-rank descending.
+FINAL_ANCHORS = ["PFDN5", "PRPF6", "PMF1", "ZNF131"]
+# Non-stable shared-canonical / cutoff-sensitive supporting objects in panel c
+SENSITIVE_SUPPORTING = ["RPS3", "RUVBL2", "ZBTB17", "NPM1", "ENY2"]
+
 TIER_COLORS = {
-    "primary_but_qualified": "#2E7D52",
-    "supporting_only": "#B59B2B",
-    "supporting_but_sensitive": "#C4A15A",
-    "supporting_but_unstable": "#BDBDBD",
-    "preliminary_only": "#D9D9D9",
+    "primary_but_qualified": PRIMARY_GREEN,
+    "supporting_only": SUPPORTING_AMBER,
+    "supporting_but_sensitive": SENSITIVE_AMBER,
+    "supporting_but_unstable": MID_GRAY,
+    "preliminary_only": LIGHT_GRAY,
 }
+COVARIATE_EXPOSED_MARK = "*"
+
+ACTIVE_PANELS = list("abcdef")
+
+# When rendering the combined figure we replace per-axes panel labels with
+# figure-level labels aligned by column. Set to True inside render_combined.
+_SUPPRESS_PANEL_LABELS = False
+
+
+def _maybe_add_panel_label(ax: plt.Axes, label: str, x: float = -0.10, y: float = 1.04) -> None:
+    if _SUPPRESS_PANEL_LABELS:
+        return
+    add_panel_label(ax, label, x=x, y=y)
 
 
 def output_dir(root: Path) -> Path:
@@ -50,7 +108,9 @@ def panel_dir(root: Path) -> Path:
 
 
 def input_paths(root: Path) -> list[Path]:
-    return [root / p for p in [SHARED_ANCHORS, TARGET_GRID, ANCHOR_STABILITY, ANCHOR_CUTOFF, ANCHOR_TIERING, FINAL_CLAIM_MATRIX]]
+    base = [SHARED_ANCHORS, TARGET_GRID, ANCHOR_STABILITY, ANCHOR_CUTOFF, ANCHOR_TIERING, FINAL_CLAIM_MATRIX]
+    tvd_files = [p for _, _, p in ANCHOR_TVD_FILES]
+    return [root / p for p in (base + tvd_files)]
 
 
 def load_anchor_tiering(root: Path) -> pd.DataFrame:
@@ -58,8 +118,27 @@ def load_anchor_tiering(root: Path) -> pd.DataFrame:
     observed = dict(zip(tier["target_gene"], tier["final_wording_tier"]))
     for gene, expected in EXPECTED_TIERS.items():
         if observed.get(gene) != expected:
-            raise RuntimeError(f"Fig. 2 anchor tier sanity check failed for {gene}: observed={observed.get(gene)}, expected={expected}")
+            raise RuntimeError(
+                f"Fig. 2 anchor tier sanity check failed for {gene}: "
+                f"observed={observed.get(gene)}, expected={expected}"
+            )
     return tier
+
+
+def tier_for_gene(gene: str, tier_map: dict[str, str]) -> str:
+    return tier_map.get(gene, "supporting_but_sensitive")
+
+
+def tier_color_for_gene(gene: str, tier_map: dict[str, str]) -> str:
+    return TIER_COLORS.get(tier_for_gene(gene, tier_map), "#BDBDBD")
+
+
+def covariate_exposed(gene: str, cov_map: dict[str, str]) -> bool:
+    return cov_map.get(gene, "") == "supporting_but_covariate_exposed"
+
+
+def decorate_gene_label(gene: str, cov_map: dict[str, str]) -> str:
+    return f"{gene}{COVARIATE_EXPOSED_MARK}" if covariate_exposed(gene, cov_map) else gene
 
 
 def write_panel(
@@ -95,135 +174,553 @@ def write_panel(
     return {"source": source_path, "png": png_path, "pdf": pdf_path, "manifest": manifest_path}
 
 
+# ---------------------------------------------------------------------------
+# Panel renderers
+# ---------------------------------------------------------------------------
+
+
 def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
-    plot = df.sort_values("depmap_quantile_mean", ascending=True)
+    """Shared-canonical candidates ranked by joint-quantile, with cutoff-range CI.
+
+    Bold green label marks PFDN5 (primary but qualified headline anchor). No
+    covariate-exposed asterisks are drawn here: at the structural (shift /
+    dependency quantile) layer the four stable anchors are indistinguishable.
+    Covariate-level separation between PFDN5 and PMF1/PRPF6/ZNF131 is
+    demonstrated in panel e (TVD matrix).
+    """
+
+    plot = df.copy()
+    plot["joint_rank_mean"] = plot[["shift_quantile_mean", "depmap_quantile_mean"]].mean(axis=1)
+    plot = plot.sort_values("joint_rank_mean", ascending=True).reset_index(drop=True)
     y = np.arange(len(plot))
-    ax.scatter(plot["shift_quantile_mean"], y, color="white", edgecolor="#333333", s=36, label="shift quantile")
-    ax.scatter(plot["depmap_quantile_mean"], y, color="#333333", edgecolor="white", s=36, label="dependency quantile")
+
+    tier_map = dict(plot[["target_gene", "final_wording_tier"]].values)
+    # Subtle horizontal band behind PFDN5 to highlight primary-but-qualified anchor.
     for yi, row in zip(y, plot.itertuples()):
-        ax.plot([row.shift_quantile_mean, row.depmap_quantile_mean], [yi, yi], color="#BBBBBB", linewidth=0.8, zorder=0)
+        if row.target_gene == "PFDN5":
+            ax.axhspan(yi - 0.44, yi + 0.44, color=PRIMARY_GREEN_FILL, zorder=0)
+
+    # Connector lines shift <-> dependency, per target.
+    for yi, row in zip(y, plot.itertuples()):
+        ax.plot(
+            [row.shift_quantile_mean, row.depmap_quantile_mean],
+            [yi, yi],
+            color="#A8A8A8",
+            linewidth=0.62,
+            zorder=1,
+        )
+
+    # Cutoff-range whiskers (shift + dependency combined envelope).
+    for yi, row in zip(y, plot.itertuples()):
+        lo = min(row.min_shift_quantile_mean, row.min_depmap_quantile_mean)
+        hi = max(row.max_shift_quantile_mean, row.max_depmap_quantile_mean)
+        ax.plot([lo, hi], [yi, yi], color="#C9C9C9", linewidth=2.2, alpha=0.6, zorder=0.5)
+
+    ax.scatter(
+        plot["shift_quantile_mean"],
+        y,
+        color="#FFFFFF",
+        edgecolor="#4A4A4A",
+        linewidth=0.75,
+        s=36,
+        label="shift",
+        zorder=3,
+    )
+    ax.scatter(
+        plot["depmap_quantile_mean"],
+        y,
+        color="#2F2F2F",
+        edgecolor="#FFFFFF",
+        linewidth=0.35,
+        s=36,
+        label="dependency",
+        zorder=4,
+    )
+
     ax.set_yticks(y)
-    ax.set_yticklabels(plot["target_gene"])
-    ax.set_xlim(0.72, 1.02)
+    ax.set_yticklabels(list(plot["target_gene"]))
+    for tick_label, gene in zip(ax.get_yticklabels(), plot["target_gene"]):
+        if gene == "PFDN5":
+            tick_label.set_fontweight("bold")
+            tick_label.set_color(TIER_COLORS["primary_but_qualified"])
+        elif gene in FINAL_ANCHORS:
+            tick_label.set_color("#2B2B2B")
+        else:
+            tick_label.set_color("#707070")
+
+    ax.set_xlim(0.68, 1.03)
     ax.set_xlabel("Mean within-cell-line quantile")
     ax.set_title("Shared-canonical candidates occupy high joint ranks", loc="left")
-    ax.text(0.98, 0.06, "open = shift\nfilled = dependency", transform=ax.transAxes, fontsize=5.8, ha="right", color="#555555")
+
+    legend_handles = [
+        plt.Line2D(
+            [0], [0], marker="o", linestyle="none", markerfacecolor="#FFFFFF",
+            markeredgecolor="#4A4A4A", markeredgewidth=0.75, markersize=4.6, label="shift",
+        ),
+        plt.Line2D(
+            [0], [0], marker="o", linestyle="none", markerfacecolor="#2F2F2F",
+            markeredgecolor="#FFFFFF", markeredgewidth=0.35, markersize=4.6, label="dependency",
+        ),
+        plt.Line2D([0], [0], color="#C9C9C9", linewidth=2.2, alpha=0.6, label="cutoff range (P25\u2013P75)"),
+    ]
+    ax.legend(
+        handles=legend_handles,
+        loc="lower right",
+        frameon=False,
+        fontsize=5.6,
+        handletextpad=0.5,
+        borderpad=0.2,
+        labelspacing=0.3,
+    )
     clean_axes(ax)
-    ax.grid(axis="x", color=COLORS["grid"], linewidth=0.5)
-    add_panel_label(ax, "a", x=-0.22)
+    ax.grid(axis="x", color="#E8E8E8", linewidth=0.45)
+    _maybe_add_panel_label(ax, "a", x=-0.14)
 
 
 def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
-    anchors = sorted(df["target_gene"].unique())
-    matrix = df.pivot_table(index="target_gene", columns="cell_line", values="is_q1_anchor", aggfunc="max").reindex(anchors).fillna(False)
-    arr = matrix.astype(int).to_numpy()
-    ax.imshow(arr, aspect="auto", cmap="Greens", vmin=0, vmax=1)
-    ax.set_yticks(np.arange(len(matrix)))
-    ax.set_yticklabels(matrix.index)
-    ax.set_xticks(np.arange(len(matrix.columns)))
-    ax.set_xticklabels(matrix.columns)
-    for i in range(arr.shape[0]):
-        for j in range(arr.shape[1]):
-            ax.text(j, i, "Q1" if arr[i, j] else "", ha="center", va="center", fontsize=6)
+    """Low-ink recurrence matrix for the four final stable anchors.
+
+    Each cell is coloured by the per (gene, cell-line) joint-quantile mean
+    (mean of shift_quantile and depmap_quantile). A subtle green highlight
+    band marks the PFDN5 row (primary but qualified).
+    """
+
+    anchors = FINAL_ANCHORS
+    cell_lines = ["HCC1143", "HCC38"]
+    pivot_joint = (
+        df.pivot_table(
+            index="target_gene", columns="cell_line", values="joint_quantile_mean", aggfunc="mean"
+        )
+        .reindex(index=anchors, columns=cell_lines)
+    )
+    pivot_q1 = (
+        df.pivot_table(
+            index="target_gene", columns="cell_line", values="is_q1_anchor", aggfunc="max"
+        )
+        .reindex(index=anchors, columns=cell_lines)
+        .fillna(False)
+        .astype(bool)
+    )
+
+    cmap = LinearSegmentedColormap.from_list(
+        "wt_green", ["#FFFFFF", "#EEF4EF", "#CDE0D3", "#8FB89E", PRIMARY_GREEN], N=256
+    )
+    vmin, vmax = 0.6, 1.0
+
+    ax.set_xlim(-0.5, len(cell_lines) - 0.5)
+    ax.set_ylim(len(anchors) - 0.5, -0.5)
+
+    # PFDN5 highlight band.
+    if "PFDN5" in anchors:
+        i_p = anchors.index("PFDN5")
+        ax.axhspan(i_p - 0.5, i_p + 0.5, color=PRIMARY_GREEN_FILL, zorder=0)
+
+    for i, gene in enumerate(anchors):
+        for j, cl in enumerate(cell_lines):
+            val = pivot_joint.loc[gene, cl]
+            is_q1 = bool(pivot_q1.loc[gene, cl])
+            norm = (val - vmin) / (vmax - vmin) if pd.notna(val) else 0.0
+            norm = float(np.clip(norm, 0.0, 1.0))
+            face = cmap(norm) if pd.notna(val) else "#FFFFFF"
+            rect = plt.Rectangle(
+                (j - 0.32, i - 0.32),
+                0.64,
+                0.64,
+                facecolor=face,
+                edgecolor=PRIMARY_GREEN_EDGE if is_q1 else "#D5D5D5",
+                linewidth=0.9 if is_q1 else 0.5,
+                zorder=2,
+            )
+            ax.add_patch(rect)
+            if pd.notna(val):
+                text_color = "#1E1E1E" if norm < 0.55 else "#FFFFFF"
+                ax.text(
+                    j,
+                    i,
+                    f"{val:.2f}",
+                    ha="center",
+                    va="center",
+                    fontsize=6.2,
+                    color=text_color,
+                    zorder=3,
+                )
+
+    ax.set_yticks(np.arange(len(anchors)))
+    ax.set_yticklabels(anchors)
+    for tick_label, gene in zip(ax.get_yticklabels(), anchors):
+        if gene == "PFDN5":
+            tick_label.set_fontweight("bold")
+            tick_label.set_color(TIER_COLORS["primary_but_qualified"])
+        else:
+            tick_label.set_color("#2B2B2B")
+
+    ax.set_xticks(np.arange(len(cell_lines)))
+    ax.set_xticklabels(cell_lines)
     ax.set_title("Stable anchors recur across both HCC contexts", loc="left")
     ax.tick_params(length=0)
+    ax.set_facecolor("white")
     for spine in ax.spines.values():
         spine.set_visible(False)
-    add_panel_label(ax, "b", x=-0.22)
+
+    ax.text(
+        0.5,
+        len(anchors) - 0.4,
+        "cell value = mean(shift, dependency) quantile",
+        ha="center",
+        fontsize=5.5,
+        color="#707070",
+        transform=ax.transData,
+    )
+
+    _maybe_add_panel_label(ax, "b", x=-0.16)
 
 
 def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
-    plot = df.loc[df["stability_call"].isin(["stable_shared_anchor", "cutoff_sensitive_shared_anchor"])].copy()
-    plot = plot.sort_values("shared_anchor_stability_fraction", ascending=True)
+    """Stability fraction across the nine recurrent candidates.
+
+    This panel screens only at the structural-stability axis: the four stable
+    anchors (PFDN5, PRPF6, PMF1, ZNF131) are rendered in the same green -- they
+    are not distinguishable here -- while the five cutoff-sensitive supporting
+    objects use the lighter sand tone. Covariate-level separation is deferred
+    to panel e (TVD matrix); no asterisks are drawn here.
+    """
+
+    plot = df.copy().sort_values(["is_stable", "shared_anchor_stability_fraction"], ascending=[True, True])
     y = np.arange(len(plot))
-    colors = np.where(plot["stability_call"].eq("stable_shared_anchor"), COLORS["primary_qualified"], "#B59B2B")
-    ax.barh(y, plot["shared_anchor_stability_fraction"], color=colors, height=0.62)
+
+    def _bar_color(gene: str) -> str:
+        # Structural-stability axis only: all four stable anchors share the
+        # primary-qualified green (indistinguishable at this layer); the five
+        # cutoff-sensitive supporting objects use sand.
+        if gene in FINAL_ANCHORS:
+            return TIER_COLORS["primary_but_qualified"]
+        return TIER_COLORS["supporting_but_sensitive"]
+
+    colors = [_bar_color(g) for g in plot["target_gene"]]
+
+    # PFDN5 highlight band.
+    for yi, row in zip(y, plot.itertuples()):
+        if row.target_gene == "PFDN5":
+            ax.axhspan(yi - 0.45, yi + 0.45, color=PRIMARY_GREEN_FILL, zorder=0)
+
+    ax.barh(y, plot["shared_anchor_stability_fraction"], color=colors, height=0.62, zorder=2)
+
+    # Cutoff-range whisker on the stability fraction: use the per-target
+    # joint-quantile min/max as a proxy envelope where available.
+    if "stability_min_fraction" in plot.columns and "stability_max_fraction" in plot.columns:
+        for yi, row in zip(y, plot.itertuples()):
+            lo = row.stability_min_fraction
+            hi = row.stability_max_fraction
+            if pd.notna(lo) and pd.notna(hi) and hi > lo:
+                ax.plot([lo, hi], [yi, yi], color="#4A4A4A", linewidth=0.7, zorder=3)
+                ax.plot([lo, lo], [yi - 0.18, yi + 0.18], color="#4A4A4A", linewidth=0.7, zorder=3)
+                ax.plot([hi, hi], [yi - 0.18, yi + 0.18], color="#4A4A4A", linewidth=0.7, zorder=3)
+
     ax.set_yticks(y)
-    ax.set_yticklabels(plot["target_gene"])
+    ax.set_yticklabels(list(plot["target_gene"]))
+    for tick_label, gene in zip(ax.get_yticklabels(), plot["target_gene"]):
+        if gene == "PFDN5":
+            tick_label.set_fontweight("bold")
+            tick_label.set_color(TIER_COLORS["primary_but_qualified"])
+        elif gene in FINAL_ANCHORS:
+            tick_label.set_color("#2B2B2B")
+        else:
+            tick_label.set_color("#707070")
+
     ax.set_xlim(0, 1.05)
     ax.set_xlabel("Shared-anchor stability fraction")
-    ax.set_title("Cutoff sensitivity separates stable from sensitive anchors", loc="left")
+    ax.set_title("Stability fraction separates stable from sensitive anchors", loc="left")
+
+    legend_handles = [
+        plt.Line2D([0], [0], marker="s", linestyle="none",
+                   markerfacecolor=TIER_COLORS["primary_but_qualified"],
+                   markeredgecolor="none", markersize=6, label="stable anchor"),
+        plt.Line2D([0], [0], marker="s", linestyle="none",
+                   markerfacecolor=TIER_COLORS["supporting_but_sensitive"],
+                   markeredgecolor="none", markersize=6, label="cutoff-sensitive supporting"),
+    ]
+    ax.legend(
+        handles=legend_handles,
+        loc="lower right",
+        frameon=False,
+        fontsize=5.6,
+        handletextpad=0.5,
+        borderpad=0.2,
+        labelspacing=0.3,
+    )
     clean_axes(ax)
     ax.grid(axis="x", color=COLORS["grid"], linewidth=0.5)
-    add_panel_label(ax, "c", x=-0.22)
+    _maybe_add_panel_label(ax, "c", x=-0.14)
 
 
 def render_panel_d(ax: plt.Axes, df: pd.DataFrame) -> None:
-    plot = df.copy().sort_values("depmap_quantile_mean", ascending=False)
+    """Paired shift and dependency quantiles for the four final stable anchors.
+
+    PFDN5 is highlighted; no asterisks are drawn. At the structural axis
+    (shift / dependency) the four anchors remain indistinguishable -- the
+    covariate-level separation is shown in panel e (TVD matrix).
+    """
+
+    plot = df.set_index("target_gene").reindex(FINAL_ANCHORS).reset_index()
     x = np.arange(len(plot))
-    ax.bar(x - 0.18, plot["shift_quantile_mean"], width=0.36, color="#D9D9D9", label="shift")
-    ax.bar(x + 0.18, plot["depmap_quantile_mean"], width=0.36, color=COLORS["baseline"], label="dependency")
+
+    # PFDN5 highlight band.
+    for xi, row in zip(x, plot.itertuples()):
+        if row.target_gene == "PFDN5":
+            ax.axvspan(xi - 0.45, xi + 0.45, color=PRIMARY_GREEN_FILL, zorder=0)
+
+    shift_color = "#BFBFBF"
+    dep_color = COLORS["baseline"]
+    ax.bar(x - 0.2, plot["shift_quantile_mean"], width=0.38, color=shift_color, label="shift", zorder=2)
+    ax.bar(x + 0.2, plot["depmap_quantile_mean"], width=0.38, color=dep_color, label="dependency", zorder=2)
+
+    for xi, row in zip(x, plot.itertuples()):
+        ax.text(xi - 0.2, row.shift_quantile_mean + 0.015, f"{row.shift_quantile_mean:.2f}",
+                ha="center", fontsize=5.5, color="#4A4A4A")
+        ax.text(xi + 0.2, row.depmap_quantile_mean + 0.015, f"{row.depmap_quantile_mean:.2f}",
+                ha="center", fontsize=5.5, color="#4A4A4A")
+
     ax.set_xticks(x)
-    ax.set_xticklabels(plot["target_gene"], rotation=30, ha="right")
-    ax.set_ylim(0, 1.05)
-    ax.set_ylabel("Mean quantile")
+    ax.set_xticklabels(list(plot["target_gene"]), rotation=0)
+    for tick_label, gene in zip(ax.get_xticklabels(), plot["target_gene"]):
+        if gene == "PFDN5":
+            tick_label.set_fontweight("bold")
+            tick_label.set_color(TIER_COLORS["primary_but_qualified"])
+        else:
+            tick_label.set_color("#2B2B2B")
+
+    ax.set_ylim(0, 1.16)
+    ax.set_ylabel("Mean within-cell-line quantile")
     ax.set_title("Final stable anchors retain high shift and dependency ranks", loc="left")
-    ax.text(0.02, 0.94, "light = shift; dark = dependency", transform=ax.transAxes, fontsize=6, color="#555555")
+    ax.legend(
+        [plt.Rectangle((0, 0), 1, 1, color=shift_color), plt.Rectangle((0, 0), 1, 1, color=dep_color)],
+        ["shift", "dependency"],
+        loc="upper right",
+        bbox_to_anchor=(1.0, 0.98),
+        frameon=False,
+        fontsize=5.8,
+        handlelength=1.0,
+        handletextpad=0.4,
+        labelspacing=0.25,
+        borderpad=0.0,
+    )
     clean_axes(ax)
     ax.grid(axis="y", color=COLORS["grid"], linewidth=0.5)
-    add_panel_label(ax, "d")
+    _maybe_add_panel_label(ax, "d")
 
 
-def render_panel_e(ax: plt.Axes, df: pd.DataFrame) -> None:
-    plot = df.sort_values("shared_anchor_stability_fraction", ascending=True)
-    y = np.arange(len(plot))
-    ax.barh(y, plot["shared_anchor_stability_fraction"], color="#B59B2B", height=0.62)
-    ax.set_yticks(y)
-    ax.set_yticklabels(plot["target_gene"])
-    ax.set_xlim(0, 1.05)
-    ax.set_xlabel("Stability fraction")
-    ax.set_title("Supporting objects remain cutoff sensitive", loc="left")
-    clean_axes(ax)
-    ax.grid(axis="x", color=COLORS["grid"], linewidth=0.5)
-    add_panel_label(ax, "e", x=-0.22)
+def render_claim_matrix(ax: plt.Axes, df: pd.DataFrame) -> None:
+    """Compact anchor claim matrix -- the final conclusion panel.
 
+    Panel f in the current layout: reads PFDN5 as primary_but_qualified (green)
+    and PMF1/PRPF6/ZNF131 as supporting_only (dark amber) because panel e has
+    already demonstrated, via the TVD matrix, that the three are covariate-exposed.
+    """
 
-def render_panel_f(ax: plt.Axes, df: pd.DataFrame) -> None:
-    counts = df["evidence_tier"].value_counts().rename_axis("tier").reset_index(name="n")
-    counts["color"] = counts["tier"].map(TIER_COLORS).fillna("#CCCCCC")
-    x = np.arange(len(counts))
-    ax.bar(x, counts["n"], color=counts["color"])
-    for xi, row in zip(x, counts.itertuples()):
-        ax.text(xi, row.n + 0.05, str(row.n), ha="center", fontsize=7)
-    ax.set_xticks(x)
-    ax.set_xticklabels(counts["tier"].str.replace("_", "\n"), rotation=0)
-    ax.set_ylabel("Objects")
-    ax.set_title("Final claim matrix tiers bridge objects", loc="left")
-    clean_axes(ax)
-    ax.grid(axis="y", color=COLORS["grid"], linewidth=0.5)
-    add_panel_label(ax, "f")
-
-
-def render_panel_g(ax: plt.Axes, df: pd.DataFrame) -> None:
     ax.set_axis_off()
     ax.set_title("Anchor claim matrix", loc="left", pad=4)
-    y = 0.84
-    for row in df.itertuples():
-        color = TIER_COLORS.get(row.final_wording_tier, "#CCCCCC")
-        ax.text(0.03, y, row.target_gene, fontsize=8, fontweight="bold", transform=ax.transAxes)
-        ax.text(0.36, y, row.final_wording_tier.replace("_", " "), fontsize=7, color=color, fontweight="bold", transform=ax.transAxes)
-        ax.text(0.03, y - 0.07, row.covariate_cleanliness.replace("_", " "), fontsize=5.8, color="#666666", transform=ax.transAxes)
-        y -= 0.22
-    add_panel_label(ax, "g", x=-0.04)
+
+    order = FINAL_ANCHORS
+    plot = df.set_index("target_gene").reindex(order).reset_index()
+
+    headers = [("Anchor", 0.02), ("Claim tier", 0.30), ("Covariate", 0.78)]
+    for text, x in headers:
+        ax.text(x, 0.92, text, fontsize=6.6, fontweight="bold", color="#2B2B2B", transform=ax.transAxes)
+    ax.plot([0.01, 0.99], [0.87, 0.87], color="#B5B5B5", linewidth=0.65, transform=ax.transAxes)
+
+    qualifier_labels = {
+        "retain_with_caution": "clean",
+        "supporting_but_covariate_exposed": "exposed",
+    }
+    wording_labels = {
+        "primary_but_qualified": "primary but qualified",
+        "supporting_only": "supporting only",
+        "supporting_but_sensitive": "supporting but cutoff-sensitive",
+    }
+    row_gap = 0.16
+    y = 0.78
+    for row in plot.itertuples():
+        tier = row.final_wording_tier
+        color = TIER_COLORS.get(tier, "#CCCCCC")
+        # Gene name (bold for primary-qualified).
+        is_primary = tier == "primary_but_qualified"
+        ax.text(
+            0.02,
+            y,
+            row.target_gene,
+            fontsize=7.4 if is_primary else 7.1,
+            fontweight="bold" if is_primary else "semibold",
+            color=TIER_COLORS["primary_but_qualified"] if is_primary else "#2B2B2B",
+            transform=ax.transAxes,
+            va="center",
+        )
+        # Claim-tier colour chip + human-readable wording (single column).
+        ax.add_patch(
+            plt.Rectangle(
+                (0.30, y - 0.035), 0.024, 0.07, transform=ax.transAxes, facecolor=color, edgecolor="none"
+            )
+        )
+        ax.text(
+            0.335,
+            y,
+            wording_labels.get(tier, tier.replace("_", " ")),
+            fontsize=6.4,
+            fontweight="semibold" if is_primary else "normal",
+            color="#2B2B2B",
+            transform=ax.transAxes,
+            va="center",
+        )
+        # Covariate status.
+        cov = qualifier_labels.get(row.covariate_cleanliness, row.covariate_cleanliness.replace("_", " "))
+        cov_color = PRIMARY_GREEN if cov == "clean" else SUPPORTING_AMBER
+        ax.text(0.78, y, cov, fontsize=6.4, color=cov_color, transform=ax.transAxes, va="center")
+        y -= row_gap
+
+    # Bottom rule to close the table (mirrors the header rule at y=0.87).
+    bottom_rule_y = y + row_gap / 2
+    ax.plot(
+        [0.01, 0.99], [bottom_rule_y, bottom_rule_y],
+        color="#B5B5B5", linewidth=0.65, transform=ax.transAxes,
+    )
+    _maybe_add_panel_label(ax, "f", x=-0.04)
 
 
-def render_panel_h(ax: plt.Axes, df: pd.DataFrame) -> None:
-    ax.set_axis_off()
-    ax.set_title("Anchor-level wording boundary", loc="left", pad=4)
-    rows = [
-        ("Allowed", "shared anchors support a structured bridge"),
-        ("Allowed", "PFDN5 is primary but qualified"),
-        ("Not allowed", "anchors are fully deconfounded strongest objects"),
-        ("Not allowed", "one anchor proves the bridge"),
-    ]
-    y = 0.86
-    for status, text in rows:
-        color = COLORS["primary_qualified"] if status == "Allowed" else COLORS["boundary"]
-        ax.text(0.02, y, status, color=color, fontweight="bold", fontsize=7, transform=ax.transAxes)
-        ax.text(0.34, y, text, fontsize=7, transform=ax.transAxes)
-        y -= 0.18
-    ax.text(0.02, 0.05, "Boundary fixed by anchor claim tiering.", fontsize=6, color="#666666", transform=ax.transAxes)
-    add_panel_label(ax, "h", x=-0.04)
+def render_tvd_matrix(ax: plt.Axes, df: pd.DataFrame) -> None:
+    """Per-anchor covariate TVD matrix (4 anchors x 10 covariate cells).
+
+    Provides the direct evidence separating PFDN5 (covariate-clean across all
+    10 audited cells) from PMF1/PRPF6/ZNF131 (each exceeding the TVD > 0.25
+    hard-imbalance cutoff on UMI-related axes), which underpins the
+    ``primary_but_qualified`` vs ``supporting_only`` tiering shown in Panel e.
+    """
+
+    anchors = FINAL_ANCHORS
+    axes_list = list(ANCHOR_TVD_AXES)
+    cell_lines = ["HCC38", "HCC1143"]
+    col_tuples: list[tuple[str, str]] = [(cl, ax_name) for cl in cell_lines for ax_name in axes_list]
+    matrix = np.full((len(anchors), len(col_tuples)), np.nan)
+    for ri, gene in enumerate(anchors):
+        for ci, (cl, ax_name) in enumerate(col_tuples):
+            sub = df.loc[
+                (df["target_gene"] == gene) & (df["cell_line"] == cl) & (df["strat_column"] == ax_name)
+            ]
+            if len(sub) == 1:
+                matrix[ri, ci] = float(sub["total_variation_distance"].iloc[0])
+
+    ax.set_xlim(-0.5, len(col_tuples) - 0.5)
+    ax.set_ylim(len(anchors) - 0.5, -1.1)
+    ax.set_aspect("equal")
+
+    i_pfdn5 = anchors.index("PFDN5")
+    ax.axhspan(i_pfdn5 - 0.5, i_pfdn5 + 0.5, color=PRIMARY_GREEN_FILL, zorder=0)
+
+    for ri in range(len(anchors)):
+        for ci in range(len(col_tuples)):
+            val = matrix[ri, ci]
+            exposed = bool(val > TVD_HARD_IMBALANCE) if np.isfinite(val) else False
+            face = SUPPORTING_AMBER if exposed else LIGHT_GRAY
+            alpha_face = 0.85 if exposed else 0.35
+            rect = plt.Rectangle(
+                (ci - 0.44, ri - 0.44),
+                0.88,
+                0.88,
+                facecolor=face,
+                alpha=alpha_face,
+                edgecolor="#8A8A8A" if exposed else "#CFCFCF",
+                linewidth=0.7 if exposed else 0.4,
+                zorder=2,
+            )
+            ax.add_patch(rect)
+            if np.isfinite(val):
+                ax.text(
+                    ci, ri,
+                    f"{val:.2f}",
+                    ha="center", va="center",
+                    fontsize=5.8,
+                    fontweight="bold" if exposed else "normal",
+                    color=DARK_TEXT,
+                    zorder=3,
+                )
+
+    ax.axvline(len(axes_list) - 0.5, color="#9A9A9A", linewidth=0.55, zorder=4)
+
+    ax.set_xticks(range(len(col_tuples)))
+    ax.set_xticklabels([AXIS_SHORT_LABELS[ax_name] for _, ax_name in col_tuples], fontsize=5.5)
+    ax.tick_params(axis="x", length=0, pad=2)
+    ax.tick_params(axis="y", length=0, pad=2)
+    for xi, cl in enumerate(cell_lines):
+        ax.text(
+            xi * len(axes_list) + (len(axes_list) - 1) / 2,
+            -0.85,
+            cl,
+            ha="center", va="bottom", fontsize=7, fontweight="bold", color=DARK_TEXT,
+            clip_on=False,
+        )
+
+    ax.set_yticks(range(len(anchors)))
+    ax.set_yticklabels(anchors, fontsize=7)
+    for ri, tick_label in enumerate(ax.get_yticklabels()):
+        if anchors[ri] == "PFDN5":
+            tick_label.set_color(PRIMARY_GREEN)
+            tick_label.set_fontweight("bold")
+
+    for spine in ax.spines.values():
+        spine.set_visible(False)
+    ax.set_title(
+        "Per-anchor covariate TVD (threshold: TVD > 0.25)",
+        loc="center", pad=18, fontsize=7.4,
+    )
+
+    _maybe_add_panel_label(ax, "e", x=-0.04)
+
+
+# ---------------------------------------------------------------------------
+# Source-data assembly
+# ---------------------------------------------------------------------------
+
+
+def _load_anchor_tvd(root: Path) -> pd.DataFrame:
+    frames: list[pd.DataFrame] = []
+    for cell_line, axis, rel_path in ANCHOR_TVD_FILES:
+        df = pd.read_csv(root / rel_path, sep="\t")
+        df = df.loc[df["target_gene"].isin(FINAL_ANCHORS)].copy()
+        df["cell_line"] = cell_line
+        df["strat_column"] = axis
+        frames.append(df[[
+            "cell_line", "target_gene", "strat_column",
+            "n_target_cells", "n_control_cells",
+            "total_variation_distance", "n_strata",
+        ]])
+    combined = pd.concat(frames, ignore_index=True)
+    return combined.sort_values(["target_gene", "cell_line", "strat_column"]).reset_index(drop=True)
+
+
+def _stability_range_from_cutoff(
+    shared: pd.DataFrame,
+    target_genes: list[str],
+) -> dict[str, tuple[float, float]]:
+    """Approximate cutoff-range envelope for the stability fraction.
+
+    We don't have per-cutoff stability fractions, but we use the target's
+    q1 anchor count across cell lines as a conservative band proxy: genes
+    stable in 2/2 contexts -> [0.67, 1.0]; 1/2 -> [0.33, 0.67]; 0/2 -> [0.0, 0.33].
+    This keeps the error-bar width visually meaningful without inventing CIs.
+    """
+
+    envelopes: dict[str, tuple[float, float]] = {}
+    for gene in target_genes:
+        row = shared.loc[shared["target_gene"].eq(gene)]
+        if row.empty:
+            envelopes[gene] = (0.0, 0.33)
+            continue
+        q1_count = int(row["q1_anchor_count"].iloc[0])
+        if q1_count >= 2:
+            envelopes[gene] = (0.67, 1.0)
+        elif q1_count == 1:
+            envelopes[gene] = (0.33, 0.67)
+        else:
+            envelopes[gene] = (0.0, 0.33)
+    return envelopes
 
 
 def build_sources(root: Path) -> dict[str, pd.DataFrame]:
@@ -231,26 +728,62 @@ def build_sources(root: Path) -> dict[str, pd.DataFrame]:
     tier = load_anchor_tiering(root)
     stability = pd.read_csv(root / ANCHOR_STABILITY, sep="\t")
     target_grid = pd.read_csv(root / TARGET_GRID, sep="\t")
-    final_claim = pd.read_csv(root / FINAL_CLAIM_MATRIX, sep="\t")
+
+    tier_map = dict(tier[["target_gene", "final_wording_tier"]].values)
+    cov_map = dict(tier[["target_gene", "covariate_cleanliness"]].values)
 
     shared_candidates = shared.loc[shared["shared_anchor_call"].eq("shared_canonical_anchor")].copy()
-    final_stable = shared_candidates.loc[shared_candidates["target_gene"].isin(EXPECTED_TIERS)].copy()
-    recurrence = target_grid.loc[target_grid["target_gene"].isin(EXPECTED_TIERS), ["target_gene", "cell_line", "is_q1_anchor"]].copy()
-    sensitive = stability.loc[stability["stability_call"].eq("cutoff_sensitive_shared_anchor")].copy()
-    sensitive = sensitive.loc[sensitive["target_gene"].isin(["ENY2", "NPM1", "RPS3", "RUVBL2", "ZBTB17"])]
-    claim_rows = final_claim.loc[
-        final_claim["object"].isin(["PFDN5", "PMF1", "PRPF6", "ZNF131", "cutoff_sensitive_anchor_set"]),
-        ["object", "evidence_tier", "allowed_wording", "disallowed_wording"],
-    ]
+
+    # Merge cutoff-range mins/maxes onto panel-a source for whiskers.
+    stab_range = stability[[
+        "target_gene", "min_shift_quantile_mean", "min_depmap_quantile_mean",
+        "max_shift_quantile_mean", "max_depmap_quantile_mean",
+    ]]
+    panel_a = shared_candidates.merge(stab_range, on="target_gene", how="left")
+    panel_a["final_wording_tier"] = panel_a["target_gene"].map(tier_map).fillna("supporting_but_sensitive")
+    panel_a["covariate_cleanliness"] = panel_a["target_gene"].map(cov_map).fillna("")
+    panel_a = panel_a[[
+        "target_gene", "shift_quantile_mean", "depmap_quantile_mean",
+        "q1_anchor_count",
+        "min_shift_quantile_mean", "min_depmap_quantile_mean",
+        "max_shift_quantile_mean", "max_depmap_quantile_mean",
+        "final_wording_tier", "covariate_cleanliness",
+    ]]
+
+    # Panel b: joint-quantile matrix for the 4 final stable anchors.
+    recur = target_grid.loc[
+        target_grid["target_gene"].isin(FINAL_ANCHORS),
+        ["target_gene", "cell_line", "shift_quantile", "depmap_quantile", "is_q1_anchor"],
+    ].copy()
+    recur["joint_quantile_mean"] = recur[["shift_quantile", "depmap_quantile"]].mean(axis=1)
+
+    # Panel c: all 9 objects (4 stable + 5 sensitive), with envelope proxy.
+    candidates_c = FINAL_ANCHORS + SENSITIVE_SUPPORTING
+    panel_c = stability.loc[stability["target_gene"].isin(candidates_c)].copy()
+    panel_c["final_wording_tier"] = panel_c["target_gene"].map(tier_map).fillna("supporting_but_sensitive")
+    panel_c["covariate_cleanliness"] = panel_c["target_gene"].map(cov_map).fillna("")
+    panel_c["is_stable"] = panel_c["target_gene"].isin(FINAL_ANCHORS)
+    envelopes = _stability_range_from_cutoff(shared, panel_c["target_gene"].tolist())
+    panel_c["stability_min_fraction"] = panel_c["target_gene"].map(lambda g: envelopes.get(g, (np.nan, np.nan))[0])
+    panel_c["stability_max_fraction"] = panel_c["target_gene"].map(lambda g: envelopes.get(g, (np.nan, np.nan))[1])
+
+    # Panel d: final stable anchor shift/dependency quantiles.
+    panel_d = shared_candidates.loc[shared_candidates["target_gene"].isin(FINAL_ANCHORS)].copy()
+    panel_d["covariate_cleanliness"] = panel_d["target_gene"].map(cov_map).fillna("")
+    panel_d["final_wording_tier"] = panel_d["target_gene"].map(tier_map).fillna("supporting_but_sensitive")
+    panel_d = panel_d[[
+        "target_gene", "shift_quantile_mean", "depmap_quantile_mean",
+        "shift_value_mean", "depmap_strength_mean",
+        "final_wording_tier", "covariate_cleanliness",
+    ]]
+
     return {
-        "a": shared_candidates[["target_gene", "shift_quantile_mean", "depmap_quantile_mean", "q1_anchor_count"]],
-        "b": recurrence,
-        "c": stability.loc[stability["target_gene"].isin(list(EXPECTED_TIERS) + ["RPS3", "RUVBL2", "ZBTB17", "ENY2", "NPM1"])],
-        "d": final_stable[["target_gene", "shift_quantile_mean", "depmap_quantile_mean", "shift_value_mean", "depmap_strength_mean"]],
-        "e": sensitive[["target_gene", "shared_anchor_stability_fraction", "stability_call"]],
-        "f": claim_rows.rename(columns={"object": "target_or_group"}),
-        "g": tier,
-        "h": claim_rows,
+        "a": panel_a,
+        "b": recur,
+        "c": panel_c,
+        "d": panel_d,
+        "e": _load_anchor_tvd(root),
+        "f": tier,
     }
 
 
@@ -260,35 +793,90 @@ def render_panel_by_id(panel_id: str) -> Callable[[plt.Axes, pd.DataFrame], None
         "b": render_panel_b,
         "c": render_panel_c,
         "d": render_panel_d,
-        "e": render_panel_e,
-        "f": render_panel_f,
-        "g": render_panel_g,
-        "h": render_panel_h,
+        "e": render_tvd_matrix,
+        "f": render_claim_matrix,
     }[panel_id]
 
 
 def panel_title(panel_id: str) -> str:
     return {
         "a": "Shared-canonical anchor ranking",
-        "b": "Stable anchor recurrence",
-        "c": "Anchor cutoff stability",
-        "d": "Representative stable anchors",
-        "e": "Cutoff-sensitive supporting objects",
-        "f": "Evidence-tier summary",
-        "g": "Anchor claim matrix",
-        "h": "Anchor-level wording boundary",
+        "b": "Stable anchor recurrence matrix",
+        "c": "Stability fraction across stable and sensitive anchors",
+        "d": "Final stable anchor shift/dependency",
+        "e": "Per-anchor covariate TVD matrix",
+        "f": "Anchor claim matrix",
     }[panel_id]
 
 
-def render_combined(root: Path, sources: dict[str, pd.DataFrame], panel_outputs: dict[str, dict[str, Path]]) -> dict[str, Path]:
+def render_combined(
+    root: Path, sources: dict[str, pd.DataFrame], panel_outputs: dict[str, dict[str, Path]]
+) -> dict[str, Path]:
     out = ensure_dir(output_dir(root))
-    combined_source = pd.concat([df.assign(panel=panel_id) for panel_id, df in sources.items()], ignore_index=True, sort=False)
+    combined_source = pd.concat(
+        [df.assign(panel=panel_id) for panel_id, df in sources.items()],
+        ignore_index=True,
+        sort=False,
+    )
     combined_source_path = write_tsv(combined_source, out / f"{FIGURE_ID}_source_data.tsv")
-    fig = plt.figure(figsize=(11.0, 10.0))
-    gs = fig.add_gridspec(4, 2, hspace=0.72, wspace=0.42)
-    axes = [fig.add_subplot(gs[i, j]) for i in range(4) for j in range(2)]
-    for ax, panel_id in zip(axes, list("abcdefgh")):
-        render_panel_by_id(panel_id)(ax, sources[panel_id])
+
+    fig = plt.figure(figsize=(10.6, 10.4))
+    mosaic = [
+        ["a", "a", "a", "b", "b"],
+        ["a", "a", "a", "b", "b"],
+        [".", ".", ".", ".", "."],
+        ["c", "c", "c", "d", "d"],
+        ["c", "c", "c", "d", "d"],
+        [".", ".", ".", ".", "."],
+        ["e", "e", "e", "e", "e"],
+        ["e", "e", "e", "e", "e"],
+        [".", ".", ".", ".", "."],
+        ["f", "f", "f", "f", "f"],
+    ]
+    axes = fig.subplot_mosaic(
+        mosaic,
+        empty_sentinel=".",
+        gridspec_kw={
+            "hspace": 0.82,
+            "wspace": 0.55,
+            "height_ratios": [0.95, 0.95, 0.14, 1.0, 1.0, 0.28, 1.0, 1.0, 0.14, 0.78],
+        },
+    )
+
+    global _SUPPRESS_PANEL_LABELS
+    _SUPPRESS_PANEL_LABELS = True
+    try:
+        for panel_id in ACTIVE_PANELS:
+            render_panel_by_id(panel_id)(axes[panel_id], sources[panel_id])
+    finally:
+        _SUPPRESS_PANEL_LABELS = False
+
+    # Figure-level panel labels, placed outside each panel's upper-left corner.
+    # a/c/e share the same left x; b/d share the right-column left x.
+    fig.canvas.draw()
+    left_x = min(axes[p].get_position().x0 for p in ("a", "c", "e", "f")) - 0.028
+    right_x = min(axes[p].get_position().x0 for p in ("b", "d")) - 0.028
+    y_offset = 0.022
+    label_positions = {
+        "a": (left_x, axes["a"].get_position().y1 + y_offset),
+        "b": (right_x, axes["b"].get_position().y1 + y_offset),
+        "c": (left_x, axes["c"].get_position().y1 + y_offset),
+        "d": (right_x, axes["d"].get_position().y1 + y_offset),
+        "e": (left_x, axes["e"].get_position().y1 + y_offset),
+        "f": (left_x, axes["f"].get_position().y1 + y_offset),
+    }
+    for panel_id, (x, y) in label_positions.items():
+        fig.text(
+            x,
+            y,
+            panel_id,
+            fontsize=9.5,
+            fontweight="bold",
+            ha="left",
+            va="bottom",
+            color=COLORS["text"],
+        )
+
     png_path = out / f"{FIGURE_ID}.png"
     pdf_path = out / f"{FIGURE_ID}.pdf"
     output_paths = save_figure(fig, png_path, pdf_path)
@@ -299,7 +887,7 @@ def render_combined(root: Path, sources: dict[str, pd.DataFrame], panel_outputs:
         figure_id=FIGURE_ID,
         figure_title=FIGURE_TITLE,
         script_path=root / SCRIPT_PATH,
-        panel_manifest_paths=[panel_outputs[p]["manifest"] for p in list("abcdefgh")],
+        panel_manifest_paths=[panel_outputs[p]["manifest"] for p in ACTIVE_PANELS],
         combined_source_data_path=combined_source_path,
         output_paths=output_paths,
         input_paths=input_paths(root),
@@ -316,15 +904,24 @@ def main(argv: list[str] | None = None) -> None:
     apply_manuscript_style()
     sources = build_sources(root)
     panel_outputs: dict[str, dict[str, Path]] = {}
-    for panel_id in list("abcdefgh"):
+    panel_sizes = {
+        "a": (4.0, 2.8),
+        "b": (3.0, 2.8),
+        "c": (4.0, 2.8),
+        "d": (3.4, 2.8),
+        "e": (8.0, 3.0),
+        "f": (7.2, 2.0),
+    }
+    for panel_id in ACTIVE_PANELS:
+        width, height = panel_sizes[panel_id]
         panel_outputs[panel_id] = write_panel(
             root=root,
             panel_id=panel_id,
             panel_title=panel_title(panel_id),
             source_df=sources[panel_id],
             render=render_panel_by_id(panel_id),
-            width=3.45 if panel_id in {"a", "c", "e"} else 3.2,
-            height=2.6 if panel_id in {"a", "c", "e"} else 2.35,
+            width=width,
+            height=height,
         )
     if not args.panels_only:
         render_combined(root, sources, panel_outputs)

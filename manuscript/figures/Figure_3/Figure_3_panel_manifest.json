@@ -2,14 +2,14 @@
   "claim_boundary": "GEARS is an architecture trade-off diagnosis; shared_mean_baseline is the backbone primary reference; do not claim model recovery proved.",
   "combined_source_data": {
     "path": "reports/manuscript_figures_v2/fig3_model_tradeoff/figure3_source_data.tsv",
-    "sha256": "f780a5a01ac1f04b7b5dd96b76fe04b4d3fc2ea0aa5ac13ddb430fd526802b54"
+    "sha256": "58ba8dc133b0455177a0324ded6fab4118d3e02c4970c651b15bb7bc2bd12931"
   },
   "figure_id": "figure3",
-  "figure_title": "Current entrants do not outperform the backbone baseline but reveal a recovery trade-off",
-  "generated_at_utc": "2026-04-18T14:52:06.274738+00:00",
+  "figure_title": "Model recovery is metric-dependent and reveals a backbone-separation trade-off",
+  "generated_at_utc": "2026-04-23T06:41:52.549257+00:00",
   "git": {
-    "commit": "a36af44e93a89ace31da398ffc018e268aa0d3c3",
-    "status_short": "M src/wtbench/manuscript/figure1_truth_object_v2.py\n M src/wtbench/manuscript/figure2_anchor_tiering.py\n M src/wtbench/manuscript/figure3_model_tradeoff.py\n M src/wtbench/manuscript/figure4_sweep_controls.py\n M src/wtbench/manuscript/figure5_axis_interpretation.py\n M src/wtbench/manuscript/figure6_boundary.py\n M src/wtbench/manuscript/manuscript_style.py\n?? docs/nature_methods_2025_figure_style_note_v1.md"
+    "commit": "5a9bc6507755a2ebc1f860b7d56e8541c5f6db54",
+    "status_short": "M README.md\n M configs/runtime/wtbench_cli_v1.json\n M docs/genome_biology_figure_legends_v1.md\n M docs/genome_biology_manuscript_draft_v1.md\n M docs/main_manuscript_figure_legends_v1.md\n M docs/main_manuscript_submission_draft_v1.md\n M docs/main_manuscript_submission_draft_v2.md\n M docs/manuscript_figure_generation_record_v1.md\n M docs/manuscript_figure_redesign_plan_v1.md\n M docs/submission_package_index_v1.md\n M docs/submission_prep_status_v1.md\n M manuscript/README.md\n M manuscript/figures/Figure_1/Figure_1.png\n M manuscript/figures/Figure_1/Figure_1_panel_manifest.json\n M manuscript/figures/Figure_1/Figure_1_source_data.tsv\n M manuscript/figures/Figure_1/panels/Figure_1_panel_a.png\n M manuscript/figures/Figure_1/panels/Figure_1_panel_a_manifest.json\n M manuscript/figures/Figure_1/panels/Figure_1_panel_a_source_data.tsv\n M manuscript/figures/Figure_1/panels/Figure_1_panel_b.png\n M manuscript/figures/Figure_1/panels/Figure_1_panel_b_manifest.json\n M manuscript/figures/Figure_1/panels/Figure_1_panel_b_source_data.tsv\n M manuscript/figures/Figure_1/panels/Figure_1_panel_c.png\n M manuscript/figures/Figure_1/panels/Figure_1_panel_c_manifest.json\n M manuscript/figures/Figure_1/panels/Figure_1_panel_c_source_data.tsv\n M manuscript/figures/Figure_1/panels/Figure_1_panel_d.png\n M manuscript/figures/Figure_1/panels/Figure_1_panel_d_manifest.json\n M manuscript/figures/Figure_1/panels/Figure_1_panel_d_source_data.tsv\n M manuscript/figures/Figure_1/panels/Figure_1_panel_e.png\n M manuscript/figures/Figure_1/panels/Figure_1_panel_e_manifest.json\n M manuscript/figures/Figure_1/panels/Figure_1_panel_e_source_data.tsv\n M manuscript/figures/Figure_1/panels/Figure_1_panel_f.png\n M manuscript/figures/Figure_1/panels/Figure_1_panel_f_manifest.json\n M manuscript/figures/Figure_1/panels/Figure_1_panel_f_source_data.tsv\n D manuscript/figures/Figure_1/panels/Figure_1_panel_g.png\n D manuscript/figures/Figure_1/panels/Figure_1_panel_g_manifest.json\n D manuscript/figures/Figure_1/panels/Figure_1_panel_g_source_data.tsv\n D manuscript/figures/Figure_1/panels/Figure_1_panel_h.png\n D manuscript/figures/Figure_1/panels/Figure_1_panel_h_manifest.json\n D manuscript/figures/Figure_1/panels/Figure_1_panel_h_source_data.tsv\n M manuscript/figures/Figure_2/Figure_2.png\n M manuscript/figures/Figure_2/Figure_2_panel_manifest.json\n M manuscript/figures/Figure_2/Figure_2_source_data.tsv\n M manuscript/figures/Figure_2/panels/Figure_2_panel_a.png\n M manuscript/figures/Figure_2/panels/Figure_2_panel_a_manifest.json\n M manuscript/figures/Figure_2/panels/Figure_2_panel_a_source_data.tsv\n M manuscript/figures/Figure_2/panels/Figure_2_panel_b.png\n M manuscript/figures/Figure_2/panels/Figure_2_panel_b_manifest.json\n M manuscript/figures/Figure_2/panels/Figure_2_panel_b_source_data.tsv\n M manuscript/figures/Figure_2/panels/Figure_2_panel_c.png\n M manuscript/figures/Figure_2/panels/Figure_2_panel_c_manifest.json\n M manuscript/figures/Figure_2/panels/Figure_2_panel_c_source_data.tsv\n M manuscript/figures/Figure_2/panels/Figure_2_panel_d.png\n M manuscript/figures/Figure_2/panels/Figure_2_panel_d_manifest.json\n M manuscript/figures/Figure_2/panels/Figure_2_panel_d_source_data.tsv\n M manuscript/figures/Figure_2/panels/Figure_2_panel_e.png\n M manuscript/figures/Figure_2/panels/Figure_2_panel_e_manifest.json\n M manuscript/figures/Figure_2/panels/Figure_2_panel_e_source_data.tsv\n M manuscript/figures/Figure_2/panels/Figure_2_panel_f.png\n M manuscript/figures/Figure_2/panels/Figure_2_panel_f_manifest.json\n M manuscript/figures/Figure_2/panels/Figure_2_panel_f_source_data.tsv\n D manuscript/figures/Figure_2/panels/Figure_2_panel_g.png\n D manuscript/figures/Figure_2/panels/Figure_2_panel_g_manifest.json\n D manuscript/figures/Figure_2/panels/Figure_2_panel_g_source_data.tsv\n D manuscript/figures/Figure_2/panels/Figure_2_panel_h.png\n D manuscript/figures/Figure_2/panels/Figure_2_panel_h_manifest.json\n D manuscript/figures/Figure_2/panels/Figure_2_panel_h_source_data.tsv\n M manuscript/figures/Figure_3/Figure_3.png\n M manuscript/figures/Figure_3/Figure_3_panel_manifest.json\n M manuscript/figures/Figure_3/Figure_3_source_data.tsv\n M manuscript/figures/Figure_3/panels/Figure_3_panel_a.png\n M manuscript/figures/Figure_3/panels/Figure_3_panel_a_manifest.json\n M manuscript/figures/Figure_3/panels/Figure_3_panel_a_source_data.tsv\n M manuscript/figures/Figure_3/panels/Figure_3_panel_b.png\n M manuscript/figures/Figure_3/panels/Figure_3_panel_b_manifest.json\n M manuscript/figures/Figure_3/panels/Figure_3_panel_b_source_data.tsv\n M manuscript/figures/Figure_3/panels/Figure_3_panel_c.png\n M manuscript/figures/Figure_3/panels/Figure_3_panel_c_manifest.json\n M manuscript/figures/Figure_3/panels/Figure_3_panel_c_source_data.tsv\n M manuscript/figures/Figure_3/panels/Figure_3_panel_d.png\n M manuscript/figures/Figure_3/panels/Figure_3_panel_d_manifest.json\n M manuscript/figures/Figure_3/panels/Figure_3_panel_d_source_data.tsv\n D manuscript/figures/Figure_3/panels/Figure_3_panel_e.png\n D manuscript/figures/Figure_3/panels/Figure_3_panel_e_manifest.json\n D manuscript/figures/Figure_3/panels/Figure_3_panel_e_source_data.tsv\n D manuscript/figures/Figure_3/panels/Figure_3_panel_f.png\n D manuscript/figures/Figure_3/panels/Figure_3_panel_f_manifest.json\n D manuscript/figures/Figure_3/panels/Figure_3_panel_f_source_data.tsv\n D manuscript/figures/Figure_3/panels/Figure_3_panel_g.png\n D manuscript/figures/Figure_3/panels/Figure_3_panel_g_manifest.json\n D manuscript/figures/Figure_3/panels/Figure_3_panel_g_source_data.tsv\n D manuscript/figures/Figure_3/panels/Figure_3_panel_h.png\n D manuscript/figures/Figure_3/panels/Figure_3_panel_h_manifest.json\n D manuscript/figures/Figure_3/panels/Figure_3_panel_h_source_data.tsv\n M manuscript/figures/Figure_4/Figure_4.png\n M manuscript/figures/Figure_4/Figure_4_panel_manifest.json\n M manuscript/figures/Figure_4/Figure_4_source_data.tsv\n M manuscript/figures/Figure_4/panels/Figure_4_panel_a.png\n M manuscript/figures/Figure_4/panels/Figure_4_panel_a_manifest.json\n M manuscript/figures/Figure_4/panels/Figure_4_panel_a_source_data.tsv\n M manuscript/figures/Figure_4/panels/Figure_4_panel_b.png\n M manuscript/figures/Figure_4/panels/Figure_4_panel_b_manifest.json\n M manuscript/figures/Figure_4/panels/Figure_4_panel_b_source_data.tsv\n M manuscript/figures/Figure_4/panels/Figure_4_panel_c.png\n M manuscript/figures/Figure_4/panels/Figure_4_panel_c_manifest.json\n M manuscript/figures/Figure_4/panels/Figure_4_panel_c_source_data.tsv\n M manuscript/figures/Figure_4/panels/Figure_4_panel_d.png\n M manuscript/figures/Figure_4/panels/Figure_4_panel_d_manifest.json\n M manuscript/figures/Figure_4/panels/Figure_4_panel_d_source_data.tsv\n D manuscript/figures/Figure_4/panels/Figure_4_panel_e.png\n D manuscript/figures/Figure_4/panels/Figure_4_panel_e_manifest.json\n D manuscript/figures/Figure_4/panels/Figure_4_panel_e_source_data.tsv\n D manuscript/figures/Figure_4/panels/Figure_4_panel_f.png\n D manuscript/figures/Figure_4/panels/Figure_4_panel_f_manifest.json\n D manuscript/figures/Figure_4/panels/Figure_4_panel_f_source_data.tsv\n D manuscript/figures/Figure_4/panels/Figure_4_panel_g.png\n D manuscript/figures/Figure_4/panels/Figure_4_panel_g_manifest.json\n D manuscript/figures/Figure_4/panels/Figure_4_panel_g_source_data.tsv\n D manuscript/figures/Figure_4/panels/Figure_4_panel_h.png\n D manuscript/figures/Figure_4/panels/Figure_4_panel_h_manifest.json\n D manuscript/figures/Figure_4/panels/Figure_4_panel_h_source_data.tsv\n M manuscript/file_index.txt\n M manuscript/source_data_manifests/submission_package_file_manifest.tsv\n M manuscript/source_data_manifests/submission_package_manifest.json\n M manuscript/text/figure_legends_v1.md\n M manuscript/text/manuscript_draft_v1.md\n M plan.md\n D scripts/render_manuscript_figure1.py\n D src/wtbench/manuscript/figure1_truth_object.py\n M src/wtbench/manuscript/figure1_truth_object_v2.py\n M src/wtbench/manuscript/figure2_anchor_tiering.py\n M src/wtbench/manuscript/figure3_model_tradeoff.py\n M src/wtbench/manuscript/figure4_sweep_controls.py\n?? manuscript/extended_data/Extended_Data_Figure_5/edfig5_redesign_freeze.md\n?? manuscript/figures/Figure_1/figure1.png\n?? manuscript/figures/Figure_4/figure4_redesign_freeze.md\n?? scripts/run_bridge_rho_permutation_null.py\n?? src/wtbench/manuscript/_palette.py"
   },
   "inputs": [
     {
@@ -28,45 +28,29 @@
   "outputs": [
     {
       "path": "reports/manuscript_figures_v2/fig3_model_tradeoff/figure3.png",
-      "sha256": "70299c737083c3bf1fea2fcfd5f4199e3a82138242f13c18c76cb3b856c86fa0"
+      "sha256": "97b1e129c6f2a45adc8a119b18ec516d93d5014c62fe3c0110a16d40cc9d91ee"
     },
     {
       "path": "reports/manuscript_figures_v2/fig3_model_tradeoff/figure3.pdf",
-      "sha256": "1535409701081fae81d2273f82901b2896b8aa7d1edb30f1106b9a7b2b07e0ba"
+      "sha256": "6d47436bba7aaeb5ffcc87f1cb54e57798d36ec2f7f83bee7f6729d2bc7e7dff"
     }
   ],
   "panel_manifests": [
     {
       "path": "reports/manuscript_figures_v2/fig3_model_tradeoff/panels/figure3_panela_manifest.json",
-      "sha256": "61d9b3550003e3841e3c5f6407c5eec9d624c9edd4778d9737fe0f6cb4217bd4"
+      "sha256": "02af959d68c8ce031fca341fb18a15e0eda7f1d64c8a8348514e4ee90be9b2a2"
     },
     {
       "path": "reports/manuscript_figures_v2/fig3_model_tradeoff/panels/figure3_panelb_manifest.json",
-      "sha256": "360db0831de420873fe19e50ea927d7302f6e9564c0a521e48973d933a09eb6a"
+      "sha256": "71c806f014d5ec61eafc1fef77336aee3daa0d047826980400cb7d35512e6ed6"
     },
     {
       "path": "reports/manuscript_figures_v2/fig3_model_tradeoff/panels/figure3_panelc_manifest.json",
-      "sha256": "47bf311e30381ad20457c410b498d110e56af5f44af707b6d507b57374d35f36"
+      "sha256": "668ace742f5ab14709a9dd6dd157efcf1b6a2443d3c3cb92c72384d141c1dc1a"
     },
     {
       "path": "reports/manuscript_figures_v2/fig3_model_tradeoff/panels/figure3_paneld_manifest.json",
-      "sha256": "a683d4302cac0f73c14b5a48bc4fa771d26556cfedd92d258963224655226c0e"
-    },
-    {
-      "path": "reports/manuscript_figures_v2/fig3_model_tradeoff/panels/figure3_panele_manifest.json",
-      "sha256": "c2f3a4f2962c13d0ac0177ec359e2a00900b5962b6d2fa32191ef7f8a83d914b"
-    },
-    {
-      "path": "reports/manuscript_figures_v2/fig3_model_tradeoff/panels/figure3_panelf_manifest.json",
-      "sha256": "ca6e40e1672452d366d957c39e868b8b2c3d33dc38d7abf016cd5aa057979d6e"
-    },
-    {
-      "path": "reports/manuscript_figures_v2/fig3_model_tradeoff/panels/figure3_panelg_manifest.json",
-      "sha256": "39118aafa96d90658e5458803fd0cdbb9c74b8d677df760918e33aad4a234856"
-    },
-    {
-      "path": "reports/manuscript_figures_v2/fig3_model_tradeoff/panels/figure3_panelh_manifest.json",
-      "sha256": "542e34e712c96b6c2365ec44469c88554029476da34468c9252384a6ff97b7ed"
+      "sha256": "ad6bc01cf90bee633e479a8584822b51d108ed56ecef98a823212f39cfc4dd3a"
     }
   ],
   "script": "scripts/manuscript/build_figure3_model_tradeoff.py"

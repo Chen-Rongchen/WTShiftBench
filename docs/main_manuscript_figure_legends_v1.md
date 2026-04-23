@@ -1,22 +1,18 @@
 # 主文 Figure Legends v1
 
-## Figure 1. A truth-first benchmark defines the fitness-relevant transcriptomic bridge object
+## Figure 1. A truth-anchored benchmark defines a pre-specified perturbation-fitness recovery object in HCC38 and HCC1143
 
-**a,** Truth-first benchmark workflow. Real perturbation transcriptomic shifts are first aligned to DepMap dependency endpoints to define a frozen bridge object. Model predictions are evaluated only after this truth object is fixed.
+**a,** Truth-first recovery object. A five-step truth-first workflow (real perturbation truth → DepMap CRISPR dependency endpoint → frozen bridge object → model recovery adjudication → gated discovery) defines the frozen target-level recovery object before any entrant scoring. The object is unpacked below into three pre-specified components: the truth object (absolute mean perturbation shift), the alignment endpoint (CRISPR dependency) and the category rule (pre-specified 25/75 joint grid).
 
-**b,** HCC dataset and endpoint overview. HCC38 and HCC1143 are evaluated using `real_shift_mean_abs` as the transcriptomic truth metric and CRISPR DepMap dependency as the primary fitness-relevant endpoint.
+**b,** Pre-specified 25/75 category rule. Targets were classified on a pre-specified joint grid using the 25th and 75th quantiles of transcriptomic perturbation shift and CRISPR dependency, with corner-defined categories (Q1 anchor, Q2 transcriptomic excess, Q3 dependency excess, Q4 low information) and a retained middle band.
 
-**c,** Joint-priority grid definition. Targets are stratified by transcriptomic shift and dependency strength to define Q1 anchors, transcriptomic-excess objects, dependency-excess objects, low-information objects and a retained middle band.
+**c,** HCC38 target-level joint grid, with n, aligned Spearman rho and Q1 anchor count shown in the panel.
 
-**d,** HCC38 target-level joint grid.
+**d,** HCC1143 target-level joint grid, with n, aligned Spearman rho and Q1 anchor count shown in the panel.
 
-**e,** HCC1143 target-level joint grid.
+**e,** Grid composition across the two primary contexts. Q2 transcriptomic-excess and Q3 dependency-excess targets were not observed in either primary context and are retained as zero-count categories in the composition summary.
 
-**f,** Grid composition across HCC contexts. HCC38 contains 9 Q1 anchors and HCC1143 contains 10 Q1 anchors.
-
-**g,** CRISPR truth-DepMap bridge strength across HCC38 and HCC1143.
-
-**h,** Claim boundary for Fig. 1. The bridge is retained as a structured truth object, but it is not interpreted as fully deconfounded causal proof.
+**f,** Bridge strength summary. Visual elements are: (i) point, the observed aligned Spearman rho between absolute mean perturbation shift and CRISPR DepMap dependency on target-level pairs, with n = 47 (HCC38) and n = 48 (HCC1143); (ii) vertical error bar, the Fisher z-transform 95% confidence interval of the point estimate, computed in closed form from n and the observed rho and describing sampling uncertainty of the point itself, not a bootstrap; (iii) gray band, the 95% envelope of an empirical permutation null obtained by shuffling the target-to-DepMap pairing within each context 1000 times under a fixed seed, describing the range of aligned Spearman rho expected under the rho = 0 null hypothesis of no target-level alignment. The point estimate, the point-level CI and the null envelope are distinct quantities and are plotted together only to show that the observed bridge strength lies well outside the permutation null envelope in both primary contexts (empirical two-sided p = 0.001 for each context), consistent with a structured perturbation-fitness bridge rather than random association. The bridge is interpreted as a structured target-level recovery object with pre-specified categories, not as fully deconfounded causal proof.
 
 ## Figure 2. Shared anchors form a tiered target-level bridge rather than clean primary objects
 
@@ -36,23 +32,17 @@
 
 **h,** Anchor-level claim boundary. Shared anchors support the bridge, but no individual anchor is allowed to prove a fully deconfounded bridge.
 
-## Figure 3. Current entrants do not outperform the backbone baseline but reveal a recovery trade-off
+## Figure 3. Model recovery is metric-dependent and reveals a backbone-separation trade-off
 
-**a,** HCC formal model comparison by backbone recovery score.
+**a,** Three adjudication metrics separate recovery modes across entrants. Absolute scores for backbone recovery, shift-excess identification and structure-versus-context separation, shown for the shared-mean baseline, the formal GEARS recipe, foundation-model entrants (Geneformer, scGPT), linear controls and the null reference.
 
-**b,** Three-dimensional recovery summary: backbone recovery, shift-excess identification and structure-versus-context separation.
+**b,** Baseline leads backbone recovery, whereas GEARS leads context separation. Paired-dot contrast limited to the shared-mean baseline and the formal GEARS recipe on the two headline metrics.
 
-**c,** Headline comparison between the shared-mean baseline and formal GEARS recipe. The baseline has stronger backbone recovery, whereas GEARS has stronger structure-versus-context separation.
+**c,** Entrants occupy a backbone-separation trade-off space. Backbone recovery versus structure-versus-context separation across all entrants; baseline and GEARS are highlighted, Geneformer and scGPT are labelled, and GEARS sweep variants, linear controls and the null reference appear as a family-grouped supporting cloud. A lightly shaded upper-right reference region is included as an illustrative visual aid indicating the empty high-backbone/high-separation corner; the region is not a decision threshold and is not used for scoring or adjudication.
 
-**d,** Backbone recovery versus structure-versus-context separation.
+**d,** The same qualitative ordering is preserved in HCC38 and HCC1143. Per-context paired-dot comparison of the shared-mean baseline and the formal GEARS recipe on backbone recovery.
 
-**e,** Per-context recovery comparison between the baseline and GEARS.
-
-**f,** Shift-excess recovery across model entrants.
-
-**g,** Model-family grouping across baseline, GEARS, foundation-model and linear-control entrants.
-
-**h,** Model-side claim boundary. GEARS is interpreted as an architecture trade-off diagnosis, not as the HCC primary winner.
+Prespecified GEARS sweep variants and their stop-rule adjudication (backbone versus shift-excess trade-off) are reported in Extended Data Fig. 5. shared_mean_baseline remains the backbone primary reference, whereas GEARS is retained as an architecture trade-off diagnosis rather than an overall HCC primary winner.
 
 ## Figure 4. Recipe and embedding controls do not close the backbone gap
 
