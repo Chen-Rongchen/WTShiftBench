@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import numpy as np
 import pandas as pd
+from matplotlib.colors import LinearSegmentedColormap
 
 from wtbench.manuscript.figure_io import ensure_dir, repo_root, save_figure, write_tsv
 from wtbench.manuscript.hash_manifest import write_figure_manifest, write_panel_manifest
@@ -31,6 +32,7 @@ CLAIM_BOUNDARY = (
 
 MODEL_COMPARISON = Path("reports/stage2_real_hcc_smoke/model_comparison.tsv")
 BACKBONE_DIAGNOSIS = Path("reports/stage2_real_hcc_smoke/backbone_diagnosis.tsv")
+SMOKE_SUMMARY = Path("reports/stage2_real_hcc_smoke/smoke_summary.tsv")
 FINAL_CLAIM_MATRIX = Path("reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv")
 
 METRICS = [
@@ -48,7 +50,27 @@ METRIC_SHORT_LABELS = {
 METRIC_LONG_LABELS = {
     "backbone_recovery_score": "backbone recovery",
     "shift_excess_identification_score": "shift-excess identification",
-    "structure_vs_context_separation_score": "structure/context separation",
+    "structure_vs_context_separation_score": "structure / context separation",
+}
+
+FIG3_COLORS = {
+    "baseline": "#333333",
+    "gears": "#0072B2",
+    "foundation": "#C0C0C0",
+    "linear": "#D0D0D0",
+    "gears_sweep": "#D0D0D0",
+    "null": "#D0D0D0",
+    "null_band": "#F5F5F5",
+    "divider": "#D0D0D0",
+    "hcc38": "#D55E00",
+    "hcc1143": "#009E73",
+    "threshold": "#56B4E9",
+    "reference_grid": "#E8E8E8",
+    "cloud_text": "#616161",
+    "shade": "#FAFAFA",
+    "heat_highlight": "#009E73",
+    "heat_low": "#FFFFFF",
+    "heat_mid": "#BDBDBD",
 }
 
 # Canonical row order for panel a overview heatmap: baseline first, GEARS formal
@@ -96,11 +118,27 @@ def load_model_comparison(root: Path) -> pd.DataFrame:
 def add_model_annotations(df: pd.DataFrame) -> pd.DataFrame:
     out = df.copy()
     out["model_label"] = out["model_id"].map(short_model_label)
-    out["plot_color"] = [model_color(row.model_id, row.object_role) for row in out.itertuples()]
     out["model_family"] = out["model_id"].map(model_family)
     out["is_formal_gears"] = out["model_id"].eq("gears_hcc_formal_v1")
     out["is_gears_sweep"] = out["model_id"].str.startswith("gears_hcc_formal_v1_")
+    out["plot_color"] = [figure3_model_color(row.model_id, row.object_role) for row in out.itertuples()]
     return out
+
+
+def figure3_model_color(model_id: str, object_role: str | None = None) -> str:
+    if model_id == "shared_mean_baseline" or object_role == "baseline":
+        return FIG3_COLORS["baseline"]
+    if model_id == "null_model" or object_role == "null":
+        return FIG3_COLORS["null"]
+    if model_id == "gears_hcc_formal_v1":
+        return FIG3_COLORS["gears"]
+    if model_id.startswith("gears_hcc_formal_v1_"):
+        return FIG3_COLORS["gears_sweep"]
+    if model_id.startswith("geneformer") or model_id.startswith("scgpt"):
+        return FIG3_COLORS["foundation"]
+    if model_id.startswith("lm_"):
+        return FIG3_COLORS["linear"]
+    return model_color(model_id, object_role)
 
 
 def model_family(model_id: str) -> str:
@@ -177,14 +215,18 @@ def _panel_a_frame(df: pd.DataFrame) -> pd.DataFrame:
 def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
     plot = _panel_a_frame(df)
     matrix = plot[METRICS].to_numpy(dtype=float)
-    im = ax.imshow(matrix, aspect="auto", vmin=0.0, vmax=0.85, cmap="Greys")
+    neutral_cmap = LinearSegmentedColormap.from_list(
+        "fig3_neutral",
+        [FIG3_COLORS["heat_low"], "#F7F7F7", "#D3D3D3"],
+    )
+    im = ax.imshow(matrix, aspect="auto", vmin=0.0, vmax=0.85, cmap=neutral_cmap)
 
     n_rows, n_cols = matrix.shape
     row_labels = [axis_label(v) for v in plot["model_label"]]
     ax.set_yticks(np.arange(n_rows))
-    ax.set_yticklabels(row_labels)
+    ax.set_yticklabels(row_labels, fontsize=7.5)
     ax.set_xticks(np.arange(n_cols))
-    ax.set_xticklabels([METRIC_SHORT_LABELS[m] for m in METRICS])
+    ax.set_xticklabels([METRIC_SHORT_LABELS[m] for m in METRICS], fontsize=7.5)
 
     for i in range(n_rows):
         for j in range(n_cols):
@@ -195,8 +237,9 @@ def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
                 f"{value:.2f}",
                 ha="center",
                 va="center",
-                fontsize=6,
-                color="white" if value > 0.55 else "#1F1F1F",
+                fontsize=7.5,
+                fontweight="bold" if value >= 0.6 else "normal",
+                color="white" if value >= 0.6 else FIG3_COLORS["baseline"],
             )
 
     # Row-level highlighting: frame baseline + GEARS formal; soft background behind
@@ -227,21 +270,25 @@ def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
         ax.add_patch(rect)
 
     ids = list(plot["model_id"])
-    if "gears_hcc_formal_v1" in ids:
-        _frame_row(ids.index("gears_hcc_formal_v1"), COLORS["gears"], lw=1.4)
-    for mid in ("geneformer_hcc_formal_v1", "scgpt_hcc_formal_v1"):
-        if mid in ids:
-            _row_background(ids.index(mid), COLORS["foundation"], alpha=0.12)
     if "null_model" in ids:
-        _row_background(ids.index("null_model"), COLORS["null"], alpha=0.7)
+        null_idx = ids.index("null_model")
+        _row_background(null_idx, FIG3_COLORS["null_band"], alpha=1.0)
+        ax.hlines(
+            [null_idx - 0.5, null_idx + 0.5],
+            xmin=-0.5,
+            xmax=n_cols - 0.5,
+            colors=FIG3_COLORS["divider"],
+            linewidth=0.75,
+            zorder=6,
+        )
 
     ax.set_title("Three adjudication metrics separate recovery modes", loc="left")
     ax.tick_params(length=0)
     for spine in ax.spines.values():
         spine.set_visible(False)
-    cbar = plt.colorbar(im, ax=ax, fraction=0.046, pad=0.02)
-    cbar.ax.tick_params(labelsize=5.5)
-    cbar.set_label("score", fontsize=5.5, labelpad=2)
+    cbar = plt.colorbar(im, ax=ax, fraction=0.035, pad=0.02)
+    cbar.ax.tick_params(labelsize=7.5)
+    cbar.set_label("score", fontsize=7.5, labelpad=2)
     add_panel_label(ax, "a", x=-0.36)
 
 
@@ -257,25 +304,24 @@ def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
         "backbone_recovery_score",
         "structure_vs_context_separation_score",
     ]
-    short_labels = ["backbone\nrecovery", "structure/context\nseparation"]
+    short_labels = ["Backbone\nrecovery", "Structure /\ncontext separation"]
 
     y = np.arange(len(metrics))[::-1]
-    first_row = True
     for yi, metric in zip(y, metrics):
         baseline_val = float(rows.loc["shared_mean_baseline", metric])
         gears_val = float(rows.loc["gears_hcc_formal_v1", metric])
         ax.plot(
             [baseline_val, gears_val],
             [yi, yi],
-            color="#D3D3D3",
-            linewidth=0.9,
+            color=FIG3_COLORS["divider"],
+            linewidth=0.75,
             zorder=1,
         )
         ax.scatter(
             [baseline_val],
             [yi],
             s=62,
-            color=COLORS["baseline"],
+            color=FIG3_COLORS["baseline"],
             edgecolor="white",
             linewidth=0.5,
             zorder=3,
@@ -284,42 +330,19 @@ def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
             [gears_val],
             [yi],
             s=62,
-            color=COLORS["gears"],
+            color=FIG3_COLORS["gears"],
             edgecolor="white",
             linewidth=0.5,
             zorder=3,
         )
-        # In-point labels on the first row only; value labels on every row.
-        if first_row:
-            ax.annotate(
-                "shared mean baseline",
-                xy=(baseline_val, yi),
-                xytext=(4, 4),
-                textcoords="offset points",
-                fontsize=5.8,
-                color=COLORS["baseline"],
-                ha="left",
-                va="bottom",
-            )
-            ax.annotate(
-                "GEARS formal",
-                xy=(gears_val, yi),
-                xytext=(-4, 4),
-                textcoords="offset points",
-                fontsize=5.8,
-                color=COLORS["gears"],
-                ha="right",
-                va="bottom",
-            )
-            first_row = False
         ax.text(
             baseline_val,
             yi - 0.22,
             f"{baseline_val:.2f}",
             ha="center",
             va="top",
-            fontsize=5.5,
-            color=COLORS["baseline"],
+            fontsize=7.5,
+            color=FIG3_COLORS["baseline"],
         )
         ax.text(
             gears_val,
@@ -327,21 +350,42 @@ def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
             f"{gears_val:.2f}",
             ha="center",
             va="top",
-            fontsize=5.5,
-            color=COLORS["gears"],
+            fontsize=7.5,
+            color=FIG3_COLORS["baseline"],
         )
 
     ax.set_yticks(y)
-    ax.set_yticklabels(short_labels)
+    ax.set_yticklabels(short_labels, fontsize=7.5)
     ax.set_xlim(0.0, 0.95)
-    ax.set_xlabel("Score")
+    ax.set_xlabel("Adjudication score", fontsize=7.5)
+    ax.tick_params(axis="x", labelsize=7.5)
     ax.set_ylim(-0.7, len(metrics) - 0.2)
     ax.set_title(
         "Baseline leads backbone recovery, whereas GEARS leads context separation",
         loc="left",
     )
     clean_axes(ax)
-    ax.grid(axis="x", color="#F2F2F2", linewidth=0.4)
+    handles = [
+        plt.Line2D(
+            [], [], marker="o", linestyle="", color=FIG3_COLORS["baseline"],
+            markersize=5.5, markeredgecolor="white", markeredgewidth=0.5,
+            label="shared mean baseline",
+        ),
+        plt.Line2D(
+            [], [], marker="o", linestyle="", color=FIG3_COLORS["gears"],
+            markersize=5.5, markeredgecolor="white", markeredgewidth=0.5,
+            label="GEARS formal",
+        ),
+    ]
+    ax.legend(
+        handles=handles,
+        loc="lower right",
+        frameon=False,
+        fontsize=7.0,
+        handletextpad=0.35,
+        labelspacing=0.3,
+        borderpad=0.2,
+    )
     add_panel_label(ax, "b")
 
 
@@ -366,7 +410,8 @@ def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
         0.90 - 0.75,
         0.54 - 0.40,
         fill=True,
-        color="#F5F5F5",
+        color=FIG3_COLORS["shade"],
+        alpha=0.15,
         linewidth=0,
         zorder=0,
     )
@@ -380,15 +425,19 @@ def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
     }
 
     for row in df.itertuples():
-        is_headline = row.model_id in {"shared_mean_baseline", "gears_hcc_formal_v1"}
+        if row.model_id.startswith("gears_hcc_formal_v1_") or row.model_id == "null_model":
+            continue
+        is_baseline = row.model_id == "shared_mean_baseline"
+        is_gears = row.model_id == "gears_hcc_formal_v1"
         is_named = row.model_id in named
-        # Headline points (baseline + GEARS formal) carry the core trade-off
-        # claim; enlarged so they read as visual anchors even when surrounded
-        # by the sweep/linear/null background cloud.
-        size = 185 if is_headline else (55 if is_named else 28)
-        edge = "#111111" if is_headline else ("#333333" if is_named else "white")
-        lw = 1.4 if is_headline else 0.6
-        alpha = 1.0 if is_named else 0.78
+        if is_baseline:
+            size, edge, lw, zorder = 125, "white", 0.6, 5
+        elif is_gears:
+            size, edge, lw, zorder = 78, "white", 0.6, 5
+        elif row.model_family == "foundation entrants":
+            size, edge, lw, zorder = 18, "white", 0.3, 4
+        else:
+            size, edge, lw, zorder = 8, "white", 0.25, 2
         ax.scatter(
             row.backbone_recovery_score,
             row.structure_vs_context_separation_score,
@@ -396,8 +445,8 @@ def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
             color=row.plot_color,
             edgecolor=edge,
             linewidth=lw,
-            zorder=4 if is_headline else 3,
-            alpha=alpha,
+            zorder=zorder,
+            alpha=1.0 if is_named else 0.85,
         )
 
     label_offsets = {
@@ -407,6 +456,8 @@ def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
         "scgpt_hcc_formal_v1": (0.012, 0.000, "left", "center"),
     }
     for row in df.itertuples():
+        if row.model_id.startswith("gears_hcc_formal_v1_") or row.model_id == "null_model":
+            continue
         if row.model_id in label_offsets:
             dx, dy, ha, va = label_offsets[row.model_id]
             is_headline = row.model_id in {"shared_mean_baseline", "gears_hcc_formal_v1"}
@@ -414,15 +465,15 @@ def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
                 row.backbone_recovery_score + dx,
                 row.structure_vs_context_separation_score + dy,
                 named[row.model_id][0],
-                fontsize=7.0 if is_headline else 6.0,
+                fontsize=8.0 if is_headline else 7.5,
                 fontweight="bold" if is_headline else "normal",
                 ha=ha,
                 va=va,
-                color=COLORS["text"],
+                color=FIG3_COLORS["baseline"],
             )
 
-    ax.set_xlabel("Backbone recovery score")
-    ax.set_ylabel("Structure/context separation score")
+    ax.set_xlabel("Backbone recovery", fontsize=7.5)
+    ax.set_ylabel("Structure / context separation", fontsize=7.5)
     ax.set_title(
         "Entrants occupy a backbone–separation trade-off space",
         loc="left",
@@ -430,40 +481,40 @@ def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
     ax.set_xlim(0.40, 0.90)
     ax.set_ylim(0.20, 0.54)
     clean_axes(ax)
-    ax.grid(color="#F2F2F2", linewidth=0.4)
+    ax.tick_params(axis="both", labelsize=7.5)
 
-    # Family-oriented legend (not per-entrant): panel c carries the only legend
-    # in the figure; black=baseline / blue=GEARS semantics established here
-    # apply across all other panels by convention.
     handles = [
-        plt.Line2D([], [], marker="o", linestyle="", color=COLORS["baseline"], markersize=5.5,
-                   markeredgecolor="#111111", markeredgewidth=0.6, label="baseline reference"),
-        plt.Line2D([], [], marker="o", linestyle="", color=COLORS["gears"], markersize=5.5,
-                   markeredgecolor="#111111", markeredgewidth=0.6, label="GEARS formal"),
-        plt.Line2D([], [], marker="o", linestyle="", color=COLORS["foundation"], markersize=4,
-                   label="foundation entrants"),
-        plt.Line2D([], [], marker="o", linestyle="", color=COLORS["gears_sweep"], markersize=3.2,
-                   alpha=0.5, label="GEARS sweep variants"),
-        plt.Line2D([], [], marker="o", linestyle="", color=COLORS["linear"], markersize=3.2,
-                   alpha=0.5, label="linear controls"),
-        plt.Line2D([], [], marker="o", linestyle="", color=COLORS["null"], markersize=3.2,
-                   alpha=0.7, label="null"),
+        plt.Line2D(
+            [], [], marker="o", linestyle="", color=FIG3_COLORS["baseline"],
+            markersize=6.0, markeredgecolor="white", markeredgewidth=0.5,
+            label="baseline reference",
+        ),
+        plt.Line2D(
+            [], [], marker="o", linestyle="", color=FIG3_COLORS["gears"],
+            markersize=5.3, markeredgecolor="white", markeredgewidth=0.5,
+            label="GEARS formal",
+        ),
+        plt.Line2D(
+            [], [], marker="o", linestyle="", color=FIG3_COLORS["foundation"],
+            markersize=4.2, markeredgecolor="white", markeredgewidth=0.4,
+            label="foundation entrants",
+        ),
+        plt.Line2D(
+            [], [], marker="o", linestyle="", color=FIG3_COLORS["linear"],
+            markersize=4.0, markeredgecolor="white", markeredgewidth=0.3,
+            label="linear controls",
+        ),
     ]
-    # Legend placed lower-right: upper-right is reserved for the absence region
-    # (trade-off claim), upper-left has sweep points. Lower-right quadrant
-    # (backbone>0.7, separation<0.30) is empty of data and can hold the legend
-    # without covering any point or the absence region.
-    legend = ax.legend(
+    ax.legend(
         handles=handles,
         loc="lower right",
         frameon=False,
-        fontsize=5.5,
-        handletextpad=0.3,
-        labelspacing=0.32,
+        fontsize=7.0,
+        handletextpad=0.35,
+        labelspacing=0.28,
         borderpad=0.2,
         ncol=2,
-        columnspacing=0.7,
-        labelcolor="#3A3A3A",
+        columnspacing=0.8,
     )
 
     add_panel_label(ax, "c")
@@ -475,44 +526,136 @@ def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
 
 
 def render_panel_d(ax: plt.Axes, df: pd.DataFrame) -> None:
-    # Per-context paired dots (dumbbell) for baseline vs GEARS formal on the
-    # two HCC primary contexts. We intentionally do not use grouped bars here:
-    # the claim is a qualitative ordering ("same direction"), and paired dots
-    # show this with the lowest possible ink footprint.
-    cell_line_order = ["HCC38", "HCC1143"]
-    plot = (
-        df.set_index("cell_line")
-        .reindex(cell_line_order)
-        .reset_index()
-    )
-    y = np.arange(len(plot))[::-1]
-
-    for yi, row in zip(y, plot.itertuples()):
-        baseline_val = float(row.baseline_backbone_recovery)
-        gears_val = float(row.backbone_recovery)
-        low, high = sorted((baseline_val, gears_val))
-        ax.plot([low, high], [yi, yi], color="#D3D3D3", linewidth=0.9, zorder=1)
-        ax.scatter([baseline_val], [yi], s=62, color=COLORS["baseline"],
-                   edgecolor="white", linewidth=0.5, zorder=3)
-        ax.scatter([gears_val], [yi], s=62, color=COLORS["gears"],
-                   edgecolor="white", linewidth=0.5, zorder=3)
-        ax.text(baseline_val, yi - 0.28, f"{baseline_val:.2f}", ha="center",
-                va="top", fontsize=5.5, color=COLORS["baseline"])
-        ax.text(gears_val, yi - 0.28, f"{gears_val:.2f}", ha="center",
-                va="top", fontsize=5.5, color=COLORS["gears"])
-
-    ax.set_yticks(y)
-    ax.set_yticklabels(plot["cell_line"])
-    ax.set_xlim(0.40, 1.0)
-    ax.set_ylim(-0.7, len(plot) - 0.3)
-    ax.set_xlabel("Backbone recovery score (per cell line)")
+    ax.set_axis_off()
     ax.set_title(
-        "The same qualitative ordering is preserved in HCC38 and HCC1143",
-        loc="left",
+        "Relative backbone recovery is consistent across the two primary contexts",
+        loc="left", pad=2,
     )
-    clean_axes(ax)
-    ax.grid(axis="x", color="#F2F2F2", linewidth=0.4)
-    add_panel_label(ax, "d")
+
+    ORDERED_IDS = [
+        "gears_hcc_formal_v1",
+        "geneformer_hcc_formal_v1",
+        "scgpt_hcc_formal_v1",
+    ]
+    LABELS = {
+        "gears_hcc_formal_v1": "GEARS formal",
+        "geneformer_hcc_formal_v1": "Geneformer",
+        "scgpt_hcc_formal_v1": "scGPT",
+    }
+    COLORS_CONTEXT = {
+        "HCC38": FIG3_COLORS["hcc38"],
+        "HCC1143": FIG3_COLORS["hcc1143"],
+    }
+
+    ax_plot = ax.inset_axes([0.06, 0.04, 0.88, 0.90])
+
+    # Baseline reference line
+    ax_plot.axvline(
+        1.0,
+        color=FIG3_COLORS["threshold"],
+        linewidth=0.75,
+        linestyle="--",
+        zorder=1,
+    )
+    ax_plot.text(
+        1.0 + 0.012, len(ORDERED_IDS) - 0.5, "baseline = 1.0",
+        fontsize=7.5, color=FIG3_COLORS["threshold"], va="top", ha="left",
+    )
+
+    # Horizontal grid at each row
+    for yi in range(len(ORDERED_IDS)):
+        ax_plot.axhline(yi, color="#F0F0F0", linewidth=0.5, zorder=0)
+
+    xmax = 1.08
+    for i, mid in enumerate(reversed(ORDERED_IDS)):
+        for cell_line in ["HCC38", "HCC1143"]:
+            row = df.loc[(df["model_id"] == mid) & (df["cell_line"] == cell_line)].iloc[0]
+            ratio_mean = float(row["ratio_mean"])
+            se = float(row["se"])
+            y_pos = i
+            color = COLORS_CONTEXT[cell_line]
+            offset = -0.22 if cell_line == "HCC38" else 0.22
+
+            # SE whisker (±1 SE)
+            lower = ratio_mean - se
+            upper = ratio_mean + se
+            # If upper exceeds xmax, truncate and add arrow
+            if upper > xmax:
+                ax_plot.annotate(
+                    "",
+                    xy=(xmax, y_pos + offset),
+                    xytext=(lower, y_pos + offset),
+                    arrowprops=dict(
+                        arrowstyle="->",
+                        color=color,
+                        lw=0.8,
+                        alpha=0.6,
+                    ),
+                    zorder=2,
+                )
+            else:
+                ax_plot.plot(
+                    [lower, upper],
+                    [y_pos + offset, y_pos + offset],
+                    color=color,
+                    linewidth=0.8,
+                    alpha=0.6,
+                    zorder=2,
+                )
+            # Point
+            ax_plot.scatter(
+                ratio_mean,
+                y_pos + offset,
+                s=45,
+                color=color,
+                edgecolor="white",
+                linewidth=0.5,
+                zorder=3,
+            )
+            # Value label
+            ax_plot.text(
+                ratio_mean,
+                y_pos + offset - 0.22,
+                f"{ratio_mean:.3f}",
+                ha="center",
+                va="top",
+                fontsize=7.5,
+                color=FIG3_COLORS["baseline"],
+            )
+
+    ax_plot.set_yticks(range(len(ORDERED_IDS)))
+    ax_plot.set_yticklabels(
+        [LABELS[mid] for mid in reversed(ORDERED_IDS)],
+        fontsize=7.5,
+    )
+    ax_plot.set_xlabel("Relative backbone recovery (baseline = 1.0)", fontsize=7.5, labelpad=1)
+    ax_plot.set_xlim(0.0, xmax)
+    clean_axes(ax_plot)
+    ax_plot.tick_params(axis="x", labelsize=7.5)
+
+    # Legend
+    handles = [
+        plt.Line2D(
+            [], [], marker="o", linestyle="", color=COLORS_CONTEXT["HCC38"],
+            markersize=4.5, markeredgecolor="#333333", markeredgewidth=0.5, label="HCC38",
+        ),
+        plt.Line2D(
+            [], [], marker="o", linestyle="", color=COLORS_CONTEXT["HCC1143"],
+            markersize=4.5, markeredgecolor="#333333", markeredgewidth=0.5, label="HCC1143",
+        ),
+    ]
+    ax_plot.legend(
+        handles=handles,
+        loc="lower right",
+        bbox_to_anchor=(1.02, 0.02),
+        frameon=False,
+        fontsize=7.5,
+        handletextpad=0.3,
+        labelspacing=0.3,
+        borderpad=0.2,
+    )
+
+    add_panel_label(ax, "d", x=-0.015)
 
 
 # ---------------------------------------------------------------------------
@@ -613,6 +756,7 @@ def build_sources(root: Path) -> dict[str, pd.DataFrame]:
     model = load_model_comparison(root)
     backbone = pd.read_csv(root / BACKBONE_DIAGNOSIS, sep="\t")
     backbone = backbone.merge(model[["model_id", "model_label", "plot_color"]], on="model_id", how="left")
+    smoke = pd.read_csv(root / SMOKE_SUMMARY, sep="\t")
 
     overview_cols = ["model_id", "model_label", "model_family", "plot_color", *METRICS]
     overview = (
@@ -620,6 +764,68 @@ def build_sources(root: Path) -> dict[str, pd.DataFrame]:
         .reindex(OVERVIEW_ORDER)
         .reset_index()[overview_cols]
     )
+
+    # Panel d: bootstrap ratio to baseline (3 main entrants, per-context)
+    CONSISTENCY_IDS = [
+        "gears_hcc_formal_v1",
+        "geneformer_hcc_formal_v1",
+        "scgpt_hcc_formal_v1",
+    ]
+
+    def _load_backbone_scores(model_id: str, cell_line: str) -> np.ndarray:
+        path = root / f"reports/stage2_real_hcc_smoke/details/{model_id}/{cell_line}/axis_projection.tsv"
+        df = pd.read_csv(path, sep="\t")
+        backbone_targets = df.loc[
+            df["is_expected_axis"] & df["architecture_role"].eq("canonical_backbone"),
+            "target_gene",
+        ].dropna().astype(str).unique().tolist()
+        scores = []
+        for target_gene, group in df.loc[df["target_gene"].isin(backbone_targets)].groupby("target_gene", sort=True):
+            expected = group.loc[group["is_expected_axis"]]
+            if expected.empty:
+                continue
+            series = group.set_index("fine_axis")["projected_mean_abs"]
+            ranked = series.rank(method="average", ascending=False)
+            axis_count = int(series.notna().sum())
+            if axis_count <= 1:
+                continue
+            target_rank = float(ranked.loc[str(expected["fine_axis"].iloc[0])])
+            score = 1.0 - ((target_rank - 1.0) / (axis_count - 1.0))
+            scores.append(score)
+        return np.array(scores)
+
+    def _bootstrap_ratio(
+        model_scores: np.ndarray,
+        baseline_scores: np.ndarray,
+        n_boot: int = 2000,
+        seed: int = 42,
+    ) -> tuple[float, float]:
+        rng = np.random.RandomState(seed)
+        n_model = len(model_scores)
+        n_baseline = len(baseline_scores)
+        ratios = []
+        for _ in range(n_boot):
+            m_idx = rng.choice(n_model, size=n_model, replace=True)
+            b_idx = rng.choice(n_baseline, size=n_baseline, replace=True)
+            m_mean = np.nanmean(model_scores[m_idx])
+            b_mean = np.nanmean(baseline_scores[b_idx])
+            ratios.append(m_mean / b_mean)
+        ratios_arr = np.array(ratios)
+        return float(np.mean(ratios_arr)), float(np.std(ratios_arr))
+
+    panel_d_rows = []
+    for cell_line in ["HCC38", "HCC1143"]:
+        baseline_scores = _load_backbone_scores("shared_mean_baseline", cell_line)
+        for model_id in CONSISTENCY_IDS:
+            model_scores = _load_backbone_scores(model_id, cell_line)
+            ratio_mean, se = _bootstrap_ratio(model_scores, baseline_scores)
+            panel_d_rows.append({
+                "model_id": model_id,
+                "cell_line": cell_line,
+                "ratio_mean": ratio_mean,
+                "se": se,
+            })
+    panel_d_source = pd.DataFrame(panel_d_rows)
 
     return {
         "a": overview,
@@ -636,16 +842,7 @@ def build_sources(root: Path) -> dict[str, pd.DataFrame]:
                 "structure_vs_context_separation_score",
             ]
         ],
-        "d": backbone.loc[
-            backbone["model_id"].eq("gears_hcc_formal_v1"),
-            [
-                "model_id",
-                "cell_line",
-                "backbone_recovery",
-                "baseline_backbone_recovery",
-                "failure_mode_call",
-            ],
-        ],
+        "d": panel_d_source,
     }
 
 
@@ -663,7 +860,7 @@ def panel_title(panel_id: str) -> str:
         "a": "Three-metric adjudication overview heatmap",
         "b": "Headline baseline versus GEARS dumbbell",
         "c": "Backbone–separation trade-off scatter",
-        "d": "Per-cell-line backbone recovery (HCC38 and HCC1143)",
+        "d": "Backbone recovery relative to the shared-mean baseline is consistent across the two primary contexts",
     }[panel_id]
 
 
@@ -698,12 +895,9 @@ def render_combined(root: Path, sources: dict[str, pd.DataFrame], panel_outputs:
     top = outer[0].subgridspec(1, 2, wspace=0.38)
     ax_a = fig.add_subplot(top[0, 0])
     ax_b = fig.add_subplot(top[0, 1])
-    bot = outer[1].subgridspec(2, 1, height_ratios=[1.55, 0.55], hspace=0.28)
+    bot = outer[1].subgridspec(2, 1, height_ratios=[1.30, 0.80], hspace=0.28)
     ax_c = fig.add_subplot(bot[0])
-    # d width ~78% of c width, left-aligned with c so that the panel letters
-    # a, c and d all sit on the same vertical line.
-    d_sub = bot[1].subgridspec(1, 2, width_ratios=[7, 2], wspace=0.0)
-    ax_d = fig.add_subplot(d_sub[0, 0])
+    ax_d = fig.add_subplot(bot[1])
 
     render_panel_a(ax_a, sources["a"])
     render_panel_b(ax_b, sources["b"])
@@ -768,7 +962,7 @@ def main(argv: list[str] | None = None) -> None:
     apply_manuscript_style()
     sources = build_sources(root)
     panel_outputs: dict[str, dict[str, Path]] = {}
-    input_paths = [MODEL_COMPARISON, BACKBONE_DIAGNOSIS, FINAL_CLAIM_MATRIX]
+    input_paths = [MODEL_COMPARISON, BACKBONE_DIAGNOSIS, SMOKE_SUMMARY, FINAL_CLAIM_MATRIX]
 
     for panel_id in PANEL_IDS:
         panel_outputs[panel_id] = write_panel(

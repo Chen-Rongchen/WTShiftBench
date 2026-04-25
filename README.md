@@ -1,6 +1,6 @@
 # WTKO / WT Benchmark
 
-**Phase（2026-04-20 更新）：Genome Biology manuscript workspace ready — analysis closure 完成，figure/source-data/reproducibility package 完成，claim boundary 冻结，`manuscript/` 单入口整理完成；remaining work = 作者元信息、declarations、公开归档 DOI 与最终人工确认。**
+**Phase（2026-04-22 更新）：Genome Biology manuscript workspace ready — analysis closure 完成，figure/source-data/reproducibility package 完成，claim boundary 冻结，`manuscript/` 单入口整理完成；主图 redraw 进度：Figure 1 / Figure 2 / Figure 3 已按新节奏定版并同步到投稿目录，下一步进入 Figure 4 redraw，再依次 Figure 5 / Figure 6，之后统一处理 Extended Data Fig. 1-10；remaining submission work = 作者元信息、declarations、公开归档 DOI 与最终人工确认。**
 
 WT Benchmark 是一个 **truth-first** 的 virtual perturbation benchmark 与分析框架：先在真实 perturbation transcriptomic truth 中定义可桥接到 cellular fitness / dependency（DepMap）的结构化对象，再评估模型能否恢复这些 bridge architecture，最后才进入 discovery。
 
@@ -31,7 +31,8 @@ WT Benchmark 是一个 **truth-first** 的 virtual perturbation benchmark 与分
 
 - `GEARS` 已经作为 strongest formal entrant 跑完 `HCC38 / HCC1143` 的真实 HCC smoke
 - `Geneformer` 与三条 linear controls 都已完成第一轮 HCC formal comparison；Geneformer 保留 partial deviation/separation signal，但没有超过 shared-mean baseline 的 primary backbone recovery
-- **当前项目状态：Genome Biology manuscript workspace ready（2026-04-20 更新）；`manuscript/` 已整理为投稿前单入口，包含初稿、cover letter、figure legends、6 张主图、10 张 Extended Data、所有 panel a-h、小图 source data / manifest、Additional files、source-data manifests 与 audit 文档**
+- **当前项目状态：Genome Biology manuscript workspace ready（2026-04-22 更新）；`manuscript/` 已整理为投稿前单入口，包含初稿、cover letter、figure legends、6 张主图、10 张 Extended Data、所有 panel a-h、小图 source data / manifest、Additional files、source-data manifests 与 audit 文档**
+- **主图 redraw 进度（2026-04-22）：Figure 1（6-panel truth-object）、Figure 2（6-panel evidence-first：a/b + c/d + e 协变量 TVD evidence + f claim matrix；TVD matrix 已由 Extended Data Fig. 9 Panel i 提升至主图 (e)，ED9 回到 8 panel）与 Figure 3（4-panel headline：a three-metric adjudication overview heatmap → b baseline vs GEARS headline dumbbell → c backbone–separation trade-off scatter 作为全图中心 → d per-context paired dots；GEARS sweep 下放至已存在的 Extended Data Fig. 5，主图 caption 显式 cross-reference）均已定版并同步到 `manuscript/figures/`；Figure 4 → Figure 5 → Figure 6 按同节奏依序 redraw，之后统一处理 Extended Data Fig. 1-10；主图与 Extended Data 的最终配色（color palette）等全部 redraw 完成后再统一冻结，当前各图沿用 `src/wtbench/manuscript/_palette.py`，不写入 frozen language**
 - 详细状态记录见 `docs/submission_readiness_checklist_v1.md`、`docs/submission_package_index_v1.md` 与 `docs/baseline_model_interpretation_and_journal_strategy_v1.md`
 
 如果你下次进来只想知道“先看哪里就够”，固定只看这三个入口：

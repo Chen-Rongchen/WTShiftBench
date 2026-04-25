@@ -1,18 +1,18 @@
 # WT Benchmark — Active Plan（Truth-First Architecture and Model Recovery）
 
-**Phase label（2026-04-20 更新）：Genome Biology Finalization Phase — analysis closure 完成，infrastructure closure 完成，main figures / Extended Data / source data / supplementary workbook / submission manifest 已生成，claim boundary 已冻结；A/B/C 三档 17 项 reviewer-risk reduction 清单已完成并提交；`manuscript/` 单入口投稿工作区已整理并提交。**
+**Phase label（2026-04-22 更新）：Genome Biology Figure Redesign and Submission Packaging Phase — analysis closure 完成，infrastructure closure 完成，manuscript grammar / figure legends / Discussion-Conclusions 已完成 boundary 同步；Figure 1 / Figure 2 / Figure 3 / Figure 4 已按新节奏重画并同步到投稿目录（Figure 3 从原 8-panel 收束为 4-panel 主图，GEARS sweep 下放至已存在的 Extended Data Fig. 5；Figure 4 同样从 8-panel 收束为 4-panel rebuttal / claim-boundary 主图：a pre-specified local rebuttal design schematic → b unified rebuttal trade-off map → c linear-control headline dumbbell → d interpretation boundary card，原 sweep backbone bars / shift-excess bar / LM schematic / coverage audit 均下放至已存在的 Extended Data Fig. 5，主图显式 cross-reference；Figure 4 headline 固定为 "A prespecified local rebuttal test does not close the backbone recovery gap"），下一步按同节奏进入 Figure 5 redraw，再 Figure 6，之后统一处理 Extended Data Fig. 1-10；最终配色留到全部 redraw 完成后再统一冻结。remaining submission work = public repository / archive DOI / Additional files / metadata 投稿闭环。**
 
-**当前不再新增第一版投稿分析。正式投稿前的剩余工作集中在作者元信息、declarations、公开归档 DOI、Additional files 最终上传命名、最终图文格式审阅与人工确认。**
+**当前不再新增第一版投稿分析。正式投稿前的剩余工作集中在图版重画、作者元信息、declarations、公开归档 DOI、Additional files 最终上传命名、最终图文格式审阅与人工确认。**
 
 ## 1. 项目状态一句话
 
-本项目没有放弃原有 `Stage 1A / 1B / 2 / 3` 路线，但当前主线已经重排为 **truth-first fitness-bridge architecture**：先在真实 genetic perturbation transcriptomic truth 中定义可桥接到 cellular fitness / dependency（DepMap）的结构化对象，再评估模型能否恢复这套 structure，再把 `Stage 1A / 1B` 重新解释为 failure decomposition track，最后才进入 discovery。当前最重要的已完成项是 **HCC38/HCC1143 breast-cancer truth bridge architecture contract freeze + GEARS entrant-qualified HCC38/HCC1143 smoke closure + GEARS 有限 backbone sweep 收口 + `scGPT / Geneformer` 第一轮 HCC38/HCC1143 formal integration + `lm_train_lowrank / lm_G_scgpt_ridge / lm_G_geneformer_ridge` 第一轮 HCC38/HCC1143 formal integration + frozen axis annotation / validation 闭环 + truth bridge decomposition evidence tiering（含 cutoff sensitivity / bootstrap stability）+ covariate boundary + K562 temporal and endpoint sensitivity + final claim matrix + Genome Biology 专版手稿 + 6 张主图 + 10 张 Extended Data + supplementary workbook + submission package manifest + A/B/C 17 项 reviewer-risk reduction + `manuscript/` 投稿前单入口工作区**。当前最重要的未完成项是 **HCC38/HCC1143 乳腺癌细胞系身份 wording 全量同步、作者元信息、declarations、公开归档 DOI、Additional files 最终上传命名与最终人工确认**。新增数据口径警报：`data/raw/stage1a/candidates/dixit_2016_raw.h5ad` 与 GSE90063 K562 TF pool 描述不匹配，当前按 Frangieh-like legacy object 处理，不再作为有效 Dixit 输入引用。
+本项目没有放弃原有 `Stage 1A / 1B / 2 / 3` 路线，但当前主线已经重排为 **truth-first fitness-bridge architecture**：先在真实 genetic perturbation transcriptomic truth 中定义可桥接到 cellular fitness / dependency（DepMap）的结构化对象，再评估模型能否恢复这套 structure，再把 `Stage 1A / 1B` 重新解释为 failure decomposition track，最后才进入 discovery。当前最重要的已完成项是 **HCC38/HCC1143 breast-cancer truth bridge architecture contract freeze + GEARS entrant-qualified HCC38/HCC1143 smoke closure + GEARS 有限 backbone sweep 收口 + `scGPT / Geneformer` 第一轮 HCC38/HCC1143 formal integration + `lm_train_lowrank / lm_G_scgpt_ridge / lm_G_geneformer_ridge` 第一轮 HCC38/HCC1143 formal integration + frozen axis annotation / validation 闭环 + truth bridge decomposition evidence tiering（含 cutoff sensitivity / bootstrap stability）+ covariate boundary + K562 temporal and endpoint sensitivity + final claim matrix + Genome Biology 专版手稿 + 6 张主图 + 10 张 Extended Data + supplementary workbook + submission package manifest + A/B/C 17 项 reviewer-risk reduction + `manuscript/` 投稿前单入口工作区 + manuscript boundary / grammar audit + main/Extended Data figure legend synchronization**。当前最重要的未完成项是 **按当前图注重新代码绘制 Figure 1-6 和 Extended Data Fig. 1-10、作者元信息、declarations、公开归档 DOI、Additional files 最终上传命名与最终人工确认**。新增数据口径警报：`data/raw/stage1a/candidates/dixit_2016_raw.h5ad` 与 GSE90063 K562 TF pool 描述不匹配，当前按 Frangieh-like legacy object 处理，不再作为有效 Dixit 输入引用。
 
 ## 2. 下次进来先做什么
 
 如果你只看一段，这一段就是当前执行口径。
 
-当前不要无边界继续扩到 `challengers`，也不要回到 HCC truth-side 重做 contract。`scGPT / Geneformer` 已完成第一轮 HCC entrant 接入；Genome Biology 专版材料已经生成；A/B/C 17 项 reviewer-risk reduction 已完成。当前近端主线已经进一步收紧为：**主投 Genome Biology；Science Advances 仅作为需要 broad-impact 改写的冲刺备选；Advanced Science 不作为优先目标；后续补作者元信息、references、declarations、公开归档 DOI、Additional files 编号和最终人工确认。**
+当前不要无边界继续扩到 `challengers`，也不要回到 HCC truth-side 重做 contract。`scGPT / Geneformer` 已完成第一轮 HCC entrant 接入；Genome Biology 专版材料已经生成；A/B/C 17 项 reviewer-risk reduction 已完成；Abstract、Background、Results、Methods、Discussion、Conclusions 与 Figure legends 已完成 boundary / grammar 同步。当前近端主线已经进一步收紧为：**主投 Genome Biology；Science Advances 仅作为需要 broad-impact 改写的冲刺备选；Advanced Science 不作为优先目标；先按当前图注重画 Figure 1-6 和 Extended Data Fig. 1-10，再补作者元信息、references、declarations、公开归档 DOI、Additional files 编号和最终人工确认。**
 
 如果下次进来只想知道“先看哪里就够”，固定先看这四个入口：
 
@@ -23,20 +23,37 @@
 
 默认先用这四个入口刷新投稿对象状态，不再从更长的结果清单开始。`docs/` 与 `reports/` 仍是生成来源和审计来源；`manuscript/` 是当前投稿前整理入口。
 
-当前 manuscript hardening 入口：
+Genome Biology 对标后的当前判断：
+
+- `Genome Biology/s13059-026-04063-5_reference.pdf` 是更接近的 benchmark/resource 参照。
+- `Genome Biology/s13059-026-04070-6_reference.pdf` 主要提示 model/method paper 的资源和软件包装强度。
+- 当前稿件主要差距不在新增分析，而在图版成熟度、公开资源、Additional files 和 submission metadata。
+- 视觉基调参考 `s41592-025-02772-6.pdf`，只参考其 benchmark 图版语法，不复制内容。
+- Figure 1–6 均已定版并同步到 `manuscript/figures/Figure_{1,2,3,4,5,6}/`（Fig. 1 6-panel truth-object；Fig. 2 6-panel evidence-first：a/b 行 + c/d 行 + e TVD evidence + f claim matrix；Fig. 3 4-panel model adjudication：a three-metric bar → b baseline-vs-GEARS paired-dot headline → c backbone–separation trade-off scatter → d per-context paired dots；Fig. 4 3-panel prespecified local rebuttal test：a candidate table → b unified rebuttal trade-off map → c reference-anchored gap plot；Fig. 5 4-panel axis adjudication：a axis explanatory balance scatter → b multi-criterion evidence matrix → c bootstrap stability bars → d retained axis vs near-miss；Fig. 6 4-panel boundary adjudication：a boundary architecture schematic → b covariate boundary matrix → c temporal/endpoint hierarchy → d final claim boundary ledger；旧 panel e–h 下放至 Extended Data Fig. 7-9 cross-reference）。下一步统一处理 Extended Data Fig. 1-10 redraw（80 → 49 panel）。
+- 主图与 Extended Data 的最终配色（color palette）**等 6 主图 + 10 Extended Data 全部 redraw 完成后再统一冻结**，当前阶段各图只沿用 `src/wtbench/manuscript/_palette.py`，不把配色细节写入 frozen language。
+
+当前 manuscript hardening / redraw 入口：
 
 - `docs/manuscript_hardening_plan_v1.md`
+- `docs/manuscript_figure_redesign_plan_v1.md`
+- `docs/submission_prep_status_v1.md`
 
-最新执行口径：不新增分析；先修 `HCC` 缩写和 HCC38/HCC1143 乳腺癌细胞系身份风险，再补 public repository / DOI / declarations 等 submission blocker，随后把 Introduction / Results / Methods 推进到 framework/resource 和 operational definition 级别。
+最新执行口径：不新增分析；主稿文字和图注已完成 boundary / grammar audit；下一步先按当前图注重画主图和附图，再补 public repository / DOI / declarations 等 submission blocker。
 
 下次进来应直接做：
 
-0. 不再新增第一版投稿分析。先确认 `docs/genome_biology_submission_execution_plan_v1.md` 中 A/B/C 17 项保持完成状态：
+0. 继续 figure redesign，不新增分析：
+   - Figure 1–6 全部已定版并同步到投稿目录（legend / source data / submission manifest 已重建；Figure 3 从原 8-panel 收束为 4-panel headline；Figure 4 从 8-panel 收束为 3-panel rebuttal test；Figure 5 从 8-panel 收束为 4-panel axis adjudication，旧 panel e–h 下放至 Extended Data Fig. 6 cross-reference；Figure 6 从 8-panel 收束为 4-panel boundary adjudication，旧 panel e–h 下放至 Extended Data Fig. 7-9 cross-reference）
+   - 不要让 prototype 与投稿目录并存
+   - 下一步统一处理 Extended Data Fig. 1-10 redraw（80 → 49 panel）
+   - 所有主图 + Extended Data redraw 全部完成后，再统一 pass 一次配色冻结（当前沿用 `src/wtbench/manuscript/_palette.py`，不写入 frozen language）
+
+1. 不再新增第一版投稿分析。确认 `docs/genome_biology_submission_execution_plan_v1.md` 中 A/B/C 17 项保持完成状态：
    - A 类：framing、prior art、GEARS sweep 透明化、metric diagnostic、baseline artifact appendix、legacy 澄清、limitations、复现入口、reviewer Q&A
    - B 类：三指标 permutation null、design-proxy residualization、relaxed cutoff sensitivity、revision round admission readiness
    - C 类：最小 adjudication kit
 
-1. 再按 Genome Biology 投稿闭环补齐人工信息：
+2. 再按 Genome Biology 投稿闭环补齐人工信息：
    - 作者姓名、单位、通讯作者邮箱
    - Funding
    - Competing interests
@@ -47,27 +64,27 @@
    - AI use statement 是否保留与最终措辞
    - Additional files 编号与上传命名
 
-2. 先看当前最近一次 covariate 正式产物：
+3. 如需回查 claim boundary，再看当前最近一次 covariate 正式产物：
    - `reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/summary.tsv`
    - `docs/stage2_covariate_balance_closure_note_v1.md`
    - `docs/stage2_sensitivity_full_closure_note_v1.md`
-2. 先记住当前 5 条已落盘 covariate 轴：
+4. 先记住当前 5 条已落盘 covariate 轴：
    - `barcode_gem_group`
    - `num_umis_quantile_bin`
    - `num_umis_over_threshold_bin`
    - `transcriptome_total_signal_quantile_bin`
    - `transcriptome_detected_genes_quantile_bin`
-3. 当前方法学结论先固定为：
+5. 当前方法学结论先固定为：
    - `barcode_gem_group` 是更接近实验设计 aggregation 结构的代理轴
    - 它整体更轻，但没有改写 anchor tier
    - 当前仍不能写成 `fully deconfounded`
-4. 如果继续推进实现，按这个顺序做：
+6. 如果继续推进实现，按这个顺序做：
    - 当前这一步已完成收口：可确认 `HCC38 -> aggrMH001-3`、`HCC1143 -> aggrMH004-6`
    - 当前仍不能把 `-1/-2/-3` 唯一映射到单个 `MH001...MH006`
    - 因此从现在起直接把 `barcode_gem_group` 固定写成 design-proxy axis
    - 再继续同步 `final claim matrix -> manuscript wording`
    - `discovery 继续 gated`
-5. Dixit / K562 feasibility 与 `GSE90063 K562 13d/7d temporal panel` 第一轮结果组织已完成；现在只做 wording sync 与 claim matrix 同步：
+7. Dixit / K562 feasibility 与 `GSE90063 K562 13d/7d temporal panel` 第一轮结果组织已完成；现在只做 wording sync 与 claim matrix 同步：
    - 历史 `dixit_2016_raw__control_context` 入口当前按 `legacy / 暂停引用` 处理，不再作为可写入主文的 Dixit 证据
    - 固定模板：`GSE90063 K562 13d/7d temporal panel` 是同一外部 K562 TF pool context 下、对同一 DepMap endpoint 的 temporal sensitivity panel
    - `13d` 固定为 primary formal supplementary bridge test；`7d` 固定为 temporal sensitivity / early-bridge probe
@@ -82,25 +99,25 @@
    - `DEMETER2 RNAi` 现在只作为 `GSE90063 K562 7d/13d` 的 cross-platform sensitivity endpoint：`CRISPR DepMap = matched primary endpoint`；`RNAi DEMETER2 = cross-platform sensitivity endpoint`；`RNAi` 不替代 CRISPR 主线，也不提供等价 primary evidence
    - 推荐补充：运行 `13d CRISPR KO truth -> DEMETER2 RNAi endpoint`，再汇总 `CRISPR DepMap vs DEMETER2 RNAi endpoint consistency table`；这不是主线成立的前提条件
    - `Replogle 7d CRISPRi` 只作为另一个后续 short-horizon / modality-compatible external expansion 候选；正式写论文和作图前应先按 `docs/stage2_replogle_rnai_expansion_admission_contract_v1.md` 完成 admission contract 与 metadata check
-6. 如果继续推进 Replogle / external 7d 扩展，先做 admission contract 与 metadata check，不直接下载大数据：
+8. 如果继续推进 Replogle / external 7d 扩展，先做 admission contract 与 metadata check，不直接下载大数据：
    - 默认入口：`docs/stage2_replogle_rnai_expansion_admission_contract_v1.md`
    - DepMap 侧只预设为 `RNAi/shRNA-derived dependency endpoint`，不写成 `siRNA matched endpoint`
    - 先检查 cell line mapping、gene namespace、target overlap 与 endpoint 身份
    - 若 metadata check 通过，再由用户下载 Replogle 7d CRISPRi 与 DepMap DEMETER2 / RNAi dependency 数据
    - 现有 entrant 只能在 truth-side admission 后接入，不新增 entrant family
-7. 如果继续推进写作，只优先做：
+9. 如果继续推进写作，只优先做：
    - 把 design-proxy / design-mapping 的新状态压进主文稿与边界文档
    - 继续维持 `PFDN5 = primary_but_qualified`、`PMF1 / PRPF6 / ZNF131 = supporting_only`
    - 把 `PFDN5` 等具体 anchor / axis 明确放在 bridge content 层，不让它们承载 architecture-to-DepMap bridge 的主卖点
-8. 如果继续推进论文图片，只优先做：
+10. 如果继续推进论文图片，只优先做：
    - 先打开 `docs/manuscript_complete_figure_plan_v1.md`（当前主图方案 of record：6 主图 + 10 Extended Data）
    - 旧 4 图版蓝图 `docs/manuscript_figure_blueprint_v1.md` 仅作 truth-first 讲述方法论模板，不再作为图版结构入口
    - 主图顺序固定为 `truth object -> anchor tiering -> model trade-off -> sweep/controls -> axis interpretation -> boundary`
    - 风格参考固定为 `s41592-025-02772-6.pdf`
-9. 如果目标是一次性收口当前项目：
+11. 如果目标是一次性收口当前项目：
    - `docs/finalization_punchlist_v1.md`
    - `docs/current_closeout_commit_note_v1.md`
-10. 仍然明确不做：
+12. 仍然明确不做：
    - 无 admission contract 的新 entrant
    - 无判据、无 feasibility check 的新 truth object
    - 新评分体系
@@ -275,7 +292,7 @@ discovery 仍然保留，但当前应后置。
 - wording audit ✅（Clean）
 - 四敏感位置终审 ✅（Clean）
 - Genome Biology manuscript draft / cover letter / figure legends / submission checklist ✅
-- 主文 Fig. 1-6 ✅（每张 8 panel，panel-level source data 与 manifest 已生成）
+- 主文 Fig. 1-6 ✅（panel-level source data 与 manifest 已生成；Fig. 1 / Fig. 2 已收束为 6-panel headline 结构，Fig. 3 已收束为 4-panel，Fig. 4 已收束为 3-panel，Fig. 5 已收束为 4-panel 并把旧 panel e–h 下放至 ED Fig. 6 cross-reference，Fig. 6 已收束为 4-panel 并把旧 panel e–h 下放至 ED Fig. 7-9 cross-reference）
 - Extended Data Fig. 1-10 ✅（每张 8 panel，panel-level source data 与 manifest 已生成）
 - Supplementary Tables workbook ✅
 - Submission package manifest ✅（9 个类别，639 个文件）
