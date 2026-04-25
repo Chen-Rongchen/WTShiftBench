@@ -89,5 +89,5 @@
 - Fig. 2：PFDN5、PMF1、PRPF6、ZNF131 的 claim tier。
 - Fig. 3：baseline 和 formal GEARS 的 backbone/separation headline 数字。
 - Fig. 4：baseline、formal GEARS、GEARS sweep 和 linear-control coverage。
-- Fig. 5：transcription/chromatin axis 的 formal positive 身份、R2、bootstrap stability 和 tier。
-- Fig. 6：CRISPR/RNAi endpoint hierarchy、K562 temporal stratification 和最终 claim boundary。
+- Fig. 5：CRISPR/RNAi endpoint hierarchy、K562 temporal stratification 和最终 claim boundary。
+- Extended Data Fig. 11：transcription/chromatin axis 的 formal positive 身份、R2、bootstrap stability 和 tier。

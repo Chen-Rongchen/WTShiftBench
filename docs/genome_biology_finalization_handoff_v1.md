@@ -153,8 +153,8 @@
 
 最终人工检查：
 
-- 正文中 Fig. 1-6 引用顺序。
-- Extended Data Fig. 1-10 引用顺序。
+- 正文中 Fig. 1-5 引用顺序。
+- Extended Data Fig. 1-11 引用顺序。
 - Figure legends 与 panel source data 一致。
 - 数字是否与 source data 一致，尤其是 backbone 0.807 / GEARS 0.660 / separation 0.428 vs 0.353。
 - `K562`、`RNAi DEMETER2`、`barcode_gem_group`、`GEARS sweep` 的 wording 不越界。

@@ -1,0 +1,5 @@
+axis_id	explanatory_call	call_tier	shift_r2_mean	depmap_r2_mean	n_targets	targets	bootstrap_stability_call	bootstrap_dominant_call_fraction	enrichment_hits	databases	structure_support	final_call
+ribosomal / translation	preliminary_dependency_heavy_axis	preliminary	0.0237625515304477	0.1158481284956462	1	RPS3	moderately_stable_axis_call	0.6746031746031746	32	3	4	partially_supported_axis
+RNA processing / spliceosome	preliminary_shared_signal_axis	preliminary	0.2456341088499313	0.1154327916242644	1	PRPF6	stable_axis_call	1.0	1	1	1	partially_supported_axis
+mTOR / lysosome / signaling	preliminary_transcriptomic_heavy_axis	preliminary	0.0471206748830778	0.0028366077924279	1	LAMTOR5	stable_axis_call	0.8769230769230769	13	1	2	partially_supported_axis
+transcription / chromatin	transcriptomic_heavy_axis	formal	0.0918059091099973	0.0003096163305515	2	ENY2; TADA3	stable_axis_call	0.9733333333333334	6	2	1	partially_supported_axis

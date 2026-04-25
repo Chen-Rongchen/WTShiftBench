@@ -1,3 +1,0 @@
-timepoint	role	aligned_spearman	mean_truth_metric	median_truth_metric
-7d	temporal_sensitivity_early_bridge_probe	0.7333333333333332	0.0030991873866114	0.0029023397479872
-13d	primary_formal_supplementary_bridge_test	0.5151515151515151	0.004382685449453	0.0044183505802962

@@ -1,2 +1,0 @@
-axis_id	targets	shift_r2_mean	depmap_r2_mean	sharedness_delta	bootstrap_dominant_call_fraction	bootstrap_stability_call
-transcription / chromatin	ENY2; TADA3	0.0918059091099973	0.0003096163305515	0.0914962927794458	0.9733333333333334	stable_axis_call

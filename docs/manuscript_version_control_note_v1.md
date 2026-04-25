@@ -14,8 +14,8 @@
 当前主稿已完成本轮 boundary / grammar audit：
 
 - Abstract、Background、Results、Methods、Discussion、Conclusions 已围绕同一套 benchmark grammar 同步。
-- Figure 1-6 主图图注已完成 claim-boundary 同步。
-- Extended Data Fig. 1-10 图注已完成 support / sensitivity / boundary 层级同步。
+- Figure 1-5 主图图注已完成 claim-boundary 同步。
+- Extended Data Fig. 1-11 图注已完成 support / sensitivity / boundary 层级同步。
 - CRISPR DepMap 保留为 primary bridge readout。
 - RNAi DEMETER2 保留为 weaker cross-platform sensitivity endpoint。
 - K562 temporal panel 保留为 supplementary architecture-form / bounded bridge-form evidence。
@@ -25,7 +25,7 @@
 
 当前 `manuscript/figures/` 和 `manuscript/extended_data/` 中的图像文件是上一轮生成产物。图注和正文已经收口，但图像视觉设计尚未进入最终投稿版。
 
-下一阶段工作是按当前正文和图注重新设计并重画 Figure 1-6 与 Extended Data Fig. 1-10。该阶段只允许修改绘图代码、图中文字、panel 布局和导出文件，不新增分析、不改变 source data、不改变 claim boundary。
+下一阶段工作是按当前正文和图注重新设计并重画 Figure 1-5 与 Extended Data Fig. 1-11。该阶段只允许修改绘图代码、图中文字、panel 布局和导出文件，不新增分析、不改变 source data、不改变 claim boundary。
 
 ## 仍需作者补齐
 

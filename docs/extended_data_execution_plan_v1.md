@@ -139,7 +139,7 @@ Extended Data 的职责不是重复主图，而是解决审稿人会追问的完
 
 ## Extended Data Fig. 7：K562 Temporal Evidence Detail
 
-目的：支持主图 Fig. 6d-f，展示 K562 7d/13d temporal panel 的完整 A0/A1/B 分层。
+目的：支持主图 Fig. 5c-d，展示 K562 7d/13d temporal panel 的完整 A0/A1/B 分层。
 
 建议 panels：
 
@@ -162,7 +162,7 @@ Extended Data 的职责不是重复主图，而是解决审稿人会追问的完
 
 ## Extended Data Fig. 8：CRISPR Versus RNAi Endpoint Detail
 
-目的：支持主图 Fig. 6g，展示 CRISPR/RNAi endpoint hierarchy 的完整上下文。
+目的：支持主图 Fig. 5c-d，展示 CRISPR/RNAi endpoint hierarchy 的完整上下文。
 
 建议 panels：
 
@@ -182,7 +182,7 @@ Extended Data 的职责不是重复主图，而是解决审稿人会追问的完
 
 ## Extended Data Fig. 9：Covariate Audit Detail
 
-目的：支持主图 Fig. 6a-c，展示 covariate audit 每个轴的影响和不能 fully deconfound 的原因。
+目的：支持主图 Fig. 5a-c，展示 covariate audit 每个轴的影响和不能 fully deconfound 的原因。
 
 建议 panels：
 

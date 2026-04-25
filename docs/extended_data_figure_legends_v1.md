@@ -109,3 +109,8 @@
 **f,** Configured rebuild entrypoints.
 **g,** Explicitly enumerated disallowed wording.
 **h,** Figure-stage rerun boundary.
+
+## Extended Data Fig. 11. Axis-level adjudication supports only a qualified transcription/chromatin interpretation
+
+**a,** Axis-level explanatory space comparing dependency signal with transcriptomic shift signal; the pale diagonal denotes equal explanatory signal, and RNA processing/spliceosome is annotated as PRPF6-only to mark the breadth boundary.
+**b,** Axis adjudication profile across shift signal, dependency signal, bootstrap stability and annotation/database support; target breadth is shown in each row label, and structure support is retained in the supplementary adjudication profile.

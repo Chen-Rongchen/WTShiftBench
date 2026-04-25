@@ -7,7 +7,7 @@
 - `manuscript/README.md`
 - `manuscript/file_index.txt`
 
-该目录已把正文草案、cover letter、figure legends、主图、Extended Data、panel a-h、小图 source data / manifest、Additional files、source-data manifests 与 audit 文档集中到一个工作区。`docs/` 与 `reports/` 保留为生成来源、审计来源和可重跑来源。
+该目录已把正文草案、cover letter、figure legends、主图、Extended Data、panel 小图、source data / manifest、Additional files、source-data manifests 与 audit 文档集中到一个工作区。`docs/` 与 `reports/` 保留为生成来源、审计来源和可重跑来源。
 
 ## 当前主入口
 
@@ -105,21 +105,21 @@ Extended Data 执行计划：
 - Fig. 2：`reports/manuscript_figures_v2/fig2_anchor_tiering/`
 - Fig. 3：`reports/manuscript_figures_v2/fig3_model_tradeoff/`
 - Fig. 4：`reports/manuscript_figures_v2/fig4_sweep_controls/`
-- Fig. 5：`reports/manuscript_figures_v2/fig5_axis_interpretation/`
-- Fig. 6：`reports/manuscript_figures_v2/fig6_boundary/`
+- Fig. 5：`reports/manuscript_figures_v2/fig6_boundary/`
+- Extended Data Fig. 11：`reports/manuscript_figures_v2/fig5_axis_interpretation/`
 
-每张主图均有：
+重画后的主图均保留整图、panel 小图、source data 和 manifest。panel 数量随当前图版设计而定；当前 Fig. 1 redraw prototype 已改为 5 个 panel，其余主图仍沿用上一轮 8-panel 结构直到重画。
 
-- 8 个 panel PNG。
-- 8 个 panel PDF。
-- 8 个 panel source-data TSV。
-- 8 个 panel manifest JSON。
+- panel PNG。
+- panel PDF。
+- panel source-data TSV。
+- panel manifest JSON。
 - 1 个整图 PNG。
 - 1 个整图 PDF。
 - 1 个整图 source-data TSV。
 - 1 个整图 panel-manifest JSON。
 
-`manuscript/figures/Figure_*/panels/` 中另存了每张主图的 panel a-h，包含 PNG、PDF、source data TSV 和 manifest JSON，便于逐 panel 审稿或上传系统要求拆分时使用。
+`manuscript/figures/Figure_*/panels/` 中另存了每张主图的 panel 小图，包含 PNG、PDF、source data TSV 和 manifest JSON，便于逐 panel 审稿或上传系统要求拆分时使用。
 
 ## 重跑入口
 
@@ -181,16 +181,16 @@ Extended Data 执行计划：
 
 | 图 | panel PNG | panel PDF | panel source | panel manifest | 整图 PNG | 整图 PDF | 整图 source | 整图 manifest |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
-| Fig. 1 | 8 | 8 | 8 | 8 | 1 | 1 | 1 | 1 |
-| Fig. 2 | 8 | 8 | 8 | 8 | 1 | 1 | 1 | 1 |
+| Fig. 1 | 5 | 5 | 5 | 5 | 1 | 1 | 1 | 1 |
+| Fig. 2 | 5 | 5 | 5 | 5 | 1 | 1 | 1 | 1 |
 | Fig. 3 | 8 | 8 | 8 | 8 | 1 | 1 | 1 | 1 |
 | Fig. 4 | 8 | 8 | 8 | 8 | 1 | 1 | 1 | 1 |
-| Fig. 5 | 8 | 8 | 8 | 8 | 1 | 1 | 1 | 1 |
-| Fig. 6 | 8 | 8 | 8 | 8 | 1 | 1 | 1 | 1 |
+| Fig. 5 | 4 | 4 | 4 | 4 | 1 | 1 | 1 | 1 |
+| Extended Data Fig. 11 | 2 | 2 | 2 | 2 | 1 | 1 | 1 | 1 |
 
 补充表索引当前覆盖 10 个 supplementary table group、55 个冻结文件或 manifest，均已记录 SHA256、文件大小和 TSV 行列数。
 
-ED Fig. 1-10 当前均采用同一完整性规范：每张 8 个 panel PNG、8 个 panel PDF、8 个 panel source-data TSV、8 个 panel manifest JSON、1 个整图 PNG、1 个整图 PDF、1 个整图 source-data TSV、1 个整图 panel-manifest JSON。10 张 ED 图合计 360 个可追溯文件。
+ED Fig. 1-10 当前保持原完整性规范；ED Fig. 11 为 2-panel axis adjudication 图，作为原主文 Fig. 5 的下放版本。
 
 投稿包总清单当前覆盖 9 个类别、639 个文件；补充表 workbook 当前包含 31 个 TSV 数据 sheet，并保留 table summary、file index 和 sheet index。
 
@@ -217,7 +217,7 @@ ED Fig. 1-10 当前均采用同一完整性规范：每张 8 个 panel PNG、8 �
 
 当前代码、图版、补充表索引、补充表 workbook 和投稿包总清单已经形成 Genome Biology 可审阅版本。目标期刊当前固定为 Genome Biology；Science Advances 仅作为需 broad-impact 改写的冲刺备选，Advanced Science 不作为优先目标。剩余工作主要是投稿元信息和期刊上传格式：
 
-1. 是否保留 6 张主图，或按期刊版面把 Fig. 5 移入 Extended Data。
+1. 当前已采用 5 张主图；原 Fig. 5 已移入 Extended Data Fig. 11。
 2. 是否把 Methods 保留在主文末尾，或拆成 Online Methods / Supplementary Methods。
 3. 是否按目标期刊模板补齐 references、author contribution、competing interests 和 acknowledgements。
 4. 是否按目标期刊最终字号与宽度做全图版式微调。

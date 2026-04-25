@@ -14,8 +14,8 @@
 - Fig. 2 管理 shared anchor 证据层级。
 - Fig. 3 用三指标裁决 model recovery，而不是做单一 leaderboard。
 - Fig. 4 排除 recipe、embedding coverage 和 linear control 这类简单反驳。
-- Fig. 5 给出 qualified axis-level interpretation。
-- Fig. 6 用 covariate、K562 temporal panel 和 RNAi endpoint sensitivity 收住最终 claim ceiling。
+- Fig. 5 用 covariate、K562 temporal panel 和 RNAi endpoint sensitivity 收住最终 claim ceiling。
+- Extended Data Fig. 11 给出 qualified axis-level interpretation。
 
 当前正文与图注不再是待 hardening 草稿，而是投稿前文字 source of truth。剩余工作已经从 claim grammar 转入两类：
 
@@ -92,8 +92,8 @@ Introduction 的 root-cause 句式应从：
 - Fig. 2：recurrent structure does not license unqualified target claims。
 - Fig. 3：architecture-aware metrics decompose entrants rather than form a single leaderboard。
 - Fig. 4：alternative technical explanations were stress-tested but did not close the backbone gap。
-- Fig. 5：biological interpretation is tiered, asymmetric and partial。
-- Fig. 6：external sensitivity analyses define the admissible claim ceiling。
+- Fig. 5：external sensitivity analyses define the admissible claim ceiling。
+- Extended Data Fig. 11：biological interpretation is tiered, asymmetric and partial。
 
 每节最后一句继续保留边界句，防止局部结果被读成 overclaim。
 
@@ -150,12 +150,12 @@ Methods 至少需要明确以下对象的可复现定义：
 
 1. HCC38/HCC1143 身份与缩写风险已在当前主稿中收口。
 2. Abstract / Background / Results / Methods / Discussion / Conclusions 已完成 grammar 同步。
-3. Figure 1-6 与 Extended Data Fig. 1-10 图注已完成 boundary 同步。
+3. Figure 1-5 与 Extended Data Fig. 1-11 图注已完成 boundary 同步。
 4. Methods 已推进到 operational definition 级。
 
 剩余执行顺序：
 
-1. 按 `docs/manuscript_figure_redesign_plan_v1.md` 重画 Figure 1-6 与 Extended Data Fig. 1-10。
+1. 按 `docs/manuscript_figure_redesign_plan_v1.md` 重画 Figure 1-5 与 Extended Data Fig. 1-11。
 2. 作者人工补齐 author metadata、funding、competing interests、contributions、acknowledgements。
 3. 补齐 public repository / archive DOI 与公开 Data / Code availability。
 4. 最终导出投稿版 PDF/Word、图版文件和 Additional files。

@@ -23,12 +23,12 @@
 - Fig. 2：`reports/manuscript_figures_v2/fig2_anchor_tiering/figure2.png`
 - Fig. 3：`reports/manuscript_figures_v2/fig3_model_tradeoff/figure3.png`
 - Fig. 4：`reports/manuscript_figures_v2/fig4_sweep_controls/figure4.png`
-- Fig. 5：`reports/manuscript_figures_v2/fig5_axis_interpretation/figure5.png`
-- Fig. 6：`reports/manuscript_figures_v2/fig6_boundary/figure6.png`
+- Fig. 5：`reports/manuscript_figures_v2/fig6_boundary/figure6.png`
 
 Extended Data PNG 均存在：
 
 - Extended Data Fig. 1-10：`reports/manuscript_extended_data_v1/edfig*/edfig*.png`
+- Extended Data Fig. 11：`reports/manuscript_figures_v2/fig5_axis_interpretation/figure5.png`
 
 ## 重建校验
 
@@ -42,11 +42,11 @@ MPLCONFIGDIR=/tmp/matplotlib_wtko_nmstyle PYTHONPATH=src pixi run --environment 
 
 主图输出校验：
 
-- Fig. 1-6 均通过脚本内输出数量检查。
+- Fig. 1-5 均通过脚本内输出数量检查。
 
 Extended Data 输出校验：
 
-- Extended Data Fig. 1-10 均通过脚本内输出数量检查。
+- Extended Data Fig. 1-10 均通过脚本内输出数量检查；Extended Data Fig. 11 由原 Fig. 5 脚本生成。
 
 ## 关键数字核对
 
@@ -58,7 +58,7 @@ Extended Data 输出校验：
 - shared-mean baseline structure-versus-context separation：0.353。
 - best GEARS sweep backbone recovery：0.643。
 
-正文、Fig. 6 legend 与 endpoint hierarchy 叙事一致：
+正文、Fig. 5 legend 与 endpoint hierarchy 叙事一致：
 
 - HCC38 CRISPR vs RNAi bridge Spearman：0.726 vs 0.276。
 - HCC1143 CRISPR vs RNAi bridge Spearman：0.779 vs 0.384。

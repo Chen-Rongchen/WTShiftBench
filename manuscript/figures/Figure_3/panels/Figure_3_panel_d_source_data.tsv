@@ -1,3 +1,7 @@
-model_id	cell_line	backbone_recovery	baseline_backbone_recovery	failure_mode_call
-gears_hcc_formal_v1	HCC38	0.6	0.7733333333333333	mixed
-gears_hcc_formal_v1	HCC1143	0.7199999999999999	0.84	tradeoff
+model_id	cell_line	ratio_mean	se
+gears_hcc_formal_v1	HCC38	0.7886970516646765	0.15910115555118548
+geneformer_hcc_formal_v1	HCC38	0.6458197299182209	0.13977803495682242
+scgpt_hcc_formal_v1	HCC38	0.5524354562354316	0.13621260038181732
+gears_hcc_formal_v1	HCC1143	0.862510658960916	0.0862523237549417
+geneformer_hcc_formal_v1	HCC1143	0.6939965920612361	0.12457613808811265
+scgpt_hcc_formal_v1	HCC1143	0.564257579665344	0.13333102591120052

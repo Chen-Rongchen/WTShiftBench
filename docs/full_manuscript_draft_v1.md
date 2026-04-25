@@ -124,7 +124,7 @@ GSE90063 K562 13d/7d temporal panel 用于 formal supplementary external evidenc
 
 ## 主图设计
 
-参考模板 `s41592-025-02772-6.pdf` 的核心不是“主图数量”，而是每张图内部的论证闭环：先给总体 benchmark 结果，再给代表例，再给定义/分解示意，最后用补充分析说明为什么结论不是单一指标偶然。模板论文只有 2 张主图，是因为故事线主要围绕 double perturbation 与 single perturbation 两个 benchmark；本项目同时有 truth object、model recovery、axis interpretation、covariate boundary、temporal replication 与 endpoint hierarchy 六条必要证据层，因此建议主文使用 6 张主图。每张主图都固定 a-h 八个 panel，逻辑上对应模板中的“总览 + 代表例 + 分解 + 边界”。
+参考模板 `s41592-025-02772-6.pdf` 的核心不是“主图数量”，而是每张图内部的论证闭环：先给总体 benchmark 结果，再给代表例，再给定义/分解示意，最后用补充分析说明为什么结论不是单一指标偶然。模板论文只有 2 张主图，是因为故事线主要围绕 double perturbation 与 single perturbation 两个 benchmark；本项目同时有 truth object、model recovery、axis interpretation、covariate boundary、temporal replication 与 endpoint hierarchy 多条必要证据层。当前投稿结构将 axis interpretation 下放为 Extended Data Fig. 11，主文保留 5 张主图，并以 Fig. 5 完成最终 claim boundary。
 
 ### Fig. 1. A truth-first benchmark defines the fitness-relevant transcriptomic bridge object
 
@@ -178,7 +178,7 @@ GSE90063 K562 13d/7d temporal panel 用于 formal supplementary external evidenc
 - g. Coverage/control panel：ridge controls target coverage = 1.000，排除 coverage 缺口作为主解释。
 - h. Interpretation strip：gap 更像 direction-level/task-structure mismatch，而不是“还差一个 recipe”。
 
-### Fig. 5. Axis-level interpretation is informative but remains partially supported
+### Extended Data Fig. 11. Axis-level interpretation is informative but remains partially supported
 
 这一图对应模板中 interaction-class decomposition 的作用：把总体结果拆成结构类别，但不把类别解释抬升为过强机制主张。
 
@@ -191,7 +191,7 @@ GSE90063 K562 13d/7d temporal panel 用于 formal supplementary external evidenc
 - g. Preliminary/mixed axis panel：显示多数 axes 为 supporting/preliminary/mixed，而非同级 formal。
 - h. Axis boundary strip：transcription/chromatin = primary_axis_but_qualified；禁止 fully established shared explanatory architecture。
 
-### Fig. 6. Covariate, temporal and endpoint analyses define the final claim boundary
+### Fig. 5. Covariate, temporal and endpoint analyses define the final claim boundary
 
 这一图承担模板 Discussion 前的收口作用：把 robustness、外部 context 与 limitation 放到主图，而不是只藏进补充材料。
 
@@ -212,8 +212,8 @@ GSE90063 K562 13d/7d temporal panel 用于 formal supplementary external evidenc
 2. Fig. 2 对应 Results 1 的后半段：把 truth object 下钻到 anchor 层，并立即完成 evidence tiering。
 3. Fig. 3 对应 Results 2 的主结论：当前 entrants 没有赢 backbone baseline，但 reveal trade-off。
 4. Fig. 4 对应 Results 2 的解释收口：GEARS sweep 与 linear controls 排除“缺 recipe/缺 coverage”作为最简单解释。
-5. Fig. 5 对应 Results 3：axis interpretation 是 partial/tiered，而不是 fully closed mechanism。
-6. Fig. 6 对应 Results 4-6：covariate、K562 temporal panel 与 endpoint hierarchy 共同定义 final claim boundary。
+5. Extended Data Fig. 11 对应 Results 3 的边界证据：axis interpretation 是 partial/tiered，而不是 fully closed mechanism。
+6. Fig. 5 对应 Results 4-6：covariate、K562 temporal panel 与 endpoint hierarchy 共同定义 final claim boundary。
 
 因此，正文顺序建议调整为：
 
@@ -221,8 +221,8 @@ GSE90063 K562 13d/7d temporal panel 用于 formal supplementary external evidenc
 2. Shared anchors support the bridge but require tiered claim strength.
 3. Entrants expose a backbone-separation trade-off rather than model recovery.
 4. Recipe and embedding controls do not close the backbone gap.
-5. Axis-level interpretation remains partial and tiered.
-6. Covariate, temporal and endpoint analyses bound the final claim.
+5. Axis-level interpretation remains partial and tiered, supported in Extended Data.
+6. Covariate, temporal and endpoint analyses bound the final claim in the final main figure.
 
 ## 模板对齐说明
 
@@ -232,8 +232,8 @@ GSE90063 K562 13d/7d temporal panel 用于 formal supplementary external evidenc
 
 - 总览图必须有强对照：本稿中对应 Fig. 3 的 baseline vs GEARS/entrants。
 - 代表例必须服务主结论：本稿中对应 Fig. 2 的 anchor mini-panels 与 Fig. 3 的 recovery example。
-- 分解图必须解释失败模式：本稿中对应 Fig. 4 的 sweep/linear controls 与 Fig. 5 的 axis tiering。
-- robustness 和 limitation 要进入主图：本稿中对应 Fig. 6 的 covariate、K562 temporal、endpoint hierarchy。
+- 分解图必须解释失败模式：本稿中对应 Fig. 4 的 sweep/linear controls；axis tiering 下放为 Extended Data Fig. 11。
+- robustness 和 limitation 要进入主图：本稿中对应 Fig. 5 的 covariate、K562 temporal、endpoint hierarchy。
 
 与模板相比，本稿多出的必要层是 truth object。模板可以直接评估 prediction error，因为 ground truth 是 observed expression；本稿必须先证明 truth object 本身可定义、可分解、可审计。因此 Fig. 1 和 Fig. 2 是本稿不可省略的前置图。
 
@@ -255,17 +255,17 @@ a, Backbone recovery scores for the HCC formal model comparison. b, Heatmap of t
 
 a, Backbone recovery across the finite-budget GEARS sweep, with the shared-mean baseline shown as the reference line. b, Sweep-level trade-off between backbone recovery and structure-vs-context separation. c, Shift-excess identification across sweep candidates. d, Frozen stop-rule schematic, indicating the limited recipe dimensions tested and the absence of a new truth object or scoring system. e, Linear-control schematic for testing whether pretrained target embeddings or low-rank controls alone recover the backbone direction. f, Ranking of linear controls relative to the shared-mean baseline. g, Coverage/control panel indicating that ridge controls have complete target coverage and that the gap is not explained by missing target coverage. h, Interpretation boundary: the remaining gap is most consistent with a task-structure or direction-level mismatch, not with a missing small recipe.
 
-### Fig. 5 | Axis-level interpretation is informative but remains partially supported.
-
-a, Axis-level explanatory strength for transcriptomic shift and dependency. b, Formal axis-call summary, distinguishing transcriptomic-heavy, dependency-heavy, shared and preliminary calls. c, Bootstrap stability of axis calls. d, Axis validation summary integrating enrichment, database support and per-target consistency. e, Focus panel for transcription/chromatin, the strongest qualified formal axis. f, Broader partially supported axes, including chromatin remodeling, TGF-beta/BMP signaling, ER stress/UPR, RNA processing and ribosome/nucleolar axes. g, Preliminary and mixed axes that remain below primary interpretation strength. h, Axis interpretation boundary: the axis layer supports a partial and tiered explanatory architecture, not a fully established shared mechanism.
-
-### Fig. 6 | Covariate, temporal and endpoint analyses define the final claim boundary.
+### Fig. 5 | Covariate, temporal and endpoint analyses define the final claim boundary.
 
 a, Overview of the five covariate audit axes used for claim governance. b, Anchor claim tiers before and after covariate-aware boundary setting. c, Barcode gem group interpretation as a design-proxy axis rather than a resolved run-level covariate. d, GSE90063 K562 7d/13d temporal panel overview. e, Temporal stratification of the K562 bridge: both time points retain a backbone-plus-shift-excess architecture form, with stronger rank alignment at 7d and larger mean shift at 13d. f, A0/A1/B supplementary evidence tiering for K562. g, Endpoint hierarchy across HCC38, HCC1143, K562 7d and K562 13d, showing consistently stronger CRISPR DepMap bridge signals than RNAi DEMETER2 signals. h, Final claim boundary: CRISPR DepMap is the formal primary bridge readout, RNAi DEMETER2 is a weaker cross-platform sensitivity endpoint, K562 is not a primary co-pillar and discovery remains gated.
 
+### Extended Data Fig. 11 | Axis-level interpretation is informative but remains partially supported.
+
+a, Axis-level explanatory strength for transcriptomic shift and dependency. b, Axis adjudication profile across shift signal, dependency signal, bootstrap stability and annotation/database support, with target breadth shown in row labels. The panel supports a partial and tiered explanatory architecture, not a fully established shared mechanism.
+
 ## 主图源数据与渲染状态
 
-当前所有主图默认从源数据重新渲染；旧的 `reports/manuscript_figures/figure1/` 产物不再作为设计输入，也不再作为可复用 panel。这样可以避免旧版 4 图逻辑污染当前 6 图主线。
+当前所有主图默认从源数据重新渲染；旧的 `reports/manuscript_figures/figure1/` 产物不再作为设计输入，也不再作为可复用 panel。当前投稿主图为 Fig. 1-5；axis-level interpretation 下放为 Extended Data Fig. 11。
 
 ### Fig. 1
 
@@ -311,7 +311,7 @@ a, Overview of the five covariate audit axes used for claim governance. b, Ancho
 - g 来源于 HCC prediction contract validation 与 `docs/stage2_fuller_hcc_model_comparison_note_v1.md`。
 - h 来源于 `docs/model_vs_baseline_deeper_explanation_note_v1.md`、`docs/model_vs_baseline_next_step_breakdown_v1.md`。
 
-### Fig. 5
+### Extended Data Fig. 11
 
 - a 从 `reports/stage2_truth_bridge_decomposition/axis_level_shared_explanatory_summary.tsv` 重新渲染 axis-level explanatory scatter。
 - b 来源于 `reports/stage2_truth_bridge_decomposition/axis_level_shared_explanatory_summary.tsv`。
@@ -322,7 +322,7 @@ a, Overview of the five covariate audit axes used for claim governance. b, Ancho
 - g 来源于 `reports/stage2_truth_bridge_decomposition/evidence_tier_summary.tsv` 与 `reports/stage2_axis_analysis/axis_validation_summary.tsv`。
 - h 来源于 `reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv`。
 
-### Fig. 6
+### Fig. 5
 
 - a 来源于 `reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/summary.tsv`。
 - b 来源于 `reports/stage2_truth_driven_bridge/sensitivity/anchor_claim_tiering.tsv` 与 `final_claim_matrix.tsv`。
@@ -347,8 +347,8 @@ a, Overview of the five covariate audit axes used for claim governance. b, Ancho
 - `reports/manuscript_figures_v2/fig2_anchor_tiering/`
 - `reports/manuscript_figures_v2/fig3_model_tradeoff/`
 - `reports/manuscript_figures_v2/fig4_sweep_controls/`
-- `reports/manuscript_figures_v2/fig5_axis_tiering/`
-- `reports/manuscript_figures_v2/fig6_boundary/`
+- `reports/manuscript_figures_v2/fig6_boundary/` -> manuscript Fig. 5
+- `reports/manuscript_figures_v2/fig5_axis_interpretation/` -> Extended Data Fig. 11
 
 每张主图至少输出：
 
@@ -386,15 +386,15 @@ a, Overview of the five covariate audit axes used for claim governance. b, Ancho
 1. 先重画 Fig. 3，因为它是模型侧主卖点，也是最像模板论文 headline benchmark 的图。
 2. 再画 Fig. 1 和 Fig. 2，保证 truth object 与 anchor tier 能支撑 Fig. 3。
 3. 画 Fig. 4，用来关闭“是不是 recipe/coverage 问题”。
-4. 画 Fig. 5，作为 axis 解释层。
-5. 最后画 Fig. 6，把 covariate、K562 与 endpoint hierarchy 收成 final boundary。
+4. 画 Fig. 5，把 covariate、K562 与 endpoint hierarchy 收成 final boundary。
+5. 将 axis 解释层作为 Extended Data Fig. 11 保留。
 
-如果投稿篇幅必须压缩，优先压缩策略不是删掉 Fig. 6，而是：
+当前压缩策略已采用五张主图：
 
 - Fig. 1 与 Fig. 2 可合并为一个 truth-object figure。
 - Fig. 3 与 Fig. 4 可合并为一个 model-adjudication figure。
-- Fig. 5 可降为 Extended Data，前提是在主文 Fig. 1/2 中保留 transcription/chromatin 的 tier 信息。
-- Fig. 6 必须保留，因为 limitation-bounded closure 是当前项目能防守的关键。
+- Axis-level Fig. 5 已降为 Extended Data Fig. 11，前提是在主文与图注中保留 transcription/chromatin 的 qualified tier 信息。
+- 原 Fig. 6 的 limitation-bounded closure 已前移为主文 Fig. 5。
 
 ### 需要新画的 schematic
 
@@ -403,10 +403,10 @@ a, Overview of the five covariate audit axes used for claim governance. b, Ancho
 - Fig. 1a：truth-first benchmark workflow。
 - Fig. 1c：Q1-Q4 joint-grid definition。
 - Fig. 3e：representative recovery panel，需从 detail tables 选一个稳定对象或 target subset。
-- Fig. 4d：GEARS sweep stop-rule schematic。
-- Fig. 4e：linear-control schematic。
-- Fig. 4h：task-structure mismatch interpretation strip。
-- Fig. 6h：final boundary matrix。
+- Fig. 4b：prespecified rebuttal trade-off subset。
+- Fig. 4c：per-context residual backbone gap。
+- Fig. 4 图注：bounded interpretation / no hidden recipe winner wording。
+- Fig. 5d：final boundary matrix。
 
 其余 panel 原则上都应由 TSV/JSON/MD 源数据直接渲染。
 

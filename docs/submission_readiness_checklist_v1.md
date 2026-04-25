@@ -76,8 +76,8 @@ Genome Biology reviewer-risk reduction 已完成并版本化。执行入口为�
 
 ### 图版
 
-- 主图 Fig. 1-6 已生成上一轮版本：`reports/manuscript_figures_v2/`
-- Extended Data Fig. 1-10 已生成上一轮版本：`reports/manuscript_extended_data_v1/`
+- 主图 Fig. 1-5 已生成当前版本：`reports/manuscript_figures_v2/`
+- Extended Data Fig. 1-10 已生成上一轮版本；Extended Data Fig. 11 由 `reports/manuscript_figures_v2/fig5_axis_interpretation/` 生成。
 - 投稿前整理副本：`manuscript/figures/` 与 `manuscript/extended_data/`
 - 每张图均为 8 panel。
 - 每个 panel 均有 PNG、PDF、source data TSV、manifest JSON。
@@ -116,8 +116,8 @@ Genome Biology reviewer-risk reduction 已完成并版本化。执行入口为�
 
 完整性：
 
-- 6 张主图，每张 36 个可追溯文件，共 216 个文件。
-- 10 张 Extended Data，每张 36 个可追溯文件，共 360 个文件。
+- 5 张主图，按当前 panel 数保存整图、panel、source data 和 manifest。
+- 11 张 Extended Data；ED1-10 保持原补充结构，ED11 为原主文 Fig. 5 下放的 2-panel axis adjudication。
 - Supplementary table index 覆盖 10 个 table group、55 个冻结文件或 manifest。
 - Submission package manifest 覆盖 9 个类别、639 个文件。
 - Supplementary Tables workbook 包含 31 个 TSV 数据 sheet。
@@ -147,7 +147,7 @@ Genome Biology reviewer-risk reduction 已完成并版本化。执行入口为�
 
 这些不是数据或代码缺口，而是投稿格式选择：
 
-- 目标期刊是否接受 6 张主图；若要求压缩，可将 Fig. 5 移到 Extended Data。
+- 当前已采用 5 张主图；原 Fig. 5 已移到 Extended Data Fig. 11。
 - Methods 是否放在主文末尾还是拆成 Online Methods / Supplementary Methods。
 - 是否需要按目标期刊格式加入 references、author contribution、competing interests、acknowledgements。
 - 是否需要统一图中文字大小到期刊最终版式。
@@ -161,5 +161,5 @@ Genome Biology reviewer-risk reduction 已完成并版本化。执行入口为�
 1. 选择目标期刊格式。
 2. 按期刊模板整理 references 和 declarations。
 3. 决定 Supplementary Tables 的提交格式。
-4. 按 `docs/manuscript_figure_redesign_plan_v1.md` 重画 Figure 1-6 与 Extended Data Fig. 1-10。
+4. 按 `docs/manuscript_figure_redesign_plan_v1.md` 重画 Figure 1-5 与 Extended Data Fig. 1-11。
 5. 做一次全图版式审阅和最终导出。

@@ -1,0 +1,27 @@
+axis_id	shift_r2_mean	depmap_r2_mean	sharedness_delta	explanatory_call	call_tier	n_targets	targets
+chromatin remodeling	0.0457102885494596	0.0516473950639248	-0.0059371065144651	mixed_or_low_signal_axis	formal	2	ARID1A; RUVBL2
+transcription regulation	0.0119799375335992	0.0172372187300257	-0.0052572811964264	mixed_or_low_signal_axis	formal	18	ETV3; GON4L; HLX; KLF3; MAML3; MIER1; MYBL1; PMF1; THAP8; TMF1; UBP1; VEZF1; ZBTB17; ZBTB20; ZBTB5; ZNF131; ZNF24; ZNF566
+nuclear receptor / metabolism	0.0124717439812113	0.0067876650656432	0.005684078915568	mixed_or_low_signal_axis	formal	2	RORC; THRA
+TGF-beta / BMP signaling	0.0080398551381607	0.0028084397561723	0.0052314153819884	mixed_or_low_signal_axis	formal	2	BMPR1A; SMAD1
+proteostasis / chaperone	0.0351846655998828	0.0871909235205539	-0.052006257920671	preliminary_dependency_heavy_axis	preliminary	1	PFDN5
+ribosomal / translation	0.0237625515304477	0.1158481284956462	-0.0920855769651985	preliminary_dependency_heavy_axis	preliminary	1	RPS3
+RNA processing / transcription	0.0053510116361707	0.1145923282065776	-0.1092413165704069	preliminary_dependency_heavy_axis	preliminary	1	YBX1
+ribosome biogenesis / nucleolar	0.0491582655306062	0.03923951613219	0.0099187493984161	preliminary_mixed_or_low_signal_axis	preliminary	1	NPM1
+nuclear receptor / co-activator	0.0184880600067985	0.0068993829410221	0.0115886770657764	preliminary_mixed_or_low_signal_axis	preliminary	1	NCOA1
+cytoskeleton / cell motility	0.016785412811708	0.0041888263678804	0.0125965864438276	preliminary_mixed_or_low_signal_axis	preliminary	1	TMSB4X
+ER stress / UPR	0.0162456435268426	0.0088982986407474	0.0073473448860951	preliminary_mixed_or_low_signal_axis	preliminary	1	XBP1
+NF-κB / copper signaling	0.0149622440874706	0.0054930875937286	0.0094691564937419	preliminary_mixed_or_low_signal_axis	preliminary	1	COMMD6
+metabolism / transcription	0.0145285688694307	0.0083828909256136	0.006145677943817	preliminary_mixed_or_low_signal_axis	preliminary	1	PCBD1
+peroxisome / metabolism	0.0141771840514517	0.0086335804762432	0.0055436035752085	preliminary_mixed_or_low_signal_axis	preliminary	1	PEX14
+cell cycle / replication	0.0135146831560443	0.0095905792774376	0.0039241038786066	preliminary_mixed_or_low_signal_axis	preliminary	1	CDKN2A
+synaptic / signaling	0.0133845565928478	0.0083371926086237	0.005047363984224	preliminary_mixed_or_low_signal_axis	preliminary	1	ERC1
+growth factor / proliferation	0.0119657754361656	0.0077512113361277	0.0042145641000379	preliminary_mixed_or_low_signal_axis	preliminary	1	HDGF
+JAK-STAT signaling	0.0098463022917731	0.0085784413687654	0.0012678609230077	preliminary_mixed_or_low_signal_axis	preliminary	1	STAT3
+signaling / oncogene	0.006162566499227	0.0078132025657203	-0.0016506360664933	preliminary_mixed_or_low_signal_axis	preliminary	1	MTDH
+oxidative stress / antioxidant	0.0058663755681859	0.0007878525818761	0.0050785229863098	preliminary_mixed_or_low_signal_axis	preliminary	1	PRDX2
+oxidative stress / mitochondrial	0.0034392429600541	0.0050062526099397	-0.0015670096498856	preliminary_mixed_or_low_signal_axis	preliminary	1	PARK7
+NF-κB / MAPK signaling	0.0023197200472579	0.0082441423603604	-0.0059244223131025	preliminary_mixed_or_low_signal_axis	preliminary	1	TAB3
+growth / proliferation	0.0019107990652549	0.0038350710616956	-0.0019242719964406	preliminary_mixed_or_low_signal_axis	preliminary	1	PA2G4
+RNA processing / spliceosome	0.2456341088499313	0.1154327916242644	0.1302013172256668	preliminary_shared_signal_axis	preliminary	1	PRPF6
+mTOR / lysosome / signaling	0.0471206748830778	0.0028366077924279	0.0442840670906499	preliminary_transcriptomic_heavy_axis	preliminary	1	LAMTOR5
+transcription / chromatin	0.0918059091099973	0.0003096163305515	0.0914962927794458	transcriptomic_heavy_axis	formal	2	ENY2; TADA3

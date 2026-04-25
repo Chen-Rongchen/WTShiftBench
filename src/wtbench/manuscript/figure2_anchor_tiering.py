@@ -7,17 +7,19 @@ from typing import Callable
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from matplotlib.colors import LinearSegmentedColormap
 
 from wtbench.manuscript._palette import (
     DARK_TEXT,
+    DIVIDER_GRAY,
     LIGHT_GRAY,
     MID_GRAY,
+    NEUTRAL_GRAY,
     PRIMARY_GREEN,
     PRIMARY_GREEN_EDGE,
     PRIMARY_GREEN_FILL,
-    SENSITIVE_AMBER,
-    SUPPORTING_AMBER,
+    SKY_BLUE,
+    VERMILLION,
+    VERMILLION_FILL,
 )
 from wtbench.manuscript.figure_io import ensure_dir, repo_root, save_figure, write_tsv
 from wtbench.manuscript.hash_manifest import write_figure_manifest, write_panel_manifest
@@ -79,8 +81,8 @@ SENSITIVE_SUPPORTING = ["RPS3", "RUVBL2", "ZBTB17", "NPM1", "ENY2"]
 
 TIER_COLORS = {
     "primary_but_qualified": PRIMARY_GREEN,
-    "supporting_only": SUPPORTING_AMBER,
-    "supporting_but_sensitive": SENSITIVE_AMBER,
+    "supporting_only": NEUTRAL_GRAY,
+    "supporting_but_sensitive": MID_GRAY,
     "supporting_but_unstable": MID_GRAY,
     "preliminary_only": LIGHT_GRAY,
 }
@@ -131,6 +133,10 @@ def tier_for_gene(gene: str, tier_map: dict[str, str]) -> str:
 
 def tier_color_for_gene(gene: str, tier_map: dict[str, str]) -> str:
     return TIER_COLORS.get(tier_for_gene(gene, tier_map), "#BDBDBD")
+
+
+def is_primary_gene(gene: str) -> bool:
+    return gene == "PFDN5"
 
 
 def covariate_exposed(gene: str, cov_map: dict[str, str]) -> bool:
@@ -194,7 +200,6 @@ def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
     plot = plot.sort_values("joint_rank_mean", ascending=True).reset_index(drop=True)
     y = np.arange(len(plot))
 
-    tier_map = dict(plot[["target_gene", "final_wording_tier"]].values)
     # Subtle horizontal band behind PFDN5 to highlight primary-but-qualified anchor.
     for yi, row in zip(y, plot.itertuples()):
         if row.target_gene == "PFDN5":
@@ -205,8 +210,8 @@ def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
         ax.plot(
             [row.shift_quantile_mean, row.depmap_quantile_mean],
             [yi, yi],
-            color="#A8A8A8",
-            linewidth=0.62,
+            color=MID_GRAY,
+            linewidth=0.75,
             zorder=1,
         )
 
@@ -218,10 +223,10 @@ def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
         hi = max(row.max_shift_quantile_mean, row.max_depmap_quantile_mean)
         ax.plot(
             [lo, hi], [yi, yi],
-            color="#B8B8B8",
-            linewidth=1.2,
+            color=MID_GRAY,
+            linewidth=0.9,
             linestyle=(0, (3, 2)),
-            alpha=0.75,
+            alpha=1.0,
             zorder=0.5,
         )
 
@@ -229,8 +234,8 @@ def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
         plot["shift_quantile_mean"],
         y,
         color="#FFFFFF",
-        edgecolor="#4A4A4A",
-        linewidth=0.75,
+        edgecolor=SKY_BLUE,
+        linewidth=1.0,
         s=36,
         label="shift",
         zorder=3,
@@ -238,9 +243,9 @@ def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
     ax.scatter(
         plot["depmap_quantile_mean"],
         y,
-        color="#2F2F2F",
-        edgecolor="#FFFFFF",
-        linewidth=0.35,
+        color=PRIMARY_GREEN,
+        edgecolor=PRIMARY_GREEN_EDGE,
+        linewidth=0.6,
         s=36,
         label="dependency",
         zorder=4,
@@ -248,14 +253,15 @@ def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
 
     ax.set_yticks(y)
     ax.set_yticklabels(list(plot["target_gene"]))
+    ax.invert_yaxis()
     for tick_label, gene in zip(ax.get_yticklabels(), plot["target_gene"]):
         if gene == "PFDN5":
             tick_label.set_fontweight("bold")
             tick_label.set_color(TIER_COLORS["primary_but_qualified"])
         elif gene in FINAL_ANCHORS:
-            tick_label.set_color("#2B2B2B")
+            tick_label.set_color(DARK_TEXT)
         else:
-            tick_label.set_color("#707070")
+            tick_label.set_color(NEUTRAL_GRAY)
 
     ax.set_xlim(0.68, 1.03)
     ax.set_xlabel("Mean within-cell-line quantile")
@@ -264,25 +270,31 @@ def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
     legend_handles = [
         plt.Line2D(
             [0], [0], marker="o", linestyle="none", markerfacecolor="#FFFFFF",
-            markeredgecolor="#4A4A4A", markeredgewidth=0.75, markersize=4.6, label="shift",
+            markeredgecolor=SKY_BLUE, markeredgewidth=1.0, markersize=4.6, label="shift",
         ),
         plt.Line2D(
-            [0], [0], marker="o", linestyle="none", markerfacecolor="#2F2F2F",
-            markeredgecolor="#FFFFFF", markeredgewidth=0.35, markersize=4.6, label="dependency",
+            [0], [0], marker="o", linestyle="none", markerfacecolor=PRIMARY_GREEN,
+            markeredgecolor=PRIMARY_GREEN_EDGE, markeredgewidth=0.6, markersize=4.6, label="dependency",
         ),
-        plt.Line2D([0], [0], color="#B8B8B8", linewidth=1.2, linestyle=(0, (3, 2)), alpha=0.75, label="cutoff range (P25\u2013P75)"),
+        plt.Line2D(
+            [0], [0],
+            color=MID_GRAY,
+            linewidth=0.9,
+            linestyle=(0, (3, 2)),
+            label="cutoff range (P25–P75)",
+        ),
     ]
     ax.legend(
         handles=legend_handles,
-        loc="lower right",
+        loc="center left",
+        bbox_to_anchor=(1.02, 0.18),
         frameon=False,
-        fontsize=5.6,
+        fontsize=5.4,
         handletextpad=0.5,
         borderpad=0.2,
         labelspacing=0.3,
     )
     clean_axes(ax)
-    ax.grid(axis="x", color="#E8E8E8", linewidth=0.45)
     _maybe_add_panel_label(ax, "a", x=-0.14)
 
 
@@ -302,22 +314,8 @@ def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
         )
         .reindex(index=anchors, columns=cell_lines)
     )
-    pivot_q1 = (
-        df.pivot_table(
-            index="target_gene", columns="cell_line", values="is_q1_anchor", aggfunc="max"
-        )
-        .reindex(index=anchors, columns=cell_lines)
-        .fillna(False)
-        .astype(bool)
-    )
-
-    cmap = LinearSegmentedColormap.from_list(
-        "wt_green", ["#FFFFFF", "#EEF4EF", "#CDE0D3", "#8FB89E", PRIMARY_GREEN], N=256
-    )
-    vmin, vmax = 0.6, 1.0
-
     ax.set_xlim(-0.5, len(cell_lines) - 0.5)
-    ax.set_ylim(len(anchors) - 0.5, -0.5)
+    ax.set_ylim(len(anchors) - 0.5, -0.9)
 
     # PFDN5 highlight band.
     if "PFDN5" in anchors:
@@ -327,30 +325,32 @@ def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
     for i, gene in enumerate(anchors):
         for j, cl in enumerate(cell_lines):
             val = pivot_joint.loc[gene, cl]
-            is_q1 = bool(pivot_q1.loc[gene, cl])
-            norm = (val - vmin) / (vmax - vmin) if pd.notna(val) else 0.0
-            norm = float(np.clip(norm, 0.0, 1.0))
-            face = cmap(norm) if pd.notna(val) else "#FFFFFF"
+            # Cell-line identity is categorical here; do not encode the numeric
+            # value with extra lightness because that creates an undeclared
+            # second visual variable. The number itself already carries the
+            # magnitude.
+            face = PRIMARY_GREEN if cl == "HCC1143" else VERMILLION
+            edge = PRIMARY_GREEN_EDGE if cl == "HCC1143" else VERMILLION
             rect = plt.Rectangle(
-                (j - 0.32, i - 0.32),
-                0.64,
-                0.64,
+                (j - 0.38, i - 0.38),
+                0.76,
+                0.76,
                 facecolor=face,
-                edgecolor=PRIMARY_GREEN_EDGE if is_q1 else "#D5D5D5",
-                linewidth=0.9 if is_q1 else 0.5,
+                edgecolor=edge,
+                linewidth=1.0,
                 zorder=2,
             )
             ax.add_patch(rect)
             if pd.notna(val):
-                text_color = "#1E1E1E" if norm < 0.55 else "#FFFFFF"
                 ax.text(
                     j,
                     i,
                     f"{val:.2f}",
                     ha="center",
                     va="center",
-                    fontsize=6.2,
-                    color=text_color,
+                    fontsize=6.6,
+                    fontweight="bold",
+                    color="#FFFFFF",
                     zorder=3,
                 )
 
@@ -361,25 +361,25 @@ def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
             tick_label.set_fontweight("bold")
             tick_label.set_color(TIER_COLORS["primary_but_qualified"])
         else:
-            tick_label.set_color("#2B2B2B")
+            tick_label.set_color(DARK_TEXT)
 
-    ax.set_xticks(np.arange(len(cell_lines)))
-    ax.set_xticklabels(cell_lines)
+    ax.set_xticks([])
+    for j, cl in enumerate(cell_lines):
+        ax.text(
+            j,
+            -0.62,
+            cl,
+            ha="center",
+            va="bottom",
+            fontsize=7.0,
+            fontweight="bold",
+            color=PRIMARY_GREEN if cl == "HCC1143" else VERMILLION,
+        )
     ax.set_title("Stable anchors recur across both HCC contexts", loc="left")
     ax.tick_params(length=0)
     ax.set_facecolor("white")
     for spine in ax.spines.values():
         spine.set_visible(False)
-
-    ax.text(
-        0.5,
-        len(anchors) - 0.4,
-        "cell value = mean(shift, dependency) quantile",
-        ha="center",
-        fontsize=5.5,
-        color="#707070",
-        transform=ax.transData,
-    )
 
     _maybe_add_panel_label(ax, "b", x=-0.16)
 
@@ -394,16 +394,16 @@ def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
     to panel e (TVD matrix); no asterisks are drawn here.
     """
 
-    plot = df.copy().sort_values(["is_stable", "shared_anchor_stability_fraction"], ascending=[True, True])
+    plot = df.copy().sort_values(["is_stable", "shared_anchor_stability_fraction"], ascending=[False, False])
     y = np.arange(len(plot))
 
     def _bar_color(gene: str) -> str:
         # Structural-stability axis only: all four stable anchors share the
         # primary-qualified green (indistinguishable at this layer); the five
-        # cutoff-sensitive supporting objects use sand.
+        # cutoff-sensitive supporting objects use neutral gray.
         if gene in FINAL_ANCHORS:
             return TIER_COLORS["primary_but_qualified"]
-        return TIER_COLORS["supporting_but_sensitive"]
+        return MID_GRAY
 
     colors = [_bar_color(g) for g in plot["target_gene"]]
 
@@ -421,9 +421,9 @@ def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
             lo = row.stability_min_fraction
             hi = row.stability_max_fraction
             if pd.notna(lo) and pd.notna(hi) and hi > lo:
-                ax.plot([lo, hi], [yi, yi], color="#4A4A4A", linewidth=0.7, zorder=3)
-                ax.plot([lo, lo], [yi - 0.18, yi + 0.18], color="#4A4A4A", linewidth=0.7, zorder=3)
-                ax.plot([hi, hi], [yi - 0.18, yi + 0.18], color="#4A4A4A", linewidth=0.7, zorder=3)
+                ax.plot([lo, hi], [yi, yi], color="#424242", linewidth=1.0, zorder=3)
+                ax.plot([lo, lo], [yi - 0.18, yi + 0.18], color="#424242", linewidth=1.0, zorder=3)
+                ax.plot([hi, hi], [yi - 0.18, yi + 0.18], color="#424242", linewidth=1.0, zorder=3)
 
     ax.set_yticks(y)
     ax.set_yticklabels(list(plot["target_gene"]))
@@ -432,9 +432,9 @@ def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
             tick_label.set_fontweight("bold")
             tick_label.set_color(TIER_COLORS["primary_but_qualified"])
         elif gene in FINAL_ANCHORS:
-            tick_label.set_color("#2B2B2B")
+            tick_label.set_color(DARK_TEXT)
         else:
-            tick_label.set_color("#707070")
+            tick_label.set_color(NEUTRAL_GRAY)
 
     ax.set_xlim(0, 1.05)
     ax.set_xlabel("Shared-anchor stability fraction")
@@ -445,20 +445,20 @@ def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
                    markerfacecolor=TIER_COLORS["primary_but_qualified"],
                    markeredgecolor="none", markersize=6, label="stable anchor"),
         plt.Line2D([0], [0], marker="s", linestyle="none",
-                   markerfacecolor=TIER_COLORS["supporting_but_sensitive"],
+                   markerfacecolor=MID_GRAY,
                    markeredgecolor="none", markersize=6, label="cutoff-sensitive supporting"),
     ]
     ax.legend(
         handles=legend_handles,
-        loc="lower right",
+        loc="center left",
+        bbox_to_anchor=(1.02, 0.10),
         frameon=False,
-        fontsize=5.6,
+        fontsize=5.4,
         handletextpad=0.5,
         borderpad=0.2,
         labelspacing=0.3,
     )
     clean_axes(ax)
-    ax.grid(axis="x", color=COLORS["grid"], linewidth=0.5)
     _maybe_add_panel_label(ax, "c", x=-0.14)
 
 
@@ -478,16 +478,16 @@ def render_panel_d(ax: plt.Axes, df: pd.DataFrame) -> None:
         if row.target_gene == "PFDN5":
             ax.axvspan(xi - 0.45, xi + 0.45, color=PRIMARY_GREEN_FILL, zorder=0)
 
-    shift_color = "#BFBFBF"
-    dep_color = COLORS["baseline"]
+    shift_color = SKY_BLUE
+    dep_color = PRIMARY_GREEN
     ax.bar(x - 0.2, plot["shift_quantile_mean"], width=0.38, color=shift_color, label="shift", zorder=2)
     ax.bar(x + 0.2, plot["depmap_quantile_mean"], width=0.38, color=dep_color, label="dependency", zorder=2)
 
     for xi, row in zip(x, plot.itertuples()):
         ax.text(xi - 0.2, row.shift_quantile_mean + 0.015, f"{row.shift_quantile_mean:.2f}",
-                ha="center", fontsize=5.5, color="#4A4A4A")
+                ha="center", fontsize=6.0, fontweight="bold", color=DARK_TEXT)
         ax.text(xi + 0.2, row.depmap_quantile_mean + 0.015, f"{row.depmap_quantile_mean:.2f}",
-                ha="center", fontsize=5.5, color="#4A4A4A")
+                ha="center", fontsize=6.0, fontweight="bold", color=DARK_TEXT)
 
     ax.set_xticks(x)
     ax.set_xticklabels(list(plot["target_gene"]), rotation=0)
@@ -496,7 +496,7 @@ def render_panel_d(ax: plt.Axes, df: pd.DataFrame) -> None:
             tick_label.set_fontweight("bold")
             tick_label.set_color(TIER_COLORS["primary_but_qualified"])
         else:
-            tick_label.set_color("#2B2B2B")
+            tick_label.set_color(DARK_TEXT)
 
     ax.set_ylim(0, 1.16)
     ax.set_ylabel("Mean within-cell-line quantile")
@@ -514,7 +514,6 @@ def render_panel_d(ax: plt.Axes, df: pd.DataFrame) -> None:
         borderpad=0.0,
     )
     clean_axes(ax)
-    ax.grid(axis="y", color=COLORS["grid"], linewidth=0.5)
     _maybe_add_panel_label(ax, "d")
 
 
@@ -527,15 +526,26 @@ def render_claim_matrix(ax: plt.Axes, df: pd.DataFrame) -> None:
     """
 
     ax.set_axis_off()
-    ax.set_title("Anchor claim matrix", loc="left", pad=4)
+    ax.set_title("Anchor claim matrix", loc="left", pad=6)
 
     order = FINAL_ANCHORS
     plot = df.set_index("target_gene").reindex(order).reset_index()
 
+    ax.add_patch(
+        plt.Rectangle(
+            (0.005, 0.82),
+            0.99,
+            0.09,
+            transform=ax.transAxes,
+            facecolor=LIGHT_GRAY,
+            edgecolor="none",
+            zorder=0,
+        )
+    )
     headers = [("Anchor", 0.02), ("Claim tier", 0.30), ("Covariate", 0.78)]
     for text, x in headers:
-        ax.text(x, 0.92, text, fontsize=6.6, fontweight="bold", color="#2B2B2B", transform=ax.transAxes)
-    ax.plot([0.01, 0.99], [0.87, 0.87], color="#B5B5B5", linewidth=0.65, transform=ax.transAxes)
+        ax.text(x, 0.865, text, fontsize=6.8, fontweight="bold", color=DARK_TEXT, transform=ax.transAxes)
+    ax.plot([0.01, 0.99], [0.82, 0.82], color=DIVIDER_GRAY, linewidth=0.8, transform=ax.transAxes)
 
     qualifier_labels = {
         "retain_with_caution": "clean",
@@ -547,7 +557,7 @@ def render_claim_matrix(ax: plt.Axes, df: pd.DataFrame) -> None:
         "supporting_but_sensitive": "supporting but cutoff-sensitive",
     }
     row_gap = 0.16
-    y = 0.78
+    y = 0.72
     for row in plot.itertuples():
         tier = row.final_wording_tier
         color = TIER_COLORS.get(tier, "#CCCCCC")
@@ -572,8 +582,8 @@ def render_claim_matrix(ax: plt.Axes, df: pd.DataFrame) -> None:
             y,
             row.target_gene,
             fontsize=7.4 if is_primary else 7.1,
-            fontweight="bold" if is_primary else "semibold",
-            color=TIER_COLORS["primary_but_qualified"] if is_primary else "#2B2B2B",
+            fontweight="bold" if is_primary else "normal",
+            color=TIER_COLORS["primary_but_qualified"] if is_primary else DARK_TEXT,
             transform=ax.transAxes,
             va="center",
         )
@@ -587,23 +597,27 @@ def render_claim_matrix(ax: plt.Axes, df: pd.DataFrame) -> None:
             0.335,
             y,
             wording_labels.get(tier, tier.replace("_", " ")),
-            fontsize=6.4,
+            fontsize=6.6,
             fontweight="semibold" if is_primary else "normal",
-            color="#2B2B2B",
+            color=DARK_TEXT,
             transform=ax.transAxes,
             va="center",
         )
         # Covariate status.
         cov = qualifier_labels.get(row.covariate_cleanliness, row.covariate_cleanliness.replace("_", " "))
-        cov_color = PRIMARY_GREEN if cov == "clean" else SUPPORTING_AMBER
-        ax.text(0.78, y, cov, fontsize=6.4, color=cov_color, transform=ax.transAxes, va="center")
+        cov_color = PRIMARY_GREEN if cov == "clean" else VERMILLION
+        ax.text(0.78, y, cov, fontsize=6.6, color=cov_color, transform=ax.transAxes, va="center")
+        ax.plot(
+            [0.01, 0.99], [y - row_gap * 0.48, y - row_gap * 0.48],
+            color=DIVIDER_GRAY, linewidth=0.6, transform=ax.transAxes,
+        )
         y -= row_gap
 
     # Bottom rule to close the table (mirrors the header rule at y=0.87).
     bottom_rule_y = y + row_gap / 2
     ax.plot(
         [0.01, 0.99], [bottom_rule_y, bottom_rule_y],
-        color="#B5B5B5", linewidth=0.65, transform=ax.transAxes,
+        color=DIVIDER_GRAY, linewidth=0.8, transform=ax.transAxes,
     )
     _maybe_add_panel_label(ax, "f", x=-0.04)
 
@@ -641,16 +655,15 @@ def render_tvd_matrix(ax: plt.Axes, df: pd.DataFrame) -> None:
         for ci in range(len(col_tuples)):
             val = matrix[ri, ci]
             exposed = bool(val > TVD_HARD_IMBALANCE) if np.isfinite(val) else False
-            face = SUPPORTING_AMBER if exposed else LIGHT_GRAY
-            alpha_face = 0.85 if exposed else 0.35
+            face = VERMILLION_FILL if exposed else LIGHT_GRAY
             rect = plt.Rectangle(
                 (ci - 0.44, ri - 0.44),
                 0.88,
                 0.88,
                 facecolor=face,
-                alpha=alpha_face,
-                edgecolor="#B8860B" if exposed else "#CFCFCF",
-                linewidth=1.5 if exposed else 0.4,
+                alpha=1.0,
+                edgecolor=VERMILLION if exposed else "#F0F0F0",
+                linewidth=1.4 if exposed else 0.5,
                 zorder=2,
             )
             ax.add_patch(rect)
@@ -665,18 +678,19 @@ def render_tvd_matrix(ax: plt.Axes, df: pd.DataFrame) -> None:
                     zorder=3,
                 )
 
-    ax.axvline(len(axes_list) - 0.5, color="#9A9A9A", linewidth=0.55, zorder=4)
+    ax.axvline(len(axes_list) - 0.5, color="#E8E8E8", linewidth=0.5, zorder=4)
 
     ax.set_xticks(range(len(col_tuples)))
-    ax.set_xticklabels([AXIS_SHORT_LABELS[ax_name] for _, ax_name in col_tuples], fontsize=5.5)
-    ax.tick_params(axis="x", length=0, pad=2)
+    ax.set_xticklabels([AXIS_SHORT_LABELS[ax_name] for _, ax_name in col_tuples], fontsize=5.6, rotation=0, ha="center")
+    ax.tick_params(axis="x", length=0, pad=5)
     ax.tick_params(axis="y", length=0, pad=2)
     for xi, cl in enumerate(cell_lines):
         ax.text(
             xi * len(axes_list) + (len(axes_list) - 1) / 2,
             -0.85,
             cl,
-            ha="center", va="bottom", fontsize=7, fontweight="bold", color=DARK_TEXT,
+            ha="center", va="bottom", fontsize=7.0, fontweight="bold",
+            color=PRIMARY_GREEN if cl == "HCC1143" else VERMILLION,
             clip_on=False,
         )
 
@@ -691,7 +705,7 @@ def render_tvd_matrix(ax: plt.Axes, df: pd.DataFrame) -> None:
         spine.set_visible(False)
     ax.set_title(
         "Per-anchor covariate TVD (threshold: TVD > 0.25)",
-        loc="center", pad=18, fontsize=7.4,
+        loc="left", pad=6, fontsize=7.4,
     )
 
     _maybe_add_panel_label(ax, "e", x=-0.04)
@@ -843,26 +857,24 @@ def render_combined(
     )
     combined_source_path = write_tsv(combined_source, out / f"{FIGURE_ID}_source_data.tsv")
 
-    fig = plt.figure(figsize=(10.6, 10.4))
+    fig = plt.figure(figsize=(10.8, 8.9))
     mosaic = [
-        ["a", "a", "a", "b", "b"],
-        ["a", "a", "a", "b", "b"],
-        [".", ".", ".", ".", "."],
-        ["c", "c", "c", "d", "d"],
-        ["c", "c", "c", "d", "d"],
-        [".", ".", ".", ".", "."],
-        ["e", "e", "e", "e", "e"],
-        ["e", "e", "e", "e", "e"],
-        [".", ".", ".", ".", "."],
-        ["f", "f", "f", "f", "f"],
+        ["a", "a", "a", ".", "b", "b"],
+        ["a", "a", "a", ".", "b", "b"],
+        [".", ".", ".", ".", ".", "."],
+        ["c", "c", "c", ".", "d", "d"],
+        ["c", "c", "c", ".", "d", "d"],
+        [".", ".", ".", ".", ".", "."],
+        ["e", "e", "e", "f", "f", "f"],
+        ["e", "e", "e", "f", "f", "f"],
     ]
     axes = fig.subplot_mosaic(
         mosaic,
         empty_sentinel=".",
         gridspec_kw={
             "hspace": 0.82,
-            "wspace": 0.55,
-            "height_ratios": [0.95, 0.95, 0.14, 1.0, 1.0, 0.28, 1.0, 1.0, 0.14, 0.78],
+            "wspace": 0.34,
+            "height_ratios": [0.95, 0.95, 0.12, 1.0, 1.0, 0.20, 1.22, 1.22],
         },
     )
 
@@ -877,16 +889,20 @@ def render_combined(
     # Figure-level panel labels, placed outside each panel's upper-left corner.
     # a/c/e share the same left x; b/d share the right-column left x.
     fig.canvas.draw()
-    left_x = min(axes[p].get_position().x0 for p in ("a", "c", "e", "f")) - 0.028
-    right_x = min(axes[p].get_position().x0 for p in ("b", "d")) - 0.028
+    renderer = fig.canvas.get_renderer()
+    left_x = min(axes[p].get_position().x0 for p in ("a", "c", "e")) - 0.028
+    a_legend_bbox = axes["a"].legend_.get_window_extent(renderer=renderer).transformed(fig.transFigure.inverted())
+    c_legend_bbox = axes["c"].legend_.get_window_extent(renderer=renderer).transformed(fig.transFigure.inverted())
+    right_label_x = max(a_legend_bbox.x1, c_legend_bbox.x1) + 0.010
+    f_x = axes["f"].get_position().x0 - 0.012
     y_offset = 0.022
     label_positions = {
         "a": (left_x, axes["a"].get_position().y1 + y_offset),
-        "b": (right_x, axes["b"].get_position().y1 + y_offset),
+        "b": (right_label_x, axes["b"].get_position().y1 + y_offset),
         "c": (left_x, axes["c"].get_position().y1 + y_offset),
-        "d": (right_x, axes["d"].get_position().y1 + y_offset),
+        "d": (right_label_x, axes["d"].get_position().y1 + y_offset),
         "e": (left_x, axes["e"].get_position().y1 + y_offset),
-        "f": (left_x, axes["f"].get_position().y1 + y_offset),
+        "f": (f_x, axes["f"].get_position().y1 + y_offset),
     }
     for panel_id, (x, y) in label_positions.items():
         fig.text(
@@ -928,12 +944,12 @@ def main(argv: list[str] | None = None) -> None:
     sources = build_sources(root)
     panel_outputs: dict[str, dict[str, Path]] = {}
     panel_sizes = {
-        "a": (4.0, 2.8),
+        "a": (3.4, 2.7),
         "b": (3.0, 2.8),
-        "c": (4.0, 2.8),
+        "c": (3.4, 2.7),
         "d": (3.4, 2.8),
-        "e": (8.0, 3.0),
-        "f": (7.2, 2.0),
+        "e": (5.2, 3.0),
+        "f": (4.1, 3.0),
     }
     for panel_id in ACTIVE_PANELS:
         width, height = panel_sizes[panel_id]

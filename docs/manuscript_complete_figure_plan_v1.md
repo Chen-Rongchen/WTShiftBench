@@ -2,7 +2,7 @@
 
 ## 定位
 
-本文件固定当前手稿的完整图版方案：**6 张主图 + 10 张 Extended Data**。
+本文件固定当前手稿的完整图版方案：**5 张主图 + 11 张 Extended Data**。
 
 当前不再沿用旧版 4 张主图方案，也不再复用旧 `reports/manuscript_figures/figure1/` 产物。所有主图默认从源数据重新渲染。
 
@@ -18,12 +18,13 @@
 2. 再证明 anchors 是分层证据。
 3. 再展示模型没有真正恢复 backbone，而是出现 trade-off。
 4. 再排除 recipe / coverage / embedding control 这些简单反驳。
-5. 再解释 axis 层到哪里为止。
-6. 最后用 covariate、K562 temporal panel、endpoint hierarchy 收住边界。
+5. 最后用 covariate、K562 temporal panel、endpoint hierarchy 收住边界。
+
+Axis 层解释作为 Extended Data Fig. 11 保留，用来说明 biological interpretation 是 qualified / partial，而不是主文强机制主张。
 
 ## 当前生成状态
 
-截至本轮作图，6 张主图已经全部按 panel 级别重新生成；旧 `reports/manuscript_figures/figure1/` 产物不再作为图版来源。
+截至本轮作图，5 张主图已经全部按 panel 级别重新生成；旧 `reports/manuscript_figures/figure1/` 产物不再作为图版来源。
 
 主图产物目录：
 
@@ -31,21 +32,17 @@
 - Fig. 2：`reports/manuscript_figures_v2/fig2_anchor_tiering/`
 - Fig. 3：`reports/manuscript_figures_v2/fig3_model_tradeoff/`
 - Fig. 4：`reports/manuscript_figures_v2/fig4_sweep_controls/`
-- Fig. 5：`reports/manuscript_figures_v2/fig5_axis_interpretation/`
-- Fig. 6：`reports/manuscript_figures_v2/fig6_boundary/`
+- Fig. 5：`reports/manuscript_figures_v2/fig6_boundary/`
+- Extended Data Fig. 11：`reports/manuscript_figures_v2/fig5_axis_interpretation/`
 
-每张图当前均包含：
+每张图当前均包含 panel 小图、source data 和 manifest；panel 数量随当前定版结构而定：
 
-- 8 个 panel PNG。
-- 8 个 panel PDF。
-- 8 个 panel source-data TSV。
-- 8 个 panel manifest JSON。
 - 1 个整图 PNG。
 - 1 个整图 PDF。
 - 1 个整图 source-data TSV。
 - 1 个整图 panel-manifest JSON。
 
-因此每张主图 36 个可追溯文件，6 张主图合计 216 个图版/源数据/manifest 文件。
+当前主图为 Fig. 1-5；原 Fig. 5 下放为 Extended Data Fig. 11。
 
 ## Fig. 1
 
@@ -131,7 +128,7 @@
 - g. Coverage/control panel：ridge controls target coverage = 1.000，排除 coverage 缺口作为主解释。
 - h. 解释边界：gap 更像 task-structure / direction-level mismatch，不是“再调一个 recipe 就能赢”。
 
-## Fig. 5
+## Extended Data Fig. 11
 
 **标题**
 
@@ -152,7 +149,7 @@ truth object 的 biological axis 解释到哪里为止？
 - g. Preliminary/mixed axes：显示多数 axes 不是同级 formal evidence。
 - h. 解释边界：transcription/chromatin = `primary_axis_but_qualified`；不写 fully established shared explanatory architecture。
 
-## Fig. 6
+## Fig. 5
 
 **标题**
 
@@ -185,6 +182,7 @@ truth object 的 biological axis 解释到哪里为止？
 8. Extended Data Fig. 8：CRISPR DepMap vs RNAi DEMETER2 endpoint consistency 细节。
 9. Extended Data Fig. 9：covariate audit per-axis/per-target detail。
 10. Extended Data Fig. 10：final claim matrix、allowed/disallowed wording、reproducibility/runtime entrypoints。
+11. Extended Data Fig. 11：axis-level adjudication profile（原主文 Fig. 5 下放）。
 
 ## 作图生产规范
 
@@ -227,8 +225,8 @@ truth object 的 biological axis 解释到哪里为止？
 - 若关键指标偏差超过预设 tolerance，或排序/claim tier 发生变化，停止并人工确认。
 - 对 Fig. 3/Fig. 4，必须检查 `shared_mean_baseline`、formal `GEARS`、GEARS sweep candidate 的 backbone/separation/shift-excess headline 数字。
 - 对 Fig. 1/Fig. 2，必须检查 Q1 anchor 数、shared anchor set 和 anchor claim tier。
-- 对 Fig. 5，必须检查 `transcription / chromatin` 仍为唯一 formal positive axis，且 `shift R2`、`dependency R2`、bootstrap stability 和 claim tier 没有改变结论。
-- 对 Fig. 6，必须检查 CRISPR vs RNAi endpoint hierarchy、K562 A0/A1/B tier 和 covariate boundary。
+- 对 Fig. 5，必须检查 CRISPR vs RNAi endpoint hierarchy、K562 A0/A1/B tier 和 covariate boundary。
+- 对 Extended Data Fig. 11，必须检查 `transcription / chromatin` 仍为唯一 formal positive axis，且 `shift R2`、`dependency R2`、bootstrap stability 和 claim tier 没有改变结论。
 
 GEARS 训练不重跑；因此 GEARS 相关 sanity check 只比较冻结评分/预测产物与当前图版 source data。
 
@@ -287,8 +285,8 @@ reports/manuscript_figures_v2/
   fig2_anchor_tiering/
   fig3_model_tradeoff/
   fig4_sweep_controls/
-  fig5_axis_tiering/
   fig6_boundary/
+  fig5_axis_interpretation/  # outputs Extended Data Fig. 11
 ```
 
 ### 推荐脚本结构
@@ -310,9 +308,9 @@ scripts/manuscript/
 
 ## 投稿压缩策略
 
-如果投稿时只能放 5 张主图，优先把 **Fig. 5 axis-level interpretation** 降到 Extended Data。
+当前投稿结构已经采用 5 张主图：**原 Fig. 5 axis-level interpretation** 已降到 Extended Data Fig. 11。
 
-不建议降级 Fig. 6。Fig. 6 是防止 overclaim 的关键，负责把 covariate boundary、K562 supplementary status 和 endpoint hierarchy 放在主文层面。
+原 Fig. 6 已前移为 Fig. 5。Fig. 5 是防止 overclaim 的关键，负责把 covariate boundary、K562 supplementary status 和 endpoint hierarchy 放在主文层面。
 
 压缩版主图可以是：
 
@@ -322,7 +320,7 @@ scripts/manuscript/
 4. Fig. 4 sweep / controls。
 5. Fig. 5 final boundary。
 
-其中原 Fig. 5 axis-level interpretation 进入 Extended Data。
+其中原 Fig. 5 axis-level interpretation 进入 Extended Data Fig. 11。
 
 ## 禁写边界
 

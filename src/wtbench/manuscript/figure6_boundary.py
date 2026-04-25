@@ -8,24 +8,23 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from wtbench.manuscript.figure_io import ensure_dir, repo_root, save_figure, write_tsv
+from wtbench.manuscript.figure_io import ensure_dir, repo_root, write_tsv
 from wtbench.manuscript.hash_manifest import write_figure_manifest, write_panel_manifest
 from wtbench.manuscript.manuscript_style import COLORS, add_panel_label, apply_manuscript_style, clean_axes
 
 
 FIGURE_ID = "figure6"
-FIGURE_TITLE = "Covariate, temporal and endpoint analyses define the final claim boundary"
+FIGURE_TITLE = "Covariate, temporal and endpoint boundaries define the final benchmark scope"
 SCRIPT_PATH = Path("scripts/manuscript/build_figure6_boundary.py")
-CLAIM_BOUNDARY = "Final claims are limitation-bounded: CRISPR is primary, RNAi is sensitivity, K562 is supplementary, discovery is gated."
+CLAIM_BOUNDARY = (
+    "Three independent boundary layers define the final benchmark scope: "
+    "covariate boundary blocks fully deconfounded wording; "
+    "temporal boundary blocks content-level replication and primary co-pillar; "
+    "endpoint hierarchy boundary blocks treating RNAi as primary readout."
+)
 
 COVARIATE_SUMMARY = Path("reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/summary.tsv")
-BARCODE_NOTE = Path("reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/barcode_gem_group_mapping_note.md")
-ANCHOR_TIERING = Path("reports/stage2_truth_driven_bridge/sensitivity/anchor_claim_tiering.tsv")
 TEMPORAL_BRIDGE = Path("reports/stage2_truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_bridge_summary.tsv")
-TEMPORAL_CALLS = Path("reports/stage2_truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_panel_calls.tsv")
-TEMPORAL_STRUCTURE = Path("reports/stage2_truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_structure_summary.tsv")
-K562_TIER_13D = Path("reports/stage2_truth_driven_bridge/dixit_axis_compression_gse90063_13d/dixit_evidence_tier_summary.tsv")
-K562_TIER_7D = Path("reports/stage2_truth_driven_bridge/dixit_axis_compression_gse90063_7d/dixit_evidence_tier_summary.tsv")
 HCC_ENDPOINT = Path("reports/stage2_truth_driven_bridge/hcc38_hcc1143_rnai_endpoint_consistency/endpoint_consistency_summary.tsv")
 K562_ENDPOINT = Path("reports/stage2_truth_driven_bridge/k562_rnai_endpoint_consistency/endpoint_consistency_summary.tsv")
 FINAL_CLAIM_MATRIX = Path("reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv")
@@ -39,16 +38,18 @@ def panel_dir(root: Path) -> Path:
     return output_dir(root) / "panels"
 
 
+def manuscript_figure_dir(root: Path) -> Path:
+    return root / "manuscript/figures/Figure_5"
+
+
+def manuscript_panel_dir(root: Path) -> Path:
+    return manuscript_figure_dir(root) / "panels"
+
+
 def input_paths(root: Path) -> list[Path]:
     return [
         root / COVARIATE_SUMMARY,
-        root / BARCODE_NOTE,
-        root / ANCHOR_TIERING,
         root / TEMPORAL_BRIDGE,
-        root / TEMPORAL_CALLS,
-        root / TEMPORAL_STRUCTURE,
-        root / K562_TIER_13D,
-        root / K562_TIER_7D,
         root / HCC_ENDPOINT,
         root / K562_ENDPOINT,
         root / FINAL_CLAIM_MATRIX,
@@ -66,13 +67,25 @@ def write_panel(
     height: float = 2.35,
 ) -> dict[str, Path]:
     pdir = ensure_dir(panel_dir(root))
+    manuscript_pdir = ensure_dir(manuscript_panel_dir(root))
     stem = f"{FIGURE_ID}_panel{panel_id}"
+    manuscript_stem = f"Figure_5_panel_{panel_id}"
     source_path = write_tsv(source_df, pdir / f"{stem}_source_data.tsv")
+    manuscript_source_path = write_tsv(source_df, manuscript_pdir / f"{manuscript_stem}_source_data.tsv")
     fig, ax = plt.subplots(figsize=(width, height))
     render(ax, source_df)
     png_path = pdir / f"{stem}.png"
     pdf_path = pdir / f"{stem}.pdf"
-    output_paths = save_figure(fig, png_path, pdf_path)
+    manuscript_png_path = manuscript_pdir / f"{manuscript_stem}.png"
+    manuscript_pdf_path = manuscript_pdir / f"{manuscript_stem}.pdf"
+    for path in [png_path, pdf_path, manuscript_png_path, manuscript_pdf_path]:
+        ensure_dir(path.parent)
+    fig.savefig(png_path, dpi=300, bbox_inches="tight")
+    fig.savefig(pdf_path, bbox_inches="tight")
+    fig.savefig(manuscript_png_path, dpi=300, bbox_inches="tight")
+    fig.savefig(manuscript_pdf_path, bbox_inches="tight")
+    output_paths = [png_path, pdf_path]
+    plt.close(fig)
     manifest_path = pdir / f"{stem}_manifest.json"
     write_panel_manifest(
         manifest_path=manifest_path,
@@ -83,6 +96,17 @@ def write_panel(
         input_paths=input_paths(root),
         source_data_path=source_path,
         output_paths=output_paths,
+        claim_boundary=CLAIM_BOUNDARY,
+    )
+    write_panel_manifest(
+        manifest_path=manuscript_pdir / f"{manuscript_stem}_manifest.json",
+        repo_root=root,
+        panel_id=f"figure5{panel_id}",
+        panel_title=panel_title,
+        script_path=root / SCRIPT_PATH,
+        input_paths=input_paths(root),
+        source_data_path=manuscript_source_path,
+        output_paths=[manuscript_png_path, manuscript_pdf_path],
         claim_boundary=CLAIM_BOUNDARY,
     )
     return {"source": source_path, "png": png_path, "pdf": pdf_path, "manifest": manifest_path}
@@ -118,201 +142,279 @@ def load_temporal(root: Path) -> pd.DataFrame:
 
 
 def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
-    plot = df.groupby("strat_column", as_index=False).agg(mean_tvd=("mean_tvd", "mean"), max_targets_gt025=("n_targets_tvd_gt_0.25", "sum"))
-    plot = plot.sort_values("mean_tvd", ascending=True)
-    y = np.arange(len(plot))
-    ax.barh(y, plot["mean_tvd"], color="#777777", height=0.62)
-    ax.set_yticks(y)
-    ax.set_yticklabels(plot["strat_column"].str.replace("_", " "))
-    ax.set_xlabel("Mean TVD across HCC contexts")
-    ax.set_title("Five covariate axes enter claim governance", loc="left")
-    clean_axes(ax)
-    ax.grid(axis="x", color=COLORS["grid"], linewidth=0.5)
-    add_panel_label(ax, "a", x=-0.30)
+    """Boundary architecture schematic — three layers defining claim scope."""
+    ax.set_axis_off()
+    ax.set_title("Boundary architecture", loc="left", pad=4)
+
+    layers = [
+        {
+            "label": "Covariate boundary",
+            "audits": "Audits: barcode gem group, UMI / signal, detected genes",
+            "blocks": "Blocks: fully deconfounded wording",
+            "color": COLORS["primary_qualified"],
+        },
+        {
+            "label": "Temporal boundary (K562)",
+            "audits": "Audits: 7d / 13d supplementary panel",
+            "blocks": "Blocks: content-level replication, primary co-pillar",
+            "color": "#B8A64A",
+        },
+        {
+            "label": "Endpoint hierarchy boundary",
+            "audits": "Audits: CRISPR DepMap primary, RNAi DEMETER2 sensitivity",
+            "blocks": "Blocks: treating RNAi as primary readout",
+            "color": "#8A8A8A",
+        },
+    ]
+
+    y = 0.90
+    box_height = 0.20
+    gap = 0.06
+    for layer in layers:
+        rect = plt.Rectangle(
+            (0.05, y - box_height),
+            0.90,
+            box_height,
+            transform=ax.transAxes,
+            facecolor="white",
+            edgecolor=layer["color"],
+            linewidth=1.2,
+            zorder=1,
+        )
+        ax.add_patch(rect)
+        ax.text(0.09, y - 0.025, layer["label"], fontweight="bold", fontsize=8, color=layer["color"], transform=ax.transAxes, zorder=2)
+        ax.text(0.09, y - 0.085, layer["audits"], fontsize=6.5, color="#444444", transform=ax.transAxes, zorder=2)
+        ax.text(0.09, y - 0.145, layer["blocks"], fontsize=6.5, color="#666666", transform=ax.transAxes, zorder=2)
+        y -= (box_height + gap)
+
+    # Bottom arrow / convergence
+    ax.annotate(
+        "",
+        xy=(0.50, 0.12),
+        xytext=(0.50, 0.22),
+        arrowprops=dict(arrowstyle="->", color="#444444", lw=1.0),
+        transform=ax.transAxes,
+    )
+    ax.text(0.50, 0.06, "Final claim scope", ha="center", fontsize=8, fontweight="bold", color="#1F1F1F", transform=ax.transAxes)
+
+    add_panel_label(ax, "a", x=-0.04, y=1.02)
 
 
 def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
-    colors = df["final_wording_tier"].map({"primary_but_qualified": COLORS["primary_qualified"], "supporting_only": "#B59B2B"}).fillna("#BBBBBB")
-    y = np.arange(len(df))
-    ax.barh(y, [1] * len(df), color=colors, height=0.58)
-    ax.set_yticks(y)
-    ax.set_yticklabels(df["target_gene"])
-    ax.set_xlim(0, 1)
-    ax.set_xticks([])
-    for yi, row in zip(y, df.itertuples()):
-        ax.text(0.03, yi, row.final_wording_tier.replace("_", " "), va="center", fontsize=7, color="white" if row.final_wording_tier == "primary_but_qualified" else "#222222")
-    ax.set_title("Covariate-aware tiering downgrades strongest wording", loc="left")
-    clean_axes(ax)
-    add_panel_label(ax, "b", x=-0.20)
+    """Covariate boundary compact evidence — mean TVD matrix by axis and cell line."""
+    ax.set_axis_off()
+    ax.set_title("Covariate boundary", loc="left", pad=4)
+
+    # Build matrix from source data
+    pivot = df.pivot(index="strat_column", columns="cell_line", values="mean_tvd")
+    pivot = pivot.reindex([
+        "barcode_gem_group",
+        "transcriptome_detected_genes_quantile_bin",
+        "transcriptome_total_signal_quantile_bin",
+        "num_umis_over_threshold_bin",
+        "num_umis_quantile_bin",
+    ])
+
+    n_rows = len(pivot)
+    n_cols = 3  # HCC38, HCC1143, impact
+    cell_w = 0.26
+    cell_h = 0.14
+    x0 = 0.08
+    y0 = 0.88
+
+    # Column headers
+    headers = ["HCC38", "HCC1143", "Impact on wording"]
+    for ci, h in enumerate(headers):
+        ax.text(x0 + ci * cell_w + cell_w / 2, y0 + 0.02, h, ha="center", va="bottom",
+                fontsize=6.5, fontweight="bold", color="#1F1F1F", transform=ax.transAxes)
+
+    # Row labels and cells
+    row_labels = [s.replace("_", " ") for s in pivot.index]
+    for ri, (row_label, row) in enumerate(zip(row_labels, pivot.itertuples())):
+        y = y0 - (ri + 1) * cell_h
+        # Row label
+        ax.text(x0 - 0.02, y + cell_h / 2, row_label, ha="right", va="center",
+                fontsize=5.5, color="#444444", transform=ax.transAxes)
+        # HCC38 cell
+        val_hcc38 = row.HCC38
+        bg_color = "#F5E6C8" if val_hcc38 > 0.25 else "#F8F8F8"
+        rect = plt.Rectangle((x0, y), cell_w, cell_h, transform=ax.transAxes,
+                             facecolor=bg_color, edgecolor="#DDDDDD", linewidth=0.5, zorder=1)
+        ax.add_patch(rect)
+        ax.text(x0 + cell_w / 2, y + cell_h / 2, f"{val_hcc38:.3f}", ha="center", va="center",
+                fontsize=6, color="#B8A64A" if val_hcc38 > 0.25 else "#444444", transform=ax.transAxes, zorder=2)
+        # HCC1143 cell
+        val_hcc1143 = row.HCC1143
+        bg_color = "#F5E6C8" if val_hcc1143 > 0.25 else "#F8F8F8"
+        rect = plt.Rectangle((x0 + cell_w, y), cell_w, cell_h, transform=ax.transAxes,
+                             facecolor=bg_color, edgecolor="#DDDDDD", linewidth=0.5, zorder=1)
+        ax.add_patch(rect)
+        ax.text(x0 + cell_w * 1.5, y + cell_h / 2, f"{val_hcc1143:.3f}", ha="center", va="center",
+                fontsize=6, color="#B8A64A" if val_hcc1143 > 0.25 else "#444444", transform=ax.transAxes, zorder=2)
+        # Impact cell
+        impact_text = _covariate_impact(pivot.index[ri])
+        rect = plt.Rectangle((x0 + cell_w * 2, y), cell_w, cell_h, transform=ax.transAxes,
+                             facecolor="white", edgecolor="#DDDDDD", linewidth=0.5, zorder=1)
+        ax.add_patch(rect)
+        ax.text(x0 + cell_w * 2.5, y + cell_h / 2, impact_text, ha="center", va="center",
+                fontsize=5, color="#666666", transform=ax.transAxes, zorder=2, wrap=True)
+
+    # TVD threshold annotation
+    ax.text(0.98, 0.02, "TVD > 0.25 blocks stronger wording", ha="right", fontsize=5.5,
+            color="#666666", transform=ax.transAxes, style="italic")
+
+    add_panel_label(ax, "b", x=-0.04, y=1.02)
+
+
+def _covariate_impact(strat_column: str) -> str:
+    mapping = {
+        "barcode_gem_group": "limits gem-group resolution",
+        "transcriptome_detected_genes_quantile_bin": "minor imbalance",
+        "transcriptome_total_signal_quantile_bin": "minor imbalance",
+        "num_umis_over_threshold_bin": "blocks deconfounded wording",
+        "num_umis_quantile_bin": "blocks deconfounded wording",
+    }
+    return mapping.get(strat_column, "audited")
 
 
 def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
+    """Temporal and endpoint hierarchy boundary — left: K562 temporal, right: endpoint hierarchy."""
     ax.set_axis_off()
-    ax.set_title("barcode_gem_group is a design-proxy axis", loc="left", pad=4)
-    rows = [
-        ("HCC38", "aggrMH001-3", "not MH001/2/3 resolved"),
-        ("HCC1143", "aggrMH004-6", "not MH004/5/6 resolved"),
-    ]
-    y = 0.75
-    for cell, aggr, boundary in rows:
-        ax.text(0.05, y, cell, fontweight="bold", fontsize=8, transform=ax.transAxes)
-        ax.text(0.28, y, aggr, fontsize=8, transform=ax.transAxes)
-        ax.text(0.58, y, boundary, fontsize=7, color=COLORS["boundary"], transform=ax.transAxes)
-        y -= 0.22
-    ax.text(0.05, 0.18, "Allowed: aggregation/design proxy", color=COLORS["primary_qualified"], fontsize=7, transform=ax.transAxes)
-    ax.text(0.05, 0.06, "Not allowed: single-run MH00x label", color=COLORS["boundary"], fontsize=7, transform=ax.transAxes)
-    add_panel_label(ax, "c", x=-0.04)
+    ax.set_title("Temporal and endpoint hierarchy boundary", loc="left", pad=4)
 
+    temporal = df.loc[df["subpanel"].eq("temporal")].copy()
+    endpoint = df.loc[df["subpanel"].eq("endpoint")].copy()
 
-def render_panel_d(ax: plt.Axes, df: pd.DataFrame) -> None:
-    plot = df.copy()
-    x = np.arange(len(plot))
-    ax.bar(x, plot["n_formal_bridgeable_targets"], color="#777777", width=0.55)
-    for xi, row in zip(x, plot.itertuples()):
-        role = "early\nprobe" if row.timepoint == "7d" else "primary\nsupp."
-        ax.text(xi, row.n_formal_bridgeable_targets + 0.3, role, ha="center", fontsize=6)
-    ax.set_xticks(x)
-    ax.set_xticklabels(plot["timepoint"])
-    ax.set_ylim(0, 14)
-    ax.set_ylabel("Formal bridgeable targets")
-    ax.set_title("K562 temporal panel is supplementary", loc="left")
-    clean_axes(ax)
-    ax.grid(axis="y", color=COLORS["grid"], linewidth=0.5)
-    add_panel_label(ax, "d")
-
-
-def render_panel_e(ax: plt.Axes, df: pd.DataFrame) -> None:
-    x = np.arange(len(df))
+    # Left sub-panel: K562 temporal
+    ax_left = ax.inset_axes([0.00, 0.10, 0.46, 0.80])
+    x = np.arange(len(temporal))
     width = 0.34
-    ax.bar(x - width / 2, df["aligned_spearman"], width=width, color=COLORS["baseline"], label="rank bridge")
-    ax2 = ax.twinx()
-    ax2.bar(x + width / 2, df["mean_truth_metric"], width=width, color=COLORS["gears"], label="mean shift")
-    ax.set_xticks(x)
-    ax.set_xticklabels(df["timepoint"])
-    ax.set_title("Temporal stratification is not monotonic improvement", loc="left")
-    ax.set_ylabel("Rank bridge Spearman")
-    ax2.set_ylabel("Mean shift")
-    ax.set_ylim(0, 0.85)
-    ax2.set_ylim(0, max(df["mean_truth_metric"]) * 1.35)
+    ax_left.bar(x - width / 2, temporal["aligned_spearman"], width=width, color="#B8A64A", label="rank bridge")
+    ax2_left = ax_left.twinx()
+    ax2_left.bar(x + width / 2, temporal["mean_truth_metric"], width=width, color="#D7C69B", label="mean shift")
+    ax_left.set_xticks(x)
+    ax_left.set_xticklabels(temporal["timepoint"])
+    ax_left.set_ylabel("Rank bridge Spearman", fontsize=6, labelpad=2)
+    ax2_left.set_ylabel("Mean shift", fontsize=6, labelpad=2, rotation=270, va="bottom")
+    ax_left.set_ylim(0, 0.85)
+    ax2_left.set_ylim(0, max(temporal["mean_truth_metric"]) * 1.35)
     handles = [
-        plt.Rectangle((0, 0), 1, 1, color=COLORS["baseline"]),
-        plt.Rectangle((0, 0), 1, 1, color=COLORS["gears"]),
+        plt.Rectangle((0, 0), 1, 1, color="#B8A64A"),
+        plt.Rectangle((0, 0), 1, 1, color="#D7C69B"),
     ]
-    ax.legend(handles, ["rank bridge", "mean shift"], frameon=False, loc="upper right")
-    clean_axes(ax)
-    ax2.spines["top"].set_visible(False)
-    ax.grid(axis="y", color=COLORS["grid"], linewidth=0.5)
-    add_panel_label(ax, "e")
+    ax_left.legend(handles, ["rank bridge", "mean shift"], frameon=False, loc="upper right", fontsize=5.5)
+    clean_axes(ax_left)
+    ax2_left.spines["top"].set_visible(False)
+    ax_left.grid(axis="y", color=COLORS["grid"], linewidth=0.5)
+    ax_left.set_title("K562 temporal", fontsize=6.5, loc="left", pad=2)
 
-
-def render_panel_f(ax: plt.Axes, df: pd.DataFrame) -> None:
-    plot = df.copy()
-    counts = plot.groupby(["timepoint", "tier_group"]).size().reset_index(name="n")
-    tiers = ["A0 confirmed", "A1 supporting", "B not eligible"]
-    colors = {"A0 confirmed": COLORS["primary_qualified"], "A1 supporting": "#B59B2B", "B not eligible": "#BDBDBD"}
-    xlabels = [tp for tp in ["7d", "13d"] if tp in set(counts["timepoint"])]
-    x = np.arange(len(xlabels))
-    bottom = np.zeros(len(xlabels))
-    for tier in tiers:
-        vals = [int(counts.loc[(counts["timepoint"].eq(tp)) & (counts["tier_group"].eq(tier)), "n"].sum()) for tp in xlabels]
-        ax.bar(x, vals, bottom=bottom, color=colors[tier], width=0.55, label=tier)
-        bottom += vals
-    ax.set_xticks(x)
-    ax.set_xticklabels(xlabels)
-    ax.set_ylabel("Evidence objects")
-    ax.set_title("K562 evidence remains supplementary-tiered", loc="left")
-    ax.legend(frameon=False, loc="upper right")
-    clean_axes(ax)
-    ax.grid(axis="y", color=COLORS["grid"], linewidth=0.5)
-    add_panel_label(ax, "f")
-
-
-def render_panel_g(ax: plt.Axes, df: pd.DataFrame) -> None:
-    plot = df.pivot_table(index="context", columns="platform_pair", values="spearman", aggfunc="first").reset_index()
+    # Right sub-panel: endpoint hierarchy
+    ax_right = ax.inset_axes([0.54, 0.10, 0.46, 0.80])
+    plot = endpoint.pivot_table(index="context", columns="platform_pair", values="spearman", aggfunc="first").reset_index()
     order = ["HCC38", "HCC1143", "K562 7d", "K562 13d"]
     plot["context"] = pd.Categorical(plot["context"], categories=order, ordered=True)
     plot = plot.sort_values("context")
-    x = np.arange(len(plot))
-    width = 0.34
-    ax.bar(x - width / 2, plot["crispr"], width=width, color=COLORS["baseline"], label="CRISPR DepMap")
-    ax.bar(x + width / 2, plot["rnai"], width=width, color="#BDBDBD", label="RNAi DEMETER2")
-    ax.set_xticks(x)
-    ax.set_xticklabels(plot["context"], rotation=20, ha="right")
-    ax.set_ylim(0, 0.86)
-    ax.set_ylabel("Bridge Spearman")
-    ax.set_title("CRISPR bridge remains stronger in every context", loc="left")
-    ax.legend(frameon=False, loc="upper right")
-    clean_axes(ax)
-    ax.grid(axis="y", color=COLORS["grid"], linewidth=0.5)
-    add_panel_label(ax, "g")
+    x_r = np.arange(len(plot))
+    width_r = 0.34
+    ax_right.bar(x_r - width_r / 2, plot["crispr"], width=width_r, color=COLORS["primary_qualified"], label="CRISPR")
+    ax_right.bar(x_r + width_r / 2, plot["rnai"], width=width_r, color="#C8C8C8", label="RNAi")
+    ax_right.set_xticks(x_r)
+    ax_right.set_xticklabels(plot["context"], rotation=25, ha="right", fontsize=5.5)
+    ax_right.set_ylim(0, 0.86)
+    ax_right.set_ylabel("Bridge Spearman", fontsize=6, labelpad=1)
+    ax_right.legend(frameon=False, loc="upper right", fontsize=5.5)
+    clean_axes(ax_right)
+    ax_right.grid(axis="y", color=COLORS["grid"], linewidth=0.5)
+    ax_right.set_title("Endpoint hierarchy", fontsize=6.5, loc="left", pad=2)
+
+    add_panel_label(ax, "c", x=-0.04, y=1.02)
 
 
-def render_panel_h(ax: plt.Axes, df: pd.DataFrame) -> None:
+def render_panel_d(ax: plt.Axes, df: pd.DataFrame) -> None:
+    """Final claim boundary — structured claim ledger."""
     ax.set_axis_off()
     ax.set_title("Final claim boundary", loc="left", pad=4)
-    rows = [
-        ("Primary", "CRISPR DepMap bridge readout"),
-        ("Sensitivity", "RNAi DEMETER2 endpoint"),
-        ("Supplementary", "K562 temporal architecture form"),
-        ("Gated", "discovery / phenotype shifter"),
+
+    sections = [
+        ("Primary readout", [
+            "CRISPR DepMap dependency (HCC38 / HCC1143)",
+            "Aligned Spearman rho = 0.726 / 0.779",
+        ], COLORS["primary_qualified"]),
+        ("Supplementary evidence", [
+            "K562 temporal panel (7d / 13d)",
+            "Architecture-form recurrence, bounded bridge-form",
+            "Not content-level replication",
+        ], "#B8A64A"),
+        ("Sensitivity endpoint", [
+            "RNAi DEMETER2 (cross-platform, weaker)",
+            "Bridge Spearman consistently below CRISPR",
+        ], "#B29C5A"),
+        ("Not claimed", [
+            "Fully deconfounded architecture",
+            "Content-level replication in K562",
+            "RNAi as primary readout",
+            "Mechanism-level recovery",
+        ], "#8A8A8A"),
     ]
-    y = 0.84
-    for label, text in rows:
-        color = COLORS["primary_qualified"] if label == "Primary" else ("#B59B2B" if label in {"Sensitivity", "Supplementary"} else COLORS["boundary"])
-        ax.text(0.04, y, label, color=color, fontweight="bold", fontsize=8, transform=ax.transAxes)
-        ax.text(0.38, y, text, fontsize=8, transform=ax.transAxes)
-        y -= 0.19
-    ax.text(0.04, 0.06, "Not allowed: K562 primary co-pillar, RNAi primary evidence, broad cross-context validation.", fontsize=6, color="#666666", transform=ax.transAxes)
-    add_panel_label(ax, "h", x=-0.04)
 
+    y = 0.88
+    for label, items, color in sections:
+        ax.text(0.06, y, label, color=color, fontweight="bold", fontsize=8.5, transform=ax.transAxes)
+        y -= 0.065
+        for item in items:
+            ax.text(0.10, y, "\u2022 " + item, fontsize=7, transform=ax.transAxes)
+            y -= 0.055
+        y -= 0.02
 
-def tier_group(raw: str) -> str:
-    if raw == "supplementary_confirmed":
-        return "A0 confirmed"
-    if raw == "supplementary_supporting":
-        return "A1 supporting"
-    return "B not eligible"
+    # Bottom quantitative anchor
+    anchor_text = (
+        "Primary n = 47\u201348 | K562 n = 10 | "
+        "CRISPR > RNAi in all 4 contexts | "
+        "Covariate audited but not closed"
+    )
+    ax.text(0.06, 0.04, anchor_text, fontsize=6, color="#8A8A8A", transform=ax.transAxes)
+
+    add_panel_label(ax, "d", x=-0.04, y=1.02)
 
 
 def build_sources(root: Path) -> dict[str, pd.DataFrame]:
     cov = pd.read_csv(root / COVARIATE_SUMMARY, sep="\t")
-    anchor = pd.read_csv(root / ANCHOR_TIERING, sep="\t")
     temporal = load_temporal(root)
-    structure = pd.read_csv(root / TEMPORAL_STRUCTURE, sep="\t")
-    tiers_13 = pd.read_csv(root / K562_TIER_13D, sep="\t").assign(timepoint="13d")
-    tiers_7 = pd.read_csv(root / K562_TIER_7D, sep="\t").assign(timepoint="7d")
-    tiers = pd.concat([tiers_7, tiers_13], ignore_index=True)
-    tiers["tier_group"] = tiers["evidence_tier"].map(tier_group)
     endpoint = load_endpoint(root)
-    final_claim = pd.read_csv(root / FINAL_CLAIM_MATRIX, sep="\t")
-    temporal_overview = temporal[["timepoint", "role", "n_formal_bridgeable_targets", "n_cells_with_single_feature", "n_control_cells"]].drop_duplicates()
-    final_boundary = final_claim.loc[
-        final_claim["object"].isin(["Dixit_K562_temporal_panel", "Dixit_K562_supplementary", "discovery_phenotype_shifter"]),
-        ["object", "evidence_tier", "allowed_wording", "disallowed_wording"],
-    ]
-    # Add architecture class rows to tier source to preserve the confirmed backbone_plus_shift_excess call.
-    arch = structure.loc[structure["comparison_field"].eq("architecture class"), ["timepoint", "comparison_field", "replication_status"]].copy()
-    arch["object_type"] = "dataset_level"
-    arch["object_id"] = "architecture_class"
-    arch["observed_pattern"] = arch["replication_status"]
-    arch["evidence_tier"] = "supplementary_confirmed"
-    arch["claim_boundary"] = "architecture form confirmed; content-level replication not eligible"
-    arch["tier_group"] = "A0 confirmed"
-    tiers_for_plot = pd.concat([tiers[["timepoint", "object_type", "object_id", "observed_pattern", "evidence_tier", "claim_boundary", "tier_group"]], arch[["timepoint", "object_type", "object_id", "observed_pattern", "evidence_tier", "claim_boundary", "tier_group"]]], ignore_index=True)
+
+    # Panel a: boundary architecture — textual description
+    source_a = pd.DataFrame([
+        {"boundary_layer": "covariate", "audits": "barcode gem group, UMI/signal, detected genes", "blocks": "fully deconfounded wording"},
+        {"boundary_layer": "temporal", "audits": "K562 7d/13d supplementary panel", "blocks": "content-level replication, primary co-pillar"},
+        {"boundary_layer": "endpoint_hierarchy", "audits": "CRISPR DepMap primary, RNAi DEMETER2 sensitivity", "blocks": "treating RNAi as primary readout"},
+    ])
+
+    # Panel b: covariate summary
+    source_b = cov[["cell_line", "strat_column", "mean_tvd", "n_targets_tvd_gt_0.25"]].copy()
+
+    # Panel c: combined temporal + endpoint
+    temporal_for_c = temporal[["timepoint", "aligned_spearman", "mean_truth_metric", "median_truth_metric"]].copy()
+    endpoint_for_c = endpoint[["context", "platform_pair", "spearman", "n_shared_targets"]].copy()
+    source_c = pd.concat([
+        temporal_for_c.assign(subpanel="temporal"),
+        endpoint_for_c.assign(subpanel="endpoint"),
+    ], ignore_index=True)
+
+    # Panel d: claim ledger
+    source_d = pd.DataFrame([{
+        "primary_readout": "CRISPR DepMap dependency (HCC38 / HCC1143)",
+        "primary_spearman": "0.726 / 0.779",
+        "supplementary": "K562 temporal panel (7d / 13d)",
+        "sensitivity": "RNAi DEMETER2 (cross-platform, weaker)",
+        "not_claimed": "fully deconfounded architecture; content-level replication; RNAi primary; mechanism recovery",
+        "quantitative_anchor": "Primary n = 47-48 | K562 n = 10 | CRISPR > RNAi in all 4 contexts | Covariate audited but not closed",
+    }])
+
     return {
-        "a": cov,
-        "b": anchor,
-        "c": pd.DataFrame(
-            [
-                {"cell_line": "HCC38", "aggregation": "aggrMH001-3", "boundary": "design proxy, not run resolved"},
-                {"cell_line": "HCC1143", "aggregation": "aggrMH004-6", "boundary": "design proxy, not run resolved"},
-            ]
-        ),
-        "d": temporal_overview,
-        "e": temporal[["timepoint", "role", "aligned_spearman", "mean_truth_metric", "median_truth_metric"]],
-        "f": tiers_for_plot,
-        "g": endpoint[["context", "platform_pair", "spearman", "n_shared_targets"]],
-        "h": final_boundary,
+        "a": source_a,
+        "b": source_b,
+        "c": source_c,
+        "d": source_d,
     }
 
 
@@ -322,38 +424,52 @@ def render_panel_by_id(panel_id: str) -> Callable[[plt.Axes, pd.DataFrame], None
         "b": render_panel_b,
         "c": render_panel_c,
         "d": render_panel_d,
-        "e": render_panel_e,
-        "f": render_panel_f,
-        "g": render_panel_g,
-        "h": render_panel_h,
     }[panel_id]
 
 
 def panel_title(panel_id: str) -> str:
     return {
-        "a": "Covariate audit overview",
-        "b": "Anchor tiers after covariate audit",
-        "c": "barcode_gem_group boundary",
-        "d": "K562 temporal panel overview",
-        "e": "K562 temporal stratification",
-        "f": "K562 A0/A1/B tiering",
-        "g": "CRISPR versus RNAi endpoint hierarchy",
-        "h": "Final claim boundary",
+        "a": "Boundary architecture",
+        "b": "Covariate boundary",
+        "c": "Temporal and endpoint hierarchy boundary",
+        "d": "Final claim boundary",
     }[panel_id]
 
 
 def render_combined(root: Path, sources: dict[str, pd.DataFrame], panel_outputs: dict[str, dict[str, Path]]) -> dict[str, Path]:
     out = ensure_dir(output_dir(root))
+    manuscript_out = ensure_dir(manuscript_figure_dir(root))
     combined_source = pd.concat([df.assign(panel=panel_id) for panel_id, df in sources.items()], ignore_index=True, sort=False)
     combined_source_path = write_tsv(combined_source, out / f"{FIGURE_ID}_source_data.tsv")
-    fig = plt.figure(figsize=(11.0, 10.0))
-    gs = fig.add_gridspec(4, 2, hspace=0.72, wspace=0.46)
-    axes = [fig.add_subplot(gs[i, j]) for i in range(4) for j in range(2)]
-    for ax, panel_id in zip(axes, list("abcdefgh")):
-        render_panel_by_id(panel_id)(ax, sources[panel_id])
+    manuscript_source_path = write_tsv(combined_source, manuscript_out / "Figure_5_source_data.tsv")
+
+    fig = plt.figure(figsize=(10.5, 9.5))
+    gs = fig.add_gridspec(2, 2, hspace=0.40, wspace=0.35)
+
+    ax_a = fig.add_subplot(gs[0, 0])
+    render_panel_a(ax_a, sources["a"])
+
+    ax_b = fig.add_subplot(gs[0, 1])
+    render_panel_b(ax_b, sources["b"])
+
+    ax_c = fig.add_subplot(gs[1, 0])
+    render_panel_c(ax_c, sources["c"])
+
+    ax_d = fig.add_subplot(gs[1, 1])
+    render_panel_d(ax_d, sources["d"])
+
     png_path = out / f"{FIGURE_ID}.png"
     pdf_path = out / f"{FIGURE_ID}.pdf"
-    output_paths = save_figure(fig, png_path, pdf_path)
+    manuscript_png = manuscript_out / "Figure_5.png"
+    manuscript_pdf = manuscript_out / "Figure_5.pdf"
+    for path in [png_path, pdf_path, manuscript_png, manuscript_pdf]:
+        ensure_dir(path.parent)
+    fig.savefig(png_path, dpi=300, bbox_inches="tight")
+    fig.savefig(pdf_path, bbox_inches="tight")
+    fig.savefig(manuscript_png, dpi=300, bbox_inches="tight")
+    fig.savefig(manuscript_pdf, bbox_inches="tight")
+    output_paths = [png_path, pdf_path]
+    plt.close(fig)
     manifest_path = out / f"{FIGURE_ID}_panel_manifest.json"
     write_figure_manifest(
         manifest_path=manifest_path,
@@ -361,9 +477,24 @@ def render_combined(root: Path, sources: dict[str, pd.DataFrame], panel_outputs:
         figure_id=FIGURE_ID,
         figure_title=FIGURE_TITLE,
         script_path=root / SCRIPT_PATH,
-        panel_manifest_paths=[panel_outputs[p]["manifest"] for p in list("abcdefgh")],
+        panel_manifest_paths=[panel_outputs[p]["manifest"] for p in list("abcd")],
         combined_source_data_path=combined_source_path,
         output_paths=output_paths,
+        input_paths=input_paths(root),
+        claim_boundary=CLAIM_BOUNDARY,
+    )
+    write_figure_manifest(
+        manifest_path=manuscript_out / "Figure_5_panel_manifest.json",
+        repo_root=root,
+        figure_id="figure5",
+        figure_title=FIGURE_TITLE,
+        script_path=root / SCRIPT_PATH,
+        panel_manifest_paths=[
+            manuscript_panel_dir(root) / f"Figure_5_panel_{p}_manifest.json"
+            for p in list("abcd")
+        ],
+        combined_source_data_path=manuscript_source_path,
+        output_paths=[manuscript_png, manuscript_pdf],
         input_paths=input_paths(root),
         claim_boundary=CLAIM_BOUNDARY,
     )
@@ -378,15 +509,15 @@ def main(argv: list[str] | None = None) -> None:
     apply_manuscript_style()
     sources = build_sources(root)
     panel_outputs: dict[str, dict[str, Path]] = {}
-    for panel_id in list("abcdefgh"):
+    for panel_id in list("abcd"):
         panel_outputs[panel_id] = write_panel(
             root=root,
             panel_id=panel_id,
             panel_title=panel_title(panel_id),
             source_df=sources[panel_id],
             render=render_panel_by_id(panel_id),
-            width=3.45 if panel_id in {"a", "g"} else 3.2,
-            height=2.6 if panel_id in {"a", "g"} else 2.35,
+            width=4.8 if panel_id == "c" else 4.2,
+            height=4.2 if panel_id in {"a", "c", "d"} else 3.8,
         )
     if not args.panels_only:
         render_combined(root, sources, panel_outputs)
