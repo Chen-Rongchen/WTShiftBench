@@ -40,8 +40,7 @@
 | Fig. 2 | `reports/manuscript_figures_v2/fig2_anchor_tiering/` | `reports/manuscript_figures_v2/fig2_anchor_tiering/figure2_source_data.tsv` | `reports/manuscript_figures_v2/fig2_anchor_tiering/figure2_panel_manifest.json` |
 | Fig. 3 | `reports/manuscript_figures_v2/fig3_model_tradeoff/` | `reports/manuscript_figures_v2/fig3_model_tradeoff/figure3_source_data.tsv` | `reports/manuscript_figures_v2/fig3_model_tradeoff/figure3_panel_manifest.json` |
 | Fig. 4 | `reports/manuscript_figures_v2/fig4_sweep_controls/` | `reports/manuscript_figures_v2/fig4_sweep_controls/figure4_source_data.tsv` | `reports/manuscript_figures_v2/fig4_sweep_controls/figure4_panel_manifest.json` |
-| Fig. 5 | `reports/manuscript_figures_v2/fig5_axis_interpretation/` | `reports/manuscript_figures_v2/fig5_axis_interpretation/figure5_source_data.tsv` | `reports/manuscript_figures_v2/fig5_axis_interpretation/figure5_panel_manifest.json` |
-| Fig. 6 | `reports/manuscript_figures_v2/fig6_boundary/` | `reports/manuscript_figures_v2/fig6_boundary/figure6_source_data.tsv` | `reports/manuscript_figures_v2/fig6_boundary/figure6_panel_manifest.json` |
+| Fig. 5 | `reports/manuscript_figures_v2/fig6_boundary/` | `reports/manuscript_figures_v2/fig6_boundary/figure6_source_data.tsv` | `reports/manuscript_figures_v2/fig6_boundary/figure6_panel_manifest.json` |
 
 每个主图 panel 还有独立 PNG、PDF、source data TSV 和 manifest JSON，位于对应图目录的 `panels/` 子目录。
 
@@ -61,6 +60,7 @@ Extended Data 目录：`reports/manuscript_extended_data_v1/`
 | Extended Data Fig. 8 | `reports/manuscript_extended_data_v1/edfig8_endpoint_hierarchy/` | `reports/manuscript_extended_data_v1/edfig8_endpoint_hierarchy/edfig8_source_data.tsv` | `reports/manuscript_extended_data_v1/edfig8_endpoint_hierarchy/edfig8_panel_manifest.json` |
 | Extended Data Fig. 9 | `reports/manuscript_extended_data_v1/edfig9_covariate_audit/` | `reports/manuscript_extended_data_v1/edfig9_covariate_audit/edfig9_source_data.tsv` | `reports/manuscript_extended_data_v1/edfig9_covariate_audit/edfig9_panel_manifest.json` |
 | Extended Data Fig. 10 | `reports/manuscript_extended_data_v1/edfig10_reproducibility/` | `reports/manuscript_extended_data_v1/edfig10_reproducibility/edfig10_source_data.tsv` | `reports/manuscript_extended_data_v1/edfig10_reproducibility/edfig10_panel_manifest.json` |
+| Extended Data Fig. 11 | `reports/manuscript_figures_v2/fig5_axis_interpretation/` | `reports/manuscript_figures_v2/fig5_axis_interpretation/figure5_source_data.tsv` | `reports/manuscript_figures_v2/fig5_axis_interpretation/figure5_panel_manifest.json` |
 
 ## Supplementary tables 与投稿包 manifest
 

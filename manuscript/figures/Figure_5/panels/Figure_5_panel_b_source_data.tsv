@@ -1,27 +1,11 @@
-axis_id	call_tier	explanatory_call	formal_call_eligible
-chromatin remodeling	formal	mixed_or_low_signal_axis	True
-transcription regulation	formal	mixed_or_low_signal_axis	True
-nuclear receptor / metabolism	formal	mixed_or_low_signal_axis	True
-TGF-beta / BMP signaling	formal	mixed_or_low_signal_axis	True
-proteostasis / chaperone	preliminary	preliminary_dependency_heavy_axis	False
-ribosomal / translation	preliminary	preliminary_dependency_heavy_axis	False
-RNA processing / transcription	preliminary	preliminary_dependency_heavy_axis	False
-ribosome biogenesis / nucleolar	preliminary	preliminary_mixed_or_low_signal_axis	False
-nuclear receptor / co-activator	preliminary	preliminary_mixed_or_low_signal_axis	False
-cytoskeleton / cell motility	preliminary	preliminary_mixed_or_low_signal_axis	False
-ER stress / UPR	preliminary	preliminary_mixed_or_low_signal_axis	False
-NF-κB / copper signaling	preliminary	preliminary_mixed_or_low_signal_axis	False
-metabolism / transcription	preliminary	preliminary_mixed_or_low_signal_axis	False
-peroxisome / metabolism	preliminary	preliminary_mixed_or_low_signal_axis	False
-cell cycle / replication	preliminary	preliminary_mixed_or_low_signal_axis	False
-synaptic / signaling	preliminary	preliminary_mixed_or_low_signal_axis	False
-growth factor / proliferation	preliminary	preliminary_mixed_or_low_signal_axis	False
-JAK-STAT signaling	preliminary	preliminary_mixed_or_low_signal_axis	False
-signaling / oncogene	preliminary	preliminary_mixed_or_low_signal_axis	False
-oxidative stress / antioxidant	preliminary	preliminary_mixed_or_low_signal_axis	False
-oxidative stress / mitochondrial	preliminary	preliminary_mixed_or_low_signal_axis	False
-NF-κB / MAPK signaling	preliminary	preliminary_mixed_or_low_signal_axis	False
-growth / proliferation	preliminary	preliminary_mixed_or_low_signal_axis	False
-RNA processing / spliceosome	preliminary	preliminary_shared_signal_axis	False
-mTOR / lysosome / signaling	preliminary	preliminary_transcriptomic_heavy_axis	False
-transcription / chromatin	formal	transcriptomic_heavy_axis	True
+cell_line	strat_column	mean_tvd	n_targets_tvd_gt_0.25
+HCC1143	barcode_gem_group	0.0553688001480439	0
+HCC1143	num_umis_over_threshold_bin	0.1038378228257645	3
+HCC1143	num_umis_quantile_bin	0.1331656892393771	2
+HCC1143	transcriptome_detected_genes_quantile_bin	0.0763635715127252	1
+HCC1143	transcriptome_total_signal_quantile_bin	0.0779806104417702	0
+HCC38	barcode_gem_group	0.0529180609984402	2
+HCC38	num_umis_over_threshold_bin	0.0926564213166551	3
+HCC38	num_umis_quantile_bin	0.1087842315983835	6
+HCC38	transcriptome_detected_genes_quantile_bin	0.0576238872498433	0
+HCC38	transcriptome_total_signal_quantile_bin	0.0706879015433831	2

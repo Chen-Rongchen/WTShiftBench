@@ -2,7 +2,7 @@
 
 ## Figure 1. A truth-anchored benchmark defines a pre-specified perturbation-fitness recovery object in HCC38 and HCC1143
 
-**a,** Truth-first recovery object. A five-step truth-first workflow (real perturbation truth → DepMap CRISPR dependency endpoint → frozen bridge object → model recovery adjudication → gated discovery) defines the frozen target-level recovery object before any entrant scoring. The object is unpacked below into three pre-specified components: the truth object (absolute mean perturbation shift), the alignment endpoint (CRISPR dependency) and the category rule (pre-specified 25/75 joint grid).
+**a,** Study workflow and frozen recovery object. A truth-first workflow (perturbation truth → DepMap CRISPR dependency endpoint → frozen bridge object → model recovery adjudication → qualified claim boundary) defines the target-level recovery object before entrant scoring. The adjudicated entrant set includes the shared-mean baseline, GEARS, foundation-model entrants, linear controls, null references and rebuttal checks. The object is unpacked below into three pre-specified components: the truth signal (absolute mean perturbation shift), the alignment endpoint (CRISPR dependency) and the category rule (pre-specified 25/75 joint grid).
 
 **b,** Pre-specified 25/75 category rule. Targets were classified on a pre-specified joint grid using the 25th and 75th quantiles of transcriptomic perturbation shift and CRISPR dependency, with corner-defined categories (Q1 anchor, Q2 transcriptomic excess, Q3 dependency excess, Q4 low information) and a retained middle band.
 
@@ -62,38 +62,6 @@ Prespecified GEARS sweep variants and their stop-rule adjudication (backbone ver
 
 **h,** Interpretation boundary. The observed gap is treated as a task-structure or direction-level mismatch rather than a missing small recipe.
 
-## Figure 5. Axis-level interpretation is partial and claim-bounded
+## Figure 5. Covariate, temporal and endpoint analyses define the final claim boundary
 
-**a,** Axis-level explanatory balance, comparing dependency R2 with transcriptomic shift R2.
-
-**b,** Formal and preliminary axis-call composition. Transcription/chromatin is the only formal positive axis in the current evidence set.
-
-**c,** Bootstrap stability of representative axis calls, including unstable, stable and transcription/chromatin examples.
-
-**d,** Annotation support across representative axes, summarized by enrichment hits, database support and structure support.
-
-**e,** Transcription/chromatin focus. This axis is transcriptomic-heavy, with shift R2 = 0.092, dependency R2 = 0.000 and targets ENY2 and TADA3.
-
-**f,** Partial support by broader axis family. Annotation-backed axes remain partially supported rather than fully established.
-
-**g,** Preliminary and mixed axes ranked by shift-minus-dependency explanatory balance.
-
-**h,** Axis claim boundary. Transcription/chromatin is retained as `primary_axis_but_qualified`; the manuscript must not claim a fully deconfounded shared explanatory architecture.
-
-## Figure 6. Covariate, temporal and endpoint analyses define the final claim boundary
-
-**a,** Covariate audit overview across barcode gem group, protospacer-related axes, UMI/transcriptome signal axes and detected-gene axes.
-
-**b,** Covariate-aware anchor tiering. PFDN5 remains primary but qualified; PMF1, PRPF6 and ZNF131 are supporting-only.
-
-**c,** Barcode gem group boundary. HCC38 maps to aggrMH001-3 and HCC1143 maps to aggrMH004-6, but individual MH001-MH006 run labels are not resolved.
-
-**d,** K562 temporal panel overview for GSE90063 7d and 13d.
-
-**e,** Temporal stratification. The 7d panel shows stronger rank alignment, whereas 13d shows larger mean shift.
-
-**f,** A0/A1/B supplementary tiering for K562 evidence. The temporal panel supports architecture-form recurrence and bridge-form support, but not content-level replication.
-
-**g,** Endpoint hierarchy across HCC38, HCC1143, K562 7d and K562 13d. CRISPR DepMap endpoints retain stronger bridge Spearman than RNAi DEMETER2 endpoints in every context.
-
-**h,** Final claim boundary. CRISPR is the primary bridge readout, RNAi is a weaker sensitivity endpoint, K562 is supplementary and discovery remains gated.
+**a,** Boundary architecture. Three independent layers jointly define the final claim scope. **b,** Covariate boundary. Mean Total Variation Distance across five covariate axes in HCC38 and HCC1143. **c,** Temporal and endpoint hierarchy boundary. K562 7d/13d temporal comparison is shown alongside CRISPR versus RNAi endpoint hierarchy across four contexts. **d,** Final claim boundary. CRISPR DepMap dependency is the primary readout; K562 temporal panel is supplementary evidence; RNAi DEMETER2 is a weaker cross-platform sensitivity endpoint; fully deconfounded architecture, content-level replication, RNAi primary readout and mechanism-level recovery remain unclaimed.

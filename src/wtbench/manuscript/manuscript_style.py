@@ -27,7 +27,8 @@ COLORS = {
 def apply_manuscript_style() -> None:
     plt.rcParams.update(
         {
-            "font.family": "DejaVu Sans",
+            "font.family": "sans-serif",
+            "font.sans-serif": ["Arial", "Helvetica", "Liberation Sans", "DejaVu Sans"],
             "font.size": 7,
             "axes.titlesize": 7.5,
             "axes.labelsize": 7,
@@ -105,9 +106,9 @@ def short_model_label(model_id: str) -> str:
         "gears_hcc_formal_v1": "GEARS\nformal",
         "geneformer_hcc_formal_v1": "Geneformer",
         "scgpt_hcc_formal_v1": "scGPT",
-        "lm_g_geneformer_ridge_hcc_formal_v1": "LM +\nGeneformer G",
+        "lm_g_geneformer_ridge_hcc_formal_v1": "LM +\nGeneformer",
         "lm_train_lowrank_hcc_formal_v1": "LM\nlow-rank",
-        "lm_g_scgpt_ridge_hcc_formal_v1": "LM +\nscGPT G",
+        "lm_g_scgpt_ridge_hcc_formal_v1": "LM +\nscGPT",
         "null_model": "null",
         "gears_hcc_formal_v1_e30_lr2e-03_wd1e-06": "GEARS\nsweep A",
         "gears_hcc_formal_v1_e20_lr1e-03_wd1e-06": "GEARS\nsweep B",
