@@ -72,12 +72,6 @@
       "callable": "scripts.run_stage2_dixit_temporal_panel:run_from_config",
       "default_config": "configs/stage2/dixit_k562_temporal_panel_gse90063_v1.json",
       "config_env": "WTBENCH_STAGE2_DIXIT_TEMPORAL_PANEL_CONFIG"
-    },
-    "manuscript.figure1": {
-      "description": "渲染 manuscript Figure 1 truth object。",
-      "callable": "wtbench.manuscript.figure1_truth_object:run_from_config",
-      "default_config": "configs/manuscript/figure1_truth_object_v1.json",
-      "config_env": "WTBENCH_MANUSCRIPT_FIGURE1_CONFIG"
     }
   }
 }

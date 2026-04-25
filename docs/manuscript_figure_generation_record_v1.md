@@ -2,16 +2,15 @@
 
 ## 生成范围
 
-本轮已完成 6 张主图的重新生成：
+本轮当前采用 5 张主图结构：
 
 - Fig. 1：truth object。
 - Fig. 2：anchor tiering。
 - Fig. 3：model recovery trade-off。
 - Fig. 4：GEARS sweep and linear controls。
-- Fig. 5：axis-level interpretation。
-- Fig. 6：covariate / temporal / endpoint boundary。
+- Fig. 5：covariate / temporal / endpoint boundary（原 Fig. 6 前移）。
 
-同时已完成 Extended Data Fig. 10：
+同时已完成 Extended Data Fig. 1-11：
 
 - ED Fig. 1：dataset and endpoint admission。
 - ED Fig. 2：full target-level joint grid。
@@ -23,6 +22,7 @@
 - ED Fig. 8：CRISPR versus RNAi endpoint detail。
 - ED Fig. 9：covariate audit details and wording boundary。
 - ED Fig. 10：reproducibility and claim governance。
+- ED Fig. 11：axis-level adjudication（原 Fig. 5 下放）。
 
 旧 `reports/manuscript_figures/figure1/` 图版已按用户要求排除，不作为当前手稿图版来源。
 
@@ -32,8 +32,7 @@
 - Fig. 2：`reports/manuscript_figures_v2/fig2_anchor_tiering/`
 - Fig. 3：`reports/manuscript_figures_v2/fig3_model_tradeoff/`
 - Fig. 4：`reports/manuscript_figures_v2/fig4_sweep_controls/`
-- Fig. 5：`reports/manuscript_figures_v2/fig5_axis_interpretation/`
-- Fig. 6：`reports/manuscript_figures_v2/fig6_boundary/`
+- Fig. 5：`reports/manuscript_figures_v2/fig6_boundary/`
 - ED Fig. 1：`reports/manuscript_extended_data_v1/edfig1_dataset_endpoint_admission/`
 - ED Fig. 2：`reports/manuscript_extended_data_v1/edfig2_full_target_grid/`
 - ED Fig. 3：`reports/manuscript_extended_data_v1/edfig3_anchor_sensitivity/`
@@ -44,10 +43,11 @@
 - ED Fig. 8：`reports/manuscript_extended_data_v1/edfig8_endpoint_hierarchy/`
 - ED Fig. 9：`reports/manuscript_extended_data_v1/edfig9_covariate_audit/`
 - ED Fig. 10：`reports/manuscript_extended_data_v1/edfig10_reproducibility/`
+- ED Fig. 11：`reports/manuscript_figures_v2/fig5_axis_interpretation/`
 
 ## 输出完整性
 
-每张主图均有 8 个小图 panel。每个 panel 均保存：
+每张主图均保存 panel 小图、source data 和 manifest；panel 数量随当前图版设计而定。每个 panel 均保存：
 
 - `figureX_panelY.png`
 - `figureX_panelY.pdf`
@@ -65,16 +65,16 @@
 
 | 图 | panel PNG | panel PDF | panel source | panel manifest | 整图 PNG | 整图 PDF | 整图 source | 整图 manifest |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
-| Fig. 1 | 8 | 8 | 8 | 8 | 1 | 1 | 1 | 1 |
-| Fig. 2 | 8 | 8 | 8 | 8 | 1 | 1 | 1 | 1 |
+| Fig. 1 | 5 | 5 | 5 | 5 | 1 | 1 | 1 | 1 |
+| Fig. 2 | 5 | 5 | 5 | 5 | 1 | 1 | 1 | 1 |
 | Fig. 3 | 8 | 8 | 8 | 8 | 1 | 1 | 1 | 1 |
 | Fig. 4 | 8 | 8 | 8 | 8 | 1 | 1 | 1 | 1 |
-| Fig. 5 | 8 | 8 | 8 | 8 | 1 | 1 | 1 | 1 |
-| Fig. 6 | 8 | 8 | 8 | 8 | 1 | 1 | 1 | 1 |
+| Fig. 5 | 4 | 4 | 4 | 4 | 1 | 1 | 1 | 1 |
+| Extended Data Fig. 11 | 2 | 2 | 2 | 2 | 1 | 1 | 1 | 1 |
 
-合计：6 张主图，每张 36 个可追溯文件，共 216 个图版、源数据和 manifest 文件。
+合计：当前投稿主图为 Fig. 1-5；旧 Fig. 6 输出目录已从 `manuscript/figures/` 移除。Axis-level interpretation 作为 Extended Data Fig. 11 保留。
 
-ED Fig. 1-10 也采用同一规范，各包含 36 个可追溯文件，合计 360 个可追溯文件。
+ED Fig. 1-10 保持原规范；ED Fig. 11 为 2-panel 精简 axis adjudication 图。
 
 ## 可重跑入口
 
@@ -92,8 +92,8 @@ ED Fig. 1-10 也采用同一规范，各包含 36 个可追溯文件，合计 36
 - Fig. 2：`pixi run --environment core python scripts/manuscript/build_figure2_anchor_tiering.py`
 - Fig. 3：`pixi run --environment core python scripts/manuscript/build_figure3_model_tradeoff.py`
 - Fig. 4：`pixi run --environment core python scripts/manuscript/build_figure4_sweep_controls.py`
-- Fig. 5：`pixi run --environment core python scripts/manuscript/build_figure5_axis_interpretation.py`
-- Fig. 6：`pixi run --environment core python scripts/manuscript/build_figure6_boundary.py`
+- Fig. 5：`pixi run --environment core python scripts/manuscript/build_figure6_boundary.py`
+- Extended Data Fig. 11：`pixi run --environment core python scripts/manuscript/build_figure5_axis_interpretation.py`
 
 GEARS 训练不在作图阶段重跑，只读取冻结评分、预测和 sweep 产物。
 
@@ -105,8 +105,8 @@ GEARS 训练不在作图阶段重跑，只读取冻结评分、预测和 sweep �
 - Fig. 2：检查 PFDN5、PMF1、PRPF6、ZNF131 的最终 claim tier。
 - Fig. 3：检查 baseline、formal GEARS 的 backbone/separation headline 数字。
 - Fig. 4：检查 baseline、formal GEARS、best sweep、max shift-excess sweep 和 coverage。
-- Fig. 5：检查 `transcription / chromatin` 的 formal positive axis 身份、shift R2、dependency R2、bootstrap stability 和最终 tier。
-- Fig. 6：检查 CRISPR endpoint hierarchy、K562 temporal stratification 和最终边界。
+- Fig. 5：检查 CRISPR endpoint hierarchy、K562 temporal stratification 和最终边界。
+- Extended Data Fig. 11：检查 `transcription / chromatin` 的 formal positive axis 身份、shift R2、dependency R2、bootstrap stability 和最终 tier。
 
 本轮生成未触发停机条件。
 

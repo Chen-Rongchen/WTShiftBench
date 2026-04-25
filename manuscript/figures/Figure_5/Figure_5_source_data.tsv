@@ -1,148 +1,25 @@
-axis_id	axis_family	architecture_role	consistency_class	axis_annotation_confidence	n_targets	targets	fraction_q1_mean	fraction_q2_mean	fraction_q3_mean	shift_lift_mean	depmap_lift_mean	shift_r2_mean	depmap_r2_mean	sharedness_delta	explanatory_call	formal_call_eligible	call_tier	panel	bootstrap_replicates_completed	bootstrap_shift_r2_mean	bootstrap_shift_r2_p10	bootstrap_shift_r2_p90	bootstrap_dep_r2_mean	bootstrap_dep_r2_p10	bootstrap_dep_r2_p90	bootstrap_dominant_call	bootstrap_dominant_call_fraction	bootstrap_stability_call	structure_support	annotation_support	enrichment_hits	databases	final_call	object	evidence_tier	allowed_wording	disallowed_wording
-chromatin remodeling	gene expression machinery	canonical_backbone	shared_dual_high	high	2.0	ARID1A; RUVBL2	0.5	0.0	0.0	0.0025538843549852	0.3596681136710968	0.0457102885494596	0.0516473950639248	-0.0059371065144651	mixed_or_low_signal_axis	True	formal	a																			
-transcription regulation	gene expression machinery	context_deviation	heterogeneous	low	18.0	ETV3; GON4L; HLX; KLF3; MAML3; MIER1; MYBL1; PMF1; THAP8; TMF1; UBP1; VEZF1; ZBTB17; ZBTB20; ZBTB5; ZNF131; ZNF24; ZNF566	0.1666666666666666	0.0	0.0	-0.0002895890719978	-0.0524816399481384	0.0119799375335992	0.0172372187300257	-0.0052572811964264	mixed_or_low_signal_axis	True	formal	a																			
-nuclear receptor / metabolism	signaling / growth control	context_deviation	shared_middle	low	2.0	RORC; THRA	0.0	0.0	0.0	-0.0013319429878878	-0.1216788926007566	0.0124717439812113	0.0067876650656432	0.005684078915568	mixed_or_low_signal_axis	True	formal	a																			
-TGF-beta / BMP signaling	signaling / growth control	context_deviation	heterogeneous	medium	2.0	BMPR1A; SMAD1	0.0	0.0	0.0	-0.0010191563415874	-0.0791071369204745	0.0080398551381607	0.0028084397561723	0.0052314153819884	mixed_or_low_signal_axis	True	formal	a																			
-proteostasis / chaperone	proteostasis	context_deviation	line_skewed	medium	1.0	PFDN5	1.0	0.0	0.0	0.0032163068676816	0.6701642225257974	0.0351846655998828	0.0871909235205539	-0.052006257920671	preliminary_dependency_heavy_axis	False	preliminary	a																			
-ribosomal / translation	ribosome / nucleolar biogenesis	canonical_backbone	shared_dual_high	high	1.0	RPS3	1.0	0.0	0.0	0.00231690977132	0.7753167243832226	0.0237625515304477	0.1158481284956462	-0.0920855769651985	preliminary_dependency_heavy_axis	False	preliminary	a																			
-RNA processing / transcription	RNA processing	context_deviation	shared_middle	high	1.0	YBX1	0.5	0.0	0.0	0.0012402696904646	0.7709901255108096	0.0053510116361707	0.1145923282065776	-0.1092413165704069	preliminary_dependency_heavy_axis	False	preliminary	a																			
-ribosome biogenesis / nucleolar	ribosome / nucleolar biogenesis	context_deviation	shared_shift_excess	high	1.0	NPM1	0.5	0.0	0.0	0.0029675966818554	0.2842193142839105	0.0491582655306062	0.03923951613219	0.0099187493984161	preliminary_mixed_or_low_signal_axis	False	preliminary	a																			
-nuclear receptor / co-activator	gene expression machinery	context_deviation	shared_middle	medium	1.0	NCOA1	0.0	0.0	0.0	-0.0023311268301936	-0.1892593719793967	0.0184880600067985	0.0068993829410221	0.0115886770657764	preliminary_mixed_or_low_signal_axis	False	preliminary	a																			
-cytoskeleton / cell motility	cell-state regulation	context_deviation	shared_middle	high	1.0	TMSB4X	0.0	0.0	0.0	-0.0022176336274601	-0.1114561734143488	0.016785412811708	0.0041888263678804	0.0125965864438276	preliminary_mixed_or_low_signal_axis	False	preliminary	a																			
-ER stress / UPR	stress response	context_deviation	shared_middle	high	1.0	XBP1	0.0	0.0	0.0	-0.0021507217668037	-0.2147350852924363	0.0162456435268426	0.0088982986407474	0.0073473448860951	preliminary_mixed_or_low_signal_axis	False	preliminary	a																			
-NF-κB / copper signaling	signaling / growth control	context_deviation	shared_middle	medium	1.0	COMMD6	0.0	0.0	0.0	-0.0020818976725851	-0.1526975169517808	0.0149622440874706	0.0054930875937286	0.0094691564937419	preliminary_mixed_or_low_signal_axis	False	preliminary	a																			
-metabolism / transcription	metabolism	context_deviation	shared_middle	low	1.0	PCBD1	0.0	0.0	0.0	-0.002037054320283	-0.2085428277762812	0.0145285688694307	0.0083828909256136	0.006145677943817	preliminary_mixed_or_low_signal_axis	False	preliminary	a																			
-peroxisome / metabolism	metabolism	context_deviation	shared_middle	medium	1.0	PEX14	0.0	0.0	0.0	-0.0020386300052073	-0.2108108697539006	0.0141771840514517	0.0086335804762432	0.0055436035752085	preliminary_mixed_or_low_signal_axis	False	preliminary	a																			
-cell cycle / replication	cell-state regulation	context_deviation	line_skewed	high	1.0	CDKN2A	0.0	0.0	0.0	-0.0019054441595306	-0.2229463895689933	0.0135146831560443	0.0095905792774376	0.0039241038786066	preliminary_mixed_or_low_signal_axis	False	preliminary	a																			
-synaptic / signaling	signaling / growth control	context_deviation	shared_middle	low	1.0	ERC1	0.0	0.0	0.0	-0.0019340547235664	-0.2067764839409114	0.0133845565928478	0.0083371926086237	0.005047363984224	preliminary_mixed_or_low_signal_axis	False	preliminary	a																			
-growth factor / proliferation	signaling / growth control	context_deviation	shared_middle	medium	1.0	HDGF	0.0	0.0	0.0	-0.0017670730865107	-0.2005208589981218	0.0119657754361656	0.0077512113361277	0.0042145641000379	preliminary_mixed_or_low_signal_axis	False	preliminary	a																			
-JAK-STAT signaling	signaling / growth control	context_deviation	shared_middle	high	1.0	STAT3	0.0	0.0	0.0	-0.001698488454784	-0.2110357326023516	0.0098463022917731	0.0085784413687654	0.0012678609230077	preliminary_mixed_or_low_signal_axis	False	preliminary	a																			
-signaling / oncogene	signaling / growth control	context_deviation	shared_middle	high	1.0	MTDH	0.0	0.0	0.0	-0.0012767150700943	-0.2014033418734466	0.006162566499227	0.0078132025657203	-0.0016506360664933	preliminary_mixed_or_low_signal_axis	False	preliminary	a																			
-oxidative stress / antioxidant	stress response	context_deviation	shared_middle	high	1.0	PRDX2	0.0	0.0	0.0	-0.001266259957604	-0.0630570765564325	0.0058663755681859	0.0007878525818761	0.0050785229863098	preliminary_mixed_or_low_signal_axis	False	preliminary	a																			
-oxidative stress / mitochondrial	stress response	context_deviation	shared_middle	medium	1.0	PARK7	0.0	0.0	0.0	-0.0008571189101983	-0.147987504551865	0.0034392429600541	0.0050062526099397	-0.0015670096498856	preliminary_mixed_or_low_signal_axis	False	preliminary	a																			
-NF-κB / MAPK signaling	signaling / growth control	context_deviation	line_skewed	medium	1.0	TAB3	0.0	0.0	0.0	-0.0007674664312851	-0.2068808715460154	0.0023197200472579	0.0082441423603604	-0.0059244223131025	preliminary_mixed_or_low_signal_axis	False	preliminary	a																			
-growth / proliferation	signaling / growth control	context_deviation	line_skewed	medium	1.0	PA2G4	0.0	0.0	0.0	9.172232708838006e-05	0.0066460381580744	0.0019107990652549	0.0038350710616956	-0.0019242719964406	preliminary_mixed_or_low_signal_axis	False	preliminary	a																			
-RNA processing / spliceosome	RNA processing	canonical_backbone	shared_shift_excess	high	1.0	PRPF6	1.0	0.0	0.0	0.0084863742060175	0.7739565322106198	0.2456341088499313	0.1154327916242644	0.1302013172256668	preliminary_shared_signal_axis	False	preliminary	a																			
-mTOR / lysosome / signaling	signaling / growth control	shift_excess	shared_shift_excess	high	1.0	LAMTOR5	0.0	0.0	0.0	0.0035515052974019	-0.1188144571752522	0.0471206748830778	0.0028366077924279	0.0442840670906499	preliminary_transcriptomic_heavy_axis	False	preliminary	a																			
-transcription / chromatin	gene expression machinery	canonical_backbone	shared_shift_excess	high	2.0	ENY2; TADA3	0.5	0.0	0.0	0.0036330167096096	0.0062684778379303	0.0918059091099973	0.0003096163305515	0.0914962927794458	transcriptomic_heavy_axis	True	formal	a																			
-chromatin remodeling															mixed_or_low_signal_axis	True	formal	b																			
-transcription regulation															mixed_or_low_signal_axis	True	formal	b																			
-nuclear receptor / metabolism															mixed_or_low_signal_axis	True	formal	b																			
-TGF-beta / BMP signaling															mixed_or_low_signal_axis	True	formal	b																			
-proteostasis / chaperone															preliminary_dependency_heavy_axis	False	preliminary	b																			
-ribosomal / translation															preliminary_dependency_heavy_axis	False	preliminary	b																			
-RNA processing / transcription															preliminary_dependency_heavy_axis	False	preliminary	b																			
-ribosome biogenesis / nucleolar															preliminary_mixed_or_low_signal_axis	False	preliminary	b																			
-nuclear receptor / co-activator															preliminary_mixed_or_low_signal_axis	False	preliminary	b																			
-cytoskeleton / cell motility															preliminary_mixed_or_low_signal_axis	False	preliminary	b																			
-ER stress / UPR															preliminary_mixed_or_low_signal_axis	False	preliminary	b																			
-NF-κB / copper signaling															preliminary_mixed_or_low_signal_axis	False	preliminary	b																			
-metabolism / transcription															preliminary_mixed_or_low_signal_axis	False	preliminary	b																			
-peroxisome / metabolism															preliminary_mixed_or_low_signal_axis	False	preliminary	b																			
-cell cycle / replication															preliminary_mixed_or_low_signal_axis	False	preliminary	b																			
-synaptic / signaling															preliminary_mixed_or_low_signal_axis	False	preliminary	b																			
-growth factor / proliferation															preliminary_mixed_or_low_signal_axis	False	preliminary	b																			
-JAK-STAT signaling															preliminary_mixed_or_low_signal_axis	False	preliminary	b																			
-signaling / oncogene															preliminary_mixed_or_low_signal_axis	False	preliminary	b																			
-oxidative stress / antioxidant															preliminary_mixed_or_low_signal_axis	False	preliminary	b																			
-oxidative stress / mitochondrial															preliminary_mixed_or_low_signal_axis	False	preliminary	b																			
-NF-κB / MAPK signaling															preliminary_mixed_or_low_signal_axis	False	preliminary	b																			
-growth / proliferation															preliminary_mixed_or_low_signal_axis	False	preliminary	b																			
-RNA processing / spliceosome															preliminary_shared_signal_axis	False	preliminary	b																			
-mTOR / lysosome / signaling															preliminary_transcriptomic_heavy_axis	False	preliminary	b																			
-transcription / chromatin															transcriptomic_heavy_axis	True	formal	b																			
-ribosomal / translation																		c	126.0	0.0458421347817157	0.0101543540099529	0.0813097675266462	0.1725311671619864	0.0962533796597226	0.2782461957775696	preliminary_dependency_heavy_axis	0.6746031746031746	moderately_stable_axis_call									
-proteostasis / chaperone																		c	127.0	0.0569181755946385	0.0246817362503415	0.0926116010197582	0.1341231561074251	0.0637813567892498	0.1963954375452971	preliminary_shared_signal_axis	0.5275590551181102	moderately_stable_axis_call									
-ribosome biogenesis / nucleolar																		c	137.0	0.0887045228656395	0.0024984293934236	0.175697680011688	0.0741474112028329	0.000729392206743	0.1578303764483779	preliminary_shared_signal_axis	0.5255474452554745	moderately_stable_axis_call									
-ER stress / UPR																		c	133.0	0.0257182133208219	0.0127397945755661	0.0440615649643023	0.0144988084867351	0.0077497256543345	0.0240512810351236	preliminary_mixed_or_low_signal_axis	1.0	stable_axis_call									
-JAK-STAT signaling																		c	130.0	0.0170930887700935	0.0085350448674011	0.0310718826348331	0.0138138725586434	0.0074006748778291	0.0241305875944823	preliminary_mixed_or_low_signal_axis	1.0	stable_axis_call									
-NF-κB / MAPK signaling																		c	126.0	0.0040751811597616	0.0004808851056228	0.0079310345210808	0.0127831615120673	0.0065798126442534	0.0186685433675851	preliminary_mixed_or_low_signal_axis	1.0	stable_axis_call									
-NF-κB / copper signaling																		c	126.0	0.0250846564978131	0.0124889685171088	0.0378592626171542	0.0096751701168294	0.0012031910105726	0.0197570463581505	preliminary_mixed_or_low_signal_axis	1.0	stable_axis_call									
-RNA processing / spliceosome																		c	131.0	0.337743728927481	0.2314343044767035	0.4597594699065702	0.1783148425361179	0.0947577464265564	0.2646804436956161	preliminary_shared_signal_axis	1.0	stable_axis_call									
-RNA processing / transcription																		c	128.0	0.0099148848341742	0.0021289383676607	0.0198813446937111	0.1677411919881641	0.083160917124183	0.2807613407641842	preliminary_dependency_heavy_axis	1.0	stable_axis_call									
-TGF-beta / BMP signaling																		c	147.0	0.0130707755796418	0.002729979004288	0.0243315790357231	0.007447181728311	0.0005217214640519	0.0142065109998283	mixed_or_low_signal_axis	1.0	stable_axis_call									
-cell cycle / replication																		c	131.0	0.0230068202311546	0.0093082753826376	0.0426589607930441	0.0156698499503412	0.0085029580895883	0.0266085641759174	preliminary_mixed_or_low_signal_axis	1.0	stable_axis_call									
-cytoskeleton / cell motility																		c	135.0	0.0270521709569127	0.0134557863017158	0.0453128747048112	0.0065933849213692	9.650386256919418e-05	0.0145164648855217	preliminary_mixed_or_low_signal_axis	1.0	stable_axis_call									
-growth / proliferation																		c	133.0	0.0040019749602703	0.0005999092771172	0.0082783808162027	0.0071960735422209	0.0017758440202973	0.0136930460377822	preliminary_mixed_or_low_signal_axis	1.0	stable_axis_call									
-growth factor / proliferation																		c	127.0	0.0191824616328592	0.0036120900799641	0.0397117382638859	0.0127732076808689	0.0068662818556382	0.021699803731645	preliminary_mixed_or_low_signal_axis	1.0	stable_axis_call									
-metabolism / transcription																		c	127.0	0.0235984987645911	0.0116617160197356	0.0362966022487791	0.0137663044175143	0.0071634627467122	0.0222238140916421	preliminary_mixed_or_low_signal_axis	1.0	stable_axis_call									
-nuclear receptor / co-activator																		c	133.0	0.0305240416488002	0.0145247926811551	0.0524179866133866	0.0110226953249427	0.0053762753735904	0.0183798926827366	preliminary_mixed_or_low_signal_axis	1.0	stable_axis_call									
-nuclear receptor / metabolism																		c	149.0	0.015423417613045	0.0048901515475552	0.0244358803457856	0.0090631569028696	0.0028313234830302	0.0175508935993427	mixed_or_low_signal_axis	1.0	stable_axis_call									
-oxidative stress / antioxidant																		c	130.0	0.0100624208888525	0.0041826063131036	0.0187658776857755	0.0017811002026119	0.0003296323418202	0.0037212171604143	preliminary_mixed_or_low_signal_axis	1.0	stable_axis_call									
-oxidative stress / mitochondrial																		c	128.0	0.0065823249455541	0.0009317434191362	0.0125049862197601	0.0088515010802539	0.0018517643546273	0.0171619765288963	preliminary_mixed_or_low_signal_axis	1.0	stable_axis_call									
-peroxisome / metabolism																		c	133.0	0.0244161903617133	0.0126986963834352	0.0381623694130374	0.0145281769126691	0.007346733871585	0.0241351469858204	preliminary_mixed_or_low_signal_axis	1.0	stable_axis_call									
-signaling / oncogene																		c	123.0	0.0086396637564412	0.0014872591426851	0.0155718252942576	0.0111151672064266	0.0061521693082921	0.018600094603035	preliminary_mixed_or_low_signal_axis	1.0	stable_axis_call									
-synaptic / signaling																		c	129.0	0.0211283757919922	0.0107588993766298	0.0364451338110462	0.0125215638339283	0.0061973270296348	0.01942651888156	preliminary_mixed_or_low_signal_axis	1.0	stable_axis_call									
-transcription regulation																		c	150.0	0.0278887626613017	0.0050050181871597	0.0563570295273862	0.0306582625867716	0.0059721654243593	0.0633665475574978	mixed_or_low_signal_axis	0.9933333333333332	stable_axis_call									
-transcription / chromatin																		c	150.0	0.107909326978854	0.0511441893428736	0.1826168710136366	0.0071687887661913	0.0004175817831841	0.0162113392013242	transcriptomic_heavy_axis	0.9733333333333334	stable_axis_call									
-mTOR / lysosome / signaling																		c	130.0	0.0819524460745063	0.0318659153021376	0.1630367770253985	0.0048330743293632	0.0011949611444957	0.0090843430650639	preliminary_transcriptomic_heavy_axis	0.8769230769230769	stable_axis_call									
-chromatin remodeling																		c	149.0	0.0666781447528545	0.0107278732347667	0.1495344189664291	0.090374460077951	0.0035440425796464	0.1893006862153463	shared_backbone_axis	0.4496644295302013	unstable_axis_call									
-RNA processing / spliceosome	RNA processing																	d											1.0	enrichment_hits=1;databases=1@FDR<=0.25	1.0	1.0	partially_supported_axis				
-RNA processing / transcription	RNA processing																	d											4.0	enrichment_hits=2;databases=1@FDR<=0.25	2.0	1.0	partially_supported_axis				
-cell cycle / replication	cell-state regulation																	d											3.0	enrichment_hits=16;databases=1@FDR<=0.25	16.0	1.0	partially_supported_axis				
-cytoskeleton / cell motility	cell-state regulation																	d											4.0	enrichment_hits=5;databases=1@FDR<=0.25	5.0	1.0	partially_supported_axis				
-chromatin remodeling	gene expression machinery																	d											1.0	enrichment_hits=7;databases=3@FDR<=0.25	7.0	3.0	partially_supported_axis				
-nuclear receptor / co-activator	gene expression machinery																	d											4.0	enrichment_hits=12;databases=1@FDR<=0.25	12.0	1.0	partially_supported_axis				
-transcription / chromatin	gene expression machinery																	d											1.0	enrichment_hits=6;databases=2@FDR<=0.25	6.0	2.0	partially_supported_axis				
-transcription regulation	gene expression machinery																	d											1.0	enrichment_hits=0;databases=0@FDR<=0.25	0.0	0.0	partially_supported_axis				
-metabolism / transcription	metabolism																	d											4.0	enrichment_hits=1;databases=1@FDR<=0.25	1.0	1.0	partially_supported_axis				
-peroxisome / metabolism	metabolism																	d											4.0	enrichment_hits=4;databases=1@FDR<=0.25	4.0	1.0	partially_supported_axis				
-proteostasis / chaperone	proteostasis																	d											3.0	enrichment_hits=0;databases=0@FDR<=0.25	0.0	0.0	partially_supported_axis				
-ribosomal / translation	ribosome / nucleolar biogenesis																	d											4.0	enrichment_hits=32;databases=3@FDR<=0.25	32.0	3.0	partially_supported_axis				
-ribosome biogenesis / nucleolar	ribosome / nucleolar biogenesis																	d											1.0	enrichment_hits=29;databases=3@FDR<=0.25	29.0	3.0	partially_supported_axis				
-JAK-STAT signaling	signaling / growth control																	d											4.0	enrichment_hits=34;databases=2@FDR<=0.25	34.0	2.0	partially_supported_axis				
-NF-κB / MAPK signaling	signaling / growth control																	d											3.0	enrichment_hits=12;databases=2@FDR<=0.25	12.0	2.0	partially_supported_axis				
-NF-κB / copper signaling	signaling / growth control																	d											4.0	enrichment_hits=0;databases=0@FDR<=0.25	0.0	0.0	partially_supported_axis				
-TGF-beta / BMP signaling	signaling / growth control																	d											3.0	enrichment_hits=6;databases=2@FDR<=0.25	6.0	2.0	partially_supported_axis				
-growth / proliferation	signaling / growth control																	d											3.0	enrichment_hits=9;databases=3@FDR<=0.25	9.0	3.0	partially_supported_axis				
-growth factor / proliferation	signaling / growth control																	d											4.0	enrichment_hits=7;databases=3@FDR<=0.25	7.0	3.0	partially_supported_axis				
-mTOR / lysosome / signaling	signaling / growth control																	d											2.0	enrichment_hits=13;databases=1@FDR<=0.25	13.0	1.0	partially_supported_axis				
-nuclear receptor / metabolism	signaling / growth control																	d											4.0	enrichment_hits=6;databases=1@FDR<=0.25	6.0	1.0	partially_supported_axis				
-signaling / oncogene	signaling / growth control																	d											4.0	enrichment_hits=11;databases=1@FDR<=0.25	11.0	1.0	partially_supported_axis				
-synaptic / signaling	signaling / growth control																	d											4.0	enrichment_hits=2;databases=1@FDR<=0.25	2.0	1.0	partially_supported_axis				
-ER stress / UPR	stress response																	d											4.0	enrichment_hits=30;databases=2@FDR<=0.25	30.0	2.0	partially_supported_axis				
-oxidative stress / antioxidant	stress response																	d											4.0	enrichment_hits=7;databases=2@FDR<=0.25	7.0	2.0	partially_supported_axis				
-oxidative stress / mitochondrial	stress response																	d											4.0	enrichment_hits=30;databases=2@FDR<=0.25	30.0	2.0	partially_supported_axis				
-transcription / chromatin						ENY2; TADA3						0.0918059091099973	0.0003096163305515	0.0914962927794458				e									0.9733333333333334	stable_axis_call									
-RNA processing / spliceosome	RNA processing																	f											1.0		1.0	1.0	partially_supported_axis				
-RNA processing / transcription	RNA processing																	f											4.0		2.0	1.0	partially_supported_axis				
-cell cycle / replication	cell-state regulation																	f											3.0		16.0	1.0	partially_supported_axis				
-cytoskeleton / cell motility	cell-state regulation																	f											4.0		5.0	1.0	partially_supported_axis				
-chromatin remodeling	gene expression machinery																	f											1.0		7.0	3.0	partially_supported_axis				
-nuclear receptor / co-activator	gene expression machinery																	f											4.0		12.0	1.0	partially_supported_axis				
-transcription / chromatin	gene expression machinery																	f											1.0		6.0	2.0	partially_supported_axis				
-transcription regulation	gene expression machinery																	f											1.0		0.0	0.0	partially_supported_axis				
-metabolism / transcription	metabolism																	f											4.0		1.0	1.0	partially_supported_axis				
-peroxisome / metabolism	metabolism																	f											4.0		4.0	1.0	partially_supported_axis				
-proteostasis / chaperone	proteostasis																	f											3.0		0.0	0.0	partially_supported_axis				
-ribosomal / translation	ribosome / nucleolar biogenesis																	f											4.0		32.0	3.0	partially_supported_axis				
-ribosome biogenesis / nucleolar	ribosome / nucleolar biogenesis																	f											1.0		29.0	3.0	partially_supported_axis				
-JAK-STAT signaling	signaling / growth control																	f											4.0		34.0	2.0	partially_supported_axis				
-NF-κB / MAPK signaling	signaling / growth control																	f											3.0		12.0	2.0	partially_supported_axis				
-NF-κB / copper signaling	signaling / growth control																	f											4.0		0.0	0.0	partially_supported_axis				
-TGF-beta / BMP signaling	signaling / growth control																	f											3.0		6.0	2.0	partially_supported_axis				
-growth / proliferation	signaling / growth control																	f											3.0		9.0	3.0	partially_supported_axis				
-growth factor / proliferation	signaling / growth control																	f											4.0		7.0	3.0	partially_supported_axis				
-mTOR / lysosome / signaling	signaling / growth control																	f											2.0		13.0	1.0	partially_supported_axis				
-nuclear receptor / metabolism	signaling / growth control																	f											4.0		6.0	1.0	partially_supported_axis				
-signaling / oncogene	signaling / growth control																	f											4.0		11.0	1.0	partially_supported_axis				
-synaptic / signaling	signaling / growth control																	f											4.0		2.0	1.0	partially_supported_axis				
-ER stress / UPR	stress response																	f											4.0		30.0	2.0	partially_supported_axis				
-oxidative stress / antioxidant	stress response																	f											4.0		7.0	2.0	partially_supported_axis				
-oxidative stress / mitochondrial	stress response																	f											4.0		30.0	2.0	partially_supported_axis				
-RNA processing / transcription												0.0053510116361707	0.1145923282065776	-0.1092413165704069	preliminary_dependency_heavy_axis		preliminary	g																			
-ribosomal / translation												0.0237625515304477	0.1158481284956462	-0.0920855769651985	preliminary_dependency_heavy_axis		preliminary	g																			
-proteostasis / chaperone												0.0351846655998828	0.0871909235205539	-0.052006257920671	preliminary_dependency_heavy_axis		preliminary	g																			
-chromatin remodeling												0.0457102885494596	0.0516473950639248	-0.0059371065144651	mixed_or_low_signal_axis		formal	g																			
-NF-κB / MAPK signaling												0.0023197200472579	0.0082441423603604	-0.0059244223131025	preliminary_mixed_or_low_signal_axis		preliminary	g																			
-transcription regulation												0.0119799375335992	0.0172372187300257	-0.0052572811964264	mixed_or_low_signal_axis		formal	g																			
-growth / proliferation												0.0019107990652549	0.0038350710616956	-0.0019242719964406	preliminary_mixed_or_low_signal_axis		preliminary	g																			
-signaling / oncogene												0.006162566499227	0.0078132025657203	-0.0016506360664933	preliminary_mixed_or_low_signal_axis		preliminary	g																			
-oxidative stress / mitochondrial												0.0034392429600541	0.0050062526099397	-0.0015670096498856	preliminary_mixed_or_low_signal_axis		preliminary	g																			
-JAK-STAT signaling												0.0098463022917731	0.0085784413687654	0.0012678609230077	preliminary_mixed_or_low_signal_axis		preliminary	g																			
-cell cycle / replication												0.0135146831560443	0.0095905792774376	0.0039241038786066	preliminary_mixed_or_low_signal_axis		preliminary	g																			
-growth factor / proliferation												0.0119657754361656	0.0077512113361277	0.0042145641000379	preliminary_mixed_or_low_signal_axis		preliminary	g																			
-synaptic / signaling												0.0133845565928478	0.0083371926086237	0.005047363984224	preliminary_mixed_or_low_signal_axis		preliminary	g																			
-oxidative stress / antioxidant												0.0058663755681859	0.0007878525818761	0.0050785229863098	preliminary_mixed_or_low_signal_axis		preliminary	g																			
-																		h																transcription_chromatin_axis	primary_axis_but_qualified	transcription / chromatin 是当前唯一更稳的 formal positive axis	transcription / chromatin is fully deconfounded and fully established beyond current boundary
-																		h																other_axes	supporting_or_preliminary	多数其余 axis 仍应写成 supporting 或 preliminary axes	most axes are fully established at the same level as transcription / chromatin
+boundary_layer	audits	blocks	panel	cell_line	strat_column	mean_tvd	n_targets_tvd_gt_0.25	timepoint	aligned_spearman	mean_truth_metric	median_truth_metric	subpanel	context	platform_pair	spearman	n_shared_targets	primary_readout	primary_spearman	supplementary	sensitivity	not_claimed	quantitative_anchor
+covariate	barcode gem group, UMI/signal, detected genes	fully deconfounded wording	a																			
+temporal	K562 7d/13d supplementary panel	content-level replication, primary co-pillar	a																			
+endpoint_hierarchy	CRISPR DepMap primary, RNAi DEMETER2 sensitivity	treating RNAi as primary readout	a																			
+			b	HCC1143	barcode_gem_group	0.0553688001480439	0.0															
+			b	HCC1143	num_umis_over_threshold_bin	0.1038378228257645	3.0															
+			b	HCC1143	num_umis_quantile_bin	0.1331656892393771	2.0															
+			b	HCC1143	transcriptome_detected_genes_quantile_bin	0.0763635715127252	1.0															
+			b	HCC1143	transcriptome_total_signal_quantile_bin	0.0779806104417702	0.0															
+			b	HCC38	barcode_gem_group	0.0529180609984402	2.0															
+			b	HCC38	num_umis_over_threshold_bin	0.0926564213166551	3.0															
+			b	HCC38	num_umis_quantile_bin	0.1087842315983835	6.0															
+			b	HCC38	transcriptome_detected_genes_quantile_bin	0.0576238872498433	0.0															
+			b	HCC38	transcriptome_total_signal_quantile_bin	0.0706879015433831	2.0															
+			c					7d	0.7333333333333332	0.0030991873866114	0.0029023397479872	temporal										
+			c					13d	0.5151515151515151	0.004382685449453	0.0044183505802962	temporal										
+			c									endpoint	HCC38	crispr	0.7257957275155708	47.0						
+			c									endpoint	HCC38	rnai	0.2763786365610073	48.0						
+			c									endpoint	HCC1143	crispr	0.7792497165337711	48.0						
+			c									endpoint	HCC1143	rnai	0.3844984802431611	48.0						
+			c									endpoint	K562 7d	crispr	0.7333333333333332	10.0						
+			c									endpoint	K562 7d	rnai	0.3333333333333333	9.0						
+			c									endpoint	K562 13d	crispr	0.5151515151515151	10.0						
+			c									endpoint	K562 13d	rnai	0.3	9.0						
+			d														CRISPR DepMap dependency (HCC38 / HCC1143)	0.726 / 0.779	K562 temporal panel (7d / 13d)	RNAi DEMETER2 (cross-platform, weaker)	fully deconfounded architecture; content-level replication; RNAi primary; mechanism recovery	Primary n = 47-48 | K562 n = 10 | CRISPR > RNAi in all 4 contexts | Covariate audited but not closed
