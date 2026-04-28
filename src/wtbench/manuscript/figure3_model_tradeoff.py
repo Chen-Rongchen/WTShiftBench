@@ -14,19 +14,21 @@ from wtbench.manuscript.figure_io import ensure_dir, repo_root, save_figure, wri
 from wtbench.manuscript.hash_manifest import write_figure_manifest, write_panel_manifest
 from wtbench.manuscript.manuscript_style import (
     COLORS,
+    add_panel_heading,
     add_panel_label,
     apply_manuscript_style,
     clean_axes,
+    finalize_manuscript_figure,
     model_color,
     short_model_label,
 )
 
 
 FIGURE_ID = "figure3"
-FIGURE_TITLE = "Model recovery is metric-dependent and reveals a backbone-separation trade-off"
+FIGURE_TITLE = "Model recovery is metric-dependent and reveals an asymmetric recovery pattern"
 SCRIPT_PATH = Path("scripts/manuscript/build_figure3_model_tradeoff.py")
 CLAIM_BOUNDARY = (
-    "GEARS is an architecture trade-off diagnosis; shared_mean_baseline is the backbone "
+    "GEARS is an architecture-level diagnosis; shared_mean_baseline is the backbone "
     "primary reference; do not claim model recovery proved."
 )
 
@@ -56,7 +58,7 @@ METRIC_LONG_LABELS = {
 FIG3_COLORS = {
     "baseline": "#333333",
     "gears": "#0072B2",
-    "foundation": "#C0C0C0",
+    "foundation": "#8E8E8E",
     "linear": "#D0D0D0",
     "gears_sweep": "#D0D0D0",
     "null": "#D0D0D0",
@@ -97,6 +99,10 @@ EXPECTED_HEADLINES = {
 
 def output_dir(root: Path) -> Path:
     return root / "reports/manuscript_figures_v2/fig3_model_tradeoff"
+
+
+def manuscript_figure_dir(root: Path) -> Path:
+    return root / "manuscript/figures/Figure_3"
 
 
 def panel_dir(root: Path) -> Path:
@@ -217,17 +223,23 @@ def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
     matrix = plot[METRICS].to_numpy(dtype=float)
     neutral_cmap = LinearSegmentedColormap.from_list(
         "fig3_neutral",
-        [FIG3_COLORS["heat_low"], "#F7F7F7", "#D3D3D3"],
+        [FIG3_COLORS["heat_low"], "#F0F0F0", "#A8A8A8"],
     )
-    im = ax.imshow(matrix, aspect="auto", vmin=0.0, vmax=0.85, cmap=neutral_cmap)
+    im = ax.imshow(matrix, aspect="auto", vmin=0.0, vmax=0.85, cmap=neutral_cmap, zorder=1)
 
     n_rows, n_cols = matrix.shape
+    ax.set_xlim(-0.5, n_cols - 0.5)
+    ax.set_ylim(n_rows - 0.5, -0.5)
     row_labels = [axis_label(v) for v in plot["model_label"]]
     ax.set_yticks(np.arange(n_rows))
     ax.set_yticklabels(row_labels, fontsize=7.5)
     ax.set_xticks(np.arange(n_cols))
     ax.set_xticklabels([METRIC_SHORT_LABELS[m] for m in METRICS], fontsize=7.5)
 
+    for x in np.arange(-0.5, n_cols, 1):
+        ax.axvline(x, color="white", linewidth=0.7, zorder=2)
+    for y in np.arange(-0.5, n_rows, 1):
+        ax.axhline(y, color="white", linewidth=0.7, zorder=2)
     for i in range(n_rows):
         for j in range(n_cols):
             value = matrix[i, j]
@@ -237,9 +249,10 @@ def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
                 f"{value:.2f}",
                 ha="center",
                 va="center",
-                fontsize=7.5,
+                fontsize=7.3,
                 fontweight="bold" if value >= 0.6 else "normal",
                 color="white" if value >= 0.6 else FIG3_COLORS["baseline"],
+                zorder=3,
             )
 
     # Row-level highlighting: frame baseline + GEARS formal; soft background behind
@@ -282,14 +295,18 @@ def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
             zorder=6,
         )
 
-    ax.set_title("Three adjudication metrics separate recovery modes", loc="left")
+    add_panel_heading(
+        ax,
+        "",
+        "Three adjudication metrics separate recovery modes",
+        title_x=0.00,
+    )
     ax.tick_params(length=0)
     for spine in ax.spines.values():
         spine.set_visible(False)
     cbar = plt.colorbar(im, ax=ax, fraction=0.035, pad=0.02)
-    cbar.ax.tick_params(labelsize=7.5)
-    cbar.set_label("score", fontsize=7.5, labelpad=2)
-    add_panel_label(ax, "a", x=-0.36)
+    cbar.ax.tick_params(labelsize=7.0, length=2)
+    cbar.set_label("score", fontsize=7.0, labelpad=2)
 
 
 # ---------------------------------------------------------------------------
@@ -360,9 +377,11 @@ def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
     ax.set_xlabel("Adjudication score", fontsize=7.5)
     ax.tick_params(axis="x", labelsize=7.5)
     ax.set_ylim(-0.7, len(metrics) - 0.2)
-    ax.set_title(
+    add_panel_heading(
+        ax,
+        "",
         "Baseline leads backbone recovery, whereas GEARS leads context separation",
-        loc="left",
+        title_x=0.00,
     )
     clean_axes(ax)
     handles = [
@@ -386,7 +405,6 @@ def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
         labelspacing=0.3,
         borderpad=0.2,
     )
-    add_panel_label(ax, "b")
 
 
 # ---------------------------------------------------------------------------
@@ -399,7 +417,7 @@ def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
     # Reader-facing claim = "no entrant occupies upper-right": baseline sits
     # just below the region (high backbone, mid separation), GEARS formal
     # just to the left (mid backbone, high separation), so the empty rectangle
-    # itself becomes the visual evidence for the trade-off claim. Kept extremely
+    # itself becomes the visual evidence for the asymmetric recovery claim. Kept extremely
     # light (#F5F5F5, no edge) so it reads as an absence window, not a target box.
     # Epistemic status: ILLUSTRATIVE visual aid only. Thresholds (0.75, 0.40)
     # were chosen so that the two headline entrants are tangent to the region
@@ -425,7 +443,7 @@ def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
     }
 
     for row in df.itertuples():
-        if row.model_id.startswith("gears_hcc_formal_v1_") or row.model_id == "null_model":
+        if row.model_id.startswith("gears_hcc_formal_v1_") or row.model_id == "null_model" or row.model_id.startswith("lm_"):
             continue
         is_baseline = row.model_id == "shared_mean_baseline"
         is_gears = row.model_id == "gears_hcc_formal_v1"
@@ -450,13 +468,13 @@ def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
         )
 
     label_offsets = {
-        "shared_mean_baseline": (-0.012, 0.010, "right", "bottom"),
-        "gears_hcc_formal_v1": (0.012, 0.010, "left", "bottom"),
+        "shared_mean_baseline": (0.000, 0.032, "center", "bottom"),
+        "gears_hcc_formal_v1": (0.000, 0.032, "center", "bottom"),
         "geneformer_hcc_formal_v1": (0.012, -0.002, "left", "center"),
         "scgpt_hcc_formal_v1": (0.012, 0.000, "left", "center"),
     }
     for row in df.itertuples():
-        if row.model_id.startswith("gears_hcc_formal_v1_") or row.model_id == "null_model":
+        if row.model_id.startswith("gears_hcc_formal_v1_") or row.model_id == "null_model" or row.model_id.startswith("lm_"):
             continue
         if row.model_id in label_offsets:
             dx, dy, ha, va = label_offsets[row.model_id]
@@ -474,9 +492,11 @@ def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
 
     ax.set_xlabel("Backbone recovery", fontsize=7.5)
     ax.set_ylabel("Structure / context separation", fontsize=7.5)
-    ax.set_title(
-        "Entrants occupy a backbone–separation trade-off space",
-        loc="left",
+    add_panel_heading(
+        ax,
+        "",
+        "Asymmetric recovery space",
+        title_x=0.00,
     )
     ax.set_xlim(0.40, 0.90)
     ax.set_ylim(0.20, 0.54)
@@ -499,25 +519,20 @@ def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
             markersize=4.2, markeredgecolor="white", markeredgewidth=0.4,
             label="foundation entrants",
         ),
-        plt.Line2D(
-            [], [], marker="o", linestyle="", color=FIG3_COLORS["linear"],
-            markersize=4.0, markeredgecolor="white", markeredgewidth=0.3,
-            label="linear controls",
-        ),
     ]
     ax.legend(
         handles=handles,
         loc="lower right",
+        bbox_to_anchor=(1.15, 0.02),
         frameon=False,
         fontsize=7.0,
         handletextpad=0.35,
         labelspacing=0.28,
         borderpad=0.2,
-        ncol=2,
+        ncol=1,
         columnspacing=0.8,
     )
 
-    add_panel_label(ax, "c")
 
 
 # ---------------------------------------------------------------------------
@@ -527,9 +542,11 @@ def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
 
 def render_panel_d(ax: plt.Axes, df: pd.DataFrame) -> None:
     ax.set_axis_off()
-    ax.set_title(
+    add_panel_heading(
+        ax,
+        "",
         "Relative backbone recovery is consistent across the two primary contexts",
-        loc="left", pad=2,
+        title_x=0.00,
     )
 
     ORDERED_IDS = [
@@ -612,13 +629,13 @@ def render_panel_d(ax: plt.Axes, df: pd.DataFrame) -> None:
                 linewidth=0.5,
                 zorder=3,
             )
-            # Value label
+            # Value label (above the dot/line)
             ax_plot.text(
                 ratio_mean,
-                y_pos + offset - 0.22,
+                y_pos + offset + 0.18,
                 f"{ratio_mean:.3f}",
                 ha="center",
-                va="top",
+                va="bottom",
                 fontsize=7.5,
                 color=FIG3_COLORS["baseline"],
             )
@@ -647,7 +664,7 @@ def render_panel_d(ax: plt.Axes, df: pd.DataFrame) -> None:
     ax_plot.legend(
         handles=handles,
         loc="lower right",
-        bbox_to_anchor=(1.02, 0.02),
+        bbox_to_anchor=(1.12, 0.02),
         frameon=False,
         fontsize=7.5,
         handletextpad=0.3,
@@ -655,7 +672,6 @@ def render_panel_d(ax: plt.Axes, df: pd.DataFrame) -> None:
         borderpad=0.2,
     )
 
-    add_panel_label(ax, "d", x=-0.015)
 
 
 # ---------------------------------------------------------------------------
@@ -744,7 +760,7 @@ def render_panel_e(ax: plt.Axes, df: pd.DataFrame) -> None:
     )
     clean_axes(ax)
     ax.grid(axis="x", color="#F2F2F2", linewidth=0.4)
-    add_panel_label(ax, "e", x=-0.34)
+    # panel letter removed (PIL)
 
 
 # ---------------------------------------------------------------------------
@@ -859,7 +875,7 @@ def panel_title(panel_id: str) -> str:
     return {
         "a": "Three-metric adjudication overview heatmap",
         "b": "Headline baseline versus GEARS dumbbell",
-        "c": "Backbone–separation trade-off scatter",
+        "c": "Backbone–separation asymmetric recovery scatter",
         "d": "Backbone recovery relative to the shared-mean baseline is consistent across the two primary contexts",
     }[panel_id]
 
@@ -869,24 +885,24 @@ PANEL_IDS: list[str] = ["a", "b", "c", "d"]
 
 def render_combined(root: Path, sources: dict[str, pd.DataFrame], panel_outputs: dict[str, dict[str, Path]]) -> dict[str, Path]:
     out = ensure_dir(output_dir(root))
+    manuscript_out = ensure_dir(manuscript_figure_dir(root))
     combined_source = pd.concat(
         [df.assign(panel=panel_id) for panel_id, df in sources.items()],
         ignore_index=True,
         sort=False,
     )
     combined_source_path = write_tsv(combined_source, out / f"{FIGURE_ID}_source_data.tsv")
+    manuscript_source_path = write_tsv(combined_source, manuscript_out / "Figure_3_source_data.tsv")
 
-    fig = plt.figure(figsize=(10.0, 8.4))
-    # Two-level layout to give independent control of vertical gaps:
-    #   outer[0] = top-row "contract + headline" band (a + b)
-    #   outer[1] = centre-and-tail band (c tall + d short, tight hspace)
-    # This lets a/b sit close-ish to c, and d sit *closer* to c than to the
-    # page bottom (so d reads as a continuation of c, not an orphan strip).
+    fig = plt.figure(figsize=(10.0, 6.5))
+    # Two-level layout: top row = a + b; bottom row = c (3/10) + d (7/10).
+    # Bottom row height compressed by ~1/3 vs prior version to keep the figure
+    # compact and prevent c/d from feeling vertically stretched.
     outer = fig.add_gridspec(
         2,
         1,
-        height_ratios=[1.0, 2.1],
-        hspace=0.14,
+        height_ratios=[1.0, 1.12],
+        hspace=0.28,
         left=0.09,
         right=0.97,
         top=0.95,
@@ -895,7 +911,7 @@ def render_combined(root: Path, sources: dict[str, pd.DataFrame], panel_outputs:
     top = outer[0].subgridspec(1, 2, wspace=0.38)
     ax_a = fig.add_subplot(top[0, 0])
     ax_b = fig.add_subplot(top[0, 1])
-    bot = outer[1].subgridspec(2, 1, height_ratios=[1.30, 0.80], hspace=0.28)
+    bot = outer[1].subgridspec(1, 2, width_ratios=[3, 7], wspace=0.28)
     ax_c = fig.add_subplot(bot[0])
     ax_d = fig.add_subplot(bot[1])
 
@@ -904,38 +920,19 @@ def render_combined(root: Path, sources: dict[str, pd.DataFrame], panel_outputs:
     render_panel_c(ax_c, sources["c"])
     render_panel_d(ax_d, sources["d"])
 
-    # Panel letters were added inside each render_panel_* using axes-relative
-    # coordinates, so their absolute x positions depend on each axis width.
-    # Re-anchor them in figure coordinates so a, c and d sit on the same
-    # vertical line; b sits on a second vertical line aligned with b's axis.
-    def _rebind_panel_letter(ax: plt.Axes, letter: str, fig_x: float) -> None:
-        for txt in list(ax.texts):
-            if txt.get_text() == letter and txt.get_fontweight() == "bold":
-                txt.set_visible(False)
-                bbox = ax.get_position()
-                fig.text(
-                    fig_x,
-                    bbox.y1 + 0.003,
-                    letter,
-                    fontsize=txt.get_fontsize(),
-                    fontweight="bold",
-                    color=txt.get_color(),
-                    va="bottom",
-                    ha="left",
-                )
-                break
-
-    left_letter_x = 0.015
-    _rebind_panel_letter(ax_a, "a", left_letter_x)
-    _rebind_panel_letter(ax_c, "c", left_letter_x)
-    _rebind_panel_letter(ax_d, "d", left_letter_x)
-    # b stays anchored to its own column left edge.
-    b_bbox = ax_b.get_position()
-    _rebind_panel_letter(ax_b, "b", max(b_bbox.x0 - 0.035, left_letter_x + 0.48))
-
     png_path = out / f"{FIGURE_ID}.png"
     pdf_path = out / f"{FIGURE_ID}.pdf"
-    output_paths = save_figure(fig, png_path, pdf_path)
+    manuscript_png = manuscript_out / "Figure_3.png"
+    manuscript_pdf = manuscript_out / "Figure_3.pdf"
+    for path in [png_path, pdf_path, manuscript_png, manuscript_pdf]:
+        ensure_dir(path.parent)
+    finalize_manuscript_figure(fig)
+    fig.savefig(png_path, dpi=300, bbox_inches="tight")
+    fig.savefig(pdf_path, bbox_inches="tight")
+    fig.savefig(manuscript_png, dpi=300, bbox_inches="tight")
+    fig.savefig(manuscript_pdf, bbox_inches="tight")
+    plt.close(fig)
+    output_paths = [png_path, pdf_path]
 
     manifest_path = out / f"{FIGURE_ID}_panel_manifest.json"
     write_figure_manifest(
@@ -947,6 +944,18 @@ def render_combined(root: Path, sources: dict[str, pd.DataFrame], panel_outputs:
         panel_manifest_paths=[panel_outputs[p]["manifest"] for p in PANEL_IDS],
         combined_source_data_path=combined_source_path,
         output_paths=output_paths,
+        input_paths=[root / MODEL_COMPARISON, root / BACKBONE_DIAGNOSIS, root / FINAL_CLAIM_MATRIX],
+        claim_boundary=CLAIM_BOUNDARY,
+    )
+    write_figure_manifest(
+        manifest_path=manuscript_out / "Figure_3_panel_manifest.json",
+        repo_root=root,
+        figure_id=FIGURE_ID,
+        figure_title=FIGURE_TITLE,
+        script_path=root / SCRIPT_PATH,
+        panel_manifest_paths=[panel_outputs[p]["manifest"] for p in PANEL_IDS],
+        combined_source_data_path=manuscript_source_path,
+        output_paths=[manuscript_png, manuscript_pdf],
         input_paths=[root / MODEL_COMPARISON, root / BACKBONE_DIAGNOSIS, root / FINAL_CLAIM_MATRIX],
         claim_boundary=CLAIM_BOUNDARY,
     )

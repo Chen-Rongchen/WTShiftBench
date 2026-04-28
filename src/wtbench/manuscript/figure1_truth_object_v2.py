@@ -12,7 +12,14 @@ from matplotlib.patches import FancyBboxPatch, Patch
 
 from wtbench.manuscript.figure_io import ensure_dir, repo_root, save_figure, write_tsv
 from wtbench.manuscript.hash_manifest import write_figure_manifest, write_panel_manifest
-from wtbench.manuscript.manuscript_style import COLORS, add_panel_label, apply_manuscript_style, clean_axes
+from wtbench.manuscript.manuscript_style import (
+    COLORS,
+    add_panel_heading,
+    add_panel_label,
+    apply_manuscript_style,
+    clean_axes,
+    finalize_manuscript_figure,
+)
 
 
 FIGURE_ID = "figure1"
@@ -118,6 +125,7 @@ def write_panel(
     manuscript_pdf_path = manuscript_pdir / f"{manuscript_stem}.pdf"
     for path in [png_path, pdf_path, manuscript_png_path, manuscript_pdf_path]:
         ensure_dir(path.parent)
+    finalize_manuscript_figure(fig)
     fig.savefig(png_path, dpi=300, bbox_inches="tight")
     fig.savefig(pdf_path, bbox_inches="tight")
     fig.savefig(manuscript_png_path, dpi=300, bbox_inches="tight")
@@ -153,7 +161,7 @@ def write_panel(
 def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
     ax.set_axis_off()
     ax.set_facecolor("white")
-    ax.set_title("Study workflow and frozen recovery object", loc="left", pad=4, fontsize=9, fontweight="bold")
+    add_panel_heading(ax, "", "Study workflow and frozen recovery object", title_x=0.00, title_fontsize=8.8)
 
     def rounded_box(
         x: float,
@@ -383,12 +391,11 @@ def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
         va="center",
         linespacing=0.85,
     )
-    add_panel_label(ax, "a", x=-0.16)
 
 
 def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
     ax.set_axis_off()
-    ax.set_title("Primary benchmark contexts", loc="left", pad=4)
+    ax.set_title("Primary benchmark contexts", loc="left", pad=0)
     cols = ["context", "truth", "endpoint", "n"]
     y0 = 0.76
     xs = [0.03, 0.30, 0.57, 0.90]
@@ -402,11 +409,11 @@ def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
         ax.text(xs[2], y, "CRISPR\nDepMap", fontsize=7, transform=ax.transAxes, linespacing=0.9)
         ax.text(xs[3], y, str(row.targets), fontsize=7, transform=ax.transAxes)
     ax.text(0.03, 0.12, "Larger aligned endpoint values indicate stronger dependency/liability.", fontsize=6, color="#666666", transform=ax.transAxes)
-    add_panel_label(ax, "b", x=-0.04)
+    # panel letter removed (PIL)
 
 
 def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
-    ax.set_title("Pre-specified 25/75 rule", loc="left", fontweight="bold", fontsize=9)
+    add_panel_heading(ax, "", "Pre-specified 25/75 rule", title_x=0.00, title_fontsize=8.8)
     ax.set_xlim(0, 1)
     ax.set_ylim(0, 1)
     ax.set_aspect("equal", adjustable="box")
@@ -484,7 +491,6 @@ def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
         ha="center",
         va="center",
     )
-    add_panel_label(ax, "b", x=-0.29)
 
 
 def _style_axes_for_figure1(ax: plt.Axes) -> None:
@@ -638,23 +644,19 @@ def render_joint_grid(ax: plt.Axes, df: pd.DataFrame, cell_line: str, label: str
     n_targets = plot["n_targets"].dropna()
     rho_text = f"{float(rho.iloc[0]):.3f}" if not rho.empty else "NA"
     n_text = f"{int(n_targets.iloc[0])}" if not n_targets.empty else f"{len(plot)}"
-    ax.set_title(f"{cell_line} target-level joint grid", loc="left", fontsize=9, fontweight="bold")
+    add_panel_heading(
+        ax,
+        "",
+        f"{cell_line} target-level joint grid",
+        title_x=0.00,
+        title_fontsize=8.8,
+    )
     ax.text(0.03, 0.96, f"n={n_text}", transform=ax.transAxes, fontsize=8.0, color=FIG1_BLACK, fontweight="bold", va="top")
     ax.text(0.03, 0.89, f"\u03c1={rho_text}", transform=ax.transAxes, fontsize=8.0, color=FIG1_BLACK, fontweight="bold", va="top")
     ax.text(
         0.03,
         0.82,
-        "Q1=",
-        transform=ax.transAxes,
-        fontsize=8.0,
-        color=FIG1_BLACK,
-        fontweight="bold",
-        va="top",
-    )
-    ax.text(
-        0.095,
-        0.82,
-        f"{len(q1)}",
+        f"Q1: {len(q1)} anchors",
         transform=ax.transAxes,
         fontsize=8.0,
         color=GRID_COLORS["Q1_anchor"],
@@ -663,8 +665,6 @@ def render_joint_grid(ax: plt.Axes, df: pd.DataFrame, cell_line: str, label: str
     )
     _add_joint_grid_key(ax)
     _style_axes_for_figure1(ax)
-    panel_label_x = {"c": -0.16, "d": -0.13}.get(label, -0.16)
-    add_panel_label(ax, label, x=panel_label_x)
 
 
 def render_panel_d(ax: plt.Axes, df: pd.DataFrame) -> None:
@@ -730,7 +730,7 @@ def render_panel_f(ax: plt.Axes, df: pd.DataFrame) -> None:
     ax.set_xticks(np.linspace(0, 1, 6))
     ax.set_xticklabels([f"{int(x * 100)}%" for x in np.linspace(0, 1, 6)], fontsize=7.5)
     ax.set_xlabel("Target composition")
-    ax.set_title("Grid composition across primary contexts", loc="left", fontsize=9, fontweight="bold")
+    add_panel_heading(ax, "", "Grid composition across primary contexts", title_x=0.00, title_fontsize=8.8)
     ax.tick_params(axis="y", length=0)
     ax.grid(False)
     for side in ("top", "right", "left"):
@@ -739,7 +739,6 @@ def render_panel_f(ax: plt.Axes, df: pd.DataFrame) -> None:
     ax.spines["bottom"].set_color(FIG1_AXIS)
     ax.spines["bottom"].set_linewidth(0.8)
     ax.tick_params(axis="x", colors=FIG1_AXIS, width=0.8, length=2.4, pad=1.5)
-    add_panel_label(ax, "e", x=-0.13)
 
 
 def render_panel_bridge_strength(ax: plt.Axes, df: pd.DataFrame) -> None:
@@ -783,10 +782,10 @@ def render_panel_bridge_strength(ax: plt.Axes, df: pd.DataFrame) -> None:
             zorder=3,
         )
         ax.text(
-            xi + 0.09,
-            rho_val + 0.005,
+            xi + 0.045,
+            rho_val + 0.003,
             f"{rho_val:.3f} / n={int(ni)}",
-            fontsize=7.5,
+            fontsize=7.0,
             color=FIG1_BLACK,
             fontweight="bold",
             va="bottom",
@@ -820,7 +819,7 @@ def render_panel_bridge_strength(ax: plt.Axes, df: pd.DataFrame) -> None:
     ax.set_yticks([0.0, 0.25, 0.5, 0.75, 1.0])
     ax.set_yticklabels(["0.00", "0.25", "0.50", "0.75", "1.00"], fontsize=7.5)
     ax.set_ylabel(r"Aligned Spearman $\rho$")
-    ax.set_title("Bridge strength", loc="left", fontsize=9, fontweight="bold")
+    add_panel_heading(ax, "", "Bridge strength", title_x=0.00, title_fontsize=8.8)
     _style_axes_for_figure1(ax)
     ax.legend(
         handles=[
@@ -840,12 +839,11 @@ def render_panel_bridge_strength(ax: plt.Axes, df: pd.DataFrame) -> None:
         handlelength=1.0,
         handletextpad=0.50,
     )
-    add_panel_label(ax, "f", x=-0.22)
 
 
 def render_panel_h(ax: plt.Axes, df: pd.DataFrame) -> None:
     ax.set_axis_off()
-    ax.set_title("Claim boundary", loc="left", pad=4)
+    ax.set_title("Claim boundary", loc="left", pad=0)
     rows = [
         ("Allowed", "structured target-level recovery object"),
         ("Allowed", "categories fixed before entrant adjudication"),
@@ -859,7 +857,7 @@ def render_panel_h(ax: plt.Axes, df: pd.DataFrame) -> None:
         ax.text(0.34, y, text, fontsize=7, transform=ax.transAxes)
         y -= 0.18
     ax.text(0.02, 0.05, "Boundary fixed before model comparison.", fontsize=6, color="#666666", transform=ax.transAxes)
-    add_panel_label(ax, "h", x=-0.04)
+    # panel letter removed (PIL)
 
 
 def build_sources(root: Path) -> dict[str, pd.DataFrame]:
@@ -995,6 +993,7 @@ def render_combined(root: Path, sources: dict[str, pd.DataFrame], panel_outputs:
     manuscript_pdf = manuscript_out / "Figure_1.pdf"
     for path in [png_path, pdf_path, manuscript_png, manuscript_pdf]:
         ensure_dir(path.parent)
+    finalize_manuscript_figure(fig)
     fig.savefig(png_path, dpi=300, bbox_inches="tight")
     fig.savefig(pdf_path, bbox_inches="tight")
     fig.savefig(manuscript_png, dpi=300, bbox_inches="tight")

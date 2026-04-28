@@ -15,7 +15,7 @@
 
 - Abstract、Background、Results、Methods、Discussion、Conclusions 已围绕同一套 benchmark grammar 同步。
 - Figure 1-5 主图图注已同步。
-- Extended Data Fig. 1-11 图注已同步。
+- Extended Data Fig. 1-5 图注已同步。
 - CRISPR DepMap 是 primary bridge readout。
 - RNAi DEMETER2 是 weaker cross-platform sensitivity endpoint。
 - K562 temporal panel 是 supplementary architecture-form / bounded bridge-form evidence。
@@ -24,35 +24,35 @@
 Figure 1-5 主图全部已定版并同步到投稿目录：
 - Figure 1：6-panel（a–f）data-forward truth object
 - Figure 2：6-panel（a–f）evidence-first anchor tiering
-- Figure 3：4-panel（a–d）model adjudication triad
+- Figure 3：3-panel（a–c）model adjudication triad
 - Figure 4：3-panel（a–c）prespecified local rebuttal test
 - Figure 5：4-panel（a–d）boundary architecture + claim ledger（原 Figure 6 前移）
-- Extended Data Fig. 11：2-panel（a–b）axis adjudication（原 Figure 5 下放）
+- Extended Data Fig. 4：2-panel descriptive axis-level signal space
+- Extended Data Fig. 5：1-panel pathway-response polarity heatmap
 
-`manuscript/extended_data/` 中的 Extended Data Fig. 1-10 保持原收束计划；Extended Data Fig. 11 承接原主文 Figure 5 的 axis-level adjudication。
+`manuscript/extended_data/` 中的 Extended Data Fig. 1 是 dataset familiarization 入口图；Extended Data Fig. 2 是 metric robustness；Extended Data Fig. 3 是 K562 temporal；Extended Data Fig. 4 展示 descriptive axis-level signal space；Extended Data Fig. 5 展示 pathway-response polarity heatmap。endpoint hierarchy 由 Fig. 5 承载，不再单独保留 Extended Data 图。
 
 ## 下一步工作
 
 ## 当前阶段
 
-**Figure 1-5 主图已全部定版**，下一步是 Extended Data Fig. 1-10 的收束 redraw 与 Extended Data Fig. 11 的索引打包确认。
+**Figure 1-5 主图已全部定版**，下一步是 Extended Data Fig. 1-5 的收束 redraw 与 biological landing 层的索引打包确认。
 
 原则不变：不改 source data、不新增分析、不改 claim boundary。
 
 ### Extended Data 收束计划
 
 - 计划文档：`docs/extended_data_redesign_plan_v1.md`
-- 目标：80 panel → 49 panel（每张 ED 从 8 panel 收束至 3–6 panel）
+- 目标：在新增 dataset familiarization ED1 的前提下，将其余 ED 保持为细节层支撑，不重复主图已给出的核心信息。
 - 收束策略：合并重复 panel、删除主图已覆盖内容、整合主图下放内容
 
 ### 执行顺序建议
 
-1. ED Fig. 5（已冻结，最先执行）
-2. ED Fig. 6（保留 full axis annotation / bootstrap support）
-3. ED Fig. 9（接收当前 Fig. 5 / 原 Fig. 6 下放内容）
-4. ED Fig. 7 / ED Fig. 8（接收当前 Fig. 5 / 原 Fig. 6 下放内容，可并行）
-5. ED Fig. 1-4 / ED Fig. 10（独立，任意顺序）
-6. ED Fig. 11（原主文 Fig. 5 下放的 axis adjudication）
+1. ED Fig. 1（dataset familiarization and endpoint inputs）
+2. ED Fig. 2（metric robustness）
+3. ED Fig. 3（K562 temporal evidence detail）
+4. ED Fig. 4（axis explanatory space）
+5. ED Fig. 5（pathway-response polarity）
 
 投稿前仍需作者人工补齐作者信息、单位、通讯邮箱、funding、competing interests、author contributions、acknowledgements、public repository / archive DOI。
 
@@ -143,6 +143,8 @@ Figure 1-5 主图全部已定版并同步到投稿目录：
 - `Extended_Data_Figure_2/`
 - ...
 - `Extended_Data_Figure_10/`
+- `Extended_Data_Figure_11/`
+- `Extended_Data_Figure_12/`
 
 每个目录包含：
 
@@ -150,7 +152,7 @@ Figure 1-5 主图全部已定版并同步到投稿目录：
 - 整图 PNG。
 - 整图 source data。
 - 整图 panel manifest。
-- `panels/` 中的 a-h 小图 PDF / PNG / source data / manifest。
+- `panels/` 中的 panel 小图 PDF / PNG / source data / manifest（当前不同 ED 的 panel 数不再统一为 a-h）。
 
 ## Additional Files
 
@@ -190,9 +192,10 @@ Figure 1-5 主图全部已定版并同步到投稿目录：
 - 主图目录：5 张整图，每张含 panel 小图、source data 和 manifest。
   - Figure 1：6 panel（a-f）
   - Figure 2：6 panel（a-f）
-  - Figure 3：4 panel（a-d）
+  - Figure 3：3 panel（a-c）
   - Figure 4：3 panel（a-c）
   - Figure 5：4 panel（a-d）
-  - Extended Data Fig. 11：2 panel（a-b），由原 Figure 5 下放。
-- Extended Data：11 张整图，其中 ED1-10 保持原补充结构，ED11 为 axis adjudication。
+  - Extended Data Fig. 4：2 panel descriptive axis-level signal space。
+  - Extended Data Fig. 5：1 panel pathway-response polarity heatmap。
+- Extended Data：5 张整图，其中 ED1 为 dataset familiarization，ED2 为 metric robustness，ED3 为 K562 temporal，ED4 为 descriptive axis-level signal space，ED5 为 pathway-response polarity。
 - Additional files：3 个上传候选文件。

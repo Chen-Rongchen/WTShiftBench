@@ -1,7 +1,0 @@
-variant_id	epochs	lr	weight_decay	candidate_rank
-e30_lr1e-03_wd1e-06	30	0.001	1e-06	1
-e30_lr1e-03_wd1e-05	30	0.001	1e-05	2
-e30_lr5e-04_wd1e-06	30	0.0005	1e-06	3
-e30_lr2e-03_wd1e-06	30	0.002	1e-06	4
-e20_lr1e-03_wd1e-06	20	0.001	1e-06	5
-e40_lr1e-03_wd1e-06	40	0.001	1e-06	6

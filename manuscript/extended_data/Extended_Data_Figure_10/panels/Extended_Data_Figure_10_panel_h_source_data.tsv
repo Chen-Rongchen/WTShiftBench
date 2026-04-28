@@ -1,5 +1,0 @@
-boundary	status	basis
-GEARS training	exempt from figure-stage rerun	runtime cost; frozen predictions and scores hashed
-figure source data	rerun	all main figures and ED10 rebuild source data from frozen reports
-hash manifests	recorded	input, source data and output SHA256 tracked
-claim wording	governed	final claim matrix controls allowed and disallowed wording

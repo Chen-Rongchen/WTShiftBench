@@ -53,7 +53,7 @@ def panel_dir(root: Path) -> Path:
 
 
 def manuscript_figure_dir(root: Path) -> Path:
-    return root / "manuscript/extended_data/Extended_Data_Figure_11"
+    return output_dir(root) / "manuscript_export"
 
 
 def manuscript_panel_dir(root: Path) -> Path:
@@ -82,7 +82,7 @@ def write_panel(
     pdir = ensure_dir(panel_dir(root))
     manuscript_pdir = ensure_dir(manuscript_panel_dir(root))
     stem = f"{FIGURE_ID}_panel{panel_id}"
-    manuscript_stem = f"Extended_Data_Figure_11_panel_{panel_id}"
+    manuscript_stem = f"Extended_Data_Figure_12_panel_{panel_id}"
     source_path = write_tsv(source_df, pdir / f"{stem}_source_data.tsv")
     manuscript_source_path = write_tsv(source_df, manuscript_pdir / f"{manuscript_stem}_source_data.tsv")
     fig, ax = plt.subplots(figsize=(width, height))
@@ -787,7 +787,7 @@ def render_combined(root: Path, sources: dict[str, pd.DataFrame], panel_outputs:
     manuscript_out = ensure_dir(manuscript_figure_dir(root))
     combined_source = pd.concat([df.assign(panel=panel_id) for panel_id, df in sources.items()], ignore_index=True, sort=False)
     combined_source_path = write_tsv(combined_source, out / f"{FIGURE_ID}_source_data.tsv")
-    manuscript_source_path = write_tsv(combined_source, manuscript_out / "Extended_Data_Figure_11_source_data.tsv")
+    manuscript_source_path = write_tsv(combined_source, manuscript_out / "Extended_Data_Figure_12_source_data.tsv")
 
     fig = plt.figure(figsize=(11.2, 3.75))
     fig.patch.set_facecolor("white")
@@ -812,8 +812,8 @@ def render_combined(root: Path, sources: dict[str, pd.DataFrame], panel_outputs:
 
     png_path = out / f"{FIGURE_ID}.png"
     pdf_path = out / f"{FIGURE_ID}.pdf"
-    manuscript_png = manuscript_out / "Extended_Data_Figure_11.png"
-    manuscript_pdf = manuscript_out / "Extended_Data_Figure_11.pdf"
+    manuscript_png = manuscript_out / "Extended_Data_Figure_12.png"
+    manuscript_pdf = manuscript_out / "Extended_Data_Figure_12.pdf"
     for path in [png_path, pdf_path, manuscript_png, manuscript_pdf]:
         ensure_dir(path.parent)
     fig.savefig(png_path, dpi=300, bbox_inches="tight")
@@ -836,13 +836,13 @@ def render_combined(root: Path, sources: dict[str, pd.DataFrame], panel_outputs:
         claim_boundary=CLAIM_BOUNDARY,
     )
     write_figure_manifest(
-        manifest_path=manuscript_out / "Extended_Data_Figure_11_panel_manifest.json",
+        manifest_path=manuscript_out / "Extended_Data_Figure_12_panel_manifest.json",
         repo_root=root,
-        figure_id="Extended_Data_Figure_11",
+        figure_id="Extended_Data_Figure_12",
         figure_title=FIGURE_TITLE,
         script_path=root / SCRIPT_PATH,
         panel_manifest_paths=[
-            manuscript_panel_dir(root) / f"Extended_Data_Figure_11_panel_{p}_manifest.json"
+            manuscript_panel_dir(root) / f"Extended_Data_Figure_12_panel_{p}_manifest.json"
             for p in list("ab")
         ],
         combined_source_data_path=manuscript_source_path,

@@ -38,11 +38,7 @@
 
 **b,** Baseline leads backbone recovery, whereas GEARS leads context separation. Paired-dot contrast limited to the shared-mean baseline and the formal GEARS recipe on the two headline metrics.
 
-**c,** Entrants occupy a backbone-separation trade-off space. Backbone recovery versus structure-versus-context separation across all entrants; baseline and GEARS are highlighted, Geneformer and scGPT are labelled, and GEARS sweep variants, linear controls and the null reference appear as a family-grouped supporting cloud. A lightly shaded upper-right reference region is included as an illustrative visual aid indicating the empty high-backbone/high-separation corner; the region is not a decision threshold and is not used for scoring or adjudication.
-
-**d,** The same qualitative ordering is preserved in HCC38 and HCC1143. Per-context paired-dot comparison of the shared-mean baseline and the formal GEARS recipe on backbone recovery.
-
-Prespecified GEARS sweep variants and their stop-rule adjudication (backbone versus shift-excess trade-off) are reported in Extended Data Fig. 5. shared_mean_baseline remains the backbone primary reference, whereas GEARS is retained as an architecture trade-off diagnosis rather than an overall HCC primary winner.
+**c,** Entrants occupy a backbone-separation trade-off space. Backbone recovery versus structure-versus-context separation across all entrants; baseline and GEARS are highlighted, Geneformer and scGPT are labelled, and GEARS sweep variants, linear controls and the null reference appear as a family-grouped supporting cloud. A lightly shaded upper-right reference region is included as an illustrative visual aid indicating the empty high-backbone/high-separation corner; the region is not a decision threshold and is not used for scoring or adjudication. Per-cell-line and full-entrant readouts (including the former per-context paired-dot check) are in Extended Data Fig. 4. Prespecified GEARS sweep variants and their stop-rule adjudication (backbone versus shift-excess trade-off) are reported in Extended Data Fig. 5. `shared_mean_baseline` remains the backbone primary reference, whereas GEARS is retained as an architecture trade-off diagnosis rather than an overall HCC primary winner.
 
 ## Figure 4. Recipe and embedding controls do not close the backbone gap
 
@@ -62,6 +58,6 @@ Prespecified GEARS sweep variants and their stop-rule adjudication (backbone ver
 
 **h,** Interpretation boundary. The observed gap is treated as a task-structure or direction-level mismatch rather than a missing small recipe.
 
-## Figure 5. Covariate, temporal and endpoint analyses define the final claim boundary
+## Figure 5. Boundary audits define the benchmark's bounded claim scope
 
-**a,** Boundary architecture. Three independent layers jointly define the final claim scope. **b,** Covariate boundary. Mean Total Variation Distance across five covariate axes in HCC38 and HCC1143. **c,** Temporal and endpoint hierarchy boundary. K562 7d/13d temporal comparison is shown alongside CRISPR versus RNAi endpoint hierarchy across four contexts. **d,** Final claim boundary. CRISPR DepMap dependency is the primary readout; K562 temporal panel is supplementary evidence; RNAi DEMETER2 is a weaker cross-platform sensitivity endpoint; fully deconfounded architecture, content-level replication, RNAi primary readout and mechanism-level recovery remain unclaimed.
+**a,** Covariate boundary across HCC38 and HCC1143. Cell shading shows mean target-control Total Variation Distance, whereas glyphs indicate the number of targets exceeding the TVD > 0.25 threshold. Mean TVD did not exceed the hard imbalance threshold, but residual UMI-related target-level exposure constrained fully deconfounded wording. **b,** Endpoint hierarchy across contexts. CRISPR DepMap bridge Spearman exceeded RNAi DEMETER2 bridge Spearman in all four contexts, supporting CRISPR DepMap dependency as the primary endpoint and RNAi DEMETER2 as a weaker cross-platform sensitivity endpoint. **c,** Temporal boundary in the K562 supplementary panel. K562 7d showed stronger rank-bridge alignment, whereas K562 13d showed larger perturbation-shift magnitude, supporting temporal stratification rather than content-level replication.
