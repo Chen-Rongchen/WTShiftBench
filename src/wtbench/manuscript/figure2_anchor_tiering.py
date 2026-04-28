@@ -23,7 +23,12 @@ from wtbench.manuscript._palette import (
 )
 from wtbench.manuscript.figure_io import ensure_dir, repo_root, save_figure, write_tsv
 from wtbench.manuscript.hash_manifest import write_figure_manifest, write_panel_manifest
-from wtbench.manuscript.manuscript_style import COLORS, add_panel_label, apply_manuscript_style, clean_axes
+from wtbench.manuscript.manuscript_style import (
+    add_panel_heading,
+    apply_manuscript_style,
+    clean_axes,
+    finalize_manuscript_figure,
+)
 
 
 FIGURE_ID = "figure2"
@@ -90,19 +95,16 @@ COVARIATE_EXPOSED_MARK = "*"
 
 ACTIVE_PANELS = list("abcdef")
 
-# When rendering the combined figure we replace per-axes panel labels with
-# figure-level labels aligned by column. Set to True inside render_combined.
-_SUPPRESS_PANEL_LABELS = False
-
-
-def _maybe_add_panel_label(ax: plt.Axes, label: str, x: float = -0.10, y: float = 1.04) -> None:
-    if _SUPPRESS_PANEL_LABELS:
-        return
-    add_panel_label(ax, label, x=x, y=y)
+def _add_panel_heading(ax: plt.Axes, label: str, title: str, *, label_x: float = -0.10) -> None:
+    add_panel_heading(ax, "", title, title_x=0.00)
 
 
 def output_dir(root: Path) -> Path:
     return root / "reports/manuscript_figures_v2/fig2_anchor_tiering"
+
+
+def manuscript_figure_dir(root: Path) -> Path:
+    return root / "manuscript/figures/Figure_2"
 
 
 def panel_dir(root: Path) -> Path:
@@ -211,7 +213,7 @@ def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
             [row.shift_quantile_mean, row.depmap_quantile_mean],
             [yi, yi],
             color=MID_GRAY,
-            linewidth=0.75,
+            linewidth=0.45,
             zorder=1,
         )
 
@@ -224,7 +226,7 @@ def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
         ax.plot(
             [lo, hi], [yi, yi],
             color=MID_GRAY,
-            linewidth=0.9,
+            linewidth=0.5,
             linestyle=(0, (3, 2)),
             alpha=1.0,
             zorder=0.5,
@@ -235,8 +237,8 @@ def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
         y,
         color="#FFFFFF",
         edgecolor=SKY_BLUE,
-        linewidth=1.0,
-        s=36,
+        linewidth=0.8,
+        s=30,
         label="shift",
         zorder=3,
     )
@@ -245,8 +247,8 @@ def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
         y,
         color=PRIMARY_GREEN,
         edgecolor=PRIMARY_GREEN_EDGE,
-        linewidth=0.6,
-        s=36,
+        linewidth=0.5,
+        s=30,
         label="dependency",
         zorder=4,
     )
@@ -265,7 +267,7 @@ def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
 
     ax.set_xlim(0.68, 1.03)
     ax.set_xlabel("Mean within-cell-line quantile")
-    ax.set_title("Shared-canonical candidates occupy high joint ranks", loc="left")
+    _add_panel_heading(ax, "a", "Shared-canonical candidates occupy high joint ranks", label_x=-0.04)
 
     legend_handles = [
         plt.Line2D(
@@ -295,7 +297,6 @@ def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
         labelspacing=0.3,
     )
     clean_axes(ax)
-    _maybe_add_panel_label(ax, "a", x=-0.14)
 
 
 def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
@@ -375,13 +376,12 @@ def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
             fontweight="bold",
             color=PRIMARY_GREEN if cl == "HCC1143" else VERMILLION,
         )
-    ax.set_title("Stable anchors recur across both HCC contexts", loc="left")
+    _add_panel_heading(ax, "b", "Stable anchors recur across both HCC contexts", label_x=-0.04)
     ax.tick_params(length=0)
     ax.set_facecolor("white")
     for spine in ax.spines.values():
         spine.set_visible(False)
 
-    _maybe_add_panel_label(ax, "b", x=-0.16)
 
 
 def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
@@ -436,9 +436,10 @@ def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
         else:
             tick_label.set_color(NEUTRAL_GRAY)
 
-    ax.set_xlim(0, 1.05)
+    ax.set_xlim(0.32, 1.03)
+    ax.set_xticks([0.4, 0.6, 0.8, 1.0])
     ax.set_xlabel("Shared-anchor stability fraction")
-    ax.set_title("Stability fraction separates stable from sensitive anchors", loc="left")
+    _add_panel_heading(ax, "c", "Stability fraction separates stable from sensitive anchors", label_x=-0.04)
 
     legend_handles = [
         plt.Line2D([0], [0], marker="s", linestyle="none",
@@ -459,7 +460,6 @@ def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
         labelspacing=0.3,
     )
     clean_axes(ax)
-    _maybe_add_panel_label(ax, "c", x=-0.14)
 
 
 def render_panel_d(ax: plt.Axes, df: pd.DataFrame) -> None:
@@ -500,7 +500,7 @@ def render_panel_d(ax: plt.Axes, df: pd.DataFrame) -> None:
 
     ax.set_ylim(0, 1.16)
     ax.set_ylabel("Mean within-cell-line quantile")
-    ax.set_title("Final stable anchors retain high shift and dependency ranks", loc="left")
+    _add_panel_heading(ax, "d", "Final stable anchors retain high shift and dependency ranks", label_x=-0.04)
     ax.legend(
         [plt.Rectangle((0, 0), 1, 1, color=shift_color), plt.Rectangle((0, 0), 1, 1, color=dep_color)],
         ["shift", "dependency"],
@@ -514,7 +514,6 @@ def render_panel_d(ax: plt.Axes, df: pd.DataFrame) -> None:
         borderpad=0.0,
     )
     clean_axes(ax)
-    _maybe_add_panel_label(ax, "d")
 
 
 def render_claim_matrix(ax: plt.Axes, df: pd.DataFrame) -> None:
@@ -526,7 +525,7 @@ def render_claim_matrix(ax: plt.Axes, df: pd.DataFrame) -> None:
     """
 
     ax.set_axis_off()
-    ax.set_title("Anchor claim matrix", loc="left", pad=6)
+    _add_panel_heading(ax, "f", "Anchor claim matrix", label_x=-0.04)
 
     order = FINAL_ANCHORS
     plot = df.set_index("target_gene").reindex(order).reset_index()
@@ -619,7 +618,6 @@ def render_claim_matrix(ax: plt.Axes, df: pd.DataFrame) -> None:
         [0.01, 0.99], [bottom_rule_y, bottom_rule_y],
         color=DIVIDER_GRAY, linewidth=0.8, transform=ax.transAxes,
     )
-    _maybe_add_panel_label(ax, "f", x=-0.04)
 
 
 def render_tvd_matrix(ax: plt.Axes, df: pd.DataFrame) -> None:
@@ -678,7 +676,9 @@ def render_tvd_matrix(ax: plt.Axes, df: pd.DataFrame) -> None:
                     zorder=3,
                 )
 
-    ax.axvline(len(axes_list) - 0.5, color="#E8E8E8", linewidth=0.5, zorder=4)
+    # Make the HCC38/HCC1143 grouping boundary visible enough that exposed cells
+    # on opposite sides are not read as adjacent columns.
+    ax.axvline(len(axes_list) - 0.5, color="#9E9E9E", linewidth=1.0, zorder=4)
 
     ax.set_xticks(range(len(col_tuples)))
     ax.set_xticklabels([AXIS_SHORT_LABELS[ax_name] for _, ax_name in col_tuples], fontsize=5.6, rotation=0, ha="center")
@@ -703,12 +703,12 @@ def render_tvd_matrix(ax: plt.Axes, df: pd.DataFrame) -> None:
 
     for spine in ax.spines.values():
         spine.set_visible(False)
-    ax.set_title(
+    _add_panel_heading(
+        ax,
+        "e",
         "Per-anchor covariate TVD (threshold: TVD > 0.25)",
-        loc="left", pad=6, fontsize=7.4,
+        label_x=-0.04,
     )
-
-    _maybe_add_panel_label(ax, "e", x=-0.04)
 
 
 # ---------------------------------------------------------------------------
@@ -850,12 +850,14 @@ def render_combined(
     root: Path, sources: dict[str, pd.DataFrame], panel_outputs: dict[str, dict[str, Path]]
 ) -> dict[str, Path]:
     out = ensure_dir(output_dir(root))
+    manuscript_out = ensure_dir(manuscript_figure_dir(root))
     combined_source = pd.concat(
         [df.assign(panel=panel_id) for panel_id, df in sources.items()],
         ignore_index=True,
         sort=False,
     )
     combined_source_path = write_tsv(combined_source, out / f"{FIGURE_ID}_source_data.tsv")
+    manuscript_source_path = write_tsv(combined_source, manuscript_out / "Figure_2_source_data.tsv")
 
     fig = plt.figure(figsize=(10.8, 8.9))
     mosaic = [
@@ -878,47 +880,22 @@ def render_combined(
         },
     )
 
-    global _SUPPRESS_PANEL_LABELS
-    _SUPPRESS_PANEL_LABELS = True
-    try:
-        for panel_id in ACTIVE_PANELS:
-            render_panel_by_id(panel_id)(axes[panel_id], sources[panel_id])
-    finally:
-        _SUPPRESS_PANEL_LABELS = False
-
-    # Figure-level panel labels, placed outside each panel's upper-left corner.
-    # a/c/e share the same left x; b/d share the right-column left x.
-    fig.canvas.draw()
-    renderer = fig.canvas.get_renderer()
-    left_x = min(axes[p].get_position().x0 for p in ("a", "c", "e")) - 0.028
-    a_legend_bbox = axes["a"].legend_.get_window_extent(renderer=renderer).transformed(fig.transFigure.inverted())
-    c_legend_bbox = axes["c"].legend_.get_window_extent(renderer=renderer).transformed(fig.transFigure.inverted())
-    right_label_x = max(a_legend_bbox.x1, c_legend_bbox.x1) + 0.010
-    f_x = axes["f"].get_position().x0 - 0.012
-    y_offset = 0.022
-    label_positions = {
-        "a": (left_x, axes["a"].get_position().y1 + y_offset),
-        "b": (right_label_x, axes["b"].get_position().y1 + y_offset),
-        "c": (left_x, axes["c"].get_position().y1 + y_offset),
-        "d": (right_label_x, axes["d"].get_position().y1 + y_offset),
-        "e": (left_x, axes["e"].get_position().y1 + y_offset),
-        "f": (f_x, axes["f"].get_position().y1 + y_offset),
-    }
-    for panel_id, (x, y) in label_positions.items():
-        fig.text(
-            x,
-            y,
-            panel_id,
-            fontsize=9.5,
-            fontweight="bold",
-            ha="left",
-            va="bottom",
-            color=COLORS["text"],
-        )
+    for panel_id in ACTIVE_PANELS:
+        render_panel_by_id(panel_id)(axes[panel_id], sources[panel_id])
 
     png_path = out / f"{FIGURE_ID}.png"
     pdf_path = out / f"{FIGURE_ID}.pdf"
-    output_paths = save_figure(fig, png_path, pdf_path)
+    manuscript_png = manuscript_out / "Figure_2.png"
+    manuscript_pdf = manuscript_out / "Figure_2.pdf"
+    for path in [png_path, pdf_path, manuscript_png, manuscript_pdf]:
+        ensure_dir(path.parent)
+    finalize_manuscript_figure(fig)
+    fig.savefig(png_path, dpi=300, bbox_inches="tight")
+    fig.savefig(pdf_path, bbox_inches="tight")
+    fig.savefig(manuscript_png, dpi=300, bbox_inches="tight")
+    fig.savefig(manuscript_pdf, bbox_inches="tight")
+    plt.close(fig)
+    output_paths = [png_path, pdf_path]
     manifest_path = out / f"{FIGURE_ID}_panel_manifest.json"
     write_figure_manifest(
         manifest_path=manifest_path,
@@ -929,6 +906,18 @@ def render_combined(
         panel_manifest_paths=[panel_outputs[p]["manifest"] for p in ACTIVE_PANELS],
         combined_source_data_path=combined_source_path,
         output_paths=output_paths,
+        input_paths=input_paths(root),
+        claim_boundary=CLAIM_BOUNDARY,
+    )
+    write_figure_manifest(
+        manifest_path=manuscript_out / "Figure_2_panel_manifest.json",
+        repo_root=root,
+        figure_id=FIGURE_ID,
+        figure_title=FIGURE_TITLE,
+        script_path=root / SCRIPT_PATH,
+        panel_manifest_paths=[panel_outputs[p]["manifest"] for p in ACTIVE_PANELS],
+        combined_source_data_path=manuscript_source_path,
+        output_paths=[manuscript_png, manuscript_pdf],
         input_paths=input_paths(root),
         claim_boundary=CLAIM_BOUNDARY,
     )

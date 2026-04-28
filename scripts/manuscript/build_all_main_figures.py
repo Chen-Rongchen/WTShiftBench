@@ -8,6 +8,14 @@ from pathlib import Path
 
 
 DEFAULT_CONFIG = Path("configs/manuscript/main_figures_v2.json")
+EXPECTED_PANEL_COUNTS = {
+    "figure1": 6,
+    "figure2": 6,
+    "figure3": 4,
+    "figure4": 3,
+    "figure5": 2,
+    "figure6": 4,
+}
 
 
 def repo_root() -> Path:
@@ -31,21 +39,23 @@ def verify_outputs(root: Path, figures: list[dict]) -> None:
     for figure in figures:
         out = root / figure["output_dir"]
         panels = out / "panels"
+        figure_num = figure["figure_id"].replace("figure", "")
         counts = {
             "panel_png": len(list(panels.glob("*_panel*.png"))),
             "panel_pdf": len(list(panels.glob("*_panel*.pdf"))),
             "panel_source": len(list(panels.glob("*_panel*_source_data.tsv"))),
             "panel_manifest": len(list(panels.glob("*_panel*_manifest.json"))),
-            "figure_png": len(list(out.glob("figure*.png"))),
-            "figure_pdf": len(list(out.glob("figure*.pdf"))),
-            "figure_source": len(list(out.glob("figure*_source_data.tsv"))),
-            "figure_manifest": len(list(out.glob("figure*_panel_manifest.json"))),
+            "figure_png": len(list(out.glob(f"figure{figure_num}.png"))),
+            "figure_pdf": len(list(out.glob(f"figure{figure_num}.pdf"))),
+            "figure_source": len(list(out.glob(f"figure{figure_num}_source_data.tsv"))),
+            "figure_manifest": len(list(out.glob(f"figure{figure_num}_panel_manifest.json"))),
         }
+        expected_panel_count = EXPECTED_PANEL_COUNTS[figure["figure_id"]]
         expected = {
-            "panel_png": 8,
-            "panel_pdf": 8,
-            "panel_source": 8,
-            "panel_manifest": 8,
+            "panel_png": expected_panel_count,
+            "panel_pdf": expected_panel_count,
+            "panel_source": expected_panel_count,
+            "panel_manifest": expected_panel_count,
             "figure_png": 1,
             "figure_pdf": 1,
             "figure_source": 1,

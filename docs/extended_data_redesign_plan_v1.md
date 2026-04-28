@@ -2,7 +2,7 @@
 
 ## 文档定位
 
-本文档记录主图 Figure 1-5 全部定版后，Extended Data Figure 1-11 的收束计划。原主文 Figure 5 已下放为 Extended Data Fig. 11；原 Figure 6 已前移为主文 Figure 5。
+本文档记录主图 Figure 1-5 全部定版后，Extended Data Figure 1-12 的收束计划。新增一个 dataset familiarization 入口图作为 Extended Data Fig. 1；原主文 Figure 5 axis adjudication 下放为 Extended Data Fig. 12；原 Figure 6 已前移为主文 Figure 5。
 
 原则：Extended Data 不是"低优先级主图"，而是"主图支持的完整细节层"。收束目标是消除冗余、合并重复信息、整合从主图下放的内容，而不是再压缩一次叙事。
 
@@ -12,16 +12,38 @@
 |---|---|---|
 | Fig. 4 旧 d-h | sweep bars / shift-excess / linear-control detail / coverage audit | ED Fig. 5（已冻结为 6 panel，见 `figure4_redesign_freeze.md` §Gate 1）|
 | 原 Fig. 5 旧 b/c/d/f/g | composition bar / bootstrap ranking / annotation scatter / family counts / shift-minus-dependency ranking | ED Fig. 6 |
-| 原 Fig. 5 当前 2-panel axis adjudication | axis explanatory scatter / axis adjudication profile | ED Fig. 11 |
-| 当前 Fig. 5（原 Fig. 6）旧 a/b/c | covariate audit overview / covariate-aware tiering / barcode-gem-group boundary | ED Fig. 9 |
-| 当前 Fig. 5（原 Fig. 6）旧 d/e/f | K562 temporal overview / stratification / A0/A1/B tiering | ED Fig. 7 |
-| 当前 Fig. 5（原 Fig. 6）旧 g | endpoint hierarchy full detail / CRISPR vs RNAi comparison | ED Fig. 8 |
+| 原 Fig. 5 当前 2-panel axis adjudication | axis explanatory scatter / axis adjudication profile | ED Fig. 12 |
+| 当前 Fig. 5（原 Fig. 6）旧 a/b/c | covariate audit overview / covariate-aware tiering / barcode-gem-group boundary | ED Fig. 10 |
+| 当前 Fig. 5（原 Fig. 6）旧 d/e/f | K562 temporal overview / stratification / A0/A1/B tiering | ED Fig. 8 |
+| 当前 Fig. 5（原 Fig. 6）旧 g | endpoint hierarchy full detail / CRISPR vs RNAi comparison | ED Fig. 9 |
 
 ---
 
 ## Extended Data Figure 收束计划
 
-### ED Fig. 1. Dataset and endpoint admission
+### ED Fig. 1. Dataset familiarization and endpoint inputs
+
+**新增任务**：在所有 admission / claim boundary 之前，先用 descriptive-only 入口图交代 benchmark input datasets 和 endpoint datasets。
+
+**建议 panel**：
+
+| New panel | 内容 | 来源 |
+|---|---|---|
+| ED1 a | Dataset overview：4 个 perturbation-expression contexts + 2 个 endpoint datasets | 新增整合 |
+| ED1 b | HCC38 perturbation-level mean-profile UMAP | dataset_familiarization_v2 b |
+| ED1 c | HCC1143 perturbation-level mean-profile UMAP | dataset_familiarization_v2 c |
+| ED1 d | K562 7d perturbation-level mean-profile UMAP | dataset_familiarization_v2 d |
+| ED1 e | K562 13d perturbation-level mean-profile UMAP | dataset_familiarization_v2 e |
+| ED1 f | HCC38 absolute mean perturbation-shift magnitude | dataset_familiarization_v2 f |
+| ED1 g | HCC1143 absolute mean perturbation-shift magnitude | dataset_familiarization_v2 g |
+| ED1 h | K562 7d absolute mean perturbation-shift magnitude | dataset_familiarization_v2 h |
+| ED1 i | K562 13d absolute mean perturbation-shift magnitude | dataset_familiarization_v2 i |
+
+**目标 panel 数**：9
+
+---
+
+### ED Fig. 2. Dataset and endpoint admission
 
 **当前**：8 panel（a-h）
 
@@ -31,19 +53,18 @@
 
 | New panel | 内容 | 来源 |
 |---|---|---|
-| ED1 a | HCC38/HCC1143 primary bridge admission（scatter + rho） | 旧 a |
-| ED1 b | K562 cell counts + cell accounting（合并旧 b+f） | 旧 b + f |
-| ED1 c | DEMETER2 RNAi conversion summary | 旧 c |
-| ED1 d | Endpoint hierarchy：primary / sensitivity / supplementary（合并旧 d+e） | 旧 d + e |
-| ED1 e | Boundary card：K562 和 discovery 不是 primary co-pillars | 旧 h |
+| ED2 a | HCC38/HCC1143 primary bridge admission（scatter + rho） | 旧 a |
+| ED2 b | K562 cell counts + cell accounting（合并旧 b+f） | 旧 b + f |
+| ED2 c | DEMETER2 RNAi conversion summary | 旧 c |
+| ED2 d | Boundary card：K562 和 discovery 不是 primary co-pillars | 旧 h |
 
-**删除**：旧 g（Primary endpoint summary，与 a+d 重复）。
+**删除**：旧 d+e（endpoint hierarchy 已由主图 Fig. 5b 覆盖），旧 g（Primary endpoint summary，与 a 重复）。
 
-**目标 panel 数**：5
+**目标 panel 数**：4
 
 ---
 
-### ED Fig. 2. Full target-level joint grid
+### ED Fig. 3. Full target-level joint grid
 
 **当前**：8 panel（a-h）
 
@@ -53,10 +74,10 @@
 
 | New panel | 内容 | 来源 |
 |---|---|---|
-| ED2 a | HCC38 full target-level shift-dependency grid | 旧 a |
-| ED2 b | HCC1143 full target-level shift-dependency grid | 旧 b |
-| ED2 c | Grid composition：category counts + Q1 anchor list + zero-count 显式标注（合并旧 c+d+e+f） | 旧 c + d + e + f |
-| ED2 d | Target-level evidence-tier composition | 旧 g |
+| ED3 a | HCC38 full target-level shift-dependency grid | 旧 a |
+| ED3 b | HCC1143 full target-level shift-dependency grid | 旧 b |
+| ED3 c | Grid composition：category counts + Q1 anchor list + zero-count 显式标注（合并旧 c+d+e+f） | 旧 c + d + e + f |
+| ED3 d | Target-level evidence-tier composition | 旧 g |
 
 **删除**：旧 h（summary table，与 c 重复）。
 
@@ -64,7 +85,7 @@
 
 ---
 
-### ED Fig. 3. Anchor sensitivity and claim tiering
+### ED Fig. 4. Anchor sensitivity and claim tiering
 
 **当前**：8 panel（a-h）
 
@@ -74,10 +95,10 @@
 
 | New panel | 内容 | 来源 |
 |---|---|---|
-| ED3 a | Full target-level anchor distribution | 旧 a |
-| ED3 b | Shared recurrent anchors | 旧 b |
-| ED3 c | Control subsampling intervals for primary bridge metric | 旧 d |
-| ED3 d | Covariate-aware anchor wording + downgrade rationale + allowed/disallowed claims（合并旧 e+g+h） | 旧 e + g + h |
+| ED4 a | Full target-level anchor distribution | 旧 a |
+| ED4 b | Shared recurrent anchors | 旧 b |
+| ED4 c | Control subsampling intervals for primary bridge metric | 旧 d |
+| ED4 d | Covariate-aware anchor wording + downgrade rationale + allowed/disallowed claims（合并旧 e+g+h） | 旧 e + g + h |
 
 **删除**：旧 c（Fig 2c 已覆盖），旧 f（Fig 2f 已覆盖）。
 
@@ -85,7 +106,7 @@
 
 ---
 
-### ED Fig. 4. Full HCC38/HCC1143 model recovery detail
+### ED Fig. 5. Full HCC38/HCC1143 model recovery detail
 
 **当前**：8 panel（a-h）
 
@@ -95,15 +116,15 @@
 
 | New panel | 内容 | 来源 |
 |---|---|---|
-| ED4 a | Full backbone recovery ranking across all entrants | 旧 a |
-| ED4 b | Per-cell-line multi-metric comparison（backbone / shift-excess / separation，合并旧 b+c+d） | 旧 b + c + d |
-| ED4 c | Top-20 overlap comparison across baseline / GEARS / foundation / null（合并旧 e+f+g+h） | 旧 e + f + g + h |
+| ED5 a | Full backbone recovery ranking across all entrants | 旧 a |
+| ED5 b | Per-cell-line multi-metric comparison（backbone / shift-excess / separation，合并旧 b+c+d） | 旧 b + c + d |
+| ED5 c | Top-20 overlap comparison across baseline / GEARS / foundation / null（合并旧 e+f+g+h） | 旧 e + f + g + h |
 
 **目标 panel 数**：3
 
 ---
 
-### ED Fig. 5. GEARS finite-budget sweep and prespecified stop rule
+### ED Fig. 6. GEARS finite-budget sweep and prespecified stop rule
 
 **当前**：8 panel（a-h）
 
@@ -111,32 +132,32 @@
 
 | New panel | 内容 | 来源 |
 |---|---|---|
-| ED5 a | GEARS finite-sweep backbone bar（baseline + formal + Sweep A-E） | 合并旧 c + e |
-| ED5 b | Shift-excess across sweep（同 6 个对象） | 旧 Fig 4 c |
-| ED5 c | Recipe grid summary：3×3×2 neighborhood 的 6 点 coverage matrix | 合并旧 a + g |
-| ED5 d | Linear-control design schematic（reader-facing 名字） | 旧 Fig 4 e |
-| ED5 e | Linear-control target coverage audit（47/47 matrix，两 context） | 旧 Fig 4 g |
-| ED5 f | Reproducibility boundary card：batch status + stop-rule + figure boundary | 合并旧 b + f + h |
+| ED6 a | GEARS finite-sweep backbone bar（baseline + formal + Sweep A-E） | 合并旧 c + e |
+| ED6 b | Shift-excess across sweep（同 6 个对象） | 旧 Fig 4 c |
+| ED6 c | Recipe grid summary：3×3×2 neighborhood 的 6 点 coverage matrix | 合并旧 a + g |
+| ED6 d | Linear-control design schematic（reader-facing 名字） | 旧 Fig 4 e |
+| ED6 e | Linear-control target coverage audit（47/47 matrix，两 context） | 旧 Fig 4 g |
+| ED6 f | Reproducibility boundary card：batch status + stop-rule + figure boundary | 合并旧 b + f + h |
 
 **目标 panel 数**：6（已冻结，不动）
 
 ---
 
-### ED Fig. 6. Full axis annotation and bootstrap support
+### ED Fig. 7. Full axis annotation and bootstrap support
 
 **当前**：8 panel（a-h）
 
-**新增任务**：保留原 Fig. 5 下放的 full axis annotation / bootstrap support 内容（旧 b/c/d/f/g：composition bar / bootstrap ranking / annotation scatter / family counts / shift-minus-dependency ranking）。当前精简 2-panel axis adjudication 另存为 ED Fig. 11，不覆盖 ED6。
+**新增任务**：保留原 Fig. 5 下放的 full axis annotation / bootstrap support 内容（旧 b/c/d/f/g：composition bar / bootstrap ranking / annotation scatter / family counts / shift-minus-dependency ranking）。当前精简 2-panel axis adjudication 另存为 ED Fig. 12，不覆盖 ED7。
 
 **建议收束**：
 
 | New panel | 内容 | 来源 |
 |---|---|---|
-| ED6 a | Full axis explanatory balance（含 shift-minus-dependency ranking） | 旧 a + g |
-| ED6 b | Representative bootstrap axis-call stability（完整 ranking） | 旧 b + c |
-| ED6 c | Annotation support detail：enrichment hits + database coverage + top terms（合并旧 d+e+g） | 旧 d + e + g |
-| ED6 d | Qualified and preliminary axis-call composition bar（从 Fig 5 下放） | 旧 Fig 5 b |
-| ED6 e | Axis claim boundary card（完整版，含 Fig 5 未展示的限制证据） | 旧 h |
+| ED7 a | Full axis explanatory balance（含 shift-minus-dependency ranking） | 旧 a + g |
+| ED7 b | Representative bootstrap axis-call stability（完整 ranking） | 旧 b + c |
+| ED7 c | Annotation support detail：enrichment hits + database coverage + top terms（合并旧 d+e+g） | 旧 d + e + g |
+| ED7 d | Qualified and preliminary axis-call composition bar（从 Fig 5 下放） | 旧 Fig 5 b |
+| ED7 e | Axis claim boundary card（完整版，含 Fig 5 未展示的限制证据） | 旧 h |
 
 **删除**：旧 f（composition bar 单独保留为 d，但位置调整）。
 
@@ -144,7 +165,7 @@
 
 ---
 
-### ED Fig. 7. K562 temporal evidence detail
+### ED Fig. 8. K562 temporal evidence detail
 
 **当前**：8 panel（a-h）
 
@@ -154,11 +175,11 @@
 
 | New panel | 内容 | 来源 |
 |---|---|---|
-| ED7 a | K562 7d supplementary bridge summary | 旧 a |
-| ED7 b | K562 13d supplementary bridge summary | 旧 b |
-| ED7 c | Temporal stratification：rank bridge + mean shift（7d vs 13d 同图） | 旧 c + Fig 6 旧 e |
-| ED7 d | Evidence-tier comparison（7d vs 13d A0/A1/B，合并旧 e+f+h） | 旧 e + f + h |
-| ED7 e | Supplementary temporal panel call | 旧 g |
+| ED8 a | K562 7d supplementary bridge summary | 旧 a |
+| ED8 b | K562 13d supplementary bridge summary | 旧 b |
+| ED8 c | Temporal stratification：rank bridge + mean shift（7d vs 13d 同图） | 旧 c + Fig 6 旧 e |
+| ED8 d | Evidence-tier comparison（7d vs 13d A0/A1/B，合并旧 e+f+h） | 旧 e + f + h |
+| ED8 e | Supplementary temporal panel call | 旧 g |
 
 **删除**：旧 d（temporal structure calls，细节层，可由 c 覆盖）。
 
@@ -166,7 +187,7 @@
 
 ---
 
-### ED Fig. 8. CRISPR versus RNAi endpoint detail
+### ED Fig. 9. CRISPR versus RNAi endpoint detail
 
 **当前**：8 panel（a-h）
 
@@ -176,12 +197,12 @@
 
 | New panel | 内容 | 来源 |
 |---|---|---|
-| ED8 a | HCC38/HCC1143 CRISPR and RNAi truth-endpoint bridge summaries | 旧 a |
-| ED8 b | K562 CRISPR and RNAi truth-endpoint bridge summaries | 旧 b |
-| ED8 c | CRISPR-RNAi endpoint agreement | 旧 c |
-| ED8 d | RNAi cross-platform sensitivity boundary | 旧 f |
-| ED8 e | CRISPR-RNAi bridge gap across contexts | 旧 g |
-| ED8 f | Endpoint claim boundary + DEMETER2 conversion（合并旧 d+h） | 旧 d + h |
+| ED9 a | HCC38/HCC1143 CRISPR and RNAi truth-endpoint bridge summaries | 旧 a |
+| ED9 b | K562 CRISPR and RNAi truth-endpoint bridge summaries | 旧 b |
+| ED9 c | CRISPR-RNAi endpoint agreement | 旧 c |
+| ED9 d | RNAi cross-platform sensitivity boundary | 旧 f |
+| ED9 e | CRISPR-RNAi bridge gap across contexts | 旧 g |
+| ED9 f | Endpoint claim boundary + DEMETER2 conversion（合并旧 d+h） | 旧 d + h |
 
 **删除**：旧 e（endpoint hierarchy，已在 Fig 6c 中展示）。
 
@@ -189,7 +210,7 @@
 
 ---
 
-### ED Fig. 9. Covariate audit details and wording boundary
+### ED Fig. 10. Covariate audit details and wording boundary
 
 **当前**：8 panel（a-h），但注意：per-anchor covariate TVD matrix 已提升至 Fig 2e。
 
@@ -199,19 +220,18 @@
 
 | New panel | 内容 | 来源 |
 |---|---|---|
-| ED9 a | Covariate audit axes overview（含 barcode-gem-group design-proxy） | 旧 a + c + Fig 6 旧 c |
-| ED9 b | Covariate balance by cell line（含 TVD summary，不含 per-anchor matrix） | 旧 b + Fig 6 旧 a |
-| ED9 c | High-imbalance target counts + covariate impact on anchor wording（合并旧 d+e） | 旧 d + e |
-| ED9 d | Allowed and disallowed wording boundary（合并旧 g+h） | 旧 g + h |
-| ED9 e | Covariate-aware anchor tiering（从 Fig 6 下放） | Fig 6 旧 b |
+| ED10 a | Covariate audit axes overview（含 barcode-gem-group design-proxy） | 旧 a + c + Fig 6 旧 c |
+| ED10 b | Covariate balance by cell line（含 TVD summary，不含 per-anchor matrix） | 旧 b + Fig 6 旧 a |
+| ED10 c | High-imbalance target counts + covariate impact on anchor wording（合并旧 d+e） | 旧 d + e |
+| ED10 d | Allowed and disallowed wording boundary（合并旧 g+h） | 旧 g + h |
 
-**删除**：旧 f（covariate status in claim matrix，与 Fig 2f 重复）。
+**删除**：旧 f（covariate status in claim matrix，与 Fig 2f 重复）；anchor tiering summary 也不再重复主图 Fig. 2f。
 
-**目标 panel 数**：5
+**目标 panel 数**：4
 
 ---
 
-### ED Fig. 10. Reproducibility and claim governance
+### ED Fig. 11. Reproducibility and claim governance
 
 **当前**：8 panel（a-h）
 
@@ -221,18 +241,17 @@
 
 | New panel | 内容 | 来源 |
 |---|---|---|
-| ED10 a | Main figure manifest overview | 旧 a |
-| ED10 b | Submission package overview：tables + hash coverage（合并旧 b+c） | 旧 b + c |
-| ED10 c | Final claim-matrix evidence-tier overview | 旧 d |
-| ED10 d | Key allowed wording tiers | 旧 e |
-| ED10 e | Explicitly enumerated disallowed wording | 旧 g |
-| ED10 f | Reproducibility boundary：rebuild entrypoints + figure-stage rerun boundary（合并旧 f+h） | 旧 f + h |
+| ED11 a | Main figure manifest overview | 旧 a |
+| ED11 b | Submission package overview：tables + hash coverage（合并旧 b+c） | 旧 b + c |
+| ED11 c | Reproducibility boundary：rebuild entrypoints + figure-stage rerun boundary（合并旧 f+h） | 旧 f + h |
 
-**目标 panel 数**：6
+**删除**：旧 d/e/g（claim-tier 与 allowed/disallowed wording summary，已由主文与主图承担，不再在 ED 重复）。
+
+**目标 panel 数**：3
 
 ---
 
-### ED Fig. 11. Axis-level adjudication profile
+### ED Fig. 12. Axis-level adjudication profile
 
 **当前**：2 panel（a-b），由原主文 Fig. 5 下放。
 
@@ -246,18 +265,19 @@
 
 | ED Figure | 当前 panel 数 | 目标 panel 数 | 变化 |
 |---|---|---|---|
-| ED1 | 8 | 5 | -3 |
+| ED1 | 新增 | 9 | dataset familiarization 入口图 |
 | ED2 | 8 | 4 | -4 |
 | ED3 | 8 | 4 | -4 |
-| ED4 | 8 | 3 | -5 |
-| ED5 | 8 | 6 | -2（已冻结） |
-| ED6 | 8 | 5 | -3 |
+| ED4 | 8 | 4 | -4 |
+| ED5 | 8 | 3 | -5 |
+| ED6 | 8 | 6 | -2（已冻结） |
 | ED7 | 8 | 5 | -3 |
-| ED8 | 8 | 6 | -2 |
-| ED9 | 8 | 5 | -3 |
-| ED10 | 8 | 6 | -2 |
-| ED11 | 2 | 2 | 新增下放图 |
-| **总计** | **82** | **51** | **-31** |
+| ED8 | 8 | 5 | -3 |
+| ED9 | 8 | 6 | -2 |
+| ED10 | 8 | 4 | -4 |
+| ED11 | 8 | 3 | -5 |
+| ED12 | 2 | 2 | 原主文 Fig. 5 下放 |
+| **总计** | **新增 1 图** | **60** | **入口图前置 + 冗余收束** |
 
 ---
 
@@ -265,13 +285,14 @@
 
 由于 Extended Data 的 redraw 不涉及 claim boundary 变更，只涉及 panel 合并和重组，执行顺序可以按依赖关系安排：
 
-1. **ED Fig. 5**：已冻结，最先执行（因其被 Fig 4 cross-reference）
-2. **ED Fig. 6**：保留 full axis annotation / bootstrap support，其次执行
-3. **ED Fig. 11**：承接原 Fig. 5 当前 2-panel axis adjudication
-4. **ED Fig. 9**：接收当前 Fig. 5（原 Fig. 6）下放内容，与 ED7/8 可并行
-5. **ED Fig. 7**：接收当前 Fig. 5（原 Fig. 6）下放内容
+1. **ED Fig. 1**：dataset familiarization and endpoint inputs，最先执行
+2. **ED Fig. 6**：已冻结，最先执行（因其被 Fig 4 cross-reference）
+3. **ED Fig. 7**：保留 full axis annotation / bootstrap support，其次执行
+4. **ED Fig. 12**：承接原 Fig. 5 当前 2-panel axis adjudication
+5. **ED Fig. 10**：接收当前 Fig. 5（原 Fig. 6）下放内容，与 ED8/9 可并行
 6. **ED Fig. 8**：接收当前 Fig. 5（原 Fig. 6）下放内容
-7. **ED Fig. 1-4, 10**：独立，可任意顺序
+7. **ED Fig. 9**：接收当前 Fig. 5（原 Fig. 6）下放内容
+8. **ED Fig. 2-5, 11**：独立，可任意顺序
 
 ## 配色策略
 

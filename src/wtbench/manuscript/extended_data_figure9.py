@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import math
 from pathlib import Path
 from typing import Callable
 
@@ -12,10 +13,11 @@ from wtbench.manuscript.hash_manifest import write_figure_manifest, write_panel_
 from wtbench.manuscript.manuscript_style import COLORS, add_panel_label, apply_manuscript_style, clean_axes
 
 
-FIGURE_ID = "extended_data_figure9"
+FIGURE_ID = "extended_data_figure10"
 FIGURE_TITLE = "Covariate audit details and wording boundary"
-SCRIPT_PATH = Path("scripts/manuscript/build_extended_data_figure9.py")
+SCRIPT_PATH = Path("scripts/manuscript/build_extended_data_figure10.py")
 CLAIM_BOUNDARY = "Covariate audit retains the bridge but prevents fully deconfounded wording."
+PANEL_IDS = tuple("abcd")
 
 COVARIATE_SUMMARY = Path("reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/summary.tsv")
 BARCODE_NOTE = Path("reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/barcode_gem_group_mapping_note.md")
@@ -24,7 +26,7 @@ FINAL_CLAIM_MATRIX = Path("reports/stage2_truth_driven_bridge/sensitivity/final_
 
 
 def output_dir(root: Path) -> Path:
-    return root / "reports/manuscript_extended_data_v1/edfig9_covariate_audit"
+    return root / "reports/manuscript_extended_data_v1/edfig10_covariate_audit"
 
 
 def panel_dir(root: Path) -> Path:
@@ -33,6 +35,16 @@ def panel_dir(root: Path) -> Path:
 
 def input_paths(root: Path) -> list[Path]:
     return [root / p for p in [COVARIATE_SUMMARY, BARCODE_NOTE, ANCHOR_TIERING, FINAL_CLAIM_MATRIX]]
+
+
+def cleanup_generated(root: Path) -> None:
+    out = output_dir(root)
+    for path in panel_dir(root).glob("edfig10_panel*"):
+        path.unlink()
+    for suffix in (".png", ".pdf", "_source_data.tsv", "_panel_manifest.json"):
+        path = out / f"edfig10{suffix}"
+        if path.exists():
+            path.unlink()
 
 
 def write_panel(
@@ -46,7 +58,7 @@ def write_panel(
     height: float = 2.35,
 ) -> dict[str, Path]:
     pdir = ensure_dir(panel_dir(root))
-    stem = f"edfig9_panel{panel_id}"
+    stem = f"edfig10_panel{panel_id}"
     source_path = write_tsv(source_df, pdir / f"{stem}_source_data.tsv")
     fig, ax = plt.subplots(figsize=(width, height))
     render(ax, source_df)
@@ -57,7 +69,7 @@ def write_panel(
     write_panel_manifest(
         manifest_path=manifest_path,
         repo_root=root,
-        panel_id=f"ED9{panel_id}",
+        panel_id=f"ED10{panel_id}",
         panel_title=panel_title,
         script_path=root / SCRIPT_PATH,
         input_paths=input_paths(root),
@@ -129,7 +141,7 @@ def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
     add_panel_label(ax, "c", x=-0.04)
 
 
-def render_panel_d(ax: plt.Axes, df: pd.DataFrame) -> None:
+def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
     plot = df.groupby("strat_column", as_index=False).agg(n_targets_tvd_gt_025=("n_targets_tvd_gt_0.25", "sum"))
     plot["label"] = plot["strat_column"].map(covariate_label)
     plot = plot.sort_values("n_targets_tvd_gt_025")
@@ -138,10 +150,10 @@ def render_panel_d(ax: plt.Axes, df: pd.DataFrame) -> None:
     ax.set_yticks(list(y))
     ax.set_yticklabels(plot["label"])
     ax.set_xlabel("Targets with TVD > 0.25")
-    ax.set_title("High-imbalance target counts", loc="left")
+    ax.set_title("High-imbalance counts that govern wording", loc="left")
     clean_axes(ax)
     ax.grid(axis="x", color=COLORS["grid"], linewidth=0.5)
-    add_panel_label(ax, "d", x=-0.28)
+    add_panel_label(ax, "c", x=-0.28)
 
 
 def render_panel_e(ax: plt.Axes, df: pd.DataFrame) -> None:
@@ -174,40 +186,31 @@ def render_panel_f(ax: plt.Axes, df: pd.DataFrame) -> None:
     add_panel_label(ax, "f", x=-0.35)
 
 
-def render_panel_g(ax: plt.Axes, df: pd.DataFrame) -> None:
+def render_panel_d(ax: plt.Axes, df: pd.DataFrame) -> None:
     ax.set_axis_off()
-    ax.set_title("Allowed wording", loc="left", pad=4)
-    rows = df.loc[df["object"].isin(["global_truth_depmap_bridge", "barcode_gem_group_design_proxy", "PFDN5", "transcription_chromatin_axis"])]
-    y = 0.84
-    for row in rows.itertuples():
-        label = row.object.replace("_", " ")
-        ax.text(0.04, y, label[:32], fontweight="bold", fontsize=7, transform=ax.transAxes)
-        ax.text(0.04, y - 0.08, row.evidence_tier.replace("_", " "), fontsize=7, color=COLORS["primary_qualified"] if "primary" in row.evidence_tier or "retainable" in row.evidence_tier else COLORS["supporting"], transform=ax.transAxes)
-        y -= 0.19
-    add_panel_label(ax, "g", x=-0.04)
-
-
-def render_panel_h(ax: plt.Axes, df: pd.DataFrame) -> None:
-    ax.set_axis_off()
-    ax.set_title("Disallowed wording", loc="left", pad=4)
+    ax.set_title("Allowed and disallowed wording boundary", loc="left", pad=4)
+    allowed = df.loc[df["object"].isin(["global_truth_depmap_bridge", "barcode_gem_group_design_proxy", "PFDN5", "transcription_chromatin_axis"])]
+    y = 0.86
+    for row in allowed.itertuples():
+        ax.text(0.04, y, row.object.replace("_", " ")[:30], fontweight="bold", fontsize=6.8, transform=ax.transAxes)
+        ax.text(0.04, y - 0.07, row.evidence_tier.replace("_", " "), fontsize=6.5, color=COLORS["primary_qualified"] if "primary" in row.evidence_tier or "retainable" in row.evidence_tier else COLORS["supporting"], transform=ax.transAxes)
+        y -= 0.16
     rows = [
         ("bridge", "fully deconfounded"),
         ("barcode", "single MH00x resolved"),
         ("anchors", "clean primary anchors"),
         ("axis", "fully established architecture"),
     ]
-    y = 0.80
+    y = 0.34
     for label, text in rows:
-        ax.text(0.05, y, label, fontweight="bold", fontsize=8, transform=ax.transAxes)
-        ax.text(0.34, y, text, fontsize=8, color=COLORS["boundary"], transform=ax.transAxes)
-        y -= 0.19
-    ax.text(0.05, 0.08, "Covariate audit is a wording governor, not a full deconfounding proof.", fontsize=7, color="#555555", transform=ax.transAxes)
-    add_panel_label(ax, "h", x=-0.04)
+        ax.text(0.54, y, label, fontweight="bold", fontsize=7, transform=ax.transAxes)
+        ax.text(0.72, y, text, fontsize=7, color=COLORS["boundary"], transform=ax.transAxes)
+        y -= 0.08
+    add_panel_label(ax, "d", x=-0.04)
 
 
 def build_sources(root: Path) -> dict[str, pd.DataFrame]:
     cov = pd.read_csv(root / COVARIATE_SUMMARY, sep="\t")
-    tier = pd.read_csv(root / ANCHOR_TIERING, sep="\t")
     claim = pd.read_csv(root / FINAL_CLAIM_MATRIX, sep="\t")
     barcode = pd.DataFrame(
         [
@@ -218,12 +221,13 @@ def build_sources(root: Path) -> dict[str, pd.DataFrame]:
     barcode_claim = claim.loc[claim["object"].eq("barcode_gem_group_design_proxy")].iloc[0]
     if barcode_claim["evidence_tier"] != "methodological_boundary":
         raise RuntimeError("ED Fig. 9 sanity check failed: barcode_gem_group tier changed.")
+    tier = pd.read_csv(root / ANCHOR_TIERING, sep="\t")
     expected = tier.set_index("target_gene")["final_wording_tier"].to_dict()
     if expected != {"PFDN5": "primary_but_qualified", "PMF1": "supporting_only", "PRPF6": "supporting_only", "ZNF131": "supporting_only"}:
         raise RuntimeError("ED Fig. 9 sanity check failed: anchor tiers changed.")
     if not cov["strat_column"].isin(["barcode_gem_group"]).any():
         raise RuntimeError("ED Fig. 9 sanity check failed: barcode_gem_group covariate missing.")
-    return {"a": cov, "b": cov, "c": barcode, "d": cov, "e": tier, "f": claim, "g": claim, "h": claim}
+    return {"a": cov, "b": cov, "c": cov, "d": claim}
 
 
 def render_panel_by_id(panel_id: str) -> Callable[[plt.Axes, pd.DataFrame], None]:
@@ -232,10 +236,6 @@ def render_panel_by_id(panel_id: str) -> Callable[[plt.Axes, pd.DataFrame], None
         "b": render_panel_b,
         "c": render_panel_c,
         "d": render_panel_d,
-        "e": render_panel_e,
-        "f": render_panel_f,
-        "g": render_panel_g,
-        "h": render_panel_h,
     }[panel_id]
 
 
@@ -243,34 +243,34 @@ def panel_title(panel_id: str) -> str:
     return {
         "a": "Covariate audit axes",
         "b": "Cell-line covariate balance",
-        "c": "Barcode-gem-group boundary",
-        "d": "High-imbalance target counts",
-        "e": "Anchor wording impact",
-        "f": "Final matrix covariate status",
-        "g": "Allowed wording",
-        "h": "Disallowed wording",
+        "c": "High-imbalance target counts",
+        "d": "Wording boundary",
     }[panel_id]
 
 
 def render_combined(root: Path, sources: dict[str, pd.DataFrame], panel_outputs: dict[str, dict[str, Path]]) -> None:
     out = ensure_dir(output_dir(root))
     combined_source = pd.concat([df.assign(panel=panel_id) for panel_id, df in sources.items()], ignore_index=True, sort=False)
-    combined_source_path = write_tsv(combined_source, out / "edfig9_source_data.tsv")
-    fig = plt.figure(figsize=(11.0, 10.0))
-    gs = fig.add_gridspec(4, 2, hspace=0.78, wspace=0.54)
-    axes = [fig.add_subplot(gs[i, j]) for i in range(4) for j in range(2)]
-    for ax, panel_id in zip(axes, list("abcdefgh")):
+    combined_source_path = write_tsv(combined_source, out / "edfig10_source_data.tsv")
+    ncols = 2
+    nrows = math.ceil(len(PANEL_IDS) / ncols)
+    fig = plt.figure(figsize=(11.0, max(3.0 * nrows, 4.2)))
+    gs = fig.add_gridspec(nrows, ncols, hspace=0.78, wspace=0.54)
+    axes = [fig.add_subplot(gs[i, j]) for i in range(nrows) for j in range(ncols)]
+    for ax, panel_id in zip(axes, PANEL_IDS):
         render_panel_by_id(panel_id)(ax, sources[panel_id])
-    png_path = out / "edfig9.png"
-    pdf_path = out / "edfig9.pdf"
+    for ax in axes[len(PANEL_IDS):]:
+        ax.set_axis_off()
+    png_path = out / "edfig10.png"
+    pdf_path = out / "edfig10.pdf"
     output_paths = save_figure(fig, png_path, pdf_path)
     write_figure_manifest(
-        manifest_path=out / "edfig9_panel_manifest.json",
+        manifest_path=out / "edfig10_panel_manifest.json",
         repo_root=root,
         figure_id=FIGURE_ID,
         figure_title=FIGURE_TITLE,
         script_path=root / SCRIPT_PATH,
-        panel_manifest_paths=[panel_outputs[p]["manifest"] for p in list("abcdefgh")],
+        panel_manifest_paths=[panel_outputs[p]["manifest"] for p in PANEL_IDS],
         combined_source_data_path=combined_source_path,
         output_paths=output_paths,
         input_paths=input_paths(root),
@@ -279,22 +279,23 @@ def render_combined(root: Path, sources: dict[str, pd.DataFrame], panel_outputs:
 
 
 def main(argv: list[str] | None = None) -> None:
-    parser = argparse.ArgumentParser(description="Build Extended Data Fig. 9 covariate audit panels.")
+    parser = argparse.ArgumentParser(description="Build Extended Data Fig. 10 covariate audit panels.")
     parser.add_argument("--panels-only", action="store_true")
     args = parser.parse_args(argv)
     root = repo_root()
     apply_manuscript_style()
+    cleanup_generated(root)
     sources = build_sources(root)
     panel_outputs: dict[str, dict[str, Path]] = {}
-    for panel_id in list("abcdefgh"):
+    for panel_id in PANEL_IDS:
         panel_outputs[panel_id] = write_panel(
             root=root,
             panel_id=panel_id,
             panel_title=panel_title(panel_id),
             source_df=sources[panel_id],
             render=render_panel_by_id(panel_id),
-            width=3.65 if panel_id in {"b", "f"} else 3.2,
-            height=2.75 if panel_id in {"b", "f"} else 2.35,
+            width=3.65 if panel_id in {"b", "d"} else 3.2,
+            height=2.75 if panel_id in {"b", "d"} else 2.35,
         )
     if not args.panels_only:
         render_combined(root, sources, panel_outputs)

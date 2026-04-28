@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import math
 from pathlib import Path
 from typing import Callable
 
@@ -12,10 +13,11 @@ from wtbench.manuscript.hash_manifest import write_figure_manifest, write_panel_
 from wtbench.manuscript.manuscript_style import COLORS, add_panel_label, apply_manuscript_style, clean_axes
 
 
-FIGURE_ID = "extended_data_figure3"
+FIGURE_ID = "extended_data_figure4"
 FIGURE_TITLE = "Anchor sensitivity and claim tiering"
-SCRIPT_PATH = Path("scripts/manuscript/build_extended_data_figure3.py")
+SCRIPT_PATH = Path("scripts/manuscript/build_extended_data_figure4.py")
 CLAIM_BOUNDARY = "Anchor stability supports the bridge, but covariate-aware governance prevents fully deconfounded anchor wording."
+PANEL_IDS = tuple("abcd")
 
 SHARED_ANCHORS = Path("reports/stage2_truth_bridge_decomposition/shared_canonical_anchor_summary.tsv")
 EVIDENCE_TIER = Path("reports/stage2_truth_bridge_decomposition/evidence_tier_summary.tsv")
@@ -25,7 +27,7 @@ FINAL_CLAIM_MATRIX = Path("reports/stage2_truth_driven_bridge/sensitivity/final_
 
 
 def output_dir(root: Path) -> Path:
-    return root / "reports/manuscript_extended_data_v1/edfig3_anchor_sensitivity"
+    return root / "reports/manuscript_extended_data_v1/edfig4_anchor_sensitivity"
 
 
 def panel_dir(root: Path) -> Path:
@@ -34,6 +36,16 @@ def panel_dir(root: Path) -> Path:
 
 def input_paths(root: Path) -> list[Path]:
     return [root / p for p in [SHARED_ANCHORS, EVIDENCE_TIER, CONTROL_SUBSAMPLE, ANCHOR_TIERING, FINAL_CLAIM_MATRIX]]
+
+
+def cleanup_generated(root: Path) -> None:
+    out = output_dir(root)
+    for path in panel_dir(root).glob("edfig4_panel*"):
+        path.unlink()
+    for suffix in (".png", ".pdf", "_source_data.tsv", "_panel_manifest.json"):
+        path = out / f"edfig4{suffix}"
+        if path.exists():
+            path.unlink()
 
 
 def write_panel(
@@ -47,7 +59,7 @@ def write_panel(
     height: float = 2.35,
 ) -> dict[str, Path]:
     pdir = ensure_dir(panel_dir(root))
-    stem = f"edfig3_panel{panel_id}"
+    stem = f"edfig4_panel{panel_id}"
     source_path = write_tsv(source_df, pdir / f"{stem}_source_data.tsv")
     fig, ax = plt.subplots(figsize=(width, height))
     render(ax, source_df)
@@ -58,7 +70,7 @@ def write_panel(
     write_panel_manifest(
         manifest_path=manifest_path,
         repo_root=root,
-        panel_id=f"ED3{panel_id}",
+        panel_id=f"ED4{panel_id}",
         panel_title=panel_title,
         script_path=root / SCRIPT_PATH,
         input_paths=input_paths(root),
@@ -97,20 +109,6 @@ def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
 
 
 def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
-    plot = df.loc[df["evidence_tier"].eq("supporting_but_sensitive")].sort_values("stability_fraction")
-    y = range(len(plot))
-    ax.barh(list(y), plot["stability_fraction"], color=COLORS["supporting"], height=0.58)
-    ax.set_yticks(list(y))
-    ax.set_yticklabels(plot["object_id"])
-    ax.set_xlim(0, 1.05)
-    ax.set_xlabel("Stability fraction")
-    ax.set_title("Cutoff-sensitive supporting objects", loc="left")
-    clean_axes(ax)
-    ax.grid(axis="x", color=COLORS["grid"], linewidth=0.5)
-    add_panel_label(ax, "c", x=-0.24)
-
-
-def render_panel_d(ax: plt.Axes, df: pd.DataFrame) -> None:
     plot = df.loc[df["truth_metric"].eq("real_shift_mean_abs") & df["depmap_endpoint"].eq("depmap_gene_dependency")].copy()
     x = range(len(plot))
     ax.errorbar(
@@ -129,7 +127,20 @@ def render_panel_d(ax: plt.Axes, df: pd.DataFrame) -> None:
     ax.set_ylim(0.68, 0.81)
     clean_axes(ax)
     ax.grid(axis="y", color=COLORS["grid"], linewidth=0.5)
-    add_panel_label(ax, "d")
+    add_panel_label(ax, "c")
+
+
+def render_panel_d(ax: plt.Axes, df: pd.DataFrame) -> None:
+    ax.set_axis_off()
+    ax.set_title("Covariate-aware anchor wording boundary", loc="left", pad=4)
+    y = 0.82
+    for row in df.itertuples():
+        ax.text(0.04, y, row.target_gene, fontweight="bold", fontsize=8, transform=ax.transAxes)
+        ax.text(0.22, y, row.final_wording_tier.replace("_", " "), fontsize=7, transform=ax.transAxes)
+        ax.text(0.58, y, row.covariate_cleanliness.replace("_", " "), fontsize=7, color=COLORS["boundary"] if "exposed" in row.covariate_cleanliness else COLORS["primary_qualified"], transform=ax.transAxes)
+        y -= 0.16
+    ax.text(0.04, 0.12, "Allowed: qualified PFDN5 anchor; disallowed: fully deconfounded strongest anchors.", fontsize=7, color="#555555", transform=ax.transAxes)
+    add_panel_label(ax, "d", x=-0.04)
 
 
 def render_panel_e(ax: plt.Axes, df: pd.DataFrame) -> None:
@@ -200,12 +211,8 @@ def build_sources(root: Path) -> dict[str, pd.DataFrame]:
     return {
         "a": shared,
         "b": shared,
-        "c": evidence,
-        "d": subsample,
-        "e": tiering,
-        "f": evidence,
-        "g": tiering,
-        "h": claim,
+        "c": subsample,
+        "d": tiering,
     }
 
 
@@ -215,10 +222,6 @@ def render_panel_by_id(panel_id: str) -> Callable[[plt.Axes, pd.DataFrame], None
         "b": render_panel_b,
         "c": render_panel_c,
         "d": render_panel_d,
-        "e": render_panel_e,
-        "f": render_panel_f,
-        "g": render_panel_g,
-        "h": render_panel_h,
     }[panel_id]
 
 
@@ -226,34 +229,32 @@ def panel_title(panel_id: str) -> str:
     return {
         "a": "Full target-level anchor distribution",
         "b": "Shared canonical anchors",
-        "c": "Cutoff-sensitive supporting objects",
-        "d": "Control subsampling intervals",
-        "e": "Covariate-aware wording tiers",
-        "f": "Evidence-tier composition",
-        "g": "Downgrade rationale",
-        "h": "Anchor claim boundary",
+        "c": "Control subsampling intervals",
+        "d": "Covariate-aware wording boundary",
     }[panel_id]
 
 
 def render_combined(root: Path, sources: dict[str, pd.DataFrame], panel_outputs: dict[str, dict[str, Path]]) -> None:
     out = ensure_dir(output_dir(root))
     combined_source = pd.concat([df.assign(panel=panel_id) for panel_id, df in sources.items()], ignore_index=True, sort=False)
-    combined_source_path = write_tsv(combined_source, out / "edfig3_source_data.tsv")
-    fig = plt.figure(figsize=(11.0, 10.0))
-    gs = fig.add_gridspec(4, 2, hspace=0.78, wspace=0.50)
-    axes = [fig.add_subplot(gs[i, j]) for i in range(4) for j in range(2)]
-    for ax, panel_id in zip(axes, list("abcdefgh")):
+    combined_source_path = write_tsv(combined_source, out / "edfig4_source_data.tsv")
+    ncols = 2
+    nrows = math.ceil(len(PANEL_IDS) / ncols)
+    fig = plt.figure(figsize=(11.0, max(3.0 * nrows, 4.2)))
+    gs = fig.add_gridspec(nrows, ncols, hspace=0.78, wspace=0.50)
+    axes = [fig.add_subplot(gs[i, j]) for i in range(nrows) for j in range(ncols)]
+    for ax, panel_id in zip(axes, PANEL_IDS):
         render_panel_by_id(panel_id)(ax, sources[panel_id])
-    png_path = out / "edfig3.png"
-    pdf_path = out / "edfig3.pdf"
+    png_path = out / "edfig4.png"
+    pdf_path = out / "edfig4.pdf"
     output_paths = save_figure(fig, png_path, pdf_path)
     write_figure_manifest(
-        manifest_path=out / "edfig3_panel_manifest.json",
+        manifest_path=out / "edfig4_panel_manifest.json",
         repo_root=root,
         figure_id=FIGURE_ID,
         figure_title=FIGURE_TITLE,
         script_path=root / SCRIPT_PATH,
-        panel_manifest_paths=[panel_outputs[p]["manifest"] for p in list("abcdefgh")],
+        panel_manifest_paths=[panel_outputs[p]["manifest"] for p in PANEL_IDS],
         combined_source_data_path=combined_source_path,
         output_paths=output_paths,
         input_paths=input_paths(root),
@@ -262,14 +263,15 @@ def render_combined(root: Path, sources: dict[str, pd.DataFrame], panel_outputs:
 
 
 def main(argv: list[str] | None = None) -> None:
-    parser = argparse.ArgumentParser(description="Build Extended Data Fig. 3 anchor sensitivity and tiering panels.")
+    parser = argparse.ArgumentParser(description="Build Extended Data Fig. 4 anchor sensitivity and tiering panels.")
     parser.add_argument("--panels-only", action="store_true")
     args = parser.parse_args(argv)
     root = repo_root()
     apply_manuscript_style()
+    cleanup_generated(root)
     sources = build_sources(root)
     panel_outputs: dict[str, dict[str, Path]] = {}
-    for panel_id in list("abcdefgh"):
+    for panel_id in PANEL_IDS:
         panel_outputs[panel_id] = write_panel(
             root=root,
             panel_id=panel_id,

@@ -1,11 +1,9 @@
-cell_line	strat_column	mean_tvd	n_targets_tvd_gt_0.25
-HCC1143	barcode_gem_group	0.0553688001480439	0
-HCC1143	num_umis_over_threshold_bin	0.1038378228257645	3
-HCC1143	num_umis_quantile_bin	0.1331656892393771	2
-HCC1143	transcriptome_detected_genes_quantile_bin	0.0763635715127252	1
-HCC1143	transcriptome_total_signal_quantile_bin	0.0779806104417702	0
-HCC38	barcode_gem_group	0.0529180609984402	2
-HCC38	num_umis_over_threshold_bin	0.0926564213166551	3
-HCC38	num_umis_quantile_bin	0.1087842315983835	6
-HCC38	transcriptome_detected_genes_quantile_bin	0.0576238872498433	0
-HCC38	transcriptome_total_signal_quantile_bin	0.0706879015433831	2
+context	platform_pair	spearman	n_shared_targets
+HCC38	crispr	0.7257957275155708	47
+HCC38	rnai	0.2763786365610073	48
+HCC1143	crispr	0.7792497165337711	48
+HCC1143	rnai	0.3844984802431611	48
+K562 7d	crispr	0.7333333333333332	10
+K562 7d	rnai	0.3333333333333333	9
+K562 13d	crispr	0.5151515151515151	10
+K562 13d	rnai	0.3	9

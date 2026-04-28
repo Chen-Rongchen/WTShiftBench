@@ -1,0 +1,5 @@
+step	gate	subtitle
+1	Covariate gate	UMI / detected genes / gem group
+2	Endpoint gate	CRISPR > RNAi
+3	Temporal gate	K562 7d / 13d
+4	Bounded claim scope	primary / supplementary / sensitivity / not claimed
