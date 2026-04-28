@@ -1,14 +1,27 @@
-model_id	object_role	backbone_recovery_score	shift_excess_identification_score	structure_vs_context_separation_score	cosine_similarity_mean	l2_distance_mean	top20_overlap_mean
-shared_mean_baseline	baseline	0.8066666666666666	0.3333333333333333	0.3526145586462627	0.1579778409413746	0.4882821857207529	0.5696808510638298
-gears_hcc_formal_v1	entrant	0.6599999999999999	0.3333333333333333	0.4284153807253488	0.1317778083197487	0.6269034496650597	0.5090425531914894
-gears_hcc_formal_v1_e30_lr2e-03_wd1e-06	entrant	0.6433333333333333	0.8333333333333333	0.4485243810877402	0.1678169400085949	0.5700129145224688	0.5143617021276596
-gears_hcc_formal_v1_e20_lr1e-03_wd1e-06	entrant	0.6266666666666667	0.5	0.4591562997768912	0.2003148281477906	0.6324110045805078	0.5074468085106383
-lm_g_geneformer_ridge_hcc_formal_v1	entrant	0.6266666666666666	0.1666666666666666	0.3256623817641846	0.0761875139581371	0.751558267553692	0.5819148936170213
-gears_hcc_formal_v1_e30_lr1e-03_wd1e-05	entrant	0.6133333333333333	0.9166666666666669	0.427833160600328	0.125648836007946	0.5960476370077242	0.5170212765957447
-lm_train_lowrank_hcc_formal_v1	entrant	0.5366666666666666	0.5833333333333333	0.2862358413992706	0.0462224960165071	0.7071498930972573	0.5750000000000001
-geneformer_hcc_formal_v1	entrant	0.5333333333333333	0.75	0.401165394979353	0.1305109037926572	0.431977547332276	0.5654255319148938
-gears_hcc_formal_v1_e30_lr5e-04_wd1e-06	entrant	0.53	0.9166666666666669	0.4458928896160027	0.1995292583484186	0.6094527045051442	0.5276595744680852
-null_model		0.5	0.5	0.0	0.0	0.413637940569376	0.4590425531914892
-gears_hcc_formal_v1_e40_lr1e-03_wd1e-06	entrant	0.4933333333333333	0.6666666666666667	0.4684217036980002	0.2059823703992348	0.5753693543899769	0.5095744680851064
-lm_g_scgpt_ridge_hcc_formal_v1	entrant	0.4666666666666667	0.1666666666666666	0.2589613597519035	0.0294343160201397	0.799858091671705	0.5829787234042554
-scgpt_hcc_formal_v1	entrant	0.4466666666666667	0.3333333333333333	0.2948250032704949	0.121027655071248	0.4922861950400654	0.5611702127659575
+axis_id	shift_r2_mean	depmap_r2_mean	sharedness_delta	explanatory_call	call_tier	n_targets	targets	signal_profile
+chromatin remodeling	0.0457102885494596	0.0516473950639248	-0.0059371065144651	mixed_or_low_signal_axis	formal	2	ARID1A; RUVBL2	balanced
+transcription regulation	0.0119799375335992	0.0172372187300257	-0.0052572811964264	mixed_or_low_signal_axis	formal	18	ETV3; GON4L; HLX; KLF3; MAML3; MIER1; MYBL1; PMF1; THAP8; TMF1; UBP1; VEZF1; ZBTB17; ZBTB20; ZBTB5; ZNF131; ZNF24; ZNF566	low signal
+nuclear receptor / metabolism	0.0124717439812113	0.0067876650656432	0.005684078915568	mixed_or_low_signal_axis	formal	2	RORC; THRA	low signal
+TGF-beta / BMP signaling	0.0080398551381607	0.0028084397561723	0.0052314153819884	mixed_or_low_signal_axis	formal	2	BMPR1A; SMAD1	low signal
+proteostasis / chaperone	0.0351846655998828	0.0871909235205539	-0.052006257920671	preliminary_dependency_heavy_axis	preliminary	1	PFDN5	dependency-dominant
+ribosomal / translation	0.0237625515304477	0.1158481284956462	-0.0920855769651985	preliminary_dependency_heavy_axis	preliminary	1	RPS3	dependency-dominant
+RNA processing / transcription	0.0053510116361707	0.1145923282065776	-0.1092413165704069	preliminary_dependency_heavy_axis	preliminary	1	YBX1	dependency-dominant
+ribosome biogenesis / nucleolar	0.0491582655306062	0.03923951613219	0.0099187493984161	preliminary_mixed_or_low_signal_axis	preliminary	1	NPM1	balanced
+nuclear receptor / co-activator	0.0184880600067985	0.0068993829410221	0.0115886770657764	preliminary_mixed_or_low_signal_axis	preliminary	1	NCOA1	low signal
+cytoskeleton / cell motility	0.016785412811708	0.0041888263678804	0.0125965864438276	preliminary_mixed_or_low_signal_axis	preliminary	1	TMSB4X	low signal
+ER stress / UPR	0.0162456435268426	0.0088982986407474	0.0073473448860951	preliminary_mixed_or_low_signal_axis	preliminary	1	XBP1	low signal
+NF-κB / copper signaling	0.0149622440874706	0.0054930875937286	0.0094691564937419	preliminary_mixed_or_low_signal_axis	preliminary	1	COMMD6	low signal
+metabolism / transcription	0.0145285688694307	0.0083828909256136	0.006145677943817	preliminary_mixed_or_low_signal_axis	preliminary	1	PCBD1	low signal
+peroxisome / metabolism	0.0141771840514517	0.0086335804762432	0.0055436035752085	preliminary_mixed_or_low_signal_axis	preliminary	1	PEX14	low signal
+cell cycle / replication	0.0135146831560443	0.0095905792774376	0.0039241038786066	preliminary_mixed_or_low_signal_axis	preliminary	1	CDKN2A	low signal
+synaptic / signaling	0.0133845565928478	0.0083371926086237	0.005047363984224	preliminary_mixed_or_low_signal_axis	preliminary	1	ERC1	low signal
+growth factor / proliferation	0.0119657754361656	0.0077512113361277	0.0042145641000379	preliminary_mixed_or_low_signal_axis	preliminary	1	HDGF	low signal
+JAK-STAT signaling	0.0098463022917731	0.0085784413687654	0.0012678609230077	preliminary_mixed_or_low_signal_axis	preliminary	1	STAT3	low signal
+signaling / oncogene	0.006162566499227	0.0078132025657203	-0.0016506360664933	preliminary_mixed_or_low_signal_axis	preliminary	1	MTDH	low signal
+oxidative stress / antioxidant	0.0058663755681859	0.0007878525818761	0.0050785229863098	preliminary_mixed_or_low_signal_axis	preliminary	1	PRDX2	low signal
+oxidative stress / mitochondrial	0.0034392429600541	0.0050062526099397	-0.0015670096498856	preliminary_mixed_or_low_signal_axis	preliminary	1	PARK7	low signal
+NF-κB / MAPK signaling	0.0023197200472579	0.0082441423603604	-0.0059244223131025	preliminary_mixed_or_low_signal_axis	preliminary	1	TAB3	low signal
+growth / proliferation	0.0019107990652549	0.0038350710616956	-0.0019242719964406	preliminary_mixed_or_low_signal_axis	preliminary	1	PA2G4	low signal
+RNA processing / spliceosome	0.2456341088499313	0.1154327916242644	0.1302013172256668	preliminary_shared_signal_axis	preliminary	1	PRPF6	shift-dominant
+mTOR / lysosome / signaling	0.0471206748830778	0.0028366077924279	0.0442840670906499	preliminary_transcriptomic_heavy_axis	preliminary	1	LAMTOR5	shift-dominant
+transcription / chromatin	0.0918059091099973	0.0003096163305515	0.0914962927794458	transcriptomic_heavy_axis	formal	2	ENY2; TADA3	shift-dominant

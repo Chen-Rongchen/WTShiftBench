@@ -50,17 +50,11 @@ Extended Data 目录：`reports/manuscript_extended_data_v1/`
 
 | 图 | 目录 | source data | panel manifest |
 |---|---|---|---|
-| Extended Data Fig. 1 | `reports/manuscript_extended_data_v1/edfig1_dataset_endpoint_admission/` | `reports/manuscript_extended_data_v1/edfig1_dataset_endpoint_admission/edfig1_source_data.tsv` | `reports/manuscript_extended_data_v1/edfig1_dataset_endpoint_admission/edfig1_panel_manifest.json` |
-| Extended Data Fig. 2 | `reports/manuscript_extended_data_v1/edfig2_full_target_grid/` | `reports/manuscript_extended_data_v1/edfig2_full_target_grid/edfig2_source_data.tsv` | `reports/manuscript_extended_data_v1/edfig2_full_target_grid/edfig2_panel_manifest.json` |
-| Extended Data Fig. 3 | `reports/manuscript_extended_data_v1/edfig3_anchor_sensitivity/` | `reports/manuscript_extended_data_v1/edfig3_anchor_sensitivity/edfig3_source_data.tsv` | `reports/manuscript_extended_data_v1/edfig3_anchor_sensitivity/edfig3_panel_manifest.json` |
-| Extended Data Fig. 4 | `reports/manuscript_extended_data_v1/edfig4_model_detail/` | `reports/manuscript_extended_data_v1/edfig4_model_detail/edfig4_source_data.tsv` | `reports/manuscript_extended_data_v1/edfig4_model_detail/edfig4_panel_manifest.json` |
-| Extended Data Fig. 5 | `reports/manuscript_extended_data_v1/edfig5_gears_sweep/` | `reports/manuscript_extended_data_v1/edfig5_gears_sweep/edfig5_source_data.tsv` | `reports/manuscript_extended_data_v1/edfig5_gears_sweep/edfig5_panel_manifest.json` |
-| Extended Data Fig. 6 | `reports/manuscript_extended_data_v1/edfig6_axis_annotation/` | `reports/manuscript_extended_data_v1/edfig6_axis_annotation/edfig6_source_data.tsv` | `reports/manuscript_extended_data_v1/edfig6_axis_annotation/edfig6_panel_manifest.json` |
-| Extended Data Fig. 7 | `reports/manuscript_extended_data_v1/edfig7_k562_temporal/` | `reports/manuscript_extended_data_v1/edfig7_k562_temporal/edfig7_source_data.tsv` | `reports/manuscript_extended_data_v1/edfig7_k562_temporal/edfig7_panel_manifest.json` |
-| Extended Data Fig. 8 | `reports/manuscript_extended_data_v1/edfig8_endpoint_hierarchy/` | `reports/manuscript_extended_data_v1/edfig8_endpoint_hierarchy/edfig8_source_data.tsv` | `reports/manuscript_extended_data_v1/edfig8_endpoint_hierarchy/edfig8_panel_manifest.json` |
-| Extended Data Fig. 9 | `reports/manuscript_extended_data_v1/edfig9_covariate_audit/` | `reports/manuscript_extended_data_v1/edfig9_covariate_audit/edfig9_source_data.tsv` | `reports/manuscript_extended_data_v1/edfig9_covariate_audit/edfig9_panel_manifest.json` |
-| Extended Data Fig. 10 | `reports/manuscript_extended_data_v1/edfig10_reproducibility/` | `reports/manuscript_extended_data_v1/edfig10_reproducibility/edfig10_source_data.tsv` | `reports/manuscript_extended_data_v1/edfig10_reproducibility/edfig10_panel_manifest.json` |
-| Extended Data Fig. 11 | `reports/manuscript_figures_v2/fig5_axis_interpretation/` | `reports/manuscript_figures_v2/fig5_axis_interpretation/figure5_source_data.tsv` | `reports/manuscript_figures_v2/fig5_axis_interpretation/figure5_panel_manifest.json` |
+| Extended Data Fig. 1 | `reports/manuscript_extended_data_v1/edfig1_dataset_familiarization/` | `reports/manuscript_extended_data_v1/edfig1_dataset_familiarization/edfig1_source_data.tsv` | `reports/manuscript_extended_data_v1/edfig1_dataset_familiarization/edfig1_panel_manifest.json` |
+| Extended Data Fig. 2 | `reports/manuscript_extended_data_v1/edfig13_metric_robustness/` | `reports/manuscript_extended_data_v1/edfig13_metric_robustness/edfig13_source_data.tsv` | `reports/manuscript_extended_data_v1/edfig13_metric_robustness/edfig13_panel_manifest.json` |
+| Extended Data Fig. 3 | `reports/manuscript_extended_data_v1/edfig8_k562_temporal/` | `reports/manuscript_extended_data_v1/edfig8_k562_temporal/edfig8_source_data.tsv` | `reports/manuscript_extended_data_v1/edfig8_k562_temporal/edfig8_panel_manifest.json` |
+| Extended Data Fig. 4 | `reports/manuscript_extended_data_v1/edfig10_axis_explanatory_space/` | `reports/manuscript_extended_data_v1/edfig10_axis_explanatory_space/edfig10_source_data.tsv` | `reports/manuscript_extended_data_v1/edfig10_axis_explanatory_space/edfig10_panel_manifest.json` |
+| Extended Data Fig. 5 | `reports/manuscript_extended_data_v1/edfig9_biological_landing/` | `reports/manuscript_extended_data_v1/edfig9_biological_landing/edfig9_source_data.tsv` | `reports/manuscript_extended_data_v1/edfig9_biological_landing/edfig9_panel_manifest.json` |
 
 ## Supplementary tables 与投稿包 manifest
 

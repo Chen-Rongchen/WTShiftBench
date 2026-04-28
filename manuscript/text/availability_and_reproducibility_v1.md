@@ -90,4 +90,5 @@
 - Fig. 3：baseline 和 formal GEARS 的 backbone/separation headline 数字。
 - Fig. 4：baseline、formal GEARS、GEARS sweep 和 linear-control coverage。
 - Fig. 5：CRISPR/RNAi endpoint hierarchy、K562 temporal stratification 和最终 claim boundary。
-- Extended Data Fig. 11：transcription/chromatin axis 的 formal positive 身份、R2、bootstrap stability 和 tier。
+- Extended Data Fig. 4：descriptive axis-level signal space，用于展示 shift R² 与 dependency R² 的轴层分布。
+- Extended Data Fig. 5：display targets 在 HCC38/HCC1143/K562 中的 pathway-response polarity 差异。

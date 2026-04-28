@@ -2,18 +2,35 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 from pathlib import Path
 from typing import Callable
 
 import matplotlib.pyplot as plt
 import pandas as pd
 
+from wtbench.manuscript._palette import DIVIDER_GRAY, NEUTRAL_GRAY, PRIMARY_GREEN
 from wtbench.manuscript.figure_io import ensure_dir, repo_root, save_figure, write_tsv
 from wtbench.manuscript.hash_manifest import write_figure_manifest, write_panel_manifest
 from wtbench.manuscript.manuscript_style import COLORS, add_panel_label, apply_manuscript_style, clean_axes, short_model_label
 
 
 SCRIPT_DIR = Path("scripts/manuscript")
+DEFAULT_PANEL_IDS = tuple("abcdefgh")
+
+
+def _cleanup_generated(out_dir: Path, figure_key: str) -> None:
+    for path in (out_dir / "panels").glob(f"{figure_key}_panel*"):
+        path.unlink()
+    for suffix in (".png", ".pdf", "_source_data.tsv", "_panel_manifest.json"):
+        path = out_dir / f"{figure_key}{suffix}"
+        if path.exists():
+            path.unlink()
+
+
+def _grid_dimensions(n_panels: int) -> tuple[int, int]:
+    ncols = 2 if n_panels > 1 else 1
+    return math.ceil(n_panels / ncols), ncols
 
 
 def _write_panel(
@@ -65,16 +82,20 @@ def _assemble(
     renders: dict[str, Callable[[plt.Axes, pd.DataFrame], None]],
     panel_outputs: dict[str, dict[str, Path]],
     claim_boundary: str,
+    panel_ids: tuple[str, ...] = DEFAULT_PANEL_IDS,
 ) -> None:
     combined_source_path = write_tsv(
         pd.concat([df.assign(panel=panel_id) for panel_id, df in sources.items()], ignore_index=True, sort=False),
         out_dir / f"{figure_key}_source_data.tsv",
     )
-    fig = plt.figure(figsize=(11.0, 10.0))
-    gs = fig.add_gridspec(4, 2, hspace=0.78, wspace=0.52)
-    axes = [fig.add_subplot(gs[i, j]) for i in range(4) for j in range(2)]
-    for ax, panel_id in zip(axes, list("abcdefgh")):
+    nrows, ncols = _grid_dimensions(len(panel_ids))
+    fig = plt.figure(figsize=(7.3, 2.9) if len(panel_ids) == 1 else (11.0, max(3.0 * nrows, 4.2)))
+    gs = fig.add_gridspec(nrows, ncols, hspace=0.78, wspace=0.52)
+    axes = [fig.add_subplot(gs[i, j]) for i in range(nrows) for j in range(ncols)]
+    for ax, panel_id in zip(axes, panel_ids):
         renders[panel_id](ax, sources[panel_id])
+    for ax in axes[len(panel_ids):]:
+        ax.set_axis_off()
     output_paths = save_figure(fig, out_dir / f"{figure_key}.png", out_dir / f"{figure_key}.pdf")
     write_figure_manifest(
         manifest_path=out_dir / f"{figure_key}_panel_manifest.json",
@@ -82,7 +103,7 @@ def _assemble(
         figure_id=figure_id,
         figure_title=figure_title,
         script_path=root / script_path,
-        panel_manifest_paths=[panel_outputs[p]["manifest"] for p in list("abcdefgh")],
+        panel_manifest_paths=[panel_outputs[p]["manifest"] for p in panel_ids],
         combined_source_data_path=combined_source_path,
         output_paths=output_paths,
         input_paths=input_paths,
@@ -102,13 +123,15 @@ def _run_figure(
     titles: dict[str, str],
     claim_boundary: str,
     panels_only: bool,
+    panel_ids: tuple[str, ...] = DEFAULT_PANEL_IDS,
 ) -> None:
     root = repo_root()
     script_path = SCRIPT_DIR / script_name
     out_dir = ensure_dir(root / out_rel)
+    _cleanup_generated(out_dir, figure_key)
     input_paths = [root / p for p in input_rel]
     panel_outputs: dict[str, dict[str, Path]] = {}
-    for panel_id in list("abcdefgh"):
+    for panel_id in panel_ids:
         panel_outputs[panel_id] = _write_panel(
             root=root,
             figure_key=figure_key,
@@ -136,6 +159,7 @@ def _run_figure(
             renders=renders,
             panel_outputs=panel_outputs,
             claim_boundary=claim_boundary,
+            panel_ids=panel_ids,
         )
 
 
@@ -214,55 +238,40 @@ def build_edfig1(panels_only: bool = False) -> None:
         raise RuntimeError("ED Fig. 1 sanity check failed: K562 7d/13d QC missing.")
     sources = {
         "a": primary,
-        "b": qc_wide[["timepoint", "kept_cells", "controls_in_kept_cells", "targets_in_kept_cells", "sg_guides", "intergenic_guides"]],
+        "b": qc_wide[["timepoint", "matrix_cells", "kept_cells", "controls_in_kept_cells", "targets_in_kept_cells", "matrix_cells_unassigned"]],
         "c": rnai,
-        "d": claim.loc[claim["object"].isin(["global_truth_depmap_bridge", "Dixit_K562_temporal_panel", "Replogle_RNAi_expansion_candidate"])],
-        "e": pd.DataFrame(
-            [
-                {"endpoint": "CRISPR DepMap", "role": "primary bridge readout", "tier": "primary"},
-                {"endpoint": "RNAi DEMETER2", "role": "cross-platform sensitivity", "tier": "sensitivity"},
-                {"endpoint": "K562 GSE90063", "role": "supplementary temporal panel", "tier": "supplementary"},
-            ]
-        ),
-        "f": qc_wide[["timepoint", "matrix_cells", "kept_cells", "matrix_cells_unassigned"]],
-        "g": primary[["cell_line", "truth_metric", "depmap_endpoint", "spearman_rho_aligned"]],
-        "h": claim.loc[claim["object"].isin(["Dixit_K562_supplementary", "Dixit_K562_temporal_panel", "discovery_phenotype_shifter"])],
+        "d": claim.loc[claim["object"].isin(["Dixit_K562_supplementary", "Dixit_K562_temporal_panel", "discovery_phenotype_shifter"])],
     }
 
     def a(ax, df): _barh(ax, df.assign(label=df["cell_line"]), "label", "spearman_rho_aligned", "HCC primary bridge admission", "Spearman", "a", COLORS["primary_qualified"])
-    def b(ax, df): _barh(ax, df.assign(kept_cells=pd.to_numeric(df["kept_cells"])), "timepoint", "kept_cells", "K562 kept cells", "Cells", "b", "#777777")
+    def b(ax, df):
+        plot = df.melt(id_vars="timepoint", value_vars=["matrix_cells", "kept_cells", "matrix_cells_unassigned"], var_name="metric", value_name="cells")
+        plot["cells"] = pd.to_numeric(plot["cells"])
+        for metric, sub in plot.groupby("metric"):
+            ax.plot(sub["timepoint"], sub["cells"], marker="o", label=metric.replace("_", " "))
+        ax.set_title("K562 cell accounting", loc="left"); ax.set_ylabel("Cells"); ax.legend(frameon=False, fontsize=6); clean_axes(ax); ax.grid(axis="y", color=COLORS["grid"], linewidth=0.5); add_panel_label(ax, "b")
     def c(ax, df):
         keep = ["score_direction", "input_cell_lines", "mapped_cell_lines", "genes"]
         plot = df.loc[df["metric"].isin(keep)].copy()
         rows = [(r.metric.replace("_", " "), str(r.value)) for r in plot.itertuples()]
         _short_text_panel(ax, "RNAi conversion summary", rows, "c")
     def d(ax, df):
-        rows = [("global bridge", df.loc[df["object"].eq("global_truth_depmap_bridge"), "evidence_tier"].iloc[0]), ("K562 temporal", df.loc[df["object"].eq("Dixit_K562_temporal_panel"), "evidence_tier"].iloc[0]), ("RNAi expansion", df.loc[df["object"].eq("Replogle_RNAi_expansion_candidate"), "evidence_tier"].iloc[0])]
-        _short_text_panel(ax, "Admission status", rows, "d")
-    def e(ax, df): _text_panel(ax, "Endpoint hierarchy", [(r.endpoint, r.tier) for r in df.itertuples()], "e")
-    def f(ax, df):
-        plot = df.melt(id_vars="timepoint", value_vars=["matrix_cells", "kept_cells", "matrix_cells_unassigned"], var_name="metric", value_name="cells")
-        plot["cells"] = pd.to_numeric(plot["cells"])
-        for metric, sub in plot.groupby("metric"):
-            ax.plot(sub["timepoint"], sub["cells"], marker="o", label=metric.replace("_", " "))
-        ax.set_title("K562 cell accounting", loc="left"); ax.set_ylabel("Cells"); ax.legend(frameon=False, fontsize=6); clean_axes(ax); ax.grid(axis="y", color=COLORS["grid"], linewidth=0.5); add_panel_label(ax, "f")
-    def g(ax, df): _barh(ax, df.assign(label=df["cell_line"]), "label", "spearman_rho_aligned", "Primary HCC endpoint strength", "Spearman", "g", COLORS["baseline"])
-    def h(ax, df):
         rows = [("K562 supplement", "not primary co-pillar"), ("K562 temporal", "A0/A1 supporting"), ("discovery", "gated downstream")]
-        _short_text_panel(ax, "Not primary co-pillars", rows, "h")
+        _short_text_panel(ax, "Not primary co-pillars", rows, "d")
 
     _run_figure(
-        figure_id="extended_data_figure1",
-        figure_key="edfig1",
+        figure_id="extended_data_figure2",
+        figure_key="edfig2",
         figure_title="Dataset and endpoint admission",
-        script_name="build_extended_data_figure1.py",
-        out_rel="reports/manuscript_extended_data_v1/edfig1_dataset_endpoint_admission",
+        script_name="build_extended_data_figure2.py",
+        out_rel="reports/manuscript_extended_data_v1/edfig2_dataset_endpoint_admission",
         input_rel=input_rel,
         sources=sources,
-        renders=dict(zip(list("abcdefgh"), [a, b, c, d, e, f, g, h])),
-        titles={k: v for k, v in zip(list("abcdefgh"), ["HCC admission", "K562 QC", "RNAi conversion", "Admission status", "Endpoint hierarchy", "Cell accounting", "HCC endpoint strength", "Boundary"])},
+        renders=dict(zip(list("abcd"), [a, b, c, d])),
+        titles={k: v for k, v in zip(list("abcd"), ["HCC admission", "K562 accounting", "RNAi conversion", "Boundary"])},
         claim_boundary="Dataset and endpoint admission separates primary HCC evidence, supplementary K562 evidence and RNAi sensitivity.",
         panels_only=panels_only,
+        panel_ids=tuple("abcd"),
     )
 
 
@@ -282,12 +291,21 @@ def build_edfig2(panels_only: bool = False) -> None:
     sources = {
         "a": grid.loc[grid["cell_line"].eq("HCC38")],
         "b": grid.loc[grid["cell_line"].eq("HCC1143")],
-        "c": grid.groupby(["cell_line", "joint_grid"], as_index=False).size().rename(columns={"size": "n"}),
-        "d": grid.loc[grid["is_q1_anchor"]],
-        "e": grid.loc[grid["is_q2_transcriptomic_excess"]],
-        "f": grid.loc[grid["is_q3_dependency_excess"]],
-        "g": evidence.loc[evidence["object_type"].eq("target_anchor")],
-        "h": summary,
+        "c": pd.concat(
+            [
+                grid.groupby(["cell_line", "joint_grid"], as_index=False).size().rename(columns={"size": "n"}).assign(summary_kind="grid_category"),
+                grid.loc[grid["is_q1_anchor"], ["cell_line", "target_gene", "joint_grid"]].assign(n=1, summary_kind="q1_anchor"),
+                pd.DataFrame(
+                    [
+                        {"cell_line": "all", "joint_grid": "Q2_transcriptomic_excess", "n": int(grid["is_q2_transcriptomic_excess"].sum()), "summary_kind": "zero_count_check"},
+                        {"cell_line": "all", "joint_grid": "Q3_dependency_excess", "n": int(grid["is_q3_dependency_excess"].sum()), "summary_kind": "zero_count_check"},
+                    ]
+                ),
+            ],
+            ignore_index=True,
+            sort=False,
+        ),
+        "d": evidence.loc[evidence["object_type"].eq("target_anchor")],
     }
 
     def scatter(label):
@@ -297,16 +315,17 @@ def build_edfig2(panels_only: bool = False) -> None:
             ax.set_xlabel("Dependency strength"); ax.set_ylabel("Shift value"); ax.set_title(f"{label} full grid", loc="left"); clean_axes(ax); ax.grid(color=COLORS["grid"], linewidth=0.5); add_panel_label(ax, "a" if label == "HCC38" else "b")
         return _r
     def c(ax, df):
-        piv = df.pivot(index="joint_grid", columns="cell_line", values="n").fillna(0)
+        counts = df.loc[df["summary_kind"].eq("grid_category")]
+        piv = counts.pivot(index="joint_grid", columns="cell_line", values="n").fillna(0)
         piv.plot(kind="bar", ax=ax, color=[COLORS["baseline"], COLORS["primary_qualified"]], width=0.7)
-        ax.set_title("Grid category counts", loc="left"); ax.set_ylabel("Targets"); ax.legend(frameon=False); clean_axes(ax); ax.grid(axis="y", color=COLORS["grid"], linewidth=0.5); add_panel_label(ax, "c")
-    def d(ax, df): _barh(ax, df.groupby("target_gene", as_index=False).size().rename(columns={"size": "n"}), "target_gene", "n", "All Q1 anchors", "Cell-line count", "d", COLORS["primary_qualified"])
-    def e(ax, df): _empty_or_barh(ax, df.groupby("target_gene", as_index=False).size().rename(columns={"size": "n"}), "target_gene", "n", "Transcriptomic-excess targets", "Cell-line count", "e", COLORS["supporting"])
-    def f(ax, df): _empty_or_barh(ax, df.groupby("target_gene", as_index=False).size().rename(columns={"size": "n"}), "target_gene", "n", "Dependency-excess targets", "Cell-line count", "f", "#777777")
-    def g(ax, df): _barh(ax, df.groupby("evidence_tier", as_index=False).size().rename(columns={"size": "n"}), "evidence_tier", "n", "Target evidence tiers", "Objects", "g", "#8A8A8A")
-    def h(ax, df): _barh(ax, df.assign(label=df["cell_line"] + " " + df["joint_grid"]), "label", "n_targets", "Grid summary table", "Targets", "h", "#999999")
+        zeros = df.loc[df["summary_kind"].eq("zero_count_check")]
+        zero_text = "; ".join(f"{r.joint_grid}: {int(r.n)}" for r in zeros.itertuples())
+        q1_n = df.loc[df["summary_kind"].eq("q1_anchor"), "target_gene"].nunique()
+        ax.text(0.02, 0.95, f"Q1 anchors: {q1_n}; {zero_text}", transform=ax.transAxes, fontsize=7, va="top")
+        ax.set_title("Grid composition and retained zero-count classes", loc="left"); ax.set_ylabel("Targets"); ax.legend(frameon=False); clean_axes(ax); ax.grid(axis="y", color=COLORS["grid"], linewidth=0.5); add_panel_label(ax, "c")
+    def d(ax, df): _barh(ax, df.groupby("evidence_tier", as_index=False).size().rename(columns={"size": "n"}), "evidence_tier", "n", "Target evidence tiers", "Objects", "d", "#8A8A8A")
 
-    _run_figure("extended_data_figure2", "edfig2", "Full target-level joint grid", "build_extended_data_figure2.py", "reports/manuscript_extended_data_v1/edfig2_full_target_grid", input_rel, sources, dict(zip(list("abcdefgh"), [scatter("HCC38"), scatter("HCC1143"), c, d, e, f, g, h])), {k: v for k, v in zip(list("abcdefgh"), ["HCC38 grid", "HCC1143 grid", "Counts", "Q1 anchors", "Q2", "Q3", "Evidence tiers", "Summary"])}, "Full target grid supports the bridge but does not remove covariate boundaries.", panels_only)
+    _run_figure("extended_data_figure3", "edfig3", "Full target-level joint grid", "build_extended_data_figure3.py", "reports/manuscript_extended_data_v1/edfig3_full_target_grid", input_rel, sources, dict(zip(list("abcd"), [scatter("HCC38"), scatter("HCC1143"), c, d])), {k: v for k, v in zip(list("abcd"), ["HCC38 grid", "HCC1143 grid", "Grid composition", "Evidence tiers"])}, "Full target grid supports the bridge but does not remove covariate boundaries.", panels_only, panel_ids=tuple("abcd"))
 
 
 def build_edfig4(panels_only: bool = False) -> None:
@@ -321,16 +340,30 @@ def build_edfig4(panels_only: bool = False) -> None:
         "a": comp,
         "b": smoke,
         "c": smoke,
-        "d": smoke,
-        "e": smoke.loc[smoke["model_id"].eq("shared_mean_baseline")],
-        "f": smoke.loc[smoke["model_id"].eq("gears_hcc_formal_v1")],
-        "g": smoke.loc[smoke["model_id"].isin(["geneformer_hcc_formal_v1", "scgpt_hcc_formal_v1"])],
-        "h": smoke.loc[smoke["model_id"].eq("null_model")],
     }
     def a(ax, df): _barh(ax, df.assign(label=df["model_id"].map(short_model_label)), "label", "backbone_recovery_score", "Full model backbone ranking", "Backbone recovery", "a", COLORS["baseline"])
-    def metric(metric, label, color, panel):
-        return lambda ax, df: _barh(ax, df.groupby("cell_line", as_index=False)[metric].mean(), "cell_line", metric, label, metric, panel, color)
-    _run_figure("extended_data_figure4", "edfig4", "Full HCC model recovery detail", "build_extended_data_figure4.py", "reports/manuscript_extended_data_v1/edfig4_model_detail", input_rel, sources, dict(zip(list("abcdefgh"), [a, metric("backbone_recovery_score", "Per-cell-line backbone", COLORS["primary_qualified"], "b"), metric("shift_excess_identification_score", "Per-cell-line shift-excess", COLORS["supporting"], "c"), metric("structure_vs_context_separation_score", "Per-cell-line separation", COLORS["gears"], "d"), metric("top20_overlap_mean", "Baseline top20 overlap", COLORS["baseline"], "e"), metric("top20_overlap_mean", "GEARS top20 overlap", COLORS["gears"], "f"), metric("top20_overlap_mean", "Foundation top20 overlap", COLORS["foundation"], "g"), metric("top20_overlap_mean", "Null top20 overlap", "#BDBDBD", "h")])), {k: v for k, v in zip(list("abcdefgh"), ["Ranking", "Backbone", "Shift-excess", "Separation", "Baseline", "GEARS", "Foundation", "Null"])}, "Full model details support a backbone-separation trade-off, not model recovery proof.", panels_only)
+    def b(ax, df):
+        metrics = ["backbone_recovery_score", "shift_excess_identification_score", "structure_vs_context_separation_score"]
+        plot = df.groupby("cell_line", as_index=False)[metrics].mean()
+        x = range(len(plot))
+        for offset, metric_name, color in [(-0.22, metrics[0], COLORS["primary_qualified"]), (0.0, metrics[1], COLORS["supporting"]), (0.22, metrics[2], COLORS["gears"])]:
+            ax.bar([i + offset for i in x], plot[metric_name], width=0.20, color=color, label=metric_name.replace("_score", "").replace("_", " "))
+        ax.set_xticks(list(x)); ax.set_xticklabels(plot["cell_line"])
+        ax.set_ylabel("Mean score"); ax.set_title("Per-cell-line multi-metric comparison", loc="left")
+        ax.legend(frameon=False, fontsize=6); clean_axes(ax); ax.grid(axis="y", color=COLORS["grid"], linewidth=0.5); add_panel_label(ax, "b")
+    def c(ax, df):
+        groups = {
+            "baseline": ["shared_mean_baseline"],
+            "GEARS": ["gears_hcc_formal_v1"],
+            "foundation": ["geneformer_hcc_formal_v1", "scgpt_hcc_formal_v1"],
+            "null": ["null_model"],
+        }
+        rows = []
+        for group, models in groups.items():
+            sub = df.loc[df["model_id"].isin(models)]
+            rows.append({"model_group": group, "top20_overlap_mean": sub["top20_overlap_mean"].mean()})
+        _barh(ax, pd.DataFrame(rows), "model_group", "top20_overlap_mean", "Top-20 overlap comparison", "Mean top-20 overlap", "c", "#8A8A8A")
+    _run_figure("extended_data_figure5", "edfig5", "Full HCC model recovery detail", "build_extended_data_figure5.py", "reports/manuscript_extended_data_v1/edfig5_model_detail", input_rel, sources, dict(zip(list("abc"), [a, b, c])), {k: v for k, v in zip(list("abc"), ["Ranking", "Per-cell-line metrics", "Top-20 overlap"])}, "Full model details support an asymmetric recovery pattern, not model recovery proof.", panels_only, panel_ids=tuple("abc"))
 
 
 def build_edfig5(panels_only: bool = False) -> None:
@@ -348,10 +381,8 @@ def build_edfig5(panels_only: bool = False) -> None:
         "b": batch.groupby(["variant_id", "phase", "status"], as_index=False).size().rename(columns={"size": "n"}),
         "c": sweep,
         "d": sweep,
-        "e": comp.loc[comp["model_id"].str.contains("gears_hcc_formal_v1") | comp["model_id"].eq("shared_mean_baseline")],
-        "f": pd.DataFrame([{"rule": "stop", "baseline_backbone": baseline, "best_sweep_backbone": sweep["backbone_recovery_score"].max(), "decision": "do not promote GEARS as primary winner"}]),
-        "g": cand[["variant_id", "epochs", "lr", "weight_decay", "candidate_rank"]],
-        "h": pd.DataFrame([{"boundary": "GEARS training", "status": "not rerun in figure stage"}, {"boundary": "predictions/scores", "status": "frozen and hashed"}, {"boundary": "recipe search", "status": "finite-budget control"}]),
+        "e": pd.DataFrame([{"rule": "stop", "baseline_backbone": baseline, "best_sweep_backbone": sweep["backbone_recovery_score"].max(), "decision": "do not promote GEARS as primary winner"}]),
+        "f": pd.DataFrame([{"boundary": "GEARS training", "status": "not rerun in figure stage"}, {"boundary": "predictions/scores", "status": "frozen and hashed"}, {"boundary": "recipe search", "status": "finite-budget control"}]),
     }
     def a(ax, df):
         rows = [(r.variant_id, f"rank {r.candidate_rank}; e{r.epochs}; lr={r.lr}") for r in df.itertuples()]
@@ -361,49 +392,128 @@ def build_edfig5(panels_only: bool = False) -> None:
         _barh(ax, plot.assign(label=plot["phase"] + " " + plot["status"]), "label", "n", "Batch status log", "Events", "b", "#8A8A8A")
     def c(ax, df): _barh(ax, df.assign(label=df["model_id"].str.replace("gears_hcc_formal_v1_", "", regex=False)), "label", "backbone_recovery_score", "Sweep backbone scores", "Backbone", "c", COLORS["gears"])
     def d(ax, df): _barh(ax, df.assign(label=df["model_id"].str.replace("gears_hcc_formal_v1_", "", regex=False)), "label", "structure_vs_context_separation_score", "Sweep separation scores", "Separation", "d", COLORS["supporting"])
-    def e(ax, df):
-        ax.scatter(df["backbone_recovery_score"], df["shift_excess_identification_score"], c=[COLORS["baseline"] if m == "shared_mean_baseline" else COLORS["gears"] for m in df["model_id"]], s=40)
-        ax.set_xlabel("Backbone"); ax.set_ylabel("Shift-excess"); ax.set_title("Baseline versus sweep candidates", loc="left"); clean_axes(ax); ax.grid(color=COLORS["grid"], linewidth=0.5); add_panel_label(ax, "e")
-    def f(ax, df): _text_panel(ax, "Stop-rule adjudication", [("baseline", f"{df.baseline_backbone.iloc[0]:.3f}"), ("best sweep", f"{df.best_sweep_backbone.iloc[0]:.3f}"), ("decision", df.decision.iloc[0])], "f")
-    def g(ax, df): _text_panel(ax, "Recipe dimensions", [(r.variant_id, f"e{r.epochs}, lr={r.lr}, wd={r.weight_decay}") for r in df.itertuples()], "g")
-    def h(ax, df): _text_panel(ax, "Training exemption", [(r.boundary, r.status) for r in df.itertuples()], "h")
-    _run_figure("extended_data_figure5", "edfig5", "GEARS sweep and stop rule", "build_extended_data_figure5.py", "reports/manuscript_extended_data_v1/edfig5_gears_sweep", input_rel, sources, dict(zip(list("abcdefgh"), [a, b, c, d, e, f, g, h])), {k: v for k, v in zip(list("abcdefgh"), ["Candidate manifest", "Batch status", "Backbone", "Separation", "Trade-off", "Stop rule", "Recipe", "Boundary"])}, "GEARS sweep is finite-budget control and training is not rerun during figure generation.", panels_only)
+    def e(ax, df): _text_panel(ax, "Stop-rule adjudication", [("baseline", f"{df.baseline_backbone.iloc[0]:.3f}"), ("best sweep", f"{df.best_sweep_backbone.iloc[0]:.3f}"), ("decision", df.decision.iloc[0])], "e")
+    def f(ax, df): _text_panel(ax, "Training exemption", [(r.boundary, r.status) for r in df.itertuples()], "f")
+    _run_figure("extended_data_figure6", "edfig6", "GEARS sweep and stop rule", "build_extended_data_figure6.py", "reports/manuscript_extended_data_v1/edfig6_gears_sweep", input_rel, sources, dict(zip(list("abcdef"), [a, b, c, d, e, f])), {k: v for k, v in zip(list("abcdef"), ["Candidate manifest", "Batch status", "Backbone", "Separation", "Stop rule", "Boundary"])}, "GEARS sweep is finite-budget control and training is not rerun during figure generation.", panels_only, panel_ids=tuple("abcdef"))
 
 
 def build_edfig7(panels_only: bool = False) -> None:
     root = repo_root()
-    input_rel = ["reports/stage2_truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_bridge_summary.tsv", "reports/stage2_truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_structure_summary.tsv", "reports/stage2_truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_panel_calls.tsv", "reports/stage2_truth_driven_bridge/dixit_axis_compression_gse90063_7d/dixit_evidence_tier_summary.tsv", "reports/stage2_truth_driven_bridge/dixit_axis_compression_gse90063_13d/dixit_evidence_tier_summary.tsv"]
+    input_rel = [
+        "reports/stage2_truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_bridge_summary.tsv",
+        "reports/stage2_truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_structure_summary.tsv",
+        "reports/stage2_truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_panel_calls.tsv",
+        "reports/stage2_truth_driven_bridge/dixit_axis_compression_gse90063_7d/dixit_evidence_tier_summary.tsv",
+        "reports/stage2_truth_driven_bridge/dixit_axis_compression_gse90063_13d/dixit_evidence_tier_summary.tsv",
+        "data/processed/stage2_truth_driven_bridge_gse90063_7d/dixit_2016_k562_tf_7d_gse90063/target_level_bridge_table.tsv.gz",
+        "data/processed/stage2_truth_driven_bridge_gse90063_13d/dixit_2016_k562_tf_13d_gse90063/target_level_bridge_table.tsv.gz",
+    ]
     bridge = pd.read_csv(root / input_rel[0], sep="\t")
-    struct = pd.read_csv(root / input_rel[1], sep="\t")
-    calls = pd.read_csv(root / input_rel[2], sep="\t")
-    t7 = pd.read_csv(root / input_rel[3], sep="\t").assign(timepoint="7d")
-    t13 = pd.read_csv(root / input_rel[4], sep="\t").assign(timepoint="13d")
+    target_7d = pd.read_csv(root / input_rel[5], sep="\t").assign(timepoint="7d")
+    target_13d = pd.read_csv(root / input_rel[6], sep="\t").assign(timepoint="13d")
     primary = bridge.loc[bridge["truth_metric"].eq("real_shift_mean_abs") & bridge["depmap_endpoint"].eq("depmap_gene_dependency")]
     vals = primary.set_index("timepoint")
     if vals.loc["7d", "aligned_spearman"] <= vals.loc["13d", "aligned_spearman"] or vals.loc["13d", "mean_truth_metric"] <= vals.loc["7d", "mean_truth_metric"]:
-        raise RuntimeError("ED Fig. 7 sanity check failed: temporal stratification changed.")
-    tiers = pd.concat([t7, t13], ignore_index=True)
-    sources = {"a": bridge.loc[bridge["timepoint"].eq("7d")], "b": bridge.loc[bridge["timepoint"].eq("13d")], "c": primary, "d": struct, "e": t7, "f": t13, "g": calls, "h": tiers}
-    def bridge_bar(panel, title):
-        return lambda ax, df: _barh(ax, df.assign(label=df["truth_metric"]), "label", "aligned_spearman", title, "Spearman", panel, COLORS["primary_qualified"])
-    def c(ax, df):
-        plot = df.copy()
-        plot["rank_bridge_norm"] = plot["aligned_spearman"] / plot["aligned_spearman"].max()
-        plot["mean_shift_norm"] = plot["mean_truth_metric"] / plot["mean_truth_metric"].max()
-        x = range(len(plot))
-        ax.bar([i - 0.18 for i in x], plot["rank_bridge_norm"], width=0.34, color=COLORS["baseline"], label="rank bridge")
-        ax.bar([i + 0.18 for i in x], plot["mean_shift_norm"], width=0.34, color=COLORS["gears"], label="mean shift")
-        ax.set_xticks(list(x)); ax.set_xticklabels(plot["timepoint"])
-        ax.set_ylim(0, 1.15); ax.set_ylabel("Normalized value")
-        ax.set_title("Temporal stratification", loc="left"); ax.legend(frameon=False); clean_axes(ax); ax.grid(axis="y", color=COLORS["grid"], linewidth=0.5); add_panel_label(ax, "c")
-    def d(ax, df): _barh(ax, df.assign(label=df["timepoint"] + " " + df["comparison_field"]), "label", df.assign(n=1)["n"].name if False else "n", "", "", "d")
-    def d(ax, df):
-        plot = df.groupby(["timepoint", "replication_status"], as_index=False).size().rename(columns={"size": "n"}); _barh(ax, plot.assign(label=plot["timepoint"] + " " + plot["replication_status"]), "label", "n", "Temporal structure calls", "Calls", "d", "#777777")
-    def tier(panel, title):
-        return lambda ax, df: _barh(ax, df.groupby("evidence_tier", as_index=False).size().rename(columns={"size": "n"}), "evidence_tier", "n", title, "Objects", panel, COLORS["supporting"])
-    def g(ax, df): _short_text_panel(ax, "Temporal panel call", [("rank bridge", "not stronger at 13d"), ("mean shift", "stronger at 13d"), ("boundary", "13d formal; 7d sensitivity")], "g")
-    def h(ax, df): _barh(ax, df.groupby(["timepoint", "evidence_tier"], as_index=False).size().rename(columns={"size": "n"}).assign(label=lambda x: x["timepoint"] + " " + x["evidence_tier"]), "label", "n", "A0/A1/B tier distribution", "Objects", "h", "#8A8A8A")
-    _run_figure("extended_data_figure7", "edfig7", "K562 temporal evidence detail", "build_extended_data_figure7.py", "reports/manuscript_extended_data_v1/edfig7_k562_temporal", input_rel, sources, dict(zip(list("abcdefgh"), [bridge_bar("a", "7d bridge summary"), bridge_bar("b", "13d bridge summary"), c, d, tier("e", "7d evidence tiers"), tier("f", "13d evidence tiers"), g, h])), {k: v for k, v in zip(list("abcdefgh"), ["7d bridge", "13d bridge", "Temporal comparison", "Structure", "7d tiers", "13d tiers", "Panel call", "Tier distribution"])}, "K562 is supplementary temporal architecture evidence, not a primary co-pillar.", panels_only)
+        raise RuntimeError("ED Fig. 3 sanity check failed: temporal stratification changed.")
+    plot = bridge.loc[
+        bridge["truth_metric"].isin(["real_shift_mean_abs", "real_shift_L2"])
+        & bridge["depmap_endpoint"].eq("depmap_gene_dependency")
+    ].copy()
+    plot["metric_label"] = plot["truth_metric"].map({"real_shift_mean_abs": "Mean abs (primary)", "real_shift_L2": "L2 sensitivity"})
+    plot["timepoint_order"] = plot["timepoint"].map({"7d": 0, "13d": 1})
+    plot["mean_shift_norm"] = plot.groupby("truth_metric")["mean_truth_metric"].transform(lambda s: s / s.max())
+    plot["mean_shift_display"] = plot.apply(
+        lambda row: row["mean_truth_metric"] * 1000 if row["truth_metric"] == "real_shift_mean_abs" else row["mean_truth_metric"],
+        axis=1,
+    )
+    target_values = pd.concat([target_7d, target_13d], ignore_index=True)
+    shift_errors = []
+    for metric, source_col in [("real_shift_mean_abs", "real_shift_mean_abs"), ("real_shift_L2", "real_shift_L2")]:
+        for timepoint, sub in target_values.groupby("timepoint"):
+            shift_errors.append(
+                {
+                    "truth_metric": metric,
+                    "timepoint": timepoint,
+                    "mean_shift_sem": float(sub[source_col].sem()),
+                }
+            )
+    error_df = pd.DataFrame(shift_errors)
+    plot = plot.merge(error_df, on=["truth_metric", "timepoint"], how="left")
+    plot["mean_shift_sem_norm"] = plot["mean_shift_sem"] / plot.groupby("truth_metric")["mean_truth_metric"].transform("max")
+    sources = {"a": plot.sort_values(["truth_metric", "timepoint_order"])}
+
+    def a(ax, df):
+        ax.set_axis_off()
+        add_panel_label(ax, "a", x=-0.025, y=1.02)
+        ax.text(
+            0.030,
+            1.015,
+            "Temporal bridge-magnitude dissociation",
+            transform=ax.transAxes,
+            ha="left",
+            va="bottom",
+            fontsize=8.4,
+            fontweight="bold",
+        )
+        ax.plot([0.52, 0.555], [0.93, 0.93], color=PRIMARY_GREEN, linewidth=1.2, transform=ax.transAxes, clip_on=False)
+        ax.scatter([0.5375], [0.93], s=14, color=PRIMARY_GREEN, transform=ax.transAxes, clip_on=False)
+        ax.text(0.565, 0.93, "Mean abs (primary)", transform=ax.transAxes, va="center", fontsize=6.0)
+        ax.plot([0.73, 0.765], [0.93, 0.93], color=NEUTRAL_GRAY, linewidth=1.2, transform=ax.transAxes, clip_on=False)
+        ax.scatter([0.7475], [0.93], s=14, marker="s", color=NEUTRAL_GRAY, transform=ax.transAxes, clip_on=False)
+        ax.text(0.775, 0.93, "L2 sensitivity", transform=ax.transAxes, va="center", fontsize=6.0)
+        rank_ax = ax.inset_axes([0.05, 0.22, 0.38, 0.49])
+        shift_ax = ax.inset_axes([0.58, 0.22, 0.38, 0.49])
+        metric_styles = {
+            "real_shift_mean_abs": {"color": PRIMARY_GREEN, "marker": "o", "label": "Mean abs (primary)", "zorder": 3},
+            "real_shift_L2": {"color": NEUTRAL_GRAY, "marker": "s", "label": "L2 sensitivity", "zorder": 2},
+        }
+        x_map = {"7d": 0, "13d": 1}
+        for metric, style in metric_styles.items():
+            sub = df.loc[df["truth_metric"].eq(metric)].sort_values("timepoint_order")
+            xs = [x_map[v] for v in sub["timepoint"]]
+            rank_ax.plot(xs, sub["aligned_spearman"], color=style["color"], marker=style["marker"], linewidth=1.2, markersize=4.2, label=style["label"], zorder=style["zorder"])
+            shift_ax.errorbar(
+                xs,
+                sub["mean_shift_norm"],
+                yerr=sub["mean_shift_sem_norm"],
+                color=style["color"],
+                marker=style["marker"],
+                linewidth=1.2,
+                markersize=4.2,
+                capsize=2.0,
+                capthick=0.7,
+                elinewidth=0.8,
+                label=style["label"],
+                zorder=style["zorder"],
+            )
+        for sub_ax in (rank_ax, shift_ax):
+            sub_ax.set_xlim(-0.25, 1.25)
+            sub_ax.set_xticks([0, 1])
+            sub_ax.set_xticklabels(["7d", "13d"])
+            sub_ax.grid(axis="y", color=COLORS["grid"], linewidth=0.5)
+            clean_axes(sub_ax)
+        rank_ax.set_ylim(0.35, 0.88)
+        rank_ax.set_ylabel("Bridge rho", labelpad=2)
+        rank_ax.set_title("Rank bridge weakens at 13d", loc="left", fontsize=7.0, fontweight="bold", pad=2)
+        shift_ax.set_ylim(0.55, 1.15)
+        shift_ax.set_ylabel("Mean shift (norm.)", labelpad=2)
+        shift_ax.set_title("Perturbation magnitude increases at 13d", loc="left", fontsize=7.0, fontweight="bold", pad=2)
+        # divider line removed
+
+    _run_figure(
+        "extended_data_figure3",
+        "edfig8",
+        "K562 temporal bridge-magnitude dissociation",
+        "build_extended_data_figure8.py",
+        "reports/manuscript_extended_data_v1/edfig8_k562_temporal",
+        input_rel,
+        sources,
+        {"a": a},
+        {"a": "Temporal bridge-magnitude dissociation"},
+        "K562 remains supplementary temporal evidence: larger 13d perturbation magnitude does not strengthen the rank bridge.",
+        panels_only,
+        panel_ids=tuple("a"),
+    )
 
 
 def build_edfig8(panels_only: bool = False) -> None:
@@ -419,23 +529,25 @@ def build_edfig8(panels_only: bool = False) -> None:
     if not (pivot["crispr"] > pivot["rnai"]).all():
         raise RuntimeError("ED Fig. 8 sanity check failed: CRISPR no longer exceeds RNAi in every context.")
     consistency = all_ep.loc[all_ep["summary_kind"].eq("endpoint_consistency")]
-    sources = {"a": hcc, "b": k562, "c": consistency, "d": conv, "e": bridge, "f": claim.loc[claim["object"].isin(["Replogle_RNAi_expansion_candidate", "global_truth_depmap_bridge"])], "g": bridge, "h": claim.loc[claim["object"].str.contains("RNAi|global|Dixit", regex=True)]}
+    sources = {
+        "a": hcc,
+        "b": k562,
+        "c": consistency,
+        "d": claim.loc[claim["object"].isin(["Replogle_RNAi_expansion_candidate", "global_truth_depmap_bridge"])],
+        "e": bridge,
+        "f": pd.concat([conv.assign(summary_kind="demeter2_conversion"), claim.loc[claim["object"].str.contains("RNAi|global|Dixit", regex=True)].assign(summary_kind="claim_boundary")], ignore_index=True, sort=False),
+    }
     def endpoint(panel, title):
         return lambda ax, df: _barh(ax, df.loc[df["summary_kind"].eq("truth_endpoint_bridge") & df["truth_metric"].eq("real_shift_mean_abs") & df["depmap_endpoint"].eq("depmap_gene_dependency")].assign(label=lambda x: x["timepoint"].astype(str) + " " + x["platform_pair"]), "label", "spearman", title, "Spearman", panel, COLORS["primary_qualified"])
     def c(ax, df): _barh(ax, df.assign(label=df["timepoint"].astype(str)), "label", "spearman", "CRISPR-RNAi endpoint agreement", "Spearman", "c", "#777777")
-    def d(ax, df):
-        keep = ["score_direction", "input_cell_lines", "mapped_cell_lines", "genes"]
-        plot = df.loc[df["metric"].isin(keep)].copy()
-        rows = [(r.metric.replace("_", " "), str(r.value)) for r in plot.itertuples()]
-        _short_text_panel(ax, "DEMETER2 conversion summary", rows, "d")
-    def e(ax, df):
-        piv = df.pivot_table(index="timepoint", columns="platform_pair", values="spearman").reset_index()
-        ax.bar(range(len(piv)), piv["crispr"], width=0.35, color=COLORS["baseline"], label="CRISPR"); ax.bar([i+0.35 for i in range(len(piv))], piv["rnai"], width=0.35, color="#BDBDBD", label="RNAi")
-        ax.set_xticks([i+0.175 for i in range(len(piv))]); ax.set_xticklabels(piv["timepoint"], rotation=20, ha="right"); ax.set_ylabel("Spearman"); ax.set_title("Endpoint hierarchy", loc="left"); ax.legend(frameon=False); clean_axes(ax); ax.grid(axis="y", color=COLORS["grid"], linewidth=0.5); add_panel_label(ax, "e")
-    def f(ax, df): _short_text_panel(ax, "RNAi sensitivity boundary", [("global bridge", "retainable global claim"), ("RNAi expansion", "admission required")], "f")
-    def g(ax, df): _barh(ax, df.assign(delta=df.groupby("timepoint")["spearman"].transform(lambda s: s.max() - s.min())).drop_duplicates("timepoint").assign(label=lambda x: x["timepoint"].astype(str)), "label", "delta", "CRISPR-RNAi bridge gap", "Spearman gap", "g", COLORS["boundary"])
-    def h(ax, df): _short_text_panel(ax, "Endpoint claim boundary", [("CRISPR", "primary bridge readout"), ("RNAi", "weaker sensitivity endpoint"), ("K562", "supplementary evidence"), ("discovery", "not formal primary")], "h")
-    _run_figure("extended_data_figure8", "edfig8", "CRISPR versus RNAi endpoint detail", "build_extended_data_figure8.py", "reports/manuscript_extended_data_v1/edfig8_endpoint_hierarchy", input_rel, sources, dict(zip(list("abcdefgh"), [endpoint("a", "HCC endpoint bridge"), endpoint("b", "K562 endpoint bridge"), c, d, e, f, g, h])), {k: v for k, v in zip(list("abcdefgh"), ["HCC", "K562", "Agreement", "Conversion", "Hierarchy", "Boundary", "Gap", "Claims"])}, "CRISPR is the primary bridge endpoint; RNAi is a weaker sensitivity endpoint.", panels_only)
+    def d(ax, df): _short_text_panel(ax, "RNAi sensitivity boundary", [("global bridge", "retainable global claim"), ("RNAi expansion", "admission required")], "d")
+    def e(ax, df): _barh(ax, df.assign(delta=df.groupby("timepoint")["spearman"].transform(lambda s: s.max() - s.min())).drop_duplicates("timepoint").assign(label=lambda x: x["timepoint"].astype(str)), "label", "delta", "CRISPR-RNAi bridge gap", "Spearman gap", "e", COLORS["boundary"])
+    def f(ax, df):
+        conv_rows = df.loc[df["summary_kind"].eq("demeter2_conversion") & df["metric"].isin(["score_direction", "mapped_cell_lines", "genes"])]
+        rows = [(r.metric.replace("_", " "), str(r.value)) for r in conv_rows.itertuples()]
+        rows.extend([("CRISPR", "primary bridge readout"), ("RNAi", "weaker sensitivity endpoint")])
+        _short_text_panel(ax, "Endpoint claim boundary + DEMETER2", rows, "f")
+    _run_figure("extended_data_figure4", "edfig9", "CRISPR versus RNAi endpoint detail", "build_extended_data_figure9.py", "reports/manuscript_extended_data_v1/edfig9_endpoint_hierarchy", input_rel, sources, dict(zip(list("abcdef"), [endpoint("a", "HCC endpoint bridge"), endpoint("b", "K562 endpoint bridge"), c, d, e, f])), {k: v for k, v in zip(list("abcdef"), ["HCC", "K562", "Agreement", "Boundary", "Gap", "Claims and conversion"])}, "CRISPR is the primary bridge endpoint; RNAi is a weaker sensitivity endpoint.", panels_only, panel_ids=tuple("abcdef"))
 
 
 def main_edfig1(argv: list[str] | None = None) -> None:
@@ -455,8 +567,8 @@ def main_edfig5(argv: list[str] | None = None) -> None:
 
 
 def main_edfig7(argv: list[str] | None = None) -> None:
-    build_edfig7(_parser("Build ED Fig. 7").parse_args(argv).panels_only)
+    build_edfig7(_parser("Build ED Fig. 3").parse_args(argv).panels_only)
 
 
 def main_edfig8(argv: list[str] | None = None) -> None:
-    build_edfig8(_parser("Build ED Fig. 8").parse_args(argv).panels_only)
+    build_edfig8(_parser("Build ED Fig. 4").parse_args(argv).panels_only)

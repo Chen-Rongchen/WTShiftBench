@@ -1,7 +1,7 @@
 # Figure 3 Redesign Freeze Spec v1
 
 **状态**：2026-04-24 冻结  
-**结论**：Figure 3 的内容逻辑（`a → b → c → d`）已经成立；本 freeze 将语义修正、视觉收敛和版面压缩触发条件正式锁定，后续仅允许按本文档执行，不再做开放式视觉漂移。  
+**结论**：Figure 3 的内容逻辑已收束为 `a → b → c`（**不再包含**原 main-figure 的 per-context panel；相应读数不再作为当前 Extended Data 固定承接层单独保留）；本 freeze 将语义修正、视觉收敛和版面压缩触发条件正式锁定，后续仅允许按本文档执行，不再做开放式视觉漂移。  
 **Anchor commit**：`392579c9bfdf0f06bf3c7dc4026fd1c7965b4cee`
 
 ---
@@ -16,7 +16,6 @@
 - `manuscript/figures/Figure_3/panels/Figure_3_panel_a_manifest.json`
 - `manuscript/figures/Figure_3/panels/Figure_3_panel_b_manifest.json`
 - `manuscript/figures/Figure_3/panels/Figure_3_panel_c_manifest.json`
-- `manuscript/figures/Figure_3/panels/Figure_3_panel_d_manifest.json`
 - `src/wtbench/manuscript/figure3_model_tradeoff.py`
 - `scripts/manuscript/build_figure3_model_tradeoff.py`
 
@@ -47,14 +46,15 @@ Figure 3 只回答一个核心问题：
 
 ### B2. Panel 数量与顺序冻结
 
-Figure 3 固定为 `a–d` 四个 panel，不增减，不重排叙事顺序。
+Figure 3 固定为 `a–c` 三个 panel，不增减，不重排叙事顺序。
 
 固定递进关系为：
 
 - `a`：全量 metrics 总览
 - `b`：headline baseline versus GEARS 核心对比
 - `c`：backbone-separation trade-off 空间
-- `d`：跨 context 一致性验证
+
+跨 context 的 per-cell-line backbone 读数与配对展示 **不放在主图**；当前投稿版不再为这部分单独保留固定 Extended Data 承接图。
 
 ### B3. Claim boundary 冻结
 
@@ -69,19 +69,18 @@ Figure 3 固定为 `a–d` 四个 panel，不增减，不重排叙事顺序。
 最终布局冻结为：
 
 - 第一行：`a | b`
-- 第二行：`c`
-- 第三行：`d`
+- 第二行：`c`（全宽）
 
 允许的后续版面动作仅限：
 
 - 面板间距轻微收紧
-- `c / d` 内部坐标范围和图例位置微调
+- `c` 内部坐标范围和图例位置微调
 - 投稿尺寸约束触发时的纵向压缩
 
 不允许：
 
 - 改成全新拼版语法
-- 改变 `a → b → c → d` 的阅读路径
+- 改变 `a → b → c` 的阅读路径
 - 为了压缩高度而牺牲字号、图例可读性或数据区呼吸空间
 
 ---
@@ -318,7 +317,7 @@ Figure 3 不采用“为了压缩而压缩”的策略。
 ### 6.2 操作阈值
 
 - `<= 240 mm`：默认不压缩
-- `240–250 mm`：只允许轻微收紧 `c / d` 间距
+- `240–250 mm`：只允许轻微收紧 `a/b` 与 `c` 的间距
 - `> 250 mm`：若同时出现拥挤征象，允许执行压缩
 
 ### 6.3 允许的压缩顺序
@@ -326,8 +325,7 @@ Figure 3 不采用“为了压缩而压缩”的策略。
 若必须压缩，仅允许优先执行：
 
 1. 收紧 `c` 图显示范围与空白占比
-2. 收紧 `d` 图 methods 间距
-3. 小幅压缩 `c / d` 之间纵向留白
+2. 小幅压缩第一行与第二行之间的纵向留白
 
 不允许优先执行：
 
@@ -363,7 +361,7 @@ freeze 后仅允许以下类型修改：
 不允许的后续改动：
 
 - 再次开放式修改 Figure 3 主色语义
-- 再次改变 `a → b → c → d` 叙事顺序
+- 再次改变 `a → b → c` 叙事顺序
 - 基于“也许更好看”继续做无上限细调
 - 在没有实测高度证据时主动压缩版面
 
@@ -392,12 +390,12 @@ PYTHONPATH="/home/data/gz0705/WTKO/src" python "scripts/manuscript/build_figure3
 
 ### 强制项
 
-- [ ] `3d` 中 `HCC38 = #D55E00`，`HCC1143 = #009E73`
 - [ ] `3b/3c` 中 `GEARS = #0072B2`
 - [ ] `3c` 图内已加 `light gray cloud = GEARS sweeps, linear controls & null`
 - [ ] `3c` 图注已说明 `null` 位于显示 y 轴范围之外
 - [ ] `3b` y 轴标签已去下划线
 - [ ] `3a` `null` 行已有视觉锚定
+- [ ] 需要 per-cell-line HCC 色与配对读数时，确认该层不再作为当前投稿版固定 Extended Data 图保留
 
 ### 保守项
 
@@ -405,7 +403,6 @@ PYTHONPATH="/home/data/gz0705/WTKO/src" python "scripts/manuscript/build_figure3
 - [ ] `3c` shaded region 已降为极淡实色、无边框
 - [ ] `3c` 中 baseline 与 GEARS 的点大小层级已拉开
 - [ ] `3c` 中 foundation entrants 已降级为灰色 supporting 层
-- [ ] `3d` 图例未遮挡最右侧数据点、误差条或数值
 
 ### 投稿合规项
 
@@ -421,10 +418,10 @@ PYTHONPATH="/home/data/gz0705/WTKO/src" python "scripts/manuscript/build_figure3
 
 当前 Figure 3 的 redesign 冻结标准如下：
 
-- 内容逻辑已稳定为 `全量 metrics → 核心对比 → trade-off 空间 → 跨 context 验证`
+- 内容逻辑已稳定为 `全量 metrics → 核心对比 → trade-off 空间`；**跨 context 验证**不再作为当前投稿版固定 Extended Data 图单独给出
 - 与 `Figure 1/2` 的颜色语义已明确可继承
 - 误导风险最高的三处已锁定为第一优先级修正：
-  - `3d` HCC 颜色归位
+  - per-cell-line 读数不回流主图（防与 3c pooled 误读混叠；见 ED4）
   - `3b/3c` GEARS 脱离阈值蓝
   - `3c` supporting cloud 自我说明
 - 视觉收敛策略已固定为最小必要原则

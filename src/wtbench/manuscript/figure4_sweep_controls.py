@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import shutil
 from pathlib import Path
 from typing import Callable
 
@@ -13,8 +14,7 @@ from matplotlib.lines import Line2D
 from wtbench.manuscript.figure_io import ensure_dir, repo_root, save_figure, write_tsv
 from wtbench.manuscript.hash_manifest import write_figure_manifest, write_panel_manifest
 from wtbench.manuscript.manuscript_style import (
-    COLORS,
-    add_panel_label,
+    add_panel_heading,
     apply_manuscript_style,
     clean_axes,
     model_color,
@@ -100,37 +100,37 @@ MARKER_SIZES = {
 
 
 def _format_lr(val: str) -> str:
-    """Unify learning-rate display to compact scientific notation."""
+    """Unify learning-rate display to typographic scientific notation."""
     try:
         f = float(val)
     except ValueError:
         return val
     if f == 0.001:
-        return "1e-3"
+        return r"$1\times10^{-3}$"
     if f == 0.0005:
-        return "5e-4"
+        return r"$5\times10^{-4}$"
     if f == 0.002:
-        return "2e-3"
+        return r"$2\times10^{-3}$"
     if f == 0.0001:
-        return "1e-4"
+        return r"$1\times10^{-4}$"
     # fallback: one-decimal scientific
     exp = int(np.floor(np.log10(abs(f)))) if f != 0 else 0
     mant = f / (10 ** exp)
     if abs(mant - round(mant)) < 1e-9:
-        return f"{int(round(mant))}e{exp}"
-    return f"{mant:.1f}e{exp}"
+        return rf"${int(round(mant))}\times10^{{{exp}}}$"
+    return rf"${mant:.1f}\times10^{{{exp}}}$"
 
 
 def _format_wd(val: str) -> str:
-    """Unify weight-decay display to compact scientific notation."""
+    """Unify weight-decay display to typographic scientific notation."""
     try:
         f = float(val)
     except ValueError:
         return val
     if f == 1e-6:
-        return "1e-6"
+        return r"$1\times10^{-6}$"
     if f == 1e-5:
-        return "1e-5"
+        return r"$1\times10^{-5}$"
     return val
 
 
@@ -140,6 +140,14 @@ def output_dir(root: Path) -> Path:
 
 def panel_dir(root: Path) -> Path:
     return output_dir(root) / "panels"
+
+
+def manuscript_figure_dir(root: Path) -> Path:
+    return root / "manuscript/figures/Figure_4"
+
+
+def manuscript_panel_dir(root: Path) -> Path:
+    return manuscript_figure_dir(root) / "panels"
 
 
 def load_model_comparison(root: Path) -> pd.DataFrame:
@@ -224,13 +232,21 @@ def write_panel(
     height: float = 2.4,
 ) -> dict[str, Path]:
     pdir = ensure_dir(panel_dir(root))
+    manuscript_pdir = ensure_dir(manuscript_panel_dir(root))
     stem = f"{FIGURE_ID}_panel{panel_id}"
+    manuscript_stem = f"Figure_4_panel_{panel_id}"
     source_path = write_tsv(source_df, pdir / f"{stem}_source_data.tsv")
+    manuscript_source_path = write_tsv(source_df, manuscript_pdir / f"{manuscript_stem}_source_data.tsv")
     fig, ax = plt.subplots(figsize=(width, height))
     render(ax, source_df)
     png_path = pdir / f"{stem}.png"
     pdf_path = pdir / f"{stem}.pdf"
     output_paths = save_figure(fig, png_path, pdf_path)
+    manuscript_png_path = manuscript_pdir / f"{manuscript_stem}.png"
+    manuscript_pdf_path = manuscript_pdir / f"{manuscript_stem}.pdf"
+    ensure_dir(manuscript_png_path.parent)
+    shutil.copy2(png_path, manuscript_png_path)
+    shutil.copy2(pdf_path, manuscript_pdf_path)
     manifest_path = pdir / f"{stem}_manifest.json"
     write_panel_manifest(
         manifest_path=manifest_path,
@@ -243,6 +259,17 @@ def write_panel(
         output_paths=output_paths,
         claim_boundary=CLAIM_BOUNDARY,
     )
+    write_panel_manifest(
+        manifest_path=manuscript_pdir / f"{manuscript_stem}_manifest.json",
+        repo_root=root,
+        panel_id=f"{FIGURE_ID}{panel_id}",
+        panel_title=panel_title,
+        script_path=root / SCRIPT_PATH,
+        input_paths=input_paths(root),
+        source_data_path=manuscript_source_path,
+        output_paths=[manuscript_png_path, manuscript_pdf_path],
+        claim_boundary=CLAIM_BOUNDARY,
+    )
     return {"source": source_path, "png": png_path, "pdf": pdf_path, "manifest": manifest_path}
 
 
@@ -253,13 +280,7 @@ def write_panel(
 
 def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
     ax.set_axis_off()
-    ax.set_title(
-        "Pre-specified finite-budget GEARS candidates",
-        loc="left",
-        pad=4,
-        fontsize=9,
-        fontweight="bold",
-    )
+    add_panel_heading(ax, "", "Pre-specified finite-budget GEARS candidates", title_x=0.00, title_fontsize=8.8)
 
     recipes = df[df["step"] == "sweep_recipe_entry"].copy()
     recipes = recipes[recipes["model_id"].isin(SWEEP_LETTERS.keys())].copy()
@@ -270,8 +291,8 @@ def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
         {
             "candidate": "GEARS formal",
             "epochs": 30,
-            "lr": "1e-3",
-            "wd": "1e-6",
+            "lr": r"$1\times10^{-3}$",
+            "wd": r"$1\times10^{-6}$",
             "role": "reference recipe",
         }
     )
@@ -399,7 +420,6 @@ def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
                 zorder=2,
             )
 
-    add_panel_label(ax, "a", x=-0.015)
 
 
 # ---------------------------------------------------------------------------
@@ -436,12 +456,12 @@ def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
         elif mid.startswith("lm_"):
             families["linear"].append(row)
 
-    ax.set_title(
+    add_panel_heading(
+        ax,
+        "",
         "Prespecified rebuttal candidates do not close the backbone gap",
-        loc="left",
-        fontsize=9,
-        fontweight="bold",
-        pad=4,
+        label_x=-0.08,
+        title_fontsize=8.8,
     )
     ax.set_xlim(0.45, 0.85)
     ax.set_ylim(0.25, 0.50)
@@ -645,7 +665,6 @@ def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
         zorder=7,
     )
 
-    add_panel_label(ax, "b", x=-0.10)
 
 
 def _facet_marker(model_id: str) -> str:
@@ -742,7 +761,7 @@ def _render_c_facet(
         fontsize=7.5,
     )
     facet_ax.set_xlabel("\u0394 backbone recovery vs baseline", fontsize=7.5, labelpad=2)
-    facet_ax.set_title(cell_line, fontsize=9, fontweight="bold", pad=4)
+    facet_ax.set_title(cell_line, fontsize=9, fontweight="bold", pad=0)
     facet_ax.tick_params(axis="y", labelleft=show_labels, left=True, length=2.2, width=0.6)
     clean_axes(facet_ax)
 
@@ -754,12 +773,12 @@ def _render_c_facet(
 
 def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
     ax.set_axis_off()
-    ax.set_title(
+    add_panel_heading(
+        ax,
+        "",
         "No tested rebuttal candidate closes the backbone gap to the shared-mean baseline",
-        loc="left",
-        pad=4,
-        fontsize=9,
-        fontweight="bold",
+        title_x=0.00,
+        title_fontsize=8.8,
     )
 
     pivot = df.pivot(index="model_id", columns="cell_line", values="delta_backbone")
@@ -802,7 +821,6 @@ def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
         x_max=x_max,
     )
 
-    add_panel_label(ax, "c", x=-0.015)
 
 
 # ---------------------------------------------------------------------------
@@ -965,12 +983,14 @@ def render_combined(
     panel_outputs: dict[str, dict[str, Path]],
 ) -> dict[str, Path]:
     out = ensure_dir(output_dir(root))
+    manuscript_out = ensure_dir(manuscript_figure_dir(root))
     combined_source = pd.concat(
         [df.assign(panel=panel_id) for panel_id, df in sources.items()],
         ignore_index=True,
         sort=False,
     )
     combined_source_path = write_tsv(combined_source, out / f"{FIGURE_ID}_source_data.tsv")
+    manuscript_source_path = write_tsv(combined_source, manuscript_out / "Figure_4_source_data.tsv")
 
     fig = plt.figure(figsize=(9.6, 6.9))
     outer = fig.add_gridspec(
@@ -992,34 +1012,13 @@ def render_combined(
     render_panel_b(ax_b, sources["b"])
     render_panel_c(ax_c, sources["c"])
 
-    # Hide the per-panel letters placed by render_panel_* so we can re-bind
-    # them at the figure level without overlap.
-    def _hide_panel_letters(ax: plt.Axes) -> None:
-        for txt in list(ax.texts):
-            w = txt.get_fontweight()
-            is_bold = (w == "bold") or (isinstance(w, (int, float)) and w >= 700)
-            if txt.get_text() in ("a", "b", "c") and is_bold:
-                txt.set_visible(False)
-
-    for ax_ in (ax_a, ax_b, ax_c):
-        _hide_panel_letters(ax_)
-
-    for ax_, letter in [(ax_a, "a"), (ax_b, "b"), (ax_c, "c")]:
-        bbox = ax_.get_position()
-        fig.text(
-            bbox.x0 - 0.028,
-            bbox.y1 + 0.003,
-            letter,
-            fontsize=8.5,
-            fontweight="bold",
-            color=COLORS["text"],
-            va="bottom",
-            ha="left",
-        )
-
     png_path = out / f"{FIGURE_ID}.png"
     pdf_path = out / f"{FIGURE_ID}.pdf"
     output_paths = save_figure(fig, png_path, pdf_path)
+    manuscript_png = manuscript_out / "Figure_4.png"
+    manuscript_pdf = manuscript_out / "Figure_4.pdf"
+    shutil.copy2(png_path, manuscript_png)
+    shutil.copy2(pdf_path, manuscript_pdf)
 
     manifest_path = out / f"{FIGURE_ID}_panel_manifest.json"
     write_figure_manifest(
@@ -1031,6 +1030,21 @@ def render_combined(
         panel_manifest_paths=[panel_outputs[p]["manifest"] for p in PANEL_IDS],
         combined_source_data_path=combined_source_path,
         output_paths=output_paths,
+        input_paths=input_paths(root),
+        claim_boundary=CLAIM_BOUNDARY,
+    )
+    write_figure_manifest(
+        manifest_path=manuscript_out / "Figure_4_panel_manifest.json",
+        repo_root=root,
+        figure_id=FIGURE_ID,
+        figure_title=FIGURE_TITLE,
+        script_path=root / SCRIPT_PATH,
+        panel_manifest_paths=[
+            manuscript_panel_dir(root) / f"Figure_4_panel_{p}_manifest.json"
+            for p in PANEL_IDS
+        ],
+        combined_source_data_path=manuscript_source_path,
+        output_paths=[manuscript_png, manuscript_pdf],
         input_paths=input_paths(root),
         claim_boundary=CLAIM_BOUNDARY,
     )
