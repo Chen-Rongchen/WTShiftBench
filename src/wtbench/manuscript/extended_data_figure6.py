@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import math
 import re
 from pathlib import Path
 from typing import Callable
@@ -13,10 +14,11 @@ from wtbench.manuscript.hash_manifest import write_figure_manifest, write_panel_
 from wtbench.manuscript.manuscript_style import COLORS, add_panel_label, apply_manuscript_style, clean_axes
 
 
-FIGURE_ID = "extended_data_figure6"
+FIGURE_ID = "extended_data_figure7"
 FIGURE_TITLE = "Full axis annotation and bootstrap support"
-SCRIPT_PATH = Path("scripts/manuscript/build_extended_data_figure6.py")
+SCRIPT_PATH = Path("scripts/manuscript/build_extended_data_figure7.py")
 CLAIM_BOUNDARY = "Axis interpretation remains partial; transcription / chromatin is primary but qualified."
+PANEL_IDS = tuple("abcde")
 
 AXIS_EXPLANATORY = Path("reports/stage2_truth_bridge_decomposition/axis_level_shared_explanatory_summary.tsv")
 AXIS_BOOTSTRAP = Path("reports/stage2_truth_bridge_decomposition/axis_bootstrap_stability.tsv")
@@ -27,7 +29,7 @@ FINAL_CLAIM_MATRIX = Path("reports/stage2_truth_driven_bridge/sensitivity/final_
 
 
 def output_dir(root: Path) -> Path:
-    return root / "reports/manuscript_extended_data_v1/edfig6_axis_annotation"
+    return root / "reports/manuscript_extended_data_v1/edfig7_axis_annotation"
 
 
 def panel_dir(root: Path) -> Path:
@@ -36,6 +38,16 @@ def panel_dir(root: Path) -> Path:
 
 def input_paths(root: Path) -> list[Path]:
     return [root / p for p in [AXIS_EXPLANATORY, AXIS_BOOTSTRAP, AXIS_SUMMARY, AXIS_VALIDATION, AXIS_ENRICHMENT, FINAL_CLAIM_MATRIX]]
+
+
+def cleanup_generated(root: Path) -> None:
+    out = output_dir(root)
+    for path in panel_dir(root).glob("edfig7_panel*"):
+        path.unlink()
+    for suffix in (".png", ".pdf", "_source_data.tsv", "_panel_manifest.json"):
+        path = out / f"edfig7{suffix}"
+        if path.exists():
+            path.unlink()
 
 
 def write_panel(
@@ -49,7 +61,7 @@ def write_panel(
     height: float = 2.35,
 ) -> dict[str, Path]:
     pdir = ensure_dir(panel_dir(root))
-    stem = f"edfig6_panel{panel_id}"
+    stem = f"edfig7_panel{panel_id}"
     source_path = write_tsv(source_df, pdir / f"{stem}_source_data.tsv")
     fig, ax = plt.subplots(figsize=(width, height))
     render(ax, source_df)
@@ -60,7 +72,7 @@ def write_panel(
     write_panel_manifest(
         manifest_path=manifest_path,
         repo_root=root,
-        panel_id=f"ED6{panel_id}",
+        panel_id=f"ED7{panel_id}",
         panel_title=panel_title,
         script_path=root / SCRIPT_PATH,
         input_paths=input_paths(root),
@@ -119,14 +131,14 @@ def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
 
 
 def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
-    counts = df.groupby("axis_label", as_index=False).size().rename(columns={"size": "n"})
-    counts = counts.sort_values("n")
+    counts = df.groupby("axis_id", as_index=False).agg(enrichment_hits=("term", "count"), databases=("database", "nunique"))
+    counts = counts.sort_values(["enrichment_hits", "databases"], ascending=True).tail(10)
     y = range(len(counts))
-    ax.barh(list(y), counts["n"], color="#8A8A8A", height=0.58)
+    ax.barh(list(y), counts["enrichment_hits"], color="#8A8A8A", height=0.58)
     ax.set_yticks(list(y))
-    ax.set_yticklabels(counts["axis_label"])
-    ax.set_xlabel("Axes")
-    ax.set_title("Axis families in validation summary", loc="left")
+    ax.set_yticklabels(counts["axis_id"])
+    ax.set_xlabel("Enrichment hits")
+    ax.set_title("Annotation support detail", loc="left")
     clean_axes(ax)
     ax.grid(axis="x", color=COLORS["grid"], linewidth=0.5)
     add_panel_label(ax, "c", x=-0.28)
@@ -169,7 +181,7 @@ def render_panel_f(ax: plt.Axes, df: pd.DataFrame) -> None:
     ax.set_title("Formal and preliminary axis calls", loc="left")
     clean_axes(ax)
     ax.grid(axis="x", color=COLORS["grid"], linewidth=0.5)
-    add_panel_label(ax, "f", x=-0.34)
+    add_panel_label(ax, "d", x=-0.34)
 
 
 def render_panel_g(ax: plt.Axes, df: pd.DataFrame) -> None:
@@ -197,7 +209,7 @@ def render_panel_h(ax: plt.Axes, df: pd.DataFrame) -> None:
         ax.text(0.43, y, row.evidence_tier, fontsize=7, color=COLORS["primary_qualified"] if "primary" in row.evidence_tier else COLORS["supporting"], transform=ax.transAxes)
         y -= 0.22
     ax.text(0.04, 0.12, "Not allowed: fully established or fully deconfounded shared explanatory architecture.", fontsize=7, color=COLORS["boundary"], transform=ax.transAxes)
-    add_panel_label(ax, "h", x=-0.04)
+    add_panel_label(ax, "e", x=-0.04)
 
 
 def build_sources(root: Path) -> dict[str, pd.DataFrame]:
@@ -223,12 +235,9 @@ def build_sources(root: Path) -> dict[str, pd.DataFrame]:
     return {
         "a": explanatory,
         "b": bootstrap,
-        "c": summary,
-        "d": enrichment,
-        "e": enrichment,
-        "f": explanatory,
-        "g": enrichment,
-        "h": claim,
+        "c": enrichment,
+        "d": explanatory,
+        "e": claim,
     }
 
 
@@ -237,11 +246,8 @@ def render_panel_by_id(panel_id: str) -> Callable[[plt.Axes, pd.DataFrame], None
         "a": render_panel_a,
         "b": render_panel_b,
         "c": render_panel_c,
-        "d": render_panel_d,
-        "e": render_panel_e,
-        "f": render_panel_f,
-        "g": render_panel_g,
-        "h": render_panel_h,
+        "d": render_panel_f,
+        "e": render_panel_h,
     }[panel_id]
 
 
@@ -249,34 +255,35 @@ def panel_title(panel_id: str) -> str:
     return {
         "a": "Full axis explanatory balance",
         "b": "Full bootstrap stability",
-        "c": "Axis families",
-        "d": "Enrichment hits",
-        "e": "Database coverage",
-        "f": "Axis call composition",
-        "g": "Top annotation terms",
-        "h": "Axis claim boundary",
+        "c": "Annotation support detail",
+        "d": "Axis call composition",
+        "e": "Axis claim boundary",
     }[panel_id]
 
 
 def render_combined(root: Path, sources: dict[str, pd.DataFrame], panel_outputs: dict[str, dict[str, Path]]) -> None:
     out = ensure_dir(output_dir(root))
     combined_source = pd.concat([df.assign(panel=panel_id) for panel_id, df in sources.items()], ignore_index=True, sort=False)
-    combined_source_path = write_tsv(combined_source, out / "edfig6_source_data.tsv")
-    fig = plt.figure(figsize=(11.0, 10.0))
-    gs = fig.add_gridspec(4, 2, hspace=0.82, wspace=0.54)
-    axes = [fig.add_subplot(gs[i, j]) for i in range(4) for j in range(2)]
-    for ax, panel_id in zip(axes, list("abcdefgh")):
+    combined_source_path = write_tsv(combined_source, out / "edfig7_source_data.tsv")
+    ncols = 2
+    nrows = math.ceil(len(PANEL_IDS) / ncols)
+    fig = plt.figure(figsize=(11.0, max(3.0 * nrows, 4.2)))
+    gs = fig.add_gridspec(nrows, ncols, hspace=0.82, wspace=0.54)
+    axes = [fig.add_subplot(gs[i, j]) for i in range(nrows) for j in range(ncols)]
+    for ax, panel_id in zip(axes, PANEL_IDS):
         render_panel_by_id(panel_id)(ax, sources[panel_id])
-    png_path = out / "edfig6.png"
-    pdf_path = out / "edfig6.pdf"
+    for ax in axes[len(PANEL_IDS):]:
+        ax.set_axis_off()
+    png_path = out / "edfig7.png"
+    pdf_path = out / "edfig7.pdf"
     output_paths = save_figure(fig, png_path, pdf_path)
     write_figure_manifest(
-        manifest_path=out / "edfig6_panel_manifest.json",
+        manifest_path=out / "edfig7_panel_manifest.json",
         repo_root=root,
         figure_id=FIGURE_ID,
         figure_title=FIGURE_TITLE,
         script_path=root / SCRIPT_PATH,
-        panel_manifest_paths=[panel_outputs[p]["manifest"] for p in list("abcdefgh")],
+        panel_manifest_paths=[panel_outputs[p]["manifest"] for p in PANEL_IDS],
         combined_source_data_path=combined_source_path,
         output_paths=output_paths,
         input_paths=input_paths(root),
@@ -285,22 +292,23 @@ def render_combined(root: Path, sources: dict[str, pd.DataFrame], panel_outputs:
 
 
 def main(argv: list[str] | None = None) -> None:
-    parser = argparse.ArgumentParser(description="Build Extended Data Fig. 6 axis annotation and bootstrap panels.")
+    parser = argparse.ArgumentParser(description="Build Extended Data Fig. 7 axis annotation and bootstrap panels.")
     parser.add_argument("--panels-only", action="store_true")
     args = parser.parse_args(argv)
     root = repo_root()
     apply_manuscript_style()
+    cleanup_generated(root)
     sources = build_sources(root)
     panel_outputs: dict[str, dict[str, Path]] = {}
-    for panel_id in list("abcdefgh"):
+    for panel_id in PANEL_IDS:
         panel_outputs[panel_id] = write_panel(
             root=root,
             panel_id=panel_id,
             panel_title=panel_title(panel_id),
             source_df=sources[panel_id],
             render=render_panel_by_id(panel_id),
-            width=3.65 if panel_id in {"b", "d", "f", "g"} else 3.2,
-            height=3.0 if panel_id in {"b", "d", "f", "g"} else 2.35,
+            width=3.65 if panel_id in {"b", "c", "d"} else 3.2,
+            height=3.0 if panel_id in {"b", "c", "d"} else 2.35,
         )
     if not args.panels_only:
         render_combined(root, sources, panel_outputs)

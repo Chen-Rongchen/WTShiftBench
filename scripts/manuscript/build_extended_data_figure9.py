@@ -1,6 +1,10 @@
 from __future__ import annotations
 
-from wtbench.manuscript.extended_data_figure9 import main
+
+def main() -> None:
+    raise SystemExit(
+        "Extended Data endpoint-detail figure was retired; endpoint hierarchy is carried by Fig. 5."
+    )
 
 
 if __name__ == "__main__":

@@ -1,9 +1,0 @@
-timepoint	role	summary_kind	truth_metric	depmap_endpoint	platform_pair	n_shared_targets	spearman	interpretation
-HCC38	primary	truth_endpoint_bridge	real_shift_mean_abs	depmap_gene_dependency	crispr	47	0.7257957275155708	RNAi 不替代 CRISPR 主线，也不提供等价 primary evidence。
-HCC38	primary	truth_endpoint_bridge	real_shift_mean_abs	depmap_gene_dependency	rnai	48	0.2763786365610073	RNAi 不替代 CRISPR 主线，也不提供等价 primary evidence。
-HCC1143	primary	truth_endpoint_bridge	real_shift_mean_abs	depmap_gene_dependency	crispr	48	0.7792497165337711	RNAi 不替代 CRISPR 主线，也不提供等价 primary evidence。
-HCC1143	primary	truth_endpoint_bridge	real_shift_mean_abs	depmap_gene_dependency	rnai	48	0.3844984802431611	RNAi 不替代 CRISPR 主线，也不提供等价 primary evidence。
-7d	temporal_sensitivity_early_bridge_probe	truth_endpoint_bridge	real_shift_mean_abs	depmap_gene_dependency	crispr	10	0.7333333333333332	RNAi 不替代 CRISPR 主线，也不提供等价 primary evidence。
-7d	temporal_sensitivity_early_bridge_probe	truth_endpoint_bridge	real_shift_mean_abs	depmap_gene_dependency	rnai	9	0.3333333333333333	RNAi 不替代 CRISPR 主线，也不提供等价 primary evidence。
-13d	primary_formal_supplementary_bridge_test	truth_endpoint_bridge	real_shift_mean_abs	depmap_gene_dependency	crispr	10	0.5151515151515151	RNAi 不替代 CRISPR 主线，也不提供等价 primary evidence。
-13d	primary_formal_supplementary_bridge_test	truth_endpoint_bridge	real_shift_mean_abs	depmap_gene_dependency	rnai	9	0.3	RNAi 不替代 CRISPR 主线，也不提供等价 primary evidence。

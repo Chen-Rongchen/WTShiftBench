@@ -27,8 +27,7 @@
 
 Extended Data PNG 均存在：
 
-- Extended Data Fig. 1-10：`reports/manuscript_extended_data_v1/edfig*/edfig*.png`
-- Extended Data Fig. 11：`reports/manuscript_figures_v2/fig5_axis_interpretation/figure5.png`
+- Extended Data Fig. 1-5：`reports/manuscript_extended_data_v1/edfig*/edfig*.png`
 
 ## 重建校验
 
@@ -46,7 +45,7 @@ MPLCONFIGDIR=/tmp/matplotlib_wtko_nmstyle PYTHONPATH=src pixi run --environment 
 
 Extended Data 输出校验：
 
-- Extended Data Fig. 1-10 均通过脚本内输出数量检查；Extended Data Fig. 11 由原 Fig. 5 脚本生成。
+- Extended Data Fig. 1-5 通过脚本内输出数量检查。
 
 ## 关键数字核对
 

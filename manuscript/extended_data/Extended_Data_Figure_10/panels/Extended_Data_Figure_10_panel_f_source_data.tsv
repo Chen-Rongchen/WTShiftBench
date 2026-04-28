@@ -1,4 +1,0 @@
-scope	short_command	command	reruns_gears_training
-main_figures	build_all_main_figures.py	pixi run --environment core python scripts/manuscript/build_all_main_figures.py	no
-supplementary_tables	build_supplementary_table_index.py	pixi run --environment core python scripts/manuscript/build_supplementary_table_index.py	no
-extended_data_figure10	build_extended_data_figure10.py	pixi run --environment core python scripts/manuscript/build_extended_data_figure10.py	no

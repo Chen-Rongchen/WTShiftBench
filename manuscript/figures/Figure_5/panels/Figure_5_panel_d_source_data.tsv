@@ -1,2 +1,3 @@
-primary_readout	primary_spearman	supplementary	sensitivity	not_claimed	quantitative_anchor
-CRISPR DepMap dependency (HCC38 / HCC1143)	0.726 / 0.779	K562 temporal panel (7d / 13d)	RNAi DEMETER2 (cross-platform, weaker)	fully deconfounded architecture; content-level replication; RNAi primary; mechanism recovery	Primary n = 47-48 | K562 n = 10 | CRISPR > RNAi in all 4 contexts | Covariate audited but not closed
+timepoint	aligned_spearman	mean_truth_metric	median_truth_metric	subpanel
+7d	0.7333333333333332	0.0030991873866114	0.0029023397479872	temporal
+13d	0.5151515151515151	0.004382685449453	0.0044183505802962	temporal
