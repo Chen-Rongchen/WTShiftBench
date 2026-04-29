@@ -161,7 +161,7 @@ def build_axis_sources(root: Path) -> tuple[pd.DataFrame, pd.DataFrame]:
 
 
 def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
-    add_panel_label(ax, "a", x=-0.24, y=1.025)
+    add_panel_label(ax, "a", x=-0.08, y=1.025)
     lim_max = 0.26
     ax.plot([0, lim_max], [0, lim_max], color=DIVIDER_GRAY, linewidth=0.75, linestyle=(0, (3, 2)), zorder=0)
 
@@ -311,16 +311,17 @@ def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
     ax.grid(axis="x", color=COLORS["grid"], linewidth=0.5)
     ax.tick_params(axis="y", length=0)
 
-    ax.scatter([0.72], [1.05], s=22, marker="o", facecolor=MID_GRAY, edgecolor=NEUTRAL_GRAY, transform=ax.transAxes, clip_on=False)
-    ax.text(0.742, 1.05, "Shift R²", transform=ax.transAxes, va="center", fontsize=5.9)
-    ax.scatter([0.86], [1.05], s=22, marker="s", facecolor="white", edgecolor=NEUTRAL_GRAY, linewidth=0.8, transform=ax.transAxes, clip_on=False)
-    ax.text(0.882, 1.05, "Dependency R²", transform=ax.transAxes, va="center", fontsize=5.9)
+    # Marker legend (Shift R² / Dependency R²) merged into legend area
+    marker_handles = [
+        Line2D([0], [0], marker="o", linestyle="", markerfacecolor=MID_GRAY, markeredgecolor=NEUTRAL_GRAY, markersize=4.6, label="Shift R²"),
+        Line2D([0], [0], marker="s", linestyle="", markerfacecolor="white", markeredgecolor=NEUTRAL_GRAY, markersize=4.6, label="Dependency R²"),
+    ]
     profile_handles = [
         Line2D([0], [0], marker="o", linestyle="", markerfacecolor=color, markeredgecolor="white", markersize=4.6, label=profile)
         for profile, color in PROFILE_COLORS.items()
     ]
     ax.legend(
-        handles=profile_handles,
+        handles=marker_handles + profile_handles,
         frameon=False,
         loc="lower right",
         bbox_to_anchor=(1.0, -0.02),
