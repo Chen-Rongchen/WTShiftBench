@@ -7,195 +7,106 @@
 - 正文：`manuscript/text/manuscript_draft_v1.md`
 - 图注：`manuscript/text/figure_legends_v1.md`
 
-这两个文件是当前投稿前唯一正文 source of truth。文件名里的 `v1` 表示 `manuscript/` 投稿工作区里的第一个正式整理版，不表示旧版。
-
-## 当前状态
-
-当前正文和图注已经完成 boundary / grammar audit：
-
-- Abstract、Background、Results、Methods、Discussion、Conclusions 已围绕同一套 benchmark grammar 同步。
-- Figure 1-5 主图图注已同步。
-- Extended Data Fig. 1-5 图注已同步。
-- CRISPR DepMap 是 primary bridge readout。
-- RNAi DEMETER2 是 weaker cross-platform sensitivity endpoint。
-- K562 temporal panel 是 supplementary architecture-form / bounded bridge-form evidence。
-- GEARS 是 architecture trade-off diagnosis，不是 HCC38/HCC1143 primary winner。
-
-Figure 1-5 主图全部已定版并同步到投稿目录：
-- Figure 1：6-panel（a–f）data-forward truth object
-- Figure 2：6-panel（a–f）evidence-first anchor tiering
-- Figure 3：3-panel（a–c）model adjudication triad
-- Figure 4：3-panel（a–c）prespecified local rebuttal test
-- Figure 5：4-panel（a–d）boundary architecture + claim ledger（原 Figure 6 前移）
-- Extended Data Fig. 4：2-panel descriptive axis-level signal space
-- Extended Data Fig. 5：1-panel pathway-response polarity heatmap
-
-`manuscript/extended_data/` 中的 Extended Data Fig. 1 是 dataset familiarization 入口图；Extended Data Fig. 2 是 metric robustness；Extended Data Fig. 3 是 K562 temporal；Extended Data Fig. 4 展示 descriptive axis-level signal space；Extended Data Fig. 5 展示 pathway-response polarity heatmap。endpoint hierarchy 由 Fig. 5 承载，不再单独保留 Extended Data 图。
-
-## 下一步工作
+这两个文件是当前投稿前唯一正文 source of truth。
 
 ## 当前阶段
 
-**Figure 1-5 主图已全部定版**，下一步是 Extended Data Fig. 1-5 的收束 redraw 与 biological landing 层的索引打包确认。
+**Extended Data Fig. 1-5 全部定版**（2026-04-30，commit `8c6d0a0`）。
 
-原则不变：不改 source data、不新增分析、不改 claim boundary。
+剩余投稿事项：
+- 作者姓名、单位、通讯邮箱
+- Funding、competing interests、author contributions、acknowledgements
+- Public repository / archive DOI
+- Additional files 编号最终确认
 
-### Extended Data 收束计划
+## 原则
 
-- 计划文档：`docs/extended_data_redesign_plan_v1.md`
-- 目标：在新增 dataset familiarization ED1 的前提下，将其余 ED 保持为细节层支撑，不重复主图已给出的核心信息。
-- 收束策略：合并重复 panel、删除主图已覆盖内容、整合主图下放内容
+- 不新增分析、不改变 source data、不改变 claim boundary
+- 原始 source data 和 manifest 仍以 `reports/` 中的冻结产物为准
 
-### 执行顺序建议
+## ED Figure 面板结构
 
-1. ED Fig. 1（dataset familiarization and endpoint inputs）
-2. ED Fig. 2（metric robustness）
-3. ED Fig. 3（K562 temporal evidence detail）
-4. ED Fig. 4（axis explanatory space）
-5. ED Fig. 5（pathway-response polarity）
+| Figure | Panels | 构建脚本 |
+|--------|--------|---------|
+| ED Fig 1 | a (table), b (5 UMAPs), c (5 arrows) | `scripts/manuscript/build_edfig1_composite.py` |
+| ED Fig 2 | a (top-n), b (heatmap), c (endpoint gap), d (subsampling), e (self-expression scatter) | `scripts/manuscript/build_edfig2_panel_e.py --reference` → `scripts/manuscript/build_edfig2_composite.py` |
+| ED Fig 3 | a (K562 temporal), b (Replogle scatter) | `scripts/manuscript/fix_edfig3_panelb_square.py` |
+| ED Fig 4 | a (axis signal space), b (R² ranking) | `scripts/manuscript/build_extended_data_figure10_axis_explanatory.py` |
+| ED Fig 5 | a (pathway heatmap) | `scripts/manuscript/build_extended_data_figure9_biological_landing.py` |
 
-投稿前仍需作者人工补齐作者信息、单位、通讯邮箱、funding、competing interests、author contributions、acknowledgements、public repository / archive DOI。
+## 一键重画全部 Extended Data Figures
+
+```bash
+# ED Fig 3 — K562 temporal + Replogle large-scale
+pixi run --environment core python scripts/manuscript/fix_edfig3_panelb_square.py
+
+# ED Fig 1 — Dataset familiarization (PIL composite from existing panel PNGs)
+pixi run --environment core python scripts/manuscript/build_edfig1_composite.py
+
+# ED Fig 2 — Metric robustness + self-expression scatter
+pixi run --environment core python scripts/manuscript/build_edfig2_panel_e.py --reference
+pixi run --environment core python scripts/manuscript/build_edfig2_composite.py
+
+# ED Fig 4 — Axis explanatory space
+pixi run --environment core python scripts/manuscript/build_extended_data_figure10_axis_explanatory.py
+cp reports/manuscript_extended_data_v1/edfig10_axis_explanatory_space/edfig10.png \
+   manuscript/extended_data/Extended_Data_Figure_4/Extended_Data_Figure_4.png
+
+# ED Fig 5 — Pathway polarity heatmap
+pixi run --environment core python scripts/manuscript/build_extended_data_figure9_biological_landing.py
+cp reports/manuscript_extended_data_v1/edfig9_biological_landing/edfig9.png \
+   manuscript/extended_data/Extended_Data_Figure_5/Extended_Data_Figure_5.png
+```
+
+## Panel Letter 统一规范
+
+所有 ED 图 panel letter 统一为：
+- **matplotlib**：`fontsize=8.5`、`fontweight="bold"`、位置 `x=-0.08`
+- **PIL**：`FONT_SIZE=34`、`DejaVuSans-Bold`、位置 `(32, 12-18)`
+
+## 面板结构明细
+
+### ED Fig 1 — Dataset familiarization and endpoint inputs
+
+PIL composite 拼接，依赖 `manuscript/extended_data/Extended_Data_Figure_1/panels/` 下的 a-k panel PNG。
+
+- **a**：Dataset overview table
+- **b**：5 UMAPs (HCC38, HCC1143, K562 7d, K562 13d, Replogle K562 essential)
+- **c**：5 target-gene expression change arrows
+
+### ED Fig 2 — Metric robustness audit
+
+Panel a-d 由 `build_extended_data_figure13.py` 生成。Panel e 由 `build_edfig2_panel_e.py --reference` 独立生成。PIL composite 拼接为 5-panel 整图。
+
+- **a**：Top-n gene-subset sensitivity
+- **b**：Metric × CRISPR endpoint heatmap
+- **c**：Endpoint sensitivity (CRISPR vs RNAi gap)
+- **d**：Control-subsampling robustness
+- **e**：Whole-transcriptome shift vs target-gene self-expression scatter (YlOrRd colormap, gene labels below with arrows)
+
+### ED Fig 3 — K562 temporal + large-scale bridge confirmation
+
+独立脚本 `fix_edfig3_panelb_square.py` 生成 panel a+b，PIL 拼接。
+
+- **a**：K562 temporal bridge-magnitude dissociation (7d vs 13d)
+- **b**：Replogle K562 essential joint grid scatter (square axes, 5-color quadrants)
+
+### ED Fig 4 — Descriptive axis-level signal space
+
+- **a**：Axis-level signal space (dependency R² vs shift R²)
+- **b**：Paired axis R² ranking (Shift/Dependency markers in legend)
+
+### ED Fig 5 — Exploratory pathway-response polarity heatmap
+
+- **a**：Pathway NES heatmap (Hallmark gene sets) with Spearman rho and sign-agreement side strips
 
 ## 不再作为当前稿的文件
 
-`docs/` 下的早期 manuscript draft 文件只作为历史草稿或路线记录，不再作为当前投稿稿同步源，包括：
+`docs/` 下的早期 manuscript draft 文件只作为历史草稿或路线记录。
 
-- `docs/main_manuscript_submission_draft_v1.md`
-- `docs/main_manuscript_submission_draft_v2.md`
-- `docs/genome_biology_manuscript_draft_v1.md`
+## 投稿前仍需作者补齐
 
-不要从这些文件继续复制正文或图注到当前稿。后续正文修改只落在 `manuscript/text/manuscript_draft_v1.md`；图注修改只落在 `manuscript/text/figure_legends_v1.md`。
-
-## 版本管理文档
-
-- 版本说明：`docs/manuscript_version_control_note_v1.md`
-- 图版重画计划：`docs/manuscript_figure_redesign_plan_v1.md`
-- 投稿状态：`docs/submission_prep_status_v1.md`
-
-最近一次文本收口提交：
-
-- `5a9bc65 Harden manuscript grammar and define figure redraw plan`
-
-该提交之后，`manuscript/README.md` 与 Figure 1 redraw 代码已有新的未提交工作；提交前需要先确认是否把这些 redraw 相关改动单独成 commit。
-
-## 用途和原则
-
-这是 Genome Biology 投稿前的人可读工作目录。这里的文件从 `docs/` 和 `reports/` 复制而来，方便集中查看、打包和上传。
-
-原则：
-
-- 原始 source data 和 manifest 仍以 `reports/` 中的冻结产物为准。
-- 本目录不改变任何分析结果或 claim boundary。
-- 每张整图和每个 panel 小图都已单独整理。
-- 下一阶段只重画图，不新增分析、不改变 source data、不改变 claim boundary。
-
-## Text
-
-目录：`manuscript/text/`
-
-- `manuscript_draft_v1.md`：Genome Biology 正文草案。
-- `cover_letter_v1.md`：cover letter 草案。
-- `figure_legends_v1.md`：GB 合并 figure legends。
-- `availability_and_reproducibility_v1.md`：Data / Code availability 与复现说明。
-
-仍需作者补齐：作者姓名、单位、通讯邮箱、funding、competing interests、author contributions、acknowledgements、public repository / archive DOI。
-
-## Main Figures
-
-目录：`manuscript/figures/`
-
-根目录保留投稿时最常用的整图 PDF：
-
-- `Figure_1.pdf`
-- `Figure_2.pdf`
-- `Figure_3.pdf`
-- `Figure_4.pdf`
-- `Figure_5.pdf`
-
-每张图也有独立子目录，例如：
-
-- `manuscript/figures/Figure_1/`
-
-每个 Figure 子目录包含：
-
-- 整图 PDF：`Figure_N.pdf`
-- 整图 PNG：`Figure_N.png`
-- 整图 source data：`Figure_N_source_data.tsv`
-- 整图 panel manifest：`Figure_N_panel_manifest.json`
-- panel 小图目录：`panels/`
-
-每个 panel 小图目录包含对应图版的 panel 小图。当前投稿目录中的上一轮主图多为 a-h；Figure 1 redraw prototype 已改为 a-e：
-
-- `Figure_N_panel_a.pdf`
-- `Figure_N_panel_a.png`
-- `Figure_N_panel_a_source_data.tsv`
-- `Figure_N_panel_a_manifest.json`
-
-同样结构适用于 panel b-h。
-
-## Extended Data Figures
-
-目录：`manuscript/extended_data/`
-
-每张 Extended Data figure 有独立子目录：
-
-- `Extended_Data_Figure_1/`
-- `Extended_Data_Figure_2/`
-- ...
-- `Extended_Data_Figure_10/`
-- `Extended_Data_Figure_11/`
-- `Extended_Data_Figure_12/`
-
-每个目录包含：
-
-- 整图 PDF。
-- 整图 PNG。
-- 整图 source data。
-- 整图 panel manifest。
-- `panels/` 中的 panel 小图 PDF / PNG / source data / manifest（当前不同 ED 的 panel 数不再统一为 a-h）。
-
-## Additional Files
-
-目录：`manuscript/additional_files/`
-
-- `Additional_file_1_supplementary_tables_v1.xlsx`
-- `Additional_file_2_submission_package_manifest.json`
-- `Additional_file_3_submission_package_file_manifest.tsv`
-- `README.md`：Additional files 的标题、说明、大小和 SHA256。
-
-## Source Data And Manifests
-
-目录：`manuscript/source_data_manifests/`
-
-- `MANUSCRIPT_REPRODUCIBILITY.md`
-- `submission_package_manifest.json`
-- `submission_package_file_manifest.tsv`
-
-## Audits
-
-目录：`manuscript/audits/`
-
-- `genome_biology_final_wording_audit_v1.md`
-- `genome_biology_figure_text_audit_v1.md`
-- `genome_biology_word_count_v1.md`
-- `genome_biology_preprint_role_audit_v1.md`
-- `shared_anchor_role_note_v1.md`
-
-## File Index
-
-完整文件索引：
-
-- `manuscript/file_index.txt`
-
-当前内容规模：
-
-- 主图目录：5 张整图，每张含 panel 小图、source data 和 manifest。
-  - Figure 1：6 panel（a-f）
-  - Figure 2：6 panel（a-f）
-  - Figure 3：3 panel（a-c）
-  - Figure 4：3 panel（a-c）
-  - Figure 5：4 panel（a-d）
-  - Extended Data Fig. 4：2 panel descriptive axis-level signal space。
-  - Extended Data Fig. 5：1 panel pathway-response polarity heatmap。
-- Extended Data：5 张整图，其中 ED1 为 dataset familiarization，ED2 为 metric robustness，ED3 为 K562 temporal，ED4 为 descriptive axis-level signal space，ED5 为 pathway-response polarity。
-- Additional files：3 个上传候选文件。
+- 作者姓名、单位、通讯邮箱
+- Funding、competing interests、author contributions、acknowledgements
+- Public repository 链接、数据 accession、代码 archive DOI
+- Additional files 最终编号
