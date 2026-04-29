@@ -151,7 +151,7 @@ def build_sources(root: Path) -> dict[str, pd.DataFrame]:
 
 def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
     ax.set_axis_off()
-    add_panel_label(ax, "a", x=-0.02, y=1.02)
+    add_panel_label(ax, "a", x=-0.08, y=1.02)
     ax.text(
         0.02,
         1.02,
@@ -250,16 +250,6 @@ def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
         strip_ax.tick_params(length=0)
         for spine in strip_ax.spines.values():
             spine.set_visible(False)
-    sign_ax.text(
-        0.0,
-        1.08,
-        "Same target,\npartner context,\nall Hallmark",
-        ha="left",
-        va="bottom",
-        fontsize=5.9,
-        color=NEUTRAL_GRAY,
-        transform=sign_ax.transAxes,
-    )
 
 
 def render_panel_by_id(panel_id: str) -> Callable[[plt.Axes, pd.DataFrame], None]:
