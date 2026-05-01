@@ -258,7 +258,7 @@ def load_endpoint(root: Path) -> pd.DataFrame:
     ].copy()
     pivot = bridge.pivot_table(index="timepoint", columns="platform_pair", values="spearman", aggfunc="first")
     if not (pivot["crispr"] > pivot["rnai"]).all():
-        raise RuntimeError("Fig. 6 endpoint sanity check failed: CRISPR is not stronger than RNAi in every context.")
+        raise RuntimeError("Fig. 5 endpoint sanity check failed: CRISPR is not stronger than RNAi in every context.")
     bridge["context"] = bridge["timepoint"].map({"7d": "K562 7d", "13d": "K562 13d"}).fillna(bridge["timepoint"])
     bridge["context"] = pd.Categorical(bridge["context"], categories=CONTEXT_ORDER, ordered=True)
     return bridge.sort_values(["context", "platform_pair"]).reset_index(drop=True)
@@ -273,9 +273,9 @@ def load_temporal(root: Path) -> pd.DataFrame:
     primary = primary.sort_values("timepoint").reset_index(drop=True)
     vals = primary.set_index("timepoint")
     if float(vals.loc["7d", "aligned_spearman"]) <= float(vals.loc["13d", "aligned_spearman"]):
-        raise RuntimeError("Fig. 6 temporal sanity check failed: 7d rank alignment is not stronger than 13d.")
+        raise RuntimeError("Fig. 5 temporal sanity check failed: 7d rank alignment is not stronger than 13d.")
     if float(vals.loc["13d", "mean_truth_metric"]) <= float(vals.loc["7d", "mean_truth_metric"]):
-        raise RuntimeError("Fig. 6 temporal sanity check failed: 13d mean shift is not stronger than 7d.")
+        raise RuntimeError("Fig. 5 temporal sanity check failed: 13d mean shift is not stronger than 7d.")
     return primary
 
 
@@ -1042,7 +1042,7 @@ def render_combined(root: Path, sources: dict[str, pd.DataFrame], panel_outputs:
 
 
 def main(argv: list[str] | None = None) -> None:
-    parser = argparse.ArgumentParser(description="Build manuscript Figure 6 boundary panels and assembly.")
+    parser = argparse.ArgumentParser(description="Build manuscript Figure 5 boundary panels and assembly.")
     parser.add_argument("--panels-only", action="store_true")
     args = parser.parse_args(argv)
     root = repo_root()
