@@ -251,7 +251,7 @@ def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
     y = draw_rows(y, endpoint, fontsize=6.0)
 
     ax.plot([left, right], [y - 0.015, y - 0.015], color="#222222", lw=0.7, transform=ax.transAxes)
-    add_panel_label(ax, "a", x=-0.02, y=1.02)
+    # add_panel_label(ax, "a", x=-0.02, y=1.02)  # panel letter removed
 
 
 def render_umap_panel(ax: plt.Axes, df: pd.DataFrame, panel_id: str, title: str) -> None:
@@ -294,7 +294,7 @@ def render_umap_panel(ax: plt.Axes, df: pd.DataFrame, panel_id: str, title: str)
     ax.set_yticks([])
     for spine in ax.spines.values():
         spine.set_visible(False)
-    add_panel_label(ax, panel_id)
+    # add_panel_label(ax, panel_id)  # panel letter removed
     # Keep all four UMAP panels the same visual size in the combined figure.
     ax.set_box_aspect(1)
     draw_umap_axes()
@@ -322,7 +322,7 @@ def render_shift_panel(ax: plt.Axes, df: pd.DataFrame, panel_id: str, title: str
     ax.set_xlabel("Absolute mean perturbation shift", fontsize=6)
     ax.set_title(title, loc="left", fontsize=7.5)
     clean_axes(ax)
-    add_panel_label(ax, panel_id, x=-0.28)
+    # add_panel_label(ax, panel_id, x=-0.28)  # panel letter removed
     ax.grid(axis="x", color=COLORS["grid"], linewidth=0.5)
 
 

@@ -39,11 +39,12 @@ def add_panel_letter(img: Image.Image, letter: str) -> Image.Image:
 
 def main():
     # Row 0: a + b (each with own panel letter)
-    row0 = hpair(add_panel_letter(load("a"), "a"), add_panel_letter(load("b"), "b"))
+    # add_panel_letter calls removed
+    row0 = hpair(load("a"), load("b"))
     # Row 1: c + d
-    row1 = hpair(add_panel_letter(load("c"), "c"), add_panel_letter(load("d"), "d"))
+    row1 = hpair(load("c"), load("d"))
     # Row 2: e
-    img_e = add_panel_letter(load("e"), "e")
+    img_e = load("e")  # add_panel_letter removed
 
     # Rows 0-1 determine width; panel e keeps native size (centered)
     W = max(row0.width, row1.width)

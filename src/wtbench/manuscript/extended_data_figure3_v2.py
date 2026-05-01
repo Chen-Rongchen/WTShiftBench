@@ -119,7 +119,7 @@ def build_panel_b_source(root: Path) -> pd.DataFrame:
 
 def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
     ax.set_axis_off()
-    add_panel_heading(ax, "a", "Temporal bridge-magnitude dissociation", label_x=-0.025, title_x=0.035, y=1.015)
+    add_panel_heading(ax, "", "Temporal bridge-magnitude dissociation", label_x=-0.025, title_x=0.035, y=1.015)
 
     ax.plot([0.52, 0.555], [0.93, 0.93], color=PRIMARY_GREEN, linewidth=1.2, transform=ax.transAxes, clip_on=False)
     ax.scatter([0.5375], [0.93], s=14, color=PRIMARY_GREEN, transform=ax.transAxes, clip_on=False)
@@ -252,7 +252,7 @@ def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
 
     clean_axes(ax)
     ax.set_box_aspect(1)
-    add_panel_heading(ax, "b", "Large-scale perturbation-fitness bridge confirmation", label_x=-0.08, title_x=0.02, y=1.035)
+    add_panel_heading(ax, "", "Large-scale perturbation-fitness bridge confirmation", label_x=-0.08, title_x=0.02, y=1.035)
 
 
 def build_sources(root: Path) -> dict[str, pd.DataFrame]:
