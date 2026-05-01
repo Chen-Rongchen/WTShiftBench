@@ -76,7 +76,8 @@ MANUAL_LEGENDS = {
         "Fig. 3 | Model adjudication. "
         "a, Three pre-specified metrics evaluate backbone recovery, shift-excess identification and structure-versus-context separation across the shared-mean baseline, GEARS, foundation-model entrants, linear controls and a null reference. "
         "b, Paired summary showing that the shared-mean baseline leads backbone recovery, whereas GEARS leads structure-versus-context separation. "
-        "c, Backbone recovery versus structure-versus-context separation places entrants in an asymmetric recovery space; no entrant occupies the illustrative upper-right region, so GEARS is retained as an architecture-level diagnosis rather than an overall primary winner."
+        "c, Backbone recovery versus structure-versus-context separation places entrants in an asymmetric recovery space; no entrant occupies the illustrative upper-right region, so GEARS is retained as an architecture-level diagnosis rather than an overall primary winner. "
+        "d, Per-context backbone recovery ratios relative to the shared-mean baseline are shown for GEARS, Geneformer and scGPT in HCC38 and HCC1143, confirming that the residual backbone gap is present in both primary contexts."
     ),
     "Fig. 4": (
         "Fig. 4 | Finite-budget rebuttal tests. "
