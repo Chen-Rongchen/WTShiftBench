@@ -7,7 +7,6 @@ large artwork on top, compact legend below, small page footer.
 from __future__ import annotations
 
 import re
-import textwrap
 from pathlib import Path
 
 import matplotlib
@@ -33,9 +32,10 @@ USABLE_W = A4_W - 2 * MARGIN_LR
 TITLE_SIZE = 8.2
 BODY_SIZE = 6.9
 PAGE_NUM_SIZE = 6.2
-WRAP_WIDTH = 108
 MAX_WORDS_PER_PANEL = 42
 MAX_SINGLE_PANEL_WORDS = 72
+CAPTION_LEADING = 1.24
+CAPTION_WRAP_FRACTION = 0.80
 
 
 def parse_legends() -> dict[str, str]:
@@ -119,7 +119,7 @@ def make_concise_legend(raw_legend: str) -> str:
     matches = list(panel_pattern.finditer(" ".join(lines[1:])))
     if not matches:
         first = split_sentences(body)[:2]
-        return "\n".join([title, " ".join(first)])
+        return f"{title}. {' '.join(first)}".strip()
 
     source = " ".join(lines[1:])
     panels: list[tuple[str, str]] = []
@@ -130,21 +130,77 @@ def make_concise_legend(raw_legend: str) -> str:
 
     single_panel = len(panels) == 1
     panel_text = [concise_panel_text(letter, text, single_panel) for letter, text in panels]
-    legend = title + "\n" + " ".join(panel_text)
+    legend = title.rstrip(".") + ". " + " ".join(panel_text)
     if not legend.endswith("."):
         legend += "."
     return legend
 
 
-def wrap_text_block(text: str) -> str:
-    paragraphs = text.split("\n")
-    result = []
-    for para in paragraphs:
-        if para.strip():
-            result.append("\n".join(textwrap.wrap(para, width=WRAP_WIDTH)))
+def split_caption_prefix(legend: str) -> tuple[str, str]:
+    match = re.match(r"^(Fig\. \d+|Extended Data Fig\. \d+) \| ([^.]+)\.\s*(.*)$", legend)
+    if not match:
+        return "", legend
+    fig_id, title, body = match.groups()
+    return f"{fig_id} | {title}.", body
+
+
+def text_width_pt(text: str, *, size: float, weight: str = "normal") -> float:
+    if not text:
+        return 0.0
+    # Fast approximation calibrated for DejaVu Sans at small caption sizes.
+    # It is intentionally conservative so captions wrap before they hit the margin.
+    width_units = 0.0
+    for char in text:
+        if char in "il.,;:'|!":
+            width_units += 0.24
+        elif char in "mwMW@%":
+            width_units += 0.82
+        elif char == " ":
+            width_units += 0.28
+        elif ord(char) > 127:
+            width_units += 0.58
         else:
-            result.append("")
-    return "\n".join(result)
+            width_units += 0.50
+    if weight == "bold":
+        width_units *= 1.06
+    return width_units * size
+
+
+def wrap_words_to_width(words: list[str], max_width_pt: float, size: float) -> tuple[str, list[str]]:
+    current: list[str] = []
+    remaining = words[:]
+    while remaining:
+        candidate = " ".join(current + [remaining[0]])
+        if current and text_width_pt(candidate, size=size) > max_width_pt:
+            break
+        current.append(remaining.pop(0))
+    return " ".join(current), remaining
+
+
+def build_caption_lines(legend: str, max_width_pt: float) -> list[list[tuple[str, bool, float]]]:
+    """Return caption line segments as (text, bold, x_offset_points)."""
+    prefix, body = split_caption_prefix(make_concise_legend(legend))
+    lines: list[list[tuple[str, bool, float]]] = []
+    body_words = body.split()
+
+    if prefix:
+        prefix_words = prefix.split()
+        prefix_line, prefix_words = wrap_words_to_width(prefix_words, max_width_pt, TITLE_SIZE)
+        while prefix_words:
+            lines.append([(prefix_line, True, 0.0)])
+            prefix_line, prefix_words = wrap_words_to_width(prefix_words, max_width_pt, TITLE_SIZE)
+
+        prefix_width = text_width_pt(prefix_line + " ", size=TITLE_SIZE, weight="bold")
+        available = max_width_pt - prefix_width
+        if body_words and available > max_width_pt * 0.18:
+            first_body, body_words = wrap_words_to_width(body_words, available, BODY_SIZE)
+            lines.append([(prefix_line + " ", True, 0.0), (first_body, False, prefix_width)])
+        else:
+            lines.append([(prefix_line, True, 0.0)])
+    while body_words:
+        body_line, body_words = wrap_words_to_width(body_words, max_width_pt, BODY_SIZE)
+        lines.append([(body_line, False, 0.0)])
+    return lines or [[(legend, False, 0.0)]]
 
 
 def render_page(fig: plt.Figure, img_path: Path, legend: str, page_num: int) -> None:
@@ -152,18 +208,11 @@ def render_page(fig: plt.Figure, img_path: Path, legend: str, page_num: int) -> 
     fig.clf()
 
     # Prepare legend
-    legend = make_concise_legend(legend)
-    legend_lines = legend.split("\n")
-    title_line = "\n".join(textwrap.wrap(legend_lines[0], width=105))
-    body = "\n".join(legend_lines[1:])
-    body = wrap_text_block(body)
-    n_title = title_line.count("\n") + 1
-    n_body = body.count("\n") + 1 if body else 0
+    caption_lines = build_caption_lines(legend, USABLE_W * 72 * CAPTION_WRAP_FRACTION)
 
     # Estimate heights (inches)
-    line_h = BODY_SIZE / 72 * 1.22
-    title_h = n_title * (TITLE_SIZE / 72) * 1.30
-    legend_text_h = title_h + 0.06 + n_body * line_h + 0.18
+    line_h = BODY_SIZE / 72 * CAPTION_LEADING
+    legend_text_h = len(caption_lines) * line_h + 0.18
 
     # Image height: whatever is left
     img_h_avail = max(2.5, A4_H - MARGIN_TOP - legend_text_h - MARGIN_BOT - 0.12)
@@ -193,13 +242,21 @@ def render_page(fig: plt.Figure, img_path: Path, legend: str, page_num: int) -> 
     ax_text.set_axis_off()
 
     y = 1.0
-    ax_text.text(0, y, title_line, fontsize=TITLE_SIZE, fontweight="bold",
-                 va="top", ha="left", color="#1F1F1F", linespacing=1.25,
-                 transform=ax_text.transAxes)
-    y -= 0.075 + (n_title - 1) * 0.055
-    ax_text.text(0, y, body, fontsize=BODY_SIZE, fontweight="normal",
-                 va="top", ha="left", color="#333333",
-                 linespacing=1.25, transform=ax_text.transAxes)
+    y_step = line_h / max((text_top - MARGIN_BOT), 0.01)
+    for line in caption_lines:
+        for text, bold, x_pt in line:
+            ax_text.text(
+                x_pt / (USABLE_W * 72),
+                y,
+                text,
+                fontsize=TITLE_SIZE if bold else BODY_SIZE,
+                fontweight="bold" if bold else "normal",
+                va="top",
+                ha="left",
+                color="#1F1F1F" if bold else "#333333",
+                transform=ax_text.transAxes,
+            )
+        y -= y_step
 
     # Page number
     ax_pn = fig.add_axes([0, 0, 1, MARGIN_BOT / A4_H])
