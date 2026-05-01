@@ -25,14 +25,14 @@
       "category": "submission_notes",
       "paths": [
         "README.md",
-        "plan.md",
         "scripts/README.md",
         "configs/README.md",
+        "manuscript/README.md",
+        "manuscript/MANUSCRIPT_REPRODUCIBILITY.md",
         "docs/submission_package_index_v1.md",
-        "docs/submission_readiness_checklist_v1.md",
-        "docs/manuscript_complete_figure_plan_v1.md",
-        "docs/manuscript_figure_generation_record_v1.md",
-        "docs/extended_data_execution_plan_v1.md"
+        "docs/genome_biology_submission_final_index_v1.md",
+        "docs/genome_biology_figure_text_audit_v1.md",
+        "docs/manuscript_figure_generation_record_v1.md"
       ]
     },
     {

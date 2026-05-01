@@ -27,15 +27,11 @@
     },
     {
       "figure_id": "figure5",
-      "name": "axis_interpretation",
-      "script": "scripts/manuscript/build_figure5_axis_interpretation.py",
-      "output_dir": "reports/manuscript_figures_v2/fig5_axis_interpretation"
-    },
-    {
-      "figure_id": "figure6",
       "name": "boundary",
       "script": "scripts/manuscript/build_figure6_boundary.py",
-      "output_dir": "reports/manuscript_figures_v2/fig6_boundary"
+      "output_dir": "reports/manuscript_figures_v2/fig6_boundary",
+      "source_stem": "figure6",
+      "manuscript_stem": "Figure_5"
     }
   ]
 }
