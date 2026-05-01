@@ -151,7 +151,7 @@ def build_sources(root: Path) -> dict[str, pd.DataFrame]:
 
 def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
     ax.set_axis_off()
-    add_panel_label(ax, "a", x=-0.08, y=1.02)
+    # add_panel_label(ax, "a", x=-0.08, y=1.02)  # panel letter removed
     ax.text(
         0.02,
         1.02,

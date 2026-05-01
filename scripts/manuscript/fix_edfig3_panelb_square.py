@@ -212,7 +212,7 @@ def composite_with_pil(panel_a_png: Path, panel_b_png: Path):
     # Add panel letters via PIL — pixel-perfect alignment
     font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 34)
     draw_a = ImageDraw.Draw(img_a)
-    draw_a.text((32, 12), "a  K562 temporal stratification (7d vs 13d)", fill="#1F1F1F", font=font)
+    draw_a.text((32, 12), "K562 temporal stratification (7d vs 13d)", fill="#1F1F1F", font=font)  # panel letter removed
 
     # Panel b: add top padding so title doesn't crowd the figure
     pad_top = 50
@@ -221,7 +221,7 @@ def composite_with_pil(panel_a_png: Path, panel_b_png: Path):
     img_b = img_b_padded
 
     draw_b = ImageDraw.Draw(img_b)
-    draw_b.text((32, 16), "b  Large-scale perturbation-fitness bridge confirmation", fill="#1F1F1F", font=font)
+    draw_b.text((32, 16), "Large-scale perturbation-fitness bridge confirmation", fill="#1F1F1F", font=font)  # panel letter removed
 
     total_h = img_a.height + img_b.height
     composite = Image.new("RGB", (target_w, total_h), "white")

@@ -172,7 +172,7 @@ def build_axis_sources(root: Path) -> tuple[pd.DataFrame, pd.DataFrame]:
 
 
 def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
-    add_panel_label(ax, "a", x=-0.08, y=1.025)
+    # add_panel_label(ax, "a", x=-0.08, y=1.025)  # panel letter removed
     lim_max = 0.26
     ax.plot([0, lim_max], [0, lim_max], color=DIVIDER_GRAY, linewidth=0.75, linestyle=(0, (3, 2)), zorder=0)
 
@@ -264,7 +264,7 @@ def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
 
 
 def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
-    add_panel_label(ax, "b", x=-0.08, y=1.02)
+    # add_panel_label(ax, "b", x=-0.08, y=1.02)  # panel letter removed
     sort_col = "max_axis_r2" if "max_axis_r2" in df.columns else "shift_r2_mean"
     plot = df.sort_values(sort_col, ascending=False).reset_index(drop=True)
     y = list(range(len(plot)))[::-1]
