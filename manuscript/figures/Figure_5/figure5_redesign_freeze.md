@@ -1,6 +1,6 @@
 # Figure 5 Redesign — Final Reconstruction Lock
 
-**状态**：2026-04-25 锁定。Figure 5 不再继续开放结构讨论，后续只按边界条件执行重画。 
+**状态**：2026-04-25 锁定；2026-05-02 更新（panel d 已删除，A0/A1/B tiering 内容移入手稿正文）。Figure 5 不再继续开放结构讨论，后续只按边界条件执行重画。 
 
 **当前 Figure 5 身份**：原 Figure 6 前移为主文 Figure 5，作为最终 claim-boundary 图。
 
