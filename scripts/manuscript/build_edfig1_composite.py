@@ -32,7 +32,7 @@ def add_panel_letter(img: Image.Image, letter: str) -> Image.Image:
 def main():
     # Row 0: Panel a (table)
     row0 = load("a")
-    row0 = add_panel_letter(row0, "a")
+    # row0 = add_panel_letter(row0, "a")  # panel letter removed
     row0 = row0.resize((TARGET_W, int(row0.height * TARGET_W / row0.width)), Image.LANCZOS)
 
     # Row 1: 5 UMAPs side by side
@@ -47,7 +47,7 @@ def main():
     for im in umap_imgs:
         row1.paste(im, (x, 0))
         x += im.width
-    row1 = add_panel_letter(row1, "b")
+    # row1 = add_panel_letter(row1, "b")  # panel letter removed
     row1 = row1.resize((TARGET_W, int(UMAP_H * TARGET_W / row1_w)), Image.LANCZOS)
 
     # Row 2: 5 arrow panels in a single row
@@ -61,7 +61,7 @@ def main():
     for im in arrow_imgs:
         row2.paste(im, (x, 0))
         x += im.width
-    row2 = add_panel_letter(row2, "c")
+    # row2 = add_panel_letter(row2, "c")  # panel letter removed
     row2 = row2.resize((TARGET_W, int(ARROW_H * TARGET_W / row2_w)), Image.LANCZOS)
 
     # Vertical stack
