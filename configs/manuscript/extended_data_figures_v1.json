@@ -16,10 +16,10 @@
     },
     {
       "figure_id": "extended_data_figure3",
-      "name": "k562_temporal_evidence_detail",
-      "script": "scripts/manuscript/build_extended_data_figure8.py",
-      "output_dir": "reports/manuscript_extended_data_v1/edfig8_k562_temporal",
-      "source_stem": "edfig8"
+      "name": "k562_temporal_and_replogle_confirmation",
+      "script": "scripts/manuscript/build_extended_data_figure3_v2.py",
+      "output_dir": "reports/manuscript_extended_data_v1/edfig3_k562_temporal_and_replogle",
+      "source_stem": "edfig3"
     },
     {
       "figure_id": "extended_data_figure4",

@@ -289,11 +289,16 @@ description = "渲染 manuscript Figure 1 truth object"
 
 [tasks.build-manuscript-main-figures]
 cmd = "python scripts/manuscript/build_all_main_figures.py --config configs/manuscript/main_figures_v2.json"
-description = "重跑全部 6 张主图（manuscript_figures_v2）"
+description = "重跑当前 5 张主图（manuscript_figures_v2）"
 
 [tasks.build-manuscript-extended-data]
 cmd = "python scripts/manuscript/build_all_extended_data_figures.py --config configs/manuscript/extended_data_figures_v1.json"
-description = "重跑全部 10 张 Extended Data 图（manuscript_extended_data_v1）"
+description = "重跑当前 5 张 Extended Data 图（manuscript_extended_data_v1）"
+
+[tasks.build-edfig2-panel-e-reference]
+default-environment = "core"
+cmd = "python scripts/manuscript/build_edfig2_panel_e.py --reference"
+description = "ED Fig 2 panel e（Mean abs shift 渐变、四基因标注、右上角 rho）→ manuscript + reports/edfig2_test_panel_e_shift_colormap"
 
 [tasks.build-supplementary-table-index]
 cmd = "python scripts/manuscript/build_supplementary_table_index.py --config configs/manuscript/supplementary_tables_v1.json"

@@ -36,11 +36,11 @@
 
 上传对象：
 
-- Fig. 1：`manuscript/figures/Figure_1.pdf`
-- Fig. 2：`manuscript/figures/Figure_2.pdf`
-- Fig. 3：`manuscript/figures/Figure_3.pdf`
-- Fig. 4：`manuscript/figures/Figure_4.pdf`
-- Fig. 5：`manuscript/figures/Figure_5.pdf`
+- Fig. 1：`manuscript/figures/Figure_1/Figure_1.pdf`
+- Fig. 2：`manuscript/figures/Figure_2/Figure_2.pdf`
+- Fig. 3：`manuscript/figures/Figure_3/Figure_3.pdf`
+- Fig. 4：`manuscript/figures/Figure_4/Figure_4.pdf`
+- Fig. 5：`manuscript/figures/Figure_5/Figure_5.pdf`
 
 PNG 预览、整图 source data、整图 manifest 和 panel 文件位于 `manuscript/figures/Figure_*/` 与对应 `panels/` 子目录。生成来源仍为 `reports/manuscript_figures_v2/`。
 
@@ -48,19 +48,13 @@ PNG 预览、整图 source data、整图 manifest 和 panel 文件位于 `manusc
 
 上传对象：
 
-- Extended Data Fig. 1：`manuscript/extended_data/Extended_Data_Figure_1.pdf`
-- Extended Data Fig. 2：`manuscript/extended_data/Extended_Data_Figure_2.pdf`
-- Extended Data Fig. 3：`manuscript/extended_data/Extended_Data_Figure_3.pdf`
-- Extended Data Fig. 4：`manuscript/extended_data/Extended_Data_Figure_4.pdf`
-- Extended Data Fig. 5：`manuscript/extended_data/Extended_Data_Figure_5.pdf`
-- Extended Data Fig. 6：`manuscript/extended_data/Extended_Data_Figure_6.pdf`
-- Extended Data Fig. 7：`manuscript/extended_data/Extended_Data_Figure_7.pdf`
-- Extended Data Fig. 8：`manuscript/extended_data/Extended_Data_Figure_8.pdf`
-- Extended Data Fig. 9：`manuscript/extended_data/Extended_Data_Figure_9.pdf`
-- Extended Data Fig. 10：`manuscript/extended_data/Extended_Data_Figure_10.pdf`
-- Extended Data Fig. 11：`manuscript/extended_data/Extended_Data_Figure_11.pdf`
+- Extended Data Fig. 1：`manuscript/extended_data/Extended_Data_Figure_1/Extended_Data_Figure_1.pdf`
+- Extended Data Fig. 2：`manuscript/extended_data/Extended_Data_Figure_2/Extended_Data_Figure_2.pdf`
+- Extended Data Fig. 3：`manuscript/extended_data/Extended_Data_Figure_3/Extended_Data_Figure_3.pdf`
+- Extended Data Fig. 4：`manuscript/extended_data/Extended_Data_Figure_4/Extended_Data_Figure_4.pdf`
+- Extended Data Fig. 5：`manuscript/extended_data/Extended_Data_Figure_5/Extended_Data_Figure_5.pdf`
 
-PNG 预览、整图 source data、整图 manifest 和 panel a-h 文件位于 `manuscript/extended_data/Extended_Data_Figure_*/` 与对应 `panels/` 子目录。生成来源仍为 `reports/manuscript_extended_data_v1/`。若投稿系统不使用 `Extended Data` 命名，则上传时可改称 Supplementary Figure 1-10；图内容不需要改。
+PNG 预览、整图 source data、整图 manifest 和 panel 文件位于 `manuscript/extended_data/Extended_Data_Figure_*/` 与对应 `panels/` 子目录。生成来源仍为 `reports/manuscript_extended_data_v1/`。若投稿系统不使用 `Extended Data` 命名，则上传时可改称 Supplementary Figure 1-5；图内容不需要改。
 
 ## Additional files
 

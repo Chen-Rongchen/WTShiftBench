@@ -9,7 +9,7 @@
 - `convert_rnai_demeter2_to_depmap_endpoints.py`：把 DEMETER2 RNAi 分数转换成现有 truth bridge loader 可读取的 DepMap endpoint 宽表。
 - `run_stage2_k562_rnai_endpoint_consistency.py`：汇总 GSE90063 K562 7d/13d 的 CRISPR DepMap 与 DEMETER2 RNAi endpoint consistency。
 - `render_manuscript_figure*.py`：论文图生成入口。
-- `scripts/manuscript/build_*.py`：当前主文 Fig. 1-Fig. 6 的 panel 级图版生成入口。
+- `scripts/manuscript/build_*.py`：当前主文 Fig. 1-Fig. 5 与 Extended Data Fig. 1-Fig. 5 的 panel 级图版生成入口。
 - `scripts/manuscript/build_all_main_figures.py`：按 `configs/manuscript/main_figures_v2.json` 顺序重建全部主文图。
 - `scripts/manuscript/build_all_extended_data_figures.py`：按 `configs/manuscript/extended_data_figures_v1.json` 顺序重建 Extended Data Fig. 1-10。
 - `scripts/manuscript/build_supplementary_table_index.py`：按 `configs/manuscript/supplementary_tables_v1.json` 重建 supplementary table index。

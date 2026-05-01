@@ -1,6 +1,6 @@
 # WTKO / WT Benchmark
 
-**Phase（2026-04-22 更新）：Genome Biology manuscript workspace ready — analysis closure 完成，figure/source-data/reproducibility package 完成，claim boundary 冻结，`manuscript/` 单入口整理完成；主图 redraw 进度：Figure 1 / Figure 2 / Figure 3 已按新节奏定版并同步到投稿目录，下一步进入 Figure 4 redraw，再依次 Figure 5 / Figure 6，之后统一处理 Extended Data Fig. 1-10；remaining submission work = 作者元信息、declarations、公开归档 DOI 与最终人工确认。**
+**Phase（2026-05-01 更新）：Genome Biology manuscript workspace ready — analysis closure 完成，figure/source-data/reproducibility package 完成，claim boundary 冻结，`manuscript/` 单入口整理完成；当前投稿图版以 `manuscript/` 为准：5 张主图（Figure 1-5）和 5 张 Extended Data 图（Extended Data Figure 1-5）。remaining submission work = 作者元信息、declarations、公开归档 DOI 与最终人工确认。**
 
 WT Benchmark 是一个 **truth-first** 的 virtual perturbation benchmark 与分析框架：先在真实 perturbation transcriptomic truth 中定义可桥接到 cellular fitness / dependency（DepMap）的结构化对象，再评估模型能否恢复这些 bridge architecture，最后才进入 discovery。
 
@@ -31,9 +31,9 @@ WT Benchmark 是一个 **truth-first** 的 virtual perturbation benchmark 与分
 
 - `GEARS` 已经作为 strongest formal entrant 跑完 `HCC38 / HCC1143` 的真实 HCC smoke
 - `Geneformer` 与三条 linear controls 都已完成第一轮 HCC formal comparison；Geneformer 保留 partial deviation/separation signal，但没有超过 shared-mean baseline 的 primary backbone recovery
-- **当前项目状态：Genome Biology manuscript workspace ready（2026-04-22 更新）；`manuscript/` 已整理为投稿前单入口，包含初稿、cover letter、figure legends、6 张主图、10 张 Extended Data、所有 panel a-h、小图 source data / manifest、Additional files、source-data manifests 与 audit 文档**
-- **主图 redraw 进度（2026-04-22）：Figure 1（6-panel truth-object）、Figure 2（6-panel evidence-first：a/b + c/d + e 协变量 TVD evidence + f claim matrix；TVD matrix 已由 Extended Data Fig. 9 Panel i 提升至主图 (e)，ED9 回到 8 panel）与 Figure 3（3-panel headline：a three-metric adjudication overview heatmap → b baseline vs GEARS headline dumbbell → c backbone–separation trade-off scatter；per-cell-line 与全矩阵见 Extended Data Fig. 4，GEARS sweep 见 Extended Data Fig. 5，主图 caption 显式 cross-reference）均已定版并同步到 `manuscript/figures/`；Figure 4 → Figure 5 → Figure 6 按同节奏依序 redraw，之后统一处理 Extended Data Fig. 1-10；主图与 Extended Data 的最终配色（color palette）等全部 redraw 完成后再统一冻结，当前各图沿用 `src/wtbench/manuscript/_palette.py`，不写入 frozen language**
-- 详细状态记录见 `docs/submission_readiness_checklist_v1.md`、`docs/submission_package_index_v1.md` 与 `docs/baseline_model_interpretation_and_journal_strategy_v1.md`
+- **当前项目状态：Genome Biology manuscript workspace ready（2026-05-01 更新）；`manuscript/` 已整理为投稿前单入口，包含初稿、cover letter、figure legends、5 张主图、5 张 Extended Data、source data / manifest、Additional files、source-data manifests 与 audit 文档**
+- **当前图版口径：主图 Figure 1-5 位于 `manuscript/figures/`；Extended Data Figure 1-5 位于 `manuscript/extended_data/`。旧 6 主图、10/11 Extended Data 的计划文档只作为历史记录，不再作为当前投稿对象。**
+- 详细状态记录见 `manuscript/README.md`、`docs/genome_biology_submission_final_index_v1.md` 与 `docs/baseline_model_interpretation_and_journal_strategy_v1.md`
 
 如果你下次进来只想知道“先看哪里就够”，固定只看这三个入口：
 
@@ -49,7 +49,7 @@ WT Benchmark 是一个 **truth-first** 的 virtual perturbation benchmark 与分
 2. `docs/protocol_blueprint.md`
 3. `docs/project_state_summary_v1.md`
 4. `docs/main_manuscript_results_draft_v1.md`
-5. `docs/manuscript_complete_figure_plan_v1.md`（6 主图 + 10 Extended Data 结构 of record；旧 4 图版 `docs/manuscript_figure_blueprint_v1.md` 仅保留为 truth-first 讲述方法论模板）
+5. `manuscript/README.md` 和 `manuscript/text/figure_legends_v1.md`（当前 5 主图 + 5 Extended Data 结构 of record；旧 6 主图 + 10/11 Extended Data 计划文档仅保留为历史记录）
 6. `docs/final_claim_boundary_and_discovery_gating_note_v1.md`
 7. `docs/stage2_fuller_hcc_model_comparison_note_v1.md`
 8. `docs/stage2_covariate_balance_closure_note_v1.md`
@@ -83,11 +83,7 @@ WT Benchmark 是一个 **truth-first** 的 virtual perturbation benchmark 与分
 6. `docs/genome_biology_submission_checklist_v1.md`
 7. `docs/baseline_model_interpretation_and_journal_strategy_v1.md`
 
-当前 manuscript hardening 的新增入口：
-
-- `docs/manuscript_hardening_plan_v1.md`
-
-这份文档固定最后一轮文字治理顺序：先修 HCC38/HCC1143 乳腺癌细胞系身份和 `HCC` 缩写风险，再补 submission blocker，再把 Introduction、Results 和 Methods 压到 framework/resource 与 operational definition 级别。
+当前 manuscript hardening 以 `manuscript/text/`、`manuscript/audits/` 和 `docs/genome_biology_final_wording_audit_v1.md` 为准；旧 hardening 计划已归档到 `backup/obsolete_figure_set_2026-05-01/`。
 
 如果你下次进来只想知道“方法学本体下一步做什么”，直接记这一版：
 
@@ -205,7 +201,7 @@ discovery / phenotype shifter。它仍保留在 roadmap 中，但当前不是 pr
    - Supplementary table index：`pixi run --environment core python scripts/manuscript/build_supplementary_table_index.py`
    - Submission package：`pixi run --environment core python scripts/manuscript/build_submission_package.py`
 3. 仍需人工确认：
-   - 是否保留 6 张主图
+   - 是否保留当前 5 张主图 + 5 张 Extended Data 图的投稿结构
    - 是否按 Genome Biology submission system 将 supplementary files 编号为 Additional file 1/2/3...
    - 是否按目标上传系统要求导出 Word/PDF 版本
 4. 明确禁止：
@@ -301,7 +297,7 @@ PYTHONPATH=src python scripts/run_stage2_dixit_axis_compression.py --config conf
 | 目的 | 入口 |
 |------|------|
 | 投稿前单入口工作区 | `manuscript/README.md`、`manuscript/file_index.txt` |
-| 当前任务与阶段状态 | `plan.md`、`docs/submission_readiness_checklist_v1.md`、`docs/submission_package_index_v1.md` |
+| 当前任务与阶段状态 | `manuscript/README.md`、`docs/genome_biology_submission_final_index_v1.md`、`docs/submission_package_index_v1.md` |
 | Genome Biology 投稿材料 | `manuscript/text/manuscript_draft_v1.md`、`manuscript/text/cover_letter_v1.md`、`manuscript/text/figure_legends_v1.md`、`docs/genome_biology_submission_checklist_v1.md` |
 | 投稿包与补充表 | `manuscript/additional_files/`、`manuscript/source_data_manifests/submission_package_manifest.json` |
 | 主图与小图 panel | `manuscript/figures/` |
