@@ -44,8 +44,8 @@
 
 ## 3. Manuscript / submission package 配置
 
-- `manuscript/main_figures_v2.json`：主文 Fig. 1-Fig. 6 的生成配置。
-- `manuscript/extended_data_figures_v1.json`：Extended Data Fig. 1-Fig. 10 的生成配置。
+- `manuscript/main_figures_v2.json`：当前主文 Fig. 1-Fig. 5 的生成配置。
+- `manuscript/extended_data_figures_v1.json`：当前 Extended Data Fig. 1-Fig. 5 的生成配置。
 - `manuscript/supplementary_tables_v1.json`：supplementary table group 与冻结来源文件索引配置。
 - `manuscript/submission_package_v1.json`：Genome Biology submission package manifest 与 Supplementary Tables workbook 生成配置。
 

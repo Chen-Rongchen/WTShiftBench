@@ -112,18 +112,12 @@
         "reports/manuscript_figures_v2/fig2_anchor_tiering/figure2_panel_manifest.json",
         "reports/manuscript_figures_v2/fig3_model_tradeoff/figure3_panel_manifest.json",
         "reports/manuscript_figures_v2/fig4_sweep_controls/figure4_panel_manifest.json",
-        "reports/manuscript_figures_v2/fig5_axis_interpretation/figure5_panel_manifest.json",
         "reports/manuscript_figures_v2/fig6_boundary/figure6_panel_manifest.json",
-        "reports/manuscript_extended_data_v1/edfig1_dataset_endpoint_admission/edfig1_panel_manifest.json",
-        "reports/manuscript_extended_data_v1/edfig2_full_target_grid/edfig2_panel_manifest.json",
-        "reports/manuscript_extended_data_v1/edfig3_anchor_sensitivity/edfig3_panel_manifest.json",
-        "reports/manuscript_extended_data_v1/edfig4_model_detail/edfig4_panel_manifest.json",
-        "reports/manuscript_extended_data_v1/edfig5_gears_sweep/edfig5_panel_manifest.json",
-        "reports/manuscript_extended_data_v1/edfig6_axis_annotation/edfig6_panel_manifest.json",
-        "reports/manuscript_extended_data_v1/edfig7_k562_temporal/edfig7_panel_manifest.json",
-        "reports/manuscript_extended_data_v1/edfig8_endpoint_hierarchy/edfig8_panel_manifest.json",
-        "reports/manuscript_extended_data_v1/edfig9_covariate_audit/edfig9_panel_manifest.json",
-        "reports/manuscript_extended_data_v1/edfig10_reproducibility/edfig10_panel_manifest.json"
+        "reports/manuscript_extended_data_v1/edfig1_dataset_familiarization/edfig1_panel_manifest.json",
+        "reports/manuscript_extended_data_v1/edfig13_metric_robustness/edfig13_panel_manifest.json",
+        "reports/manuscript_extended_data_v1/edfig3_k562_temporal_and_replogle/edfig3_panel_manifest.json",
+        "reports/manuscript_extended_data_v1/edfig10_axis_explanatory_space/edfig10_panel_manifest.json",
+        "reports/manuscript_extended_data_v1/edfig9_biological_landing/edfig9_panel_manifest.json"
       ]
     }
   ]

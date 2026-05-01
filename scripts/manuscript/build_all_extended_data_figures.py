@@ -12,7 +12,7 @@ DEFAULT_CONFIG = Path("configs/manuscript/extended_data_figures_v1.json")
 EXPECTED_PANEL_COUNTS = {
     "extended_data_figure1": 9,
     "extended_data_figure2": 4,
-    "extended_data_figure3": 1,
+    "extended_data_figure3": 2,
     "extended_data_figure4": 2,
     "extended_data_figure5": 1,
 }

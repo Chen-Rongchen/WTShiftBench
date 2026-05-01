@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import re
 from pathlib import Path
 from typing import Callable
 
@@ -10,7 +11,6 @@ import pandas as pd
 from matplotlib.lines import Line2D
 
 from wtbench.manuscript._palette import DARK_TEXT, DIVIDER_GRAY, MID_GRAY, NEUTRAL_GRAY, SKY_BLUE, VERMILLION
-from wtbench.manuscript.figure5_axis_interpretation import parse_annotation_support
 from wtbench.manuscript.figure_io import ensure_dir, repo_root, save_figure, write_tsv
 from wtbench.manuscript.hash_manifest import write_figure_manifest, write_panel_manifest
 from wtbench.manuscript.manuscript_style import COLORS, add_panel_label, apply_manuscript_style, clean_axes
@@ -36,6 +36,17 @@ PROFILE_COLORS = {
     "balanced": "#8E63B6",
     "low signal": MID_GRAY,
 }
+
+
+def parse_annotation_support(value: str) -> tuple[int, int, str]:
+    hits = re.search(r"enrichment_hits=(\d+)", value)
+    dbs = re.search(r"databases=(\d+)", value)
+    top_term = re.search(r"top_recurrent_term=([^;]+)", value)
+    return (
+        int(hits.group(1)) if hits else 0,
+        int(dbs.group(1)) if dbs else 0,
+        top_term.group(1) if top_term else "below_threshold",
+    )
 
 
 def output_dir(root: Path) -> Path:

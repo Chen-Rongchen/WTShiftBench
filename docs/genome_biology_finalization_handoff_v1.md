@@ -41,11 +41,9 @@
 - `manuscript/text/manuscript_draft_v1.md`
 - `manuscript/text/figure_legends_v1.md`
 - `manuscript/source_data_manifests/submission_package_manifest.json`
-- `docs/manuscript_hardening_plan_v1.md`
 - `docs/genome_biology_submission_execution_plan_v1.md`
 - `manuscript/source_data_manifests/MANUSCRIPT_REPRODUCIBILITY.md`
 - `docs/genome_biology_submission_checklist_v1.md`
-- `docs/submission_readiness_checklist_v1.md`
 - `docs/top10_anticipated_reviewer_questions_v1.md`
 - `docs/community_adjudication_kit_v1.md`
 - `docs/genome_biology_figure_text_audit_v1.md`
@@ -58,7 +56,7 @@
 
 ### 0. Manuscript hardening
 
-当前稿件应视为 strong editorial draft，而不是最终 submission-ready 版本。下一轮先按 `docs/manuscript_hardening_plan_v1.md` 执行：
+当前稿件应视为 strong editorial draft，而不是最终 submission-ready 版本。下一轮以 `manuscript/text/`、`manuscript/audits/` 和 `docs/genome_biology_final_wording_audit_v1.md` 为准执行：
 
 - 修正 HCC38/HCC1143 是乳腺癌细胞系这一身份表述，移除 `HCC = hepatocellular carcinoma` 和单独 `HCC context` 的投稿文本用法。
 - 把文章主语固定为 framework/resource，而不是 model leaderboard。

@@ -4,7 +4,7 @@
 
 更新日期：2026-04-18。
 
-用途：记录 Nature Methods 风格重绘后，主文、figure legends、source data 与投稿包之间的图文一致性检查。
+用途：记录当前 Genome Biology 投稿图版中，主文、figure legends、source data 与投稿包之间的图文一致性检查。
 
 ## 检查范围
 
@@ -27,8 +27,11 @@
 
 Extended Data PNG 均存在：
 
-- Extended Data Fig. 1-10：`reports/manuscript_extended_data_v1/edfig*/edfig*.png`
-- Extended Data Fig. 11：`reports/manuscript_figures_v2/fig5_axis_interpretation/figure5.png`
+- Extended Data Fig. 1：`reports/manuscript_extended_data_v1/edfig1_dataset_familiarization/edfig1.png`
+- Extended Data Fig. 2：`reports/manuscript_extended_data_v1/edfig13_metric_robustness/edfig13.png`
+- Extended Data Fig. 3：`reports/manuscript_extended_data_v1/edfig3_k562_temporal_and_replogle/edfig3.png`
+- Extended Data Fig. 4：`reports/manuscript_extended_data_v1/edfig10_axis_explanatory_space/edfig10.png`
+- Extended Data Fig. 5：`reports/manuscript_extended_data_v1/edfig9_biological_landing/edfig9.png`
 
 ## 重建校验
 
@@ -46,7 +49,7 @@ MPLCONFIGDIR=/tmp/matplotlib_wtko_nmstyle PYTHONPATH=src pixi run --environment 
 
 Extended Data 输出校验：
 
-- Extended Data Fig. 1-10 均通过脚本内输出数量检查；Extended Data Fig. 11 由原 Fig. 5 脚本生成。
+- Extended Data Fig. 1-5 均通过脚本内输出数量检查。
 
 ## 关键数字核对
 

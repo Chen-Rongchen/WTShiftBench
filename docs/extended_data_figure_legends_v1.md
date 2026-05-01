@@ -1,116 +1,23 @@
-# Extended Data Figure Legends v1
+# Extended Data figure legends v1
 
-## Extended Data Fig. 1. Dataset and endpoint admission
+## Extended Data Fig. 1. Dataset familiarization and endpoint inputs
 
-**a,** HCC38 and HCC1143 primary bridge admission using aligned `real_shift_mean_abs` versus CRISPR DepMap dependency.
-**b,** GSE90063 K562 7d and 13d kept-cell counts after single-guide filtering.
-**c,** DEMETER2 RNAi conversion summary.
-**d,** Admission status for the global bridge, K562 temporal panel and RNAi expansion candidate.
-**e,** Endpoint hierarchy separating primary, sensitivity and supplementary evidence.
-**f,** K562 cell accounting across matrix cells, kept cells and unassigned cells.
-**g,** Primary HCC endpoint strength.
-**h,** Boundary showing that K562 and discovery layers are not primary co-pillars.
+**a,** Dataset overview table. Five perturbation-expression contexts (HCC38, HCC1143, Dixit 2016 K562 7d, Dixit 2016 K562 13d, and Replogle K562 essential day 7 CRISPRi) and two endpoint datasets (DepMap CRISPR dependency and DEMETER2 RNAi) are summarized with cell-line identity, size, and benchmark use. **b,** UMAP of perturbation-level mean profiles for HCC38, HCC1143, Dixit 2016 K562 7d, Dixit 2016 K562 13d, and Replogle K562 essential day 7 (five panels, left to right). Each point represents the mean expression profile of one perturbation target, and the red star marks the matched control aggregate within the indicated context. Point sizes are reduced for Replogle (2,021 targets) to avoid overplotting; a legend for control and perturbation points is shown in the Replogle panel (rightmost). No individual gene labels are drawn beyond the control marker. **c,** Target-gene expression change for the same five contexts (left to right). Each arrow represents one perturbation target: the base of the arrow indicates the target gene's mean expression in control cells, and the tip indicates its mean expression after perturbation (log-normalized). Targets are ranked by absolute change magnitude from largest to smallest. Blue arrows indicate decreased expression; red arrows indicate increased expression. Individual gene names are shown on the y-axis for HCC38, HCC1143, and Dixit K562 panels (9-45 targets per context); gene labels are omitted for Replogle (1,835 targets). The gRNA efficacy is visible from the arrow direction: 91% (41/45), 87% (39/45), 78% (7/9), 56% (5/9), and >99% (1,829/1,835) of targets showed decreased target-gene expression in HCC38, HCC1143, Dixit K562 7d, Dixit K562 13d, and Replogle K562 essential, respectively. These panels are descriptive familiarization only and do not replace the pre-specified truth object, endpoint hierarchy, or adjudication metrics.
 
-## Extended Data Fig. 2. Full target-level joint grid
+## Extended Data Fig. 2. Robustness of perturbation-fitness bridge metric selection
 
-**a,** HCC38 full target-level shift-dependency grid.
-**b,** HCC1143 full target-level shift-dependency grid.
-**c,** Grid category counts across HCC38 and HCC1143.
-**d,** All Q1 anchors observed across the HCC grids.
-**e,** Transcriptomic-excess targets under the current formal grid.
-**f,** Dependency-excess targets under the current formal grid.
-**g,** Target-level evidence-tier composition.
-**h,** Grid summary table by cell line and category.
+Candidate perturbation-shift summaries derived from the expression response vector, including full-transcriptome mean absolute shift, L2 magnitude, DEG-burden, and top-k shift summaries, were evaluated against matched DepMap CRISPR dependency and RNAi sensitivity endpoints. These analyses are robustness checks rather than post hoc optimization; the primary bridge metric remains full-transcriptome mean absolute shift versus CRISPR dependency. **a,** Top-n gene-subset sensitivity. Genes were ranked either by control-condition expression or by perturbation-response magnitude, and aligned Spearman correlation with DepMap CRISPR dependency was recomputed using the top 100, 500, 1000, 2000, or all genes for mean absolute shift, L2 magnitude, and DEG-burden summaries. Curves show the mean across HCC38 and HCC1143, with the shaded band spanning the two primary contexts. **b,** Metric and CRISPR endpoint robustness. The heat map shows mean aligned Spearman correlation across HCC38 and HCC1143 for candidate truth metrics crossed with the two CRISPR DepMap readouts; the boxed cell marks the retained primary metric and endpoint. **c,** Endpoint sensitivity. The endpoint-gap summary compares CRISPR dependency with DEMETER2 RNAi dependency for mean absolute shift and L2 magnitude across the two primary HCC contexts and the K562 7d/13d supplementary temporal contexts, supporting CRISPR dependency as the primary endpoint and RNAi as a weaker sensitivity readout. **d,** Control-subsampling robustness. Aligned Spearman correlation with DepMap CRISPR dependency was recomputed across repeated control-cell subsamples for candidate truth metrics in HCC38 and HCC1143; points show the mean and horizontal intervals show the 2.5th-97.5th percentile range across subsamples. **e,** Whole-transcriptome shift versus target-gene self-expression in driving the fitness bridge. Each point represents one perturbation target in HCC38 (left sub-panel) or HCC1143 (right sub-panel). The x-axis shows the target gene's own log2 fold-change; the y-axis shows DepMap CRISPR dependency. Point color and size encode the whole-transcriptome mean absolute shift. Spearman correlation between target-gene log2FC and dependency is negative (rho = -0.21, HCC38; rho = -0.35, HCC1143), whereas whole-transcriptome shift shows strong positive alignment (rho = 0.73, HCC38; rho = 0.77, HCC1143; see Fig. 1f). Thus, the truth-DepMap bridge is carried by genome-wide transcriptional displacement, not by the magnitude of target-gene depletion.
 
-## Extended Data Fig. 3. Anchor sensitivity and claim tiering
+## Extended Data Fig. 3. K562 temporal evidence and large-scale bridge confirmation
 
-**a,** Full target-level anchor distribution.
-**b,** Shared canonical anchors.
-**c,** Cutoff-sensitive supporting objects.
-**d,** Control subsampling intervals for the primary bridge metric.
-**e,** Covariate-aware anchor wording.
-**f,** Evidence-tier composition.
-**g,** Anchor downgrade rationale.
-**h,** Allowed and disallowed anchor claims.
+**a,** K562 temporal bridge-magnitude dissociation (GSE90063). Aligned Spearman correlation with CRISPR DepMap dependency and mean perturbation-shift magnitude are shown for the 7d temporal-sensitivity panel and the 13d formal supplementary bridge test. Across both summaries, 13d has larger perturbation magnitude, whereas the rank bridge is weaker than at 7d (aligned Spearman rho = 0.733 at 7d versus 0.515 at 13d). This dissociation supports temporal stratification rather than monotonic strengthening. Under the A0/A1/B evidence-tiering scheme (Fig. 5d), K562 satisfies A0 architecture-form recurrence and A1 bounded bridge-form support but does not reach B content-level replication.
 
-## Extended Data Fig. 4. Full HCC model recovery detail
+**b,** Replogle K562 essential day 7 large-scale perturbation-fitness bridge. Scatter of `real_shift_mean_abs` versus `depmap_gene_dependency` for 1,882 matched CRISPRi targets, displayed as within-context rank percentiles (0–1 axes, matching the convention of Fig. 1c,d). Dashed lines mark the 25th and 75th percentiles. Quadrant coloring follows Fig. 1: Q1 anchor (red, n = 202), Q2 transcriptomic-excess (green, n = 34), Q3 dependency-excess (blue, n = 57), Q4 low-information (gray, n = 198), retained middle band (light gray, n = 1,391). Aligned Spearman rho = 0.402 (95% CI 0.363–0.439, empirical p = 0.001). This confirms that the perturbation-fitness bridge correlation is not a small-n artifact confined to the modest target counts in the primary HCC demonstration (n = 47–48). The Replogle dataset provides large-n confirmation that the bridge correlation persists above null at scale; it is a single-context dataset and is not used for A0/A1/B architecture-form tiering.
 
-**a,** Full HCC model backbone recovery ranking.
-**b,** Per-cell-line backbone recovery.
-**c,** Per-cell-line shift-excess identification.
-**d,** Per-cell-line structure-versus-context separation.
-**e,** Baseline top-20 overlap.
-**f,** GEARS top-20 overlap.
-**g,** Foundation-model top-20 overlap.
-**h,** Null-model top-20 overlap.
+## Extended Data Fig. 4. Descriptive axis-level signal space
 
-## Extended Data Fig. 5. GEARS sweep and stop rule
+Axis-level decomposition is shown as a descriptive exploratory layer under Framework Element 5 and was not used to define the benchmark truth object, endpoint hierarchy, or model-adjudication criteria. **a,** Axis-level signal space comparing dependency signal with transcriptomic shift signal across annotated axes. The pale diagonal denotes equal signal on the two summaries; point fill distinguishes target breadth, and color denotes descriptive signal profile rather than claim tier: shift-dominant, dependency-dominant, balanced, or low signal. **b,** Paired axis R-squared ranking. Axes with the largest value in either signal dimension are displayed with matched shift and dependency R-squared values on the same scale; labels report compact target breadth. All R-squared values are modest (below 0.1), consistent with the interpretation that the axis layer provides informative but partial descriptive context. The panel is intended as an audit-style summary of the axis landscape, not as a new axis-level conclusion.
 
-**a,** GEARS sweep candidate manifest.
-**b,** Batch status summary for sweep execution.
-**c,** Sweep candidate backbone recovery scores.
-**d,** Sweep candidate structure-versus-context separation scores.
-**e,** Baseline versus sweep-candidate trade-off.
-**f,** Stop-rule adjudication.
-**g,** Recipe dimensions varied in the finite sweep.
-**h,** GEARS training exemption boundary for figure generation.
+## Extended Data Fig. 5. Exploratory pathway-response polarity heatmap
 
-## Extended Data Fig. 6. Full axis annotation and bootstrap support
-
-**a,** Full axis explanatory balance.
-**b,** Representative bootstrap axis-call stability.
-**c,** Axis families in validation summary.
-**d,** Top axes by enrichment hits.
-**e,** Enrichment database coverage.
-**f,** Formal and preliminary axis-call composition.
-**g,** Top annotation terms.
-**h,** Axis claim boundary.
-
-## Extended Data Fig. 7. K562 temporal evidence detail
-
-**a,** K562 7d bridge summary.
-**b,** K562 13d bridge summary.
-**c,** Temporal stratification of rank bridge and mean shift.
-**d,** Temporal structure calls.
-**e,** K562 7d evidence tiers.
-**f,** K562 13d evidence tiers.
-**g,** Temporal panel call.
-**h,** A0/A1/B tier distribution.
-
-## Extended Data Fig. 8. CRISPR versus RNAi endpoint detail
-
-**a,** HCC CRISPR and RNAi truth-endpoint bridge strengths.
-**b,** K562 CRISPR and RNAi truth-endpoint bridge strengths.
-**c,** CRISPR-RNAi endpoint agreement.
-**d,** DEMETER2 conversion summary.
-**e,** Endpoint hierarchy across HCC and K562 contexts.
-**f,** RNAi sensitivity boundary.
-**g,** CRISPR-RNAi bridge gap.
-**h,** Endpoint claim boundary.
-
-## Extended Data Fig. 9. Covariate audit details and wording boundary
-
-**a,** Covariate audit axes.
-**b,** Covariate balance by cell line.
-**c,** Barcode-gem-group design-proxy boundary.
-**d,** High-imbalance target counts.
-**e,** Covariate-audit impact on anchor wording.
-**f,** Covariate status in the final claim matrix.
-**g,** Allowed wording.
-**h,** Disallowed wording.
-
-## Extended Data Fig. 10. Reproducibility and claim governance
-
-**a,** Main figure manifest overview.
-**b,** Supplementary table group overview.
-**c,** Hash coverage by file type.
-**d,** Final claim-matrix evidence-tier overview.
-**e,** Key allowed wording tiers.
-**f,** Configured rebuild entrypoints.
-**g,** Explicitly enumerated disallowed wording.
-**h,** Figure-stage rerun boundary.
-
-## Extended Data Fig. 11. Axis-level adjudication supports only a qualified transcription/chromatin interpretation
-
-**a,** Axis-level explanatory space comparing dependency signal with transcriptomic shift signal; the pale diagonal denotes equal explanatory signal, and RNA processing/spliceosome is annotated as PRPF6-only to mark the breadth boundary.
-**b,** Axis adjudication profile across shift signal, dependency signal, bootstrap stability and annotation/database support; target breadth is shown in each row label, and structure support is retained in the supplementary adjudication profile.
+Pathway enrichment was used as an exploratory response-level summary under Framework Element 5 and was not used to define the benchmark truth object, endpoint hierarchy, or model-adjudication criteria. **a,** Pathway normalized enrichment score (NES) heat map across the pre-specified display targets in HCC38, HCC1143, K562 7d, and K562 13d. Rows show selected benchmark anchors and high-variance response examples; columns show the pre-specified Hallmark response panel. Asterisks indicate pathway enrichments passing FDR < 0.10. Right-hand summaries report same-target partner-context pathway Spearman correlation and sign-agreement fraction across all Hallmark pathways. A biologically noteworthy dissociation is visible: PFDN5 and PRPF6 maintain strong fitness-dependency linkage across HCC38 and HCC1143 (Fig. 2), yet their Hallmark pathway-level response patterns show low sign agreement across the two cell lines. This observation, based on two anchor genes (PFDN5, PRPF6) and two cell-line contexts (HCC38, HCC1143), suggests that fitness anchoring (dependency linkage) and transcriptional response wiring (pathway execution) can be partially dissociable properties, an observation aligned with the framework's methodological separation of expression reconstruction and phenotype relevance as independent dimensions requiring separate adjudication. Whether this dissociation generalizes to larger target panels or additional lineages remains an open question. Pathway-level results are treated as framework-generated exploratory context rather than as a portable pathway mechanism.

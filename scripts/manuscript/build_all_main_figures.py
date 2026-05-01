@@ -13,8 +13,7 @@ EXPECTED_PANEL_COUNTS = {
     "figure2": 6,
     "figure3": 4,
     "figure4": 3,
-    "figure5": 2,
-    "figure6": 4,
+    "figure5": 4,
 }
 
 
@@ -40,15 +39,16 @@ def verify_outputs(root: Path, figures: list[dict]) -> None:
         out = root / figure["output_dir"]
         panels = out / "panels"
         figure_num = figure["figure_id"].replace("figure", "")
+        source_stem = figure.get("source_stem", f"figure{figure_num}")
         counts = {
             "panel_png": len(list(panels.glob("*_panel*.png"))),
             "panel_pdf": len(list(panels.glob("*_panel*.pdf"))),
             "panel_source": len(list(panels.glob("*_panel*_source_data.tsv"))),
             "panel_manifest": len(list(panels.glob("*_panel*_manifest.json"))),
-            "figure_png": len(list(out.glob(f"figure{figure_num}.png"))),
-            "figure_pdf": len(list(out.glob(f"figure{figure_num}.pdf"))),
-            "figure_source": len(list(out.glob(f"figure{figure_num}_source_data.tsv"))),
-            "figure_manifest": len(list(out.glob(f"figure{figure_num}_panel_manifest.json"))),
+            "figure_png": len(list(out.glob(f"{source_stem}.png"))),
+            "figure_pdf": len(list(out.glob(f"{source_stem}.pdf"))),
+            "figure_source": len(list(out.glob(f"{source_stem}_source_data.tsv"))),
+            "figure_manifest": len(list(out.glob(f"{source_stem}_panel_manifest.json"))),
         }
         expected_panel_count = EXPECTED_PANEL_COUNTS[figure["figure_id"]]
         expected = {

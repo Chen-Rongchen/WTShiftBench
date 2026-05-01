@@ -121,6 +121,4 @@
 
 ## Manuscript hardening 入口
 
-- `docs/manuscript_hardening_plan_v1.md`
-
-该文档记录最后一轮文字治理：HCC38/HCC1143 乳腺癌细胞系身份、framework/resource positioning、Methods operational definitions、submission blocker 和两处 overclaim 降档。
+当前文字治理以 `manuscript/text/`、`manuscript/audits/` 和 `docs/genome_biology_final_wording_audit_v1.md` 为准。旧 hardening 计划已归档到 `backup/obsolete_figure_set_2026-05-01/`，不再作为当前投稿入口。
