@@ -35,10 +35,10 @@ USABLE_W = A4_W - 2 * MARGIN_LR
 TITLE_SIZE = 8.2
 BODY_SIZE = 6.5
 PAGE_NUM_SIZE = 6.2
-MAX_WORDS_PER_PANEL = 14
-MAX_SINGLE_PANEL_WORDS = 28
-CAPTION_LEADING = 1.45
-CAPTION_WRAP_FRACTION = 0.78
+MAX_WORDS_PER_PANEL = 38
+MAX_SINGLE_PANEL_WORDS = 72
+CAPTION_LEADING = 1.34
+CAPTION_WRAP_FRACTION = 0.94
 TITLE_BODY_GAP_PT = 13.0
 
 SHORT_TITLES = {
@@ -52,6 +52,75 @@ SHORT_TITLES = {
     "Extended Data Fig. 3": "K562 and Replogle bridge support",
     "Extended Data Fig. 4": "Axis-level signal space",
     "Extended Data Fig. 5": "Pathway-response polarity",
+}
+
+MANUAL_LEGENDS = {
+    "Fig. 1": (
+        "Fig. 1 | Truth object definition. "
+        "a, Workflow defining the frozen phenotype-aligned recovery object before model scoring by linking absolute mean perturbation shift to CRISPR DepMap dependency. "
+        "b, Pre-specified 25/75 joint-percentile rule separating Q1 anchors, Q2 transcriptomic excess, Q3 dependency excess, Q4 low-information targets and the retained middle band. "
+        "c,d, HCC38 and HCC1143 target-level rank-percentile grids; panels report n, aligned Spearman rho and Q1 anchor count. "
+        "e, Category composition across the two primary contexts, including zero-count Q2 and Q3 categories. "
+        "f, Bridge strength summary showing observed aligned Spearman rho with Fisher z 95% confidence intervals and a 1,000-permutation null envelope."
+    ),
+    "Fig. 2": (
+        "Fig. 2 | Anchor tiering. "
+        "a, Shared-canonical anchor ranking by paired shift and dependency quantile means across HCC38 and HCC1143. "
+        "b, Recurrence matrix for the four final stable anchors, with Q1 status and mean joint quantiles shown per context. "
+        "c, Stability fraction separates stable anchors from cutoff-sensitive supporting objects without using covariate information. "
+        "d, Stable anchors retain high shift and dependency ranks across both HCC contexts. "
+        "e, Per-anchor covariate Total Variation Distance (TVD) audit across five covariate axes and two HCC contexts; TVD > 0.25 marks imbalance. "
+        "f, Claim-tier matrix: PFDN5 is primary but qualified, whereas PMF1, PRPF6 and ZNF131 remain supporting because of covariate exposure."
+    ),
+    "Fig. 3": (
+        "Fig. 3 | Model adjudication. "
+        "a, Three pre-specified metrics evaluate backbone recovery, shift-excess identification and structure-versus-context separation across the shared-mean baseline, GEARS, foundation-model entrants, linear controls and a null reference. "
+        "b, Paired summary showing that the shared-mean baseline leads backbone recovery, whereas GEARS leads structure-versus-context separation. "
+        "c, Backbone recovery versus structure-versus-context separation places entrants in an asymmetric recovery space; no entrant occupies the illustrative upper-right region, so GEARS is retained as an architecture-level diagnosis rather than an overall primary winner."
+    ),
+    "Fig. 4": (
+        "Fig. 4 | Finite-budget rebuttal tests. "
+        "a, Six pre-specified GEARS recipes define the finite local rebuttal neighborhood under the unchanged truth object and scoring system. "
+        "b, Rebuttal recovery space compares the shared-mean baseline, formal GEARS, five GEARS sweep candidates and three embedding-based linear controls on backbone recovery and structure/context separation. "
+        "c, Per-context residual backbone gaps show that all tested candidates remain below the shared-mean baseline in HCC38 and HCC1143; the stop rule therefore does not promote GEARS to the primary winner."
+    ),
+    "Fig. 5": (
+        "Fig. 5 | Boundary governance. "
+        "a, Covariate boundary in HCC38 and HCC1143, showing mean target-control TVD across five covariate stratifications and marking targets exceeding TVD > 0.25. "
+        "b, Endpoint hierarchy across HCC38, HCC1143, K562 7d and K562 13d compares CRISPR DepMap dependency with RNAi DEMETER2; CRISPR is higher in all four contexts. "
+        "c, K562 temporal stratification shows larger perturbation magnitude at 13d but stronger dependency-aligned rank structure at 7d. "
+        "d, A0/A1/B tiering retains K562 as architecture-form and bounded bridge-form support, not content-level replication."
+    ),
+    "Extended Data Fig. 1": (
+        "Extended Data Fig. 1 | Dataset familiarization. "
+        "a, Dataset overview for five perturbation-expression contexts and two endpoint resources, summarizing cell-line identity, size and benchmark use. "
+        "b, UMAPs of perturbation-level mean profiles for HCC38, HCC1143, Dixit K562 7d, Dixit K562 13d and Replogle K562 essential day 7; the matched control aggregate is marked. "
+        "c, Target-gene expression changes for the same five contexts, with arrows from control expression to post-perturbation expression."
+    ),
+    "Extended Data Fig. 2": (
+        "Extended Data Fig. 2 | Metric robustness. "
+        "a, Top-n gene-subset sensitivity recomputes aligned Spearman correlation after ranking genes by control expression or perturbation-response magnitude. "
+        "b, Metric and CRISPR endpoint heat map marks the retained primary bridge metric and endpoint. "
+        "c, Endpoint sensitivity compares CRISPR dependency with RNAi DEMETER2 across primary HCC and supplementary K562 contexts. "
+        "d, Control-subsampling robustness shows mean and 2.5th-97.5th percentile ranges across repeated control-cell subsamples. "
+        "e, Whole-transcriptome shift, rather than target-gene self-expression, carries the fitness bridge."
+    ),
+    "Extended Data Fig. 3": (
+        "Extended Data Fig. 3 | K562 and Replogle bridge support. "
+        "a, K562 temporal bridge-magnitude dissociation shows aligned Spearman correlation with CRISPR DepMap dependency and mean perturbation-shift magnitude at 7d and 13d; 13d has larger magnitude but weaker rank alignment. "
+        "b, Replogle K562 essential day 7 bridge test plots 1,882 matched CRISPRi targets as rank percentiles for perturbation shift and dependency, with 25/75 percentile cutoffs, Q1-Q4 category counts and aligned Spearman rho = 0.402."
+    ),
+    "Extended Data Fig. 4": (
+        "Extended Data Fig. 4 | Axis-level signal space. "
+        "a, Axis-level signal space compares dependency signal with transcriptomic shift signal across annotated axes; color denotes descriptive signal profile rather than claim tier. "
+        "b, Paired axis R-squared ranking displays axes with the largest signal in either dimension on a common scale, supporting an audit-style view of partial axis-level structure."
+    ),
+    "Extended Data Fig. 5": (
+        "Extended Data Fig. 5 | Pathway-response polarity. "
+        "a, Pathway normalized enrichment score heat map across pre-specified display targets in HCC38, HCC1143, K562 7d and K562 13d. "
+        "Rows show selected anchors and high-variance response examples; columns show the Hallmark response panel; asterisks mark FDR < 0.10. "
+        "Right-hand summaries report same-target partner-context pathway Spearman correlation and sign agreement, treating pathway polarity as exploratory context rather than a benchmark-defining endpoint."
+    ),
 }
 
 
@@ -89,7 +158,21 @@ def split_sentences(text: str) -> list[str]:
     text = clean_markdown(text)
     if not text:
         return []
-    return [s.strip() for s in re.split(r"(?<=[.!?])\s+", text) if s.strip()]
+    protected = {
+        "Extended Data Fig.": "Extended Data Fig<dot>",
+        "Fig.": "Fig<dot>",
+        "e.g.": "e<dot>g<dot>",
+        "i.e.": "i<dot>e<dot>",
+    }
+    for source, target in protected.items():
+        text = text.replace(source, target)
+    sentences = [s.strip() for s in re.split(r"(?<=[.!?])\s+", text) if s.strip()]
+    restored = []
+    for sentence in sentences:
+        for source, target in protected.items():
+            sentence = sentence.replace(target, source)
+        restored.append(sentence)
+    return restored
 
 
 def limit_words(text: str, limit: int) -> str:
@@ -110,7 +193,18 @@ def concise_panel_text(panel_letter: str, panel_body: str, single_panel: bool) -
     if not sentences:
         return f"{panel_letter},"
     limit = MAX_SINGLE_PANEL_WORDS if single_panel else MAX_WORDS_PER_PANEL
-    summary = limit_words(sentences[0], limit)
+    if len(sentences) > 1 and len(sentences[0].split()) <= 8:
+        summary = limit_words(f"{sentences[0]} {sentences[1]}", limit)
+        return f"{panel_letter}, {summary}"
+    selected: list[str] = []
+    for sentence in sentences:
+        candidate = " ".join(selected + [sentence])
+        if selected and len(candidate.split()) > limit:
+            break
+        selected.append(sentence)
+        if len(candidate.split()) >= limit * 0.75:
+            break
+    summary = limit_words(" ".join(selected), limit)
     return f"{panel_letter}, {summary}"
 
 
@@ -122,6 +216,10 @@ def make_concise_legend(raw_legend: str) -> str:
         return raw_legend
 
     heading = clean_markdown(lines[0])
+    manual_match = re.match(r"^(Fig\. \d+|Extended Data Fig\. \d+)\.\s+", heading)
+    if manual_match and manual_match.group(1) in MANUAL_LEGENDS:
+        return MANUAL_LEGENDS[manual_match.group(1)]
+
     body = clean_markdown(" ".join(lines[1:]))
     title = heading
     title_match = re.match(r"^(Fig\. \d+|Extended Data Fig\. \d+)\.\s+(.+)$", heading)
@@ -197,12 +295,16 @@ def build_caption_lines(legend: str, max_width_pt: float) -> list[list[tuple[str
             lines.append([(prefix_line, True, 0.0)])
             prefix_line, prefix_words = wrap_words_to_width(prefix_words, max_width_pt, TITLE_SIZE)
 
+        if prefix.startswith("Extended Data Fig."):
+            lines.append([(prefix_line, True, 0.0)])
+            prefix_line = ""
+
         prefix_width = words_width_pt(prefix_line.split(), size=TITLE_SIZE, weight="bold") + TITLE_BODY_GAP_PT
         available = max_width_pt - prefix_width
-        if body_words and available > max_width_pt * 0.18 and prefix_width < max_width_pt * 0.62:
+        if prefix_line and body_words and available > max_width_pt * 0.18 and prefix_width < max_width_pt * 0.58:
             first_body, body_words = wrap_words_to_width(body_words, available, BODY_SIZE)
             lines.append([(prefix_line, True, 0.0), (first_body, False, prefix_width)])
-        else:
+        elif prefix_line:
             lines.append([(prefix_line, True, 0.0)])
     while body_words:
         body_line, body_words = wrap_words_to_width(body_words, max_width_pt, BODY_SIZE)
@@ -215,7 +317,8 @@ def render_page(fig: plt.Figure, img_path: Path, legend: str, page_num: int) -> 
     fig.clf()
 
     # Prepare legend
-    caption_lines = build_caption_lines(legend, USABLE_W * 72 * CAPTION_WRAP_FRACTION)
+    caption_w = USABLE_W * CAPTION_WRAP_FRACTION
+    caption_lines = build_caption_lines(legend, caption_w * 72)
 
     # Estimate heights (inches)
     line_h = BODY_SIZE / 72 * CAPTION_LEADING
@@ -241,8 +344,8 @@ def render_page(fig: plt.Figure, img_path: Path, legend: str, page_num: int) -> 
     # Text axes — separate from image, keeps text as vector
     text_top = img_y0 - 0.10
     ax_text = fig.add_axes([
-        MARGIN_LR / A4_W, MARGIN_BOT / A4_H,
-        USABLE_W / A4_W, (text_top - MARGIN_BOT) / A4_H,
+        ((A4_W - caption_w) / 2) / A4_W, MARGIN_BOT / A4_H,
+        caption_w / A4_W, (text_top - MARGIN_BOT) / A4_H,
     ])
     ax_text.set_xlim(0, 1)
     ax_text.set_ylim(0, 1)
@@ -253,7 +356,7 @@ def render_page(fig: plt.Figure, img_path: Path, legend: str, page_num: int) -> 
     for line in caption_lines:
         for text, bold, x_pt in line:
             ax_text.text(
-                x_pt / (USABLE_W * 72),
+                x_pt / (caption_w * 72),
                 y,
                 text,
                 fontsize=TITLE_SIZE if bold else BODY_SIZE,
