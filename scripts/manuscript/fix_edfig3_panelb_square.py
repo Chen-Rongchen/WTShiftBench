@@ -62,7 +62,7 @@ def build_panel_a_source() -> pd.DataFrame:
 def generate_panel_a(src_a: pd.DataFrame) -> Path:
     """Render panel a with wider gap between two inset plots."""
     apply_manuscript_style()
-    fig, ax = plt.subplots(figsize=(5.5, 1.3))
+    fig, ax = plt.subplots(figsize=(5.0, 0.9))
     ax.set_axis_off()
 
     PG = COLORS["primary_qualified"]
@@ -126,7 +126,7 @@ def generate_square_panel_b():
     df["depmap_quantile"] = df["depmap_gene_dependency"].rank(pct=True)
 
     apply_manuscript_style()
-    fig, ax = plt.subplots(figsize=(5.5, 3.0))
+    fig, ax = plt.subplots(figsize=(4.5, 1.4))
 
     # Middle band
     mid = df.loc[df["quadrant"] == "middle"]
@@ -149,8 +149,8 @@ def generate_square_panel_b():
         ax.axvline(pct, color="#888888", linewidth=0.6, linestyle="--", alpha=0.6)
         ax.axhline(pct, color="#888888", linewidth=0.6, linestyle="--", alpha=0.6)
 
-    ax.set_xlabel("Perturbation shift (rank percentile)")
-    ax.set_ylabel("CRISPR dependency (rank percentile)")
+    ax.set_xlabel("Perturbation shift (rank percentile)", fontsize=6.0)
+    ax.set_ylabel("CRISPR dependency (rank percentile)", fontsize=6.0)
     ax.set_xlim(-0.02, 1.02)
     ax.set_ylim(-0.02, 1.02)
 
@@ -167,7 +167,7 @@ def generate_square_panel_b():
             f"aligned Spearman rho = 0.402\n"
             f"95% CI [0.363, 0.439]\n"
             f"empirical p = 0.001",
-            transform=ax.transAxes, fontsize=6.0, va="top", ha="left", color="#333333")
+            transform=ax.transAxes, fontsize=5.2, va="top", ha="left", color="#333333")
 
     # Color swatches outside right
     quad_info = [
@@ -178,17 +178,15 @@ def generate_square_panel_b():
         ("middle", n_mid, QUADRANT_COLORS["middle"]),
     ]
     for i, (label, count, color) in enumerate(quad_info):
-        y = 0.55 - i * 0.055
-        ax.plot(1.08, y, marker="s", color=color, markersize=5,
+        y = 0.55 - i * 0.048
+        ax.plot(1.08, y, marker="s", color=color, markersize=4,
                 transform=ax.transAxes, clip_on=False)
         ax.text(1.12, y, f"{label} ({count})", transform=ax.transAxes,
-                fontsize=5.8, va="center", ha="left", color="#333333")
+                fontsize=5.0, va="center", ha="left", color="#333333")
 
+    ax.tick_params(labelsize=5.5)
     clean_axes(ax)
     ax.set_box_aspect(1)
-
-    # Panel heading
-    # Title added via PIL compositing for alignment
 
     png_path = OUT_DIR / "panels" / "Extended_Data_Figure_3_panel_b.png"
     pdf_path = OUT_DIR / "panels" / "Extended_Data_Figure_3_panel_b.pdf"
@@ -197,36 +195,114 @@ def generate_square_panel_b():
     return png_path
 
 
-def composite_with_pil(panel_a_png: Path, panel_b_png: Path):
-    """Stack panel_a.png on top of panel_b.png using PIL. Add panel letters via PIL for alignment."""
+def generate_panel_c() -> Path:
+    """K562 evidence-tier checklist — exact Fig 2f compact claim matrix style."""
+    apply_manuscript_style()
+
+    fig, ax = plt.subplots(figsize=(5.0, 1.8))
+    ax.set_axis_off()
+
+    LIGHT_GRAY = "#F0F0F0"
+    DIVIDER_GRAY = "#CCCCCC"
+    DARK_TEXT = "#1F1F1F"
+    GREEN = "#2E7D32"
+    OCHRE = "#D84315"
+    GREEN_FILL = "#E8F5E9"
+
+    rows = [
+        ("Bridge rho above null",            "A1", "yes", "\u03c1=0.733 / 0.515"),
+        ("Joint grid defined",                "",  "yes", "25/75 grid applied"),
+        ("Q1 region present",                 "",  "yes", "quadrant observed"),
+        ("Backbone / shift-excess structure", "A0","yes", "matches primary form"),
+        ("Content-level replication",          "B", "no",  "composition differs"),
+        ("Assigned tier",                      "",  "A0/A1, not B", ""),
+    ]
+
+    # Header bar (Fig 2f style)
+    ax.add_patch(
+        plt.Rectangle((0.005, 0.86), 0.99, 0.08, transform=ax.transAxes,
+                      facecolor=LIGHT_GRAY, edgecolor="none", zorder=0))
+    headers = [("Evidence item", 0.02), ("Tier", 0.46), ("Status", 0.58)]
+    for text, x in headers:
+        ax.text(x, 0.90, text, fontsize=7.2, fontweight="bold", color=DARK_TEXT, transform=ax.transAxes)
+    ax.plot([0.01, 0.99], [0.86, 0.86], color=DIVIDER_GRAY, linewidth=0.7, transform=ax.transAxes)
+
+    row_gap = 0.118
+    for i, (item, supports, status, note) in enumerate(rows):
+        y = 0.78 - i * row_gap
+        is_yes = status == "yes"
+        is_tier = "A0/A1" in status
+
+        if is_tier:
+            ax.add_patch(
+                plt.Rectangle((0.005, y - row_gap * 0.44), 0.99, row_gap * 0.86,
+                              transform=ax.transAxes, facecolor=GREEN_FILL, edgecolor="none", zorder=0))
+
+        fw = "bold" if is_tier else "normal"
+        fs = 7.5 if is_tier else 6.8
+        ax.text(0.02, y, item, fontsize=fs, fontweight=fw,
+                color=GREEN if is_tier else DARK_TEXT, transform=ax.transAxes, va="center")
+
+        if supports:
+            ax.text(0.46, y, supports, fontsize=6.8, va="center", fontweight="bold",
+                    color="#888888", transform=ax.transAxes)
+
+        chip_color = GREEN if is_yes else OCHRE
+        ax.add_patch(
+            plt.Rectangle((0.58, y - 0.025), 0.025, 0.05, transform=ax.transAxes,
+                          facecolor=chip_color, edgecolor="none"))
+        status_text = "yes" if is_yes else "no"
+        if is_tier:
+            status_text = "A0/A1, not B"
+        ax.text(0.615, y, status_text, fontsize=6.8 if is_tier else 6.2, va="center",
+                fontweight="bold", color=chip_color, transform=ax.transAxes)
+
+        if note:
+            ax.text(0.98, y, note, fontsize=5.5, va="center", ha="right",
+                    color="#999999", transform=ax.transAxes)
+
+    clean_axes(ax)
+
+    png_path = OUT_DIR / "panels" / "Extended_Data_Figure_3_panel_c.png"
+    pdf_path = OUT_DIR / "panels" / "Extended_Data_Figure_3_panel_c.pdf"
+    save_figure(fig, png_path, pdf_path)
+    plt.close(fig)
+    return png_path
+
+
+def composite_with_pil(panel_a_png: Path, panel_b_png: Path, panel_c_png: Path):
+    """Layout: row0=panel_a (full), row1=panel_b | panel_c (c at native width, b fills rest)."""
     from PIL import Image, ImageDraw, ImageFont
 
     img_a = Image.open(panel_a_png)
     img_b = Image.open(panel_b_png)
+    img_c = Image.open(panel_c_png)
 
-    # Fixed target width (match original composite width)
-    target_w = 2015
+    target_w = 4500
+    font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 60)
+    pad_title = 70
+
     img_a = img_a.resize((target_w, int(img_a.height * target_w / img_a.width)), Image.LANCZOS)
-    img_b = img_b.resize((target_w, int(img_b.height * target_w / img_b.width)), Image.LANCZOS)
-
-    # Add panel letters via PIL — pixel-perfect alignment
-    font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 34)
     draw_a = ImageDraw.Draw(img_a)
-    draw_a.text((32, 12), "K562 temporal stratification (7d vs 13d)", fill="#1F1F1F", font=font)  # panel letter removed
+    draw_a.text((32, 12), "K562 temporal stratification (7d vs 13d)", fill="#1F1F1F", font=font)
 
-    # Panel b: add top padding so title doesn't crowd the figure
-    pad_top = 50
-    img_b_padded = Image.new("RGB", (img_b.width, img_b.height + pad_top), "white")
-    img_b_padded.paste(img_b, (0, pad_top))
-    img_b = img_b_padded
+    img_b = img_b.resize((target_w, int(img_b.height * target_w / img_b.width)), Image.LANCZOS)
+    b_titled = Image.new("RGB", (img_b.width, img_b.height + pad_title), "white")
+    b_titled.paste(img_b, (0, pad_title))
+    draw_b = ImageDraw.Draw(b_titled)
+    draw_b.text((32, 12), "Large-scale perturbation-fitness bridge confirmation", fill="#1F1F1F", font=font)
 
-    draw_b = ImageDraw.Draw(img_b)
-    draw_b.text((32, 16), "Large-scale perturbation-fitness bridge confirmation", fill="#1F1F1F", font=font)  # panel letter removed
+    img_c = img_c.resize((target_w, int(img_c.height * target_w / img_c.width)), Image.LANCZOS)
+    c_titled = Image.new("RGB", (img_c.width, img_c.height + pad_title), "white")
+    c_titled.paste(img_c, (0, pad_title))
+    draw_c = ImageDraw.Draw(c_titled)
+    draw_c.text((32, 12), "K562 evidence-tier checklist", fill="#1F1F1F", font=font)
 
-    total_h = img_a.height + img_b.height
+    total_h = img_a.height + b_titled.height + c_titled.height
     composite = Image.new("RGB", (target_w, total_h), "white")
     composite.paste(img_a, (0, 0))
-    composite.paste(img_b, (0, img_a.height))
+    composite.paste(b_titled, (0, img_a.height))
+    composite.paste(c_titled, (0, img_a.height + b_titled.height))
 
     composite.save(OUT_DIR / "Extended_Data_Figure_3.png")
     composite.save(OUT_DIR / "Extended_Data_Figure_3.pdf")
@@ -234,17 +310,17 @@ def composite_with_pil(panel_a_png: Path, panel_b_png: Path):
 
 
 def main():
-    # Generate panel a (with wide gap between insets)
     src_a = build_panel_a_source()
     a_png = generate_panel_a(src_a)
     print(f"[OK] Panel a generated: {a_png}")
 
-    # Generate square panel b
     b_png = generate_square_panel_b()
     print(f"[OK] Panel b generated: {b_png}")
 
-    # Composite with PIL
-    composite_with_pil(a_png, b_png)
+    c_png = generate_panel_c()
+    print(f"[OK] Panel c generated: {c_png}")
+
+    composite_with_pil(a_png, b_png, c_png)
 
 
 if __name__ == "__main__":
