@@ -7,8 +7,6 @@ from typing import Callable
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from matplotlib.patches import Patch
-
 from wtbench.manuscript.figure_io import ensure_dir, repo_root, save_figure, write_tsv
 from wtbench.manuscript.hash_manifest import write_figure_manifest, write_panel_manifest
 from wtbench.manuscript.manuscript_style import COLORS, add_panel_heading, apply_manuscript_style, clean_axes
@@ -22,7 +20,7 @@ CLAIM_BOUNDARY = (
     "The Replogle dataset provides large-n confirmation that the bridge correlation persists above null at scale; "
     "it is a single-context dataset and is not used for A0/A1/B architecture-form tiering."
 )
-PANEL_IDS = ("a", "b")
+PANEL_IDS = ("a", "b", "c")
 
 # Panel a data (K562 temporal)
 TEMPORAL_BRIDGE = Path("reports/stage2_truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_bridge_summary.tsv")
@@ -221,55 +219,128 @@ def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
     ax.set_xlim(-0.02, 1.02)
     ax.set_ylim(-0.02, 1.02)
 
-    # Annotations
+    # Stats and legend placed in the right gutter (between panels b and c)
     n = len(df)
     rho_val = 0.402
     ci_low, ci_high = 0.363, 0.439
     n_q1 = int((df["quadrant"] == "Q1_anchor").sum())
+    n_mid = int((df["quadrant"] == "middle").sum())
 
+    # Rho stats — right of scatter, clipped outside axes
     ax.text(
-        0.02, 0.96,
-        f"Replogle K562 essential (day 7)\nn = {n} matched CRISPRi targets\nQ1 anchors = {n_q1}",
-        transform=ax.transAxes, fontsize=6.2, va="top", ha="left",
-        bbox=dict(facecolor="white", edgecolor="none", alpha=0.85),
-    )
-    ax.text(
-        0.98, 0.06,
-        f"aligned Spearman rho = {rho_val:.3f}\n95% CI [{ci_low:.3f}, {ci_high:.3f}]\nempirical p = 0.001",
-        transform=ax.transAxes, fontsize=6.0, va="bottom", ha="right",
-        bbox=dict(facecolor="white", edgecolor="none", alpha=0.85),
+        1.06, 0.78,
+        f"aligned Spearman rho = {rho_val:.3f}\n95% CI [{ci_low:.3f}, {ci_high:.3f}]\nempirical p = 0.001\nn = {n}",
+        transform=ax.transAxes, fontsize=5.8, va="top", ha="left", color="#333333", clip_on=False,
     )
 
-    # Quadrant legend
-    legend_elements = [
-        Patch(facecolor=quadrant_colors["Q1_anchor"], edgecolor="white", label=f"Q1 anchor ({n_q1})"),
-        Patch(facecolor=SKY_BLUE, edgecolor="white", label="Q2/Q3 excess"),
-        Patch(facecolor="#BDBDBD", edgecolor="white", label="Q4 low info"),
-        Patch(facecolor="#E0E0E0", label=f"middle ({int((df['quadrant'] == 'middle').sum())})"),
+    # Quadrant swatches — right of scatter
+    legend_spec = [
+        ("Q1 anchor", n_q1, quadrant_colors["Q1_anchor"]),
+        ("Q2/Q3 excess", int((df["quadrant"].isin(["Q2_shift_excess", "Q3_dep_excess"])).sum()), SKY_BLUE),
+        ("Q4 low info", int((df["quadrant"] == "Q4_low_info").sum()), "#BDBDBD"),
+        ("middle", n_mid, "#E0E0E0"),
     ]
-    ax.legend(handles=legend_elements, loc="upper right", frameon=True, fontsize=5.6,
-              framealpha=0.9, edgecolor="#DDDDDD", handlelength=1.0, borderpad=0.4)
+    for i, (label, count, color) in enumerate(legend_spec):
+        y = 0.40 - i * 0.07
+        ax.add_patch(
+            plt.Rectangle((1.06, y), 0.03, 0.04, transform=ax.transAxes,
+                          facecolor=color, edgecolor="white", linewidth=0.3, clip_on=False))
+        ax.text(1.105, y + 0.02, f"{label} ({count})", transform=ax.transAxes,
+                fontsize=5.2, va="center", ha="left", color="#333333", clip_on=False)
 
     clean_axes(ax)
     ax.set_box_aspect(1)
-    add_panel_heading(ax, "", "Large-scale perturbation-fitness bridge confirmation", label_x=-0.08, title_x=0.02, y=1.035)
+    add_panel_heading(ax, "", "Large-scale bridge confirmation", label_x=-0.08, title_x=0.02, y=1.035)
+
+
+def build_panel_c_source(root: Path) -> pd.DataFrame:
+    """Placeholder — panel c is a static checklist."""
+    return pd.DataFrame()
+
+
+def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
+    """K562 evidence-tier checklist — compact Fig 2f claim matrix style."""
+    ax.set_axis_off()
+
+    LIGHT_GRAY = "#F0F0F0"
+    DIVIDER_GRAY = "#CCCCCC"
+    DARK_TEXT = "#1F1F1F"
+    GREEN = "#2E7D32"
+    OCHRE = "#D84315"
+    GREEN_FILL = "#E8F5E9"
+
+    rows = [
+        ("Bridge rho above null",            "A1", "yes", "ρ=0.733 / 0.515"),
+        ("Joint grid defined",                "",  "yes", "25/75 grid applied"),
+        ("Q1 region present",                 "",  "yes", "quadrant observed"),
+        ("Backbone / shift-excess structure", "A0","yes", "matches primary"),
+        ("Content-level replication",          "B", "no",  "composition differs"),
+        ("Assigned tier",                      "",  "A0/A1 supported; B not supported", ""),
+    ]
+
+    # Header bar (Fig 2f style)
+    ax.add_patch(
+        plt.Rectangle((0.005, 0.87), 0.99, 0.08, transform=ax.transAxes,
+                      facecolor=LIGHT_GRAY, edgecolor="none", zorder=0))
+    headers = [("Evidence item", 0.02), ("Tier", 0.42), ("Status", 0.54), ("Note", 0.72)]
+    for text, x in headers:
+        ax.text(x, 0.91, text, fontsize=7.0, fontweight="bold", color=DARK_TEXT, transform=ax.transAxes)
+    ax.plot([0.01, 0.99], [0.87, 0.87], color=DIVIDER_GRAY, linewidth=0.7, transform=ax.transAxes)
+
+    row_gap = 0.07
+    for i, (item, supports, status, note) in enumerate(rows):
+        y = 0.79 - i * row_gap
+        is_yes = status == "yes"
+        is_tier = "A0/A1" in status and "supported" in status
+
+        if is_tier:
+            ax.add_patch(
+                plt.Rectangle((0.005, y - row_gap * 0.44), 0.99, row_gap * 0.86,
+                              transform=ax.transAxes, facecolor=GREEN_FILL, edgecolor="none", zorder=0))
+
+        fw = "bold" if is_tier else "normal"
+        fs = 7.2 if is_tier else 6.5
+        ax.text(0.02, y, item, fontsize=fs, fontweight=fw,
+                color=GREEN if is_tier else DARK_TEXT, transform=ax.transAxes, va="center")
+
+        if supports:
+            ax.text(0.42, y, supports, fontsize=6.5, va="center", fontweight="bold",
+                    color="#888888", transform=ax.transAxes)
+
+        chip_color = GREEN if (is_yes or is_tier) else OCHRE
+        ax.add_patch(
+            plt.Rectangle((0.54, y - 0.022), 0.022, 0.044, transform=ax.transAxes,
+                          facecolor=chip_color, edgecolor="none"))
+        status_text = "yes" if is_yes else "no"
+        if is_tier:
+            status_text = "A0/A1, not B"
+        ax.text(0.57, y, status_text, fontsize=6.5 if is_tier else 6.0, va="center",
+                fontweight="bold", color=chip_color, transform=ax.transAxes)
+
+        if note:
+            ax.text(0.72, y, note, fontsize=5.2, va="center", ha="left",
+                    color="#999999", transform=ax.transAxes)
+
+    add_panel_heading(ax, "", "K562 evidence-tier checklist", label_x=-0.08, title_x=0.02, y=1.035)
 
 
 def build_sources(root: Path) -> dict[str, pd.DataFrame]:
     return {
         "a": build_panel_a_source(root),
         "b": build_panel_b_source(root),
+        "c": build_panel_c_source(root),
     }
 
 
 def render_panel_by_id(panel_id: str) -> Callable[[plt.Axes, pd.DataFrame], None]:
-    return {"a": render_panel_a, "b": render_panel_b}[panel_id]
+    return {"a": render_panel_a, "b": render_panel_b, "c": render_panel_c}[panel_id]
 
 
 def panel_title(panel_id: str) -> str:
     return {
         "a": "K562 temporal bridge-magnitude dissociation",
         "b": "Replogle K562 essential large-scale perturbation-fitness bridge",
+        "c": "K562 evidence-tier checklist",
     }[panel_id]
 
 
@@ -308,15 +379,16 @@ def render_combined(root: Path, sources: dict[str, pd.DataFrame], panel_outputs:
     combined_source = pd.concat([df.assign(panel=panel_id) for panel_id, df in sources.items()], ignore_index=True, sort=False)
     combined_source_path = write_tsv(combined_source, out / "edfig3_source_data.tsv")
 
-    fig = plt.figure(figsize=(11.0, 9.4))
-    gs = fig.add_gridspec(2, 2, hspace=0.45, wspace=0.35, height_ratios=[1, 1.3])
+    fig = plt.figure(figsize=(11.0, 9.0))
+    gs = fig.add_gridspec(2, 2, hspace=0.35, wspace=0.50, height_ratios=[1, 1.3])
 
     ax_a = fig.add_subplot(gs[0, :])
     ax_b = fig.add_subplot(gs[1, 0])
-    # Right cell of bottom row left empty to keep panel b square
+    ax_c = fig.add_subplot(gs[1, 1])
 
     render_panel_a(ax_a, sources["a"])
     render_panel_b(ax_b, sources["b"])
+    render_panel_c(ax_c, sources["c"])
 
     output_paths = save_figure(fig, out / "edfig3.png", out / "edfig3.pdf")
     write_figure_manifest(
@@ -347,6 +419,8 @@ def main(argv: list[str] | None = None) -> None:
     panel_outputs["a"] = write_panel(root=root, panel_id="a", source_df=sources["a"], render=render_panel_a, width=7.0, height=4.2)
     # Panel b: Replogle scatter (square)
     panel_outputs["b"] = write_panel(root=root, panel_id="b", source_df=sources["b"], render=render_panel_b, width=6.0, height=6.2)
+    # Panel c: evidence-tier checklist
+    panel_outputs["c"] = write_panel(root=root, panel_id="c", source_df=sources["c"], render=render_panel_c, width=5.0, height=6.2)
 
     if not args.panels_only:
         render_combined(root, sources, panel_outputs)
