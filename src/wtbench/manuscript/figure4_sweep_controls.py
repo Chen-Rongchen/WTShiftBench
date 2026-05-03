@@ -274,13 +274,13 @@ def write_panel(
 
 
 # ---------------------------------------------------------------------------
-# Panel a — Pre-specified finite-budget GEARS candidates (table)
+# Panel a — Analysis-locked finite-budget GEARS candidates (table)
 # ---------------------------------------------------------------------------
 
 
 def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
     ax.set_axis_off()
-    add_panel_heading(ax, "", "Pre-specified finite-budget GEARS candidates", title_x=0.00, title_fontsize=8.8)
+    add_panel_heading(ax, "", "Analysis-locked finite-budget GEARS candidates", title_x=0.00, title_fontsize=8.8)
 
     recipes = df[df["step"] == "sweep_recipe_entry"].copy()
     recipes = recipes[recipes["model_id"].isin(SWEEP_LETTERS.keys())].copy()
@@ -312,7 +312,7 @@ def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
 
     table_df = pd.DataFrame(table_rows)
     headers = ["Candidate", "Epoch", "LR", "WD", "Role"]
-    col_widths = [0.27, 0.10, 0.12, 0.11, 0.31]
+    col_widths = [0.20, 0.10, 0.17, 0.16, 0.28]
     n_rows = len(table_df)
     left_margin = 0.03
     table_top = 0.90
@@ -459,7 +459,7 @@ def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
     add_panel_heading(
         ax,
         "",
-        "Prespecified rebuttal candidates do not close the backbone gap",
+        "Tested rebuttal candidates do not close the backbone gap",
         label_x=-0.08,
         title_fontsize=8.8,
     )
@@ -968,8 +968,8 @@ def render_panel_by_id(panel_id: str) -> Callable[[plt.Axes, pd.DataFrame], None
 
 def panel_title(panel_id: str) -> str:
     return {
-        "a": "Pre-specified finite-budget GEARS candidates",
-        "b": "Prespecified rebuttal candidates do not close the backbone gap",
+        "a": "Analysis-locked finite-budget GEARS candidates",
+        "b": "Tested rebuttal candidates do not close the backbone gap",
         "c": "No tested rebuttal candidate closes the backbone gap to the shared-mean baseline",
     }[panel_id]
 
