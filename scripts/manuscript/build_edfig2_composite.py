@@ -64,6 +64,10 @@ def main():
     final.paste(row1_s, (0, row0_s.height))
     final.paste(row2, (0, row0_s.height + row1_s.height))
 
+    # Downscale to target width for consistent resolution
+    target_w = 4500
+    final = final.resize((target_w, int(total_h * target_w / W)), Image.LANCZOS)
+
     final.save(OUT / "Extended_Data_Figure_2.png")
     test_dir = ROOT / "reports/manuscript_extended_data_v1/edfig2_test_composite"
     test_dir.mkdir(parents=True, exist_ok=True)
