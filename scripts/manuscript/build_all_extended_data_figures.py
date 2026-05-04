@@ -15,6 +15,7 @@ EXPECTED_PANEL_COUNTS = {
     "extended_data_figure3": 3,
     "extended_data_figure4": 2,
     "extended_data_figure5": 1,
+    "extended_data_figure_robustness": 4,
 }
 
 

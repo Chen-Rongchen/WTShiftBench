@@ -1,5 +1,13 @@
 #!/usr/bin/env python3
-"""Build ED Fig 1 composite: a (table) + 5 UMAPs + 5 arrows. Panel letters added via PIL."""
+"""Build ED Fig 1 composite from individual panel PNGs.
+
+Panel layout (top to bottom):
+  Row 0 — panel a (dataset table)
+  Row 1 — UMAP panels (b-e from source; j added if Replogle present)
+  Row 2 — arrow panels (f-i from source; k added if Replogle present)
+
+Auto-detects Replogle panels j,k and includes them when available.
+"""
 from __future__ import annotations
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
@@ -21,6 +29,11 @@ def load(letter: str) -> Image.Image:
     return Image.open(PDIR / f"Extended_Data_Figure_1_panel_{letter}.png")
 
 
+def load_if_exists(letter: str) -> Image.Image | None:
+    p = PDIR / f"Extended_Data_Figure_1_panel_{letter}.png"
+    return Image.open(p) if p.exists() else None
+
+
 def add_panel_letter(img: Image.Image, letter: str) -> Image.Image:
     """Add bold panel letter top-left, matching ED Fig 3a style."""
     draw = ImageDraw.Draw(img)
@@ -32,12 +45,14 @@ def add_panel_letter(img: Image.Image, letter: str) -> Image.Image:
 def main():
     # Row 0: Panel a (table)
     row0 = load("a")
-    # row0 = add_panel_letter(row0, "a")  # panel letter removed
     row0 = row0.resize((TARGET_W, int(row0.height * TARGET_W / row0.width)), Image.LANCZOS)
 
-    # Row 1: 5 UMAPs side by side
+    # Row 1: UMAP panels (b-e from source; j for Replogle if exists)
+    umap_letters = list("bcde")
+    if load_if_exists("j"):
+        umap_letters.append("j")
     umap_imgs = []
-    for c in "bcdef":
+    for c in umap_letters:
         im = load(c)
         im = im.resize((int(im.width * UMAP_H / im.height), UMAP_H), Image.LANCZOS)
         umap_imgs.append(im)
@@ -47,12 +62,14 @@ def main():
     for im in umap_imgs:
         row1.paste(im, (x, 0))
         x += im.width
-    # row1 = add_panel_letter(row1, "b")  # panel letter removed
     row1 = row1.resize((TARGET_W, int(UMAP_H * TARGET_W / row1_w)), Image.LANCZOS)
 
-    # Row 2: 5 arrow panels in a single row
+    # Row 2: Arrow panels (f-i from source; k for Replogle if exists)
+    arrow_letters = list("fghi")
+    if load_if_exists("k"):
+        arrow_letters.append("k")
     arrow_imgs = []
-    for c in "ghijk":
+    for c in arrow_letters:
         im = load(c)
         arrow_imgs.append(im.resize((int(im.width * ARROW_H / im.height), ARROW_H), Image.LANCZOS))
     row2_w = sum(im.width for im in arrow_imgs)
@@ -61,7 +78,6 @@ def main():
     for im in arrow_imgs:
         row2.paste(im, (x, 0))
         x += im.width
-    # row2 = add_panel_letter(row2, "c")  # panel letter removed
     row2 = row2.resize((TARGET_W, int(ARROW_H * TARGET_W / row2_w)), Image.LANCZOS)
 
     # Vertical stack
@@ -75,7 +91,9 @@ def main():
     test_dir = ROOT / "reports/manuscript_extended_data_v1/edfig1_test_composite"
     test_dir.mkdir(parents=True, exist_ok=True)
     final.save(test_dir / "edfig1_composite.png")
-    print(f"[OK] ED Fig 1 composite: {final.size}")
+    n_umap = len(umap_letters)
+    n_arr = len(arrow_letters)
+    print(f"[OK] ED Fig 1 composite: {final.size}  (a + {n_umap} UMAPs + {n_arr} arrows)")
 
 
 if __name__ == "__main__":

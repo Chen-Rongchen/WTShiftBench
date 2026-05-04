@@ -1,5 +1,13 @@
 #!/usr/bin/env python3
-"""Fix ED Fig 3 panel b: square scatter. Uses PIL to composite — preserves original layout."""
+"""ED Fig 3 current manuscript builder (standalone override script).
+
+NOTE: This script directly writes to manuscript/extended_data/Extended_Data_Figure_3/
+and is the ACTUAL builder for the current manuscript figure. It overrides the standard
+pipeline (build_extended_data_figure3_v2.py → extended_data_figure3_v2.py).
+
+The standard pipeline (extended_data_figure3_v2.py) now also supports panel c, but
+uses matplotlib compositing instead of PIL. This script is preserved as the
+authoritative builder for the current submission version."""
 from __future__ import annotations
 
 import sys
