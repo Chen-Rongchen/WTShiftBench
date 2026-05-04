@@ -34,6 +34,13 @@
       "script": "scripts/manuscript/build_extended_data_figure9_biological_landing.py",
       "output_dir": "reports/manuscript_extended_data_v1/edfig9_biological_landing",
       "source_stem": "edfig9"
+    },
+    {
+      "figure_id": "extended_data_figure_robustness",
+      "name": "robustness_audits",
+      "script": "scripts/manuscript/build_extended_data_figure_robustness.py",
+      "output_dir": "reports/manuscript_extended_data_v1/edfig_robustness",
+      "source_stem": "edfig_robustness"
     }
   ]
 }
