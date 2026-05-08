@@ -243,7 +243,7 @@ def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
             sign_ax.axhline(i - 0.5, color="white", linewidth=1.1)
             rho_ax.axhline(i - 0.5, color="white", linewidth=1.1)
 
-    for strip_ax, title in [(sign_ax, "Sign\nagree %"), (rho_ax, "Spearman\nrho")]:
+    for strip_ax, title in [(sign_ax, "Sign\nagree %"), (rho_ax, "Spearman\nρ")]:
         strip_ax.set_xticks([0])
         strip_ax.set_xticklabels([title])
         strip_ax.set_yticks([])

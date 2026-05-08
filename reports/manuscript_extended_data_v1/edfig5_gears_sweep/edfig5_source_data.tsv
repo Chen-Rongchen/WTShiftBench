@@ -1,0 +1,60 @@
+variant_id	epochs	lr	weight_decay	materialization_export_sanity	change_count	candidate_rank	model_id	config_path	run_command	panel	phase	status	n	object_role	backbone_recovery_score	shift_excess_identification_score	structure_vs_context_separation_score	cosine_similarity_mean	l2_distance_mean	top20_overlap_mean	rule	baseline_backbone	best_sweep_backbone	decision	boundary
+e30_lr1e-03_wd1e-06	30.0	0.001	1e-06	default_only	0.0	1.0	gears_hcc_formal_v1_e30_lr1e-03_wd1e-06	configs/stage2/generated/gears_hcc_backbone_sweep_v1/e30_lr1e-03_wd1e-06.json	PYTHONPATH=src pixi run --environment gears python scripts/run_stage2_gears_hcc_predictions.py --config configs/stage2/generated/gears_hcc_backbone_sweep_v1/e30_lr1e-03_wd1e-06.json	a															
+e30_lr1e-03_wd1e-05	30.0	0.001	1e-05	default_only	1.0	2.0	gears_hcc_formal_v1_e30_lr1e-03_wd1e-05	configs/stage2/generated/gears_hcc_backbone_sweep_v1/e30_lr1e-03_wd1e-05.json	PYTHONPATH=src pixi run --environment gears python scripts/run_stage2_gears_hcc_predictions.py --config configs/stage2/generated/gears_hcc_backbone_sweep_v1/e30_lr1e-03_wd1e-05.json	a															
+e30_lr5e-04_wd1e-06	30.0	0.0005	1e-06	default_only	1.0	3.0	gears_hcc_formal_v1_e30_lr5e-04_wd1e-06	configs/stage2/generated/gears_hcc_backbone_sweep_v1/e30_lr5e-04_wd1e-06.json	PYTHONPATH=src pixi run --environment gears python scripts/run_stage2_gears_hcc_predictions.py --config configs/stage2/generated/gears_hcc_backbone_sweep_v1/e30_lr5e-04_wd1e-06.json	a															
+e30_lr2e-03_wd1e-06	30.0	0.002	1e-06	default_only	1.0	4.0	gears_hcc_formal_v1_e30_lr2e-03_wd1e-06	configs/stage2/generated/gears_hcc_backbone_sweep_v1/e30_lr2e-03_wd1e-06.json	PYTHONPATH=src pixi run --environment gears python scripts/run_stage2_gears_hcc_predictions.py --config configs/stage2/generated/gears_hcc_backbone_sweep_v1/e30_lr2e-03_wd1e-06.json	a															
+e20_lr1e-03_wd1e-06	20.0	0.001	1e-06	default_only	1.0	5.0	gears_hcc_formal_v1_e20_lr1e-03_wd1e-06	configs/stage2/generated/gears_hcc_backbone_sweep_v1/e20_lr1e-03_wd1e-06.json	PYTHONPATH=src pixi run --environment gears python scripts/run_stage2_gears_hcc_predictions.py --config configs/stage2/generated/gears_hcc_backbone_sweep_v1/e20_lr1e-03_wd1e-06.json	a															
+e40_lr1e-03_wd1e-06	40.0	0.001	1e-06	default_only	1.0	6.0	gears_hcc_formal_v1_e40_lr1e-03_wd1e-06	configs/stage2/generated/gears_hcc_backbone_sweep_v1/e40_lr1e-03_wd1e-06.json	PYTHONPATH=src pixi run --environment gears python scripts/run_stage2_gears_hcc_predictions.py --config configs/stage2/generated/gears_hcc_backbone_sweep_v1/e40_lr1e-03_wd1e-06.json	a															
+e20_lr1e-03_wd1e-06										b	export_HCC1143	completed	1.0												
+e20_lr1e-03_wd1e-06										b	export_HCC1143	started	1.0												
+e20_lr1e-03_wd1e-06										b	export_HCC38	completed	1.0												
+e20_lr1e-03_wd1e-06										b	export_HCC38	started	1.0												
+e20_lr1e-03_wd1e-06										b	smoke	completed	1.0												
+e20_lr1e-03_wd1e-06										b	smoke	started	1.0												
+e20_lr1e-03_wd1e-06										b	train	completed	1.0												
+e20_lr1e-03_wd1e-06										b	train	started	1.0												
+e30_lr1e-03_wd1e-05										b	export_HCC1143	completed	1.0												
+e30_lr1e-03_wd1e-05										b	export_HCC1143	started	1.0												
+e30_lr1e-03_wd1e-05										b	export_HCC38	completed	1.0												
+e30_lr1e-03_wd1e-05										b	export_HCC38	started	1.0												
+e30_lr1e-03_wd1e-05										b	smoke	completed	1.0												
+e30_lr1e-03_wd1e-05										b	smoke	started	1.0												
+e30_lr1e-03_wd1e-05										b	train	skipped_existing	1.0												
+e30_lr2e-03_wd1e-06										b	export_HCC1143	completed	1.0												
+e30_lr2e-03_wd1e-06										b	export_HCC1143	started	1.0												
+e30_lr2e-03_wd1e-06										b	export_HCC38	completed	1.0												
+e30_lr2e-03_wd1e-06										b	export_HCC38	started	1.0												
+e30_lr2e-03_wd1e-06										b	smoke	completed	1.0												
+e30_lr2e-03_wd1e-06										b	smoke	started	1.0												
+e30_lr2e-03_wd1e-06										b	train	completed	1.0												
+e30_lr2e-03_wd1e-06										b	train	started	1.0												
+e30_lr5e-04_wd1e-06										b	export_HCC1143	completed	1.0												
+e30_lr5e-04_wd1e-06										b	export_HCC1143	started	1.0												
+e30_lr5e-04_wd1e-06										b	export_HCC38	completed	1.0												
+e30_lr5e-04_wd1e-06										b	export_HCC38	started	1.0												
+e30_lr5e-04_wd1e-06										b	smoke	completed	1.0												
+e30_lr5e-04_wd1e-06										b	smoke	started	1.0												
+e30_lr5e-04_wd1e-06										b	train	completed	1.0												
+e30_lr5e-04_wd1e-06										b	train	started	1.0												
+e40_lr1e-03_wd1e-06										b	export_HCC1143	completed	1.0												
+e40_lr1e-03_wd1e-06										b	export_HCC1143	started	1.0												
+e40_lr1e-03_wd1e-06										b	export_HCC38	completed	1.0												
+e40_lr1e-03_wd1e-06										b	export_HCC38	started	1.0												
+e40_lr1e-03_wd1e-06										b	smoke	completed	1.0												
+e40_lr1e-03_wd1e-06										b	smoke	started	1.0												
+e40_lr1e-03_wd1e-06										b	train	completed	1.0												
+e40_lr1e-03_wd1e-06										b	train	started	1.0												
+							gears_hcc_formal_v1_e30_lr2e-03_wd1e-06			c				entrant	0.6433333333333333	0.8333333333333333	0.4485243810877402	0.1678169400085949	0.5700129145224688	0.5143617021276596					
+							gears_hcc_formal_v1_e20_lr1e-03_wd1e-06			c				entrant	0.6266666666666667	0.5	0.4591562997768912	0.2003148281477906	0.6324110045805078	0.5074468085106383					
+							gears_hcc_formal_v1_e30_lr1e-03_wd1e-05			c				entrant	0.6133333333333333	0.9166666666666669	0.427833160600328	0.125648836007946	0.5960476370077242	0.5170212765957447					
+							gears_hcc_formal_v1_e30_lr5e-04_wd1e-06			c				entrant	0.53	0.9166666666666669	0.4458928896160027	0.1995292583484186	0.6094527045051442	0.5276595744680852					
+							gears_hcc_formal_v1_e40_lr1e-03_wd1e-06			c				entrant	0.4933333333333333	0.6666666666666667	0.4684217036980002	0.2059823703992348	0.5753693543899769	0.5095744680851064					
+							gears_hcc_formal_v1_e30_lr2e-03_wd1e-06			d				entrant	0.6433333333333333	0.8333333333333333	0.4485243810877402	0.1678169400085949	0.5700129145224688	0.5143617021276596					
+							gears_hcc_formal_v1_e20_lr1e-03_wd1e-06			d				entrant	0.6266666666666667	0.5	0.4591562997768912	0.2003148281477906	0.6324110045805078	0.5074468085106383					
+							gears_hcc_formal_v1_e30_lr1e-03_wd1e-05			d				entrant	0.6133333333333333	0.9166666666666669	0.427833160600328	0.125648836007946	0.5960476370077242	0.5170212765957447					
+							gears_hcc_formal_v1_e30_lr5e-04_wd1e-06			d				entrant	0.53	0.9166666666666669	0.4458928896160027	0.1995292583484186	0.6094527045051442	0.5276595744680852					
+							gears_hcc_formal_v1_e40_lr1e-03_wd1e-06			d				entrant	0.4933333333333333	0.6666666666666667	0.4684217036980002	0.2059823703992348	0.5753693543899769	0.5095744680851064					
+										e											stop	0.8066666666666666	0.6433333333333333	do not promote GEARS as primary winner	
+										f		not rerun in figure stage													GEARS training
+										f		frozen and hashed													predictions/scores
+										f		finite-budget control													recipe search

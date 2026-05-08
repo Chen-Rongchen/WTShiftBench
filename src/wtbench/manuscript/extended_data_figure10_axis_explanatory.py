@@ -256,7 +256,7 @@ def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
     ]
     breadth_handles = [
         Line2D([0], [0], marker="o", linestyle="", markerfacecolor="white", markeredgecolor=NEUTRAL_GRAY, markersize=4.6, label="n = 1"),
-        Line2D([0], [0], marker="o", linestyle="", markerfacecolor=NEUTRAL_GRAY, markeredgecolor="white", markersize=4.6, label="n >= 2"),
+        Line2D([0], [0], marker="o", linestyle="", markerfacecolor=NEUTRAL_GRAY, markeredgecolor="white", markersize=4.6, label="n \u2265 2"),
     ]
     first = ax.legend(handles=profile_handles, frameon=False, loc="upper left", fontsize=5.9, handletextpad=0.35)
     ax.add_artist(first)
@@ -348,7 +348,7 @@ def render_panel_by_id(panel_id: str) -> Callable[[plt.Axes, pd.DataFrame], None
 def panel_title(panel_id: str) -> str:
     return {
         "a": "Axis-level signal space",
-        "b": "Paired axis R2 ranking",
+        "b": "Paired axis R\u00b2 ranking",
     }[panel_id]
 
 

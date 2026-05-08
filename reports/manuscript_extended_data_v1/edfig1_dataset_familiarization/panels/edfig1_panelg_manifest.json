@@ -1,0 +1,79 @@
+{
+  "claim_boundary": "These panels are descriptive familiarization of benchmark input datasets and endpoint datasets; they do not replace the pre-specified truth object, endpoint hierarchy, or adjudication metrics.",
+  "generated_at_utc": "2026-05-07T15:29:59.307430+00:00",
+  "git": {
+    "commit": "77ee2113ec95c8edd23b538c39c9078e65b497fc",
+    "status_short": "M manuscript/extended_data/Extended_Data_Figure_1/Extended_Data_Figure_1.png\n M manuscript/extended_data/Extended_Data_Figure_1/panels/Extended_Data_Figure_1_panel_a.png\n M manuscript/extended_data/Extended_Data_Figure_1/panels/Extended_Data_Figure_1_panel_b.png\n M manuscript/extended_data/Extended_Data_Figure_1/panels/Extended_Data_Figure_1_panel_c.png\n M manuscript/extended_data/Extended_Data_Figure_1/panels/Extended_Data_Figure_1_panel_d.png\n M manuscript/extended_data/Extended_Data_Figure_1/panels/Extended_Data_Figure_1_panel_e.png\n M manuscript/extended_data/Extended_Data_Figure_1/panels/Extended_Data_Figure_1_panel_f.png\n M manuscript/extended_data/Extended_Data_Figure_1/panels/Extended_Data_Figure_1_panel_g.png\n M manuscript/extended_data/Extended_Data_Figure_1/panels/Extended_Data_Figure_1_panel_h.png\n M manuscript/extended_data/Extended_Data_Figure_1/panels/Extended_Data_Figure_1_panel_i.png\n M manuscript/extended_data/Extended_Data_Figure_1/panels/Extended_Data_Figure_1_panel_j.png\n M manuscript/extended_data/Extended_Data_Figure_1/panels/Extended_Data_Figure_1_panel_k.png\n D schemas/freeze_manifest.template.yaml\n M scripts/manuscript/build_edfig1_composite.py\n D scripts/stage1a/__init__.py\n D scripts/stage1a/adapters/__init__.py\n D scripts/stage1a/adapters/common/__init__.py\n D scripts/stage1a/adapters/common/runtime.py\n D scripts/stage1a/adapters/gears/__init__.py\n D scripts/stage1a/adapters/gears/build_predictions.py\n D scripts/stage1a/adapters/geneformer/__init__.py\n D scripts/stage1a/adapters/geneformer/build_predictions.py\n D scripts/stage1a/adapters/scgpt/__init__.py\n D scripts/stage1a/adapters/scgpt/build_predictions.py\n D scripts/stage1a/benchmark_invariant/__init__.py\n D scripts/stage1a/benchmark_invariant/catalog.py\n D scripts/stage1a/benchmark_invariant/prediction_eval_common.py\n D scripts/stage1a/challengers/__init__.py\n D scripts/stage1a/challengers/common.py\n M src/wtbench/manuscript/extended_data_figure1.py\n M src/wtbench/manuscript/extended_data_figure13.py\n M src/wtbench/manuscript/figure1_truth_object_v2.py\n M src/wtbench/manuscript/figure_io.py\n?? backup/reports_stage1a/\n?? backup/reports_stage1a_audit/\n?? backup/scripts_stage1a/\n?? manuscript/build_scripts/\n?? manuscript/extended_data/Extended_Data_Figure_2/build_edfig2_composite.py\n?? manuscript/extended_data/Extended_Data_Figure_2/build_edfig2_panel_e.py\n?? manuscript/extended_data/Extended_Data_Figure_2/build_extended_data_figure13.py\n?? manuscript/extended_data/Extended_Data_Figure_3/build_extended_data_figure3_v2.py\n?? manuscript/extended_data/Extended_Data_Figure_3/panels/Extended_Data_Figure_3_panel_b_manifest.json\n?? manuscript/extended_data/Extended_Data_Figure_3/panels/Extended_Data_Figure_3_panel_b_source_data.tsv\n?? manuscript/extended_data/Extended_Data_Figure_3/panels/Extended_Data_Figure_3_panel_c_manifest.json\n?? manuscript/extended_data/Extended_Data_Figure_3/panels/Extended_Data_Figure_3_panel_c_source_data.tsv\n?? manuscript/extended_data/Extended_Data_Figure_4/build_extended_data_figure10_axis_explanatory.py\n?? manuscript/extended_data/Extended_Data_Figure_5/build_extended_data_figure9_biological_landing.py\n?? manuscript/extended_data/Extended_Data_Figure_6/Extended_Data_Figure_6_panel_manifest.json\n?? manuscript/extended_data/Extended_Data_Figure_6/build_extended_data_figure_robustness.py\n?? manuscript/extended_data/Extended_Data_Figure_6/panels/Extended_Data_Figure_6_panel_a_manifest.json\n?? manuscript/extended_data/Extended_Data_Figure_6/panels/Extended_Data_Figure_6_panel_a_source_data.tsv\n?? manuscript/extended_data/Extended_Data_Figure_6/panels/Extended_Data_Figure_6_panel_b_manifest.json\n?? manuscript/extended_data/Extended_Data_Figure_6/panels/Extended_Data_Figure_6_panel_b_source_data.tsv\n?? manuscript/extended_data/Extended_Data_Figure_6/panels/Extended_Data_Figure_6_panel_c_manifest.json\n?? manuscript/extended_data/Extended_Data_Figure_6/panels/Extended_Data_Figure_6_panel_c_source_data.tsv\n?? manuscript/extended_data/Extended_Data_Figure_6/panels/Extended_Data_Figure_6_panel_d_manifest.json\n?? manuscript/extended_data/Extended_Data_Figure_6/panels/Extended_Data_Figure_6_panel_d_source_data.tsv\n?? manuscript/figures/Figure_1/build_figure1_truth_object.py\n?? manuscript/figures/Figure_2/build_figure2_anchor_tiering.py\n?? manuscript/figures/Figure_3/build_figure3_model_tradeoff.py\n?? manuscript/figures/Figure_4/build_figure4_sweep_controls.py\n?? manuscript/figures/Figure_5/build_figure6_boundary.py\n?? manuscript/figures/Figure_5/panels/Figure_5_panel_d.png\n?? manuscript/figures/Figure_5/panels/Figure_5_panel_d_manifest.json\n?? manuscript/figures/Figure_5/panels/Figure_5_panel_d_source_data.tsv\n?? scripts/manuscript/build_edfig1_replogle_umap_from_h5ad.py\n?? scripts/manuscript/build_edfig1_target_gene_expression_source.py"
+  },
+  "inputs": [
+    {
+      "path": "reports/stage2_truth_driven_bridge/hcc38_hcc1143_rnai_endpoint_consistency/endpoint_consistency_summary.tsv",
+      "sha256": "612bd16ed8d12dd9089190b52848bde215507d93355b1cb40b9abccf231925c4"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/k562_rnai_endpoint_consistency/endpoint_consistency_summary.tsv",
+      "sha256": "be9fcfdb0f7fcdc298f98c5d4c1a82bdb7758e5367092e85975461ea2e336700"
+    },
+    {
+      "path": "reports/stage2_rnai_demeter2_conversion/summary.tsv",
+      "sha256": "859f3aae3e34b4a8cffa08eb1f3e1070087bbc4cc64803c2535e8cf505ff99c4"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/HCC38/bridge_audit.tsv",
+      "sha256": "67eacacba1fe936407e0bc7f15a4fa61cc7a32a0f6bc81942f120217e2bac7c9"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/HCC1143/bridge_audit.tsv",
+      "sha256": "b2b1a62e647e58a8091538e06350f77f127f2cc6049f0596b773dae5ea43fcc1"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_bridge_summary.tsv",
+      "sha256": "89c33d689c4b507f477e8d6d972f0aa4513d536e2fc616acc99f67e6d09c9de0"
+    },
+    {
+      "path": "depmap/CRISPRGeneDependency.csv",
+      "sha256": "d314677cb6edf0b7354fc151336b546ece8d343af40dbc35051ba3cf43d7704b"
+    },
+    {
+      "path": "reports/extended_data_candidates/dataset_familiarization_v2/qc/context_metadata.tsv",
+      "sha256": "406f5a443e8e0da99d88b7b66b0f876cf7cac2f95a6b85d577afc4a1d2c8adff"
+    },
+    {
+      "path": "reports/extended_data_candidates/dataset_familiarization_v2/ed_candidate_v2_umap_source_data.tsv",
+      "sha256": "43eb8b7ef8e6ccd289c87dba9d59df30ee126f853ac1ec624086e4ee96b1f3fc"
+    },
+    {
+      "path": "reports/extended_data_candidates/dataset_familiarization_v2/ed_candidate_v2_shift_magnitude_source_data.tsv",
+      "sha256": "e993d1539951c7554348d8570feff325b15722536c06d27df5decd7d51b03dbc"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig1_replogle_panels/replogle_k562_essential_umap.tsv",
+      "sha256": "e1868e5ffa8734d1f4333519a113edc5b031856d0df6e6b13ed5a11a119e2db2"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig1_replogle_panels/replogle_k562_essential_umap_control.tsv",
+      "sha256": "4d58fda15ea6f76bc2effb0f234ea1900cd44c48b120466aac36b0f71a74c675"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig1_dataset_familiarization/edfig1_target_gene_expression_arrows.tsv",
+      "sha256": "55f73bfa0717368a8de2a6627b5a8179113dd01a5c48909601d74120cde47f12"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig1_dataset_familiarization/panels/edfig1_panelg.png",
+      "sha256": "4510827e8f827f88a28de49306b53dd94d0ee1ce8aac0cff0b4004012f7da82d"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig1_dataset_familiarization/panels/edfig1_panelg.pdf",
+      "sha256": "7452450471afae3a78d80114edf3eda175e717b9fae3a5811cf26139a456abbf"
+    }
+  ],
+  "panel_id": "ED1g",
+  "panel_title": "HCC38 target-gene expression (control → perturbed)",
+  "script": "scripts/manuscript/build_extended_data_figure1.py",
+  "source_data": {
+    "path": "reports/manuscript_extended_data_v1/edfig1_dataset_familiarization/panels/edfig1_panelg_source_data.tsv",
+    "sha256": "945928e570eed2aef2f9b0f18d47b28713e478721df532d2962c9583a7173452"
+  }
+}

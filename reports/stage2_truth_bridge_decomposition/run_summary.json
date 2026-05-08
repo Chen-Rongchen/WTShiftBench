@@ -1,0 +1,25 @@
+{
+  "config_path": "configs/stage2/truth_bridge_decomposition_v1.json",
+  "report_root": "reports/stage2_truth_bridge_decomposition",
+  "cell_lines": [
+    "HCC38",
+    "HCC1143"
+  ],
+  "shift_metric": "real_shift_mean_abs",
+  "depmap_metric": "depmap_gene_dependency",
+  "generated_at_utc": "2026-04-15T16:09:53.970194+00:00",
+  "outputs": [
+    "target_level_joint_grid.tsv",
+    "target_level_grid_summary.tsv",
+    "shared_canonical_anchor_summary.tsv",
+    "anchor_cutoff_sensitivity.tsv",
+    "shared_anchor_stability.tsv",
+    "axis_level_shared_explanatory_summary.tsv",
+    "axis_bootstrap_stability.tsv",
+    "evidence_tier_summary.tsv",
+    "bridge_decomposition_report.md",
+    "HCC1143_target_level_joint_grid.png",
+    "HCC38_target_level_joint_grid.png",
+    "axis_level_shared_explanatory_structure.png"
+  ]
+}

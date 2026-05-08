@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Literal
 
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -23,12 +24,25 @@ def write_tsv(df: pd.DataFrame, path: Path) -> Path:
     return path
 
 
-def save_figure(fig: plt.Figure, png_path: Path, pdf_path: Path, *, dpi: int = 1200, max_width: int = 5000) -> list[Path]:
+def save_figure(
+    fig: plt.Figure,
+    png_path: Path,
+    pdf_path: Path,
+    *,
+    dpi: int = 1200,
+    max_width: int = 5000,
+    bbox_inches: Literal["tight"] | None = "tight",
+) -> list[Path]:
     ensure_dir(png_path.parent)
     ensure_dir(pdf_path.parent)
     finalize_manuscript_figure(fig)
-    fig.savefig(png_path, dpi=dpi, bbox_inches="tight")
-    fig.savefig(pdf_path, bbox_inches="tight")
+    save_kw: dict = {"dpi": dpi}
+    if bbox_inches is None:
+        save_kw["bbox_inches"] = None
+    else:
+        save_kw["bbox_inches"] = bbox_inches
+    fig.savefig(png_path, **save_kw)
+    fig.savefig(pdf_path, **save_kw)
     plt.close(fig)
     # Downscale PNG if exceeds max width (PDF stays vector)
     if max_width and png_path.exists():

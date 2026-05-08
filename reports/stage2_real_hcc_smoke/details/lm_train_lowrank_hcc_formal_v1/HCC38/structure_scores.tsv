@@ -1,0 +1,4 @@
+score_name	score_value	score_direction
+backbone_recovery_score	0.5599999999999999	higher_is_better
+shift_excess_identification_score	0.6666666666666666	higher_is_better
+structure_vs_context_separation_score	0.2780542551669404	higher_is_better
