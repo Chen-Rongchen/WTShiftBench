@@ -1,0 +1,26 @@
+{
+  "n_genes_7d_raw": 23111,
+  "n_genes_13d_raw": 21713,
+  "n_genes_intersection": 20824,
+  "k562_cell_count_7d": 28034,
+  "k562_cell_count_13d": 15849,
+  "cell_count_ratio": 0.565,
+  "balanced_subsampling": false,
+  "hcc38_top2_evr": 0.0935,
+  "hcc1143_top2_evr": 0.1293,
+  "k562_pooled_top2_evr": 0.0572,
+  "hcc38_highlighted": [
+    "PFDN5",
+    "PRPF6"
+  ],
+  "hcc1143_highlighted": [
+    "PFDN5",
+    "PRPF6"
+  ],
+  "k562_highlighted": [
+    "YY1",
+    "IRF1"
+  ],
+  "min_perturbed_cells": 20,
+  "min_control_cells": 50
+}

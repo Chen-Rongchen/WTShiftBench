@@ -1,0 +1,6 @@
+comparison_field	HCC38_HCC1143	K562_Dixit	replication_status
+canonical backbone present	True	True	CONFIRMED
+shift-excess present	True	True	CONFIRMED
+backbone macro class	gene expression machinery	transcription regulation	CONTEXT_SPECIFIC
+shift-excess macro class	signaling / growth control	signaling / stress	CONTEXT_SPECIFIC
+architecture class	backbone_plus_shift_excess	backbone_plus_shift_excess	CONFIRMED

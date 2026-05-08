@@ -16,10 +16,9 @@ from scipy import sparse
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "src"))
 
-from wtbench.manuscript.figure_io import repo_root, save_figure, ensure_dir
+from wtbench.manuscript.figure_io import ensure_dir, repo_root, save_figure, write_tsv
 from wtbench.manuscript.manuscript_style import (
     AXIS_LABEL_SIZE,
-    COLORS,
     TICK_LABEL_SIZE,
     apply_manuscript_style,
     clean_axes,
@@ -36,8 +35,11 @@ OUT_TEST = ROOT / "reports/manuscript_extended_data_v1/edfig2_test_panel_e"
 # Continuous colormap (Mean abs shift) preview — compare with default gray/orange
 OUT_TEST_SHIFT_COLOR = ROOT / "reports/manuscript_extended_data_v1/edfig2_test_panel_e_shift_colormap"
 
-# Default (classic scatter): accent these four in orange
-REFERENCE_ANCHORS = ["PFDN5", "PRPF6", "ZNF131"]
+PANEL_E_SOURCE_NAME = "Extended_Data_Figure_2_panel_e_source_data.tsv"
+
+# Four stable anchors (manuscript); PMF1 stays in shift/colormap layer but has no text callout.
+REFERENCE_ANCHORS = ["PFDN5", "PMF1", "PRPF6", "ZNF131"]
+ANCHOR_GENE_LABELS = ["PFDN5", "PRPF6", "ZNF131"]
 
 
 def compute_log2fc(adata: ad.AnnData, target_gene: str) -> float | None:
@@ -106,6 +108,27 @@ def build_source(
     return pd.DataFrame(records)
 
 
+def combined_panel_e_source(src_38: pd.DataFrame, src_1143: pd.DataFrame) -> pd.DataFrame:
+    """Single table for Extended_Data_Figure_2_panel_e_source_data.tsv (stable column order)."""
+    out = pd.concat(
+        [
+            src_38.assign(cell_line="HCC38"),
+            src_1143.assign(cell_line="HCC1143"),
+        ],
+        ignore_index=True,
+    )
+    cols = [
+        "cell_line",
+        "target_gene",
+        "log2fc",
+        "depmap_dependency",
+        "shift_mean_abs",
+        "is_anchor",
+        "is_labeled",
+    ]
+    return out.loc[:, cols].sort_values(["cell_line", "target_gene"]).reset_index(drop=True)
+
+
 def render_scatter(ax: plt.Axes, df: pd.DataFrame, title: str) -> None:
     """Render single-context scatter."""
     # Background: all points
@@ -127,8 +150,8 @@ def render_scatter(ax: plt.Axes, df: pd.DataFrame, title: str) -> None:
 
     ax.text(0.03, 0.95,
             f"{title}\nn = {n}\n"
-            f"target-gene log2FC vs dependency: rho = {log2fc_rho:.2f}\n"
-            f"whole-transcriptome shift vs dependency: rho = {shift_rho:.2f}",
+            f"target-gene log2FC vs dependency: Spearman \u03c1 = {log2fc_rho:.2f}\n"
+            f"whole-transcriptome shift vs dependency: Spearman \u03c1 = {shift_rho:.2f}",
             transform=ax.transAxes, fontsize=5.8, va="top", ha="left",
             color="#333333")
 
@@ -141,9 +164,9 @@ def render_scatter(ax: plt.Axes, df: pd.DataFrame, title: str) -> None:
 def _gene_annotations(ax: plt.Axes, df: pd.DataFrame) -> None:
     # Labels BELOW data points, diagonal arrows pointing UP to the gene spot.
     label_offsets = {
-        "PFDN5":   (0, -22),
-        "PRPF6":   (0, -28),
-        "ZNF131":  (0, -16),
+        "PFDN5": (0, -22),
+        "PRPF6": (0, -28),
+        "ZNF131": (0, -16),
     }
     for _, row in df.loc[df["is_labeled"]].iterrows():
         gene = row["target_gene"]
@@ -214,7 +237,7 @@ def render_scatter_shift_colormap(
     ax.text(
         rho_x,
         0.98,
-        f"n = {n}\nrho(tg_logFC) = {log2fc_rho:.2f}\nrho(transcr.) = {shift_rho:.2f}",
+        f"n = {n}\nSpearman \u03c1 (tg_logFC) = {log2fc_rho:.2f}\nSpearman \u03c1 (transcr.) = {shift_rho:.2f}",
         transform=ax.transAxes,
         fontsize=5.8,
         va="top",
@@ -279,7 +302,7 @@ def main() -> None:
         action="store_true",
         help=(
             "Publication Extended Data Fig. 2 panel e: YlOrRd by Mean abs shift, shared colorbar, "
-            "four anchor labels (PFDN5, PMF1, PRPF6, ZNF131), rho top-right. "
+            "gene callouts for PFDN5 / PRPF6 / ZNF131 (PMF1 unlabeled). "
             "Writes manuscript panels + shift_colormap reports path."
         ),
     )
@@ -299,7 +322,7 @@ def main() -> None:
         default=None,
         metavar="DIR",
         help=(
-            "Write panel_e PNG/PDF only under this directory (files: panel_e.png / panel_e.pdf). "
+            "Write panel_e PNG/PDF + Extended_Data_Figure_2_panel_e_source_data.tsv under this directory. "
             "Does not touch manuscript/ …/panels/ nor default reports paths."
         ),
     )
@@ -319,11 +342,12 @@ def main() -> None:
     hcc1143 = ad.read_h5ad(HCC1143_PATH)
 
     highlight_genes = ref_set
-    label_genes = ref_set
+    label_genes = set(ANCHOR_GENE_LABELS)
 
     src_38 = build_source(hcc38, "HCC38", highlight_genes=highlight_genes, label_genes=label_genes)
     src_1143 = build_source(hcc1143, "HCC1143", highlight_genes=highlight_genes, label_genes=label_genes)
     print(f"HCC38: {len(src_38)} targets, HCC1143: {len(src_1143)} targets")
+    source_tbl = combined_panel_e_source(src_38, src_1143)
 
     if args.output_dir is not None:
         out_only = Path(args.output_dir).expanduser().resolve()
@@ -334,6 +358,7 @@ def main() -> None:
         if args.output_dir is not None:
             outp = out_only / "panel_e"
             save_figure(fig, outp.with_suffix(".png"), outp.with_suffix(".pdf"))
+            write_tsv(source_tbl, out_only / PANEL_E_SOURCE_NAME)
             print(f"[OK] Preview only → {outp.with_suffix('.png')}")
             return
 
@@ -341,13 +366,16 @@ def main() -> None:
             ensure_dir(OUT_TEST_SHIFT_COLOR)
             outp = OUT_TEST_SHIFT_COLOR / "panel_e"
             save_figure(fig, outp.with_suffix(".png"), outp.with_suffix(".pdf"))
+            write_tsv(source_tbl, OUT_TEST_SHIFT_COLOR / PANEL_E_SOURCE_NAME)
             print(f"[OK] Shift-colored test: {outp.with_suffix('.png')}")
             return
 
         ensure_dir(OUT_PANEL_E.parent)
         ensure_dir(OUT_TEST_SHIFT_COLOR)
+        write_tsv(source_tbl, OUT_PANEL_E.parent / PANEL_E_SOURCE_NAME)
         save_figure(fig, OUT_PANEL_E.with_suffix(".png"), OUT_PANEL_E.with_suffix(".pdf"))
         save_figure(fig, OUT_TEST_SHIFT_COLOR / "panel_e.png", OUT_TEST_SHIFT_COLOR / "panel_e.pdf")
+        write_tsv(source_tbl, OUT_TEST_SHIFT_COLOR / PANEL_E_SOURCE_NAME)
         print(f"[OK] ED Fig 2 panel e (reference): {OUT_PANEL_E.with_suffix('.png')}")
         return
 
@@ -360,13 +388,16 @@ def main() -> None:
     if args.output_dir is not None:
         outp = out_only / "panel_e"
         save_figure(fig, outp.with_suffix(".png"), outp.with_suffix(".pdf"))
+        write_tsv(source_tbl, out_only / PANEL_E_SOURCE_NAME)
         print(f"[OK] Preview only (classic) → {outp.with_suffix('.png')}")
         return
 
     ensure_dir(OUT_PANEL_E.parent)
     ensure_dir(OUT_TEST)
+    write_tsv(source_tbl, OUT_PANEL_E.parent / PANEL_E_SOURCE_NAME)
     save_figure(fig, OUT_PANEL_E.with_suffix(".png"), OUT_PANEL_E.with_suffix(".pdf"))
     save_figure(fig, OUT_TEST / "panel_e.png", OUT_TEST / "panel_e.pdf")
+    write_tsv(source_tbl, OUT_TEST / PANEL_E_SOURCE_NAME)
     print(f"[OK] Panel e (classic): {OUT_PANEL_E.with_suffix('.png')}")
 
 

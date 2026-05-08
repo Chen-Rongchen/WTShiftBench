@@ -1,0 +1,11 @@
+fine_axis	macro_axis	n_genes	genes	fraction_Q1	fraction_Q2	fraction_shift_excess	mean_shift	mean_liability	mean_residual	architecture_role
+unresolved_7	unresolved	81	A2M,AGA,AHNAK,APOD,BZW2,CCR10,CD151,CD63	0.025	0.0	0.037	0.017787	0.039459	-0.000924	mixed
+unresolved	unresolved	56	ACTA2,B2M,C6orf226,CCND2,CD274,CD47,CD59,CDKN2A	0.0	0.036	0.071	0.018004	-0.172657	0.00093	mixed
+unresolved_3	unresolved	45	AEBP1,APOC2,APOE,ARMC6,ATP1B1,ATP5MD,C19orf48,CD44	0.044	0.0	0.0	0.016828	0.236454	-0.003433	mixed
+unresolved_4	unresolved	13	CCND1,CDK6,DNMT1,FOXM1,HASPIN,NOLC1,P2RX4,PABPC1	0.462	0.0	0.538	0.02742	0.267747	0.006803	shift_excess
+unresolved_6	biosynthetic support / mitochondrial metabolism	11	ACSL3,C1QBP,DDX39A,HLA-C,HNRNPC,MRPL47,NDUFA13,PAICS	0.727	0.0	0.0	0.024682	0.695897	0.000183	backbone
+unresolved_8	mitochondrial OXPHOS / iron-sulfur biogenesis	9	BOLA2,BOLA2B,CHCHD2,FBL,GSEC,NONO,PFN1,TIMM50	0.333	0.0	0.0	0.021395	1.229671	-0.00686	backbone
+unresolved_9	nucleotide metabolism / mitochondrial energy	6	CTPS1,ILF2,POLD2,PPA1,ROMO1,RRS1	1.0	0.0	0.0	0.035224	1.077851	0.007868	backbone
+unresolved_2	translation / chromatin machinery	5	CCT3,EIF4A1,MYC,PRELID3B,SAE1	1.0	0.0	0.0	0.038526	1.86477	0.004623	backbone
+ribosomal / translation	ribosomal / translation	3	EEF1G,GPI,NCL	1.0	0.0	0.0	0.039536	0.614517	0.016034	backbone
+unresolved_5	translation initiation / RNA processing	2	CDC123,PUF60	1.0	0.0	0.0	0.030006	2.777334	-0.011488	backbone

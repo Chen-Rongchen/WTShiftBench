@@ -5,7 +5,7 @@
 
 suppressPackageStartupMessages(library(methods))
 
-SCP542_DIR <- "/home/data/gz0705/WTKO/data/baselines/scp542"
+SCP542_DIR <- file.path(Sys.getenv("WTBENCH_ROOT", getwd()), "data/baselines/scp542")
 OUT_DIR    <- SCP542_DIR
 
 message("=== SCP542 RDS Converter ===")

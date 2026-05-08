@@ -1,0 +1,4 @@
+boundary	status
+GEARS training	not rerun in figure stage
+predictions/scores	frozen and hashed
+recipe search	finite-budget control

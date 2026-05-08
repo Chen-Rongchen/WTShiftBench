@@ -1,5 +1,5 @@
 [workspace]
-name = "wt-benchmark"
+name = "wtshiftbench"
 version = "0.1.0"
 channels = ["pytorch", "nvidia", "conda-forge", "bioconda"]
 platforms = ["linux-64"]

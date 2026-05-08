@@ -1,0 +1,11 @@
+target_gene	fine_axis	macro_axis	candidate_type	functional_category	grid	annotation_confidence
+CREB1	unresolved_3	unresolved	C: middle_range	other / unresolved	Q3: low_liability_low_shift	low
+E2F4	unresolved_2	unresolved	A: shift_excess_low_liability	other / unresolved	middle	low
+EGR1	transcription regulation	transcription regulation	C: middle_range	chromatin / transcription regulation	middle	high
+ELF1	unresolved	unresolved	C: middle_range	other / unresolved	middle	low
+ELK1	unresolved_3	unresolved	C: middle_range	other / unresolved	Q3: low_liability_low_shift	low
+ETS1	unresolved_4	unresolved	C: middle_range	other / unresolved	middle	low
+GABPA	unresolved_5	unresolved	C: middle_range	other / unresolved	middle	low
+IRF1	signaling / stress	signaling / stress	A: shift_excess_low_liability	signaling / stress / immune	middle	high
+NR2C2	unresolved_2	unresolved	C: middle_range	other / unresolved	middle	low
+YY1	transcription regulation_2	transcription regulation	B: shift_excess_high_liability	chromatin / transcription regulation	Q1: high_liability_high_shift	high

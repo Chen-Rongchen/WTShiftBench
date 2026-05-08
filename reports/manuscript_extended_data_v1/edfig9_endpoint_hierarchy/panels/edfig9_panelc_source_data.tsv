@@ -1,0 +1,9 @@
+timepoint	role	summary_kind	truth_metric	depmap_endpoint	platform_pair	n_shared_targets	spearman	interpretation
+HCC38	primary	endpoint_consistency		depmap_gene_dependency	CRISPR_DepMap_vs_DEMETER2_RNAi	47	0.1411927958729406	CRISPR DepMap 是 matched primary endpoint；DEMETER2 RNAi 是 cross-platform sensitivity endpoint。
+HCC38	primary	endpoint_consistency		depmap_gene_effect	CRISPR_DepMap_vs_DEMETER2_RNAi	47	0.1409574468085106	CRISPR DepMap 是 matched primary endpoint；DEMETER2 RNAi 是 cross-platform sensitivity endpoint。
+HCC1143	primary	endpoint_consistency		depmap_gene_dependency	CRISPR_DepMap_vs_DEMETER2_RNAi	47	0.2307558942118978	CRISPR DepMap 是 matched primary endpoint；DEMETER2 RNAi 是 cross-platform sensitivity endpoint。
+HCC1143	primary	endpoint_consistency		depmap_gene_effect	CRISPR_DepMap_vs_DEMETER2_RNAi	47	0.2246762257169288	CRISPR DepMap 是 matched primary endpoint；DEMETER2 RNAi 是 cross-platform sensitivity endpoint。
+7d	temporal_sensitivity_early_bridge_probe	endpoint_consistency		depmap_gene_dependency	CRISPR_DepMap_vs_DEMETER2_RNAi	9	0.45	CRISPR DepMap 是 matched primary endpoint；DEMETER2 RNAi 是 cross-platform sensitivity endpoint。
+7d	temporal_sensitivity_early_bridge_probe	endpoint_consistency		depmap_gene_effect	CRISPR_DepMap_vs_DEMETER2_RNAi	9	0.45	CRISPR DepMap 是 matched primary endpoint；DEMETER2 RNAi 是 cross-platform sensitivity endpoint。
+13d	primary_formal_supplementary_bridge_test	endpoint_consistency		depmap_gene_dependency	CRISPR_DepMap_vs_DEMETER2_RNAi	9	0.45	CRISPR DepMap 是 matched primary endpoint；DEMETER2 RNAi 是 cross-platform sensitivity endpoint。
+13d	primary_formal_supplementary_bridge_test	endpoint_consistency		depmap_gene_effect	CRISPR_DepMap_vs_DEMETER2_RNAi	9	0.45	CRISPR DepMap 是 matched primary endpoint；DEMETER2 RNAi 是 cross-platform sensitivity endpoint。

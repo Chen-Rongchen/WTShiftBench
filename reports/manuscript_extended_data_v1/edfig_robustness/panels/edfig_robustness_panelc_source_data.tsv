@@ -1,0 +1,4 @@
+metric	delta_mean	delta_ci_lower	delta_ci_upper	sign_stability_pct	n_valid_draws	n_total_draws
+backbone_recovery	0.147082	0.086542	0.197143	100.0	998	1000
+shift_excess_identification	-0.007169	-0.38	0.333333	38.546603	633	1000
+structure_vs_context_separation	-0.075132	-0.123332	-0.025318	0.1	1000	1000

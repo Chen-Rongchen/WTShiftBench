@@ -1,0 +1,11 @@
+context	target	n_perturbed	n_control	included	exclusion_reason
+K562_13d	CREB1	1568	3491	True	
+K562_13d	E2F4	840	3491	True	
+K562_13d	EGR1	1246	3491	True	
+K562_13d	ELF1	2347	3491	True	
+K562_13d	ELK1	1507	3491	True	
+K562_13d	ETS1	1029	3491	True	
+K562_13d	GABPA	1173	3491	True	
+K562_13d	IRF1	813	3491	True	
+K562_13d	NR2C2	1011	3491	True	
+K562_13d	YY1	824	3491	True	

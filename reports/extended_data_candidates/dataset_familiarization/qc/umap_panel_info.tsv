@@ -1,0 +1,5 @@
+panel	title	n_cells	n_control	n_perturbed	highlighted_targets
+b	HCC38	14175	1666	12509	['YBX1']
+c	HCC1143	11405	1325	10080	['NPM1']
+d	K562 7d	28034	5381	22653	['YY1']
+e	K562 13d	15849	3491	12358	['E2F4']

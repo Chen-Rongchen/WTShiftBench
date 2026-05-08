@@ -1,0 +1,64 @@
+audit_type	variant	context	backbone_recovery	n_targets_used	panel	removed	n_targets	spearman_rho	rho_delta	metric	delta_mean	delta_ci_lower	delta_ci_upper	sign_stability_pct	n_valid_draws	n_total_draws	Context	CRISPR_rho	RNAi_rho	Delta	n_shared_targets
+original_reference	original_shared_mean_baseline	HCC1143	0.84	6.0	a																
+original_reference	original_shared_mean_baseline	HCC38	0.773333	6.0	a																
+original_reference	original_shared_mean_baseline	pooled	0.806667	6.0	a																
+loto	full_baseline_all_backbone	HCC1143	0.84	6.0	a																
+loto	loto_max	HCC1143	0.866667	5.0	a																
+loto	loto_mean	HCC1143	0.82	5.0	a																
+loto	loto_min	HCC1143	0.766667	5.0	a																
+loto	loto_std	HCC1143	0.035277	5.0	a																
+loto	remove_ARID1A	HCC1143	0.826667	5.0	a																
+loto	remove_ENY2	HCC1143	0.866667	5.0	a																
+loto	remove_PRPF6	HCC1143	0.766667	5.0	a																
+loto	remove_RPS3	HCC1143	0.826667	5.0	a																
+loto	remove_RUVBL2	HCC1143	0.793333	5.0	a																
+loto	remove_TADA3	HCC1143	0.84	5.0	a																
+loto	full_baseline_all_backbone	HCC38	0.773333	6.0	a																
+loto	loto_max	HCC38	0.846667	5.0	a																
+loto	loto_mean	HCC38	0.761111	5.0	a																
+loto	loto_min	HCC38	0.52	5.0	a																
+loto	loto_std	HCC38	0.121503	5.0	a																
+loto	remove_ARID1A	HCC38	0.806667	5.0	a																
+loto	remove_ENY2	HCC38	0.766667	5.0	a																
+loto	remove_PRPF6	HCC38	0.846667	5.0	a																
+loto	remove_RPS3	HCC38	0.793333	5.0	a																
+loto	remove_RUVBL2	HCC38	0.52	5.0	a																
+loto	remove_TADA3	HCC38	0.833333	5.0	a																
+loto	full_baseline_all_backbone	pooled	0.806666	6.0	a																
+loto	loto_max	pooled	0.856667	5.0	a																
+loto	loto_mean	pooled	0.790555	5.0	a																
+loto	loto_min	pooled	0.643334	5.0	a																
+loto	loto_std	pooled	0.07839	5.0	a																
+loto	remove_ARID1A	pooled	0.816667	5.0	a																
+loto	remove_ENY2	pooled	0.816667	5.0	a																
+loto	remove_PRPF6	pooled	0.806667	5.0	a																
+loto	remove_RPS3	pooled	0.81	5.0	a																
+loto	remove_RUVBL2	pooled	0.656667	5.0	a																
+loto	remove_TADA3	pooled	0.836666	5.0	a																
+cross_context	backbone_from_HCC38	HCC1143	0.773333	6.0	a																
+cross_context	backbone_from_HCC1143	HCC38	0.84	6.0	a																
+		HCC38			b	none	47.0	0.725796	0.0												
+		HCC38			b	PFDN5	46.0	0.714854	-0.010942												
+		HCC38			b	PRPF6	46.0	0.710352	-0.015444												
+		HCC38			b	PMF1	46.0	0.713374	-0.012422												
+		HCC38			b	ZNF131	46.0	0.713682	-0.012114												
+		HCC38			b	all_four_anchors	43.0	0.664552	-0.061243												
+		HCC38			b	jackknife_min	46.0	0.710352	-0.015444												
+		HCC38			b	jackknife_max	46.0	0.751303	0.025507												
+		HCC38			b	jackknife_mean	46.0	0.725533	-0.000263												
+		HCC1143			b	none	48.0	0.77925	0.0												
+		HCC1143			b	PFDN5	47.0	0.769649	-0.009601												
+		HCC1143			b	PRPF6	47.0	0.765583	-0.013666												
+		HCC1143			b	PMF1	47.0	0.768087	-0.011162												
+		HCC1143			b	ZNF131	47.0	0.767683	-0.011567												
+		HCC1143			b	all_four_anchors	44.0	0.724838	-0.054412												
+		HCC1143			b	jackknife_min	47.0	0.765583	-0.013666												
+		HCC1143			b	jackknife_max	47.0	0.806489	0.027239												
+		HCC1143			b	jackknife_mean	47.0	0.778998	-0.000251												
+					c					backbone_recovery	0.147082	0.086542	0.197143	100.0	998.0	1000.0					
+					c					shift_excess_identification	-0.007169	-0.38	0.333333	38.546603	633.0	1000.0					
+					c					structure_vs_context_separation	-0.075132	-0.123332	-0.025318	0.1	1000.0	1000.0					
+					d												HCC38	0.726	0.276	0.449	47.0
+					d												HCC1143	0.779	0.384	0.395	48.0
+					d												7d	0.733	0.333	0.4	9.0
+					d												13d	0.515	0.3	0.215	9.0

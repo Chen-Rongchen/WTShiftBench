@@ -2,12 +2,15 @@ from __future__ import annotations
 
 import argparse
 from pathlib import Path
-from typing import Callable
+from typing import Any, Callable
 
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from scipy.stats import spearmanr
+
 from wtbench.manuscript.figure_io import ensure_dir, repo_root, save_figure, write_tsv
+from wtbench.stage2_truth_bridge import DEPMAP_ALIGNMENT_DIRECTION
 from wtbench.manuscript.hash_manifest import write_figure_manifest, write_panel_manifest
 from wtbench.manuscript.manuscript_style import COLORS, add_panel_heading, apply_manuscript_style, clean_axes
 
@@ -33,6 +36,11 @@ TARGET_13D = Path("data/processed/stage2_truth_driven_bridge_gse90063_13d/dixit_
 
 # Panel b data (Replogle joint grid)
 REPLOGLE_JOINT_GRID = Path("reports/manuscript_extended_data_v1/edfig3_k562_replogle_joint_grid/replogle_k562_essential_joint_grid.tsv")
+
+BRIDGE_TRUTH_METRIC = "real_shift_mean_abs"
+BRIDGE_DEPMAP_ENDPOINT = "depmap_gene_dependency"
+REPLOGLE_PERM_ITERATIONS = 1000
+REPLOGLE_PERM_SEED = 42
 
 PRIMARY_GREEN = COLORS["primary_qualified"]  # "#4B8A5A"
 NEUTRAL_GRAY = "#888888"
@@ -107,12 +115,69 @@ def build_panel_a_source(root: Path) -> pd.DataFrame:
     return plot.sort_values(["truth_metric", "timepoint_order"])
 
 
+def compute_replogle_bridge_summary(target_table: pd.DataFrame) -> dict[str, Any]:
+    """Aligned Spearman on raw truth × DepMap columns, Fisher-z 95% CI, and target↔endpoint shuffle null.
+
+    Matches the closed permutation definition in ``scripts/run_bridge_rho_permutation_null.py``
+    (shuffle DepMap endpoint assignments within this table; two-sided p vs |ρ_raw|).
+    """
+    sub = target_table[[BRIDGE_TRUTH_METRIC, BRIDGE_DEPMAP_ENDPOINT]].dropna()
+    if len(sub) < 3:
+        raise RuntimeError("Replogle bridge summary requires ≥3 targets with non-null truth and dependency.")
+    truth = sub[BRIDGE_TRUTH_METRIC].to_numpy(dtype=float)
+    dep = sub[BRIDGE_DEPMAP_ENDPOINT].to_numpy(dtype=float)
+    rho_raw = float(spearmanr(truth, dep).statistic)
+    direction = float(DEPMAP_ALIGNMENT_DIRECTION[BRIDGE_DEPMAP_ENDPOINT])
+    rho_aligned = float(direction * rho_raw)
+
+    n = int(len(sub))
+    rho_c = float(np.clip(rho_aligned, -0.999999, 0.999999))
+    z = np.arctanh(rho_c)
+    se_z = 1.0 / np.sqrt(max(n - 3.0, 1.0))
+    ci_lo = float(np.tanh(z - 1.96 * se_z))
+    ci_hi = float(np.tanh(z + 1.96 * se_z))
+
+    rng = np.random.default_rng(REPLOGLE_PERM_SEED)
+    null = np.empty(REPLOGLE_PERM_ITERATIONS, dtype=float)
+    dep_shuffled = dep.copy()
+    for i in range(REPLOGLE_PERM_ITERATIONS):
+        rng.shuffle(dep_shuffled)
+        null[i] = float(spearmanr(truth, dep_shuffled).statistic)
+    empirical_p = float(((np.abs(null) >= abs(rho_raw)).sum() + 1) / (REPLOGLE_PERM_ITERATIONS + 1))
+
+    return {
+        "bridge_truth_metric": BRIDGE_TRUTH_METRIC,
+        "bridge_depmap_endpoint": BRIDGE_DEPMAP_ENDPOINT,
+        "bridge_n_targets": n,
+        "bridge_spearman_rho_aligned": rho_aligned,
+        "bridge_ci_lo_fisher95": ci_lo,
+        "bridge_ci_hi_fisher95": ci_hi,
+        "bridge_ci_method": "fisher_z_transform",
+        "bridge_empirical_p_two_sided_shuffle": empirical_p,
+        "bridge_perm_iterations": REPLOGLE_PERM_ITERATIONS,
+        "bridge_perm_seed": REPLOGLE_PERM_SEED,
+        "bridge_null_type": "target_to_depmap_permutation_within_table",
+    }
+
+
 def build_panel_b_source(root: Path) -> pd.DataFrame:
-    df = pd.read_csv(root / REPLOGLE_JOINT_GRID, sep="\t")
-    # Compute within-context rank percentiles
-    df["shift_quantile"] = df["real_shift_mean_abs"].rank(pct=True)
-    df["depmap_quantile"] = df["depmap_gene_dependency"].rank(pct=True)
-    return df
+    raw = pd.read_csv(root / REPLOGLE_JOINT_GRID, sep="\t")
+    raw["shift_quantile"] = raw["real_shift_mean_abs"].rank(pct=True)
+    raw["depmap_quantile"] = raw["depmap_gene_dependency"].rank(pct=True)
+    summary_dict = compute_replogle_bridge_summary(raw)
+
+    scatter = raw.copy()
+    for k in summary_dict:
+        scatter[k] = np.nan
+    scatter["record_type"] = "joint_grid_target"
+
+    blank = {c: np.nan for c in scatter.columns}
+    for k, v in summary_dict.items():
+        blank[k] = v
+    blank["record_type"] = "replogle_bridge_correlation_summary"
+    summary_df = pd.DataFrame([blank]).reindex(columns=scatter.columns)
+
+    return pd.concat([scatter, summary_df], ignore_index=True)
 
 
 def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
@@ -152,7 +217,7 @@ def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
         clean_axes(sub_ax)
 
     rank_ax.set_ylim(0.35, 0.88)
-    rank_ax.set_ylabel("Bridge rho", labelpad=2)
+    rank_ax.set_ylabel("Bridge Spearman ρ", labelpad=2)
     rank_ax.set_title("Rank bridge weakens at 13d", loc="left", fontsize=7.0, fontweight="bold", pad=2)
     shift_ax.set_ylim(0.55, 1.15)
     shift_ax.set_ylabel("Mean shift (norm.)", labelpad=2)
@@ -161,6 +226,12 @@ def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
 
 def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
     """Square Replogle K562 essential joint grid scatter."""
+    plot_df = df.loc[df["record_type"].eq("joint_grid_target")].copy()
+    summ = df.loc[df["record_type"].eq("replogle_bridge_correlation_summary")]
+    if summ.empty:
+        raise RuntimeError("Panel b source is missing replogle_bridge_correlation_summary row.")
+    summ = summ.iloc[0]
+
     quadrant_colors = {
         "Q1_anchor": "#D55E00",          # red-orange, matching Fig 1 Q1
         "Q2_shift_excess": SKY_BLUE,
@@ -181,7 +252,7 @@ def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
     }
 
     # Background layer: middle band
-    for quad, sub in df.groupby("quadrant"):
+    for quad, sub in plot_df.groupby("quadrant"):
         if quad == "middle":
             ax.scatter(
                 sub["shift_quantile"], sub["depmap_quantile"],
@@ -195,7 +266,7 @@ def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
     # Foreground: Q1-Q4 quadrants
     foreground_quads = ["Q1_anchor", "Q2_shift_excess", "Q3_dep_excess", "Q4_low_info"]
     for quad in foreground_quads:
-        sub = df.loc[df["quadrant"].eq(quad)]
+        sub = plot_df.loc[plot_df["quadrant"].eq(quad)]
         if sub.empty:
             continue
         ax.scatter(
@@ -220,24 +291,26 @@ def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
     ax.set_ylim(-0.02, 1.02)
 
     # Stats and legend placed in the right gutter (between panels b and c)
-    n = len(df)
-    rho_val = 0.402
-    ci_low, ci_high = 0.363, 0.439
-    n_q1 = int((df["quadrant"] == "Q1_anchor").sum())
-    n_mid = int((df["quadrant"] == "middle").sum())
+    n = int(summ["bridge_n_targets"])
+    rho_val = float(summ["bridge_spearman_rho_aligned"])
+    ci_low = float(summ["bridge_ci_lo_fisher95"])
+    ci_high = float(summ["bridge_ci_hi_fisher95"])
+    p_perm = float(summ["bridge_empirical_p_two_sided_shuffle"])
+    n_q1 = int((plot_df["quadrant"] == "Q1_anchor").sum())
+    n_mid = int((plot_df["quadrant"] == "middle").sum())
 
     # Rho stats — right of scatter, clipped outside axes
     ax.text(
         1.06, 0.78,
-        f"aligned Spearman rho = {rho_val:.3f}\n95% CI [{ci_low:.3f}, {ci_high:.3f}]\nempirical p = 0.001\nn = {n}",
+        f"Spearman ρ = {rho_val:.3f}\n95% CI {ci_low:.3f}\u2013{ci_high:.3f}\nempirical p = {p_perm:.3g}\nn = {n}",
         transform=ax.transAxes, fontsize=5.8, va="top", ha="left", color="#333333", clip_on=False,
     )
 
     # Quadrant swatches — right of scatter
     legend_spec = [
         ("Q1 anchor", n_q1, quadrant_colors["Q1_anchor"]),
-        ("Q2/Q3 excess", int((df["quadrant"].isin(["Q2_shift_excess", "Q3_dep_excess"])).sum()), SKY_BLUE),
-        ("Q4 low info", int((df["quadrant"] == "Q4_low_info").sum()), "#BDBDBD"),
+        ("Q2/Q3 excess", int((plot_df["quadrant"].isin(["Q2_shift_excess", "Q3_dep_excess"])).sum()), SKY_BLUE),
+        ("Q4 low info", int((plot_df["quadrant"] == "Q4_low_info").sum()), "#BDBDBD"),
         ("middle", n_mid, "#E0E0E0"),
     ]
     for i, (label, count, color) in enumerate(legend_spec):
@@ -254,8 +327,55 @@ def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
 
 
 def build_panel_c_source(root: Path) -> pd.DataFrame:
-    """Placeholder — panel c is a static checklist."""
-    return pd.DataFrame()
+    """Evidence-tier checklist; numeric ρ row is taken from the same temporal bridge table as panel a."""
+    bridge = pd.read_csv(root / TEMPORAL_BRIDGE, sep="\t")
+    primary = bridge.loc[
+        bridge["truth_metric"].eq(BRIDGE_TRUTH_METRIC)
+        & bridge["depmap_endpoint"].eq(BRIDGE_DEPMAP_ENDPOINT)
+    ].set_index("timepoint")
+    rho_7d = float(primary.loc["7d", "aligned_spearman"])
+    rho_13d = float(primary.loc["13d", "aligned_spearman"])
+
+    return pd.DataFrame(
+        [
+            {
+                "evidence_item": "Bridge Spearman ρ above null",
+                "tier": "A1",
+                "status": "yes",
+                "note": f"ρ = {rho_7d:.3f} / {rho_13d:.3f}",
+            },
+            {
+                "evidence_item": "Joint grid defined",
+                "tier": "",
+                "status": "yes",
+                "note": "25/75 grid applied",
+            },
+            {
+                "evidence_item": "Q1 region present",
+                "tier": "",
+                "status": "yes",
+                "note": "quadrant observed",
+            },
+            {
+                "evidence_item": "Backbone / shift-excess structure",
+                "tier": "A0",
+                "status": "yes",
+                "note": "matches primary",
+            },
+            {
+                "evidence_item": "Content-level replication",
+                "tier": "B",
+                "status": "no",
+                "note": "composition differs",
+            },
+            {
+                "evidence_item": "Assigned tier",
+                "tier": "",
+                "status": "A0/A1 supported; B not supported",
+                "note": "",
+            },
+        ]
+    )
 
 
 def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
@@ -269,14 +389,7 @@ def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
     OCHRE = "#D84315"
     GREEN_FILL = "#E8F5E9"
 
-    rows = [
-        ("Bridge rho above null",            "A1", "yes", "ρ=0.733 / 0.515"),
-        ("Joint grid defined",                "",  "yes", "25/75 grid applied"),
-        ("Q1 region present",                 "",  "yes", "quadrant observed"),
-        ("Backbone / shift-excess structure", "A0","yes", "matches primary"),
-        ("Content-level replication",          "B", "no",  "composition differs"),
-        ("Assigned tier",                      "",  "A0/A1 supported; B not supported", ""),
-    ]
+    rows = list(df[["evidence_item", "tier", "status", "note"]].itertuples(index=False, name=None))
 
     # Header bar (Fig 2f style)
     ax.add_patch(

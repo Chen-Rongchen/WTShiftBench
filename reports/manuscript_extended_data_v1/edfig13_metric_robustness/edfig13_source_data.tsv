@@ -1,0 +1,119 @@
+summary_kind	cell_line	ranking	top_n	n_genes	truth_metric	depmap_endpoint	aligned_spearman	n_targets	panel	timepoint	platform_pair	context_role	spearman_rho_aligned	n_replicates	spearman_aligned_mean	spearman_aligned_std	spearman_aligned_q025	spearman_aligned_q50	spearman_aligned_q975	configured_replicates	completed_replicates	formal_interval_citable	sensitivity_claim_status
+topn_curve	HCC38	control_expression	100	100.0	real_shift_mean_abs	depmap_gene_dependency	0.5333757337951995	47.0	a														
+topn_curve	HCC38	control_expression	100	100.0	real_shift_L2	depmap_gene_dependency	0.539504495614418	47.0	a														
+topn_curve	HCC38	control_expression	100	100.0	real_DEG_burden	depmap_gene_dependency	0.32340792443404354	47.0	a														
+topn_curve	HCC38	control_expression	500	500.0	real_shift_mean_abs	depmap_gene_dependency	0.6059957795021665	47.0	a														
+topn_curve	HCC38	control_expression	500	500.0	real_shift_L2	depmap_gene_dependency	0.631378104394968	47.0	a														
+topn_curve	HCC38	control_expression	500	500.0	real_DEG_burden	depmap_gene_dependency	0.49999110465467084	47.0	a														
+topn_curve	HCC38	control_expression	1000	1000.0	real_shift_mean_abs	depmap_gene_dependency	0.6346159408277626	47.0	a														
+topn_curve	HCC38	control_expression	1000	1000.0	real_shift_L2	depmap_gene_dependency	0.6560666071950275	47.0	a														
+topn_curve	HCC38	control_expression	1000	1000.0	real_DEG_burden	depmap_gene_dependency	0.5518770911474068	47.0	a														
+topn_curve	HCC38	control_expression	2000	2000.0	real_shift_mean_abs	depmap_gene_dependency	0.6686710418798355	47.0	a														
+topn_curve	HCC38	control_expression	2000	2000.0	real_shift_L2	depmap_gene_dependency	0.6651441129083985	47.0	a														
+topn_curve	HCC38	control_expression	2000	2000.0	real_DEG_burden	depmap_gene_dependency	0.5552988466703043	47.0	a														
+topn_curve	HCC38	control_expression	all	36601.0	real_shift_mean_abs	depmap_gene_dependency	0.7257957275155708	47.0	a														
+topn_curve	HCC38	control_expression	all	36601.0	real_shift_L2	depmap_gene_dependency	0.7019745023314382	47.0	a														
+topn_curve	HCC38	control_expression	all	36601.0	real_DEG_burden	depmap_gene_dependency	0.5510637306326212	47.0	a														
+topn_curve	HCC38	perturbation_response	100	100.0	real_shift_mean_abs	depmap_gene_dependency	0.6380850512914713	47.0	a														
+topn_curve	HCC38	perturbation_response	100	100.0	real_shift_L2	depmap_gene_dependency	0.6687288603875641	47.0	a														
+topn_curve	HCC38	perturbation_response	100	100.0	real_DEG_burden	depmap_gene_dependency	0.527499264044825	47.0	a														
+topn_curve	HCC38	perturbation_response	500	500.0	real_shift_mean_abs	depmap_gene_dependency	0.6313202858872395	47.0	a														
+topn_curve	HCC38	perturbation_response	500	500.0	real_shift_L2	depmap_gene_dependency	0.6570495218264117	47.0	a														
+topn_curve	HCC38	perturbation_response	500	500.0	real_DEG_burden	depmap_gene_dependency	0.5458985491096813	47.0	a														
+topn_curve	HCC38	perturbation_response	1000	1000.0	real_shift_mean_abs	depmap_gene_dependency	0.6449076352034315	47.0	a														
+topn_curve	HCC38	perturbation_response	1000	1000.0	real_shift_L2	depmap_gene_dependency	0.6623110060297032	47.0	a														
+topn_curve	HCC38	perturbation_response	1000	1000.0	real_DEG_burden	depmap_gene_dependency	0.5506585335388137	47.0	a														
+topn_curve	HCC38	perturbation_response	2000	2000.0	real_shift_mean_abs	depmap_gene_dependency	0.6669364866479812	47.0	a														
+topn_curve	HCC38	perturbation_response	2000	2000.0	real_shift_L2	depmap_gene_dependency	0.6673990347098091	47.0	a														
+topn_curve	HCC38	perturbation_response	2000	2000.0	real_DEG_burden	depmap_gene_dependency	0.5510637306326212	47.0	a														
+topn_curve	HCC38	perturbation_response	all	36601.0	real_shift_mean_abs	depmap_gene_dependency	0.7257957275155708	47.0	a														
+topn_curve	HCC38	perturbation_response	all	36601.0	real_shift_L2	depmap_gene_dependency	0.7019745023314382	47.0	a														
+topn_curve	HCC38	perturbation_response	all	36601.0	real_DEG_burden	depmap_gene_dependency	0.5510637306326212	47.0	a														
+topn_curve	HCC1143	control_expression	100	100.0	real_shift_mean_abs	depmap_gene_dependency	0.7523752923935764	48.0	a														
+topn_curve	HCC1143	control_expression	100	100.0	real_shift_L2	depmap_gene_dependency	0.6876595073933496	48.0	a														
+topn_curve	HCC1143	control_expression	100	100.0	real_DEG_burden	depmap_gene_dependency	0.5513713747750024	48.0	a														
+topn_curve	HCC1143	control_expression	500	500.0	real_shift_mean_abs	depmap_gene_dependency	0.77957546712941	48.0	a														
+topn_curve	HCC1143	control_expression	500	500.0	real_shift_L2	depmap_gene_dependency	0.734839051995025	48.0	a														
+topn_curve	HCC1143	control_expression	500	500.0	real_DEG_burden	depmap_gene_dependency	0.6861693937435943	48.0	a														
+topn_curve	HCC1143	control_expression	1000	1000.0	real_shift_mean_abs	depmap_gene_dependency	0.7840273919364725	48.0	a														
+topn_curve	HCC1143	control_expression	1000	1000.0	real_shift_L2	depmap_gene_dependency	0.7608990996461229	48.0	a														
+topn_curve	HCC1143	control_expression	1000	1000.0	real_DEG_burden	depmap_gene_dependency	0.7419926373278856	48.0	a														
+topn_curve	HCC1143	control_expression	2000	2000.0	real_shift_mean_abs	depmap_gene_dependency	0.7655138997510049	48.0	a														
+topn_curve	HCC1143	control_expression	2000	2000.0	real_shift_L2	depmap_gene_dependency	0.7489006193734299	48.0	a														
+topn_curve	HCC1143	control_expression	2000	2000.0	real_DEG_burden	depmap_gene_dependency	0.7145473237809881	48.0	a														
+topn_curve	HCC1143	control_expression	all	36601.0	real_shift_mean_abs	depmap_gene_dependency	0.7792497165337711	48.0	a														
+topn_curve	HCC1143	control_expression	all	36601.0	real_shift_L2	depmap_gene_dependency	0.7612248502417618	48.0	a														
+topn_curve	HCC1143	control_expression	all	36601.0	real_DEG_burden	depmap_gene_dependency	0.7135785375072098	48.0	a														
+topn_curve	HCC1143	perturbation_response	100	100.0	real_shift_mean_abs	depmap_gene_dependency	0.7524838759254561	48.0	a														
+topn_curve	HCC1143	perturbation_response	100	100.0	real_shift_L2	depmap_gene_dependency	0.7321244636980355	48.0	a														
+topn_curve	HCC1143	perturbation_response	100	100.0	real_DEG_burden	depmap_gene_dependency	0.717170181460855	48.0	a														
+topn_curve	HCC1143	perturbation_response	500	500.0	real_shift_mean_abs	depmap_gene_dependency	0.7608448078801832	48.0	a														
+topn_curve	HCC1143	perturbation_response	500	500.0	real_shift_L2	depmap_gene_dependency	0.7430914004178726	48.0	a														
+topn_curve	HCC1143	perturbation_response	500	500.0	real_DEG_burden	depmap_gene_dependency	0.7276510533776028	48.0	a														
+topn_curve	HCC1143	perturbation_response	1000	1000.0	real_shift_mean_abs	depmap_gene_dependency	0.7611705584758218	48.0	a														
+topn_curve	HCC1143	perturbation_response	1000	1000.0	real_shift_L2	depmap_gene_dependency	0.7445572780982469	48.0	a														
+topn_curve	HCC1143	perturbation_response	1000	1000.0	real_DEG_burden	depmap_gene_dependency	0.7135785375072098	48.0	a														
+topn_curve	HCC1143	perturbation_response	2000	2000.0	real_shift_mean_abs	depmap_gene_dependency	0.7639937303046909	48.0	a														
+topn_curve	HCC1143	perturbation_response	2000	2000.0	real_shift_L2	depmap_gene_dependency	0.7441229439707285	48.0	a														
+topn_curve	HCC1143	perturbation_response	2000	2000.0	real_DEG_burden	depmap_gene_dependency	0.7135785375072098	48.0	a														
+topn_curve	HCC1143	perturbation_response	all	36601.0	real_shift_mean_abs	depmap_gene_dependency	0.7792497165337711	48.0	a														
+topn_curve	HCC1143	perturbation_response	all	36601.0	real_shift_L2	depmap_gene_dependency	0.7612248502417618	48.0	a														
+topn_curve	HCC1143	perturbation_response	all	36601.0	real_DEG_burden	depmap_gene_dependency	0.7135785375072098	48.0	a														
+crispr_metric_endpoint	HCC38				real_shift_L2	depmap_gene_effect		47.0	b	HCC38	crispr	primary_hcc	0.7017807585568918										
+crispr_metric_endpoint	HCC38				real_shift_L2	depmap_gene_dependency		47.0	b	HCC38	crispr	primary_hcc	0.7019745023314382										
+crispr_metric_endpoint	HCC38				real_shift_mean_abs	depmap_gene_effect		47.0	b	HCC38	crispr	primary_hcc	0.7253700277520815										
+crispr_metric_endpoint	HCC38				real_shift_mean_abs	depmap_gene_dependency		47.0	b	HCC38	crispr	primary_hcc	0.7257957275155708										
+crispr_metric_endpoint	HCC38				real_shift_top20_mean	depmap_gene_effect		47.0	b	HCC38	crispr	primary_hcc	0.6332099907493062										
+crispr_metric_endpoint	HCC38				real_shift_top20_mean	depmap_gene_dependency		47.0	b	HCC38	crispr	primary_hcc	0.6333439336577362										
+crispr_metric_endpoint	HCC38				real_shift_top50_mean	depmap_gene_effect		47.0	b	HCC38	crispr	primary_hcc	0.6271970397779834										
+crispr_metric_endpoint	HCC38				real_shift_top50_mean	depmap_gene_dependency		47.0	b	HCC38	crispr	primary_hcc	0.6273886273617031										
+crispr_metric_endpoint	HCC38				real_shift_top100_mean	depmap_gene_effect		47.0	b	HCC38	crispr	primary_hcc	0.6399167437557817										
+crispr_metric_endpoint	HCC38				real_shift_top100_mean	depmap_gene_dependency		47.0	b	HCC38	crispr	primary_hcc	0.6400508805542395										
+crispr_metric_endpoint	HCC38				real_Edistance	depmap_gene_effect		47.0	b	HCC38	crispr	primary_hcc	0.6290471785383904										
+crispr_metric_endpoint	HCC38				real_Edistance	depmap_gene_dependency		47.0	b	HCC38	crispr	primary_hcc	0.6291810011012858										
+crispr_metric_endpoint	HCC38				real_DEG_burden	depmap_gene_effect		47.0	b	HCC38	crispr	primary_hcc	0.5508667130022153										
+crispr_metric_endpoint	HCC38				real_DEG_burden	depmap_gene_dependency		47.0	b	HCC38	crispr	primary_hcc	0.5510637306326212										
+crispr_metric_endpoint	HCC1143				real_shift_L2	depmap_gene_effect		48.0	b	HCC1143	crispr	primary_hcc	0.7630264871906209										
+crispr_metric_endpoint	HCC1143				real_shift_L2	depmap_gene_dependency		48.0	b	HCC1143	crispr	primary_hcc	0.7612248502417618										
+crispr_metric_endpoint	HCC1143				real_shift_mean_abs	depmap_gene_effect		48.0	b	HCC1143	crispr	primary_hcc	0.7807207989578809										
+crispr_metric_endpoint	HCC1143				real_shift_mean_abs	depmap_gene_dependency		48.0	b	HCC1143	crispr	primary_hcc	0.7792497165337711										
+crispr_metric_endpoint	HCC1143				real_shift_top20_mean	depmap_gene_effect		48.0	b	HCC1143	crispr	primary_hcc	0.7063612679114198										
+crispr_metric_endpoint	HCC1143				real_shift_top20_mean	depmap_gene_dependency		48.0	b	HCC1143	crispr	primary_hcc	0.7044899548346837										
+crispr_metric_endpoint	HCC1143				real_shift_top50_mean	depmap_gene_effect		48.0	b	HCC1143	crispr	primary_hcc	0.7295918367346939										
+crispr_metric_endpoint	HCC1143				real_shift_top50_mean	depmap_gene_dependency		48.0	b	HCC1143	crispr	primary_hcc	0.7276725388909729										
+crispr_metric_endpoint	HCC1143				real_shift_top100_mean	depmap_gene_effect		48.0	b	HCC1143	crispr	primary_hcc	0.7345853234910985										
+crispr_metric_endpoint	HCC1143				real_shift_top100_mean	depmap_gene_dependency		48.0	b	HCC1143	crispr	primary_hcc	0.7324502142936743										
+crispr_metric_endpoint	HCC1143				real_Edistance	depmap_gene_effect		48.0	b	HCC1143	crispr	primary_hcc	0.7430525401650021										
+crispr_metric_endpoint	HCC1143				real_Edistance	depmap_gene_dependency		48.0	b	HCC1143	crispr	primary_hcc	0.740702562716522										
+crispr_metric_endpoint	HCC1143				real_DEG_burden	depmap_gene_effect		48.0	b	HCC1143	crispr	primary_hcc	0.7162847950457641										
+crispr_metric_endpoint	HCC1143				real_DEG_burden	depmap_gene_dependency		48.0	b	HCC1143	crispr	primary_hcc	0.7135785375072098										
+endpoint_sensitivity	HCC38				real_shift_mean_abs	depmap_gene_dependency		47.0	c	HCC38	crispr	primary_hcc	0.7257957275155708										
+endpoint_sensitivity	HCC38				real_shift_mean_abs	depmap_gene_dependency		48.0	c	HCC38	rnai	primary_hcc	0.2763786365610073										
+endpoint_sensitivity	HCC38				real_shift_L2	depmap_gene_dependency		47.0	c	HCC38	crispr	primary_hcc	0.7019745023314382										
+endpoint_sensitivity	HCC38				real_shift_L2	depmap_gene_dependency		48.0	c	HCC38	rnai	primary_hcc	0.2627008250108554										
+endpoint_sensitivity	HCC1143				real_shift_mean_abs	depmap_gene_dependency		48.0	c	HCC1143	crispr	primary_hcc	0.7792497165337711										
+endpoint_sensitivity	HCC1143				real_shift_mean_abs	depmap_gene_dependency		48.0	c	HCC1143	rnai	primary_hcc	0.3844984802431611										
+endpoint_sensitivity	HCC1143				real_shift_L2	depmap_gene_dependency		48.0	c	HCC1143	crispr	primary_hcc	0.7612248502417618										
+endpoint_sensitivity	HCC1143				real_shift_L2	depmap_gene_dependency		48.0	c	HCC1143	rnai	primary_hcc	0.3971993052540165										
+endpoint_sensitivity	7d				real_shift_mean_abs	depmap_gene_dependency		10.0	c	7d	crispr	supplementary_k562	0.7333333333333332										
+endpoint_sensitivity	7d				real_shift_mean_abs	depmap_gene_dependency		9.0	c	7d	rnai	supplementary_k562	0.3333333333333333										
+endpoint_sensitivity	7d				real_shift_L2	depmap_gene_dependency		10.0	c	7d	crispr	supplementary_k562	0.8060606060606059										
+endpoint_sensitivity	7d				real_shift_L2	depmap_gene_dependency		9.0	c	7d	rnai	supplementary_k562	0.3666666666666667										
+endpoint_sensitivity	13d				real_shift_mean_abs	depmap_gene_dependency		10.0	c	13d	crispr	supplementary_k562	0.5151515151515151										
+endpoint_sensitivity	13d				real_shift_mean_abs	depmap_gene_dependency		9.0	c	13d	rnai	supplementary_k562	0.3										
+endpoint_sensitivity	13d				real_shift_L2	depmap_gene_dependency		10.0	c	13d	crispr	supplementary_k562	0.5030303030303029										
+endpoint_sensitivity	13d				real_shift_L2	depmap_gene_dependency		9.0	c	13d	rnai	supplementary_k562	0.2166666666666666										
+	HCC38				real_shift_L2	depmap_gene_dependency			d					24.0	0.7005483124741358	0.0091288888366291	0.6832947879470607	0.7011650432232396	0.7139834063866429	24.0	24.0	True	formal_interval_citable
+	HCC38				real_shift_mean_abs	depmap_gene_dependency			d					24.0	0.7252922246774353	0.0103386088233394	0.7057890783788247	0.7253620887076071	0.7410713772574343	24.0	24.0	True	formal_interval_citable
+	HCC38				real_shift_top20_mean	depmap_gene_dependency			d					24.0	0.6322020181300987	0.0130082787755869	0.6085051027375825	0.6361770405364315	0.650831141320214	24.0	24.0	True	formal_interval_citable
+	HCC38				real_shift_top50_mean	depmap_gene_dependency			d					24.0	0.6287256803529241	0.0139583538298956	0.6048090546310396	0.6319273802183885	0.6515278543383421	24.0	24.0	True	formal_interval_citable
+	HCC38				real_shift_top100_mean	depmap_gene_dependency			d					24.0	0.6326404751470397	0.0153355886331227	0.6017706920499082	0.6354832184436898	0.6572099681853583	24.0	24.0	True	formal_interval_citable
+	HCC38				real_Edistance	depmap_gene_dependency			d					24.0	0.6182942579169114	0.0139791658509047	0.5886184270043728	0.6172414792553554	0.6364863695527788	24.0	24.0	True	formal_interval_citable
+	HCC38				real_DEG_burden	depmap_gene_dependency			d					24.0	0.5705137233301059	0.0470799690662171	0.4947132622736594	0.5672931922896918	0.6692809300568351	24.0	24.0	True	formal_interval_citable
+	HCC1143				real_shift_L2	depmap_gene_dependency			d					24.0	0.7608334970956124	0.0085423626156912	0.7458779253047323	0.7617406220181897	0.774415034776833	24.0	24.0	True	formal_interval_citable
+	HCC1143				real_shift_mean_abs	depmap_gene_dependency			d					24.0	0.7794080675177621	0.0071227622505961	0.7651487876250599	0.7786525071084335	0.7931579096733963	24.0	24.0	True	formal_interval_citable
+	HCC1143				real_shift_top20_mean	depmap_gene_dependency			d					24.0	0.7061956211479586	0.0137276544205293	0.6811119204210111	0.7098376937797528	0.7268228727540152	24.0	24.0	True	formal_interval_citable
+	HCC1143				real_shift_top50_mean	depmap_gene_dependency			d					24.0	0.7157215639134771	0.011469569587377	0.6968022407776097	0.7139095762252368	0.7366605407423048	24.0	24.0	True	formal_interval_citable
+	HCC1143				real_shift_top100_mean	depmap_gene_dependency			d					24.0	0.7264962172956109	0.0108710649703058	0.7058879678076333	0.7270481835826654	0.7407948587186196	24.0	24.0	True	formal_interval_citable
+	HCC1143				real_Edistance	depmap_gene_dependency			d					24.0	0.7342848235510563	0.0178093254541048	0.695461234158897	0.736847847334797	0.7565734031948704	24.0	24.0	True	formal_interval_citable
+	HCC1143				real_DEG_burden	depmap_gene_dependency			d					24.0	0.7051065293757022	0.0210456432326704	0.6653687907228616	0.7044130835465408	0.7421523073685213	24.0	24.0	True	formal_interval_citable

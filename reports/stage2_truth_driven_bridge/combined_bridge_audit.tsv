@@ -1,0 +1,3 @@
+cell_line	depmap_model_id	n_cells_with_single_feature	n_control_cells	n_targets_in_bridge_table	n_targets_with_both_depmap	depmap_both_join_rate	source_kind	dataset_role	min_target_cells_threshold	min_control_cells_threshold	single_perturbation_filter_status	single_perturbation_evidence_source	deg_abs_log1p_delta_threshold	deg_expression_floor	edistance_n_components	edistance_pairwise_max_points	n_gene_features
+HCC38	ACH-000276	14485	1666	48	47	0.9791666666666666	mtx_protospacer	primary	20	200	verified_via_num_features_eq_1	num_features	0.25	0.1	30	5000	36601
+HCC1143	ACH-000374	11636	1325	49	48	0.9795918367346939	mtx_protospacer	primary	20	200	verified_via_num_features_eq_1	num_features	0.25	0.1	30	5000	36601

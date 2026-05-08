@@ -1,0 +1,48 @@
+target_gene	expected_axis	architecture_role	cosine_similarity	l2_distance	top20_overlap_fraction
+ARID1A	chromatin remodeling	canonical_backbone	0.0	0.34291518048835207	0.5
+BMPR1A	TGF-beta / BMP signaling	context_deviation	0.0	0.17535136819979671	0.4
+CDKN2A	cell cycle / replication	context_deviation	0.0	0.11941380200997023	0.5
+COMMD6	NF-κB / copper signaling	context_deviation	0.0	0.20547744632894113	0.45
+ENY2	transcription / chromatin	canonical_backbone	0.0	0.5362717946357191	0.35
+ERC1	synaptic / signaling	context_deviation	0.0	0.22337043598809336	0.55
+ETV3	transcription regulation	context_deviation	0.0	0.17373387870029228	0.5
+GON4L	transcription regulation	context_deviation	0.0	0.22588730993554945	0.45
+HDGF	growth factor / proliferation	context_deviation	0.0	0.5410445296012523	0.3
+HLX	transcription regulation	context_deviation	0.0	0.1519551979563906	0.35
+KLF3	transcription regulation	context_deviation	0.0	0.22776697568839147	0.5
+LAMTOR5	mTOR / lysosome / signaling	shift_excess	0.0	0.8186488784461469	0.45
+MAML3	transcription regulation	context_deviation	0.0	0.10142477198313342	0.35
+MIER1	transcription regulation	context_deviation	0.0	0.20911193520417728	0.5
+MTDH	signaling / oncogene	context_deviation	0.0	0.8910857667190334	0.6
+MYBL1	transcription regulation	context_deviation	0.0	0.20604684182866972	0.4
+NCOA1	nuclear receptor / co-activator	context_deviation	0.0	0.12390323755406898	0.55
+NPM1	ribosome biogenesis / nucleolar	context_deviation	0.0	1.1039501623440098	0.4
+PA2G4	growth / proliferation	context_deviation	0.0	0.8486574654795975	0.4
+PARK7	oxidative stress / mitochondrial	context_deviation	0.0	0.8210627520361933	0.6
+PCBD1	metabolism / transcription	context_deviation	0.0	0.3097410515478568	0.45
+PEX14	peroxisome / metabolism	context_deviation	0.0	0.1773708655867986	0.5
+PFDN5	proteostasis / chaperone	context_deviation	0.0	0.7934985664847274	0.55
+PMF1	transcription regulation	context_deviation	0.0	0.3349606044694713	0.55
+PRDX2	oxidative stress / antioxidant	context_deviation	0.0	0.7294690866573791	0.4
+PRPF6	RNA processing / spliceosome	canonical_backbone	0.0	0.4114040023628401	0.45
+RORC	nuclear receptor / metabolism	context_deviation	0.0	0.10919913665027588	0.4
+RPS3	ribosomal / translation	canonical_backbone	0.0	0.8642886825255415	0.65
+RUVBL2	chromatin remodeling	canonical_backbone	0.0	0.44574446080227625	0.5
+SMAD1	TGF-beta / BMP signaling	context_deviation	0.0	0.1475318950734221	0.5
+STAT3	JAK-STAT signaling	context_deviation	0.0	0.4030218159651357	0.4
+TAB3	NF-κB / MAPK signaling	context_deviation	0.0	0.14144474407410168	0.45
+TADA3	transcription / chromatin	canonical_backbone	0.0	0.4850688499801635	0.45
+THAP8	transcription regulation	context_deviation	0.0	0.1438130250358044	0.4
+THRA	nuclear receptor / metabolism	context_deviation	0.0	0.18653600190740766	0.6
+TMF1	transcription regulation	context_deviation	0.0	0.26543538654537047	0.4
+TMSB4X	cytoskeleton / cell motility	context_deviation	0.0	0.7921430663436945	0.45
+UBP1	transcription regulation	context_deviation	0.0	0.14116501072324056	0.3
+VEZF1	transcription regulation	context_deviation	0.0	0.29775652044540324	0.45
+XBP1	ER stress / UPR	context_deviation	0.0	0.18102479249732983	0.55
+YBX1	RNA processing / transcription	context_deviation	0.0	1.5119656884992447	0.55
+ZBTB17	transcription regulation	context_deviation	0.0	0.24975917045004642	0.4
+ZBTB20	transcription regulation	context_deviation	0.0	0.18379391842034679	0.45
+ZBTB5	transcription regulation	context_deviation	0.0	0.1349265257264723	0.5
+ZNF131	transcription regulation	context_deviation	0.0	0.41133143998537686	0.55
+ZNF24	transcription regulation	context_deviation	0.0	0.16109120639829813	0.4
+ZNF566	transcription regulation	context_deviation	0.0	0.16021649594660065	0.4

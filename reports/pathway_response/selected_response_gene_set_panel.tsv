@@ -1,0 +1,16 @@
+display_group	display_name	exact_gs_name	n_sig_pairs	nes_variance	rule
+Cell death / stress	Apoptosis	HALLMARK_APOPTOSIS	5	1.2087249898764483	FDR>=2
+Proliferation / cell cycle	E2F Targets	HALLMARK_E2F_TARGETS	15	2.2409073957613743	FDR>=2
+State remodeling	Epithelial Mesenchymal Transition	HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION	8	1.6488138787861433	FDR>=2
+Proliferation / cell cycle	G2M Checkpoint	HALLMARK_G2M_CHECKPOINT	15	2.0380716213904795	FDR>=2
+Metabolic state	Glycolysis	HALLMARK_GLYCOLYSIS	8	0.5388901268680193	FDR>=2
+Proteostasis / stress	Hypoxia	HALLMARK_HYPOXIA	3	1.21201107408932	FDR>=2
+Inflammatory / interferon	Interferon Alpha Response	HALLMARK_INTERFERON_ALPHA_RESPONSE	6	1.5056985264139593	FDR>=2
+Inflammatory / interferon	Interferon Gamma Response	HALLMARK_INTERFERON_GAMMA_RESPONSE	6	1.5194499294937267	FDR>=2
+Metabolic state	Mtorc1 Signaling	HALLMARK_MTORC1_SIGNALING	4	1.1286551124754194	FDR>=2
+Proliferation / cell cycle	Myc Targets V1	HALLMARK_MYC_TARGETS_V1	15	1.950427074999939	FDR>=2
+Metabolic state	Oxidative Phosphorylation	HALLMARK_OXIDATIVE_PHOSPHORYLATION	14	2.2060990954899293	FDR>=2
+Cell death / stress	P53 Pathway	HALLMARK_P53_PATHWAY	5	1.3070140520048839	FDR>=2
+Proteostasis / stress	Reactive Oxigen Species Pathway	HALLMARK_REACTIVE_OXIGEN_SPECIES_PATHWAY	1	1.2514241289519799	NES_var
+Cell death / stress	Tnfa Signaling Via Nfkb	HALLMARK_TNFA_SIGNALING_VIA_NFKB	8	1.360542234573644	FDR>=2
+Proteostasis / stress	Unfolded Protein Response	HALLMARK_UNFOLDED_PROTEIN_RESPONSE	3	1.280616297349836	FDR>=2

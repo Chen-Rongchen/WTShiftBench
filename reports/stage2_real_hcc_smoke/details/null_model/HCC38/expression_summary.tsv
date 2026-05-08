@@ -1,0 +1,5 @@
+group_key	target_count	cosine_similarity_mean	l2_distance_mean	top20_overlap_mean
+all_targets	47	0.0	0.38767620728154056	0.46276595744680843
+canonical_backbone	6	0.0	0.5142821617991488	0.4833333333333334
+shift_excess	1	0.0	0.8186488784461469	0.45
+context_deviation	40	0.0	0.35791099732478415	0.45999999999999996

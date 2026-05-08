@@ -1,0 +1,12 @@
+object_type	object_id	observed_pattern	evidence_tier	claim_boundary
+dataset_level	architecture_existence	canonical_backbone_present=True; shift_excess_present=True	supplementary_confirmed	支持 supplementary-level architecture existence，不支持 shared mainline architecture
+dataset_level	canonical_backbone_present	external backbone-like structure detected	supplementary_confirmed	支持 backbone existence，不支持 backbone macro class 与 HCC 相同
+dataset_level	shift_excess_present	shift-excess structure detected in K562	supplementary_supporting	支持存在性，不支持 dominant shift-excess macro class 已稳定命名
+dataset_level	backbone_macro_class	biosynthetic support / mitochondrial metabolism	supplementary_supporting	支持 context-specific backbone replication，不支持与 HCC backbone macro class 对齐
+dataset_level	architecture_class	backbone_dominant	supplementary_supporting	支持 K562 architecture composition 与 HCC 不同，不支持跨 context 同构
+dataset_level	shift_excess_macro_class	unresolved	preliminary	当前不足以写成稳定、可命名的 supplementary positive program
+axis_level	unresolved_6	biosynthetic support / mitochondrial metabolism backbone axis; n_genes=11; fraction_Q1=0.727	supplementary_supporting	支持 K562 backbone 具有 biosynthetic / mitochondrial 倾向，但不是 HCC-equivalent frozen axis
+axis_level	unresolved_9	nucleotide metabolism / mitochondrial energy backbone axis; n_genes=6; fraction_Q1=1.000	supplementary_supporting	支持局部 backbone-like structure，不足以单独承担 dataset-level claim
+axis_level	unresolved_2	translation / chromatin machinery backbone axis; n_genes=5; fraction_Q1=1.000	supplementary_supporting	支持 backbone heterogeneity，不能直接等同 HCC gene expression machinery
+axis_level	unresolved_5	translation initiation / RNA processing backbone axis; n_genes=2; fraction_Q1=1.000	preliminary	轴规模过小，只能作 preliminary supportive line
+axis_level	unresolved_4	shift_excess-like axis; n_genes=13; fraction_shift_excess=0.538	preliminary	支持 K562 含 shift-excess 成分，但不足以稳定命名 macro class

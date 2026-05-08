@@ -60,7 +60,7 @@ GRID_COLORS = {
 }
 
 EXPECTED_Q1 = {"HCC38": 9, "HCC1143": 10}
-ACTIVE_PANELS = list("abcdef")
+ACTIVE_PANELS = list("cdef")  # old a/b moved to manual overview; c→new_a, d→new_b, e→new_c, f→new_d
 PANEL_A_COLORS = {
     "divider": "#E0E0E0",
     "heading": FIG1_BLACK,
@@ -652,7 +652,7 @@ def render_joint_grid(ax: plt.Axes, df: pd.DataFrame, cell_line: str, label: str
         title_fontsize=8.8,
     )
     ax.text(0.03, 0.96, f"n={n_text}", transform=ax.transAxes, fontsize=8.0, color=FIG1_BLACK, fontweight="bold", va="top")
-    ax.text(0.03, 0.89, f"\u03c1={rho_text}", transform=ax.transAxes, fontsize=8.0, color=FIG1_BLACK, fontweight="bold", va="top")
+    ax.text(0.03, 0.89, f"Spearman \u03c1 = {rho_text}", transform=ax.transAxes, fontsize=8.0, color=FIG1_BLACK, fontweight="bold", va="top")
     ax.text(
         0.03,
         0.82,
@@ -972,18 +972,17 @@ def render_combined(root: Path, sources: dict[str, pd.DataFrame], panel_outputs:
     combined_source = pd.concat([df.assign(panel=panel_id) for panel_id, df in sources.items()], ignore_index=True, sort=False)
     combined_source_path = write_tsv(combined_source, out / f"{FIGURE_ID}_source_data.tsv")
     write_tsv(combined_source, manuscript_out / "Figure_1_source_data.tsv")
-    fig = plt.figure(figsize=(11.0, 9.6))
+    fig = plt.figure(figsize=(11.0, 7.0))
     fig.patch.set_facecolor("white")
     mosaic = [
-        ["a", "a", "a", "a", "a", "b", "b", "b", "b", "b"],
-        ["a", "a", "a", "a", "a", "b", "b", "b", "b", "b"],
         ["c", "c", "c", "c", "c", "d", "d", "d", "d", "d"],
         ["c", "c", "c", "c", "c", "d", "d", "d", "d", "d"],
+        ["e", "e", "e", "e", "e", "e", "f", "f", "f", "."],
         ["e", "e", "e", "e", "e", "e", "f", "f", "f", "."],
     ]
     axes = fig.subplot_mosaic(
         mosaic,
-        gridspec_kw={"hspace": 0.95, "wspace": 0.84, "height_ratios": [0.62, 0.62, 1.0, 1.0, 1.44]},
+        gridspec_kw={"hspace": 0.95, "wspace": 0.84, "height_ratios": [1.0, 1.0, 1.44, 1.44]},
     )
     for panel_id in ACTIVE_PANELS:
         render_panel_by_id(panel_id)(axes[panel_id], sources[panel_id])

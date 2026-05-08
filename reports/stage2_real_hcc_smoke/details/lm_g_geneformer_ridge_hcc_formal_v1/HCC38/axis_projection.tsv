@@ -1,0 +1,1223 @@
+target_gene	fine_axis	projected_signed_mean	projected_mean_abs	projected_l2	n_axis_genes	n_projected_genes	gene_coverage	architecture_role	confidence	expected_axis	is_expected_axis
+ARID1A	ER stress / UPR	-0.0100526791507067	0.0100526791507067	0.0100526791507067	1	1	1.0	context_deviation	provisional	chromatin remodeling	False
+ARID1A	JAK-STAT signaling	-0.1271803164724733	0.1271803164724733	0.1271803164724733	1	1	1.0	context_deviation	provisional	chromatin remodeling	False
+ARID1A	NF-κB / MAPK signaling	0.0013924457772259	0.0013924457772259	0.0013924457772259	1	1	1.0	context_deviation	provisional	chromatin remodeling	False
+ARID1A	NF-κB / copper signaling	0.0412365553086639	0.0412365553086639	0.0412365553086639	1	1	1.0	context_deviation	provisional	chromatin remodeling	False
+ARID1A	RNA processing / spliceosome	0.0018134097991219	0.0018134097991219	0.0018134097991219	1	1	1.0	canonical_backbone	high	chromatin remodeling	False
+ARID1A	RNA processing / transcription	-0.0784531034585134	0.0784531034585134	0.0784531034585134	1	1	1.0	context_deviation	provisional	chromatin remodeling	False
+ARID1A	TGF-beta / BMP signaling	-0.01425267258661805	0.015452154247753948	0.029729034520404932	2	2	1.0	context_deviation	moderate	chromatin remodeling	False
+ARID1A	cell cycle / replication	-4.008167780337952e-05	4.008167780337952e-05	4.008167780337952e-05	1	1	1.0	context_deviation	provisional	chromatin remodeling	False
+ARID1A	chromatin remodeling	-0.06131145967795485	0.06131145967795485	0.10377249440423855	2	2	1.0	canonical_backbone	high	chromatin remodeling	True
+ARID1A	cytoskeleton / cell motility	-0.0028502986143701	0.0028502986143701	0.0028502986143701	1	1	1.0	context_deviation	provisional	chromatin remodeling	False
+ARID1A	growth / proliferation	-0.1216121308312111	0.1216121308312111	0.1216121308312111	1	1	1.0	context_deviation	provisional	chromatin remodeling	False
+ARID1A	growth factor / proliferation	0.0021410536669519	0.0021410536669519	0.0021410536669519	1	1	1.0	context_deviation	provisional	chromatin remodeling	False
+ARID1A	mTOR / lysosome / signaling	-0.0220783102389751	0.0220783102389751	0.0220783102389751	1	1	1.0	shift_excess	moderate	chromatin remodeling	False
+ARID1A	metabolism / transcription	0.0573355625756532	0.0573355625756532	0.0573355625756532	1	1	1.0	context_deviation	provisional	chromatin remodeling	False
+ARID1A	nuclear receptor / co-activator	-0.0409267324306606	0.0409267324306606	0.0409267324306606	1	1	1.0	context_deviation	provisional	chromatin remodeling	False
+ARID1A	nuclear receptor / metabolism	-0.0018706243546262	0.0018706243546262	0.0028451247729637625	2	2	1.0	context_deviation	moderate	chromatin remodeling	False
+ARID1A	oxidative stress / antioxidant	0.0139097173556126	0.0139097173556126	0.0139097173556126	1	1	1.0	context_deviation	provisional	chromatin remodeling	False
+ARID1A	oxidative stress / mitochondrial	0.0205784176270137	0.0205784176270137	0.0205784176270137	1	1	1.0	context_deviation	provisional	chromatin remodeling	False
+ARID1A	peroxisome / metabolism	0.0170017623564736	0.0170017623564736	0.0170017623564736	1	1	1.0	context_deviation	provisional	chromatin remodeling	False
+ARID1A	proteostasis / chaperone	-0.0282269371612108	0.0282269371612108	0.0282269371612108	1	1	1.0	context_deviation	provisional	chromatin remodeling	False
+ARID1A	ribosomal / translation	-0.0014496554923067	0.0014496554923067	0.0014496554923067	1	1	1.0	canonical_backbone	high	chromatin remodeling	False
+ARID1A	ribosome biogenesis / nucleolar	0.0566660212758217	0.0566660212758217	0.0566660212758217	1	1	1.0	context_deviation	provisional	chromatin remodeling	False
+ARID1A	signaling / oncogene	0.0478998103301285	0.0478998103301285	0.0478998103301285	1	1	1.0	context_deviation	provisional	chromatin remodeling	False
+ARID1A	synaptic / signaling	-0.0298071751356798	0.0298071751356798	0.0298071751356798	1	1	1.0	context_deviation	provisional	chromatin remodeling	False
+ARID1A	transcription / chromatin	0.0254964924557547	0.0315868006924514	0.05740726618697331	2	2	1.0	canonical_backbone	high	chromatin remodeling	False
+ARID1A	transcription regulation	-0.00927134401395785	0.018659189953531427	0.10324263267963699	18	18	1.0	context_deviation	moderate	chromatin remodeling	False
+BMPR1A	ER stress / UPR	0.0041194746029629	0.0041194746029629	0.0041194746029629	1	1	1.0	context_deviation	provisional	TGF-beta / BMP signaling	False
+BMPR1A	JAK-STAT signaling	0.0167041063559582	0.0167041063559582	0.0167041063559582	1	1	1.0	context_deviation	provisional	TGF-beta / BMP signaling	False
+BMPR1A	NF-κB / MAPK signaling	-0.0021324986166687	0.0021324986166687	0.0021324986166687	1	1	1.0	context_deviation	provisional	TGF-beta / BMP signaling	False
+BMPR1A	NF-κB / copper signaling	-0.0964758525023317	0.0964758525023317	0.0964758525023317	1	1	1.0	context_deviation	provisional	TGF-beta / BMP signaling	False
+BMPR1A	RNA processing / spliceosome	-0.0693047610255277	0.0693047610255277	0.0693047610255277	1	1	1.0	canonical_backbone	high	TGF-beta / BMP signaling	False
+BMPR1A	RNA processing / transcription	-0.1557980594166191	0.1557980594166191	0.1557980594166191	1	1	1.0	context_deviation	provisional	TGF-beta / BMP signaling	False
+BMPR1A	TGF-beta / BMP signaling	0.0405944893261017	0.0405944893261017	0.07571273953493725	2	2	1.0	context_deviation	moderate	TGF-beta / BMP signaling	True
+BMPR1A	cell cycle / replication	0.0001290277218639	0.0001290277218639	0.0001290277218639	1	1	1.0	context_deviation	provisional	TGF-beta / BMP signaling	False
+BMPR1A	chromatin remodeling	0.06699891472630125	0.06699891472630125	0.10303129338789474	2	2	1.0	canonical_backbone	high	TGF-beta / BMP signaling	False
+BMPR1A	cytoskeleton / cell motility	0.0409979314728989	0.0409979314728989	0.0409979314728989	1	1	1.0	context_deviation	provisional	TGF-beta / BMP signaling	False
+BMPR1A	growth / proliferation	0.1315392291015396	0.1315392291015396	0.1315392291015396	1	1	1.0	context_deviation	provisional	TGF-beta / BMP signaling	False
+BMPR1A	growth factor / proliferation	0.1378022620538679	0.1378022620538679	0.1378022620538679	1	1	1.0	context_deviation	provisional	TGF-beta / BMP signaling	False
+BMPR1A	mTOR / lysosome / signaling	-0.0900897649364099	0.0900897649364099	0.0900897649364099	1	1	1.0	shift_excess	moderate	TGF-beta / BMP signaling	False
+BMPR1A	metabolism / transcription	0.0092599222299456	0.0092599222299456	0.0092599222299456	1	1	1.0	context_deviation	provisional	TGF-beta / BMP signaling	False
+BMPR1A	nuclear receptor / co-activator	0.0336147366887415	0.0336147366887415	0.0336147366887415	1	1	1.0	context_deviation	provisional	TGF-beta / BMP signaling	False
+BMPR1A	nuclear receptor / metabolism	-0.00583933394921965	0.00583933394921965	0.011326413616410996	2	2	1.0	context_deviation	moderate	TGF-beta / BMP signaling	False
+BMPR1A	oxidative stress / antioxidant	0.108070870406726	0.108070870406726	0.108070870406726	1	1	1.0	context_deviation	provisional	TGF-beta / BMP signaling	False
+BMPR1A	oxidative stress / mitochondrial	-0.1100726510593669	0.1100726510593669	0.1100726510593669	1	1	1.0	context_deviation	provisional	TGF-beta / BMP signaling	False
+BMPR1A	peroxisome / metabolism	-0.0105026568758256	0.0105026568758256	0.0105026568758256	1	1	1.0	context_deviation	provisional	TGF-beta / BMP signaling	False
+BMPR1A	proteostasis / chaperone	0.1591820941605764	0.1591820941605764	0.1591820941605764	1	1	1.0	context_deviation	provisional	TGF-beta / BMP signaling	False
+BMPR1A	ribosomal / translation	0.0378663633672365	0.0378663633672365	0.0378663633672365	1	1	1.0	canonical_backbone	high	TGF-beta / BMP signaling	False
+BMPR1A	ribosome biogenesis / nucleolar	0.0464523964184722	0.0464523964184722	0.0464523964184722	1	1	1.0	context_deviation	provisional	TGF-beta / BMP signaling	False
+BMPR1A	signaling / oncogene	-0.1230380929104552	0.1230380929104552	0.1230380929104552	1	1	1.0	context_deviation	provisional	TGF-beta / BMP signaling	False
+BMPR1A	synaptic / signaling	0.011513565098006	0.011513565098006	0.011513565098006	1	1	1.0	context_deviation	provisional	TGF-beta / BMP signaling	False
+BMPR1A	transcription / chromatin	-0.01805330348720305	0.03236891151288935	0.052415039813593925	2	2	1.0	canonical_backbone	high	TGF-beta / BMP signaling	False
+BMPR1A	transcription regulation	0.003456819242970962	0.03287113000423269	0.19627695132353926	18	18	1.0	context_deviation	moderate	TGF-beta / BMP signaling	False
+CDKN2A	ER stress / UPR	-0.1480797908353524	0.1480797908353524	0.1480797908353524	1	1	1.0	context_deviation	provisional	cell cycle / replication	False
+CDKN2A	JAK-STAT signaling	0.054404629531787	0.054404629531787	0.054404629531787	1	1	1.0	context_deviation	provisional	cell cycle / replication	False
+CDKN2A	NF-κB / MAPK signaling	0.0198983448970033	0.0198983448970033	0.0198983448970033	1	1	1.0	context_deviation	provisional	cell cycle / replication	False
+CDKN2A	NF-κB / copper signaling	0.17900436069077	0.17900436069077	0.17900436069077	1	1	1.0	context_deviation	provisional	cell cycle / replication	False
+CDKN2A	RNA processing / spliceosome	0.1080039474004593	0.1080039474004593	0.1080039474004593	1	1	1.0	canonical_backbone	high	cell cycle / replication	False
+CDKN2A	RNA processing / transcription	-0.2122812625094012	0.2122812625094012	0.2122812625094012	1	1	1.0	context_deviation	provisional	cell cycle / replication	False
+CDKN2A	TGF-beta / BMP signaling	-0.0268142569797186	0.0268142569797186	0.04450770179924343	2	2	1.0	context_deviation	moderate	cell cycle / replication	False
+CDKN2A	cell cycle / replication	-0.0002799120165949	0.0002799120165949	0.0002799120165949	1	1	1.0	context_deviation	provisional	cell cycle / replication	True
+CDKN2A	chromatin remodeling	0.0643716649249632	0.06792035354592181	0.13233960609745482	2	2	1.0	canonical_backbone	high	cell cycle / replication	False
+CDKN2A	cytoskeleton / cell motility	-0.0003193140339816	0.0003193140339816	0.0003193140339816	1	1	1.0	context_deviation	provisional	cell cycle / replication	False
+CDKN2A	growth / proliferation	0.1075744838874482	0.1075744838874482	0.1075744838874482	1	1	1.0	context_deviation	provisional	cell cycle / replication	False
+CDKN2A	growth factor / proliferation	-0.3877845710245705	0.3877845710245705	0.3877845710245705	1	1	1.0	context_deviation	provisional	cell cycle / replication	False
+CDKN2A	mTOR / lysosome / signaling	-0.0163037944153327	0.0163037944153327	0.0163037944153327	1	1	1.0	shift_excess	moderate	cell cycle / replication	False
+CDKN2A	metabolism / transcription	-0.2331067454360676	0.2331067454360676	0.2331067454360676	1	1	1.0	context_deviation	provisional	cell cycle / replication	False
+CDKN2A	nuclear receptor / co-activator	0.0600541641877078	0.0600541641877078	0.0600541641877078	1	1	1.0	context_deviation	provisional	cell cycle / replication	False
+CDKN2A	nuclear receptor / metabolism	0.00142456599949095	0.0030063932058109503	0.004704846096282405	2	2	1.0	context_deviation	moderate	cell cycle / replication	False
+CDKN2A	oxidative stress / antioxidant	0.0209612369851956	0.0209612369851956	0.0209612369851956	1	1	1.0	context_deviation	provisional	cell cycle / replication	False
+CDKN2A	oxidative stress / mitochondrial	0.2171217992064721	0.2171217992064721	0.2171217992064721	1	1	1.0	context_deviation	provisional	cell cycle / replication	False
+CDKN2A	peroxisome / metabolism	0.1273169782615202	0.1273169782615202	0.1273169782615202	1	1	1.0	context_deviation	provisional	cell cycle / replication	False
+CDKN2A	proteostasis / chaperone	0.0067385737029354	0.0067385737029354	0.0067385737029354	1	1	1.0	context_deviation	provisional	cell cycle / replication	False
+CDKN2A	ribosomal / translation	-0.1709882849083713	0.1709882849083713	0.1709882849083713	1	1	1.0	canonical_backbone	high	cell cycle / replication	False
+CDKN2A	ribosome biogenesis / nucleolar	-0.336745149117243	0.336745149117243	0.336745149117243	1	1	1.0	context_deviation	provisional	cell cycle / replication	False
+CDKN2A	signaling / oncogene	-0.2732046245059276	0.2732046245059276	0.2732046245059276	1	1	1.0	context_deviation	provisional	cell cycle / replication	False
+CDKN2A	synaptic / signaling	0.0551400608737634	0.0551400608737634	0.0551400608737634	1	1	1.0	context_deviation	provisional	cell cycle / replication	False
+CDKN2A	transcription / chromatin	0.02956319569134215	0.16561806238964516	0.23792152121733326	2	2	1.0	canonical_backbone	high	cell cycle / replication	False
+CDKN2A	transcription regulation	0.0032015633686590167	0.04906758430073835	0.28011145981159535	18	18	1.0	context_deviation	moderate	cell cycle / replication	False
+COMMD6	ER stress / UPR	0.0135629140658123	0.0135629140658123	0.0135629140658123	1	1	1.0	context_deviation	provisional	NF-κB / copper signaling	False
+COMMD6	JAK-STAT signaling	-0.0317259090140168	0.0317259090140168	0.0317259090140168	1	1	1.0	context_deviation	provisional	NF-κB / copper signaling	False
+COMMD6	NF-κB / MAPK signaling	0.0195017230471912	0.0195017230471912	0.0195017230471912	1	1	1.0	context_deviation	provisional	NF-κB / copper signaling	False
+COMMD6	NF-κB / copper signaling	0.0746521775281381	0.0746521775281381	0.0746521775281381	1	1	1.0	context_deviation	provisional	NF-κB / copper signaling	True
+COMMD6	RNA processing / spliceosome	0.0361297548099637	0.0361297548099637	0.0361297548099637	1	1	1.0	canonical_backbone	high	NF-κB / copper signaling	False
+COMMD6	RNA processing / transcription	-0.0724086570411101	0.0724086570411101	0.0724086570411101	1	1	1.0	context_deviation	provisional	NF-κB / copper signaling	False
+COMMD6	TGF-beta / BMP signaling	-0.008496649595584202	0.0313134466553183	0.04588518270173076	2	2	1.0	context_deviation	moderate	NF-κB / copper signaling	False
+COMMD6	cell cycle / replication	0.0001376005253733	0.0001376005253733	0.0001376005253733	1	1	1.0	context_deviation	provisional	NF-κB / copper signaling	False
+COMMD6	chromatin remodeling	0.0789805967998793	0.13790737953669852	0.2247504393835265	2	2	1.0	canonical_backbone	high	NF-κB / copper signaling	False
+COMMD6	cytoskeleton / cell motility	-0.1334390246798206	0.1334390246798206	0.1334390246798206	1	1	1.0	context_deviation	provisional	NF-κB / copper signaling	False
+COMMD6	growth / proliferation	0.0977394457814576	0.0977394457814576	0.0977394457814576	1	1	1.0	context_deviation	provisional	NF-κB / copper signaling	False
+COMMD6	growth factor / proliferation	-0.3846676686103514	0.3846676686103514	0.3846676686103514	1	1	1.0	context_deviation	provisional	NF-κB / copper signaling	False
+COMMD6	mTOR / lysosome / signaling	-0.0120602866365467	0.0120602866365467	0.0120602866365467	1	1	1.0	shift_excess	moderate	NF-κB / copper signaling	False
+COMMD6	metabolism / transcription	-0.0301671344888264	0.0301671344888264	0.0301671344888264	1	1	1.0	context_deviation	provisional	NF-κB / copper signaling	False
+COMMD6	nuclear receptor / co-activator	0.0149054801689839	0.0149054801689839	0.0149054801689839	1	1	1.0	context_deviation	provisional	NF-κB / copper signaling	False
+COMMD6	nuclear receptor / metabolism	-0.0002403183156638	0.0023783145105495	0.0033805717871193902	2	2	1.0	context_deviation	moderate	NF-κB / copper signaling	False
+COMMD6	oxidative stress / antioxidant	0.0504930757516055	0.0504930757516055	0.0504930757516055	1	1	1.0	context_deviation	provisional	NF-κB / copper signaling	False
+COMMD6	oxidative stress / mitochondrial	-0.1112642203912971	0.1112642203912971	0.1112642203912971	1	1	1.0	context_deviation	provisional	NF-κB / copper signaling	False
+COMMD6	peroxisome / metabolism	0.0409736265315247	0.0409736265315247	0.0409736265315247	1	1	1.0	context_deviation	provisional	NF-κB / copper signaling	False
+COMMD6	proteostasis / chaperone	-0.0921039077050249	0.0921039077050249	0.0921039077050249	1	1	1.0	context_deviation	provisional	NF-κB / copper signaling	False
+COMMD6	ribosomal / translation	-0.0799020122434933	0.0799020122434933	0.0799020122434933	1	1	1.0	canonical_backbone	high	NF-κB / copper signaling	False
+COMMD6	ribosome biogenesis / nucleolar	-0.1662282571624949	0.1662282571624949	0.1662282571624949	1	1	1.0	context_deviation	provisional	NF-κB / copper signaling	False
+COMMD6	signaling / oncogene	0.0448789487585901	0.0448789487585901	0.0448789487585901	1	1	1.0	context_deviation	provisional	NF-κB / copper signaling	False
+COMMD6	synaptic / signaling	0.031533836404402	0.031533836404402	0.031533836404402	1	1	1.0	context_deviation	provisional	NF-κB / copper signaling	False
+COMMD6	transcription / chromatin	-0.10768226693164085	0.10768226693164085	0.19879978488077812	2	2	1.0	canonical_backbone	high	NF-κB / copper signaling	False
+COMMD6	transcription regulation	-0.00014953678187311147	0.044650810222381564	0.2726180123891404	18	18	1.0	context_deviation	moderate	NF-κB / copper signaling	False
+ENY2	ER stress / UPR	0.0068655801303251	0.0068655801303251	0.0068655801303251	1	1	1.0	context_deviation	provisional	transcription / chromatin	False
+ENY2	JAK-STAT signaling	-0.1889911447639706	0.1889911447639706	0.1889911447639706	1	1	1.0	context_deviation	provisional	transcription / chromatin	False
+ENY2	NF-κB / MAPK signaling	-0.0025553518744645	0.0025553518744645	0.0025553518744645	1	1	1.0	context_deviation	provisional	transcription / chromatin	False
+ENY2	NF-κB / copper signaling	-0.0841730151929367	0.0841730151929367	0.0841730151929367	1	1	1.0	context_deviation	provisional	transcription / chromatin	False
+ENY2	RNA processing / spliceosome	-0.0129985170889164	0.0129985170889164	0.0129985170889164	1	1	1.0	canonical_backbone	high	transcription / chromatin	False
+ENY2	RNA processing / transcription	-0.212575497596987	0.212575497596987	0.212575497596987	1	1	1.0	context_deviation	provisional	transcription / chromatin	False
+ENY2	TGF-beta / BMP signaling	-0.010804974542668199	0.025224342651798	0.038807600726739694	2	2	1.0	context_deviation	moderate	transcription / chromatin	False
+ENY2	cell cycle / replication	-2.3980261194249268e-05	2.3980261194249268e-05	2.3980261194249268e-05	1	1	1.0	context_deviation	provisional	transcription / chromatin	False
+ENY2	chromatin remodeling	-0.027565030843727897	0.0555813245399374	0.08773955280293509	2	2	1.0	canonical_backbone	high	transcription / chromatin	False
+ENY2	cytoskeleton / cell motility	0.0293307706520978	0.0293307706520978	0.0293307706520978	1	1	1.0	context_deviation	provisional	transcription / chromatin	False
+ENY2	growth / proliferation	-0.2339700177470932	0.2339700177470932	0.2339700177470932	1	1	1.0	context_deviation	provisional	transcription / chromatin	False
+ENY2	growth factor / proliferation	-0.0434221217299856	0.0434221217299856	0.0434221217299856	1	1	1.0	context_deviation	provisional	transcription / chromatin	False
+ENY2	mTOR / lysosome / signaling	0.0155021021500749	0.0155021021500749	0.0155021021500749	1	1	1.0	shift_excess	moderate	transcription / chromatin	False
+ENY2	metabolism / transcription	-0.0960102673660503	0.0960102673660503	0.0960102673660503	1	1	1.0	context_deviation	provisional	transcription / chromatin	False
+ENY2	nuclear receptor / co-activator	-0.02007342347992	0.02007342347992	0.02007342347992	1	1	1.0	context_deviation	provisional	transcription / chromatin	False
+ENY2	nuclear receptor / metabolism	-0.0010138552789048	0.0017625761631771	0.0028756137632036873	2	2	1.0	context_deviation	moderate	transcription / chromatin	False
+ENY2	oxidative stress / antioxidant	0.1153345330654299	0.1153345330654299	0.1153345330654299	1	1	1.0	context_deviation	provisional	transcription / chromatin	False
+ENY2	oxidative stress / mitochondrial	0.0351719572596699	0.0351719572596699	0.0351719572596699	1	1	1.0	context_deviation	provisional	transcription / chromatin	False
+ENY2	peroxisome / metabolism	-0.010993611828644	0.010993611828644	0.010993611828644	1	1	1.0	context_deviation	provisional	transcription / chromatin	False
+ENY2	proteostasis / chaperone	-0.0468473784939669	0.0468473784939669	0.0468473784939669	1	1	1.0	context_deviation	provisional	transcription / chromatin	False
+ENY2	ribosomal / translation	0.1403598662413192	0.1403598662413192	0.1403598662413192	1	1	1.0	canonical_backbone	high	transcription / chromatin	False
+ENY2	ribosome biogenesis / nucleolar	0.0847421278952117	0.0847421278952117	0.0847421278952117	1	1	1.0	context_deviation	provisional	transcription / chromatin	False
+ENY2	signaling / oncogene	0.0587765163844581	0.0587765163844581	0.0587765163844581	1	1	1.0	context_deviation	provisional	transcription / chromatin	False
+ENY2	synaptic / signaling	-0.0062885077278506	0.0062885077278506	0.0062885077278506	1	1	1.0	context_deviation	provisional	transcription / chromatin	False
+ENY2	transcription / chromatin	0.049986853124655097	0.084438743546596	0.13877021940628073	2	2	1.0	canonical_backbone	high	transcription / chromatin	True
+ENY2	transcription regulation	-0.005694110801146146	0.02314005221540024	0.14681762916042282	18	18	1.0	context_deviation	moderate	transcription / chromatin	False
+ERC1	ER stress / UPR	-0.017417108433812	0.017417108433812	0.017417108433812	1	1	1.0	context_deviation	provisional	synaptic / signaling	False
+ERC1	JAK-STAT signaling	0.1626949717389665	0.1626949717389665	0.1626949717389665	1	1	1.0	context_deviation	provisional	synaptic / signaling	False
+ERC1	NF-κB / MAPK signaling	0.0438816054541015	0.0438816054541015	0.0438816054541015	1	1	1.0	context_deviation	provisional	synaptic / signaling	False
+ERC1	NF-κB / copper signaling	-0.0102252612984331	0.0102252612984331	0.0102252612984331	1	1	1.0	context_deviation	provisional	synaptic / signaling	False
+ERC1	RNA processing / spliceosome	0.005747257602059	0.005747257602059	0.005747257602059	1	1	1.0	canonical_backbone	high	synaptic / signaling	False
+ERC1	RNA processing / transcription	-0.1455450763044264	0.1455450763044264	0.1455450763044264	1	1	1.0	context_deviation	provisional	synaptic / signaling	False
+ERC1	TGF-beta / BMP signaling	-0.05416419653860135	0.05416419653860135	0.08325492464373686	2	2	1.0	context_deviation	moderate	synaptic / signaling	False
+ERC1	cell cycle / replication	-9.23985789366405e-05	9.23985789366405e-05	9.23985789366405e-05	1	1	1.0	context_deviation	provisional	synaptic / signaling	False
+ERC1	chromatin remodeling	-0.0254652731339152	0.0254652731339152	0.038784063781361476	2	2	1.0	canonical_backbone	high	synaptic / signaling	False
+ERC1	cytoskeleton / cell motility	0.1861049937279885	0.1861049937279885	0.1861049937279885	1	1	1.0	context_deviation	provisional	synaptic / signaling	False
+ERC1	growth / proliferation	-0.1539561534917364	0.1539561534917364	0.1539561534917364	1	1	1.0	context_deviation	provisional	synaptic / signaling	False
+ERC1	growth factor / proliferation	-0.1809475079432403	0.1809475079432403	0.1809475079432403	1	1	1.0	context_deviation	provisional	synaptic / signaling	False
+ERC1	mTOR / lysosome / signaling	-0.4580011020645826	0.4580011020645826	0.4580011020645826	1	1	1.0	shift_excess	moderate	synaptic / signaling	False
+ERC1	metabolism / transcription	0.0574769892662141	0.0574769892662141	0.0574769892662141	1	1	1.0	context_deviation	provisional	synaptic / signaling	False
+ERC1	nuclear receptor / co-activator	-0.0532219572790122	0.0532219572790122	0.0532219572790122	1	1	1.0	context_deviation	provisional	synaptic / signaling	False
+ERC1	nuclear receptor / metabolism	-0.0039866496493703996	0.0054825938813999	0.009586679414185994	2	2	1.0	context_deviation	moderate	synaptic / signaling	False
+ERC1	oxidative stress / antioxidant	-0.0868319897121409	0.0868319897121409	0.0868319897121409	1	1	1.0	context_deviation	provisional	synaptic / signaling	False
+ERC1	oxidative stress / mitochondrial	0.1902297652268116	0.1902297652268116	0.1902297652268116	1	1	1.0	context_deviation	provisional	synaptic / signaling	False
+ERC1	peroxisome / metabolism	0.0024054906741772	0.0024054906741772	0.0024054906741772	1	1	1.0	context_deviation	provisional	synaptic / signaling	False
+ERC1	proteostasis / chaperone	0.1397716067728116	0.1397716067728116	0.1397716067728116	1	1	1.0	context_deviation	provisional	synaptic / signaling	False
+ERC1	ribosomal / translation	0.0585020457831012	0.0585020457831012	0.0585020457831012	1	1	1.0	canonical_backbone	high	synaptic / signaling	False
+ERC1	ribosome biogenesis / nucleolar	-0.5877838379743822	0.5877838379743822	0.5877838379743822	1	1	1.0	context_deviation	provisional	synaptic / signaling	False
+ERC1	signaling / oncogene	-0.2643674153678583	0.2643674153678583	0.2643674153678583	1	1	1.0	context_deviation	provisional	synaptic / signaling	False
+ERC1	synaptic / signaling	0.0223829806907429	0.0223829806907429	0.0223829806907429	1	1	1.0	context_deviation	provisional	synaptic / signaling	True
+ERC1	transcription / chromatin	0.22961242019383732	0.22961242019383732	0.32791360148630805	2	2	1.0	canonical_backbone	high	synaptic / signaling	False
+ERC1	transcription regulation	0.005088483512582082	0.049872813449204884	0.28647017802501307	18	18	1.0	context_deviation	moderate	synaptic / signaling	False
+ETV3	ER stress / UPR	0.0131606017239991	0.0131606017239991	0.0131606017239991	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ETV3	JAK-STAT signaling	-0.0770270255489952	0.0770270255489952	0.0770270255489952	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ETV3	NF-κB / MAPK signaling	0.0032939106495768	0.0032939106495768	0.0032939106495768	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ETV3	NF-κB / copper signaling	0.0087833547587776	0.0087833547587776	0.0087833547587776	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ETV3	RNA processing / spliceosome	-0.0139725345662102	0.0139725345662102	0.0139725345662102	1	1	1.0	canonical_backbone	high	transcription regulation	False
+ETV3	RNA processing / transcription	-0.0575931712666128	0.0575931712666128	0.0575931712666128	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ETV3	TGF-beta / BMP signaling	-0.0122512820186137	0.0348675661579019	0.05226549685739672	2	2	1.0	context_deviation	moderate	transcription regulation	False
+ETV3	cell cycle / replication	-2.815112347742267e-05	2.815112347742267e-05	2.815112347742267e-05	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ETV3	chromatin remodeling	-0.010261785653638299	0.0314579290580721	0.04679541741290302	2	2	1.0	canonical_backbone	high	transcription regulation	False
+ETV3	cytoskeleton / cell motility	0.0617573597230237	0.0617573597230237	0.0617573597230237	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ETV3	growth / proliferation	0.1183061285165738	0.1183061285165738	0.1183061285165738	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ETV3	growth factor / proliferation	-0.066732971116767	0.066732971116767	0.066732971116767	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ETV3	mTOR / lysosome / signaling	-0.2349014567043623	0.2349014567043623	0.2349014567043623	1	1	1.0	shift_excess	moderate	transcription regulation	False
+ETV3	metabolism / transcription	-0.0118962935793696	0.0118962935793696	0.0118962935793696	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ETV3	nuclear receptor / co-activator	-0.0352157259309917	0.0352157259309917	0.0352157259309917	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ETV3	nuclear receptor / metabolism	-0.00375817653360855	0.00375817653360855	0.006416160869523334	2	2	1.0	context_deviation	moderate	transcription regulation	False
+ETV3	oxidative stress / antioxidant	0.0348330444225787	0.0348330444225787	0.0348330444225787	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ETV3	oxidative stress / mitochondrial	0.1018227414392611	0.1018227414392611	0.1018227414392611	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ETV3	peroxisome / metabolism	-0.0432501607972676	0.0432501607972676	0.0432501607972676	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ETV3	proteostasis / chaperone	0.0999971717488093	0.0999971717488093	0.0999971717488093	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ETV3	ribosomal / translation	-0.0357789517590261	0.0357789517590261	0.0357789517590261	1	1	1.0	canonical_backbone	high	transcription regulation	False
+ETV3	ribosome biogenesis / nucleolar	-0.0298801174556061	0.0298801174556061	0.0298801174556061	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ETV3	signaling / oncogene	-0.1029838049244805	0.1029838049244805	0.1029838049244805	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ETV3	synaptic / signaling	-0.0152903688518289	0.0152903688518289	0.0152903688518289	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ETV3	transcription / chromatin	0.012571591171489399	0.0360435757004774	0.053984891476395784	2	2	1.0	canonical_backbone	high	transcription regulation	False
+ETV3	transcription regulation	-0.0021429278164942106	0.01648662880141943	0.08961809105223212	18	18	1.0	context_deviation	moderate	transcription regulation	True
+GON4L	ER stress / UPR	0.0111603771545724	0.0111603771545724	0.0111603771545724	1	1	1.0	context_deviation	provisional	transcription regulation	False
+GON4L	JAK-STAT signaling	-0.0272286623199433	0.0272286623199433	0.0272286623199433	1	1	1.0	context_deviation	provisional	transcription regulation	False
+GON4L	NF-κB / MAPK signaling	0.0026660451969583	0.0026660451969583	0.0026660451969583	1	1	1.0	context_deviation	provisional	transcription regulation	False
+GON4L	NF-κB / copper signaling	0.0316263061384458	0.0316263061384458	0.0316263061384458	1	1	1.0	context_deviation	provisional	transcription regulation	False
+GON4L	RNA processing / spliceosome	0.0247602958874851	0.0247602958874851	0.0247602958874851	1	1	1.0	canonical_backbone	high	transcription regulation	False
+GON4L	RNA processing / transcription	0.0391115946410016	0.0391115946410016	0.0391115946410016	1	1	1.0	context_deviation	provisional	transcription regulation	False
+GON4L	TGF-beta / BMP signaling	-0.0241216076023569	0.0241216076023569	0.03603812244788858	2	2	1.0	context_deviation	moderate	transcription regulation	False
+GON4L	cell cycle / replication	1.3188944167467232e-05	1.3188944167467232e-05	1.3188944167467232e-05	1	1	1.0	context_deviation	provisional	transcription regulation	False
+GON4L	chromatin remodeling	-0.02013264235779615	0.025708563143458648	0.046179075504131264	2	2	1.0	canonical_backbone	high	transcription regulation	False
+GON4L	cytoskeleton / cell motility	0.0059846481280922	0.0059846481280922	0.0059846481280922	1	1	1.0	context_deviation	provisional	transcription regulation	False
+GON4L	growth / proliferation	0.04936172282567	0.04936172282567	0.04936172282567	1	1	1.0	context_deviation	provisional	transcription regulation	False
+GON4L	growth factor / proliferation	-0.0368196645770117	0.0368196645770117	0.0368196645770117	1	1	1.0	context_deviation	provisional	transcription regulation	False
+GON4L	mTOR / lysosome / signaling	-0.0029450047520218	0.0029450047520218	0.0029450047520218	1	1	1.0	shift_excess	moderate	transcription regulation	False
+GON4L	metabolism / transcription	0.0030376620940493	0.0030376620940493	0.0030376620940493	1	1	1.0	context_deviation	provisional	transcription regulation	False
+GON4L	nuclear receptor / co-activator	0.0002897543758841	0.0002897543758841	0.0002897543758841	1	1	1.0	context_deviation	provisional	transcription regulation	False
+GON4L	nuclear receptor / metabolism	-0.0016641473681356998	0.0016641473681356998	0.002622060581574793	2	2	1.0	context_deviation	moderate	transcription regulation	False
+GON4L	oxidative stress / antioxidant	0.0531196799054165	0.0531196799054165	0.0531196799054165	1	1	1.0	context_deviation	provisional	transcription regulation	False
+GON4L	oxidative stress / mitochondrial	0.0564508653073437	0.0564508653073437	0.0564508653073437	1	1	1.0	context_deviation	provisional	transcription regulation	False
+GON4L	peroxisome / metabolism	-0.0167474405251484	0.0167474405251484	0.0167474405251484	1	1	1.0	context_deviation	provisional	transcription regulation	False
+GON4L	proteostasis / chaperone	0.0389094693133014	0.0389094693133014	0.0389094693133014	1	1	1.0	context_deviation	provisional	transcription regulation	False
+GON4L	ribosomal / translation	-0.0174538274563741	0.0174538274563741	0.0174538274563741	1	1	1.0	canonical_backbone	high	transcription regulation	False
+GON4L	ribosome biogenesis / nucleolar	-0.0939657434024617	0.0939657434024617	0.0939657434024617	1	1	1.0	context_deviation	provisional	transcription regulation	False
+GON4L	signaling / oncogene	-0.0626287294621098	0.0626287294621098	0.0626287294621098	1	1	1.0	context_deviation	provisional	transcription regulation	False
+GON4L	synaptic / signaling	-0.0074097069145989	0.0074097069145989	0.0074097069145989	1	1	1.0	context_deviation	provisional	transcription regulation	False
+GON4L	transcription / chromatin	0.007476382297183	0.0139154336678478	0.022339900913741915	2	2	1.0	canonical_backbone	high	transcription regulation	False
+GON4L	transcription regulation	-0.0007275731803270554	0.014778427610707088	0.08286114852556296	18	18	1.0	context_deviation	moderate	transcription regulation	True
+HDGF	ER stress / UPR	0.0101928481137249	0.0101928481137249	0.0101928481137249	1	1	1.0	context_deviation	provisional	growth factor / proliferation	False
+HDGF	JAK-STAT signaling	0.0721217144324104	0.0721217144324104	0.0721217144324104	1	1	1.0	context_deviation	provisional	growth factor / proliferation	False
+HDGF	NF-κB / MAPK signaling	0.007032385202441	0.007032385202441	0.007032385202441	1	1	1.0	context_deviation	provisional	growth factor / proliferation	False
+HDGF	NF-κB / copper signaling	-0.025459054505178	0.025459054505178	0.025459054505178	1	1	1.0	context_deviation	provisional	growth factor / proliferation	False
+HDGF	RNA processing / spliceosome	-0.0262814552399702	0.0262814552399702	0.0262814552399702	1	1	1.0	canonical_backbone	high	growth factor / proliferation	False
+HDGF	RNA processing / transcription	0.0080939802329006	0.0080939802329006	0.0080939802329006	1	1	1.0	context_deviation	provisional	growth factor / proliferation	False
+HDGF	TGF-beta / BMP signaling	-0.016805311650555647	0.016805311650555647	0.023791158768925517	2	2	1.0	context_deviation	moderate	growth factor / proliferation	False
+HDGF	cell cycle / replication	1.0086161125528524e-05	1.0086161125528524e-05	1.0086161125528524e-05	1	1	1.0	context_deviation	provisional	growth factor / proliferation	False
+HDGF	chromatin remodeling	-0.044147830836854245	0.04814901425148265	0.0923835325259754	2	2	1.0	canonical_backbone	high	growth factor / proliferation	False
+HDGF	cytoskeleton / cell motility	-0.0198494486705461	0.0198494486705461	0.0198494486705461	1	1	1.0	context_deviation	provisional	growth factor / proliferation	False
+HDGF	growth / proliferation	0.0644754305174455	0.0644754305174455	0.0644754305174455	1	1	1.0	context_deviation	provisional	growth factor / proliferation	False
+HDGF	growth factor / proliferation	-0.0608373765229943	0.0608373765229943	0.0608373765229943	1	1	1.0	context_deviation	provisional	growth factor / proliferation	True
+HDGF	mTOR / lysosome / signaling	-0.0317511211745779	0.0317511211745779	0.0317511211745779	1	1	1.0	shift_excess	moderate	growth factor / proliferation	False
+HDGF	metabolism / transcription	0.0024356452015927	0.0024356452015927	0.0024356452015927	1	1	1.0	context_deviation	provisional	growth factor / proliferation	False
+HDGF	nuclear receptor / co-activator	0.0021924615753835	0.0021924615753835	0.0021924615753835	1	1	1.0	context_deviation	provisional	growth factor / proliferation	False
+HDGF	nuclear receptor / metabolism	0.0018012689815017498	0.00223376769464675	0.0040581493460363945	2	2	1.0	context_deviation	moderate	growth factor / proliferation	False
+HDGF	oxidative stress / antioxidant	0.0700948737614237	0.0700948737614237	0.0700948737614237	1	1	1.0	context_deviation	provisional	growth factor / proliferation	False
+HDGF	oxidative stress / mitochondrial	-0.056098987301118	0.056098987301118	0.056098987301118	1	1	1.0	context_deviation	provisional	growth factor / proliferation	False
+HDGF	peroxisome / metabolism	-0.0115780377020396	0.0115780377020396	0.0115780377020396	1	1	1.0	context_deviation	provisional	growth factor / proliferation	False
+HDGF	proteostasis / chaperone	0.0739705292810847	0.0739705292810847	0.0739705292810847	1	1	1.0	context_deviation	provisional	growth factor / proliferation	False
+HDGF	ribosomal / translation	-0.0757373688970504	0.0757373688970504	0.0757373688970504	1	1	1.0	canonical_backbone	high	growth factor / proliferation	False
+HDGF	ribosome biogenesis / nucleolar	-0.14345134392286	0.14345134392286	0.14345134392286	1	1	1.0	context_deviation	provisional	growth factor / proliferation	False
+HDGF	signaling / oncogene	-0.167464774320524	0.167464774320524	0.167464774320524	1	1	1.0	context_deviation	provisional	growth factor / proliferation	False
+HDGF	synaptic / signaling	-0.0120915762437337	0.0120915762437337	0.0120915762437337	1	1	1.0	context_deviation	provisional	growth factor / proliferation	False
+HDGF	transcription / chromatin	-0.0131302849123347	0.0131302849123347	0.022516582622135444	2	2	1.0	canonical_backbone	high	growth factor / proliferation	False
+HDGF	transcription regulation	-0.008879815483553124	0.016183955304747664	0.08872584836871696	18	18	1.0	context_deviation	moderate	growth factor / proliferation	False
+HLX	ER stress / UPR	0.0566094808916005	0.0566094808916005	0.0566094808916005	1	1	1.0	context_deviation	provisional	transcription regulation	False
+HLX	JAK-STAT signaling	-0.3877036471802535	0.3877036471802535	0.3877036471802535	1	1	1.0	context_deviation	provisional	transcription regulation	False
+HLX	NF-κB / MAPK signaling	0.0024777020383468	0.0024777020383468	0.0024777020383468	1	1	1.0	context_deviation	provisional	transcription regulation	False
+HLX	NF-κB / copper signaling	0.0422120243369799	0.0422120243369799	0.0422120243369799	1	1	1.0	context_deviation	provisional	transcription regulation	False
+HLX	RNA processing / spliceosome	0.0487148196364334	0.0487148196364334	0.0487148196364334	1	1	1.0	canonical_backbone	high	transcription regulation	False
+HLX	RNA processing / transcription	0.1144286775314868	0.1144286775314868	0.1144286775314868	1	1	1.0	context_deviation	provisional	transcription regulation	False
+HLX	TGF-beta / BMP signaling	-0.018561035102670848	0.018561035102670848	0.030776572962277267	2	2	1.0	context_deviation	moderate	transcription regulation	False
+HLX	cell cycle / replication	0.0001518130396774	0.0001518130396774	0.0001518130396774	1	1	1.0	context_deviation	provisional	transcription regulation	False
+HLX	chromatin remodeling	-0.06452143427896656	0.10027117848445904	0.16862576740271484	2	2	1.0	canonical_backbone	high	transcription regulation	False
+HLX	cytoskeleton / cell motility	-0.2186889230364192	0.2186889230364192	0.2186889230364192	1	1	1.0	context_deviation	provisional	transcription regulation	False
+HLX	growth / proliferation	-0.0964196039098894	0.0964196039098894	0.0964196039098894	1	1	1.0	context_deviation	provisional	transcription regulation	False
+HLX	growth factor / proliferation	-0.1232460574583741	0.1232460574583741	0.1232460574583741	1	1	1.0	context_deviation	provisional	transcription regulation	False
+HLX	mTOR / lysosome / signaling	0.0299194648809907	0.0299194648809907	0.0299194648809907	1	1	1.0	shift_excess	moderate	transcription regulation	False
+HLX	metabolism / transcription	0.2021652441163879	0.2021652441163879	0.2021652441163879	1	1	1.0	context_deviation	provisional	transcription regulation	False
+HLX	nuclear receptor / co-activator	-0.0646195702224024	0.0646195702224024	0.0646195702224024	1	1	1.0	context_deviation	provisional	transcription regulation	False
+HLX	nuclear receptor / metabolism	0.004250032194608551	0.00559398314794215	0.00993533302055547	2	2	1.0	context_deviation	moderate	transcription regulation	False
+HLX	oxidative stress / antioxidant	0.065336447989055	0.065336447989055	0.065336447989055	1	1	1.0	context_deviation	provisional	transcription regulation	False
+HLX	oxidative stress / mitochondrial	-0.0432952234887428	0.0432952234887428	0.0432952234887428	1	1	1.0	context_deviation	provisional	transcription regulation	False
+HLX	peroxisome / metabolism	-0.0548601706189887	0.0548601706189887	0.0548601706189887	1	1	1.0	context_deviation	provisional	transcription regulation	False
+HLX	proteostasis / chaperone	-0.2074076590326796	0.2074076590326796	0.2074076590326796	1	1	1.0	context_deviation	provisional	transcription regulation	False
+HLX	ribosomal / translation	0.0250104331169055	0.0250104331169055	0.0250104331169055	1	1	1.0	canonical_backbone	high	transcription regulation	False
+HLX	ribosome biogenesis / nucleolar	0.2918343773239226	0.2918343773239226	0.2918343773239226	1	1	1.0	context_deviation	provisional	transcription regulation	False
+HLX	signaling / oncogene	0.2555037604817695	0.2555037604817695	0.2555037604817695	1	1	1.0	context_deviation	provisional	transcription regulation	False
+HLX	synaptic / signaling	-0.1341758342782498	0.1341758342782498	0.1341758342782498	1	1	1.0	context_deviation	provisional	transcription regulation	False
+HLX	transcription / chromatin	-0.07076766145220509	0.1043169359235539	0.1782699359280345	2	2	1.0	canonical_backbone	high	transcription regulation	False
+HLX	transcription regulation	-0.016975543584429525	0.02597263081889567	0.1602853408343076	18	18	1.0	context_deviation	moderate	transcription regulation	True
+KLF3	ER stress / UPR	0.0098551298384477	0.0098551298384477	0.0098551298384477	1	1	1.0	context_deviation	provisional	transcription regulation	False
+KLF3	JAK-STAT signaling	-0.1927538829392588	0.1927538829392588	0.1927538829392588	1	1	1.0	context_deviation	provisional	transcription regulation	False
+KLF3	NF-κB / MAPK signaling	0.0178138079085267	0.0178138079085267	0.0178138079085267	1	1	1.0	context_deviation	provisional	transcription regulation	False
+KLF3	NF-κB / copper signaling	-0.0364034364646086	0.0364034364646086	0.0364034364646086	1	1	1.0	context_deviation	provisional	transcription regulation	False
+KLF3	RNA processing / spliceosome	-0.0485320789682109	0.0485320789682109	0.0485320789682109	1	1	1.0	canonical_backbone	high	transcription regulation	False
+KLF3	RNA processing / transcription	-0.1097905972964419	0.1097905972964419	0.1097905972964419	1	1	1.0	context_deviation	provisional	transcription regulation	False
+KLF3	TGF-beta / BMP signaling	0.014596714173297802	0.0338650235713421	0.05215177631000711	2	2	1.0	context_deviation	moderate	transcription regulation	False
+KLF3	cell cycle / replication	6.817992049048882e-06	6.817992049048882e-06	6.817992049048882e-06	1	1	1.0	context_deviation	provisional	transcription regulation	False
+KLF3	chromatin remodeling	0.05200366830182575	0.05200366830182575	0.07372320292214805	2	2	1.0	canonical_backbone	high	transcription regulation	False
+KLF3	cytoskeleton / cell motility	0.0112143514355783	0.0112143514355783	0.0112143514355783	1	1	1.0	context_deviation	provisional	transcription regulation	False
+KLF3	growth / proliferation	-0.1286557366607121	0.1286557366607121	0.1286557366607121	1	1	1.0	context_deviation	provisional	transcription regulation	False
+KLF3	growth factor / proliferation	-0.0199809765907629	0.0199809765907629	0.0199809765907629	1	1	1.0	context_deviation	provisional	transcription regulation	False
+KLF3	mTOR / lysosome / signaling	0.0383337802055728	0.0383337802055728	0.0383337802055728	1	1	1.0	shift_excess	moderate	transcription regulation	False
+KLF3	metabolism / transcription	-0.002335118192521	0.002335118192521	0.002335118192521	1	1	1.0	context_deviation	provisional	transcription regulation	False
+KLF3	nuclear receptor / co-activator	-0.024375879376643	0.024375879376643	0.024375879376643	1	1	1.0	context_deviation	provisional	transcription regulation	False
+KLF3	nuclear receptor / metabolism	-0.009186430558604899	0.0097984848853162	0.018994778885569576	2	2	1.0	context_deviation	moderate	transcription regulation	False
+KLF3	oxidative stress / antioxidant	0.0479932610317073	0.0479932610317073	0.0479932610317073	1	1	1.0	context_deviation	provisional	transcription regulation	False
+KLF3	oxidative stress / mitochondrial	0.0960515564054708	0.0960515564054708	0.0960515564054708	1	1	1.0	context_deviation	provisional	transcription regulation	False
+KLF3	peroxisome / metabolism	0.0197422044215279	0.0197422044215279	0.0197422044215279	1	1	1.0	context_deviation	provisional	transcription regulation	False
+KLF3	proteostasis / chaperone	0.0384592738146733	0.0384592738146733	0.0384592738146733	1	1	1.0	context_deviation	provisional	transcription regulation	False
+KLF3	ribosomal / translation	-0.0441561822546543	0.0441561822546543	0.0441561822546543	1	1	1.0	canonical_backbone	high	transcription regulation	False
+KLF3	ribosome biogenesis / nucleolar	0.140606203164291	0.140606203164291	0.140606203164291	1	1	1.0	context_deviation	provisional	transcription regulation	False
+KLF3	signaling / oncogene	0.0377569916526674	0.0377569916526674	0.0377569916526674	1	1	1.0	context_deviation	provisional	transcription regulation	False
+KLF3	synaptic / signaling	-0.0269482874021222	0.0269482874021222	0.0269482874021222	1	1	1.0	context_deviation	provisional	transcription regulation	False
+KLF3	transcription / chromatin	0.0401503836549349	0.0863696581666542	0.13469796701853493	2	2	1.0	canonical_backbone	high	transcription regulation	False
+KLF3	transcription regulation	-0.014429877217550683	0.02527666131777884	0.15695642554856776	18	18	1.0	context_deviation	moderate	transcription regulation	True
+LAMTOR5	ER stress / UPR	-0.0131105612617399	0.0131105612617399	0.0131105612617399	1	1	1.0	context_deviation	provisional	mTOR / lysosome / signaling	False
+LAMTOR5	JAK-STAT signaling	-0.0852454540216576	0.0852454540216576	0.0852454540216576	1	1	1.0	context_deviation	provisional	mTOR / lysosome / signaling	False
+LAMTOR5	NF-κB / MAPK signaling	-0.0080156891038784	0.0080156891038784	0.0080156891038784	1	1	1.0	context_deviation	provisional	mTOR / lysosome / signaling	False
+LAMTOR5	NF-κB / copper signaling	0.0444856057477188	0.0444856057477188	0.0444856057477188	1	1	1.0	context_deviation	provisional	mTOR / lysosome / signaling	False
+LAMTOR5	RNA processing / spliceosome	0.0006075193017778	0.0006075193017778	0.0006075193017778	1	1	1.0	canonical_backbone	high	mTOR / lysosome / signaling	False
+LAMTOR5	RNA processing / transcription	0.1176773089177974	0.1176773089177974	0.1176773089177974	1	1	1.0	context_deviation	provisional	mTOR / lysosome / signaling	False
+LAMTOR5	TGF-beta / BMP signaling	0.0144602078735552	0.0144602078735552	0.02212128733777145	2	2	1.0	context_deviation	moderate	mTOR / lysosome / signaling	False
+LAMTOR5	cell cycle / replication	-3.776481163891287e-05	3.776481163891287e-05	3.776481163891287e-05	1	1	1.0	context_deviation	provisional	mTOR / lysosome / signaling	False
+LAMTOR5	chromatin remodeling	-0.0164279488081495	0.024623952137326	0.041862071637808425	2	2	1.0	canonical_backbone	high	mTOR / lysosome / signaling	False
+LAMTOR5	cytoskeleton / cell motility	0.0363629108229739	0.0363629108229739	0.0363629108229739	1	1	1.0	context_deviation	provisional	mTOR / lysosome / signaling	False
+LAMTOR5	growth / proliferation	0.0048458777796676	0.0048458777796676	0.0048458777796676	1	1	1.0	context_deviation	provisional	mTOR / lysosome / signaling	False
+LAMTOR5	growth factor / proliferation	-0.0609339440374717	0.0609339440374717	0.0609339440374717	1	1	1.0	context_deviation	provisional	mTOR / lysosome / signaling	False
+LAMTOR5	mTOR / lysosome / signaling	0.0326830324295423	0.0326830324295423	0.0326830324295423	1	1	1.0	shift_excess	moderate	mTOR / lysosome / signaling	True
+LAMTOR5	metabolism / transcription	-0.0910647568202031	0.0910647568202031	0.0910647568202031	1	1	1.0	context_deviation	provisional	mTOR / lysosome / signaling	False
+LAMTOR5	nuclear receptor / co-activator	0.0122173189695909	0.0122173189695909	0.0122173189695909	1	1	1.0	context_deviation	provisional	mTOR / lysosome / signaling	False
+LAMTOR5	nuclear receptor / metabolism	0.0020023770557807503	0.00313705717361495	0.005263200848161925	2	2	1.0	context_deviation	moderate	mTOR / lysosome / signaling	False
+LAMTOR5	oxidative stress / antioxidant	0.0378376892110332	0.0378376892110332	0.0378376892110332	1	1	1.0	context_deviation	provisional	mTOR / lysosome / signaling	False
+LAMTOR5	oxidative stress / mitochondrial	-0.2777213453905868	0.2777213453905868	0.2777213453905868	1	1	1.0	context_deviation	provisional	mTOR / lysosome / signaling	False
+LAMTOR5	peroxisome / metabolism	0.0591786820554616	0.0591786820554616	0.0591786820554616	1	1	1.0	context_deviation	provisional	mTOR / lysosome / signaling	False
+LAMTOR5	proteostasis / chaperone	-0.1103640670971341	0.1103640670971341	0.1103640670971341	1	1	1.0	context_deviation	provisional	mTOR / lysosome / signaling	False
+LAMTOR5	ribosomal / translation	-0.00449803202027	0.00449803202027	0.00449803202027	1	1	1.0	canonical_backbone	high	mTOR / lysosome / signaling	False
+LAMTOR5	ribosome biogenesis / nucleolar	0.2215171531320738	0.2215171531320738	0.2215171531320738	1	1	1.0	context_deviation	provisional	mTOR / lysosome / signaling	False
+LAMTOR5	signaling / oncogene	0.1157769207804838	0.1157769207804838	0.1157769207804838	1	1	1.0	context_deviation	provisional	mTOR / lysosome / signaling	False
+LAMTOR5	synaptic / signaling	-0.036993052428596	0.036993052428596	0.036993052428596	1	1	1.0	context_deviation	provisional	mTOR / lysosome / signaling	False
+LAMTOR5	transcription / chromatin	0.006919780799968101	0.011219172327132	0.018641523222392084	2	2	1.0	canonical_backbone	high	mTOR / lysosome / signaling	False
+LAMTOR5	transcription regulation	-0.0032014523966380987	0.027689788014724152	0.16598548649102912	18	18	1.0	context_deviation	moderate	mTOR / lysosome / signaling	False
+MAML3	ER stress / UPR	-0.1157887446474494	0.1157887446474494	0.1157887446474494	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MAML3	JAK-STAT signaling	0.15855919652505	0.15855919652505	0.15855919652505	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MAML3	NF-κB / MAPK signaling	0.00569835129542	0.00569835129542	0.00569835129542	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MAML3	NF-κB / copper signaling	-0.0818218223039121	0.0818218223039121	0.0818218223039121	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MAML3	RNA processing / spliceosome	-0.0164343280423653	0.0164343280423653	0.0164343280423653	1	1	1.0	canonical_backbone	high	transcription regulation	False
+MAML3	RNA processing / transcription	-0.1672304182673978	0.1672304182673978	0.1672304182673978	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MAML3	TGF-beta / BMP signaling	-0.02099333557571495	0.034267931336551254	0.056833287018809145	2	2	1.0	context_deviation	moderate	transcription regulation	False
+MAML3	cell cycle / replication	-0.0002007670477462	0.0002007670477462	0.0002007670477462	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MAML3	chromatin remodeling	0.1729553654208524	0.1729553654208524	0.3392146616215911	2	2	1.0	canonical_backbone	high	transcription regulation	False
+MAML3	cytoskeleton / cell motility	-0.0275334624671247	0.0275334624671247	0.0275334624671247	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MAML3	growth / proliferation	-0.1043962226303339	0.1043962226303339	0.1043962226303339	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MAML3	growth factor / proliferation	-0.1467338621582826	0.1467338621582826	0.1467338621582826	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MAML3	mTOR / lysosome / signaling	0.1578270050367831	0.1578270050367831	0.1578270050367831	1	1	1.0	shift_excess	moderate	transcription regulation	False
+MAML3	metabolism / transcription	-0.0527138271109309	0.0527138271109309	0.0527138271109309	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MAML3	nuclear receptor / co-activator	0.0064968719297059	0.0064968719297059	0.0064968719297059	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MAML3	nuclear receptor / metabolism	-0.0121059484170252	0.0150587257258424	0.0273246850873646	2	2	1.0	context_deviation	moderate	transcription regulation	False
+MAML3	oxidative stress / antioxidant	0.0074360109087705	0.0074360109087705	0.0074360109087705	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MAML3	oxidative stress / mitochondrial	0.3380639668966535	0.3380639668966535	0.3380639668966535	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MAML3	peroxisome / metabolism	-0.0122468245833869	0.0122468245833869	0.0122468245833869	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MAML3	proteostasis / chaperone	0.1765370369935851	0.1765370369935851	0.1765370369935851	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MAML3	ribosomal / translation	-0.2689688679496682	0.2689688679496682	0.2689688679496682	1	1	1.0	canonical_backbone	high	transcription regulation	False
+MAML3	ribosome biogenesis / nucleolar	-0.091553691639728	0.091553691639728	0.091553691639728	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MAML3	signaling / oncogene	-0.4247259466471588	0.4247259466471588	0.4247259466471588	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MAML3	synaptic / signaling	-0.0364227562634086	0.0364227562634086	0.0364227562634086	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MAML3	transcription / chromatin	0.0555117266087469	0.1617590413808393	0.2418575583252768	2	2	1.0	canonical_backbone	high	transcription regulation	False
+MAML3	transcription regulation	-0.001669797421228044	0.0398916087427654	0.20846704425909118	18	18	1.0	context_deviation	moderate	transcription regulation	True
+MIER1	ER stress / UPR	-0.0055486411731728	0.0055486411731728	0.0055486411731728	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MIER1	JAK-STAT signaling	-0.0107390205414096	0.0107390205414096	0.0107390205414096	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MIER1	NF-κB / MAPK signaling	0.0085346039459981	0.0085346039459981	0.0085346039459981	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MIER1	NF-κB / copper signaling	0.0127388075966251	0.0127388075966251	0.0127388075966251	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MIER1	RNA processing / spliceosome	0.0575664522948895	0.0575664522948895	0.0575664522948895	1	1	1.0	canonical_backbone	high	transcription regulation	False
+MIER1	RNA processing / transcription	-0.0250133580493501	0.0250133580493501	0.0250133580493501	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MIER1	TGF-beta / BMP signaling	-0.0016564950617993998	0.0131258378891888	0.018709975744667876	2	2	1.0	context_deviation	moderate	transcription regulation	False
+MIER1	cell cycle / replication	8.472685690945952e-05	8.472685690945952e-05	8.472685690945952e-05	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MIER1	chromatin remodeling	-0.0568099372568981	0.0603748942624019	0.11723904493238511	2	2	1.0	canonical_backbone	high	transcription regulation	False
+MIER1	cytoskeleton / cell motility	0.0304559019025214	0.0304559019025214	0.0304559019025214	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MIER1	growth / proliferation	-0.0782135960748816	0.0782135960748816	0.0782135960748816	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MIER1	growth factor / proliferation	-0.0541377873935471	0.0541377873935471	0.0541377873935471	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MIER1	mTOR / lysosome / signaling	-0.0725719948146475	0.0725719948146475	0.0725719948146475	1	1	1.0	shift_excess	moderate	transcription regulation	False
+MIER1	metabolism / transcription	0.0383682150681933	0.0383682150681933	0.0383682150681933	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MIER1	nuclear receptor / co-activator	-0.0140935001808283	0.0140935001808283	0.0140935001808283	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MIER1	nuclear receptor / metabolism	-8.8261024782e-05	0.0003257743797164	0.000477323695148636	2	2	1.0	context_deviation	moderate	transcription regulation	False
+MIER1	oxidative stress / antioxidant	0.0004004571615394	0.0004004571615394	0.0004004571615394	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MIER1	oxidative stress / mitochondrial	-0.0638373277873691	0.0638373277873691	0.0638373277873691	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MIER1	peroxisome / metabolism	0.0103505496277649	0.0103505496277649	0.0103505496277649	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MIER1	proteostasis / chaperone	6.737321277705348e-05	6.737321277705348e-05	6.737321277705348e-05	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MIER1	ribosomal / translation	-0.0298808227219997	0.0298808227219997	0.0298808227219997	1	1	1.0	canonical_backbone	high	transcription regulation	False
+MIER1	ribosome biogenesis / nucleolar	-0.1538485712606832	0.1538485712606832	0.1538485712606832	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MIER1	signaling / oncogene	-0.0724561099140523	0.0724561099140523	0.0724561099140523	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MIER1	synaptic / signaling	0.0451275457528436	0.0451275457528436	0.0451275457528436	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MIER1	transcription / chromatin	0.049534589982932004	0.049534589982932004	0.07138222689808976	2	2	1.0	canonical_backbone	high	transcription regulation	False
+MIER1	transcription regulation	0.005653026385110973	0.022158580050872873	0.12377551821550642	18	18	1.0	context_deviation	moderate	transcription regulation	True
+MTDH	ER stress / UPR	-0.0135512140413889	0.0135512140413889	0.0135512140413889	1	1	1.0	context_deviation	provisional	signaling / oncogene	False
+MTDH	JAK-STAT signaling	-0.3066271392188895	0.3066271392188895	0.3066271392188895	1	1	1.0	context_deviation	provisional	signaling / oncogene	False
+MTDH	NF-κB / MAPK signaling	0.0224630902157496	0.0224630902157496	0.0224630902157496	1	1	1.0	context_deviation	provisional	signaling / oncogene	False
+MTDH	NF-κB / copper signaling	-0.0987191225710266	0.0987191225710266	0.0987191225710266	1	1	1.0	context_deviation	provisional	signaling / oncogene	False
+MTDH	RNA processing / spliceosome	-0.1095647735044913	0.1095647735044913	0.1095647735044913	1	1	1.0	canonical_backbone	high	signaling / oncogene	False
+MTDH	RNA processing / transcription	-0.0959677482406594	0.0959677482406594	0.0959677482406594	1	1	1.0	context_deviation	provisional	signaling / oncogene	False
+MTDH	TGF-beta / BMP signaling	0.0650568869794992	0.0650568869794992	0.1221734339102164	2	2	1.0	context_deviation	moderate	signaling / oncogene	False
+MTDH	cell cycle / replication	0.0001949787401589	0.0001949787401589	0.0001949787401589	1	1	1.0	context_deviation	provisional	signaling / oncogene	False
+MTDH	chromatin remodeling	0.05993732357648585	0.05993732357648585	0.08791428224699283	2	2	1.0	canonical_backbone	high	signaling / oncogene	False
+MTDH	cytoskeleton / cell motility	0.0388675792948136	0.0388675792948136	0.0388675792948136	1	1	1.0	context_deviation	provisional	signaling / oncogene	False
+MTDH	growth / proliferation	-0.3119658470970776	0.3119658470970776	0.3119658470970776	1	1	1.0	context_deviation	provisional	signaling / oncogene	False
+MTDH	growth factor / proliferation	-0.1569606349116219	0.1569606349116219	0.1569606349116219	1	1	1.0	context_deviation	provisional	signaling / oncogene	False
+MTDH	mTOR / lysosome / signaling	0.2004568100957778	0.2004568100957778	0.2004568100957778	1	1	1.0	shift_excess	moderate	signaling / oncogene	False
+MTDH	metabolism / transcription	-0.1238189208689907	0.1238189208689907	0.1238189208689907	1	1	1.0	context_deviation	provisional	signaling / oncogene	False
+MTDH	nuclear receptor / co-activator	0.0072961732924482	0.0072961732924482	0.0072961732924482	1	1	1.0	context_deviation	provisional	signaling / oncogene	False
+MTDH	nuclear receptor / metabolism	0.005547466253668349	0.00700509024541995	0.012636903986504518	2	2	1.0	context_deviation	moderate	signaling / oncogene	False
+MTDH	oxidative stress / antioxidant	0.1242286397766323	0.1242286397766323	0.1242286397766323	1	1	1.0	context_deviation	provisional	signaling / oncogene	False
+MTDH	oxidative stress / mitochondrial	-0.3620765272680777	0.3620765272680777	0.3620765272680777	1	1	1.0	context_deviation	provisional	signaling / oncogene	False
+MTDH	peroxisome / metabolism	0.0793710510864479	0.0793710510864479	0.0793710510864479	1	1	1.0	context_deviation	provisional	signaling / oncogene	False
+MTDH	proteostasis / chaperone	-0.392134290253228	0.392134290253228	0.392134290253228	1	1	1.0	context_deviation	provisional	signaling / oncogene	False
+MTDH	ribosomal / translation	0.2629263181337286	0.2629263181337286	0.2629263181337286	1	1	1.0	canonical_backbone	high	signaling / oncogene	False
+MTDH	ribosome biogenesis / nucleolar	0.4234752184479376	0.4234752184479376	0.4234752184479376	1	1	1.0	context_deviation	provisional	signaling / oncogene	False
+MTDH	signaling / oncogene	0.0865808083239082	0.0865808083239082	0.0865808083239082	1	1	1.0	context_deviation	provisional	signaling / oncogene	True
+MTDH	synaptic / signaling	-0.0543355264350667	0.0543355264350667	0.0543355264350667	1	1	1.0	context_deviation	provisional	signaling / oncogene	False
+MTDH	transcription / chromatin	0.037172675029175796	0.037172675029175796	0.06918491981364751	2	2	1.0	canonical_backbone	high	signaling / oncogene	False
+MTDH	transcription regulation	-0.014813056050577037	0.05246843109976654	0.29543554381939474	18	18	1.0	context_deviation	moderate	signaling / oncogene	False
+MYBL1	ER stress / UPR	-0.0052334498126471	0.0052334498126471	0.0052334498126471	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MYBL1	JAK-STAT signaling	-0.0114405934022551	0.0114405934022551	0.0114405934022551	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MYBL1	NF-κB / MAPK signaling	0.0227154943583982	0.0227154943583982	0.0227154943583982	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MYBL1	NF-κB / copper signaling	0.1148048564991624	0.1148048564991624	0.1148048564991624	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MYBL1	RNA processing / spliceosome	0.0254484148672006	0.0254484148672006	0.0254484148672006	1	1	1.0	canonical_backbone	high	transcription regulation	False
+MYBL1	RNA processing / transcription	-0.0154703902665708	0.0154703902665708	0.0154703902665708	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MYBL1	TGF-beta / BMP signaling	0.0386167725862916	0.0527285486828341	0.09242894537080219	2	2	1.0	context_deviation	moderate	transcription regulation	False
+MYBL1	cell cycle / replication	-5.87653114206346e-07	5.87653114206346e-07	5.87653114206346e-07	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MYBL1	chromatin remodeling	0.013651593156971249	0.02304785822397835	0.03788323545939736	2	2	1.0	canonical_backbone	high	transcription regulation	False
+MYBL1	cytoskeleton / cell motility	-0.0537265523073396	0.0537265523073396	0.0537265523073396	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MYBL1	growth / proliferation	0.2642835178231139	0.2642835178231139	0.2642835178231139	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MYBL1	growth factor / proliferation	-0.3025082958541307	0.3025082958541307	0.3025082958541307	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MYBL1	mTOR / lysosome / signaling	0.1614884694025657	0.1614884694025657	0.1614884694025657	1	1	1.0	shift_excess	moderate	transcription regulation	False
+MYBL1	metabolism / transcription	-0.1021736657284145	0.1021736657284145	0.1021736657284145	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MYBL1	nuclear receptor / co-activator	0.05145059312476	0.05145059312476	0.05145059312476	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MYBL1	nuclear receptor / metabolism	-2.799975211395002e-05	0.00519259677751395	0.007343547545970775	2	2	1.0	context_deviation	moderate	transcription regulation	False
+MYBL1	oxidative stress / antioxidant	0.0825744076019103	0.0825744076019103	0.0825744076019103	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MYBL1	oxidative stress / mitochondrial	-0.1588325425500595	0.1588325425500595	0.1588325425500595	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MYBL1	peroxisome / metabolism	0.0885921529909675	0.0885921529909675	0.0885921529909675	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MYBL1	proteostasis / chaperone	-0.0905746380716345	0.0905746380716345	0.0905746380716345	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MYBL1	ribosomal / translation	0.0284553036038839	0.0284553036038839	0.0284553036038839	1	1	1.0	canonical_backbone	high	transcription regulation	False
+MYBL1	ribosome biogenesis / nucleolar	0.1713570932971785	0.1713570932971785	0.1713570932971785	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MYBL1	signaling / oncogene	0.2347731606437674	0.2347731606437674	0.2347731606437674	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MYBL1	synaptic / signaling	0.1290976190244809	0.1290976190244809	0.1290976190244809	1	1	1.0	context_deviation	provisional	transcription regulation	False
+MYBL1	transcription / chromatin	-0.04119575497348055	0.07299233575479425	0.1185324538409263	2	2	1.0	canonical_backbone	high	transcription regulation	False
+MYBL1	transcription regulation	0.019301297357720584	0.05396234096064592	0.3485150172647051	18	18	1.0	context_deviation	moderate	transcription regulation	True
+NCOA1	ER stress / UPR	-0.0235158586213758	0.0235158586213758	0.0235158586213758	1	1	1.0	context_deviation	provisional	nuclear receptor / co-activator	False
+NCOA1	JAK-STAT signaling	-0.1060946963884598	0.1060946963884598	0.1060946963884598	1	1	1.0	context_deviation	provisional	nuclear receptor / co-activator	False
+NCOA1	NF-κB / MAPK signaling	-0.0314932737569053	0.0314932737569053	0.0314932737569053	1	1	1.0	context_deviation	provisional	nuclear receptor / co-activator	False
+NCOA1	NF-κB / copper signaling	-0.0679333256351411	0.0679333256351411	0.0679333256351411	1	1	1.0	context_deviation	provisional	nuclear receptor / co-activator	False
+NCOA1	RNA processing / spliceosome	0.0394623194017244	0.0394623194017244	0.0394623194017244	1	1	1.0	canonical_backbone	high	nuclear receptor / co-activator	False
+NCOA1	RNA processing / transcription	0.0816815848053823	0.0816815848053823	0.0816815848053823	1	1	1.0	context_deviation	provisional	nuclear receptor / co-activator	False
+NCOA1	TGF-beta / BMP signaling	0.009589564119020101	0.0342293811666994	0.05027146854922767	2	2	1.0	context_deviation	moderate	nuclear receptor / co-activator	False
+NCOA1	cell cycle / replication	-7.013569455825183e-05	7.013569455825183e-05	7.013569455825183e-05	1	1	1.0	context_deviation	provisional	nuclear receptor / co-activator	False
+NCOA1	chromatin remodeling	0.10715588516317914	0.10715588516317914	0.20538674370971807	2	2	1.0	canonical_backbone	high	nuclear receptor / co-activator	False
+NCOA1	cytoskeleton / cell motility	-0.1833492833147844	0.1833492833147844	0.1833492833147844	1	1	1.0	context_deviation	provisional	nuclear receptor / co-activator	False
+NCOA1	growth / proliferation	0.1536176040008064	0.1536176040008064	0.1536176040008064	1	1	1.0	context_deviation	provisional	nuclear receptor / co-activator	False
+NCOA1	growth factor / proliferation	-0.3437586145474275	0.3437586145474275	0.3437586145474275	1	1	1.0	context_deviation	provisional	nuclear receptor / co-activator	False
+NCOA1	mTOR / lysosome / signaling	0.4261913544550377	0.4261913544550377	0.4261913544550377	1	1	1.0	shift_excess	moderate	nuclear receptor / co-activator	False
+NCOA1	metabolism / transcription	-0.2019814235599896	0.2019814235599896	0.2019814235599896	1	1	1.0	context_deviation	provisional	nuclear receptor / co-activator	False
+NCOA1	nuclear receptor / co-activator	0.0168951302876128	0.0168951302876128	0.0168951302876128	1	1	1.0	context_deviation	provisional	nuclear receptor / co-activator	True
+NCOA1	nuclear receptor / metabolism	-0.0012766863729417	0.0012766863729417	0.00219503885799757	2	2	1.0	context_deviation	moderate	nuclear receptor / co-activator	False
+NCOA1	oxidative stress / antioxidant	0.0915866110385571	0.0915866110385571	0.0915866110385571	1	1	1.0	context_deviation	provisional	nuclear receptor / co-activator	False
+NCOA1	oxidative stress / mitochondrial	-0.11799723991458	0.11799723991458	0.11799723991458	1	1	1.0	context_deviation	provisional	nuclear receptor / co-activator	False
+NCOA1	peroxisome / metabolism	-0.0484718337193114	0.0484718337193114	0.0484718337193114	1	1	1.0	context_deviation	provisional	nuclear receptor / co-activator	False
+NCOA1	proteostasis / chaperone	-0.1089574507003987	0.1089574507003987	0.1089574507003987	1	1	1.0	context_deviation	provisional	nuclear receptor / co-activator	False
+NCOA1	ribosomal / translation	-0.2253375436938494	0.2253375436938494	0.2253375436938494	1	1	1.0	canonical_backbone	high	nuclear receptor / co-activator	False
+NCOA1	ribosome biogenesis / nucleolar	0.3285384494218679	0.3285384494218679	0.3285384494218679	1	1	1.0	context_deviation	provisional	nuclear receptor / co-activator	False
+NCOA1	signaling / oncogene	-0.0059262403908762	0.0059262403908762	0.0059262403908762	1	1	1.0	context_deviation	provisional	nuclear receptor / co-activator	False
+NCOA1	synaptic / signaling	-0.1742292188650546	0.1742292188650546	0.1742292188650546	1	1	1.0	context_deviation	provisional	nuclear receptor / co-activator	False
+NCOA1	transcription / chromatin	-0.0750199885267036	0.0750199885267036	0.14935359842341536	2	2	1.0	canonical_backbone	high	nuclear receptor / co-activator	False
+NCOA1	transcription regulation	0.014439441308888011	0.03838509533067291	0.19428077639153804	18	18	1.0	context_deviation	moderate	nuclear receptor / co-activator	False
+NPM1	ER stress / UPR	-0.0041966568285798	0.0041966568285798	0.0041966568285798	1	1	1.0	context_deviation	provisional	ribosome biogenesis / nucleolar	False
+NPM1	JAK-STAT signaling	-0.3001484291183033	0.3001484291183033	0.3001484291183033	1	1	1.0	context_deviation	provisional	ribosome biogenesis / nucleolar	False
+NPM1	NF-κB / MAPK signaling	0.0038095557057507	0.0038095557057507	0.0038095557057507	1	1	1.0	context_deviation	provisional	ribosome biogenesis / nucleolar	False
+NPM1	NF-κB / copper signaling	-0.1174004355178795	0.1174004355178795	0.1174004355178795	1	1	1.0	context_deviation	provisional	ribosome biogenesis / nucleolar	False
+NPM1	RNA processing / spliceosome	-0.0502922004225994	0.0502922004225994	0.0502922004225994	1	1	1.0	canonical_backbone	high	ribosome biogenesis / nucleolar	False
+NPM1	RNA processing / transcription	0.0184196980526904	0.0184196980526904	0.0184196980526904	1	1	1.0	context_deviation	provisional	ribosome biogenesis / nucleolar	False
+NPM1	TGF-beta / BMP signaling	0.044229251921198504	0.044229251921198504	0.07535852074699222	2	2	1.0	context_deviation	moderate	ribosome biogenesis / nucleolar	False
+NPM1	cell cycle / replication	0.0001266160440914	0.0001266160440914	0.0001266160440914	1	1	1.0	context_deviation	provisional	ribosome biogenesis / nucleolar	False
+NPM1	chromatin remodeling	0.06245078448694	0.06245078448694	0.1046132400046157	2	2	1.0	canonical_backbone	high	ribosome biogenesis / nucleolar	False
+NPM1	cytoskeleton / cell motility	-0.3086504371292661	0.3086504371292661	0.3086504371292661	1	1	1.0	context_deviation	provisional	ribosome biogenesis / nucleolar	False
+NPM1	growth / proliferation	-0.2454779281593529	0.2454779281593529	0.2454779281593529	1	1	1.0	context_deviation	provisional	ribosome biogenesis / nucleolar	False
+NPM1	growth factor / proliferation	-0.0422152155343597	0.0422152155343597	0.0422152155343597	1	1	1.0	context_deviation	provisional	ribosome biogenesis / nucleolar	False
+NPM1	mTOR / lysosome / signaling	0.4043688327645117	0.4043688327645117	0.4043688327645117	1	1	1.0	shift_excess	moderate	ribosome biogenesis / nucleolar	False
+NPM1	metabolism / transcription	0.0221392198595335	0.0221392198595335	0.0221392198595335	1	1	1.0	context_deviation	provisional	ribosome biogenesis / nucleolar	False
+NPM1	nuclear receptor / co-activator	-0.028616928180345	0.028616928180345	0.028616928180345	1	1	1.0	context_deviation	provisional	ribosome biogenesis / nucleolar	False
+NPM1	nuclear receptor / metabolism	-0.01987099883600945	0.01987099883600945	0.036000493859530525	2	2	1.0	context_deviation	moderate	ribosome biogenesis / nucleolar	False
+NPM1	oxidative stress / antioxidant	-0.0191953498635495	0.0191953498635495	0.0191953498635495	1	1	1.0	context_deviation	provisional	ribosome biogenesis / nucleolar	False
+NPM1	oxidative stress / mitochondrial	0.0624598183373897	0.0624598183373897	0.0624598183373897	1	1	1.0	context_deviation	provisional	ribosome biogenesis / nucleolar	False
+NPM1	peroxisome / metabolism	-0.0681776699878646	0.0681776699878646	0.0681776699878646	1	1	1.0	context_deviation	provisional	ribosome biogenesis / nucleolar	False
+NPM1	proteostasis / chaperone	-0.1600543053956344	0.1600543053956344	0.1600543053956344	1	1	1.0	context_deviation	provisional	ribosome biogenesis / nucleolar	False
+NPM1	ribosomal / translation	-0.0688942491214795	0.0688942491214795	0.0688942491214795	1	1	1.0	canonical_backbone	high	ribosome biogenesis / nucleolar	False
+NPM1	ribosome biogenesis / nucleolar	0.2346523400165604	0.2346523400165604	0.2346523400165604	1	1	1.0	context_deviation	provisional	ribosome biogenesis / nucleolar	True
+NPM1	signaling / oncogene	0.4554504184554486	0.4554504184554486	0.4554504184554486	1	1	1.0	context_deviation	provisional	ribosome biogenesis / nucleolar	False
+NPM1	synaptic / signaling	-0.1613553089359335	0.1613553089359335	0.1613553089359335	1	1	1.0	context_deviation	provisional	ribosome biogenesis / nucleolar	False
+NPM1	transcription / chromatin	0.039142949934740254	0.05917787123894405	0.10034132721831641	2	2	1.0	canonical_backbone	high	ribosome biogenesis / nucleolar	False
+NPM1	transcription regulation	0.0008368547986914923	0.05300405837027375	0.31064958456207703	18	18	1.0	context_deviation	moderate	ribosome biogenesis / nucleolar	False
+PA2G4	ER stress / UPR	-0.0057081989983093	0.0057081989983093	0.0057081989983093	1	1	1.0	context_deviation	provisional	growth / proliferation	False
+PA2G4	JAK-STAT signaling	0.0538294669242795	0.0538294669242795	0.0538294669242795	1	1	1.0	context_deviation	provisional	growth / proliferation	False
+PA2G4	NF-κB / MAPK signaling	0.0050055868205207	0.0050055868205207	0.0050055868205207	1	1	1.0	context_deviation	provisional	growth / proliferation	False
+PA2G4	NF-κB / copper signaling	0.2482107225364483	0.2482107225364483	0.2482107225364483	1	1	1.0	context_deviation	provisional	growth / proliferation	False
+PA2G4	RNA processing / spliceosome	0.1590334226339425	0.1590334226339425	0.1590334226339425	1	1	1.0	canonical_backbone	high	growth / proliferation	False
+PA2G4	RNA processing / transcription	-0.0417250425847626	0.0417250425847626	0.0417250425847626	1	1	1.0	context_deviation	provisional	growth / proliferation	False
+PA2G4	TGF-beta / BMP signaling	-0.05768657566860649	0.0796567113759509	0.13908941497900845	2	2	1.0	context_deviation	moderate	growth / proliferation	False
+PA2G4	cell cycle / replication	-0.0001707908057495	0.0001707908057495	0.0001707908057495	1	1	1.0	context_deviation	provisional	growth / proliferation	False
+PA2G4	chromatin remodeling	-0.1011556717721587	0.1011556717721587	0.14518568569163776	2	2	1.0	canonical_backbone	high	growth / proliferation	False
+PA2G4	cytoskeleton / cell motility	-0.1225949817963917	0.1225949817963917	0.1225949817963917	1	1	1.0	context_deviation	provisional	growth / proliferation	False
+PA2G4	growth / proliferation	-0.1736707181785382	0.1736707181785382	0.1736707181785382	1	1	1.0	context_deviation	provisional	growth / proliferation	True
+PA2G4	growth factor / proliferation	-0.152851487390184	0.152851487390184	0.152851487390184	1	1	1.0	context_deviation	provisional	growth / proliferation	False
+PA2G4	mTOR / lysosome / signaling	-0.1356093408207477	0.1356093408207477	0.1356093408207477	1	1	1.0	shift_excess	moderate	growth / proliferation	False
+PA2G4	metabolism / transcription	-0.0148690432741384	0.0148690432741384	0.0148690432741384	1	1	1.0	context_deviation	provisional	growth / proliferation	False
+PA2G4	nuclear receptor / co-activator	0.0283761833565673	0.0283761833565673	0.0283761833565673	1	1	1.0	context_deviation	provisional	growth / proliferation	False
+PA2G4	nuclear receptor / metabolism	-0.001256893745186	0.001256893745186	0.0022878958578770366	2	2	1.0	context_deviation	moderate	growth / proliferation	False
+PA2G4	oxidative stress / antioxidant	0.0682471365560627	0.0682471365560627	0.0682471365560627	1	1	1.0	context_deviation	provisional	growth / proliferation	False
+PA2G4	oxidative stress / mitochondrial	0.1116471295172927	0.1116471295172927	0.1116471295172927	1	1	1.0	context_deviation	provisional	growth / proliferation	False
+PA2G4	peroxisome / metabolism	0.0120882922368357	0.0120882922368357	0.0120882922368357	1	1	1.0	context_deviation	provisional	growth / proliferation	False
+PA2G4	proteostasis / chaperone	0.2175538515368538	0.2175538515368538	0.2175538515368538	1	1	1.0	context_deviation	provisional	growth / proliferation	False
+PA2G4	ribosomal / translation	-0.2052785645364688	0.2052785645364688	0.2052785645364688	1	1	1.0	canonical_backbone	high	growth / proliferation	False
+PA2G4	ribosome biogenesis / nucleolar	-0.465459630817337	0.465459630817337	0.465459630817337	1	1	1.0	context_deviation	provisional	growth / proliferation	False
+PA2G4	signaling / oncogene	-0.5049771783849966	0.5049771783849966	0.5049771783849966	1	1	1.0	context_deviation	provisional	growth / proliferation	False
+PA2G4	synaptic / signaling	0.0542333749650465	0.0542333749650465	0.0542333749650465	1	1	1.0	context_deviation	provisional	growth / proliferation	False
+PA2G4	transcription / chromatin	-0.1785352723462274	0.1785352723462274	0.272820905368511	2	2	1.0	canonical_backbone	high	growth / proliferation	False
+PA2G4	transcription regulation	0.012209242517177282	0.05360783957106283	0.31013934980847174	18	18	1.0	context_deviation	moderate	growth / proliferation	False
+PARK7	ER stress / UPR	-0.0295404989796451	0.0295404989796451	0.0295404989796451	1	1	1.0	context_deviation	provisional	oxidative stress / mitochondrial	False
+PARK7	JAK-STAT signaling	0.0718004774120172	0.0718004774120172	0.0718004774120172	1	1	1.0	context_deviation	provisional	oxidative stress / mitochondrial	False
+PARK7	NF-κB / MAPK signaling	0.009932760161881	0.009932760161881	0.009932760161881	1	1	1.0	context_deviation	provisional	oxidative stress / mitochondrial	False
+PARK7	NF-κB / copper signaling	0.0787925644423557	0.0787925644423557	0.0787925644423557	1	1	1.0	context_deviation	provisional	oxidative stress / mitochondrial	False
+PARK7	RNA processing / spliceosome	0.0358927893578014	0.0358927893578014	0.0358927893578014	1	1	1.0	canonical_backbone	high	oxidative stress / mitochondrial	False
+PARK7	RNA processing / transcription	-0.0978163447060129	0.0978163447060129	0.0978163447060129	1	1	1.0	context_deviation	provisional	oxidative stress / mitochondrial	False
+PARK7	TGF-beta / BMP signaling	-0.11980455898905445	0.11980455898905445	0.18434389649174335	2	2	1.0	context_deviation	moderate	oxidative stress / mitochondrial	False
+PARK7	cell cycle / replication	-0.0003084746001009	0.0003084746001009	0.0003084746001009	1	1	1.0	context_deviation	provisional	oxidative stress / mitochondrial	False
+PARK7	chromatin remodeling	-0.03333263686959715	0.03333263686959715	0.05297748494349407	2	2	1.0	canonical_backbone	high	oxidative stress / mitochondrial	False
+PARK7	cytoskeleton / cell motility	0.0140676434876429	0.0140676434876429	0.0140676434876429	1	1	1.0	context_deviation	provisional	oxidative stress / mitochondrial	False
+PARK7	growth / proliferation	0.1760288621914098	0.1760288621914098	0.1760288621914098	1	1	1.0	context_deviation	provisional	oxidative stress / mitochondrial	False
+PARK7	growth factor / proliferation	-0.1930655189006796	0.1930655189006796	0.1930655189006796	1	1	1.0	context_deviation	provisional	oxidative stress / mitochondrial	False
+PARK7	mTOR / lysosome / signaling	-0.4874570758241217	0.4874570758241217	0.4874570758241217	1	1	1.0	shift_excess	moderate	oxidative stress / mitochondrial	False
+PARK7	metabolism / transcription	0.0685581085624091	0.0685581085624091	0.0685581085624091	1	1	1.0	context_deviation	provisional	oxidative stress / mitochondrial	False
+PARK7	nuclear receptor / co-activator	-0.0537564850235689	0.0537564850235689	0.0537564850235689	1	1	1.0	context_deviation	provisional	oxidative stress / mitochondrial	False
+PARK7	nuclear receptor / metabolism	-0.007428622845120168	0.007428622845120168	0.014785018912161593	2	2	1.0	context_deviation	moderate	oxidative stress / mitochondrial	False
+PARK7	oxidative stress / antioxidant	-0.1260329719548627	0.1260329719548627	0.1260329719548627	1	1	1.0	context_deviation	provisional	oxidative stress / mitochondrial	False
+PARK7	oxidative stress / mitochondrial	0.0019599735776166	0.0019599735776166	0.0019599735776166	1	1	1.0	context_deviation	provisional	oxidative stress / mitochondrial	True
+PARK7	peroxisome / metabolism	-0.0655333871772822	0.0655333871772822	0.0655333871772822	1	1	1.0	context_deviation	provisional	oxidative stress / mitochondrial	False
+PARK7	proteostasis / chaperone	0.2700017868444832	0.2700017868444832	0.2700017868444832	1	1	1.0	context_deviation	provisional	oxidative stress / mitochondrial	False
+PARK7	ribosomal / translation	-0.1839315247159537	0.1839315247159537	0.1839315247159537	1	1	1.0	canonical_backbone	high	oxidative stress / mitochondrial	False
+PARK7	ribosome biogenesis / nucleolar	-0.2726841800692068	0.2726841800692068	0.2726841800692068	1	1	1.0	context_deviation	provisional	oxidative stress / mitochondrial	False
+PARK7	signaling / oncogene	-0.5802640978942594	0.5802640978942594	0.5802640978942594	1	1	1.0	context_deviation	provisional	oxidative stress / mitochondrial	False
+PARK7	synaptic / signaling	-0.0224937071779794	0.0224937071779794	0.0224937071779794	1	1	1.0	context_deviation	provisional	oxidative stress / mitochondrial	False
+PARK7	transcription / chromatin	0.005389012179806047	0.04661671114886275	0.06636503914879585	2	2	1.0	canonical_backbone	high	oxidative stress / mitochondrial	False
+PARK7	transcription regulation	-0.009796102759120896	0.03479490522849159	0.23057656569302812	18	18	1.0	context_deviation	moderate	oxidative stress / mitochondrial	False
+PCBD1	ER stress / UPR	0.0516020950386136	0.0516020950386136	0.0516020950386136	1	1	1.0	context_deviation	provisional	metabolism / transcription	False
+PCBD1	JAK-STAT signaling	-0.0182576837771577	0.0182576837771577	0.0182576837771577	1	1	1.0	context_deviation	provisional	metabolism / transcription	False
+PCBD1	NF-κB / MAPK signaling	-0.0072660314254797	0.0072660314254797	0.0072660314254797	1	1	1.0	context_deviation	provisional	metabolism / transcription	False
+PCBD1	NF-κB / copper signaling	-0.0500657763238102	0.0500657763238102	0.0500657763238102	1	1	1.0	context_deviation	provisional	metabolism / transcription	False
+PCBD1	RNA processing / spliceosome	-0.0120241202106524	0.0120241202106524	0.0120241202106524	1	1	1.0	canonical_backbone	high	metabolism / transcription	False
+PCBD1	RNA processing / transcription	0.1008801258478244	0.1008801258478244	0.1008801258478244	1	1	1.0	context_deviation	provisional	metabolism / transcription	False
+PCBD1	TGF-beta / BMP signaling	-0.049473408456884	0.049473408456884	0.0719549579494518	2	2	1.0	context_deviation	moderate	metabolism / transcription	False
+PCBD1	cell cycle / replication	0.0001032282792281	0.0001032282792281	0.0001032282792281	1	1	1.0	context_deviation	provisional	metabolism / transcription	False
+PCBD1	chromatin remodeling	-0.042462983070224	0.0624226826488178	0.10676793751213094	2	2	1.0	canonical_backbone	high	metabolism / transcription	False
+PCBD1	cytoskeleton / cell motility	0.0405627106976466	0.0405627106976466	0.0405627106976466	1	1	1.0	context_deviation	provisional	metabolism / transcription	False
+PCBD1	growth / proliferation	-0.0745295371409313	0.0745295371409313	0.0745295371409313	1	1	1.0	context_deviation	provisional	metabolism / transcription	False
+PCBD1	growth factor / proliferation	0.1485745371492168	0.1485745371492168	0.1485745371492168	1	1	1.0	context_deviation	provisional	metabolism / transcription	False
+PCBD1	mTOR / lysosome / signaling	-0.1957615548692765	0.1957615548692765	0.1957615548692765	1	1	1.0	shift_excess	moderate	metabolism / transcription	False
+PCBD1	metabolism / transcription	-0.0093774664525767	0.0093774664525767	0.0093774664525767	1	1	1.0	context_deviation	provisional	metabolism / transcription	True
+PCBD1	nuclear receptor / co-activator	-0.0645958616795325	0.0645958616795325	0.0645958616795325	1	1	1.0	context_deviation	provisional	metabolism / transcription	False
+PCBD1	nuclear receptor / metabolism	0.0030870604469081502	0.00437182124270065	0.007568720259197509	2	2	1.0	context_deviation	moderate	metabolism / transcription	False
+PCBD1	oxidative stress / antioxidant	-0.053144369142411	0.053144369142411	0.053144369142411	1	1	1.0	context_deviation	provisional	metabolism / transcription	False
+PCBD1	oxidative stress / mitochondrial	-0.0520429189653621	0.0520429189653621	0.0520429189653621	1	1	1.0	context_deviation	provisional	metabolism / transcription	False
+PCBD1	peroxisome / metabolism	-0.0783302195180604	0.0783302195180604	0.0783302195180604	1	1	1.0	context_deviation	provisional	metabolism / transcription	False
+PCBD1	proteostasis / chaperone	0.0121391250394729	0.0121391250394729	0.0121391250394729	1	1	1.0	context_deviation	provisional	metabolism / transcription	False
+PCBD1	ribosomal / translation	0.0407637322608926	0.0407637322608926	0.0407637322608926	1	1	1.0	canonical_backbone	high	metabolism / transcription	False
+PCBD1	ribosome biogenesis / nucleolar	-0.0298256956524997	0.0298256956524997	0.0298256956524997	1	1	1.0	context_deviation	provisional	metabolism / transcription	False
+PCBD1	signaling / oncogene	-0.0963059394846192	0.0963059394846192	0.0963059394846192	1	1	1.0	context_deviation	provisional	metabolism / transcription	False
+PCBD1	synaptic / signaling	-0.051574940322178	0.051574940322178	0.051574940322178	1	1	1.0	context_deviation	provisional	metabolism / transcription	False
+PCBD1	transcription / chromatin	0.027541792411870502	0.0844536337804202	0.1256261643765016	2	2	1.0	canonical_backbone	high	metabolism / transcription	False
+PCBD1	transcription regulation	-0.00018283150125787838	0.021376350858698743	0.12685167764429392	18	18	1.0	context_deviation	moderate	metabolism / transcription	False
+PEX14	ER stress / UPR	-0.0078563262786457	0.0078563262786457	0.0078563262786457	1	1	1.0	context_deviation	provisional	peroxisome / metabolism	False
+PEX14	JAK-STAT signaling	-0.0458515320273368	0.0458515320273368	0.0458515320273368	1	1	1.0	context_deviation	provisional	peroxisome / metabolism	False
+PEX14	NF-κB / MAPK signaling	0.0096514171088733	0.0096514171088733	0.0096514171088733	1	1	1.0	context_deviation	provisional	peroxisome / metabolism	False
+PEX14	NF-κB / copper signaling	0.0303453964022256	0.0303453964022256	0.0303453964022256	1	1	1.0	context_deviation	provisional	peroxisome / metabolism	False
+PEX14	RNA processing / spliceosome	0.0321400418955215	0.0321400418955215	0.0321400418955215	1	1	1.0	canonical_backbone	high	peroxisome / metabolism	False
+PEX14	RNA processing / transcription	0.0570887988166432	0.0570887988166432	0.0570887988166432	1	1	1.0	context_deviation	provisional	peroxisome / metabolism	False
+PEX14	TGF-beta / BMP signaling	-0.033904781017660895	0.033904781017660895	0.04953067299428439	2	2	1.0	context_deviation	moderate	peroxisome / metabolism	False
+PEX14	cell cycle / replication	-9.74389060477391e-18	9.74389060477391e-18	9.74389060477391e-18	1	1	1.0	context_deviation	provisional	peroxisome / metabolism	False
+PEX14	chromatin remodeling	-0.045840697809845406	0.0517951033499102	0.09781719998774697	2	2	1.0	canonical_backbone	high	peroxisome / metabolism	False
+PEX14	cytoskeleton / cell motility	-0.0955030797805323	0.0955030797805323	0.0955030797805323	1	1	1.0	context_deviation	provisional	peroxisome / metabolism	False
+PEX14	growth / proliferation	0.0965240036667805	0.0965240036667805	0.0965240036667805	1	1	1.0	context_deviation	provisional	peroxisome / metabolism	False
+PEX14	growth factor / proliferation	-0.1071907862972793	0.1071907862972793	0.1071907862972793	1	1	1.0	context_deviation	provisional	peroxisome / metabolism	False
+PEX14	mTOR / lysosome / signaling	-0.0266128858084933	0.0266128858084933	0.0266128858084933	1	1	1.0	shift_excess	moderate	peroxisome / metabolism	False
+PEX14	metabolism / transcription	-0.0602983907975551	0.0602983907975551	0.0602983907975551	1	1	1.0	context_deviation	provisional	peroxisome / metabolism	False
+PEX14	nuclear receptor / co-activator	-0.0313718488625081	0.0313718488625081	0.0313718488625081	1	1	1.0	context_deviation	provisional	peroxisome / metabolism	False
+PEX14	nuclear receptor / metabolism	-0.00779945695816025	0.00779945695816025	0.014561788879025692	2	2	1.0	context_deviation	moderate	peroxisome / metabolism	False
+PEX14	oxidative stress / antioxidant	-0.0327297160257711	0.0327297160257711	0.0327297160257711	1	1	1.0	context_deviation	provisional	peroxisome / metabolism	False
+PEX14	oxidative stress / mitochondrial	0.1473692539838471	0.1473692539838471	0.1473692539838471	1	1	1.0	context_deviation	provisional	peroxisome / metabolism	False
+PEX14	peroxisome / metabolism	-0.0224087072557232	0.0224087072557232	0.0224087072557232	1	1	1.0	context_deviation	provisional	peroxisome / metabolism	True
+PEX14	proteostasis / chaperone	0.0370375926995451	0.0370375926995451	0.0370375926995451	1	1	1.0	context_deviation	provisional	peroxisome / metabolism	False
+PEX14	ribosomal / translation	-0.0507184149004742	0.0507184149004742	0.0507184149004742	1	1	1.0	canonical_backbone	high	peroxisome / metabolism	False
+PEX14	ribosome biogenesis / nucleolar	-0.0827281375036199	0.0827281375036199	0.0827281375036199	1	1	1.0	context_deviation	provisional	peroxisome / metabolism	False
+PEX14	signaling / oncogene	-0.112072067541394	0.112072067541394	0.112072067541394	1	1	1.0	context_deviation	provisional	peroxisome / metabolism	False
+PEX14	synaptic / signaling	0.0223503133398757	0.0223503133398757	0.0223503133398757	1	1	1.0	context_deviation	provisional	peroxisome / metabolism	False
+PEX14	transcription / chromatin	0.049352847425867846	0.049352847425867846	0.06989158697604989	2	2	1.0	canonical_backbone	high	peroxisome / metabolism	False
+PEX14	transcription regulation	-0.002956919104433822	0.02124590251400065	0.12635168820451495	18	18	1.0	context_deviation	moderate	peroxisome / metabolism	False
+PFDN5	ER stress / UPR	0.0220909655971851	0.0220909655971851	0.0220909655971851	1	1	1.0	context_deviation	provisional	proteostasis / chaperone	False
+PFDN5	JAK-STAT signaling	0.2408628517531872	0.2408628517531872	0.2408628517531872	1	1	1.0	context_deviation	provisional	proteostasis / chaperone	False
+PFDN5	NF-κB / MAPK signaling	0.0095955990816811	0.0095955990816811	0.0095955990816811	1	1	1.0	context_deviation	provisional	proteostasis / chaperone	False
+PFDN5	NF-κB / copper signaling	-0.0810442875813728	0.0810442875813728	0.0810442875813728	1	1	1.0	context_deviation	provisional	proteostasis / chaperone	False
+PFDN5	RNA processing / spliceosome	-0.076807117887276	0.076807117887276	0.076807117887276	1	1	1.0	canonical_backbone	high	proteostasis / chaperone	False
+PFDN5	RNA processing / transcription	-0.2507862870799272	0.2507862870799272	0.2507862870799272	1	1	1.0	context_deviation	provisional	proteostasis / chaperone	False
+PFDN5	TGF-beta / BMP signaling	-0.02924925611560765	0.08179997336406625	0.12285564395401913	2	2	1.0	context_deviation	moderate	proteostasis / chaperone	False
+PFDN5	cell cycle / replication	3.408122075309487e-05	3.408122075309487e-05	3.408122075309487e-05	1	1	1.0	context_deviation	provisional	proteostasis / chaperone	False
+PFDN5	chromatin remodeling	0.008100420637342804	0.059811554295220004	0.08535852437468608	2	2	1.0	canonical_backbone	high	proteostasis / chaperone	False
+PFDN5	cytoskeleton / cell motility	0.1460536938985469	0.1460536938985469	0.1460536938985469	1	1	1.0	context_deviation	provisional	proteostasis / chaperone	False
+PFDN5	growth / proliferation	0.2854574286158778	0.2854574286158778	0.2854574286158778	1	1	1.0	context_deviation	provisional	proteostasis / chaperone	False
+PFDN5	growth factor / proliferation	-0.0824704373407148	0.0824704373407148	0.0824704373407148	1	1	1.0	context_deviation	provisional	proteostasis / chaperone	False
+PFDN5	mTOR / lysosome / signaling	-0.5456945924433159	0.5456945924433159	0.5456945924433159	1	1	1.0	shift_excess	moderate	proteostasis / chaperone	False
+PFDN5	metabolism / transcription	0.0168222602342709	0.0168222602342709	0.0168222602342709	1	1	1.0	context_deviation	provisional	proteostasis / chaperone	False
+PFDN5	nuclear receptor / co-activator	0.048167481172368	0.048167481172368	0.048167481172368	1	1	1.0	context_deviation	provisional	proteostasis / chaperone	False
+PFDN5	nuclear receptor / metabolism	-0.021647598146793103	0.021647598146793103	0.04171841934873544	2	2	1.0	context_deviation	moderate	proteostasis / chaperone	False
+PFDN5	oxidative stress / antioxidant	-0.0298057802523885	0.0298057802523885	0.0298057802523885	1	1	1.0	context_deviation	provisional	proteostasis / chaperone	False
+PFDN5	oxidative stress / mitochondrial	0.1895273789638677	0.1895273789638677	0.1895273789638677	1	1	1.0	context_deviation	provisional	proteostasis / chaperone	False
+PFDN5	peroxisome / metabolism	-0.1552872620747036	0.1552872620747036	0.1552872620747036	1	1	1.0	context_deviation	provisional	proteostasis / chaperone	False
+PFDN5	proteostasis / chaperone	0.2792712445359772	0.2792712445359772	0.2792712445359772	1	1	1.0	context_deviation	provisional	proteostasis / chaperone	True
+PFDN5	ribosomal / translation	-0.0626877629743348	0.0626877629743348	0.0626877629743348	1	1	1.0	canonical_backbone	high	proteostasis / chaperone	False
+PFDN5	ribosome biogenesis / nucleolar	-0.4968588710488658	0.4968588710488658	0.4968588710488658	1	1	1.0	context_deviation	provisional	proteostasis / chaperone	False
+PFDN5	signaling / oncogene	-0.7086993971132564	0.7086993971132564	0.7086993971132564	1	1	1.0	context_deviation	provisional	proteostasis / chaperone	False
+PFDN5	synaptic / signaling	0.0973592364155701	0.0973592364155701	0.0973592364155701	1	1	1.0	context_deviation	provisional	proteostasis / chaperone	False
+PFDN5	transcription / chromatin	0.03993827205497919	0.1506264354517072	0.22037871327160818	2	2	1.0	canonical_backbone	high	proteostasis / chaperone	False
+PFDN5	transcription regulation	0.009165973092439467	0.04934970878773895	0.2794744922752148	18	18	1.0	context_deviation	moderate	proteostasis / chaperone	False
+PMF1	ER stress / UPR	0.0038244544933647	0.0038244544933647	0.0038244544933647	1	1	1.0	context_deviation	provisional	transcription regulation	False
+PMF1	JAK-STAT signaling	0.0704677954791453	0.0704677954791453	0.0704677954791453	1	1	1.0	context_deviation	provisional	transcription regulation	False
+PMF1	NF-κB / MAPK signaling	0.0173966423686882	0.0173966423686882	0.0173966423686882	1	1	1.0	context_deviation	provisional	transcription regulation	False
+PMF1	NF-κB / copper signaling	0.0338677847779906	0.0338677847779906	0.0338677847779906	1	1	1.0	context_deviation	provisional	transcription regulation	False
+PMF1	RNA processing / spliceosome	0.0562179036558326	0.0562179036558326	0.0562179036558326	1	1	1.0	canonical_backbone	high	transcription regulation	False
+PMF1	RNA processing / transcription	-0.0669212613500618	0.0669212613500618	0.0669212613500618	1	1	1.0	context_deviation	provisional	transcription regulation	False
+PMF1	TGF-beta / BMP signaling	0.0089089318254463	0.0089089318254463	0.016009980452022697	2	2	1.0	context_deviation	moderate	transcription regulation	False
+PMF1	cell cycle / replication	8.775861098260097e-05	8.775861098260097e-05	8.775861098260097e-05	1	1	1.0	context_deviation	provisional	transcription regulation	False
+PMF1	chromatin remodeling	-0.036296617701208705	0.0466103171271426	0.08354598876356063	2	2	1.0	canonical_backbone	high	transcription regulation	False
+PMF1	cytoskeleton / cell motility	-0.0381604489268186	0.0381604489268186	0.0381604489268186	1	1	1.0	context_deviation	provisional	transcription regulation	False
+PMF1	growth / proliferation	0.0219689380928208	0.0219689380928208	0.0219689380928208	1	1	1.0	context_deviation	provisional	transcription regulation	False
+PMF1	growth factor / proliferation	-0.2385332765574812	0.2385332765574812	0.2385332765574812	1	1	1.0	context_deviation	provisional	transcription regulation	False
+PMF1	mTOR / lysosome / signaling	0.1835516649728839	0.1835516649728839	0.1835516649728839	1	1	1.0	shift_excess	moderate	transcription regulation	False
+PMF1	metabolism / transcription	-0.0134755406429996	0.0134755406429996	0.0134755406429996	1	1	1.0	context_deviation	provisional	transcription regulation	False
+PMF1	nuclear receptor / co-activator	0.0336682951006809	0.0336682951006809	0.0336682951006809	1	1	1.0	context_deviation	provisional	transcription regulation	False
+PMF1	nuclear receptor / metabolism	-0.0072389797630463	0.0074040898402648	0.014644000435161583	2	2	1.0	context_deviation	moderate	transcription regulation	False
+PMF1	oxidative stress / antioxidant	-0.0980019524888628	0.0980019524888628	0.0980019524888628	1	1	1.0	context_deviation	provisional	transcription regulation	False
+PMF1	oxidative stress / mitochondrial	0.0685098405700032	0.0685098405700032	0.0685098405700032	1	1	1.0	context_deviation	provisional	transcription regulation	False
+PMF1	peroxisome / metabolism	0.0305620258171626	0.0305620258171626	0.0305620258171626	1	1	1.0	context_deviation	provisional	transcription regulation	False
+PMF1	proteostasis / chaperone	0.0691203768339638	0.0691203768339638	0.0691203768339638	1	1	1.0	context_deviation	provisional	transcription regulation	False
+PMF1	ribosomal / translation	-0.1457628050024416	0.1457628050024416	0.1457628050024416	1	1	1.0	canonical_backbone	high	transcription regulation	False
+PMF1	ribosome biogenesis / nucleolar	-0.0928387888121129	0.0928387888121129	0.0928387888121129	1	1	1.0	context_deviation	provisional	transcription regulation	False
+PMF1	signaling / oncogene	-0.1447589177808836	0.1447589177808836	0.1447589177808836	1	1	1.0	context_deviation	provisional	transcription regulation	False
+PMF1	synaptic / signaling	0.0904935533255121	0.0904935533255121	0.0904935533255121	1	1	1.0	context_deviation	provisional	transcription regulation	False
+PMF1	transcription / chromatin	-0.0217607615048044	0.037638161783313195	0.0614843388790322	2	2	1.0	canonical_backbone	high	transcription regulation	False
+PMF1	transcription regulation	0.017289320492610772	0.02417586321454944	0.15071150737142164	18	18	1.0	context_deviation	moderate	transcription regulation	True
+PRDX2	ER stress / UPR	0.0428595329571077	0.0428595329571077	0.0428595329571077	1	1	1.0	context_deviation	provisional	oxidative stress / antioxidant	False
+PRDX2	JAK-STAT signaling	-0.3847956476402913	0.3847956476402913	0.3847956476402913	1	1	1.0	context_deviation	provisional	oxidative stress / antioxidant	False
+PRDX2	NF-κB / MAPK signaling	-0.0355654806573582	0.0355654806573582	0.0355654806573582	1	1	1.0	context_deviation	provisional	oxidative stress / antioxidant	False
+PRDX2	NF-κB / copper signaling	-0.0961493018284126	0.0961493018284126	0.0961493018284126	1	1	1.0	context_deviation	provisional	oxidative stress / antioxidant	False
+PRDX2	RNA processing / spliceosome	-0.0541551744524837	0.0541551744524837	0.0541551744524837	1	1	1.0	canonical_backbone	high	oxidative stress / antioxidant	False
+PRDX2	RNA processing / transcription	0.0809456338534556	0.0809456338534556	0.0809456338534556	1	1	1.0	context_deviation	provisional	oxidative stress / antioxidant	False
+PRDX2	TGF-beta / BMP signaling	0.0497210455745206	0.0497210455745206	0.0876439178100282	2	2	1.0	context_deviation	moderate	oxidative stress / antioxidant	False
+PRDX2	cell cycle / replication	0.0001931732350911	0.0001931732350911	0.0001931732350911	1	1	1.0	context_deviation	provisional	oxidative stress / antioxidant	False
+PRDX2	chromatin remodeling	-0.07573337284272436	0.10294377662282045	0.18073718437280278	2	2	1.0	canonical_backbone	high	oxidative stress / antioxidant	False
+PRDX2	cytoskeleton / cell motility	-0.1109018498477126	0.1109018498477126	0.1109018498477126	1	1	1.0	context_deviation	provisional	oxidative stress / antioxidant	False
+PRDX2	growth / proliferation	-0.2192340966781571	0.2192340966781571	0.2192340966781571	1	1	1.0	context_deviation	provisional	oxidative stress / antioxidant	False
+PRDX2	growth factor / proliferation	0.3067553771295271	0.3067553771295271	0.3067553771295271	1	1	1.0	context_deviation	provisional	oxidative stress / antioxidant	False
+PRDX2	mTOR / lysosome / signaling	0.4322481606520127	0.4322481606520127	0.4322481606520127	1	1	1.0	shift_excess	moderate	oxidative stress / antioxidant	False
+PRDX2	metabolism / transcription	-0.255580371271373	0.255580371271373	0.255580371271373	1	1	1.0	context_deviation	provisional	oxidative stress / antioxidant	False
+PRDX2	nuclear receptor / co-activator	0.0191401301966788	0.0191401301966788	0.0191401301966788	1	1	1.0	context_deviation	provisional	oxidative stress / antioxidant	False
+PRDX2	nuclear receptor / metabolism	0.026607064054458448	0.02785036840360745	0.05447162339814577	2	2	1.0	context_deviation	moderate	oxidative stress / antioxidant	False
+PRDX2	oxidative stress / antioxidant	-0.080113223058607	0.080113223058607	0.080113223058607	1	1	1.0	context_deviation	provisional	oxidative stress / antioxidant	True
+PRDX2	oxidative stress / mitochondrial	-0.5595454462440191	0.5595454462440191	0.5595454462440191	1	1	1.0	context_deviation	provisional	oxidative stress / antioxidant	False
+PRDX2	peroxisome / metabolism	0.0814177153535037	0.0814177153535037	0.0814177153535037	1	1	1.0	context_deviation	provisional	oxidative stress / antioxidant	False
+PRDX2	proteostasis / chaperone	-0.4051849589428274	0.4051849589428274	0.4051849589428274	1	1	1.0	context_deviation	provisional	oxidative stress / antioxidant	False
+PRDX2	ribosomal / translation	0.3014443645292536	0.3014443645292536	0.3014443645292536	1	1	1.0	canonical_backbone	high	oxidative stress / antioxidant	False
+PRDX2	ribosome biogenesis / nucleolar	0.3703559599465552	0.3703559599465552	0.3703559599465552	1	1	1.0	context_deviation	provisional	oxidative stress / antioxidant	False
+PRDX2	signaling / oncogene	0.7321952592493913	0.7321952592493913	0.7321952592493913	1	1	1.0	context_deviation	provisional	oxidative stress / antioxidant	False
+PRDX2	synaptic / signaling	-0.2482183978685345	0.2482183978685345	0.2482183978685345	1	1	1.0	context_deviation	provisional	oxidative stress / antioxidant	False
+PRDX2	transcription / chromatin	0.0106261661805288	0.0488655050597022	0.07072132623807327	2	2	1.0	canonical_backbone	high	oxidative stress / antioxidant	False
+PRDX2	transcription regulation	-0.017060747587792566	0.05011863872869477	0.27648517907143344	18	18	1.0	context_deviation	moderate	oxidative stress / antioxidant	False
+PRPF6	ER stress / UPR	0.0014567551831922	0.0014567551831922	0.0014567551831922	1	1	1.0	context_deviation	provisional	RNA processing / spliceosome	False
+PRPF6	JAK-STAT signaling	-0.0148418923462384	0.0148418923462384	0.0148418923462384	1	1	1.0	context_deviation	provisional	RNA processing / spliceosome	False
+PRPF6	NF-κB / MAPK signaling	-0.0016003771863341	0.0016003771863341	0.0016003771863341	1	1	1.0	context_deviation	provisional	RNA processing / spliceosome	False
+PRPF6	NF-κB / copper signaling	0.0051347981890631	0.0051347981890631	0.0051347981890631	1	1	1.0	context_deviation	provisional	RNA processing / spliceosome	False
+PRPF6	RNA processing / spliceosome	-0.0008977869026796	0.0008977869026796	0.0008977869026796	1	1	1.0	canonical_backbone	high	RNA processing / spliceosome	True
+PRPF6	RNA processing / transcription	-0.0837392069071509	0.0837392069071509	0.0837392069071509	1	1	1.0	context_deviation	provisional	RNA processing / spliceosome	False
+PRPF6	TGF-beta / BMP signaling	-0.0025688751453739494	0.0025688751453739494	0.005101429764920395	2	2	1.0	context_deviation	moderate	RNA processing / spliceosome	False
+PRPF6	cell cycle / replication	8.596248216200742e-05	8.596248216200742e-05	8.596248216200742e-05	1	1	1.0	context_deviation	provisional	RNA processing / spliceosome	False
+PRPF6	chromatin remodeling	-0.01632856033603375	0.03342094177611105	0.052603825561449415	2	2	1.0	canonical_backbone	high	RNA processing / spliceosome	False
+PRPF6	cytoskeleton / cell motility	0.036774657511247	0.036774657511247	0.036774657511247	1	1	1.0	context_deviation	provisional	RNA processing / spliceosome	False
+PRPF6	growth / proliferation	0.0814187713719443	0.0814187713719443	0.0814187713719443	1	1	1.0	context_deviation	provisional	RNA processing / spliceosome	False
+PRPF6	growth factor / proliferation	-0.0657669483868866	0.0657669483868866	0.0657669483868866	1	1	1.0	context_deviation	provisional	RNA processing / spliceosome	False
+PRPF6	mTOR / lysosome / signaling	0.055521401560354	0.055521401560354	0.055521401560354	1	1	1.0	shift_excess	moderate	RNA processing / spliceosome	False
+PRPF6	metabolism / transcription	-0.1049733271862622	0.1049733271862622	0.1049733271862622	1	1	1.0	context_deviation	provisional	RNA processing / spliceosome	False
+PRPF6	nuclear receptor / co-activator	0.0052306752614406	0.0052306752614406	0.0052306752614406	1	1	1.0	context_deviation	provisional	RNA processing / spliceosome	False
+PRPF6	nuclear receptor / metabolism	0.00207193097416635	0.00228404548919625	0.004361137869507832	2	2	1.0	context_deviation	moderate	RNA processing / spliceosome	False
+PRPF6	oxidative stress / antioxidant	0.1060869609689539	0.1060869609689539	0.1060869609689539	1	1	1.0	context_deviation	provisional	RNA processing / spliceosome	False
+PRPF6	oxidative stress / mitochondrial	-0.0652912962353351	0.0652912962353351	0.0652912962353351	1	1	1.0	context_deviation	provisional	RNA processing / spliceosome	False
+PRPF6	peroxisome / metabolism	-0.0143416851543192	0.0143416851543192	0.0143416851543192	1	1	1.0	context_deviation	provisional	RNA processing / spliceosome	False
+PRPF6	proteostasis / chaperone	0.0144417057428227	0.0144417057428227	0.0144417057428227	1	1	1.0	context_deviation	provisional	RNA processing / spliceosome	False
+PRPF6	ribosomal / translation	0.027200749216641	0.027200749216641	0.027200749216641	1	1	1.0	canonical_backbone	high	RNA processing / spliceosome	False
+PRPF6	ribosome biogenesis / nucleolar	-0.0864809450906506	0.0864809450906506	0.0864809450906506	1	1	1.0	context_deviation	provisional	RNA processing / spliceosome	False
+PRPF6	signaling / oncogene	0.0348447316884678	0.0348447316884678	0.0348447316884678	1	1	1.0	context_deviation	provisional	RNA processing / spliceosome	False
+PRPF6	synaptic / signaling	0.0291484512611201	0.0291484512611201	0.0291484512611201	1	1	1.0	context_deviation	provisional	RNA processing / spliceosome	False
+PRPF6	transcription / chromatin	0.029170791123049752	0.029170791123049752	0.04740605450349752	2	2	1.0	canonical_backbone	high	RNA processing / spliceosome	False
+PRPF6	transcription regulation	-0.0048024560580397484	0.01690977864692096	0.09569623238857167	18	18	1.0	context_deviation	moderate	RNA processing / spliceosome	False
+RORC	ER stress / UPR	-0.1220327497131907	0.1220327497131907	0.1220327497131907	1	1	1.0	context_deviation	provisional	nuclear receptor / metabolism	False
+RORC	JAK-STAT signaling	-0.3113906577656997	0.3113906577656997	0.3113906577656997	1	1	1.0	context_deviation	provisional	nuclear receptor / metabolism	False
+RORC	NF-κB / MAPK signaling	0.031794935237434	0.031794935237434	0.031794935237434	1	1	1.0	context_deviation	provisional	nuclear receptor / metabolism	False
+RORC	NF-κB / copper signaling	0.2500332223028295	0.2500332223028295	0.2500332223028295	1	1	1.0	context_deviation	provisional	nuclear receptor / metabolism	False
+RORC	RNA processing / spliceosome	0.2337641391454391	0.2337641391454391	0.2337641391454391	1	1	1.0	canonical_backbone	high	nuclear receptor / metabolism	False
+RORC	RNA processing / transcription	0.0128198944078469	0.0128198944078469	0.0128198944078469	1	1	1.0	context_deviation	provisional	nuclear receptor / metabolism	False
+RORC	TGF-beta / BMP signaling	-0.07591708475993915	0.07591708475993915	0.1313444770574385	2	2	1.0	context_deviation	moderate	nuclear receptor / metabolism	False
+RORC	cell cycle / replication	-0.0003388636262331	0.0003388636262331	0.0003388636262331	1	1	1.0	context_deviation	provisional	nuclear receptor / metabolism	False
+RORC	chromatin remodeling	-0.07371198768433555	0.10365692641429465	0.17987893440886363	2	2	1.0	canonical_backbone	high	nuclear receptor / metabolism	False
+RORC	cytoskeleton / cell motility	-0.3744688541113189	0.3744688541113189	0.3744688541113189	1	1	1.0	context_deviation	provisional	nuclear receptor / metabolism	False
+RORC	growth / proliferation	-0.082335440252428	0.082335440252428	0.082335440252428	1	1	1.0	context_deviation	provisional	nuclear receptor / metabolism	False
+RORC	growth factor / proliferation	-0.2575209593604357	0.2575209593604357	0.2575209593604357	1	1	1.0	context_deviation	provisional	nuclear receptor / metabolism	False
+RORC	mTOR / lysosome / signaling	0.1943650065688891	0.1943650065688891	0.1943650065688891	1	1	1.0	shift_excess	moderate	nuclear receptor / metabolism	False
+RORC	metabolism / transcription	-0.0350257725800611	0.0350257725800611	0.0350257725800611	1	1	1.0	context_deviation	provisional	nuclear receptor / metabolism	False
+RORC	nuclear receptor / co-activator	-0.0644361997504437	0.0644361997504437	0.0644361997504437	1	1	1.0	context_deviation	provisional	nuclear receptor / metabolism	False
+RORC	nuclear receptor / metabolism	0.0142788378910115	0.0142788378910115	0.024846158402587602	2	2	1.0	context_deviation	moderate	nuclear receptor / metabolism	True
+RORC	oxidative stress / antioxidant	0.0968592768186784	0.0968592768186784	0.0968592768186784	1	1	1.0	context_deviation	provisional	nuclear receptor / metabolism	False
+RORC	oxidative stress / mitochondrial	0.3162325786600586	0.3162325786600586	0.3162325786600586	1	1	1.0	context_deviation	provisional	nuclear receptor / metabolism	False
+RORC	peroxisome / metabolism	0.1113390196417165	0.1113390196417165	0.1113390196417165	1	1	1.0	context_deviation	provisional	nuclear receptor / metabolism	False
+RORC	proteostasis / chaperone	-0.1547747890273092	0.1547747890273092	0.1547747890273092	1	1	1.0	context_deviation	provisional	nuclear receptor / metabolism	False
+RORC	ribosomal / translation	-0.2188866236758348	0.2188866236758348	0.2188866236758348	1	1	1.0	canonical_backbone	high	nuclear receptor / metabolism	False
+RORC	ribosome biogenesis / nucleolar	-0.1597471909471309	0.1597471909471309	0.1597471909471309	1	1	1.0	context_deviation	provisional	nuclear receptor / metabolism	False
+RORC	signaling / oncogene	-0.2165046460156414	0.2165046460156414	0.2165046460156414	1	1	1.0	context_deviation	provisional	nuclear receptor / metabolism	False
+RORC	synaptic / signaling	-0.1316254749005997	0.1316254749005997	0.1316254749005997	1	1	1.0	context_deviation	provisional	nuclear receptor / metabolism	False
+RORC	transcription / chromatin	0.04491080297560135	0.13234493349055235	0.19764696630372047	2	2	1.0	canonical_backbone	high	nuclear receptor / metabolism	False
+RORC	transcription regulation	-0.013650775459666926	0.04128183750169449	0.2298395610702209	18	18	1.0	context_deviation	moderate	nuclear receptor / metabolism	False
+RPS3	ER stress / UPR	0.000559886547023	0.000559886547023	0.000559886547023	1	1	1.0	context_deviation	provisional	ribosomal / translation	False
+RPS3	JAK-STAT signaling	-0.1732491557555616	0.1732491557555616	0.1732491557555616	1	1	1.0	context_deviation	provisional	ribosomal / translation	False
+RPS3	NF-κB / MAPK signaling	0.0022972468127596	0.0022972468127596	0.0022972468127596	1	1	1.0	context_deviation	provisional	ribosomal / translation	False
+RPS3	NF-κB / copper signaling	0.1054780049289982	0.1054780049289982	0.1054780049289982	1	1	1.0	context_deviation	provisional	ribosomal / translation	False
+RPS3	RNA processing / spliceosome	0.1591418993611421	0.1591418993611421	0.1591418993611421	1	1	1.0	canonical_backbone	high	ribosomal / translation	False
+RPS3	RNA processing / transcription	0.05537398694533	0.05537398694533	0.05537398694533	1	1	1.0	context_deviation	provisional	ribosomal / translation	False
+RPS3	TGF-beta / BMP signaling	0.036627695643664096	0.0547930635105528	0.09320802430087619	2	2	1.0	context_deviation	moderate	ribosomal / translation	False
+RPS3	cell cycle / replication	4.71551051948078e-05	4.71551051948078e-05	4.71551051948078e-05	1	1	1.0	context_deviation	provisional	ribosomal / translation	False
+RPS3	chromatin remodeling	-0.10978563957285065	0.14789273401980824	0.26048089155357873	2	2	1.0	canonical_backbone	high	ribosomal / translation	False
+RPS3	cytoskeleton / cell motility	-0.0331900695856036	0.0331900695856036	0.0331900695856036	1	1	1.0	context_deviation	provisional	ribosomal / translation	False
+RPS3	growth / proliferation	-0.188471356046008	0.188471356046008	0.188471356046008	1	1	1.0	context_deviation	provisional	ribosomal / translation	False
+RPS3	growth factor / proliferation	-0.1394700106580289	0.1394700106580289	0.1394700106580289	1	1	1.0	context_deviation	provisional	ribosomal / translation	False
+RPS3	mTOR / lysosome / signaling	0.4360620191512966	0.4360620191512966	0.4360620191512966	1	1	1.0	shift_excess	moderate	ribosomal / translation	False
+RPS3	metabolism / transcription	-0.0027780351421835	0.0027780351421835	0.0027780351421835	1	1	1.0	context_deviation	provisional	ribosomal / translation	False
+RPS3	nuclear receptor / co-activator	0.0330341680032624	0.0330341680032624	0.0330341680032624	1	1	1.0	context_deviation	provisional	ribosomal / translation	False
+RPS3	nuclear receptor / metabolism	0.02526350361452165	0.02653899973212385	0.05181820378327713	2	2	1.0	context_deviation	moderate	ribosomal / translation	False
+RPS3	oxidative stress / antioxidant	0.0632575970771073	0.0632575970771073	0.0632575970771073	1	1	1.0	context_deviation	provisional	ribosomal / translation	False
+RPS3	oxidative stress / mitochondrial	-0.2384568817504261	0.2384568817504261	0.2384568817504261	1	1	1.0	context_deviation	provisional	ribosomal / translation	False
+RPS3	peroxisome / metabolism	0.1665152988771226	0.1665152988771226	0.1665152988771226	1	1	1.0	context_deviation	provisional	ribosomal / translation	False
+RPS3	proteostasis / chaperone	-0.3913194873267707	0.3913194873267707	0.3913194873267707	1	1	1.0	context_deviation	provisional	ribosomal / translation	False
+RPS3	ribosomal / translation	-0.044178357687819	0.044178357687819	0.044178357687819	1	1	1.0	canonical_backbone	high	ribosomal / translation	True
+RPS3	ribosome biogenesis / nucleolar	0.3018303700567552	0.3018303700567552	0.3018303700567552	1	1	1.0	context_deviation	provisional	ribosomal / translation	False
+RPS3	signaling / oncogene	0.4984905752641649	0.4984905752641649	0.4984905752641649	1	1	1.0	context_deviation	provisional	ribosomal / translation	False
+RPS3	synaptic / signaling	0.0633928541191277	0.0633928541191277	0.0633928541191277	1	1	1.0	context_deviation	provisional	ribosomal / translation	False
+RPS3	transcription / chromatin	-0.0031813450581021988	0.0657241568876187	0.09305681871810391	2	2	1.0	canonical_backbone	high	ribosomal / translation	False
+RPS3	transcription regulation	0.014033165573591907	0.05208614984997693	0.2964515569217972	18	18	1.0	context_deviation	moderate	ribosomal / translation	False
+RUVBL2	ER stress / UPR	-0.0346318225242406	0.0346318225242406	0.0346318225242406	1	1	1.0	context_deviation	provisional	chromatin remodeling	False
+RUVBL2	JAK-STAT signaling	0.0409125552685978	0.0409125552685978	0.0409125552685978	1	1	1.0	context_deviation	provisional	chromatin remodeling	False
+RUVBL2	NF-κB / MAPK signaling	-0.0001537892155883	0.0001537892155883	0.0001537892155883	1	1	1.0	context_deviation	provisional	chromatin remodeling	False
+RUVBL2	NF-κB / copper signaling	-0.0087089629810807	0.0087089629810807	0.0087089629810807	1	1	1.0	context_deviation	provisional	chromatin remodeling	False
+RUVBL2	RNA processing / spliceosome	0.0011011679543672	0.0011011679543672	0.0011011679543672	1	1	1.0	canonical_backbone	high	chromatin remodeling	False
+RUVBL2	RNA processing / transcription	-0.160231665208655	0.160231665208655	0.160231665208655	1	1	1.0	context_deviation	provisional	chromatin remodeling	False
+RUVBL2	TGF-beta / BMP signaling	-0.0177222200024306	0.0177222200024306	0.0270798593078292	2	2	1.0	context_deviation	moderate	chromatin remodeling	False
+RUVBL2	cell cycle / replication	8.359151643694818e-05	8.359151643694818e-05	8.359151643694818e-05	1	1	1.0	context_deviation	provisional	chromatin remodeling	False
+RUVBL2	chromatin remodeling	-0.0087882477689212	0.0087882477689212	0.014076387512001227	2	2	1.0	canonical_backbone	high	chromatin remodeling	True
+RUVBL2	cytoskeleton / cell motility	-0.0150659146173117	0.0150659146173117	0.0150659146173117	1	1	1.0	context_deviation	provisional	chromatin remodeling	False
+RUVBL2	growth / proliferation	-0.0617584978162955	0.0617584978162955	0.0617584978162955	1	1	1.0	context_deviation	provisional	chromatin remodeling	False
+RUVBL2	growth factor / proliferation	-0.1384477154507478	0.1384477154507478	0.1384477154507478	1	1	1.0	context_deviation	provisional	chromatin remodeling	False
+RUVBL2	mTOR / lysosome / signaling	-0.007750204349599	0.007750204349599	0.007750204349599	1	1	1.0	shift_excess	moderate	chromatin remodeling	False
+RUVBL2	metabolism / transcription	-0.0364593923908855	0.0364593923908855	0.0364593923908855	1	1	1.0	context_deviation	provisional	chromatin remodeling	False
+RUVBL2	nuclear receptor / co-activator	-0.0028803623256123	0.0028803623256123	0.0028803623256123	1	1	1.0	context_deviation	provisional	chromatin remodeling	False
+RUVBL2	nuclear receptor / metabolism	-0.00283650723047165	0.00283650723047165	0.004938953318299756	2	2	1.0	context_deviation	moderate	chromatin remodeling	False
+RUVBL2	oxidative stress / antioxidant	-0.0083293509442695	0.0083293509442695	0.0083293509442695	1	1	1.0	context_deviation	provisional	chromatin remodeling	False
+RUVBL2	oxidative stress / mitochondrial	-0.000807902121767	0.000807902121767	0.000807902121767	1	1	1.0	context_deviation	provisional	chromatin remodeling	False
+RUVBL2	peroxisome / metabolism	-0.0286993098895455	0.0286993098895455	0.0286993098895455	1	1	1.0	context_deviation	provisional	chromatin remodeling	False
+RUVBL2	proteostasis / chaperone	0.0597549990973469	0.0597549990973469	0.0597549990973469	1	1	1.0	context_deviation	provisional	chromatin remodeling	False
+RUVBL2	ribosomal / translation	-0.0326353717458426	0.0326353717458426	0.0326353717458426	1	1	1.0	canonical_backbone	high	chromatin remodeling	False
+RUVBL2	ribosome biogenesis / nucleolar	-0.0177294323408255	0.0177294323408255	0.0177294323408255	1	1	1.0	context_deviation	provisional	chromatin remodeling	False
+RUVBL2	signaling / oncogene	-0.0338911176971199	0.0338911176971199	0.0338911176971199	1	1	1.0	context_deviation	provisional	chromatin remodeling	False
+RUVBL2	synaptic / signaling	0.0003886655718102	0.0003886655718102	0.0003886655718102	1	1	1.0	context_deviation	provisional	chromatin remodeling	False
+RUVBL2	transcription / chromatin	0.0190176601891395	0.0190176601891395	0.03147506009500428	2	2	1.0	canonical_backbone	high	chromatin remodeling	False
+RUVBL2	transcription regulation	-0.0032308548466519114	0.00833895336457898	0.05093122525684931	18	18	1.0	context_deviation	moderate	chromatin remodeling	False
+SMAD1	ER stress / UPR	0.0488830087438217	0.0488830087438217	0.0488830087438217	1	1	1.0	context_deviation	provisional	TGF-beta / BMP signaling	False
+SMAD1	JAK-STAT signaling	-0.0181700259003059	0.0181700259003059	0.0181700259003059	1	1	1.0	context_deviation	provisional	TGF-beta / BMP signaling	False
+SMAD1	NF-κB / MAPK signaling	0.0011484210642199	0.0011484210642199	0.0011484210642199	1	1	1.0	context_deviation	provisional	TGF-beta / BMP signaling	False
+SMAD1	NF-κB / copper signaling	0.0551037812814737	0.0551037812814737	0.0551037812814737	1	1	1.0	context_deviation	provisional	TGF-beta / BMP signaling	False
+SMAD1	RNA processing / spliceosome	0.0754525541085061	0.0754525541085061	0.0754525541085061	1	1	1.0	canonical_backbone	high	TGF-beta / BMP signaling	False
+SMAD1	RNA processing / transcription	0.0323058229110003	0.0323058229110003	0.0323058229110003	1	1	1.0	context_deviation	provisional	TGF-beta / BMP signaling	False
+SMAD1	TGF-beta / BMP signaling	-0.021357241683797802	0.021357241683797802	0.0322170818023405	2	2	1.0	context_deviation	moderate	TGF-beta / BMP signaling	True
+SMAD1	cell cycle / replication	0.0002391401545266	0.0002391401545266	0.0002391401545266	1	1	1.0	context_deviation	provisional	TGF-beta / BMP signaling	False
+SMAD1	chromatin remodeling	-0.0776189788391066	0.0776189788391066	0.11429819115014646	2	2	1.0	canonical_backbone	high	TGF-beta / BMP signaling	False
+SMAD1	cytoskeleton / cell motility	-0.0901687559419274	0.0901687559419274	0.0901687559419274	1	1	1.0	context_deviation	provisional	TGF-beta / BMP signaling	False
+SMAD1	growth / proliferation	0.202770518293426	0.202770518293426	0.202770518293426	1	1	1.0	context_deviation	provisional	TGF-beta / BMP signaling	False
+SMAD1	growth factor / proliferation	0.0318089900711212	0.0318089900711212	0.0318089900711212	1	1	1.0	context_deviation	provisional	TGF-beta / BMP signaling	False
+SMAD1	mTOR / lysosome / signaling	-0.027969339717317	0.027969339717317	0.027969339717317	1	1	1.0	shift_excess	moderate	TGF-beta / BMP signaling	False
+SMAD1	metabolism / transcription	0.0532672895369697	0.0532672895369697	0.0532672895369697	1	1	1.0	context_deviation	provisional	TGF-beta / BMP signaling	False
+SMAD1	nuclear receptor / co-activator	0.026286219157773	0.026286219157773	0.026286219157773	1	1	1.0	context_deviation	provisional	TGF-beta / BMP signaling	False
+SMAD1	nuclear receptor / metabolism	0.0005502852820156998	0.0033423812541430002	0.00479047520391237	2	2	1.0	context_deviation	moderate	TGF-beta / BMP signaling	False
+SMAD1	oxidative stress / antioxidant	0.0747828414100634	0.0747828414100634	0.0747828414100634	1	1	1.0	context_deviation	provisional	TGF-beta / BMP signaling	False
+SMAD1	oxidative stress / mitochondrial	-0.2275635501984778	0.2275635501984778	0.2275635501984778	1	1	1.0	context_deviation	provisional	TGF-beta / BMP signaling	False
+SMAD1	peroxisome / metabolism	0.0144687766145964	0.0144687766145964	0.0144687766145964	1	1	1.0	context_deviation	provisional	TGF-beta / BMP signaling	False
+SMAD1	proteostasis / chaperone	0.0106601254846065	0.0106601254846065	0.0106601254846065	1	1	1.0	context_deviation	provisional	TGF-beta / BMP signaling	False
+SMAD1	ribosomal / translation	-0.0214439104364934	0.0214439104364934	0.0214439104364934	1	1	1.0	canonical_backbone	high	TGF-beta / BMP signaling	False
+SMAD1	ribosome biogenesis / nucleolar	-0.1335491440328767	0.1335491440328767	0.1335491440328767	1	1	1.0	context_deviation	provisional	TGF-beta / BMP signaling	False
+SMAD1	signaling / oncogene	-0.1039006676649967	0.1039006676649967	0.1039006676649967	1	1	1.0	context_deviation	provisional	TGF-beta / BMP signaling	False
+SMAD1	synaptic / signaling	0.0584193008242011	0.0584193008242011	0.0584193008242011	1	1	1.0	context_deviation	provisional	TGF-beta / BMP signaling	False
+SMAD1	transcription / chromatin	-0.1007841444213707	0.1398356849618727	0.2437681790369851	2	2	1.0	canonical_backbone	high	TGF-beta / BMP signaling	False
+SMAD1	transcription regulation	0.01713055278606975	0.023087321605259895	0.14102552463807477	18	18	1.0	context_deviation	moderate	TGF-beta / BMP signaling	False
+STAT3	ER stress / UPR	-0.0214254848763117	0.0214254848763117	0.0214254848763117	1	1	1.0	context_deviation	provisional	JAK-STAT signaling	False
+STAT3	JAK-STAT signaling	0.0696761527508954	0.0696761527508954	0.0696761527508954	1	1	1.0	context_deviation	provisional	JAK-STAT signaling	True
+STAT3	NF-κB / MAPK signaling	-0.0053864554612532	0.0053864554612532	0.0053864554612532	1	1	1.0	context_deviation	provisional	JAK-STAT signaling	False
+STAT3	NF-κB / copper signaling	0.0028211415549	0.0028211415549	0.0028211415549	1	1	1.0	context_deviation	provisional	JAK-STAT signaling	False
+STAT3	RNA processing / spliceosome	-0.0431696137055826	0.0431696137055826	0.0431696137055826	1	1	1.0	canonical_backbone	high	JAK-STAT signaling	False
+STAT3	RNA processing / transcription	0.1207918813212255	0.1207918813212255	0.1207918813212255	1	1	1.0	context_deviation	provisional	JAK-STAT signaling	False
+STAT3	TGF-beta / BMP signaling	-0.0258763996339263	0.0379957559008968	0.06501177623315942	2	2	1.0	context_deviation	moderate	JAK-STAT signaling	False
+STAT3	cell cycle / replication	6.326793673205567e-05	6.326793673205567e-05	6.326793673205567e-05	1	1	1.0	context_deviation	provisional	JAK-STAT signaling	False
+STAT3	chromatin remodeling	0.039439774296572847	0.09816743620538594	0.14961511506330585	2	2	1.0	canonical_backbone	high	JAK-STAT signaling	False
+STAT3	cytoskeleton / cell motility	0.1678255800588498	0.1678255800588498	0.1678255800588498	1	1	1.0	context_deviation	provisional	JAK-STAT signaling	False
+STAT3	growth / proliferation	0.1637592757251261	0.1637592757251261	0.1637592757251261	1	1	1.0	context_deviation	provisional	JAK-STAT signaling	False
+STAT3	growth factor / proliferation	0.1056711841268592	0.1056711841268592	0.1056711841268592	1	1	1.0	context_deviation	provisional	JAK-STAT signaling	False
+STAT3	mTOR / lysosome / signaling	-0.1329794193118129	0.1329794193118129	0.1329794193118129	1	1	1.0	shift_excess	moderate	JAK-STAT signaling	False
+STAT3	metabolism / transcription	0.1467217075401724	0.1467217075401724	0.1467217075401724	1	1	1.0	context_deviation	provisional	JAK-STAT signaling	False
+STAT3	nuclear receptor / co-activator	-0.0117668676511476	0.0117668676511476	0.0117668676511476	1	1	1.0	context_deviation	provisional	JAK-STAT signaling	False
+STAT3	nuclear receptor / metabolism	-0.00551210040532575	0.00551210040532575	0.009127830512773624	2	2	1.0	context_deviation	moderate	JAK-STAT signaling	False
+STAT3	oxidative stress / antioxidant	-0.022336553121362	0.022336553121362	0.022336553121362	1	1	1.0	context_deviation	provisional	JAK-STAT signaling	False
+STAT3	oxidative stress / mitochondrial	0.0635421110979017	0.0635421110979017	0.0635421110979017	1	1	1.0	context_deviation	provisional	JAK-STAT signaling	False
+STAT3	peroxisome / metabolism	-0.0632417031722351	0.0632417031722351	0.0632417031722351	1	1	1.0	context_deviation	provisional	JAK-STAT signaling	False
+STAT3	proteostasis / chaperone	0.1927584487685491	0.1927584487685491	0.1927584487685491	1	1	1.0	context_deviation	provisional	JAK-STAT signaling	False
+STAT3	ribosomal / translation	-0.1199773648375901	0.1199773648375901	0.1199773648375901	1	1	1.0	canonical_backbone	high	JAK-STAT signaling	False
+STAT3	ribosome biogenesis / nucleolar	-0.2311952700367956	0.2311952700367956	0.2311952700367956	1	1	1.0	context_deviation	provisional	JAK-STAT signaling	False
+STAT3	signaling / oncogene	-0.2879048257511536	0.2879048257511536	0.2879048257511536	1	1	1.0	context_deviation	provisional	JAK-STAT signaling	False
+STAT3	synaptic / signaling	0.1038642773888946	0.1038642773888946	0.1038642773888946	1	1	1.0	context_deviation	provisional	JAK-STAT signaling	False
+STAT3	transcription / chromatin	-0.11221369624963254	0.11221369624963254	0.1608308218612409	2	2	1.0	canonical_backbone	high	JAK-STAT signaling	False
+STAT3	transcription regulation	0.005168888960234106	0.033531120605886734	0.19176358513737232	18	18	1.0	context_deviation	moderate	JAK-STAT signaling	False
+TAB3	ER stress / UPR	-0.0092544070535699	0.0092544070535699	0.0092544070535699	1	1	1.0	context_deviation	provisional	NF-κB / MAPK signaling	False
+TAB3	JAK-STAT signaling	0.0212703611015278	0.0212703611015278	0.0212703611015278	1	1	1.0	context_deviation	provisional	NF-κB / MAPK signaling	False
+TAB3	NF-κB / MAPK signaling	-0.0002463903644854	0.0002463903644854	0.0002463903644854	1	1	1.0	context_deviation	provisional	NF-κB / MAPK signaling	True
+TAB3	NF-κB / copper signaling	-0.0667900762484231	0.0667900762484231	0.0667900762484231	1	1	1.0	context_deviation	provisional	NF-κB / MAPK signaling	False
+TAB3	RNA processing / spliceosome	0.0214568676991501	0.0214568676991501	0.0214568676991501	1	1	1.0	canonical_backbone	high	NF-κB / MAPK signaling	False
+TAB3	RNA processing / transcription	-0.010640581070765	0.010640581070765	0.010640581070765	1	1	1.0	context_deviation	provisional	NF-κB / MAPK signaling	False
+TAB3	TGF-beta / BMP signaling	-0.00863592534609945	0.00863592534609945	0.012216543118996528	2	2	1.0	context_deviation	moderate	NF-κB / MAPK signaling	False
+TAB3	cell cycle / replication	1.2527960664816331e-05	1.2527960664816331e-05	1.2527960664816331e-05	1	1	1.0	context_deviation	provisional	NF-κB / MAPK signaling	False
+TAB3	chromatin remodeling	-0.0229084301536827	0.0412935979914969	0.06678259364818823	2	2	1.0	canonical_backbone	high	NF-κB / MAPK signaling	False
+TAB3	cytoskeleton / cell motility	-0.0266802137478743	0.0266802137478743	0.0266802137478743	1	1	1.0	context_deviation	provisional	NF-κB / MAPK signaling	False
+TAB3	growth / proliferation	0.0164700480015062	0.0164700480015062	0.0164700480015062	1	1	1.0	context_deviation	provisional	NF-κB / MAPK signaling	False
+TAB3	growth factor / proliferation	0.0324950668177235	0.0324950668177235	0.0324950668177235	1	1	1.0	context_deviation	provisional	NF-κB / MAPK signaling	False
+TAB3	mTOR / lysosome / signaling	0.0875795866996448	0.0875795866996448	0.0875795866996448	1	1	1.0	shift_excess	moderate	NF-κB / MAPK signaling	False
+TAB3	metabolism / transcription	0.0014736225754912	0.0014736225754912	0.0014736225754912	1	1	1.0	context_deviation	provisional	NF-κB / MAPK signaling	False
+TAB3	nuclear receptor / co-activator	0.0110971804485315	0.0110971804485315	0.0110971804485315	1	1	1.0	context_deviation	provisional	NF-κB / MAPK signaling	False
+TAB3	nuclear receptor / metabolism	0.00167976979612225	0.00277888830148455	0.004592133874375239	2	2	1.0	context_deviation	moderate	NF-κB / MAPK signaling	False
+TAB3	oxidative stress / antioxidant	0.0096629911523196	0.0096629911523196	0.0096629911523196	1	1	1.0	context_deviation	provisional	NF-κB / MAPK signaling	False
+TAB3	oxidative stress / mitochondrial	0.1845561023191126	0.1845561023191126	0.1845561023191126	1	1	1.0	context_deviation	provisional	NF-κB / MAPK signaling	False
+TAB3	peroxisome / metabolism	-0.0033145699582838	0.0033145699582838	0.0033145699582838	1	1	1.0	context_deviation	provisional	NF-κB / MAPK signaling	False
+TAB3	proteostasis / chaperone	0.0753361142512044	0.0753361142512044	0.0753361142512044	1	1	1.0	context_deviation	provisional	NF-κB / MAPK signaling	False
+TAB3	ribosomal / translation	-0.0125931037671088	0.0125931037671088	0.0125931037671088	1	1	1.0	canonical_backbone	high	NF-κB / MAPK signaling	False
+TAB3	ribosome biogenesis / nucleolar	0.0871951279326124	0.0871951279326124	0.0871951279326124	1	1	1.0	context_deviation	provisional	NF-κB / MAPK signaling	False
+TAB3	signaling / oncogene	-0.093220297476469	0.093220297476469	0.093220297476469	1	1	1.0	context_deviation	provisional	NF-κB / MAPK signaling	False
+TAB3	synaptic / signaling	0.0360853660435581	0.0360853660435581	0.0360853660435581	1	1	1.0	context_deviation	provisional	NF-κB / MAPK signaling	False
+TAB3	transcription / chromatin	0.0305521485753083	0.0305521485753083	0.05409848574100634	2	2	1.0	canonical_backbone	high	NF-κB / MAPK signaling	False
+TAB3	transcription regulation	0.003974911050068718	0.013333813482301485	0.068801996064817	18	18	1.0	context_deviation	moderate	NF-κB / MAPK signaling	False
+TADA3	ER stress / UPR	-0.027276343680749	0.027276343680749	0.027276343680749	1	1	1.0	context_deviation	provisional	transcription / chromatin	False
+TADA3	JAK-STAT signaling	-0.0963623304049989	0.0963623304049989	0.0963623304049989	1	1	1.0	context_deviation	provisional	transcription / chromatin	False
+TADA3	NF-κB / MAPK signaling	0.011921806510357	0.011921806510357	0.011921806510357	1	1	1.0	context_deviation	provisional	transcription / chromatin	False
+TADA3	NF-κB / copper signaling	-0.0155144776903174	0.0155144776903174	0.0155144776903174	1	1	1.0	context_deviation	provisional	transcription / chromatin	False
+TADA3	RNA processing / spliceosome	-0.0427780779233164	0.0427780779233164	0.0427780779233164	1	1	1.0	canonical_backbone	high	transcription / chromatin	False
+TADA3	RNA processing / transcription	-0.0405142025011969	0.0405142025011969	0.0405142025011969	1	1	1.0	context_deviation	provisional	transcription / chromatin	False
+TADA3	TGF-beta / BMP signaling	0.00522976087372315	0.009835494625430749	0.0157535617130351	2	2	1.0	context_deviation	moderate	transcription / chromatin	False
+TADA3	cell cycle / replication	3.557267272225776e-05	3.557267272225776e-05	3.557267272225776e-05	1	1	1.0	context_deviation	provisional	transcription / chromatin	False
+TADA3	chromatin remodeling	-0.0013683618727809497	0.007283014721865249	0.010479953974496886	2	2	1.0	canonical_backbone	high	transcription / chromatin	False
+TADA3	cytoskeleton / cell motility	0.0078788267525951	0.0078788267525951	0.0078788267525951	1	1	1.0	context_deviation	provisional	transcription / chromatin	False
+TADA3	growth / proliferation	-0.1398949764317189	0.1398949764317189	0.1398949764317189	1	1	1.0	context_deviation	provisional	transcription / chromatin	False
+TADA3	growth factor / proliferation	-0.0540872255631765	0.0540872255631765	0.0540872255631765	1	1	1.0	context_deviation	provisional	transcription / chromatin	False
+TADA3	mTOR / lysosome / signaling	-0.0359451655654957	0.0359451655654957	0.0359451655654957	1	1	1.0	shift_excess	moderate	transcription / chromatin	False
+TADA3	metabolism / transcription	0.0424871744886219	0.0424871744886219	0.0424871744886219	1	1	1.0	context_deviation	provisional	transcription / chromatin	False
+TADA3	nuclear receptor / co-activator	-0.0007536444144948	0.0007536444144948	0.0007536444144948	1	1	1.0	context_deviation	provisional	transcription / chromatin	False
+TADA3	nuclear receptor / metabolism	-0.0019200049697509	0.0019200049697509	0.0035487280310797136	2	2	1.0	context_deviation	moderate	transcription / chromatin	False
+TADA3	oxidative stress / antioxidant	-0.0353846788641423	0.0353846788641423	0.0353846788641423	1	1	1.0	context_deviation	provisional	transcription / chromatin	False
+TADA3	oxidative stress / mitochondrial	-0.130968222925386	0.130968222925386	0.130968222925386	1	1	1.0	context_deviation	provisional	transcription / chromatin	False
+TADA3	peroxisome / metabolism	0.0217914246435151	0.0217914246435151	0.0217914246435151	1	1	1.0	context_deviation	provisional	transcription / chromatin	False
+TADA3	proteostasis / chaperone	-0.0502531470922791	0.0502531470922791	0.0502531470922791	1	1	1.0	context_deviation	provisional	transcription / chromatin	False
+TADA3	ribosomal / translation	-0.0364598153110726	0.0364598153110726	0.0364598153110726	1	1	1.0	canonical_backbone	high	transcription / chromatin	False
+TADA3	ribosome biogenesis / nucleolar	0.0285153024186509	0.0285153024186509	0.0285153024186509	1	1	1.0	context_deviation	provisional	transcription / chromatin	False
+TADA3	signaling / oncogene	0.205654947310764	0.205654947310764	0.205654947310764	1	1	1.0	context_deviation	provisional	transcription / chromatin	False
+TADA3	synaptic / signaling	-0.0253960335167222	0.0253960335167222	0.0253960335167222	1	1	1.0	context_deviation	provisional	transcription / chromatin	False
+TADA3	transcription / chromatin	0.0941377218207326	0.0941377218207326	0.17489452074662218	2	2	1.0	canonical_backbone	high	transcription / chromatin	True
+TADA3	transcription regulation	0.00024815422669831046	0.01607904883357732	0.09786620169314683	18	18	1.0	context_deviation	moderate	transcription / chromatin	False
+THAP8	ER stress / UPR	-0.0071525854710297	0.0071525854710297	0.0071525854710297	1	1	1.0	context_deviation	provisional	transcription regulation	False
+THAP8	JAK-STAT signaling	0.0110426129560324	0.0110426129560324	0.0110426129560324	1	1	1.0	context_deviation	provisional	transcription regulation	False
+THAP8	NF-κB / MAPK signaling	0.01837444196703	0.01837444196703	0.01837444196703	1	1	1.0	context_deviation	provisional	transcription regulation	False
+THAP8	NF-κB / copper signaling	-0.0263443750389072	0.0263443750389072	0.0263443750389072	1	1	1.0	context_deviation	provisional	transcription regulation	False
+THAP8	RNA processing / spliceosome	-0.0035370131737294	0.0035370131737294	0.0035370131737294	1	1	1.0	canonical_backbone	high	transcription regulation	False
+THAP8	RNA processing / transcription	-0.0435817376211554	0.0435817376211554	0.0435817376211554	1	1	1.0	context_deviation	provisional	transcription regulation	False
+THAP8	TGF-beta / BMP signaling	0.029012545263289752	0.029012545263289752	0.04192247099914454	2	2	1.0	context_deviation	moderate	transcription regulation	False
+THAP8	cell cycle / replication	2.807538527420968e-05	2.807538527420968e-05	2.807538527420968e-05	1	1	1.0	context_deviation	provisional	transcription regulation	False
+THAP8	chromatin remodeling	0.0512578649081564	0.0512578649081564	0.07249337421970292	2	2	1.0	canonical_backbone	high	transcription regulation	False
+THAP8	cytoskeleton / cell motility	-0.1462569395384491	0.1462569395384491	0.1462569395384491	1	1	1.0	context_deviation	provisional	transcription regulation	False
+THAP8	growth / proliferation	-0.0099254862120414	0.0099254862120414	0.0099254862120414	1	1	1.0	context_deviation	provisional	transcription regulation	False
+THAP8	growth factor / proliferation	0.0957582993198327	0.0957582993198327	0.0957582993198327	1	1	1.0	context_deviation	provisional	transcription regulation	False
+THAP8	mTOR / lysosome / signaling	0.261586178116339	0.261586178116339	0.261586178116339	1	1	1.0	shift_excess	moderate	transcription regulation	False
+THAP8	metabolism / transcription	-0.0422768766669807	0.0422768766669807	0.0422768766669807	1	1	1.0	context_deviation	provisional	transcription regulation	False
+THAP8	nuclear receptor / co-activator	0.0383892684285446	0.0383892684285446	0.0383892684285446	1	1	1.0	context_deviation	provisional	transcription regulation	False
+THAP8	nuclear receptor / metabolism	-0.0025158293313171	0.0025158293313171	0.004872079815485907	2	2	1.0	context_deviation	moderate	transcription regulation	False
+THAP8	oxidative stress / antioxidant	0.0627568674090437	0.0627568674090437	0.0627568674090437	1	1	1.0	context_deviation	provisional	transcription regulation	False
+THAP8	oxidative stress / mitochondrial	-0.173732238783647	0.173732238783647	0.173732238783647	1	1	1.0	context_deviation	provisional	transcription regulation	False
+THAP8	peroxisome / metabolism	0.0697655392456854	0.0697655392456854	0.0697655392456854	1	1	1.0	context_deviation	provisional	transcription regulation	False
+THAP8	proteostasis / chaperone	-0.0008857270746501	0.0008857270746501	0.0008857270746501	1	1	1.0	context_deviation	provisional	transcription regulation	False
+THAP8	ribosomal / translation	-0.0550618479226893	0.0550618479226893	0.0550618479226893	1	1	1.0	canonical_backbone	high	transcription regulation	False
+THAP8	ribosome biogenesis / nucleolar	-0.020940020651625	0.020940020651625	0.020940020651625	1	1	1.0	context_deviation	provisional	transcription regulation	False
+THAP8	signaling / oncogene	0.0279873041335067	0.0279873041335067	0.0279873041335067	1	1	1.0	context_deviation	provisional	transcription regulation	False
+THAP8	synaptic / signaling	0.0838683914062769	0.0838683914062769	0.0838683914062769	1	1	1.0	context_deviation	provisional	transcription regulation	False
+THAP8	transcription / chromatin	0.0291106607589841	0.0291106607589841	0.05540409410533672	2	2	1.0	canonical_backbone	high	transcription regulation	False
+THAP8	transcription regulation	0.012239938883332984	0.026177067478974646	0.1492109250697788	18	18	1.0	context_deviation	moderate	transcription regulation	True
+THRA	ER stress / UPR	-0.0327289807616561	0.0327289807616561	0.0327289807616561	1	1	1.0	context_deviation	provisional	nuclear receptor / metabolism	False
+THRA	JAK-STAT signaling	0.0608769769180361	0.0608769769180361	0.0608769769180361	1	1	1.0	context_deviation	provisional	nuclear receptor / metabolism	False
+THRA	NF-κB / MAPK signaling	-0.0024366145126662	0.0024366145126662	0.0024366145126662	1	1	1.0	context_deviation	provisional	nuclear receptor / metabolism	False
+THRA	NF-κB / copper signaling	-0.1212245919488962	0.1212245919488962	0.1212245919488962	1	1	1.0	context_deviation	provisional	nuclear receptor / metabolism	False
+THRA	RNA processing / spliceosome	-0.132238728945603	0.132238728945603	0.132238728945603	1	1	1.0	canonical_backbone	high	nuclear receptor / metabolism	False
+THRA	RNA processing / transcription	-0.1100109597067916	0.1100109597067916	0.1100109597067916	1	1	1.0	context_deviation	provisional	nuclear receptor / metabolism	False
+THRA	TGF-beta / BMP signaling	0.0282416520550318	0.0282416520550318	0.04177448082824808	2	2	1.0	context_deviation	moderate	nuclear receptor / metabolism	False
+THRA	cell cycle / replication	7.413082329600668e-05	7.413082329600668e-05	7.413082329600668e-05	1	1	1.0	context_deviation	provisional	nuclear receptor / metabolism	False
+THRA	chromatin remodeling	0.0451089234696808	0.0451089234696808	0.07993388401852537	2	2	1.0	canonical_backbone	high	nuclear receptor / metabolism	False
+THRA	cytoskeleton / cell motility	0.1390102680335775	0.1390102680335775	0.1390102680335775	1	1	1.0	context_deviation	provisional	nuclear receptor / metabolism	False
+THRA	growth / proliferation	-0.002758392287784	0.002758392287784	0.002758392287784	1	1	1.0	context_deviation	provisional	nuclear receptor / metabolism	False
+THRA	growth factor / proliferation	0.3583507280015612	0.3583507280015612	0.3583507280015612	1	1	1.0	context_deviation	provisional	nuclear receptor / metabolism	False
+THRA	mTOR / lysosome / signaling	-0.0764921469494572	0.0764921469494572	0.0764921469494572	1	1	1.0	shift_excess	moderate	nuclear receptor / metabolism	False
+THRA	metabolism / transcription	-0.0560915556987863	0.0560915556987863	0.0560915556987863	1	1	1.0	context_deviation	provisional	nuclear receptor / metabolism	False
+THRA	nuclear receptor / co-activator	0.0341237881423731	0.0341237881423731	0.0341237881423731	1	1	1.0	context_deviation	provisional	nuclear receptor / metabolism	False
+THRA	nuclear receptor / metabolism	-0.01497601670699235	0.01610630314704465	0.03110286409553353	2	2	1.0	context_deviation	moderate	nuclear receptor / metabolism	True
+THRA	oxidative stress / antioxidant	0.0067445061713175	0.0067445061713175	0.0067445061713175	1	1	1.0	context_deviation	provisional	nuclear receptor / metabolism	False
+THRA	oxidative stress / mitochondrial	0.0600432362533045	0.0600432362533045	0.0600432362533045	1	1	1.0	context_deviation	provisional	nuclear receptor / metabolism	False
+THRA	peroxisome / metabolism	-0.0305270177797747	0.0305270177797747	0.0305270177797747	1	1	1.0	context_deviation	provisional	nuclear receptor / metabolism	False
+THRA	proteostasis / chaperone	0.2058256977065294	0.2058256977065294	0.2058256977065294	1	1	1.0	context_deviation	provisional	nuclear receptor / metabolism	False
+THRA	ribosomal / translation	-0.0393917206510683	0.0393917206510683	0.0393917206510683	1	1	1.0	canonical_backbone	high	nuclear receptor / metabolism	False
+THRA	ribosome biogenesis / nucleolar	-0.2088497414187425	0.2088497414187425	0.2088497414187425	1	1	1.0	context_deviation	provisional	nuclear receptor / metabolism	False
+THRA	signaling / oncogene	-0.2084714037966195	0.2084714037966195	0.2084714037966195	1	1	1.0	context_deviation	provisional	nuclear receptor / metabolism	False
+THRA	synaptic / signaling	0.0097488248758593	0.0097488248758593	0.0097488248758593	1	1	1.0	context_deviation	provisional	nuclear receptor / metabolism	False
+THRA	transcription / chromatin	0.0737506333075916	0.0737506333075916	0.14396408535345157	2	2	1.0	canonical_backbone	high	nuclear receptor / metabolism	False
+THRA	transcription regulation	-0.009576629786188244	0.017774404271635756	0.09340316113341561	18	18	1.0	context_deviation	moderate	nuclear receptor / metabolism	False
+TMF1	ER stress / UPR	0.04089154773736	0.04089154773736	0.04089154773736	1	1	1.0	context_deviation	provisional	transcription regulation	False
+TMF1	JAK-STAT signaling	0.0548476308216394	0.0548476308216394	0.0548476308216394	1	1	1.0	context_deviation	provisional	transcription regulation	False
+TMF1	NF-κB / MAPK signaling	-0.0031137212944858	0.0031137212944858	0.0031137212944858	1	1	1.0	context_deviation	provisional	transcription regulation	False
+TMF1	NF-κB / copper signaling	-0.0726369355072775	0.0726369355072775	0.0726369355072775	1	1	1.0	context_deviation	provisional	transcription regulation	False
+TMF1	RNA processing / spliceosome	-0.0222999527084403	0.0222999527084403	0.0222999527084403	1	1	1.0	canonical_backbone	high	transcription regulation	False
+TMF1	RNA processing / transcription	0.0683184397389668	0.0683184397389668	0.0683184397389668	1	1	1.0	context_deviation	provisional	transcription regulation	False
+TMF1	TGF-beta / BMP signaling	-0.01625503457211435	0.01625503457211435	0.029502098823255288	2	2	1.0	context_deviation	moderate	transcription regulation	False
+TMF1	cell cycle / replication	-2.0499152450071045e-05	2.0499152450071045e-05	2.0499152450071045e-05	1	1	1.0	context_deviation	provisional	transcription regulation	False
+TMF1	chromatin remodeling	-0.004307022690406601	0.0317424478399132	0.045301952260918904	2	2	1.0	canonical_backbone	high	transcription regulation	False
+TMF1	cytoskeleton / cell motility	0.0791921450363426	0.0791921450363426	0.0791921450363426	1	1	1.0	context_deviation	provisional	transcription regulation	False
+TMF1	growth / proliferation	0.0905949684528746	0.0905949684528746	0.0905949684528746	1	1	1.0	context_deviation	provisional	transcription regulation	False
+TMF1	growth factor / proliferation	-0.0893012050068852	0.0893012050068852	0.0893012050068852	1	1	1.0	context_deviation	provisional	transcription regulation	False
+TMF1	mTOR / lysosome / signaling	0.1673106943649793	0.1673106943649793	0.1673106943649793	1	1	1.0	shift_excess	moderate	transcription regulation	False
+TMF1	metabolism / transcription	-0.0261316137579605	0.0261316137579605	0.0261316137579605	1	1	1.0	context_deviation	provisional	transcription regulation	False
+TMF1	nuclear receptor / co-activator	0.0024297588374435	0.0024297588374435	0.0024297588374435	1	1	1.0	context_deviation	provisional	transcription regulation	False
+TMF1	nuclear receptor / metabolism	-0.01066207011277775	0.01066207011277775	0.019824964708769165	2	2	1.0	context_deviation	moderate	transcription regulation	False
+TMF1	oxidative stress / antioxidant	-0.0195151184349716	0.0195151184349716	0.0195151184349716	1	1	1.0	context_deviation	provisional	transcription regulation	False
+TMF1	oxidative stress / mitochondrial	0.0392105245590399	0.0392105245590399	0.0392105245590399	1	1	1.0	context_deviation	provisional	transcription regulation	False
+TMF1	peroxisome / metabolism	-0.0452901712624892	0.0452901712624892	0.0452901712624892	1	1	1.0	context_deviation	provisional	transcription regulation	False
+TMF1	proteostasis / chaperone	0.1024648804858172	0.1024648804858172	0.1024648804858172	1	1	1.0	context_deviation	provisional	transcription regulation	False
+TMF1	ribosomal / translation	-0.0695604167928613	0.0695604167928613	0.0695604167928613	1	1	1.0	canonical_backbone	high	transcription regulation	False
+TMF1	ribosome biogenesis / nucleolar	0.1005867468466026	0.1005867468466026	0.1005867468466026	1	1	1.0	context_deviation	provisional	transcription regulation	False
+TMF1	signaling / oncogene	-0.1030625127701621	0.1030625127701621	0.1030625127701621	1	1	1.0	context_deviation	provisional	transcription regulation	False
+TMF1	synaptic / signaling	0.0313940541925532	0.0313940541925532	0.0313940541925532	1	1	1.0	context_deviation	provisional	transcription regulation	False
+TMF1	transcription / chromatin	0.0401434783424554	0.0401434783424554	0.07145895868904689	2	2	1.0	canonical_backbone	high	transcription regulation	False
+TMF1	transcription regulation	0.007728234181517317	0.021958875909645518	0.11882376092728393	18	18	1.0	context_deviation	moderate	transcription regulation	True
+TMSB4X	ER stress / UPR	0.0100728967647986	0.0100728967647986	0.0100728967647986	1	1	1.0	context_deviation	provisional	cytoskeleton / cell motility	False
+TMSB4X	JAK-STAT signaling	0.0804400663915976	0.0804400663915976	0.0804400663915976	1	1	1.0	context_deviation	provisional	cytoskeleton / cell motility	False
+TMSB4X	NF-κB / MAPK signaling	-0.0125152899835332	0.0125152899835332	0.0125152899835332	1	1	1.0	context_deviation	provisional	cytoskeleton / cell motility	False
+TMSB4X	NF-κB / copper signaling	-0.1047671651562958	0.1047671651562958	0.1047671651562958	1	1	1.0	context_deviation	provisional	cytoskeleton / cell motility	False
+TMSB4X	RNA processing / spliceosome	-0.0433220054855327	0.0433220054855327	0.0433220054855327	1	1	1.0	canonical_backbone	high	cytoskeleton / cell motility	False
+TMSB4X	RNA processing / transcription	-0.0845085866291136	0.0845085866291136	0.0845085866291136	1	1	1.0	context_deviation	provisional	cytoskeleton / cell motility	False
+TMSB4X	TGF-beta / BMP signaling	0.005460046709517201	0.0121786717210472	0.01887496516336623	2	2	1.0	context_deviation	moderate	cytoskeleton / cell motility	False
+TMSB4X	cell cycle / replication	3.422885405034082e-05	3.422885405034082e-05	3.422885405034082e-05	1	1	1.0	context_deviation	provisional	cytoskeleton / cell motility	False
+TMSB4X	chromatin remodeling	0.0160831603238084	0.0643500062200482	0.09380395883459895	2	2	1.0	canonical_backbone	high	cytoskeleton / cell motility	False
+TMSB4X	cytoskeleton / cell motility	0.1164496145123021	0.1164496145123021	0.1164496145123021	1	1	1.0	context_deviation	provisional	cytoskeleton / cell motility	True
+TMSB4X	growth / proliferation	-0.0684908516821443	0.0684908516821443	0.0684908516821443	1	1	1.0	context_deviation	provisional	cytoskeleton / cell motility	False
+TMSB4X	growth factor / proliferation	-0.1363655144130901	0.1363655144130901	0.1363655144130901	1	1	1.0	context_deviation	provisional	cytoskeleton / cell motility	False
+TMSB4X	mTOR / lysosome / signaling	-0.0031886388825936	0.0031886388825936	0.0031886388825936	1	1	1.0	shift_excess	moderate	cytoskeleton / cell motility	False
+TMSB4X	metabolism / transcription	-0.1547420262212333	0.1547420262212333	0.1547420262212333	1	1	1.0	context_deviation	provisional	cytoskeleton / cell motility	False
+TMSB4X	nuclear receptor / co-activator	0.0096242196999912	0.0096242196999912	0.0096242196999912	1	1	1.0	context_deviation	provisional	cytoskeleton / cell motility	False
+TMSB4X	nuclear receptor / metabolism	-2.8711060002526985e-05	3.862911994761389e-05	6.806664196793971e-05	2	2	1.0	context_deviation	moderate	cytoskeleton / cell motility	False
+TMSB4X	oxidative stress / antioxidant	0.0124493271125077	0.0124493271125077	0.0124493271125077	1	1	1.0	context_deviation	provisional	cytoskeleton / cell motility	False
+TMSB4X	oxidative stress / mitochondrial	-0.1080857882971838	0.1080857882971838	0.1080857882971838	1	1	1.0	context_deviation	provisional	cytoskeleton / cell motility	False
+TMSB4X	peroxisome / metabolism	-0.0046016308427649	0.0046016308427649	0.0046016308427649	1	1	1.0	context_deviation	provisional	cytoskeleton / cell motility	False
+TMSB4X	proteostasis / chaperone	-0.0253380432037848	0.0253380432037848	0.0253380432037848	1	1	1.0	context_deviation	provisional	cytoskeleton / cell motility	False
+TMSB4X	ribosomal / translation	-0.0137653369597168	0.0137653369597168	0.0137653369597168	1	1	1.0	canonical_backbone	high	cytoskeleton / cell motility	False
+TMSB4X	ribosome biogenesis / nucleolar	-0.1672422634281964	0.1672422634281964	0.1672422634281964	1	1	1.0	context_deviation	provisional	cytoskeleton / cell motility	False
+TMSB4X	signaling / oncogene	0.025686411892997	0.025686411892997	0.025686411892997	1	1	1.0	context_deviation	provisional	cytoskeleton / cell motility	False
+TMSB4X	synaptic / signaling	-0.0249870297165982	0.0249870297165982	0.0249870297165982	1	1	1.0	context_deviation	provisional	cytoskeleton / cell motility	False
+TMSB4X	transcription / chromatin	0.049640060454086456	0.05224361484600045	0.1019169357277052	2	2	1.0	canonical_backbone	high	cytoskeleton / cell motility	False
+TMSB4X	transcription regulation	0.007009318844328834	0.017948232696481322	0.10595903768031155	18	18	1.0	context_deviation	moderate	cytoskeleton / cell motility	False
+UBP1	ER stress / UPR	-0.0116921859298646	0.0116921859298646	0.0116921859298646	1	1	1.0	context_deviation	provisional	transcription regulation	False
+UBP1	JAK-STAT signaling	0.0578350874057672	0.0578350874057672	0.0578350874057672	1	1	1.0	context_deviation	provisional	transcription regulation	False
+UBP1	NF-κB / MAPK signaling	0.0035666503720325	0.0035666503720325	0.0035666503720325	1	1	1.0	context_deviation	provisional	transcription regulation	False
+UBP1	NF-κB / copper signaling	0.0396331573907935	0.0396331573907935	0.0396331573907935	1	1	1.0	context_deviation	provisional	transcription regulation	False
+UBP1	RNA processing / spliceosome	-0.0184466103006187	0.0184466103006187	0.0184466103006187	1	1	1.0	canonical_backbone	high	transcription regulation	False
+UBP1	RNA processing / transcription	0.0467416808444457	0.0467416808444457	0.0467416808444457	1	1	1.0	context_deviation	provisional	transcription regulation	False
+UBP1	TGF-beta / BMP signaling	-0.0041862865178518	0.0049667486836381	0.009186249212379179	2	2	1.0	context_deviation	moderate	transcription regulation	False
+UBP1	cell cycle / replication	-7.333039994575105e-06	7.333039994575105e-06	7.333039994575105e-06	1	1	1.0	context_deviation	provisional	transcription regulation	False
+UBP1	chromatin remodeling	0.0065146061060248495	0.00781920299049855	0.014393055834205446	2	2	1.0	canonical_backbone	high	transcription regulation	False
+UBP1	cytoskeleton / cell motility	0.0736789942440027	0.0736789942440027	0.0736789942440027	1	1	1.0	context_deviation	provisional	transcription regulation	False
+UBP1	growth / proliferation	0.0003685330047487	0.0003685330047487	0.0003685330047487	1	1	1.0	context_deviation	provisional	transcription regulation	False
+UBP1	growth factor / proliferation	0.0276503672625397	0.0276503672625397	0.0276503672625397	1	1	1.0	context_deviation	provisional	transcription regulation	False
+UBP1	mTOR / lysosome / signaling	-0.1211819002036851	0.1211819002036851	0.1211819002036851	1	1	1.0	shift_excess	moderate	transcription regulation	False
+UBP1	metabolism / transcription	0.1043116890562136	0.1043116890562136	0.1043116890562136	1	1	1.0	context_deviation	provisional	transcription regulation	False
+UBP1	nuclear receptor / co-activator	-0.0037500799404705	0.0037500799404705	0.0037500799404705	1	1	1.0	context_deviation	provisional	transcription regulation	False
+UBP1	nuclear receptor / metabolism	-0.0011779280180958	0.0011779280180958	0.002243861146880361	2	2	1.0	context_deviation	moderate	transcription regulation	False
+UBP1	oxidative stress / antioxidant	-0.0467447695663247	0.0467447695663247	0.0467447695663247	1	1	1.0	context_deviation	provisional	transcription regulation	False
+UBP1	oxidative stress / mitochondrial	0.0732824230577383	0.0732824230577383	0.0732824230577383	1	1	1.0	context_deviation	provisional	transcription regulation	False
+UBP1	peroxisome / metabolism	0.0128386494094829	0.0128386494094829	0.0128386494094829	1	1	1.0	context_deviation	provisional	transcription regulation	False
+UBP1	proteostasis / chaperone	-0.0030794053327041	0.0030794053327041	0.0030794053327041	1	1	1.0	context_deviation	provisional	transcription regulation	False
+UBP1	ribosomal / translation	-0.0320691029442503	0.0320691029442503	0.0320691029442503	1	1	1.0	canonical_backbone	high	transcription regulation	False
+UBP1	ribosome biogenesis / nucleolar	0.0072786028895659	0.0072786028895659	0.0072786028895659	1	1	1.0	context_deviation	provisional	transcription regulation	False
+UBP1	signaling / oncogene	0.0007177332396195	0.0007177332396195	0.0007177332396195	1	1	1.0	context_deviation	provisional	transcription regulation	False
+UBP1	synaptic / signaling	0.01536290395739	0.01536290395739	0.01536290395739	1	1	1.0	context_deviation	provisional	transcription regulation	False
+UBP1	transcription / chromatin	-0.011037169009320748	0.03554421250085135	0.05263478207508772	2	2	1.0	canonical_backbone	high	transcription regulation	False
+UBP1	transcription regulation	-0.006450359812167571	0.012156680652682305	0.07724919398445033	18	18	1.0	context_deviation	moderate	transcription regulation	True
+VEZF1	ER stress / UPR	0.0124311962267088	0.0124311962267088	0.0124311962267088	1	1	1.0	context_deviation	provisional	transcription regulation	False
+VEZF1	JAK-STAT signaling	0.0052661403923093	0.0052661403923093	0.0052661403923093	1	1	1.0	context_deviation	provisional	transcription regulation	False
+VEZF1	NF-κB / MAPK signaling	-0.0016568632117578	0.0016568632117578	0.0016568632117578	1	1	1.0	context_deviation	provisional	transcription regulation	False
+VEZF1	NF-κB / copper signaling	-0.0552184272386608	0.0552184272386608	0.0552184272386608	1	1	1.0	context_deviation	provisional	transcription regulation	False
+VEZF1	RNA processing / spliceosome	-0.0157154997653685	0.0157154997653685	0.0157154997653685	1	1	1.0	canonical_backbone	high	transcription regulation	False
+VEZF1	RNA processing / transcription	0.1085334433012873	0.1085334433012873	0.1085334433012873	1	1	1.0	context_deviation	provisional	transcription regulation	False
+VEZF1	TGF-beta / BMP signaling	-0.00913246119215495	0.00913246119215495	0.01692584754366487	2	2	1.0	context_deviation	moderate	transcription regulation	False
+VEZF1	cell cycle / replication	-1.1906142828983518e-05	1.1906142828983518e-05	1.1906142828983518e-05	1	1	1.0	context_deviation	provisional	transcription regulation	False
+VEZF1	chromatin remodeling	-0.0103201121190142	0.013534351503428601	0.02407003883533983	2	2	1.0	canonical_backbone	high	transcription regulation	False
+VEZF1	cytoskeleton / cell motility	0.1034460149386126	0.1034460149386126	0.1034460149386126	1	1	1.0	context_deviation	provisional	transcription regulation	False
+VEZF1	growth / proliferation	-0.0282981490457889	0.0282981490457889	0.0282981490457889	1	1	1.0	context_deviation	provisional	transcription regulation	False
+VEZF1	growth factor / proliferation	-0.1044978428067598	0.1044978428067598	0.1044978428067598	1	1	1.0	context_deviation	provisional	transcription regulation	False
+VEZF1	mTOR / lysosome / signaling	-0.0034747461209659	0.0034747461209659	0.0034747461209659	1	1	1.0	shift_excess	moderate	transcription regulation	False
+VEZF1	metabolism / transcription	-0.0166042832963553	0.0166042832963553	0.0166042832963553	1	1	1.0	context_deviation	provisional	transcription regulation	False
+VEZF1	nuclear receptor / co-activator	0.00700589756462	0.00700589756462	0.00700589756462	1	1	1.0	context_deviation	provisional	transcription regulation	False
+VEZF1	nuclear receptor / metabolism	0.002505711467227	0.0032208749707974002	0.005771070184030349	2	2	1.0	context_deviation	moderate	transcription regulation	False
+VEZF1	oxidative stress / antioxidant	0.1192464851514529	0.1192464851514529	0.1192464851514529	1	1	1.0	context_deviation	provisional	transcription regulation	False
+VEZF1	oxidative stress / mitochondrial	-0.0547817211163414	0.0547817211163414	0.0547817211163414	1	1	1.0	context_deviation	provisional	transcription regulation	False
+VEZF1	peroxisome / metabolism	-0.0106272333542156	0.0106272333542156	0.0106272333542156	1	1	1.0	context_deviation	provisional	transcription regulation	False
+VEZF1	proteostasis / chaperone	0.0328781398339427	0.0328781398339427	0.0328781398339427	1	1	1.0	context_deviation	provisional	transcription regulation	False
+VEZF1	ribosomal / translation	0.0855129069654171	0.0855129069654171	0.0855129069654171	1	1	1.0	canonical_backbone	high	transcription regulation	False
+VEZF1	ribosome biogenesis / nucleolar	-0.1089839871874253	0.1089839871874253	0.1089839871874253	1	1	1.0	context_deviation	provisional	transcription regulation	False
+VEZF1	signaling / oncogene	0.0661432287818777	0.0661432287818777	0.0661432287818777	1	1	1.0	context_deviation	provisional	transcription regulation	False
+VEZF1	synaptic / signaling	0.0155596415369787	0.0155596415369787	0.0155596415369787	1	1	1.0	context_deviation	provisional	transcription regulation	False
+VEZF1	transcription / chromatin	0.05286926491955825	0.06515006424556245	0.11865656361394718	2	2	1.0	canonical_backbone	high	transcription regulation	False
+VEZF1	transcription regulation	0.000701997462064911	0.009308176116487099	0.05647381839789124	18	18	1.0	context_deviation	moderate	transcription regulation	True
+XBP1	ER stress / UPR	0.0200500459181742	0.0200500459181742	0.0200500459181742	1	1	1.0	context_deviation	provisional	ER stress / UPR	True
+XBP1	JAK-STAT signaling	-0.0391884159537407	0.0391884159537407	0.0391884159537407	1	1	1.0	context_deviation	provisional	ER stress / UPR	False
+XBP1	NF-κB / MAPK signaling	-0.0052297381386055	0.0052297381386055	0.0052297381386055	1	1	1.0	context_deviation	provisional	ER stress / UPR	False
+XBP1	NF-κB / copper signaling	0.1498421457468691	0.1498421457468691	0.1498421457468691	1	1	1.0	context_deviation	provisional	ER stress / UPR	False
+XBP1	RNA processing / spliceosome	0.1760972473120672	0.1760972473120672	0.1760972473120672	1	1	1.0	canonical_backbone	high	ER stress / UPR	False
+XBP1	RNA processing / transcription	0.1938018640153238	0.1938018640153238	0.1938018640153238	1	1	1.0	context_deviation	provisional	ER stress / UPR	False
+XBP1	TGF-beta / BMP signaling	-0.04258147088531475	0.04258147088531475	0.07665138894950693	2	2	1.0	context_deviation	moderate	ER stress / UPR	False
+XBP1	cell cycle / replication	-0.0001287670392679	0.0001287670392679	0.0001287670392679	1	1	1.0	context_deviation	provisional	ER stress / UPR	False
+XBP1	chromatin remodeling	-0.3036139146371348	0.3036139146371348	0.563425411739361	2	2	1.0	canonical_backbone	high	ER stress / UPR	False
+XBP1	cytoskeleton / cell motility	-0.1313178459896909	0.1313178459896909	0.1313178459896909	1	1	1.0	context_deviation	provisional	ER stress / UPR	False
+XBP1	growth / proliferation	0.2364952099304218	0.2364952099304218	0.2364952099304218	1	1	1.0	context_deviation	provisional	ER stress / UPR	False
+XBP1	growth factor / proliferation	0.3329321954383731	0.3329321954383731	0.3329321954383731	1	1	1.0	context_deviation	provisional	ER stress / UPR	False
+XBP1	mTOR / lysosome / signaling	0.1645498600098153	0.1645498600098153	0.1645498600098153	1	1	1.0	shift_excess	moderate	ER stress / UPR	False
+XBP1	metabolism / transcription	-0.0448791796557502	0.0448791796557502	0.0448791796557502	1	1	1.0	context_deviation	provisional	ER stress / UPR	False
+XBP1	nuclear receptor / co-activator	0.0280459586142663	0.0280459586142663	0.0280459586142663	1	1	1.0	context_deviation	provisional	ER stress / UPR	False
+XBP1	nuclear receptor / metabolism	0.015802481598756052	0.01749344692664935	0.033338839513532	2	2	1.0	context_deviation	moderate	ER stress / UPR	False
+XBP1	oxidative stress / antioxidant	0.0820260552865938	0.0820260552865938	0.0820260552865938	1	1	1.0	context_deviation	provisional	ER stress / UPR	False
+XBP1	oxidative stress / mitochondrial	-0.0016323592308749	0.0016323592308749	0.0016323592308749	1	1	1.0	context_deviation	provisional	ER stress / UPR	False
+XBP1	peroxisome / metabolism	0.0474120674935686	0.0474120674935686	0.0474120674935686	1	1	1.0	context_deviation	provisional	ER stress / UPR	False
+XBP1	proteostasis / chaperone	0.0754304215448361	0.0754304215448361	0.0754304215448361	1	1	1.0	context_deviation	provisional	ER stress / UPR	False
+XBP1	ribosomal / translation	0.0216507572083408	0.0216507572083408	0.0216507572083408	1	1	1.0	canonical_backbone	high	ER stress / UPR	False
+XBP1	ribosome biogenesis / nucleolar	-0.1372751625356844	0.1372751625356844	0.1372751625356844	1	1	1.0	context_deviation	provisional	ER stress / UPR	False
+XBP1	signaling / oncogene	-0.1366713820199433	0.1366713820199433	0.1366713820199433	1	1	1.0	context_deviation	provisional	ER stress / UPR	False
+XBP1	synaptic / signaling	0.040671661922864	0.040671661922864	0.040671661922864	1	1	1.0	context_deviation	provisional	ER stress / UPR	False
+XBP1	transcription / chromatin	-0.0938442162174403	0.0938442162174403	0.1563946291110685	2	2	1.0	canonical_backbone	high	ER stress / UPR	False
+XBP1	transcription regulation	0.010640191126262983	0.04114227550058994	0.20750212670453874	18	18	1.0	context_deviation	moderate	ER stress / UPR	False
+YBX1	ER stress / UPR	0.1169766850945078	0.1169766850945078	0.1169766850945078	1	1	1.0	context_deviation	provisional	RNA processing / transcription	False
+YBX1	JAK-STAT signaling	0.1928569348256615	0.1928569348256615	0.1928569348256615	1	1	1.0	context_deviation	provisional	RNA processing / transcription	False
+YBX1	NF-κB / MAPK signaling	-0.0227676595034195	0.0227676595034195	0.0227676595034195	1	1	1.0	context_deviation	provisional	RNA processing / transcription	False
+YBX1	NF-κB / copper signaling	0.1117039939174326	0.1117039939174326	0.1117039939174326	1	1	1.0	context_deviation	provisional	RNA processing / transcription	False
+YBX1	RNA processing / spliceosome	0.2117223247260166	0.2117223247260166	0.2117223247260166	1	1	1.0	canonical_backbone	high	RNA processing / transcription	False
+YBX1	RNA processing / transcription	-0.1117227322370797	0.1117227322370797	0.1117227322370797	1	1	1.0	context_deviation	provisional	RNA processing / transcription	True
+YBX1	TGF-beta / BMP signaling	-0.08990227575015895	0.08990227575015895	0.13134968506778144	2	2	1.0	context_deviation	moderate	RNA processing / transcription	False
+YBX1	cell cycle / replication	-9.714631282483707e-05	9.714631282483707e-05	9.714631282483707e-05	1	1	1.0	context_deviation	provisional	RNA processing / transcription	False
+YBX1	chromatin remodeling	-0.3189714178181588	0.3189714178181588	0.5239533936532113	2	2	1.0	canonical_backbone	high	RNA processing / transcription	False
+YBX1	cytoskeleton / cell motility	0.0049526320523505	0.0049526320523505	0.0049526320523505	1	1	1.0	context_deviation	provisional	RNA processing / transcription	False
+YBX1	growth / proliferation	0.3066292826347793	0.3066292826347793	0.3066292826347793	1	1	1.0	context_deviation	provisional	RNA processing / transcription	False
+YBX1	growth factor / proliferation	0.0589419593892911	0.0589419593892911	0.0589419593892911	1	1	1.0	context_deviation	provisional	RNA processing / transcription	False
+YBX1	mTOR / lysosome / signaling	0.2100287865351262	0.2100287865351262	0.2100287865351262	1	1	1.0	shift_excess	moderate	RNA processing / transcription	False
+YBX1	metabolism / transcription	0.0348670261296409	0.0348670261296409	0.0348670261296409	1	1	1.0	context_deviation	provisional	RNA processing / transcription	False
+YBX1	nuclear receptor / co-activator	0.0170627528597018	0.0170627528597018	0.0170627528597018	1	1	1.0	context_deviation	provisional	RNA processing / transcription	False
+YBX1	nuclear receptor / metabolism	0.025875828709561153	0.02955087109061005	0.05554840220241086	2	2	1.0	context_deviation	moderate	RNA processing / transcription	False
+YBX1	oxidative stress / antioxidant	-0.0739576724244401	0.0739576724244401	0.0739576724244401	1	1	1.0	context_deviation	provisional	RNA processing / transcription	False
+YBX1	oxidative stress / mitochondrial	-0.1302878320768632	0.1302878320768632	0.1302878320768632	1	1	1.0	context_deviation	provisional	RNA processing / transcription	False
+YBX1	peroxisome / metabolism	0.0377141494886822	0.0377141494886822	0.0377141494886822	1	1	1.0	context_deviation	provisional	RNA processing / transcription	False
+YBX1	proteostasis / chaperone	-0.057010702081851	0.057010702081851	0.057010702081851	1	1	1.0	context_deviation	provisional	RNA processing / transcription	False
+YBX1	ribosomal / translation	0.0129052285744971	0.0129052285744971	0.0129052285744971	1	1	1.0	canonical_backbone	high	RNA processing / transcription	False
+YBX1	ribosome biogenesis / nucleolar	-0.2461760783350561	0.2461760783350561	0.2461760783350561	1	1	1.0	context_deviation	provisional	RNA processing / transcription	False
+YBX1	signaling / oncogene	-0.024818001140326	0.024818001140326	0.024818001140326	1	1	1.0	context_deviation	provisional	RNA processing / transcription	False
+YBX1	synaptic / signaling	0.0449106163468385	0.0449106163468385	0.0449106163468385	1	1	1.0	context_deviation	provisional	RNA processing / transcription	False
+YBX1	transcription / chromatin	-0.09397769576703094	0.16843411952062434	0.2727704526533935	2	2	1.0	canonical_backbone	high	RNA processing / transcription	False
+YBX1	transcription regulation	0.03181808916664059	0.05693662130137979	0.3058665573456705	18	18	1.0	context_deviation	moderate	RNA processing / transcription	False
+ZBTB17	ER stress / UPR	0.0059264543438138	0.0059264543438138	0.0059264543438138	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB17	JAK-STAT signaling	-0.0740987683484608	0.0740987683484608	0.0740987683484608	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB17	NF-κB / MAPK signaling	0.0086170533473767	0.0086170533473767	0.0086170533473767	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB17	NF-κB / copper signaling	0.0123856419381141	0.0123856419381141	0.0123856419381141	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB17	RNA processing / spliceosome	0.0230079894030964	0.0230079894030964	0.0230079894030964	1	1	1.0	canonical_backbone	high	transcription regulation	False
+ZBTB17	RNA processing / transcription	0.0059806481917677	0.0059806481917677	0.0059806481917677	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB17	TGF-beta / BMP signaling	-0.0208889588440846	0.0208889588440846	0.030145058950929077	2	2	1.0	context_deviation	moderate	transcription regulation	False
+ZBTB17	cell cycle / replication	9.406060536066618e-05	9.406060536066618e-05	9.406060536066618e-05	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB17	chromatin remodeling	-0.02229402434644075	0.02254740821527065	0.044842148449550166	2	2	1.0	canonical_backbone	high	transcription regulation	False
+ZBTB17	cytoskeleton / cell motility	-0.023166789756391	0.023166789756391	0.023166789756391	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB17	growth / proliferation	-0.0568470673563492	0.0568470673563492	0.0568470673563492	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB17	growth factor / proliferation	-0.0061786276370191	0.0061786276370191	0.0061786276370191	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB17	mTOR / lysosome / signaling	0.0434725039332613	0.0434725039332613	0.0434725039332613	1	1	1.0	shift_excess	moderate	transcription regulation	False
+ZBTB17	metabolism / transcription	0.0770186932613707	0.0770186932613707	0.0770186932613707	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB17	nuclear receptor / co-activator	-0.0266397567722041	0.0266397567722041	0.0266397567722041	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB17	nuclear receptor / metabolism	-0.0047382410064306	0.0047382410064306	0.008477318201609617	2	2	1.0	context_deviation	moderate	transcription regulation	False
+ZBTB17	oxidative stress / antioxidant	-0.0299324309044968	0.0299324309044968	0.0299324309044968	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB17	oxidative stress / mitochondrial	0.0044028288453054	0.0044028288453054	0.0044028288453054	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB17	peroxisome / metabolism	-0.0034907790477417	0.0034907790477417	0.0034907790477417	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB17	proteostasis / chaperone	-0.074504250204474	0.074504250204474	0.074504250204474	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB17	ribosomal / translation	-0.0556560144522822	0.0556560144522822	0.0556560144522822	1	1	1.0	canonical_backbone	high	transcription regulation	False
+ZBTB17	ribosome biogenesis / nucleolar	0.181636148071775	0.181636148071775	0.181636148071775	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB17	signaling / oncogene	0.0520296310688446	0.0520296310688446	0.0520296310688446	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB17	synaptic / signaling	-0.0356453022923232	0.0356453022923232	0.0356453022923232	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB17	transcription / chromatin	-0.0023205702027312494	0.07641847905491636	0.10812186630957211	2	2	1.0	canonical_backbone	high	transcription regulation	False
+ZBTB17	transcription regulation	0.000799838021957711	0.0123910700544241	0.06933538977166195	18	18	1.0	context_deviation	moderate	transcription regulation	True
+ZBTB20	ER stress / UPR	0.0441841075446837	0.0441841075446837	0.0441841075446837	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB20	JAK-STAT signaling	0.0503515350794608	0.0503515350794608	0.0503515350794608	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB20	NF-κB / MAPK signaling	0.011186797750169	0.011186797750169	0.011186797750169	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB20	NF-κB / copper signaling	0.1265034122781899	0.1265034122781899	0.1265034122781899	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB20	RNA processing / spliceosome	0.1272636010200127	0.1272636010200127	0.1272636010200127	1	1	1.0	canonical_backbone	high	transcription regulation	False
+ZBTB20	RNA processing / transcription	-0.0566285333780009	0.0566285333780009	0.0566285333780009	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB20	TGF-beta / BMP signaling	0.0337285885039832	0.039341461388165	0.07328530912300917	2	2	1.0	context_deviation	moderate	transcription regulation	False
+ZBTB20	cell cycle / replication	0.0001313102489679	0.0001313102489679	0.0001313102489679	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB20	chromatin remodeling	-0.061018380389239305	0.061018380389239305	0.10988189053835969	2	2	1.0	canonical_backbone	high	transcription regulation	False
+ZBTB20	cytoskeleton / cell motility	0.0412945071038931	0.0412945071038931	0.0412945071038931	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB20	growth / proliferation	-0.1499608484549792	0.1499608484549792	0.1499608484549792	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB20	growth factor / proliferation	-0.104422306985472	0.104422306985472	0.104422306985472	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB20	mTOR / lysosome / signaling	0.3535019375997339	0.3535019375997339	0.3535019375997339	1	1	1.0	shift_excess	moderate	transcription regulation	False
+ZBTB20	metabolism / transcription	0.1772670705133755	0.1772670705133755	0.1772670705133755	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB20	nuclear receptor / co-activator	0.0099529723286416	0.0099529723286416	0.0099529723286416	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB20	nuclear receptor / metabolism	0.001598233137975	0.0040586231269899	0.006168755279674935	2	2	1.0	context_deviation	moderate	transcription regulation	False
+ZBTB20	oxidative stress / antioxidant	-0.007111216887057	0.007111216887057	0.007111216887057	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB20	oxidative stress / mitochondrial	0.0696486409740976	0.0696486409740976	0.0696486409740976	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB20	peroxisome / metabolism	0.0983603947377401	0.0983603947377401	0.0983603947377401	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB20	proteostasis / chaperone	-0.134205168963528	0.134205168963528	0.134205168963528	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB20	ribosomal / translation	-0.0644808527642477	0.0644808527642477	0.0644808527642477	1	1	1.0	canonical_backbone	high	transcription regulation	False
+ZBTB20	ribosome biogenesis / nucleolar	0.2612379679304776	0.2612379679304776	0.2612379679304776	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB20	signaling / oncogene	0.1656649003394015	0.1656649003394015	0.1656649003394015	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB20	synaptic / signaling	0.1736817091446153	0.1736817091446153	0.1736817091446153	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB20	transcription / chromatin	-0.16462035506025505	0.16462035506025505	0.3128918291671079	2	2	1.0	canonical_backbone	high	transcription regulation	False
+ZBTB20	transcription regulation	0.009506042989260072	0.05993700267990533	0.34019197154305264	18	18	1.0	context_deviation	moderate	transcription regulation	True
+ZBTB5	ER stress / UPR	0.0249384576747981	0.0249384576747981	0.0249384576747981	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB5	JAK-STAT signaling	0.064713265224516	0.064713265224516	0.064713265224516	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB5	NF-κB / MAPK signaling	-0.0063203471645123	0.0063203471645123	0.0063203471645123	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB5	NF-κB / copper signaling	-0.0284040778379669	0.0284040778379669	0.0284040778379669	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB5	RNA processing / spliceosome	0.0021879891885921	0.0021879891885921	0.0021879891885921	1	1	1.0	canonical_backbone	high	transcription regulation	False
+ZBTB5	RNA processing / transcription	-0.0385300414437874	0.0385300414437874	0.0385300414437874	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB5	TGF-beta / BMP signaling	0.00443656474428535	0.01286847247052145	0.019249970932695152	2	2	1.0	context_deviation	moderate	transcription regulation	False
+ZBTB5	cell cycle / replication	3.4801992187145006e-05	3.4801992187145006e-05	3.4801992187145006e-05	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB5	chromatin remodeling	-0.044059034033618494	0.044059034033618494	0.06231379446369381	2	2	1.0	canonical_backbone	high	transcription regulation	False
+ZBTB5	cytoskeleton / cell motility	0.0733849674137431	0.0733849674137431	0.0733849674137431	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB5	growth / proliferation	-0.0847308468070022	0.0847308468070022	0.0847308468070022	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB5	growth factor / proliferation	-0.0172113126708272	0.0172113126708272	0.0172113126708272	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB5	mTOR / lysosome / signaling	0.0318429569864723	0.0318429569864723	0.0318429569864723	1	1	1.0	shift_excess	moderate	transcription regulation	False
+ZBTB5	metabolism / transcription	-0.0548195359681119	0.0548195359681119	0.0548195359681119	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB5	nuclear receptor / co-activator	0.0096017317089366	0.0096017317089366	0.0096017317089366	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB5	nuclear receptor / metabolism	-0.00081924218161275	0.00081924218161275	0.0013214623356906465	2	2	1.0	context_deviation	moderate	transcription regulation	False
+ZBTB5	oxidative stress / antioxidant	0.0249388853932644	0.0249388853932644	0.0249388853932644	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB5	oxidative stress / mitochondrial	0.0330265476630982	0.0330265476630982	0.0330265476630982	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB5	peroxisome / metabolism	0.0191349098989701	0.0191349098989701	0.0191349098989701	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB5	proteostasis / chaperone	0.0404466612267183	0.0404466612267183	0.0404466612267183	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB5	ribosomal / translation	0.0376095881487874	0.0376095881487874	0.0376095881487874	1	1	1.0	canonical_backbone	high	transcription regulation	False
+ZBTB5	ribosome biogenesis / nucleolar	-0.0938544559260562	0.0938544559260562	0.0938544559260562	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB5	signaling / oncogene	0.0420547293122452	0.0420547293122452	0.0420547293122452	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB5	synaptic / signaling	0.0631515020792519	0.0631515020792519	0.0631515020792519	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZBTB5	transcription / chromatin	0.01659301124374795	0.01659301124374795	0.02903567326086839	2	2	1.0	canonical_backbone	high	transcription regulation	False
+ZBTB5	transcription regulation	0.004927431974207615	0.012389430564980495	0.06660656820761492	18	18	1.0	context_deviation	moderate	transcription regulation	True
+ZNF131	ER stress / UPR	0.0397697593571065	0.0397697593571065	0.0397697593571065	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF131	JAK-STAT signaling	0.0331266311817558	0.0331266311817558	0.0331266311817558	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF131	NF-κB / MAPK signaling	-0.0103463649024285	0.0103463649024285	0.0103463649024285	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF131	NF-κB / copper signaling	-0.0404611635080007	0.0404611635080007	0.0404611635080007	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF131	RNA processing / spliceosome	-0.0210090348480972	0.0210090348480972	0.0210090348480972	1	1	1.0	canonical_backbone	high	transcription regulation	False
+ZNF131	RNA processing / transcription	0.1012608159954448	0.1012608159954448	0.1012608159954448	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF131	TGF-beta / BMP signaling	0.02198887601168225	0.02198887601168225	0.03210383100123631	2	2	1.0	context_deviation	moderate	transcription regulation	False
+ZNF131	cell cycle / replication	0.0001346121907776	0.0001346121907776	0.0001346121907776	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF131	chromatin remodeling	0.01708547140526205	0.01838783776600475	0.0354972086465665	2	2	1.0	canonical_backbone	high	transcription regulation	False
+ZNF131	cytoskeleton / cell motility	0.0026976580201988	0.0026976580201988	0.0026976580201988	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF131	growth / proliferation	-0.1561279595771273	0.1561279595771273	0.1561279595771273	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF131	growth factor / proliferation	0.130719376694974	0.130719376694974	0.130719376694974	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF131	mTOR / lysosome / signaling	0.2370767450593568	0.2370767450593568	0.2370767450593568	1	1	1.0	shift_excess	moderate	transcription regulation	False
+ZNF131	metabolism / transcription	-0.0330808912751352	0.0330808912751352	0.0330808912751352	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF131	nuclear receptor / co-activator	-0.0137818115431605	0.0137818115431605	0.0137818115431605	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF131	nuclear receptor / metabolism	-0.0039388687247182	0.0039388687247182	0.006779151790359825	2	2	1.0	context_deviation	moderate	transcription regulation	False
+ZNF131	oxidative stress / antioxidant	0.1471622106296404	0.1471622106296404	0.1471622106296404	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF131	oxidative stress / mitochondrial	-0.2528377540463654	0.2528377540463654	0.2528377540463654	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF131	peroxisome / metabolism	-0.0205931872769534	0.0205931872769534	0.0205931872769534	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF131	proteostasis / chaperone	0.0186134200142233	0.0186134200142233	0.0186134200142233	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF131	ribosomal / translation	0.02000787361959	0.02000787361959	0.02000787361959	1	1	1.0	canonical_backbone	high	transcription regulation	False
+ZNF131	ribosome biogenesis / nucleolar	0.09555229532316	0.09555229532316	0.09555229532316	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF131	signaling / oncogene	0.2140574960225143	0.2140574960225143	0.2140574960225143	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF131	synaptic / signaling	0.0112131467387069	0.0112131467387069	0.0112131467387069	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF131	transcription / chromatin	0.030588266750375	0.030588266750375	0.04395340620751519	2	2	1.0	canonical_backbone	high	transcription regulation	False
+ZNF131	transcription regulation	-0.004965889677444383	0.01779824514748409	0.11377169845797834	18	18	1.0	context_deviation	moderate	transcription regulation	True
+ZNF24	ER stress / UPR	-0.014812935425108	0.014812935425108	0.014812935425108	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF24	JAK-STAT signaling	-0.0407474926416079	0.0407474926416079	0.0407474926416079	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF24	NF-κB / MAPK signaling	0.0146631094397645	0.0146631094397645	0.0146631094397645	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF24	NF-κB / copper signaling	0.0343591321607861	0.0343591321607861	0.0343591321607861	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF24	RNA processing / spliceosome	0.0195905337566567	0.0195905337566567	0.0195905337566567	1	1	1.0	canonical_backbone	high	transcription regulation	False
+ZNF24	RNA processing / transcription	-0.0404325424457235	0.0404325424457235	0.0404325424457235	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF24	TGF-beta / BMP signaling	-0.00852675442084285	0.00852675442084285	0.012221602790337857	2	2	1.0	context_deviation	moderate	transcription regulation	False
+ZNF24	cell cycle / replication	3.592055104813475e-05	3.592055104813475e-05	3.592055104813475e-05	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF24	chromatin remodeling	0.01061950796630675	0.010815264007939251	0.021435665840270915	2	2	1.0	canonical_backbone	high	transcription regulation	False
+ZNF24	cytoskeleton / cell motility	-0.0176427474317793	0.0176427474317793	0.0176427474317793	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF24	growth / proliferation	-0.0073237624076325	0.0073237624076325	0.0073237624076325	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF24	growth factor / proliferation	-0.0860433983685687	0.0860433983685687	0.0860433983685687	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF24	mTOR / lysosome / signaling	0.0163989514778694	0.0163989514778694	0.0163989514778694	1	1	1.0	shift_excess	moderate	transcription regulation	False
+ZNF24	metabolism / transcription	0.1398561330384949	0.1398561330384949	0.1398561330384949	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF24	nuclear receptor / co-activator	-0.02271019298033	0.02271019298033	0.02271019298033	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF24	nuclear receptor / metabolism	-0.00517932166730475	0.00517932166730475	0.009760316747071148	2	2	1.0	context_deviation	moderate	transcription regulation	False
+ZNF24	oxidative stress / antioxidant	0.0879425955169622	0.0879425955169622	0.0879425955169622	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF24	oxidative stress / mitochondrial	-0.0065469600530365	0.0065469600530365	0.0065469600530365	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF24	peroxisome / metabolism	-0.0215524305513726	0.0215524305513726	0.0215524305513726	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF24	proteostasis / chaperone	0.0018237341876045	0.0018237341876045	0.0018237341876045	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF24	ribosomal / translation	-0.0215267522634673	0.0215267522634673	0.0215267522634673	1	1	1.0	canonical_backbone	high	transcription regulation	False
+ZNF24	ribosome biogenesis / nucleolar	-0.0095054807515569	0.0095054807515569	0.0095054807515569	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF24	signaling / oncogene	-0.095970518662492	0.095970518662492	0.095970518662492	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF24	synaptic / signaling	-0.0007258529833777	0.0007258529833777	0.0007258529833777	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF24	transcription / chromatin	-0.0180402048593327	0.033842825116693204	0.05423625730534457	2	2	1.0	canonical_backbone	high	transcription regulation	False
+ZNF24	transcription regulation	-0.002559967817348611	0.011602945235401734	0.05987820040938149	18	18	1.0	context_deviation	moderate	transcription regulation	True
+ZNF566	ER stress / UPR	-0.0124245562779108	0.0124245562779108	0.0124245562779108	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF566	JAK-STAT signaling	-0.02551071454588	0.02551071454588	0.02551071454588	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF566	NF-κB / MAPK signaling	-0.0042494602728857	0.0042494602728857	0.0042494602728857	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF566	NF-κB / copper signaling	-0.0161318753833101	0.0161318753833101	0.0161318753833101	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF566	RNA processing / spliceosome	0.0162252574600439	0.0162252574600439	0.0162252574600439	1	1	1.0	canonical_backbone	high	transcription regulation	False
+ZNF566	RNA processing / transcription	0.0047909256739576	0.0047909256739576	0.0047909256739576	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF566	TGF-beta / BMP signaling	-0.00296870946802185	0.00296870946802185	0.005391055473658659	2	2	1.0	context_deviation	moderate	transcription regulation	False
+ZNF566	cell cycle / replication	1.76661249814663e-05	1.76661249814663e-05	1.76661249814663e-05	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF566	chromatin remodeling	-0.0056798583906259	0.0065459928179734	0.01225649324321788	2	2	1.0	canonical_backbone	high	transcription regulation	False
+ZNF566	cytoskeleton / cell motility	-0.0316085618367506	0.0316085618367506	0.0316085618367506	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF566	growth / proliferation	0.0214390251095664	0.0214390251095664	0.0214390251095664	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF566	growth factor / proliferation	0.0288835074350672	0.0288835074350672	0.0288835074350672	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF566	mTOR / lysosome / signaling	0.1110807985334856	0.1110807985334856	0.1110807985334856	1	1	1.0	shift_excess	moderate	transcription regulation	False
+ZNF566	metabolism / transcription	-0.0259287875542347	0.0259287875542347	0.0259287875542347	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF566	nuclear receptor / co-activator	-0.0173347102920332	0.0173347102920332	0.0173347102920332	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF566	nuclear receptor / metabolism	0.0035496836295938997	0.0035496836295938997	0.006435695740177968	2	2	1.0	context_deviation	moderate	transcription regulation	False
+ZNF566	oxidative stress / antioxidant	0.0771805802903877	0.0771805802903877	0.0771805802903877	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF566	oxidative stress / mitochondrial	-0.0835205294960651	0.0835205294960651	0.0835205294960651	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF566	peroxisome / metabolism	-0.0012437512568466	0.0012437512568466	0.0012437512568466	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF566	proteostasis / chaperone	-0.0616820959819819	0.0616820959819819	0.0616820959819819	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF566	ribosomal / translation	-0.1258710470344628	0.1258710470344628	0.1258710470344628	1	1	1.0	canonical_backbone	high	transcription regulation	False
+ZNF566	ribosome biogenesis / nucleolar	-0.0426865810789233	0.0426865810789233	0.0426865810789233	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF566	signaling / oncogene	-0.024868954106458	0.024868954106458	0.024868954106458	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF566	synaptic / signaling	-0.0534393427014887	0.0534393427014887	0.0534393427014887	1	1	1.0	context_deviation	provisional	transcription regulation	False
+ZNF566	transcription / chromatin	-0.0240907365688292	0.0240907365688292	0.03409960635678442	2	2	1.0	canonical_backbone	high	transcription regulation	False
+ZNF566	transcription regulation	0.0010616503626641278	0.0069102316036551165	0.03604282451638514	18	18	1.0	context_deviation	moderate	transcription regulation	True

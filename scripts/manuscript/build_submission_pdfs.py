@@ -59,9 +59,9 @@ MANUAL_LEGENDS = {
         "Fig. 1 | Truth object definition. "
         "a, Workflow defining the frozen phenotype-aligned recovery object before model scoring by linking absolute mean perturbation shift to CRISPR DepMap dependency. "
         "b, Pre-specified 25/75 joint-percentile rule separating Q1 anchors, Q2 transcriptomic excess, Q3 dependency excess, Q4 low-information targets and the retained middle band. "
-        "c,d, HCC38 and HCC1143 target-level rank-percentile grids; panels report n, aligned Spearman rho and Q1 anchor count. "
+        "c,d, HCC38 and HCC1143 target-level rank-percentile grids; panels report n, aligned Spearman ρ and Q1 anchor count. "
         "e, Category composition across the two primary contexts, including zero-count Q2 and Q3 categories. "
-        "f, Bridge strength summary showing observed aligned Spearman rho with Fisher z 95% confidence intervals and a 1,000-permutation null envelope."
+        "f, Bridge strength summary showing observed aligned Spearman ρ with Fisher z 95% confidence intervals and a 1,000-permutation null envelope."
     ),
     "Fig. 2": (
         "Fig. 2 | Anchor tiering. "
@@ -103,18 +103,18 @@ MANUAL_LEGENDS = {
         "a, Top-n gene-subset sensitivity recomputes aligned Spearman correlation after ranking genes by control expression or perturbation-response magnitude. "
         "b, Metric and CRISPR endpoint heat map marks the retained primary bridge metric and endpoint. "
         "c, Endpoint sensitivity compares CRISPR dependency with RNAi DEMETER2 across primary HCC and supplementary K562 contexts. "
-        "d, Control-subsampling robustness shows mean and 2.5th-97.5th percentile ranges across repeated control-cell subsamples. "
+        "d, Control-subsampling robustness shows mean and 2.5th\u201397.5th percentile ranges across repeated control-cell subsamples. "
         "e, Whole-transcriptome shift, rather than target-gene self-expression, carries the fitness bridge."
     ),
     "Extended Data Fig. 3": (
         "Extended Data Fig. 3 | K562 and Replogle bridge support. "
         "a, K562 temporal bridge-magnitude dissociation shows aligned Spearman correlation with CRISPR DepMap dependency and mean perturbation-shift magnitude at 7d and 13d; 13d has larger magnitude but weaker rank alignment. "
-        "b, Replogle K562 essential day 7 bridge test plots 1,882 matched CRISPRi targets as rank percentiles for perturbation shift and dependency, with 25/75 percentile cutoffs, Q1-Q4 category counts and aligned Spearman rho = 0.402."
+        "b, Replogle K562 essential day 7 bridge test plots 1,882 matched CRISPRi targets as rank percentiles for perturbation shift and dependency, with 25/75 percentile cutoffs, Q1-Q4 category counts and Spearman ρ = 0.402."
     ),
     "Extended Data Fig. 4": (
         "Extended Data Fig. 4 | Axis-level signal space. "
         "a, Axis-level signal space compares dependency signal with transcriptomic shift signal across annotated axes; color denotes descriptive signal profile rather than claim tier. "
-        "b, Paired axis R-squared ranking displays axes with the largest signal in either dimension on a common scale, supporting an audit-style view of partial axis-level structure."
+        "b, Paired axis R\u00b2 ranking displays axes with the largest signal in either dimension on a common scale, supporting an audit-style view of partial axis-level structure."
     ),
     "Extended Data Fig. 5": (
         "Extended Data Fig. 5 | Pathway-response polarity. "

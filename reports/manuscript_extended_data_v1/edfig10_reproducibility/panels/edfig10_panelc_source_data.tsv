@@ -1,0 +1,15 @@
+evidence_tier	n_objects
+A0_confirmed	1
+A1_supporting	1
+admission_required	1
+boundary_frozen	1
+gated_downstream_layer	1
+methodological_boundary	1
+primary_axis_but_qualified	1
+primary_but_qualified	1
+primary_conclusion	1
+retainable_global_claim	1
+supporting_but_sensitive	1
+supporting_or_preliminary	1
+A0_confirmed_A1_supporting	2
+supporting_only	3

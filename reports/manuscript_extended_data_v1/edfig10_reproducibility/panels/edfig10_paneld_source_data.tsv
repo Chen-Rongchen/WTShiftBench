@@ -1,0 +1,10 @@
+object	evidence_tier	allowed_wording	disallowed_wording
+GEARS_tradeoff_diagnosis	primary_conclusion	GEARS 应被定位为 architecture trade-off diagnosis，而不是 primary winner	GEARS is the overall HCC primary winner; model recovery has been demonstrated
+PFDN5	primary_but_qualified	PFDN5 可保留为相对更轻风险的 stable anchor，但必须带方法学谨慎	PFDN5 is a fully deconfounded strongest anchor
+PMF1	supporting_only	PMF1 保留结构稳定 anchor 身份，但当前仅适合作为 supporting evidence	PMF1 is a clean primary anchor; PMF1 alone nails down the bridge
+PRPF6	supporting_only	PRPF6 保留结构稳定 anchor 身份，但当前仅适合作为 supporting evidence	PRPF6 is a clean primary anchor; PRPF6 alone nails down the bridge
+ZNF131	supporting_only	ZNF131 保留结构稳定 anchor 身份，但当前仅适合作为 supporting evidence	ZNF131 is a clean primary anchor; ZNF131 alone nails down the bridge
+transcription_chromatin_axis	primary_axis_but_qualified	transcription / chromatin 是当前唯一更稳的 formal positive axis	transcription / chromatin is fully deconfounded and fully established beyond current boundary
+Dixit_K562_temporal_panel	A0_confirmed_A1_supporting	7d 和 13d 均确认 backbone_plus_shift_excess；7d rank alignment 更强，13d mean shift 更大；只能写成 architecture form 时间稳定性与 bridge readout temporal stratification	13d is uniformly stronger than 7d; temporal panel proves external model-side generalization; K562 temporal panel establishes content-level convergence
+Replogle_RNAi_expansion_candidate	admission_required	Replogle 7d CRISPRi + DepMap RNAi/shRNA dependency 只能作为 short-horizon / modality-compatible external expansion；先完成 cell line/gene namespace/target overlap/endpoint metadata check，再决定是否下载并正式运行	Replogle RNAi expansion is primary closure; DepMap RNAi is a siRNA matched endpoint; Replogle expansion proves external model-side generalization
+discovery_phenotype_shifter	gated_downstream_layer	discovery 当前只能写成 gated downstream layer	discovery is a current formal primary deliverable

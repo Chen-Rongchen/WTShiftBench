@@ -1,0 +1,48 @@
+target_gene	expected_axis	architecture_role	cosine_similarity	l2_distance	top20_overlap_fraction
+ARID1A	chromatin remodeling	canonical_backbone	0.2395383142580366	0.4661622542997816	0.45
+BMPR1A	TGF-beta / BMP signaling	context_deviation	-0.10341879760754971	0.6146184900164872	0.55
+CDKN2A	cell cycle / replication	context_deviation	-0.3082666273525142	0.4745288765445472	0.3
+COMMD6	NF-κB / copper signaling	context_deviation	0.25151750006336865	0.7288524562097887	0.6
+ENY2	transcription / chromatin	canonical_backbone	0.5351109172236217	0.7519146576523308	0.7
+ERC1	synaptic / signaling	context_deviation	0.25571932438167844	0.5366294128654976	0.4
+ETV3	transcription regulation	context_deviation	-0.21882780425726697	0.5816025168602811	0.55
+GON4L	transcription regulation	context_deviation	-0.32510848097048006	0.46671562563001234	0.5
+HDGF	growth factor / proliferation	context_deviation	-0.1281976248853098	0.5755399407710212	0.55
+HLX	transcription regulation	context_deviation	-0.28236264053040283	0.536180958556006	0.45
+KLF3	transcription regulation	context_deviation	0.06446848576760537	0.6319276283149808	0.6
+LAMTOR5	mTOR / lysosome / signaling	shift_excess	0.2694013001859954	0.8727469195054205	0.55
+MAML3	transcription regulation	context_deviation	0.07337220798482078	0.389044899749142	0.6
+MIER1	transcription regulation	context_deviation	0.14036570948297092	0.6428782119240749	0.55
+MTDH	signaling / oncogene	context_deviation	0.31637578752006335	0.8315794343009993	0.65
+MYBL1	transcription regulation	context_deviation	-0.17454310206436885	0.7869811771899419	0.55
+NCOA1	nuclear receptor / co-activator	context_deviation	-0.12407530675576355	0.5065413698124831	0.65
+NPM1	ribosome biogenesis / nucleolar	context_deviation	0.0873275790535357	1.6414295059166097	0.35
+PA2G4	growth / proliferation	context_deviation	0.42620237874867817	0.9079688235086752	0.45
+PARK7	oxidative stress / mitochondrial	context_deviation	0.1792016723390897	1.118968009350145	0.5
+PCBD1	metabolism / transcription	context_deviation	0.006965488287858453	0.5788727586373553	0.4
+PEX14	peroxisome / metabolism	context_deviation	0.4117396116120563	0.5214347860994978	0.55
+PFDN5	proteostasis / chaperone	context_deviation	0.4034022472904768	0.8776628706933267	0.65
+PMF1	transcription regulation	context_deviation	0.2297775763446918	0.6352759206179683	0.65
+PRDX2	oxidative stress / antioxidant	context_deviation	0.19757726769831813	0.6414008090042735	0.55
+PRPF6	RNA processing / spliceosome	canonical_backbone	-0.26312568048501356	0.6861772598568294	0.6
+RORC	nuclear receptor / metabolism	context_deviation	0.05835968799337859	0.5987502325991226	0.45
+RPS3	ribosomal / translation	canonical_backbone	0.4130963995214705	1.0233631558312497	0.6
+RUVBL2	chromatin remodeling	canonical_backbone	0.44851022017807063	0.6645374721139793	0.5
+SMAD1	TGF-beta / BMP signaling	context_deviation	0.11917451285201759	0.33941767287196545	0.5
+STAT3	JAK-STAT signaling	context_deviation	-0.001923351175555796	0.5877682071104451	0.45
+TAB3	NF-κB / MAPK signaling	context_deviation	-0.014432457644657738	0.44579833695718707	0.45
+TADA3	transcription / chromatin	canonical_backbone	-0.0939713956755197	0.7524763957162093	0.7
+THAP8	transcription regulation	context_deviation	0.32140503170732326	0.33891341246385775	0.5
+THRA	nuclear receptor / metabolism	context_deviation	0.052657093802116264	0.3674786827177553	0.45
+TMF1	transcription regulation	context_deviation	0.0760588651023182	0.61820968079987	0.55
+TMSB4X	cytoskeleton / cell motility	context_deviation	-0.10775857844986529	1.1101794713177051	0.45
+UBP1	transcription regulation	context_deviation	0.11393554228803689	0.44009505550898387	0.55
+VEZF1	transcription regulation	context_deviation	-0.07079081918171323	0.576340270587399	0.55
+XBP1	ER stress / UPR	context_deviation	0.012186779621951829	0.5607449796639006	0.55
+YBX1	RNA processing / transcription	context_deviation	0.6138594286745175	1.2284242879884402	0.6
+ZBTB17	transcription regulation	context_deviation	0.3137819627755576	0.5981950634386278	0.6
+ZBTB20	transcription regulation	context_deviation	0.10674816288186383	0.6236012817991058	0.45
+ZBTB5	transcription regulation	context_deviation	0.024638442173757134	0.5221771990296089	0.45
+ZNF131	transcription regulation	context_deviation	0.4318104339656441	0.6957788622971114	0.6
+ZNF24	transcription regulation	context_deviation	-0.22003273861721745	0.5902799397548554	0.5
+ZNF566	transcription regulation	context_deviation	0.23509662211303492	0.6189868853733341	0.45

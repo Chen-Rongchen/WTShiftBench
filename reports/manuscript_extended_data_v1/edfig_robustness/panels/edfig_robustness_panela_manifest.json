@@ -1,0 +1,43 @@
+{
+  "claim_boundary": "Robustness audits confirm: (i) shared-mean baseline advantage is retained under leave-one-target-out and cross-context construction, (ii) bridge remains materially positive after removing all stable anchors, (iii) asymmetric recovery pattern is stable under target resampling, (iv) CRISPR > RNAi in all four tested contexts.",
+  "generated_at_utc": "2026-05-07T13:26:20.009171+00:00",
+  "git": {
+    "commit": "77ee2113ec95c8edd23b538c39c9078e65b497fc",
+    "status_short": "M manuscript/extended_data/Extended_Data_Figure_2/Extended_Data_Figure_2.png\n M manuscript/extended_data/Extended_Data_Figure_2/panels/Extended_Data_Figure_2_panel_e.png\n M manuscript/figures/Figure_1/Figure_1.png\n M manuscript/figures/Figure_1/panels/Figure_1_panel_c_manifest.json\n M manuscript/figures/Figure_1/panels/Figure_1_panel_d_manifest.json\n M manuscript/figures/Figure_1/panels/Figure_1_panel_e_manifest.json\n M manuscript/figures/Figure_1/panels/Figure_1_panel_f_manifest.json\n M manuscript/figures/Figure_4/panels/Figure_4_panel_a_manifest.json\n M manuscript/figures/Figure_4/panels/Figure_4_panel_b_manifest.json\n M manuscript/figures/Figure_5/Figure_5_panel_manifest.json\n M manuscript/figures/Figure_5/panels/Figure_5_panel_a_manifest.json\n M manuscript/figures/Figure_5/panels/Figure_5_panel_b_manifest.json\n M manuscript/figures/Figure_5/panels/Figure_5_panel_c_manifest.json\n D scripts/stage1a/__init__.py\n D scripts/stage1a/adapters/__init__.py\n D scripts/stage1a/adapters/common/__init__.py\n D scripts/stage1a/adapters/common/runtime.py\n D scripts/stage1a/adapters/gears/__init__.py\n D scripts/stage1a/adapters/gears/build_predictions.py\n D scripts/stage1a/adapters/geneformer/__init__.py\n D scripts/stage1a/adapters/geneformer/build_predictions.py\n D scripts/stage1a/adapters/scgpt/__init__.py\n D scripts/stage1a/adapters/scgpt/build_predictions.py\n D scripts/stage1a/benchmark_invariant/__init__.py\n D scripts/stage1a/benchmark_invariant/catalog.py\n D scripts/stage1a/benchmark_invariant/prediction_eval_common.py\n D scripts/stage1a/challengers/__init__.py\n D scripts/stage1a/challengers/common.py\n M src/wtbench/manuscript/extended_data_figure1.py\n M src/wtbench/manuscript/extended_data_figure13.py\n M src/wtbench/manuscript/figure1_truth_object_v2.py\n?? backup/reports_stage1a/\n?? backup/reports_stage1a_audit/\n?? backup/scripts_stage1a/\n?? manuscript/build_scripts/\n?? manuscript/extended_data/Extended_Data_Figure_1/build_edfig1_composite.py\n?? manuscript/extended_data/Extended_Data_Figure_1/build_extended_data_figure1.py\n?? manuscript/extended_data/Extended_Data_Figure_1/panels/Extended_Data_Figure_1_panel_j_source_data.tsv\n?? manuscript/extended_data/Extended_Data_Figure_1/panels/Extended_Data_Figure_1_panel_k_source_data.tsv\n?? manuscript/extended_data/Extended_Data_Figure_2/build_edfig2_composite.py\n?? manuscript/extended_data/Extended_Data_Figure_2/build_edfig2_panel_e.py\n?? manuscript/extended_data/Extended_Data_Figure_2/build_extended_data_figure13.py\n?? manuscript/extended_data/Extended_Data_Figure_3/build_extended_data_figure3_v2.py\n?? manuscript/extended_data/Extended_Data_Figure_3/panels/Extended_Data_Figure_3_panel_b_manifest.json\n?? manuscript/extended_data/Extended_Data_Figure_3/panels/Extended_Data_Figure_3_panel_b_source_data.tsv\n?? manuscript/extended_data/Extended_Data_Figure_3/panels/Extended_Data_Figure_3_panel_c_manifest.json\n?? manuscript/extended_data/Extended_Data_Figure_3/panels/Extended_Data_Figure_3_panel_c_source_data.tsv\n?? manuscript/extended_data/Extended_Data_Figure_4/build_extended_data_figure10_axis_explanatory.py\n?? manuscript/extended_data/Extended_Data_Figure_5/build_extended_data_figure9_biological_landing.py\n?? manuscript/extended_data/Extended_Data_Figure_6/Extended_Data_Figure_6_panel_manifest.json\n?? manuscript/extended_data/Extended_Data_Figure_6/build_extended_data_figure_robustness.py\n?? manuscript/extended_data/Extended_Data_Figure_6/panels/Extended_Data_Figure_6_panel_a_manifest.json\n?? manuscript/extended_data/Extended_Data_Figure_6/panels/Extended_Data_Figure_6_panel_a_source_data.tsv\n?? manuscript/extended_data/Extended_Data_Figure_6/panels/Extended_Data_Figure_6_panel_b_manifest.json\n?? manuscript/extended_data/Extended_Data_Figure_6/panels/Extended_Data_Figure_6_panel_b_source_data.tsv\n?? manuscript/extended_data/Extended_Data_Figure_6/panels/Extended_Data_Figure_6_panel_c_manifest.json\n?? manuscript/extended_data/Extended_Data_Figure_6/panels/Extended_Data_Figure_6_panel_c_source_data.tsv\n?? manuscript/extended_data/Extended_Data_Figure_6/panels/Extended_Data_Figure_6_panel_d_manifest.json\n?? manuscript/extended_data/Extended_Data_Figure_6/panels/Extended_Data_Figure_6_panel_d_source_data.tsv\n?? manuscript/figures/Figure_1/build_figure1_truth_object.py\n?? manuscript/figures/Figure_2/build_figure2_anchor_tiering.py\n?? manuscript/figures/Figure_3/build_figure3_model_tradeoff.py\n?? manuscript/figures/Figure_4/build_figure4_sweep_controls.py\n?? manuscript/figures/Figure_5/build_figure6_boundary.py\n?? manuscript/figures/Figure_5/panels/Figure_5_panel_d.png\n?? manuscript/figures/Figure_5/panels/Figure_5_panel_d_manifest.json\n?? manuscript/figures/Figure_5/panels/Figure_5_panel_d_source_data.tsv"
+  },
+  "inputs": [
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/baseline_audit_summary.tsv",
+      "sha256": "49a6033308158105e05e2b40277acf481749bbba12a20a5cf16db6e7727339fd"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/leave_anchor_out_summary.tsv",
+      "sha256": "9a4e2ee8974d88f7cf77de864bcd62dbf4aa921c0c8a4e6f8dd131307e4f8e1b"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/bootstrap_delta_summary.tsv",
+      "sha256": "e965c45a99d069270f5da4aae3eb8105a5189e0457ab0182356f54b14051302e"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/endpoint_hierarchy_audit.tsv",
+      "sha256": "4097ee93cac00d5ad55149d373f11b98f3246fbe07cd3c486f73e5de05230ad9"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig_robustness/panels/edfig_robustness_panela.png",
+      "sha256": "99987144e0235ac444917218220647eff0fd8615bf2d1475e1e2ec925b4e89e9"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig_robustness/panels/edfig_robustness_panela.pdf",
+      "sha256": "a9cb5d3509a2fbf2af25575301bae4516242587342d2667c6811169f4a790a82"
+    }
+  ],
+  "panel_id": "ED_ROBa",
+  "panel_title": "Baseline LOTO / cross-context audit",
+  "script": "scripts/manuscript/build_extended_data_figure_robustness.py",
+  "source_data": {
+    "path": "reports/manuscript_extended_data_v1/edfig_robustness/panels/edfig_robustness_panela_source_data.tsv",
+    "sha256": "49a6033308158105e05e2b40277acf481749bbba12a20a5cf16db6e7727339fd"
+  }
+}
