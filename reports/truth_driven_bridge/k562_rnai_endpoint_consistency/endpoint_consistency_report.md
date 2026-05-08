@@ -1,4 +1,4 @@
-# stage2_k562_rnai_endpoint_consistency RNAi endpoint consistency
+# k562_rnai_endpoint_consistency RNAi endpoint consistency
 
 ## 定位
 

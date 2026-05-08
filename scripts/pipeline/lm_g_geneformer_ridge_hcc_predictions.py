@@ -265,7 +265,7 @@ def run_one_cell_line(
     write_matrix(predicted_shift, prediction_path)
     write_json(
         {
-            "stage": "stage2_hcc_lm_g_geneformer_ridge_raw_output",
+            "stage": "hcc_lm_g_geneformer_ridge_raw_output",
             "cell_line": spec.cell_line,
             "model_id": model_id,
             "model_version": str(recipe["entrant_version"]),
@@ -315,7 +315,7 @@ def build_parser() -> argparse.ArgumentParser:
 def main() -> None:
     args = build_parser().parse_args()
     recipe = load_recipe(resolve_path(args.config))
-    truth_config = load_config(resolve_path(str(recipe["stage2_truth_config_path"])))
+    truth_config = load_config(resolve_path(str(recipe["truth_config_path"])))
     axis_membership = load_axis_membership(resolve_path(str(recipe["axis_membership_path"])))
     feature_lookup, feature_manifest = load_geneformer_feature_lookup(recipe)
     selected_cell_lines = {args.cell_line} if args.cell_line else set(str(x) for x in recipe["cell_lines"])

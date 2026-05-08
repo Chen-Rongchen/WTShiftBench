@@ -1,5 +1,5 @@
 {
-  "stage": "stage2_hcc_geneformer_recipe",
+  "stage": "hcc_geneformer_recipe",
   "version": 1,
   "dataset_role": "candidate_next_stage_primary_entrant",
   "entrant_id": "geneformer",
@@ -9,15 +9,15 @@
   "claim_scope": "Geneformer HCC Stage 2 entrant 的第一版正式 recipe。当前已冻结 entrant identity、preprocessing、trainable components 与 export contract，并已完成 HCC38/HCC1143 第一轮 raw output、export 与 contract validation。",
   "checkpoint_registry_ref": "configs/checkpoint_registry_v1.yaml",
   "checkpoint_key": "geneformer_gf_12l_95m_i4096",
-  "stage2_truth_config_path": "configs/truth_driven_bridge_hcc38_hcc1143_v1.json",
-  "stage2_contract_path": "configs/hcc_prediction_contract_v1.json",
+  "truth_config_path": "configs/truth_driven_bridge_hcc38_hcc1143_v1.json",
+  "contract_path": "configs/hcc_prediction_contract_v1.json",
   "axis_membership_path": "reports/truth_driven_bridge/master_atlas/shared_target_axis_membership.tsv",
   "cell_lines": [
     "HCC38",
     "HCC1143"
   ],
   "input_space_description": "Geneformer gene mapping 到 Ensembl 与 token dictionary 后的 target-side embedding lookup；backbone 冻结，仅训练 adapter/head。raw output producer 入口固定为 scripts/pipeline/geneformer_hcc_predictions.py。",
-  "output_space_description": "model-native raw output 必须先导出到 stage2_truth_aligned_log_shift，再进入 scorer-ready prediction contract；当前不允许直接把 model-native output 喂给 scorer。",
+  "output_space_description": "model-native raw output 必须先导出到 truth_aligned_log_shift，再进入 scorer-ready prediction contract；当前不允许直接把 model-native output 喂给 scorer。",
   "preprocessing_identity": {
     "gene_vocabulary": "token_dictionary_gc104M.pkl",
     "gene_mapping": "gene_symbol_to_ensembl_to_geneformer_token",
@@ -37,7 +37,7 @@
   "asset_root": "models/pretrained/geneformer_assets/geneformer",
   "output_roots": {
     "raw_prediction_root": "data/predictions/geneformer_raw",
-    "report_root": "reports/stage2_geneformer_hcc_recipe"
+    "report_root": "reports/geneformer_hcc_recipe"
   },
   "runtime": {
     "device": "auto",

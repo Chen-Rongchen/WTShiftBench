@@ -11,8 +11,8 @@ from wtbench.model_structure_scorer import score_prediction_against_frozen_archi
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 INPUT_ROOT = PROJECT_ROOT / "data/predictions/hcc_scorer_ready"
-VALIDATION_ROOT = PROJECT_ROOT / "reports/stage2_hcc_prediction_validation"
-MANIFEST_ROOT = PROJECT_ROOT / "reports/stage2_hcc_prediction_contract"
+VALIDATION_ROOT = PROJECT_ROOT / "reports/hcc_prediction_validation"
+MANIFEST_ROOT = PROJECT_ROOT / "reports/hcc_prediction_contract"
 OUTPUT_ROOT = PROJECT_ROOT / "reports/real_hcc_smoke"
 DETAIL_ROOT = OUTPUT_ROOT / "details"
 

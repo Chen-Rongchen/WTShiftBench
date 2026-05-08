@@ -43,7 +43,7 @@
         "reports/real_hcc_smoke/model_comparison.tsv",
         "reports/real_hcc_smoke/gears_backbone_diagnostic_summary.tsv",
         "reports/real_hcc_smoke/smoke_summary.tsv",
-        "reports/stage2_model_structure_smoke/smoke_summary.tsv"
+        "reports/model_structure_smoke/smoke_summary.tsv"
       ]
     },
     {

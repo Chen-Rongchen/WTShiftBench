@@ -1,5 +1,5 @@
 {
-  "stage": "stage2_axis_analysis_template",
+  "stage": "axis_analysis_template",
   "version": 1,
   "purpose": "为 Stage 2 frozen axis 提供 machine-readable 分析骨架。该配置只定义 axis discovery 之后的 annotation 与 validation 入口，不允许用 enrichment 单独定义 axis。",
   "input_objects": {
