@@ -7,27 +7,27 @@
   },
   "inputs": [
     {
-      "path": "configs/stage2/truth_driven_bridge_hcc38_hcc1143_v1.json",
+      "path": "configs/truth_driven_bridge_hcc38_hcc1143_v1.json",
       "sha256": "0c90a45746cb06e8af36e53ec52b4840b6d79dbbbe2c68150297ff0a2986e912"
     },
     {
-      "path": "reports/stage2_truth_driven_bridge/HCC38/correlation_summary.tsv",
+      "path": "reports/truth_driven_bridge/HCC38/correlation_summary.tsv",
       "sha256": "9f017f8812398533a1a7a84382f1673d6bf5a17931d07e14f97971e878d8b158"
     },
     {
-      "path": "reports/stage2_truth_driven_bridge/HCC1143/correlation_summary.tsv",
+      "path": "reports/truth_driven_bridge/HCC1143/correlation_summary.tsv",
       "sha256": "95ecbda82aedd847a29d71f4ba787d377c0561512463615b03b91bae69a3cf87"
     },
     {
-      "path": "reports/stage2_truth_driven_bridge/hcc38_hcc1143_rnai_endpoint_consistency/endpoint_consistency_summary.tsv",
+      "path": "reports/truth_driven_bridge/hcc38_hcc1143_rnai_endpoint_consistency/endpoint_consistency_summary.tsv",
       "sha256": "612bd16ed8d12dd9089190b52848bde215507d93355b1cb40b9abccf231925c4"
     },
     {
-      "path": "reports/stage2_truth_driven_bridge/k562_rnai_endpoint_consistency/endpoint_consistency_summary.tsv",
+      "path": "reports/truth_driven_bridge/k562_rnai_endpoint_consistency/endpoint_consistency_summary.tsv",
       "sha256": "be9fcfdb0f7fcdc298f98c5d4c1a82bdb7758e5367092e85975461ea2e336700"
     },
     {
-      "path": "reports/stage2_truth_driven_bridge/sensitivity/control_subsample_summary.tsv",
+      "path": "reports/truth_driven_bridge/sensitivity/control_subsample_summary.tsv",
       "sha256": "192f98c32e94e5603699f2ab8c2c4ec5ade23119a93408dc620d2956d4706592"
     }
   ],

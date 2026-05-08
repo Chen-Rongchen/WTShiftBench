@@ -7,8 +7,8 @@ structure scores for shared_mean_baseline and gears_hcc_formal_v1.
 
 Output
 ------
-reports/stage2_truth_driven_bridge/sensitivity/bootstrap_score_uncertainty.tsv
-reports/stage2_truth_driven_bridge/sensitivity/bootstrap_delta_summary.tsv
+reports/truth_driven_bridge/sensitivity/bootstrap_score_uncertainty.tsv
+reports/truth_driven_bridge/sensitivity/bootstrap_delta_summary.tsv
 """
 
 from __future__ import annotations
@@ -26,16 +26,16 @@ import pandas as pd
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
-from wtbench.stage2_model_structure_scorer import (  # noqa: E402
+from wtbench.model_structure_scorer import (  # noqa: E402
     compute_backbone_recovery_score,
     compute_shift_excess_identification_score,
     compute_structure_vs_context_separation_score,
 )
 
-OUTDIR = PROJECT_ROOT / "reports/stage2_truth_driven_bridge/sensitivity"
+OUTDIR = PROJECT_ROOT / "reports/truth_driven_bridge/sensitivity"
 OUTDIR.mkdir(parents=True, exist_ok=True)
 
-DETAILS_DIR = PROJECT_ROOT / "reports/stage2_real_hcc_smoke/details"
+DETAILS_DIR = PROJECT_ROOT / "reports/real_hcc_smoke/details"
 CELL_LINES = ("HCC38", "HCC1143")
 MODELS = {
     "shared_mean_baseline": "baseline",

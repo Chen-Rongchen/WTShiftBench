@@ -7,9 +7,9 @@ Nat Methods 2021) via `run_fgsea.R`. The previous in-tree Python implementation
 no longer invoked by this entrypoint.
 
 Usage:
-    python run_pathway_response.py --context HCC38 --h5ad data/processed/stage2_hcc_gears_formal/HCC38.h5ad \
+    python run_pathway_response.py --context HCC38 --h5ad data/processed/hcc_gears_formal/HCC38.h5ad \
         --output-dir reports/pathway_response
-    python run_pathway_response.py --context K562_7d --h5ad data/processed/stage2_gse90063/dixit_2016_k562_tf_7d_gse90063.h5ad \
+    python run_pathway_response.py --context K562_7d --h5ad data/processed/gse90063/dixit_2016_k562_tf_7d_gse90063.h5ad \
         --output-dir reports/pathway_response --k562-preprocess
 """
 from __future__ import annotations

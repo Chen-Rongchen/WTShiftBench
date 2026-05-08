@@ -1,0 +1,11 @@
+{
+  "stage": "stage2_dixit_k562_structure_replication",
+  "version": 1,
+  "dataset_role": "supplementary_external_structure_replication",
+  "admission_status": "formal_default_gse90063_13d",
+  "claim_scope": "Dixit/K562 supplementary external structure replication 的默认 direct-script recipe。当前固定指向 GSE90063 K562 TF pool 13d-only；legacy historical replay 需改用 *_legacy_v1.json。",
+  "bridge_table_path": "data/processed/truth_driven_bridge_gse90063_13d/dixit_2016_k562_tf_13d_gse90063/target_level_bridge_table.tsv.gz",
+  "hcc_fine_axis_summary_path": "reports/truth_driven_bridge/master_atlas/axis_summary_fine.tsv",
+  "output_dir": "reports/truth_driven_bridge/dixit_axis_compression_gse90063_13d",
+  "k562_dataset_label": "dixit_2016_k562_tf_13d_gse90063"
+}

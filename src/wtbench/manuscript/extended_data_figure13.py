@@ -29,7 +29,7 @@ from wtbench.manuscript._palette import (
     VERMILLION,
 )
 from wtbench.manuscript.manuscript_style import COLORS, add_panel_label, apply_manuscript_style, clean_axes
-from wtbench.stage2_truth_bridge import (
+from wtbench.truth_bridge import (
     DEPMAP_ALIGNMENT_DIRECTION,
     build_dataset_specs,
     load_config,
@@ -49,13 +49,13 @@ CLAIM_BOUNDARY = (
     "the primary bridge metric remains full-transcriptome mean absolute shift versus CRISPR dependency."
 )
 PANEL_IDS = tuple("abcd")
-CONTROL_SUBSAMPLE = Path("reports/stage2_truth_driven_bridge/sensitivity/control_subsample_summary.tsv")
+CONTROL_SUBSAMPLE = Path("reports/truth_driven_bridge/sensitivity/control_subsample_summary.tsv")
 
-CONFIG_PATH = Path("configs/stage2/truth_driven_bridge_hcc38_hcc1143_v1.json")
-HCC38_CORR = Path("reports/stage2_truth_driven_bridge/HCC38/correlation_summary.tsv")
-HCC1143_CORR = Path("reports/stage2_truth_driven_bridge/HCC1143/correlation_summary.tsv")
-RNAI_ENDPOINT = Path("reports/stage2_truth_driven_bridge/hcc38_hcc1143_rnai_endpoint_consistency/endpoint_consistency_summary.tsv")
-K562_RNAI_ENDPOINT = Path("reports/stage2_truth_driven_bridge/k562_rnai_endpoint_consistency/endpoint_consistency_summary.tsv")
+CONFIG_PATH = Path("configs/truth_driven_bridge_hcc38_hcc1143_v1.json")
+HCC38_CORR = Path("reports/truth_driven_bridge/HCC38/correlation_summary.tsv")
+HCC1143_CORR = Path("reports/truth_driven_bridge/HCC1143/correlation_summary.tsv")
+RNAI_ENDPOINT = Path("reports/truth_driven_bridge/hcc38_hcc1143_rnai_endpoint_consistency/endpoint_consistency_summary.tsv")
+K562_RNAI_ENDPOINT = Path("reports/truth_driven_bridge/k562_rnai_endpoint_consistency/endpoint_consistency_summary.tsv")
 
 TOP_N_VALUES = (100, 500, 1000, 2000, "all")
 CURVE_METRICS = (

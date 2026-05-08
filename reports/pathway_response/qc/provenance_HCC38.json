@@ -1,6 +1,6 @@
 {
   "context": "HCC38",
-  "h5ad_path": "data/processed/stage2_hcc_gears_formal/HCC38.h5ad",
+  "h5ad_path": "data/processed/hcc_gears_formal/HCC38.h5ad",
   "gmt_path": "resources/msigdb/h.all.symbols.gmt",
   "k562_preprocess": false,
   "gene_filter": false,

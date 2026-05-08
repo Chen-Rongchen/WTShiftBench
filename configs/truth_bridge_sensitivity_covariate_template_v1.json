@@ -1,0 +1,39 @@
+{
+  "base_config": "configs/truth_driven_bridge_hcc38_hcc1143_v1.json",
+  "output": {
+    "report_root": "reports/truth_driven_bridge/sensitivity"
+  },
+  "control_subsample": {
+    "n_replicates": 24,
+    "random_seed": 0,
+    "subsample_size": null
+  },
+  "deg_threshold_sweep": {
+    "deg_abs_log1p_delta_thresholds": [0.15, 0.2, 0.25, 0.3, 0.35, 0.4],
+    "deg_expression_floor": 0.1
+  },
+  "covariates": {
+    "HCC38": {
+      "path": "data/covariates/HCC38_covariates.tsv",
+      "barcode_column": "cell_barcode",
+      "strat_columns": [
+        "barcode_gem_group",
+        "num_umis_quantile_bin",
+        "num_umis_over_threshold_bin",
+        "transcriptome_total_signal_quantile_bin",
+        "transcriptome_detected_genes_quantile_bin"
+      ]
+    },
+    "HCC1143": {
+      "path": "data/covariates/HCC1143_covariates.tsv",
+      "barcode_column": "cell_barcode",
+      "strat_columns": [
+        "barcode_gem_group",
+        "num_umis_quantile_bin",
+        "num_umis_over_threshold_bin",
+        "transcriptome_total_signal_quantile_bin",
+        "transcriptome_detected_genes_quantile_bin"
+      ]
+    }
+  }
+}

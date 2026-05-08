@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# One-shot driver to regenerate the manuscript figures from the cached
+# Driver for regenerating the manuscript figures from the cached
 # intermediates checked into the repository.
 #
 # Prerequisite: an environment satisfying environment.yml or pixi.toml,
-# with this repository's `src/` on PYTHONPATH (see below).
+# with this repository's `src/` on PYTHONPATH (set automatically below).
 #
 # Steps that require the raw h5ad files (e.g. extended_data_figure3 axis
 # panels that read data/processed/.../*.h5ad) will be skipped automatically;
@@ -37,9 +37,6 @@ run scripts/manuscript/build_extended_data_figure3_v2.py
 run scripts/manuscript/build_extended_data_figure9_biological_landing.py
 run scripts/manuscript/build_extended_data_figure10_axis_explanatory.py
 run scripts/manuscript/build_extended_data_figure13.py
-run scripts/manuscript/build_extended_data_figure_robustness.py
 
 echo
-echo "Done. Outputs:"
-echo "  manuscript/figures/Figure_*/"
-echo "  manuscript/extended_data/Extended_Data_Figure_*/"
+echo "Done. Reference panel outputs are cached under figures/."
