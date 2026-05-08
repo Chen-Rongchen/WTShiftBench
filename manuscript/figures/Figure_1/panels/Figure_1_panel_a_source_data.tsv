@@ -1,8 +1,0 @@
-step	name	role
-1	perturbation truth	input
-2	DepMap CRISPR endpoint	alignment endpoint
-3	frozen bridge object	pre-specified recovery object
-4	model recovery adjudication	baseline, GEARS, foundation models, linear controls
-5	qualified claim boundary	bounded interpretation
-6	truth signal = absolute mean perturbation shift	truth-object definition
-7	category rule = 25/75 joint grid	truth-object definition
