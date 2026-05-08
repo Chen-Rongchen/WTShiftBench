@@ -26,9 +26,9 @@ CLAIM_BOUNDARY = (
 )
 PANEL_IDS = tuple("ab")
 
-AXIS_EXPLANATORY = Path("reports/stage2_truth_bridge_decomposition/axis_level_shared_explanatory_summary.tsv")
-AXIS_BOOTSTRAP = Path("reports/stage2_truth_bridge_decomposition/axis_bootstrap_stability.tsv")
-AXIS_VALIDATION = Path("reports/stage2_axis_analysis/axis_validation_summary.tsv")
+AXIS_EXPLANATORY = Path("reports/truth_bridge_decomposition/axis_level_shared_explanatory_summary.tsv")
+AXIS_BOOTSTRAP = Path("reports/truth_bridge_decomposition/axis_bootstrap_stability.tsv")
+AXIS_VALIDATION = Path("reports/axis_analysis/axis_validation_summary.tsv")
 
 PROFILE_COLORS = {
     "shift-dominant": VERMILLION,

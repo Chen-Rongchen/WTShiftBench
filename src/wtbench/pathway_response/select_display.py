@@ -72,7 +72,7 @@ def load_target_inclusion_qc(output_dir: Path) -> pd.DataFrame:
 def get_shift_from_bridge(context: str, target: str) -> float | None:
     """Read shift value from existing bridge table if available."""
     if context.startswith("HCC"):
-        bridge_file = Path(f"reports/stage2_truth_driven_bridge/{context}/bridge_audit.tsv")
+        bridge_file = Path(f"reports/truth_driven_bridge/{context}/bridge_audit.tsv")
         if not bridge_file.exists():
             return None
         # bridge_audit doesn't have per-target shifts, need correlation_summary or other

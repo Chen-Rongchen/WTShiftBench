@@ -5,7 +5,7 @@ Reads endpoint consistency summary TSV files and produces a clean
 summary table showing CRISPR vs RNAi bridge Spearman delta across
 all tested contexts.
 
-Output: reports/stage2_truth_driven_bridge/sensitivity/endpoint_hierarchy_audit.tsv
+Output: reports/truth_driven_bridge/sensitivity/endpoint_hierarchy_audit.tsv
 """
 
 import os
@@ -18,17 +18,17 @@ PROJECT_ROOT = str(Path(__file__).resolve().parents[2])
 INPUT_FILES = {
     "hcc38_hcc1143": os.path.join(
         PROJECT_ROOT,
-        "reports/stage2_truth_driven_bridge/hcc38_hcc1143_rnai_endpoint_consistency/endpoint_consistency_summary.tsv",
+        "reports/truth_driven_bridge/hcc38_hcc1143_rnai_endpoint_consistency/endpoint_consistency_summary.tsv",
     ),
     "k562": os.path.join(
         PROJECT_ROOT,
-        "reports/stage2_truth_driven_bridge/k562_rnai_endpoint_consistency/endpoint_consistency_summary.tsv",
+        "reports/truth_driven_bridge/k562_rnai_endpoint_consistency/endpoint_consistency_summary.tsv",
     ),
 }
 
 OUTPUT_PATH = os.path.join(
     PROJECT_ROOT,
-    "reports/stage2_truth_driven_bridge/sensitivity/endpoint_hierarchy_audit.tsv",
+    "reports/truth_driven_bridge/sensitivity/endpoint_hierarchy_audit.tsv",
 )
 
 

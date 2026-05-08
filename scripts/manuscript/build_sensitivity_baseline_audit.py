@@ -18,7 +18,7 @@ Part B: Cross-context shared-mean baseline.
 
 Output
 ------
-reports/stage2_truth_driven_bridge/sensitivity/baseline_audit_summary.tsv
+reports/truth_driven_bridge/sensitivity/baseline_audit_summary.tsv
 
 Columns
 -------
@@ -36,34 +36,34 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from wtbench.stage2_hcc_prediction_export import (
+from wtbench.hcc_prediction_export import (
     compute_stage2_truth_aligned_log_shift_matrix,
     load_axis_membership,
     load_truth_contract,
 )
-from wtbench.stage2_model_structure_scorer import (
+from wtbench.model_structure_scorer import (
     project_prediction_to_axes,
     compute_backbone_recovery_score,
 )
-from wtbench.stage2_truth_bridge import (
+from wtbench.truth_bridge import (
     build_dataset_specs,
     load_config,
 )
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
-TRUTH_CONFIG_PATH = PROJECT_ROOT / "configs/stage2/truth_driven_bridge_hcc38_hcc1143_v1.json"
+TRUTH_CONFIG_PATH = PROJECT_ROOT / "configs/truth_driven_bridge_hcc38_hcc1143_v1.json"
 TRUTH_CONTRACT_PATH = (
     PROJECT_ROOT
-    / "reports/stage2_truth_driven_bridge/truth_architecture_contract/truth_architecture_contract.tsv"
+    / "reports/truth_driven_bridge/truth_architecture_contract/truth_architecture_contract.tsv"
 )
 AXIS_MEMBERSHIP_PATH = (
     PROJECT_ROOT
-    / "reports/stage2_truth_driven_bridge/master_atlas/shared_target_axis_membership.tsv"
+    / "reports/truth_driven_bridge/master_atlas/shared_target_axis_membership.tsv"
 )
-OUTDIR = PROJECT_ROOT / "reports/stage2_truth_driven_bridge/sensitivity"
+OUTDIR = PROJECT_ROOT / "reports/truth_driven_bridge/sensitivity"
 OUTPATH = OUTDIR / "baseline_audit_summary.tsv"
-MODEL_COMPARISON_PATH = PROJECT_ROOT / "reports/stage2_real_hcc_smoke/model_comparison.tsv"
-SMOKE_SUMMARY_PATH = PROJECT_ROOT / "reports/stage2_real_hcc_smoke/smoke_summary.tsv"
+MODEL_COMPARISON_PATH = PROJECT_ROOT / "reports/real_hcc_smoke/model_comparison.tsv"
+SMOKE_SUMMARY_PATH = PROJECT_ROOT / "reports/real_hcc_smoke/smoke_summary.tsv"
 
 CELL_LINES = ["HCC38", "HCC1143"]
 

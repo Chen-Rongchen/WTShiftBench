@@ -6,7 +6,7 @@
   "entrant_id": "scgpt",
   "source_kind": "scgpt_target_embedding_leave_one_out_kernel",
   "export_timestamp": "2026-04-09T18:25:34.879215+00:00",
-  "prediction_path": "/home/data/gz0705/WTKO/data/predictions/stage2_scgpt_raw/scgpt_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz",
+  "prediction_path": "/home/data/gz0705/WTKO/data/predictions/scgpt_raw/scgpt_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz",
   "checkpoint_manifest": {
     "checkpoint_key": "scgpt_human",
     "checkpoint_dir": "/home/data/gz0705/WTKO/models/pretrained/scgpt_human",

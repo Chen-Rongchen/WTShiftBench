@@ -10,7 +10,7 @@ import pandas as pd
 from scipy.stats import spearmanr
 
 from wtbench.manuscript.figure_io import ensure_dir, repo_root, save_figure, write_tsv
-from wtbench.stage2_truth_bridge import DEPMAP_ALIGNMENT_DIRECTION
+from wtbench.truth_bridge import DEPMAP_ALIGNMENT_DIRECTION
 from wtbench.manuscript.hash_manifest import write_figure_manifest, write_panel_manifest
 from wtbench.manuscript.manuscript_style import COLORS, add_panel_heading, apply_manuscript_style, clean_axes
 
@@ -26,13 +26,13 @@ CLAIM_BOUNDARY = (
 PANEL_IDS = ("a", "b", "c")
 
 # Panel a data (K562 temporal)
-TEMPORAL_BRIDGE = Path("reports/stage2_truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_bridge_summary.tsv")
-TEMPORAL_STRUCTURE = Path("reports/stage2_truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_structure_summary.tsv")
-TEMP_PANEL_CALLS = Path("reports/stage2_truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_panel_calls.tsv")
-TEMP_7D_EVIDENCE = Path("reports/stage2_truth_driven_bridge/dixit_axis_compression_gse90063_7d/dixit_evidence_tier_summary.tsv")
-TEMP_13D_EVIDENCE = Path("reports/stage2_truth_driven_bridge/dixit_axis_compression_gse90063_13d/dixit_evidence_tier_summary.tsv")
-TARGET_7D = Path("data/processed/stage2_truth_driven_bridge_gse90063_7d/dixit_2016_k562_tf_7d_gse90063/target_level_bridge_table.tsv.gz")
-TARGET_13D = Path("data/processed/stage2_truth_driven_bridge_gse90063_13d/dixit_2016_k562_tf_13d_gse90063/target_level_bridge_table.tsv.gz")
+TEMPORAL_BRIDGE = Path("reports/truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_bridge_summary.tsv")
+TEMPORAL_STRUCTURE = Path("reports/truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_structure_summary.tsv")
+TEMP_PANEL_CALLS = Path("reports/truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_panel_calls.tsv")
+TEMP_7D_EVIDENCE = Path("reports/truth_driven_bridge/dixit_axis_compression_gse90063_7d/dixit_evidence_tier_summary.tsv")
+TEMP_13D_EVIDENCE = Path("reports/truth_driven_bridge/dixit_axis_compression_gse90063_13d/dixit_evidence_tier_summary.tsv")
+TARGET_7D = Path("data/processed/truth_driven_bridge_gse90063_7d/dixit_2016_k562_tf_7d_gse90063/target_level_bridge_table.tsv.gz")
+TARGET_13D = Path("data/processed/truth_driven_bridge_gse90063_13d/dixit_2016_k562_tf_13d_gse90063/target_level_bridge_table.tsv.gz")
 
 # Panel b data (Replogle joint grid)
 REPLOGLE_JOINT_GRID = Path("reports/manuscript_extended_data_v1/edfig3_k562_replogle_joint_grid/replogle_k562_essential_joint_grid.tsv")
@@ -118,7 +118,7 @@ def build_panel_a_source(root: Path) -> pd.DataFrame:
 def compute_replogle_bridge_summary(target_table: pd.DataFrame) -> dict[str, Any]:
     """Aligned Spearman on raw truth × DepMap columns, Fisher-z 95% CI, and target↔endpoint shuffle null.
 
-    Matches the closed permutation definition in ``scripts/run_bridge_rho_permutation_null.py``
+    Matches the closed permutation definition in ``scripts/pipeline/bridge_rho_permutation_null.py``
     (shuffle DepMap endpoint assignments within this table; two-sided p vs |ρ_raw|).
     """
     sub = target_table[[BRIDGE_TRUTH_METRIC, BRIDGE_DEPMAP_ENDPOINT]].dropna()

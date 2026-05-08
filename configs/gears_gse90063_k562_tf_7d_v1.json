@@ -1,0 +1,33 @@
+{
+  "stage": "stage2_gse90063_k562_gears_7d",
+  "version": 1,
+  "dataset_role": "primary",
+  "entrant_id": "gears",
+  "entrant_version": "gears_gse90063_k562_tf_7d_v1",
+  "model_id": "gears_gse90063_k562_tf_7d_v1",
+  "claim_scope": "GEARS GSE90063 K562 TF pool 7d entrant。Temporal sensitivity / early-bridge probe，与 13d 共同构成 K562 13d/7d temporal panel。输出用于 bridge readout temporal stratification 分析。",
+  "input_space_description": "GSE90063 K562 TF pool 7d single-feature cells，log-normalized 到 target_sum=10000。",
+  "output_space_description": "GEARS predicted expression 减去共享 control pseudobulk，导出为 perturbation-level predicted_shift。输出为 45 个 atlas gene symbols（K562 h5ad 与 HCC atlas 的交集），这是 GEARS 的完整 output space。",
+  "input_h5ad_path": "data/processed/gse90063/dixit_2016_k562_tf_7d_gse90063.h5ad",
+  "cell_type_label": "K562_7d_GSE90063",
+  "output_root": "data/predictions/gears_k562_7d_raw",
+  "report_root": "reports/stage2_gears_k562_7d",
+  "axis_membership_path": "reports/truth_driven_bridge/master_atlas/shared_target_axis_membership.tsv",
+  "prediction_contract_ref": "configs/k562_7d_prediction_contract_v1.json",
+  "prediction_gene_id_type": "hgnc_symbol",
+  "requires_symbol_to_ensembl_alignment": true,
+  "alignment_mapping_ref": "configs/gene_id_mapping_k562_v1.tsv",
+  "runtime": {
+    "device": "auto",
+    "training_seed": 123,
+    "epochs": 30,
+    "batch_size": 32,
+    "lr": 0.001,
+    "weight_decay": 0.000001,
+    "train_val_fraction": 0.8,
+    "max_control_cells": 2048,
+    "max_cells_per_train_condition": 64,
+    "prediction_num_samples": 64,
+    "perturbation_graph_k": 8
+  }
+}
