@@ -1,5 +1,5 @@
 {
-  "stage": "stage2_axis_per_target_signature",
+  "stage": "axis_per_target_signature",
   "version": 1,
   "purpose": "从 Stage 2 frozen HCC truth 输入中物化 per-target gene signature，用于 axis target consistency audit。该流程复用 truth bridge 的正式归一化与 control/target 划分逻辑，不允许手工伪造。",
   "input": {

@@ -1,5 +1,5 @@
 {
-  "stage": "stage2_k562_lm_g_scgpt_ridge_raw_output",
+  "stage": "k562_lm_g_scgpt_ridge_raw_output",
   "timepoint": "13d",
   "model_id": "lm_g_scgpt_ridge_k562_tf_13d_formal_v1",
   "model_version": "lm_g_scgpt_ridge_k562_tf_13d_formal_v1",

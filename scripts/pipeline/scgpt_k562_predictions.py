@@ -356,7 +356,7 @@ def run_one_timepoint(
     write_matrix(predicted_shift, prediction_path)
     write_json(
         {
-            "stage": "stage2_k562_scgpt_raw_output",
+            "stage": "k562_scgpt_raw_output",
             "timepoint": timepoint,
             "model_id": model_id,
             "model_version": str(recipe["entrant_version"]),
@@ -408,7 +408,7 @@ def build_parser() -> argparse.ArgumentParser:
 def main() -> None:
     args = build_parser().parse_args()
     recipe = load_recipe(resolve_path(args.config))
-    truth_config = load_config(resolve_path(str(recipe["stage2_truth_config_path"])))
+    truth_config = load_config(resolve_path(str(recipe["truth_config_path"])))
     vocab, emb_weight, checkpoint_manifest = load_scgpt_assets(recipe)
 
     selected_timepoints = {args.timepoint} if args.timepoint else {"13d", "7d"}

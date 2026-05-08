@@ -9,7 +9,7 @@ import pandas as pd
 
 from wtbench.hcc_prediction_export import (
     RawPredictionSource,
-    export_external_stage2_hcc_prediction,
+    export_external_hcc_prediction,
 )
 
 
@@ -20,11 +20,11 @@ class Stage2HccPredictionExportTests(unittest.TestCase):
             axis_membership_path = root / "axis_membership.tsv"
             contract_path = root / "contract.json"
             raw_input_path = root / "incoming.tsv"
-            raw_output_root = root / "data" / "predictions" / "stage2_hcc_raw"
-            aligned_root = root / "data" / "predictions" / "stage2_hcc_aligned"
-            scorer_ready_root = root / "data" / "predictions" / "stage2_hcc_scorer_ready"
-            manifest_root = root / "reports" / "stage2_hcc_prediction_contract"
-            validation_root = root / "reports" / "stage2_hcc_prediction_validation"
+            raw_output_root = root / "data" / "predictions" / "hcc_raw"
+            aligned_root = root / "data" / "predictions" / "hcc_aligned"
+            scorer_ready_root = root / "data" / "predictions" / "hcc_scorer_ready"
+            manifest_root = root / "reports" / "hcc_prediction_contract"
+            validation_root = root / "reports" / "hcc_prediction_validation"
 
             axis_membership = pd.DataFrame(
                 {
@@ -38,7 +38,7 @@ class Stage2HccPredictionExportTests(unittest.TestCase):
                 json.dumps(
                     {
                         "required_first_column": "target_gene",
-                        "prediction_space": "stage2_truth_aligned_log_shift",
+                        "prediction_space": "truth_aligned_log_shift",
                         "normalization_applied_in_export": True,
                         "log1p_applied_in_export": True,
                         "target_universe_source": "axis_membership.tsv",
@@ -96,7 +96,7 @@ class Stage2HccPredictionExportTests(unittest.TestCase):
                 }
             ).to_csv(raw_input_path, sep="\t", index=False)
 
-            result = export_external_stage2_hcc_prediction(
+            result = export_external_hcc_prediction(
                 cell_line="HCC38",
                 model_id="strongest_candidate",
                 model_version="vtest",
@@ -146,7 +146,7 @@ class Stage2HccPredictionExportTests(unittest.TestCase):
                 json.dumps(
                     {
                         "required_first_column": "target_gene",
-                        "prediction_space": "stage2_truth_aligned_log_shift",
+                        "prediction_space": "truth_aligned_log_shift",
                         "normalization_applied_in_export": True,
                         "log1p_applied_in_export": True,
                         "target_universe_source": "axis_membership.tsv",
@@ -189,7 +189,7 @@ class Stage2HccPredictionExportTests(unittest.TestCase):
             pd.DataFrame({"gene_name": ["A"], "A": [1.0]}).to_csv(raw_input_path, sep="\t", index=False)
 
             with self.assertRaisesRegex(ValueError, "首列必须是 target_gene"):
-                export_external_stage2_hcc_prediction(
+                export_external_hcc_prediction(
                     cell_line="HCC38",
                     model_id="bad_input",
                     model_version="vtest",

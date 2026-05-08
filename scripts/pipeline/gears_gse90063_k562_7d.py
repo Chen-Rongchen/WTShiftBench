@@ -283,7 +283,7 @@ def run_gse90063_gears(recipe: dict) -> dict:
     # Provenance
     provenance_path = output_root / "provenance.json"
     provenance = {
-        "stage": "stage2_gse90063_k562_gears_test",
+        "stage": "gse90063_k562_gears_test",
         "dataset_role": str(recipe.get("dataset_role", "supplementary_test")),
         "cell_line": cell_type_label,
         "entrant_id": str(recipe["entrant_id"]),
@@ -310,7 +310,7 @@ def run_gse90063_gears(recipe: dict) -> dict:
 
     write_json(
         {
-            "stage": "stage2_gse90063_k562_gears_test_recipe_run",
+            "stage": "gse90063_k562_gears_test_recipe_run",
             "cell_line": cell_type_label,
             "prediction_path": str(prediction_path.relative_to(PROJECT_ROOT)),
             "provenance_path": str(provenance_path.relative_to(PROJECT_ROOT)),

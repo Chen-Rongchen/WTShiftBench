@@ -65,7 +65,7 @@ temporal panel 固定短语：
 
 ## Replogle/RNAi 扩展层
 
-`Replogle 7d CRISPRi + DepMap RNAi/shRNA dependency` 只能作为 short-horizon / modality-compatible external expansion candidate。正式进入分析前必须先完成 `docs/stage2_replogle_rnai_expansion_admission_contract_v1.md` 中的 cell line mapping、gene namespace、target overlap 与 endpoint 身份检查。
+`Replogle 7d CRISPRi + DepMap RNAi/shRNA dependency` 只能作为 short-horizon / modality-compatible external expansion candidate。正式进入分析前必须先完成 `docs/replogle_rnai_expansion_admission_contract_v1.md` 中的 cell line mapping、gene namespace、target overlap 与 endpoint 身份检查。
 
 允许写法：
 

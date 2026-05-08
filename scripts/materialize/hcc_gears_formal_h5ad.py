@@ -40,7 +40,7 @@ def build_parser() -> argparse.ArgumentParser:
 def main() -> None:
     args = build_parser().parse_args()
     recipe = load_recipe(resolve_path(args.config))
-    truth_config = load_config(resolve_path(str(recipe["stage2_truth_config_path"])))
+    truth_config = load_config(resolve_path(str(recipe["truth_config_path"])))
     axis_membership = pd.read_csv(resolve_path(str(recipe["axis_membership_path"])), sep="\t")
     frozen_targets = set(axis_membership["target_gene"].astype(str))
     output_root = resolve_path(str(recipe["formal_h5ad_root"]))

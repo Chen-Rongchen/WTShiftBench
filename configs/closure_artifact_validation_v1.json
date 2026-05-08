@@ -175,7 +175,7 @@
       ]
     },
     {
-      "path": "docs/stage2_dixit_supplementary_evidence_tier_v1.md",
+      "path": "docs/dixit_supplementary_evidence_tier_v1.md",
       "required_substrings": [
         "A0 confirmed / A1 supporting / B not eligible",
         "n=10",

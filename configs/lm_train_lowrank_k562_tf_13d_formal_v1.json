@@ -1,14 +1,14 @@
 {
-  "stage": "stage2_k562_13d_lm_train_lowrank_recipe",
+  "stage": "k562_13d_lm_train_lowrank_recipe",
   "version": 1,
-  "dataset_role": "candidate_stage2_linear_control",
+  "dataset_role": "candidate_linear_control",
   "entrant_id": "lm_train_lowrank",
   "entrant_version": "lm_train_lowrank_k562_tf_13d_formal_v1",
   "model_id": "lm_train_lowrank_k562_tf_13d_formal_v1",
   "model_family": "linear_lowrank_external_feature",
   "claim_scope": "lm_train_lowrank K562 13d Stage 2 linear control 的第一版正式 recipe。用于 explanation-oriented control，不用于 primary winner claim。",
-  "stage2_truth_config_path": "configs/truth_driven_bridge_dixit_k562_tf_13d_gse90063_v1.json",
-  "stage2_contract_path": "configs/k562_13d_prediction_contract_v1.json",
+  "truth_config_path": "configs/truth_driven_bridge_dixit_k562_tf_13d_gse90063_v1.json",
+  "contract_path": "configs/k562_13d_prediction_contract_v1.json",
   "prediction_gene_id_type": "hgnc_symbol",
   "requires_symbol_to_ensembl_alignment": true,
   "alignment_mapping_ref": "configs/gene_id_mapping_k562_v1.tsv",
@@ -19,7 +19,7 @@
     "dixit_2016_k562_tf_13d_gse90063"
   ],
   "input_space_description": "冻结 gene_symbol_chargram_v1 target-side feature；在 Stage 2 truth delta 上执行 leave-one-target-out 线性 low-rank 闭式解。",
-  "output_space_description": "model-native raw output 必须先导出到 stage2_truth_aligned_log_shift，再进入 scorer-ready prediction contract。",
+  "output_space_description": "model-native raw output 必须先导出到 truth_aligned_log_shift，再进入 scorer-ready prediction contract。",
   "preprocessing_identity": {
     "target_feature_source": "gene_symbol_chargram_v1",
     "target_feature_family": "symbolic_target_feature",
@@ -36,7 +36,7 @@
   },
   "output_roots": {
     "raw_prediction_root": "data/predictions/lm_train_lowrank_k562_13d_raw",
-    "report_root": "reports/stage2_lm_train_lowrank_k562_13d_recipe"
+    "report_root": "reports/lm_train_lowrank_k562_13d_recipe"
   },
   "runtime": {
     "n_components": 32,

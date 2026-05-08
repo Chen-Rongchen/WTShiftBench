@@ -1,4 +1,4 @@
-# stage2_hcc38_hcc1143_rnai_endpoint_consistency RNAi endpoint consistency
+# hcc38_hcc1143_rnai_endpoint_consistency RNAi endpoint consistency
 
 ## 定位
 

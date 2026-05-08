@@ -1,5 +1,5 @@
 {
-  "stage": "stage2_gears_backbone_recovery_sweep",
+  "stage": "gears_backbone_recovery_sweep",
   "version": 1,
   "purpose": "在 GEARS HCC primary mainline 中，只围绕 canonical_backbone recovery 做一轮有限预算 sweep；sweep 必须建立在正式 backbone 诊断摘要之上，不允许主线扩散。",
   "base_recipe_config_path": "configs/gears_hcc_formal_v1.json",

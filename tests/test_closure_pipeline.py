@@ -8,7 +8,7 @@ from pathlib import Path
 import pandas as pd
 
 from scripts.pipeline.closure_pipeline import load_pipeline_config, validate_pipeline_outputs
-from scripts.validate_stage2_closure_artifacts import validate_artifacts_from_config
+from scripts.pipeline.validate_closure_artifacts import validate_artifacts_from_config
 
 
 class Stage2ClosurePipelineTests(unittest.TestCase):

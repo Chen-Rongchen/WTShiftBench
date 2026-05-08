@@ -1,5 +1,5 @@
 {
-  "stage": "stage2_per_target_signature_materialization",
+  "stage": "per_target_signature_materialization",
   "version": 1,
   "purpose": "从 Stage 2 frozen truth 输入中物化真实 per_target_signature，对应 axis validation 所需的 target×gene delta 对象。",
   "input": {

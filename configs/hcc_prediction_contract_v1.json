@@ -1,12 +1,12 @@
 {
-  "stage": "stage2_hcc_prediction_contract",
+  "stage": "hcc_prediction_contract",
   "version": 1,
-  "scope": "stage2_hcc_model_side_adjudication",
+  "scope": "hcc_model_side_adjudication",
   "cell_lines": [
     "HCC38",
     "HCC1143"
   ],
-  "prediction_space": "stage2_truth_aligned_log_shift",
+  "prediction_space": "truth_aligned_log_shift",
   "normalization_applied_in_export": true,
   "log1p_applied_in_export": true,
   "reference_definition": "in-dataset pooled control baseline",
@@ -35,8 +35,8 @@
     "raw_prediction_root": "data/predictions/hcc_raw/<model_id>/<cell_line>/",
     "aligned_prediction_path": "data/predictions/hcc_aligned/<model_id>/<cell_line>/predicted_shift_aligned.tsv.gz",
     "scorer_ready_prediction_path": "data/predictions/hcc_scorer_ready/<model_id>/<cell_line>/predicted_shift.tsv.gz",
-    "manifest_path": "reports/stage2_hcc_prediction_contract/<model_id>/<cell_line>/prediction_manifest.json",
-    "validation_summary_path": "reports/stage2_hcc_prediction_validation/<model_id>/<cell_line>/validation_summary.json"
+    "manifest_path": "reports/hcc_prediction_contract/<model_id>/<cell_line>/prediction_manifest.json",
+    "validation_summary_path": "reports/hcc_prediction_validation/<model_id>/<cell_line>/validation_summary.json"
   },
   "required_manifest_fields": [
     "stage",
@@ -60,7 +60,7 @@
     "contract_pass"
   ],
   "notes": {
-    "stage2_truth_space_governs_stage2_model_side": true,
+    "truth_space_governs_model_side": true,
     "stage1a_x_pseudobulk_delta_is_not_imposed_on_stage2": true
   }
 }

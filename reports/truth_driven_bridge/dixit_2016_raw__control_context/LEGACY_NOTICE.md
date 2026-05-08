@@ -17,8 +17,8 @@
 
 ## 相关文档
 
-- `docs/stage2_dixit_admission_contract_v1.md`
-- `docs/stage2_truth_bridge_integrated_result_v1.md`
+- `docs/dixit_admission_contract_v1.md`
+- `docs/truth_bridge_integrated_result_v1.md`
 - `plan.md`（§1 数据身份警报、§6 frozen objects）
 - `README.md`（§1.1 数据身份警报）
 

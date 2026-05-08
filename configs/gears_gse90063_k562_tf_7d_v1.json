@@ -1,5 +1,5 @@
 {
-  "stage": "stage2_gse90063_k562_gears_7d",
+  "stage": "gse90063_k562_gears_7d",
   "version": 1,
   "dataset_role": "primary",
   "entrant_id": "gears",
@@ -11,7 +11,7 @@
   "input_h5ad_path": "data/processed/gse90063/dixit_2016_k562_tf_7d_gse90063.h5ad",
   "cell_type_label": "K562_7d_GSE90063",
   "output_root": "data/predictions/gears_k562_7d_raw",
-  "report_root": "reports/stage2_gears_k562_7d",
+  "report_root": "reports/gears_k562_7d",
   "axis_membership_path": "reports/truth_driven_bridge/master_atlas/shared_target_axis_membership.tsv",
   "prediction_contract_ref": "configs/k562_7d_prediction_contract_v1.json",
   "prediction_gene_id_type": "hgnc_symbol",

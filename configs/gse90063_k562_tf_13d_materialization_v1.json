@@ -1,5 +1,5 @@
 {
-  "stage": "stage2_gse90063_k562_materialization",
+  "stage": "gse90063_k562_materialization",
   "version": 1,
   "dataset_label": "dixit_2016_k562_tf_13d_gse90063",
   "timepoint": "13d",
@@ -14,7 +14,7 @@
   },
   "output": {
     "h5ad_path": "data/processed/gse90063/dixit_2016_k562_tf_13d_gse90063.h5ad",
-    "summary_json_path": "reports/stage2_gse90063_qc/dixit_2016_k562_tf_13d_summary.json",
-    "summary_tsv_path": "reports/stage2_gse90063_qc/dixit_2016_k562_tf_13d_summary.tsv"
+    "summary_json_path": "reports/gse90063_qc/dixit_2016_k562_tf_13d_summary.json",
+    "summary_tsv_path": "reports/gse90063_qc/dixit_2016_k562_tf_13d_summary.tsv"
   }
 }

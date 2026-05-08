@@ -1,5 +1,5 @@
 {
-  "stage": "stage2_k562_7d_geneformer_recipe",
+  "stage": "k562_7d_geneformer_recipe",
   "version": 1,
   "dataset_role": "candidate_next_stage_primary_entrant",
   "entrant_id": "geneformer",
@@ -9,8 +9,8 @@
   "claim_scope": "Geneformer K562 7d Stage 2 entrant 的第一版正式 recipe。",
   "checkpoint_registry_ref": "configs/checkpoint_registry_v1.yaml",
   "checkpoint_key": "geneformer_gf_12l_95m_i4096",
-  "stage2_truth_config_path": "configs/truth_driven_bridge_dixit_k562_tf_7d_gse90063_v1.json",
-  "stage2_contract_path": "configs/k562_7d_prediction_contract_v1.json",
+  "truth_config_path": "configs/truth_driven_bridge_dixit_k562_tf_7d_gse90063_v1.json",
+  "contract_path": "configs/k562_7d_prediction_contract_v1.json",
   "prediction_gene_id_type": "hgnc_symbol",
   "requires_symbol_to_ensembl_alignment": true,
   "alignment_mapping_ref": "configs/gene_id_mapping_k562_v1.tsv",
@@ -19,7 +19,7 @@
     "dixit_2016_k562_tf_7d_gse90063"
   ],
   "input_space_description": "Geneformer gene mapping 到 Ensembl 与 token dictionary 后的 target-side embedding lookup；backbone 冻结，仅训练 adapter/head。",
-  "output_space_description": "model-native raw output 必须先导出到 stage2_truth_aligned_log_shift，再进入 scorer-ready prediction contract。",
+  "output_space_description": "model-native raw output 必须先导出到 truth_aligned_log_shift，再进入 scorer-ready prediction contract。",
   "preprocessing_identity": {
     "gene_vocabulary": "token_dictionary_gc104M.pkl",
     "gene_mapping": "gene_symbol_to_ensembl_to_geneformer_token",
@@ -39,7 +39,7 @@
   "asset_root": "models/pretrained/geneformer_assets/geneformer",
   "output_roots": {
     "raw_prediction_root": "data/predictions/geneformer_k562_7d_raw",
-    "report_root": "reports/stage2_geneformer_k562_7d_recipe"
+    "report_root": "reports/geneformer_k562_7d_recipe"
   },
   "runtime": {
     "device": "auto",

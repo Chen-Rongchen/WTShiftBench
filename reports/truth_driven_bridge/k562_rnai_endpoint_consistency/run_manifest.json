@@ -1,5 +1,5 @@
 {
-  "stage": "stage2_k562_rnai_endpoint_consistency",
+  "stage": "k562_rnai_endpoint_consistency",
   "claim_scope": "GSE90063 K562 7d/13d CRISPR KO truth 的 CRISPR DepMap matched primary endpoint 与 DEMETER2 RNAi cross-platform sensitivity endpoint 对照。",
   "timepoints": [
     {

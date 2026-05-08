@@ -1,12 +1,12 @@
 {
-  "stage": "stage2_k562_13d_minimal_model_tradeoff_audit",
+  "stage": "k562_13d_minimal_model_tradeoff_audit",
   "version": 1,
   "claim_scope": "最小集检查：HCC model-side architecture trade-off 是否在 GSE90063 K562 13d KO context 中以同类方向再次出现。该配置不用于排总榜。",
   "dataset_label": "K562_13d_GSE90063",
   "input_h5ad_path": "data/processed/gse90063/dixit_2016_k562_tf_13d_gse90063.h5ad",
   "axis_membership_path": "reports/truth_driven_bridge/dixit_axis_compression_gse90063_13d/dixit_axis_membership.tsv",
   "axis_summary_path": "reports/truth_driven_bridge/dixit_axis_compression_gse90063_13d/dixit_axis_summary.tsv",
-  "output_root": "reports/stage2_k562_13d_minimal_model_tradeoff_audit",
+  "output_root": "reports/k562_13d_minimal_model_tradeoff_audit",
   "normalization": {
     "target_sum": 10000.0
   },

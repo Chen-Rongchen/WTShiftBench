@@ -37,7 +37,7 @@ import numpy as np
 import pandas as pd
 
 from wtbench.hcc_prediction_export import (
-    compute_stage2_truth_aligned_log_shift_matrix,
+    compute_truth_aligned_log_shift_matrix,
     load_axis_membership,
     load_truth_contract,
 )
@@ -449,8 +449,8 @@ def main() -> None:
 
     # Compute truth log-shift matrices for each cell line
     print("\nLoading Stage 2 truth config and computing per-target shift matrices...")
-    stage2_config = load_config(TRUTH_CONFIG_PATH)
-    specs = {spec.cell_line: spec for spec in build_dataset_specs(stage2_config)}
+    truth_config_obj = load_config(TRUTH_CONFIG_PATH)
+    specs = {spec.cell_line: spec for spec in build_dataset_specs(truth_config_obj)}
 
     truth_matrices: dict[str, pd.DataFrame] = {}
     backbone_targets_by_cl: dict[str, list[str]] = {}
@@ -460,8 +460,8 @@ def main() -> None:
             raise RuntimeError(f"Cell line {cell_line} not found in config")
         spec = specs[cell_line]
         print(f"  Computing truth matrix for {cell_line}...")
-        truth_matrix = compute_stage2_truth_aligned_log_shift_matrix(
-            spec, stage2_config, axis_membership
+        truth_matrix = compute_truth_aligned_log_shift_matrix(
+            spec, truth_config_obj, axis_membership
         )
         truth_matrices[cell_line] = truth_matrix
         print(f"    Shape: {truth_matrix.shape}")

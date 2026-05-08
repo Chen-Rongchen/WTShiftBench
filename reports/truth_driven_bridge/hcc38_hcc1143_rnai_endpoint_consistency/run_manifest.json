@@ -1,5 +1,5 @@
 {
-  "stage": "stage2_hcc38_hcc1143_rnai_endpoint_consistency",
+  "stage": "hcc38_hcc1143_rnai_endpoint_consistency",
   "claim_scope": "HCC38 + HCC1143 CRISPR KO truth 的 CRISPR DepMap matched primary endpoint 与 DEMETER2 RNAi cross-platform sensitivity endpoint 对照。",
   "cell_lines": [
     {

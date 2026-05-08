@@ -1,5 +1,5 @@
 {
-  "stage": "stage2_dixit_axis_compression",
+  "stage": "dixit_axis_compression",
   "version": 1,
   "dataset_role": "supplementary_external_structure_replication",
   "admission_status": "historical_only",

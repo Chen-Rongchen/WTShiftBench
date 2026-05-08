@@ -1,5 +1,5 @@
 {
-  "stage": "stage2_k562_gears_test",
+  "stage": "k562_gears_test",
   "version": 1,
   "dataset_role": "supplementary_test",
   "entrant_id": "gears",

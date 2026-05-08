@@ -1,5 +1,5 @@
 {
-  "stage": "stage2_rnai_demeter2_endpoint_conversion",
+  "stage": "rnai_demeter2_endpoint_conversion",
   "inputs": {
     "score_matrix_path": "RNAi/D2_combined_gene_dep_scores.csv",
     "sample_info_path": "RNAi/sample_info.csv",
