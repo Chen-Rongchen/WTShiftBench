@@ -91,9 +91,42 @@ reports/manuscript_extended_data_v1/edfig2_test_*/
 reports/stage2_axis_analysis/*
 !reports/stage2_axis_analysis/axis_validation_summary.tsv
 
-# Reference PDFs (manuscript submission PDFs are regenerated locally)
+# Reference PDFs
 *.pdf
-!manuscript/submission_pdfs/*.pdf
+
+# ----------------------------------------------------------------------
+# Manuscript content: ship build infrastructure + panel-level outputs
+# only. Composite figures, manuscript text, and submission packaging
+# stay local (the corresponding author assembles them by hand).
+# ----------------------------------------------------------------------
+manuscript/text/
+manuscript/additional_files/
+manuscript/audits/
+manuscript/source_data_manifests/
+manuscript/submission_pdfs/
+manuscript/supplementary_tables/
+manuscript/file_index.txt
+manuscript/README.md
+manuscript/MANUSCRIPT_REPRODUCIBILITY.md
+
+# Drop composite figure outputs (kept locally, regenerated as needed);
+# panels/ subdirectories under each Figure_*/ and Extended_Data_Figure_*/
+# remain tracked.
+manuscript/figures/Figure_*/Figure_*.png
+manuscript/figures/Figure_*/Figure_*.pdf
+manuscript/figures/Figure_*/Figure_*_source_data.tsv
+manuscript/figures/Figure_*/Figure_*_panel_manifest.json
+manuscript/figures/Figure_*/figure*_redesign_freeze.md
+manuscript/extended_data/Extended_Data_Figure_*/Extended_Data_Figure_*.png
+manuscript/extended_data/Extended_Data_Figure_*/Extended_Data_Figure_*.pdf
+manuscript/extended_data/Extended_Data_Figure_*/Extended_Data_Figure_*_source_data.tsv
+manuscript/extended_data/Extended_Data_Figure_*/Extended_Data_Figure_*_panel_manifest.json
+
+# Extended Data Figure 6 is a backup-only set; not part of the submission.
+manuscript/extended_data/Extended_Data_Figure_6/
+
+# Local backup directories scattered under panels/.
+manuscript/extended_data/**/panels_backup_*/
 
 # Internal-only notes (private to the maintainers; not for public release)
 README.internal.md
@@ -101,3 +134,6 @@ plan.md
 AGENTS.md
 .claude/
 .codex/
+
+# Local backup tree (was tracked previously; physically removed)
+backup/
