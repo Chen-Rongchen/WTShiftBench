@@ -1,0 +1,54 @@
+{
+  "stage": "stage2_k562_scgpt_raw_output",
+  "timepoint": "7d",
+  "model_id": "scgpt_k562_tf_7d_formal_v1",
+  "model_version": "scgpt_k562_tf_7d_formal_v1",
+  "entrant_id": "scgpt",
+  "source_kind": "scgpt_target_embedding_leave_one_out_kernel",
+  "export_timestamp": "2026-04-15T07:18:48.090427+00:00",
+  "prediction_path": "/home/data/gz0705/WTKO/data/predictions/stage2_scgpt_k562_7d_raw/scgpt_k562_tf_7d_formal_v1/7d/predicted_shift.tsv.gz",
+  "checkpoint_manifest": {
+    "checkpoint_key": "scgpt_human",
+    "checkpoint_dir": "/home/data/gz0705/WTKO/models/pretrained/scgpt_human",
+    "vocab_path": "/home/data/gz0705/WTKO/models/pretrained/scgpt_human/vocab.json",
+    "checkpoint_path": "/home/data/gz0705/WTKO/models/pretrained/scgpt_human/best_model.pt",
+    "embedding_shape": [
+      60697,
+      512
+    ]
+  },
+  "truth_delta_manifest": {
+    "target_cell_counts": {
+      "CREB1": 2713,
+      "E2F4": 1696,
+      "EGR1": 2275,
+      "ELF1": 4220,
+      "ELK1": 2733,
+      "ETS1": 1784,
+      "GABPA": 2020,
+      "IRF1": 1402,
+      "NR2C2": 1816,
+      "YY1": 1994
+    },
+    "control_cells": 5381,
+    "output_gene_count": 23072,
+    "perturbed_target_count": 10
+  },
+  "prediction_manifest": {
+    "mapped_targets": 10,
+    "total_targets": 10,
+    "target_vocab_coverage": 1.0,
+    "output_genes_total": 23072,
+    "output_genes_in_vocab": 19779,
+    "fallback_targets": [],
+    "missing_output_genes_sample": [
+      "AL627309.1",
+      "AP006222.2",
+      "RP4-669L17.10",
+      "RP5-857K21.1",
+      "RP11-206L10.3"
+    ],
+    "leave_one_out_policy": true,
+    "top_k": 4
+  }
+}

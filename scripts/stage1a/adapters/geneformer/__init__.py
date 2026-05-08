@@ -1,1 +1,0 @@
-"""Geneformer adapter."""

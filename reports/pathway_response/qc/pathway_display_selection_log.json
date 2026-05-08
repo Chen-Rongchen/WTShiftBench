@@ -1,0 +1,11 @@
+{
+  "n_target_context_pairs": 20,
+  "n_pathways": 15,
+  "pre_specified_panel_size": 17,
+  "tier1_anchors": [
+    "PFDN5",
+    "PMF1",
+    "PRPF6",
+    "ZNF131"
+  ]
+}

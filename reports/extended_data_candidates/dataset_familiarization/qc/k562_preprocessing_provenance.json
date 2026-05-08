@@ -1,0 +1,13 @@
+{
+  "n_genes_7d_raw": 23111,
+  "n_genes_13d_raw": 21713,
+  "n_genes_intersection": 20824,
+  "k562_cell_count_7d": 28034,
+  "k562_cell_count_13d": 15849,
+  "k562_control_count_7d": 5381,
+  "k562_control_count_13d": 3491,
+  "normalization": "sc.pp.normalize_total(target_sum=1e4) + sc.pp.log1p()",
+  "umap_n_neighbors": 15,
+  "umap_min_dist": 0.5,
+  "umap_random_state": 42
+}

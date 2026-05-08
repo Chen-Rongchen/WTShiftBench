@@ -19,6 +19,7 @@ venv/
 .vscode/
 .codex
 .codex/
+.claude/
 
 # Build / local package artifacts
 build/
@@ -28,38 +29,75 @@ dist/
 # Runtime outputs
 tmp/
 artifacts/
-reports/
 logs/
 downloads/
+results/
 
-# Generated local smoke outputs
+# Test scratch
 tests/test_gears_dixit/
 tests/test_gears_gse90063/
+manuscript/build_scripts/test_output/
 
-# Large benchmark data
+# ----------------------------------------------------------------------
+# Large data / model assets (downloaded or regenerated; see DATA_AVAILABILITY.md)
+# ----------------------------------------------------------------------
 data/*
+!data/predictions/
+!data/reference/
 !data/stage2/
-data/stage2/*
-!data/stage2/features/
-data/stage2/features/*
-!data/stage2/features/gene_symbol_chargram_v1.tsv.gz
 data/raw/
 data/processed/
-data/predictions/
 data/baselines/
 data/nulls/
 data/frozen/
 data/audit/
+data/pertpy_cache/
+data/GSE*/
 
-# Local model assets
 models/pretrained/
 depmap/
 RNAi/
 
-# Result bundles
-results/
+# ----------------------------------------------------------------------
+# reports/: ignored by default; whitelist intermediates required by
+# manuscript figure-build scripts (small TSV/JSON/MD only).
+# ----------------------------------------------------------------------
+reports/*
+!reports/stage2_truth_driven_bridge/
+!reports/stage2_truth_bridge_decomposition/
+!reports/stage2_real_hcc_smoke/
+!reports/manuscript_permutation_null_v1/
+!reports/manuscript_extended_data_v1/
+!reports/extended_data_candidates/
+!reports/pathway_response/
+!reports/stage2_rnai_demeter2_conversion/
+!reports/stage2_lm_g_scgpt_ridge_hcc_recipe/
+!reports/stage2_lm_g_geneformer_ridge_hcc_recipe/
+!reports/stage2_lm_train_lowrank_hcc_recipe/
+!reports/stage2_gears_backbone_sweep/
+!reports/stage2_axis_analysis/
 
-# Reference PDFs
+# Within whitelisted reports/, drop bulky figure outputs
+reports/**/*.pdf
+reports/**/*.png
+reports/**/*.svg
+reports/**/*.h5ad
+reports/**/*.npz
+reports/**/*.parquet
+reports/manuscript_extended_data_v1/edfig1_test_*/
+reports/manuscript_extended_data_v1/edfig2_test_*/
+
+# Inside stage2_axis_analysis (266MB) keep only the validation summary
+reports/stage2_axis_analysis/*
+!reports/stage2_axis_analysis/axis_validation_summary.tsv
+
+# Reference PDFs (manuscript submission PDFs are regenerated locally)
 *.pdf
+!manuscript/submission_pdfs/*.pdf
 
-# Keep repo docs/configs/code only
+# Internal-only notes (private to the maintainers; not for public release)
+README.internal.md
+plan.md
+AGENTS.md
+.claude/
+.codex/

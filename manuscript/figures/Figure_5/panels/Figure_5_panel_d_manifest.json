@@ -1,0 +1,47 @@
+{
+  "claim_boundary": "Boundary audits define the benchmark's bounded claim scope: covariate boundary constrains fully deconfounded wording; endpoint hierarchy constrains RNAi from serving as the primary readout; temporal boundary constrains content-level replication in K562.",
+  "generated_at_utc": "2026-05-07T13:26:15.354225+00:00",
+  "git": {
+    "commit": "77ee2113ec95c8edd23b538c39c9078e65b497fc",
+    "status_short": "M manuscript/extended_data/Extended_Data_Figure_2/Extended_Data_Figure_2.png\n M manuscript/extended_data/Extended_Data_Figure_2/panels/Extended_Data_Figure_2_panel_e.png\n M manuscript/figures/Figure_1/panels/Figure_1_panel_c_manifest.json\n M manuscript/figures/Figure_1/panels/Figure_1_panel_d_manifest.json\n M manuscript/figures/Figure_1/panels/Figure_1_panel_e_manifest.json\n M manuscript/figures/Figure_1/panels/Figure_1_panel_f_manifest.json\n M manuscript/figures/Figure_4/panels/Figure_4_panel_a_manifest.json\n M manuscript/figures/Figure_5/panels/Figure_5_panel_a_manifest.json\n M manuscript/figures/Figure_5/panels/Figure_5_panel_b_manifest.json\n M manuscript/figures/Figure_5/panels/Figure_5_panel_c_manifest.json\n D scripts/stage1a/__init__.py\n D scripts/stage1a/adapters/__init__.py\n D scripts/stage1a/adapters/common/__init__.py\n D scripts/stage1a/adapters/common/runtime.py\n D scripts/stage1a/adapters/gears/__init__.py\n D scripts/stage1a/adapters/gears/build_predictions.py\n D scripts/stage1a/adapters/geneformer/__init__.py\n D scripts/stage1a/adapters/geneformer/build_predictions.py\n D scripts/stage1a/adapters/scgpt/__init__.py\n D scripts/stage1a/adapters/scgpt/build_predictions.py\n D scripts/stage1a/benchmark_invariant/__init__.py\n D scripts/stage1a/benchmark_invariant/catalog.py\n D scripts/stage1a/benchmark_invariant/prediction_eval_common.py\n D scripts/stage1a/challengers/__init__.py\n D scripts/stage1a/challengers/common.py\n M src/wtbench/manuscript/extended_data_figure1.py\n M src/wtbench/manuscript/extended_data_figure13.py\n M src/wtbench/manuscript/figure1_truth_object_v2.py\n?? backup/reports_stage1a/\n?? backup/reports_stage1a_audit/\n?? backup/scripts_stage1a/\n?? manuscript/build_scripts/\n?? manuscript/extended_data/Extended_Data_Figure_1/build_edfig1_composite.py\n?? manuscript/extended_data/Extended_Data_Figure_1/build_extended_data_figure1.py\n?? manuscript/extended_data/Extended_Data_Figure_1/panels/Extended_Data_Figure_1_panel_j_source_data.tsv\n?? manuscript/extended_data/Extended_Data_Figure_1/panels/Extended_Data_Figure_1_panel_k_source_data.tsv\n?? manuscript/extended_data/Extended_Data_Figure_2/build_edfig2_composite.py\n?? manuscript/extended_data/Extended_Data_Figure_2/build_edfig2_panel_e.py\n?? manuscript/extended_data/Extended_Data_Figure_2/build_extended_data_figure13.py\n?? manuscript/extended_data/Extended_Data_Figure_3/build_extended_data_figure3_v2.py\n?? manuscript/extended_data/Extended_Data_Figure_3/panels/Extended_Data_Figure_3_panel_b_manifest.json\n?? manuscript/extended_data/Extended_Data_Figure_3/panels/Extended_Data_Figure_3_panel_b_source_data.tsv\n?? manuscript/extended_data/Extended_Data_Figure_3/panels/Extended_Data_Figure_3_panel_c_manifest.json\n?? manuscript/extended_data/Extended_Data_Figure_3/panels/Extended_Data_Figure_3_panel_c_source_data.tsv\n?? manuscript/extended_data/Extended_Data_Figure_4/build_extended_data_figure10_axis_explanatory.py\n?? manuscript/extended_data/Extended_Data_Figure_5/build_extended_data_figure9_biological_landing.py\n?? manuscript/extended_data/Extended_Data_Figure_6/Extended_Data_Figure_6_panel_manifest.json\n?? manuscript/extended_data/Extended_Data_Figure_6/build_extended_data_figure_robustness.py\n?? manuscript/extended_data/Extended_Data_Figure_6/panels/Extended_Data_Figure_6_panel_a_manifest.json\n?? manuscript/extended_data/Extended_Data_Figure_6/panels/Extended_Data_Figure_6_panel_a_source_data.tsv\n?? manuscript/extended_data/Extended_Data_Figure_6/panels/Extended_Data_Figure_6_panel_b_manifest.json\n?? manuscript/extended_data/Extended_Data_Figure_6/panels/Extended_Data_Figure_6_panel_b_source_data.tsv\n?? manuscript/extended_data/Extended_Data_Figure_6/panels/Extended_Data_Figure_6_panel_c_manifest.json\n?? manuscript/extended_data/Extended_Data_Figure_6/panels/Extended_Data_Figure_6_panel_c_source_data.tsv\n?? manuscript/extended_data/Extended_Data_Figure_6/panels/Extended_Data_Figure_6_panel_d_manifest.json\n?? manuscript/extended_data/Extended_Data_Figure_6/panels/Extended_Data_Figure_6_panel_d_source_data.tsv\n?? manuscript/figures/Figure_1/build_figure1_truth_object.py\n?? manuscript/figures/Figure_2/build_figure2_anchor_tiering.py\n?? manuscript/figures/Figure_3/build_figure3_model_tradeoff.py\n?? manuscript/figures/Figure_4/build_figure4_sweep_controls.py\n?? manuscript/figures/Figure_5/build_figure6_boundary.py\n?? manuscript/figures/Figure_5/panels/Figure_5_panel_d.png\n?? manuscript/figures/Figure_5/panels/Figure_5_panel_d_manifest.json\n?? manuscript/figures/Figure_5/panels/Figure_5_panel_d_source_data.tsv"
+  },
+  "inputs": [
+    {
+      "path": "reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/summary.tsv",
+      "sha256": "0ff680f9d41bc0e3dfdf77db3a3639ac6bd719648fe09da4c94102d722667f7b"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_bridge_summary.tsv",
+      "sha256": "89c33d689c4b507f477e8d6d972f0aa4513d536e2fc616acc99f67e6d09c9de0"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_target_delta.tsv",
+      "sha256": "c274e97e5ca06c8a42c3e6348bc9b8de81ff1a0f3e83d040330e8cb8588bd8fd"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/hcc38_hcc1143_rnai_endpoint_consistency/endpoint_consistency_summary.tsv",
+      "sha256": "612bd16ed8d12dd9089190b52848bde215507d93355b1cb40b9abccf231925c4"
+    },
+    {
+      "path": "reports/stage2_truth_driven_bridge/k562_rnai_endpoint_consistency/endpoint_consistency_summary.tsv",
+      "sha256": "be9fcfdb0f7fcdc298f98c5d4c1a82bdb7758e5367092e85975461ea2e336700"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "manuscript/figures/Figure_5/panels/Figure_5_panel_d.png",
+      "sha256": "5ecfb15c4ca575b0284cdec02fa74d240777153633b77d0943af5982cb7ba7fd"
+    },
+    {
+      "path": "manuscript/figures/Figure_5/panels/Figure_5_panel_d.pdf",
+      "sha256": "8f766501aba4fa050ec1cc8da80517324ac9e2fee5bb9d2fccce0d0e4d5167ea"
+    }
+  ],
+  "panel_id": "figure5d",
+  "panel_title": "Temporal boundary (rank bridge)",
+  "script": "scripts/manuscript/build_figure6_boundary.py",
+  "source_data": {
+    "path": "manuscript/figures/Figure_5/panels/Figure_5_panel_d_source_data.tsv",
+    "sha256": "19eb824f6d12aa0ea98c426b516c77fdfb77939a197c7b8d6a09a686dfa3ae0a"
+  }
+}

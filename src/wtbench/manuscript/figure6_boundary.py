@@ -570,7 +570,7 @@ def render_panel_c(ax: plt.Axes, df: pd.DataFrame, *, compact: bool = False, mai
             ax.text(
                 xi,
                 value + y_off,
-                r"$\rho$" + f" = {value:.3f}",
+                r"Spearman $\rho$" + f" = {value:.3f}",
                 ha="center",
                 va="bottom",
                 fontsize=lab_fs,
@@ -594,7 +594,7 @@ def render_panel_c(ax: plt.Axes, df: pd.DataFrame, *, compact: bool = False, mai
         ax.set_xticks(x)
         ax.set_xticklabels(temporal["timepoint"], fontsize=6.0)
         ax.set_ylim(0, 0.86)
-        ylab = "Rank bridge Spearman"
+        ylab = "Rank bridge Spearman ρ"
         ax.set_ylabel(ylab, fontsize=ylabel_fs, labelpad=ylp)
         ax.grid(axis="y", color=COLORS["grid"], linewidth=0.5)
     clean_axes(ax)
@@ -842,7 +842,7 @@ def render_endpoint_hierarchy(
         pax.scatter(r_val, yi, s=sc_r, color=FIG5_ENDPOINT_RNAI, zorder=2, edgecolors="none")
         pax.scatter(c_val, yi, s=sc_c, color=FIG5_ENDPOINT_CRISPR, zorder=3, edgecolors="none")
         cni, cxi = int(min(c_n, r_n)), int(max(c_n, r_n))
-        nlab = f"n = {cni}/{cxi}" if (main_fig and plot_ax is None) else f"n={cni}-{cxi}"
+        nlab = f"n = {cni}/{cxi}" if (main_fig and plot_ax is None) else f"n={cni}\u2013{cxi}"
         pax.text(
             max(c_val, r_val) + n_label_dx,
             yi,
@@ -859,7 +859,7 @@ def render_endpoint_hierarchy(
         pax.set_xlim(*FIG5_MAIN_ENDPOINT_XLIM)
     else:
         pax.set_xlim(0.20, 0.84)
-    xlab_str = ALIGNED_RHO_LABEL if (main_fig and plot_ax is None) else "Bridge Spearman rho"
+    xlab_str = ALIGNED_RHO_LABEL if (main_fig and plot_ax is None) else "Bridge Spearman ρ"
     xlab_s = 8.0 if (main_fig and plot_ax is None) else 6.0
     pax.set_xlabel(xlab_str, fontsize=xlab_s, labelpad=xlab_pad)
     if not (main_fig and plot_ax is None):

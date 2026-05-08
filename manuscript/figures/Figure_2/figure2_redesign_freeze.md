@@ -289,7 +289,7 @@ freeze 后，仅允许以下类型修改：
 重建命令冻结为：
 
 ```bash
-PYTHONPATH="/home/data/gz0705/WTKO/src" python "scripts/manuscript/build_figure2_anchor_tiering.py"
+PYTHONPATH="$(pwd)/src" python "scripts/manuscript/build_figure2_anchor_tiering.py"
 ```
 
 重建输出目录：

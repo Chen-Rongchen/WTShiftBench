@@ -1,0 +1,21 @@
+context	target	selection_tier	selection_reason
+HCC1143	PFDN5	Tier 1	benchmark-relevant anchor
+HCC1143	PMF1	Tier 1	benchmark-relevant anchor
+HCC1143	PRPF6	Tier 1	benchmark-relevant anchor
+HCC1143	ZNF131	Tier 1	benchmark-relevant anchor
+HCC1143	RUVBL2	Tier 2	top by NES variance (0.081)
+HCC1143	PRDX2	Tier 2	top by NES variance (0.077)
+HCC1143	MIER1	Tier 2	top by NES variance (0.077)
+HCC38	PFDN5	Tier 1	benchmark-relevant anchor
+HCC38	PMF1	Tier 1	benchmark-relevant anchor
+HCC38	PRPF6	Tier 1	benchmark-relevant anchor
+HCC38	ZNF131	Tier 1	benchmark-relevant anchor
+HCC38	NPM1	Tier 2	top by NES variance (0.091)
+HCC38	PEX14	Tier 2	top by NES variance (0.071)
+HCC38	PA2G4	Tier 2	top by NES variance (0.068)
+K562_13d	IRF1	Tier 2	top by NES variance (0.063)
+K562_13d	EGR1	Tier 2	top by NES variance (0.058)
+K562_13d	ELK1	Tier 2	top by NES variance (0.054)
+K562_7d	ELK1	Tier 2	top by NES variance (0.058)
+K562_7d	CREB1	Tier 2	top by NES variance (0.053)
+K562_7d	YY1	Tier 2	top by NES variance (0.048)

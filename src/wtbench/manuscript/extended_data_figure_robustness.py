@@ -188,7 +188,7 @@ def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
 
     ax.set_ylim(0.5, 2.5)
     ax.set_yticks([])
-    ax.set_xlabel("Aligned Spearman rho", fontsize=6.5)
+    ax.set_xlabel("Aligned Spearman ρ", fontsize=6.5)
     ax.set_xlim(0.63, 0.80)
 
     # Legend for point types
