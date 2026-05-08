@@ -121,7 +121,7 @@ def build_recipe(
         + " 当前对象属于 GEARS backbone 有限 sweep 候选，只用于基于诊断摘要的定向比较。"
     )
     recipe["sweep_context"] = {
-        "stage": "stage2_gears_backbone_recovery_sweep_candidate",
+        "stage": "gears_backbone_recovery_sweep_candidate",
         "parent_recipe_config_path": str(sweep_config_path.relative_to(PROJECT_ROOT)),
         "diagnostic_artifact_path": str(diagnostic_path.relative_to(PROJECT_ROOT)),
         "diagnostic_summary": diagnostic_summary,

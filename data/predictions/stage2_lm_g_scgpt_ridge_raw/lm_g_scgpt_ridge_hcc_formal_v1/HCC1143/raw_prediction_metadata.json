@@ -1,5 +1,5 @@
 {
-  "stage": "stage2_hcc_lm_g_scgpt_ridge_raw_output",
+  "stage": "hcc_lm_g_scgpt_ridge_raw_output",
   "cell_line": "HCC1143",
   "model_id": "lm_g_scgpt_ridge_hcc_formal_v1",
   "model_version": "lm_g_scgpt_ridge_hcc_formal_v1",

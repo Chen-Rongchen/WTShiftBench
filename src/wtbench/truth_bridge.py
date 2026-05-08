@@ -1096,7 +1096,7 @@ def run_from_config(config_path: Path) -> dict[str, Path]:
     shared_targets.to_csv(report_root / "cross_cell_line_shared_targets.tsv", sep="\t", index=False)
     cross_summary.to_csv(report_root / "cross_cell_line_consistency_summary.tsv", sep="\t", index=False)
 
-    report_path = report_root / "stage2_truth_driven_bridge_report.md"
+    report_path = report_root / "truth_driven_bridge_report.md"
     write_markdown_report(
         report_path=report_path,
         per_line_audits=combined_audit,

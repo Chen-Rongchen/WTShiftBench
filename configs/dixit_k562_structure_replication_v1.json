@@ -1,5 +1,5 @@
 {
-  "stage": "stage2_dixit_k562_structure_replication",
+  "stage": "dixit_k562_structure_replication",
   "version": 1,
   "dataset_role": "supplementary_external_structure_replication",
   "admission_status": "formal_default_gse90063_13d",

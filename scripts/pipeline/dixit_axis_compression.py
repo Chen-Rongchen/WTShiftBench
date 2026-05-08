@@ -47,7 +47,7 @@ def run_from_config(config_path: Path) -> dict[str, Path]:
     env["WTKO_DIXIT_PRIMARY_X"] = str(metrics["primary_x"])
     env["WTKO_DIXIT_PRIMARY_Y"] = str(metrics["primary_y"])
 
-    cmd = [sys.executable, str(PROJECT_ROOT / "scripts" / "stage2_dixit_axis_compression.py")]
+    cmd = [sys.executable, str(PROJECT_ROOT / "scripts" / "dixit_axis_compression.py")]
     subprocess.run(cmd, check=True, cwd=str(PROJECT_ROOT), env=env)
     return {"report_root": report_root}
 

@@ -8,9 +8,9 @@ import pandas as pd
 
 from wtbench.hcc_prediction_export import (
     DEFAULT_AXIS_MEMBERSHIP_PATH,
-    DEFAULT_STAGE2_TRUTH_CONFIG_PATH,
+    DEFAULT_TRUTH_CONFIG_PATH,
     DEFAULT_TRUTH_CONTRACT_PATH,
-    compute_stage2_truth_aligned_log_shift_matrix,
+    compute_truth_aligned_log_shift_matrix,
     expected_target_and_gene_order,
     load_prediction_matrix,
 )
@@ -46,15 +46,15 @@ def _top_k_overlap_fraction(left: np.ndarray, right: np.ndarray, top_k: int) -> 
 @lru_cache(maxsize=8)
 def _load_truth_for_cell_line(
     cell_line: str,
-    stage2_truth_config_path: str,
+    truth_config_path: str,
     axis_membership_path: str,
 ) -> pd.DataFrame:
-    truth_config = load_config(Path(stage2_truth_config_path))
+    truth_config = load_config(Path(truth_config_path))
     axis_membership = load_tsv(Path(axis_membership_path))
     specs = {spec.cell_line: spec for spec in build_dataset_specs(truth_config)}
     if cell_line not in specs:
         raise ValueError(f"未知 cell_line: {cell_line}")
-    truth = compute_stage2_truth_aligned_log_shift_matrix(
+    truth = compute_truth_aligned_log_shift_matrix(
         specs[cell_line],
         truth_config,
         axis_membership,
@@ -110,7 +110,7 @@ def score_prediction_against_truth_expression(
     *,
     cell_line: str,
     top_k: int = 20,
-    stage2_truth_config_path: Path = DEFAULT_STAGE2_TRUTH_CONFIG_PATH,
+    truth_config_path: Path = DEFAULT_TRUTH_CONFIG_PATH,
     axis_membership_path: Path = DEFAULT_AXIS_MEMBERSHIP_PATH,
     truth_contract_path: Path = DEFAULT_TRUTH_CONTRACT_PATH,
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
@@ -119,7 +119,7 @@ def score_prediction_against_truth_expression(
     truth_contract = load_tsv(truth_contract_path)
     truth = _load_truth_for_cell_line(
         cell_line,
-        str(stage2_truth_config_path),
+        str(truth_config_path),
         str(axis_membership_path),
     )
 

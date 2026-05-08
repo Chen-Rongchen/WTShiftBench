@@ -127,7 +127,7 @@ def main() -> int:
     print(f"host_nvidia_smi_ok={nvidia_smi_rc == 0}")
     print(f"host_device_nodes_ok={bool(nodes)}")
     print(f"pixi_gears_probe_successes={successful_probes}/{args.probe_runs}")
-    print(f"gears_stage2_entrypoint_ok={launcher_rc == 0}")
+    print(f"gears_entrypoint_ok={launcher_rc == 0}")
 
     if failed:
         print("result=FAILED")

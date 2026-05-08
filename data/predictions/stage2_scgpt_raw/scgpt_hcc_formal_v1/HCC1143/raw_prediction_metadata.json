@@ -1,5 +1,5 @@
 {
-  "stage": "stage2_hcc_scgpt_raw_output",
+  "stage": "hcc_scgpt_raw_output",
   "cell_line": "HCC1143",
   "model_id": "scgpt_hcc_formal_v1",
   "model_version": "scgpt_hcc_formal_v1",
