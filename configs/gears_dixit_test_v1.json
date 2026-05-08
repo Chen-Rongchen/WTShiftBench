@@ -1,0 +1,29 @@
+{
+  "stage": "stage2_k562_gears_test",
+  "version": 1,
+  "dataset_role": "supplementary_test",
+  "entrant_id": "gears",
+  "entrant_version": "gears_dixit_test_v1",
+  "model_id": "gears_dixit_test_v1",
+  "claim_scope": "K562/Dixit 数据的 GEARS 本地训练测试，检验 architecture 复现能力。输出为 test 级别，待查阅后定正式数据等级。",
+  "input_space_description": "K562/Dixit 单细胞 perturbation 数据（candidate_formal_like），log-normalized 到 target_sum=10000。",
+  "output_space_description": "GEARS predicted expression 减去共享 control pseudobulk，导出为 perturbation-level predicted_shift。",
+  "input_h5ad_path": "data/processed/stage1a/candidate_formal_like/dixit_2016_raw__control_context.h5ad",
+  "cell_type_label": "K562_Dixit",
+  "output_root": "tests/test_gears_dixit/predictions",
+  "report_root": "tests/test_gears_dixit/reports",
+  "axis_membership_path": "reports/truth_driven_bridge/master_atlas/shared_target_axis_membership.tsv",
+  "runtime": {
+    "device": "auto",
+    "training_seed": 123,
+    "epochs": 30,
+    "batch_size": 32,
+    "lr": 0.001,
+    "weight_decay": 0.000001,
+    "train_val_fraction": 0.8,
+    "max_control_cells": 2048,
+    "max_cells_per_train_condition": 64,
+    "prediction_num_samples": 64,
+    "perturbation_graph_k": 8
+  }
+}

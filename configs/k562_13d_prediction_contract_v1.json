@@ -1,0 +1,51 @@
+{
+  "contract_id": "k562_13d_prediction_contract_v1",
+  "dataset_id": "gse90063_k562_tf_13d",
+  "dataset_role": "supplementary_external_temporal_panel",
+  "timepoint_days": 13,
+  "description": "K562 13d prediction contract. Perturbed TFs: CREB1, E2F4, EGR1, ELF1, ELK1, ETS1, GABPA, IRF1, NR2C2, YY1. Target set is context-local (dataset-local 10-TF leave-one-out), not atlas-shared with HCC.",
+  "target_set_policy": "dataset_local_leave_one_out_10_tfs",
+  "perturbed_tfs": ["CREB1", "E2F4", "EGR1", "ELF1", "ELK1", "ETS1", "GABPA", "IRF1", "NR2C2", "YY1"],
+  "target_set_size": 10,
+  "truth_matrix_path": "data/processed/truth_driven_bridge/k562_13d_target_delta_matrix.tsv",
+  "truth_gene_id_type": "ensembl_gene_id",
+  "allowed_prediction_gene_id_types": ["ensembl_gene_id", "hgnc_symbol"],
+  "scoring_alignment_policy": "entrant_specific_intersection_after_frozen_id_mapping",
+  "gene_mapping_resource": "configs/gene_id_mapping_k562_v1.tsv",
+  "prediction_output_format": "target_by_gene_delta_matrix",
+  "scoring_gene_universe_note": "GEARS: full 45-gene atlas-space output (complete prediction universe). Embedding-based entrants: genome-wide output restricted to atlas-overlapping gene subset. These universes are NOT identical; raw Spearman values are not strictly comparable across entrant families.",
+  "atlas_gene_overlap": {
+    "hcc_atlas_genes": 47,
+    "in_k562_13d": 45,
+    "missing_genes": ["CDKN2A", "RORC"]
+  },
+  "entrant_specific_scoring_universe": {
+    "GEARS": {
+      "scored_genes": 45,
+      "universe_type": "full_output_space",
+      "note": "GEARS outputs exactly 45 atlas gene columns, which is its complete prediction output space for this task"
+    },
+    "scGPT": {
+      "scored_genes": "~45 (in vocab and atlas-overlapping)",
+      "universe_type": "genome_wide_atlas_subset"
+    },
+    "Geneformer": {
+      "scored_genes": "~45 (in vocab and atlas-overlapping)",
+      "universe_type": "genome_wide_atlas_subset"
+    },
+    "lm_train_lowrank": {
+      "scored_genes": "~45 (mapped and atlas-overlapping)",
+      "universe_type": "genome_wide_atlas_subset"
+    },
+    "lm_g_scgpt_ridge": {
+      "scored_genes": "~45 (in vocab and atlas-overlapping)",
+      "universe_type": "genome_wide_atlas_subset"
+    },
+    "lm_g_geneformer_ridge": {
+      "scored_genes": "~45 (in vocab and atlas-overlapping)",
+      "universe_type": "genome_wide_atlas_subset"
+    }
+  },
+  "paper_role": "formal supplementary external model-side panel (K562 13d primary timepoint)",
+  "context_local_note": "K562 target set is context-local and not atlas-shared with HCC. This entrant layer supports architecture-form external recurrence, trade-off partial recurrence diagnostic, and temporal stratification analysis. It is NOT a target-overlap replication of HCC atlas genes."
+}

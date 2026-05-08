@@ -1,0 +1,15 @@
+{
+  "base_config": "configs/truth_driven_bridge_hcc38_hcc1143_v1.json",
+  "output": {
+    "report_root": "reports/truth_driven_bridge/sensitivity"
+  },
+  "control_subsample": {
+    "n_replicates": 24,
+    "random_seed": 0,
+    "subsample_size": null
+  },
+  "deg_threshold_sweep": {
+    "deg_abs_log1p_delta_thresholds": [0.15, 0.2, 0.25, 0.3, 0.35, 0.4],
+    "deg_expression_floor": 0.1
+  }
+}

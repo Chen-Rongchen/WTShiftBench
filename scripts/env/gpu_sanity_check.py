@@ -115,7 +115,7 @@ def main() -> int:
     launcher_rc, _ = run_command(
         [
             "python",
-            "scripts/run_stage2_gears_hcc_predictions.py",
+            "scripts/pipeline/gears_hcc_predictions.py",
             "--help",
         ]
     )

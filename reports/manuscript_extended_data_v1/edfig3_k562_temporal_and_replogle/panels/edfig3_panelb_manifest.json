@@ -7,31 +7,31 @@
   },
   "inputs": [
     {
-      "path": "reports/stage2_truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_bridge_summary.tsv",
+      "path": "reports/truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_bridge_summary.tsv",
       "sha256": "89c33d689c4b507f477e8d6d972f0aa4513d536e2fc616acc99f67e6d09c9de0"
     },
     {
-      "path": "reports/stage2_truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_structure_summary.tsv",
+      "path": "reports/truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_structure_summary.tsv",
       "sha256": "8ad805e3250e54bb5bbc62d4140f28ead55d505b5ff4a45a181b720bf7fc8a6f"
     },
     {
-      "path": "reports/stage2_truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_panel_calls.tsv",
+      "path": "reports/truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_panel_calls.tsv",
       "sha256": "a294d7c139fcb0f2cc5c48dc9143d348c1a1d80c8d3d3a572cf79c304102b11e"
     },
     {
-      "path": "reports/stage2_truth_driven_bridge/dixit_axis_compression_gse90063_7d/dixit_evidence_tier_summary.tsv",
+      "path": "reports/truth_driven_bridge/dixit_axis_compression_gse90063_7d/dixit_evidence_tier_summary.tsv",
       "sha256": "456ec91dcbd5970623b82f943eda2e22e33962e57f4f3de74477aa0ebb53aaac"
     },
     {
-      "path": "reports/stage2_truth_driven_bridge/dixit_axis_compression_gse90063_13d/dixit_evidence_tier_summary.tsv",
+      "path": "reports/truth_driven_bridge/dixit_axis_compression_gse90063_13d/dixit_evidence_tier_summary.tsv",
       "sha256": "28086e998fa432f369c16f411ca68930915ad0b1d95461c522e6e713f3cf2ea1"
     },
     {
-      "path": "data/processed/stage2_truth_driven_bridge_gse90063_7d/dixit_2016_k562_tf_7d_gse90063/target_level_bridge_table.tsv.gz",
+      "path": "data/processed/truth_driven_bridge_gse90063_7d/dixit_2016_k562_tf_7d_gse90063/target_level_bridge_table.tsv.gz",
       "sha256": "a07d84654aadf14b71d0289aaebbfe5afc8d13c2c84747ff7683b2c76b9ff1c1"
     },
     {
-      "path": "data/processed/stage2_truth_driven_bridge_gse90063_13d/dixit_2016_k562_tf_13d_gse90063/target_level_bridge_table.tsv.gz",
+      "path": "data/processed/truth_driven_bridge_gse90063_13d/dixit_2016_k562_tf_13d_gse90063/target_level_bridge_table.tsv.gz",
       "sha256": "1157beb216c45b2cc78af2acbe450735d6be924ac5c63436077c7f3f049a72ca"
     },
     {

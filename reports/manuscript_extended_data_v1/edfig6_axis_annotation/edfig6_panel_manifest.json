@@ -13,27 +13,27 @@
   },
   "inputs": [
     {
-      "path": "reports/stage2_truth_bridge_decomposition/axis_level_shared_explanatory_summary.tsv",
+      "path": "reports/truth_bridge_decomposition/axis_level_shared_explanatory_summary.tsv",
       "sha256": "2c969aade5ffc4e9638638ab5c2cb6ffb64ba8037a462ab9b5225b56fe1891c6"
     },
     {
-      "path": "reports/stage2_truth_bridge_decomposition/axis_bootstrap_stability.tsv",
+      "path": "reports/truth_bridge_decomposition/axis_bootstrap_stability.tsv",
       "sha256": "13d84f21eadb1feb78a678ca5885cfaed3294ef70dc6407d71a1e616a4612a33"
     },
     {
-      "path": "reports/stage2_axis_analysis/axis_summary.tsv",
+      "path": "reports/axis_analysis/axis_summary.tsv",
       "sha256": "d18ba55452310976e152edc71eb18a728f9fb39cc9253403a675f64b56ddeb10"
     },
     {
-      "path": "reports/stage2_axis_analysis/axis_validation_summary.tsv",
+      "path": "reports/axis_analysis/axis_validation_summary.tsv",
       "sha256": "3f5143096d8c0e968e8aca6de41c585cc7668ecfe3c9eb8ceeeb6580165dd1e4"
     },
     {
-      "path": "reports/stage2_axis_analysis/axis_enrichment.tsv",
+      "path": "reports/axis_analysis/axis_enrichment.tsv",
       "sha256": "96474e95ff248ea7749662f43c5bd0e0d7e99d391e2f74599a2c720a8f0f28ea"
     },
     {
-      "path": "reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv",
+      "path": "reports/truth_driven_bridge/sensitivity/final_claim_matrix.tsv",
       "sha256": "62327f0fc81574920d1e6e33b78abd8fc63b2ec05fa8cd9a6d1f88f84f7ec6a5"
     }
   ],

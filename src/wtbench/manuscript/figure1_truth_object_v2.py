@@ -27,12 +27,12 @@ FIGURE_TITLE = "A truth-anchored benchmark defines a pre-specified perturbation-
 SCRIPT_PATH = Path("scripts/manuscript/build_figure1_truth_object.py")
 CLAIM_BOUNDARY = "The truth-DepMap bridge is retained as a structured target-level recovery object, not as fully deconfounded causal proof."
 
-JOINT_GRID = Path("reports/stage2_truth_bridge_decomposition/target_level_joint_grid.tsv")
-GRID_SUMMARY = Path("reports/stage2_truth_bridge_decomposition/target_level_grid_summary.tsv")
-RUN_SUMMARY = Path("reports/stage2_truth_bridge_decomposition/run_summary.json")
-HCC38_CORR = Path("reports/stage2_truth_driven_bridge/HCC38/correlation_summary.tsv")
-HCC1143_CORR = Path("reports/stage2_truth_driven_bridge/HCC1143/correlation_summary.tsv")
-FINAL_CLAIM_MATRIX = Path("reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv")
+JOINT_GRID = Path("reports/truth_bridge_decomposition/target_level_joint_grid.tsv")
+GRID_SUMMARY = Path("reports/truth_bridge_decomposition/target_level_grid_summary.tsv")
+RUN_SUMMARY = Path("reports/truth_bridge_decomposition/run_summary.json")
+HCC38_CORR = Path("reports/truth_driven_bridge/HCC38/correlation_summary.tsv")
+HCC1143_CORR = Path("reports/truth_driven_bridge/HCC1143/correlation_summary.tsv")
+FINAL_CLAIM_MATRIX = Path("reports/truth_driven_bridge/sensitivity/final_claim_matrix.tsv")
 BRIDGE_RHO_NULL = Path("reports/manuscript_permutation_null_v1/bridge_rho_permutation_summary.tsv")
 
 FIG1_GREEN = "#009E73"
@@ -928,7 +928,7 @@ def _build_bridge_strength_frame(corr: pd.DataFrame, *, root: Path) -> pd.DataFr
     null_path = root / BRIDGE_RHO_NULL
     if not null_path.exists():
         raise RuntimeError(
-            f"Missing permutation null summary at {null_path}; run scripts/run_bridge_rho_permutation_null.py first."
+            f"Missing permutation null summary at {null_path}; run scripts/pipeline/bridge_rho_permutation_null.py first."
         )
     null_df = pd.read_csv(null_path, sep="\t")
     null_cols = ["cell_line", "null_q025", "null_q975", "null_iterations", "empirical_p_two_sided"]

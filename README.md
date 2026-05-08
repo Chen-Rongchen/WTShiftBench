@@ -1,6 +1,6 @@
 # WTShiftBench
 
-Code, intermediate tables, and figure-build scripts for the manuscript
+Code, intermediate tables, and figure artefacts for the manuscript
 
 > **Truth-anchored evaluation of perturbation-response models: a fitness-bridge
 > benchmark on cancer cell lines and K562 Perturb-seq panels**
@@ -35,15 +35,15 @@ pip install -e .
 pixi install
 pixi shell
 
-# 3. fetch raw data (≈ 14 GB on disk; see DATA_AVAILABILITY.md for details)
-python scripts/download_replogle_k562_essential.py
-python scripts/download_geo_supplementary.py --accession GSE241115
-python scripts/download_geo_supplementary.py --accession GSE90063
+# 3. fetch raw data (~14 GB on disk; see DATA_AVAILABILITY.md for details)
+python scripts/download/replogle_k562_essential.py
+python scripts/download/geo_supplementary.py --accession GSE241115
+python scripts/download/geo_supplementary.py --accession GSE90063
 
 # 4. preprocess to the layout expected by the figure scripts
-python scripts/preprocess_replogle_k562_essential.py
-python scripts/materialize_stage2_hcc_gears_formal_h5ad.py
-python scripts/materialize_stage2_gse90063_k562_h5ad.py
+python scripts/preprocess/replogle_k562_essential.py
+python scripts/materialize/hcc_gears_formal_h5ad.py
+python scripts/materialize/gse90063_k562_h5ad.py
 
 # 5. regenerate every figure
 bash reproduce_figures.sh
@@ -62,61 +62,60 @@ docker run --rm -it -v $(pwd)/data:/app/data -v $(pwd)/reports:/app/reports wtsh
 
 ```
 WTShiftBench/
-├── src/wtbench/                  Python package: bridge / scoring / figure modules
+├── src/wtbench/                Python package (truth-bridge / scoring / figure)
+│   ├── truth_bridge.py
+│   ├── bridge_decomposition.py
+│   ├── truth_sensitivity.py
+│   ├── hcc_prediction_export.py
+│   ├── model_expression_scorer.py
+│   ├── model_structure_scorer.py
+│   ├── baselines/
+│   ├── pathway_response/
+│   └── manuscript/
 ├── scripts/
-│   ├── preprocess_*.py           Raw → processed h5ad
-│   ├── download_*.py             GEO / figshare downloaders
-│   ├── run_stage2_*.py           Pipeline runners (model evaluation, sensitivity, …)
-│   └── manuscript/               Figure-build scripts (one per main / ED figure)
-├── manuscript/
-│   ├── figures/                  Main figures (PDF, PNG, source_data.tsv, manifest)
-│   ├── extended_data/            Extended Data figures (panel-level + composite)
-│   ├── build_scripts/            Per-panel build wrappers (calls scripts/manuscript)
-│   ├── source_data_manifests/    JSON manifests linking each panel to its source TSV
-│   ├── audits/                   Reproducibility / claim-boundary audits
-│   ├── submission_pdfs/          Concatenated submission PDFs
-│   └── MANUSCRIPT_REPRODUCIBILITY.md   Detailed step-by-step reproduction guide
-├── reports/                      Cached intermediate TSVs / JSONs read by figure scripts
+│   ├── download/               GEO / figshare downloaders (2)
+│   ├── preprocess/             Raw → processed h5ad (4)
+│   ├── materialize/            Build derived tables / signatures (6)
+│   ├── pipeline/               Per-model and per-analysis runners (~45)
+│   ├── manuscript/             Figure-build scripts (one per figure)
+│   └── utils/                  Environment probes, conversions
+├── figures/                    Per-panel build artefacts (Fig 1-5, ED Fig 1-5)
+│   ├── Figure_1/panels/        PNG / PDF / source_data.tsv per panel
+│   └── ...
+├── reports/                    Cached intermediate tables read by figure scripts
 ├── data/
-│   ├── predictions/              Derived prediction tables (this work)
-│   ├── reference/                Reference annotation tables
-│   ├── stage2/                   Per-target signatures, covariates, features
-│   └── (raw/, processed/, …)     Not tracked — see DATA_AVAILABILITY.md
-├── configs/                      YAML configs for pipelines
-├── tests/                        Unit / smoke tests
-├── pixi.toml / environment.yml   Reproducible environments
-├── Dockerfile                    Containerised figure-reproduction environment
-├── reproduce_figures.sh          Driver for end-to-end figure regeneration
-├── DATA_AVAILABILITY.md          Public dataset accession + download instructions
-└── LICENSE                       MIT
+│   ├── predictions/            Derived model predictions (this work)
+│   ├── reference/              Reference annotation tables
+│   ├── covariates/             Per-cell-line covariate matrices
+│   └── (raw/, processed/, …)   Not tracked - see DATA_AVAILABILITY.md
+├── configs/                    YAML / JSON configs for pipelines and figures
+├── tests/                      Unit / smoke tests
+├── pixi.toml / environment.yml Reproducible environments
+├── Dockerfile                  Containerised figure-reproduction environment
+├── reproduce_figures.sh        End-to-end figure regeneration driver
+├── DATA_AVAILABILITY.md        Public dataset accession + download instructions
+└── LICENSE                     MIT
 ```
 
 ---
 
 ## Reproducing the manuscript figures
 
-`manuscript/MANUSCRIPT_REPRODUCIBILITY.md` is the canonical step-by-step guide.
-For a tl;dr, after the [Quick start](#quick-start) preprocessing has finished:
+After the [Quick start](#quick-start) preprocessing has finished:
 
-| Figure                              | Command                                                                |
-| ----------------------------------- | ---------------------------------------------------------------------- |
-| Figure 1 (truth object)             | `python scripts/manuscript/build_figure1_truth_object.py`              |
-| Figure 2 (anchor tiering)           | `python scripts/manuscript/build_figure2_anchor_tiering.py`            |
-| Figure 3 (model trade-off)          | `python scripts/manuscript/build_figure3_model_tradeoff.py`            |
-| Figure 4 (sweep controls)           | `python scripts/manuscript/build_figure4_sweep_controls.py`            |
-| Figure 5 / 6 (boundary)             | `python scripts/manuscript/build_figure6_boundary.py`                  |
-| Extended Data Figures 1-5           | `python scripts/manuscript/build_extended_data_figure*.py`             |
-| Sensitivity / robustness panels     | `python scripts/manuscript/build_sensitivity_*.py`                     |
+| Figure                              | Command                                                          |
+| ----------------------------------- | ---------------------------------------------------------------- |
+| Figure 1 (truth object)             | `python scripts/manuscript/build_figure1_truth_object.py`        |
+| Figure 2 (anchor tiering)           | `python scripts/manuscript/build_figure2_anchor_tiering.py`      |
+| Figure 3 (model trade-off)          | `python scripts/manuscript/build_figure3_model_tradeoff.py`      |
+| Figure 4 (sweep controls)           | `python scripts/manuscript/build_figure4_sweep_controls.py`      |
+| Figure 5 (boundary)                 | `python scripts/manuscript/build_figure6_boundary.py`            |
+| Extended Data Figures 1-5           | `python scripts/manuscript/build_extended_data_figure*.py`       |
+| Sensitivity / robustness panels     | `python scripts/manuscript/build_sensitivity_*.py`               |
 
-Or simply `bash reproduce_figures.sh` to run them in sequence.
-
-For per-panel reproduction (each panel produced and audited independently),
-use the wrappers under `manuscript/build_scripts/`:
-
-```bash
-python -m manuscript.build_scripts.run_panel figure1 a       # one panel
-python -m manuscript.build_scripts._build_one figure1        # all panels of a figure
-```
+Or simply `bash reproduce_figures.sh` to run them in sequence. Reference panel
+artefacts produced by these scripts are cached under `figures/` in the repo so
+that reviewers can match expected outputs without rerunning the full pipeline.
 
 ---
 
@@ -142,14 +141,10 @@ The model stack (`pixi.toml` provides feature-pinned environments):
 | --------------------------- | --------------------------------------------------------------------- |
 | GEARS                       | `cell-gears==0.1.2` (PyPI). Trained per cell line.                    |
 | scGPT                       | Pretrained checkpoint from the official release.                      |
-| Geneformer                  | Use the official package: `pip install git+https://huggingface.co/ctheodoris/Geneformer` (pin to the commit used in the manuscript via the version recorded in `pixi.toml`). |
+| Geneformer                  | Install from the official Hugging Face repository: `pip install git+https://huggingface.co/ctheodoris/Geneformer` (pin to the commit recorded in `pixi.toml`). |
 | `lm_g_scgpt_ridge`          | Linear control on top of scGPT gene embeddings (this work).           |
 | `lm_g_geneformer_ridge`     | Linear control on top of Geneformer gene embeddings (this work).      |
 | `lm_train_lowrank`          | Low-rank linear control trained directly on perturbation data.        |
-
-> **Note:** an upstream Geneformer build was previously vendored under
-> `vendor/geneformer/`; that copy has been removed. Please install Geneformer
-> from the official Hugging Face repository above.
 
 ---
 

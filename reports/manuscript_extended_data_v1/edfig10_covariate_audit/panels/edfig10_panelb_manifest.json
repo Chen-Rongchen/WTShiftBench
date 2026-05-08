@@ -7,19 +7,19 @@
   },
   "inputs": [
     {
-      "path": "reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/summary.tsv",
+      "path": "reports/truth_driven_bridge/sensitivity/covariate_balance/summary.tsv",
       "sha256": "0ff680f9d41bc0e3dfdf77db3a3639ac6bd719648fe09da4c94102d722667f7b"
     },
     {
-      "path": "reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/barcode_gem_group_mapping_note.md",
+      "path": "reports/truth_driven_bridge/sensitivity/covariate_balance/barcode_gem_group_mapping_note.md",
       "sha256": "118331d823ed6e1adcf50cf1fcff84b80335789b16c69c65be5964676cfdb6aa"
     },
     {
-      "path": "reports/stage2_truth_driven_bridge/sensitivity/anchor_claim_tiering.tsv",
+      "path": "reports/truth_driven_bridge/sensitivity/anchor_claim_tiering.tsv",
       "sha256": "098b9ce811ed99575dd84c1c4c4c7a057884365425d65a320e270dfb36b43ef9"
     },
     {
-      "path": "reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv",
+      "path": "reports/truth_driven_bridge/sensitivity/final_claim_matrix.tsv",
       "sha256": "62327f0fc81574920d1e6e33b78abd8fc63b2ec05fa8cd9a6d1f88f84f7ec6a5"
     }
   ],

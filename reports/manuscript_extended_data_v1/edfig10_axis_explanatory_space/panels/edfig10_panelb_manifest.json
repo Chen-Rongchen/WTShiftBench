@@ -7,15 +7,15 @@
   },
   "inputs": [
     {
-      "path": "reports/stage2_truth_bridge_decomposition/axis_level_shared_explanatory_summary.tsv",
+      "path": "reports/truth_bridge_decomposition/axis_level_shared_explanatory_summary.tsv",
       "sha256": "2c969aade5ffc4e9638638ab5c2cb6ffb64ba8037a462ab9b5225b56fe1891c6"
     },
     {
-      "path": "reports/stage2_truth_bridge_decomposition/axis_bootstrap_stability.tsv",
+      "path": "reports/truth_bridge_decomposition/axis_bootstrap_stability.tsv",
       "sha256": "13d84f21eadb1feb78a678ca5885cfaed3294ef70dc6407d71a1e616a4612a33"
     },
     {
-      "path": "reports/stage2_axis_analysis/axis_validation_summary.tsv",
+      "path": "reports/axis_analysis/axis_validation_summary.tsv",
       "sha256": "3f5143096d8c0e968e8aca6de41c585cc7668ecfe3c9eb8ceeeb6580165dd1e4"
     }
   ],

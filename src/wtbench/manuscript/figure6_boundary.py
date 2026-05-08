@@ -50,11 +50,11 @@ CLAIM_BOUNDARY = (
     "temporal boundary constrains content-level replication in K562."
 )
 
-COVARIATE_SUMMARY = Path("reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/summary.tsv")
-TEMPORAL_BRIDGE = Path("reports/stage2_truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_bridge_summary.tsv")
-TEMPORAL_DELTA = Path("reports/stage2_truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_target_delta.tsv")
-HCC_ENDPOINT = Path("reports/stage2_truth_driven_bridge/hcc38_hcc1143_rnai_endpoint_consistency/endpoint_consistency_summary.tsv")
-K562_ENDPOINT = Path("reports/stage2_truth_driven_bridge/k562_rnai_endpoint_consistency/endpoint_consistency_summary.tsv")
+COVARIATE_SUMMARY = Path("reports/truth_driven_bridge/sensitivity/covariate_balance/summary.tsv")
+TEMPORAL_BRIDGE = Path("reports/truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_bridge_summary.tsv")
+TEMPORAL_DELTA = Path("reports/truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_target_delta.tsv")
+HCC_ENDPOINT = Path("reports/truth_driven_bridge/hcc38_hcc1143_rnai_endpoint_consistency/endpoint_consistency_summary.tsv")
+K562_ENDPOINT = Path("reports/truth_driven_bridge/k562_rnai_endpoint_consistency/endpoint_consistency_summary.tsv")
 
 COVARIATE_ORDER = [
     "barcode_gem_group",

@@ -1,0 +1,20 @@
+{
+  "stage": "stage2_dixit_axis_compression",
+  "version": 1,
+  "dataset_role": "supplementary_external_structure_replication",
+  "admission_status": "formal_default_gse90063_13d",
+  "claim_scope": "Dixit/K562 supplementary external structure replication 的默认可重跑入口。当前固定指向 GSE90063 K562 TF pool 13d-only，用于 formal supplementary path；7d 仅作 temporal sensitivity，legacy recipe 需显式使用 historical-only 配置。",
+  "input_paths": {
+    "bridge_table": "data/processed/truth_driven_bridge_gse90063_13d/dixit_2016_k562_tf_13d_gse90063/target_level_bridge_table.tsv.gz",
+    "hcc_atlas": "reports/truth_driven_bridge/master_atlas/shared_target_master_atlas.tsv",
+    "hcc_axis_summary_macro": "reports/truth_driven_bridge/master_atlas/axis_summary_macro.tsv",
+    "hcc_axis_summary_fine": "reports/truth_driven_bridge/master_atlas/axis_summary_fine.tsv"
+  },
+  "metrics": {
+    "primary_x": "depmap_gene_effect",
+    "primary_y": "real_shift_mean_abs"
+  },
+  "output": {
+    "report_root": "reports/truth_driven_bridge/dixit_axis_compression_gse90063_13d"
+  }
+}

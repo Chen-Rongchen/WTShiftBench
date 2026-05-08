@@ -13,23 +13,23 @@
   },
   "inputs": [
     {
-      "path": "reports/stage2_truth_bridge_decomposition/shared_canonical_anchor_summary.tsv",
+      "path": "reports/truth_bridge_decomposition/shared_canonical_anchor_summary.tsv",
       "sha256": "b90db78fa900093a4daca4e42e413e6bc67118c557b7201954bbf58a181d2600"
     },
     {
-      "path": "reports/stage2_truth_bridge_decomposition/evidence_tier_summary.tsv",
+      "path": "reports/truth_bridge_decomposition/evidence_tier_summary.tsv",
       "sha256": "39fae443c0813ec536990bf77f9d77de9f30b1aa0fe2031f10b6405e96435a40"
     },
     {
-      "path": "reports/stage2_truth_driven_bridge/sensitivity/control_subsample_summary.tsv",
+      "path": "reports/truth_driven_bridge/sensitivity/control_subsample_summary.tsv",
       "sha256": "192f98c32e94e5603699f2ab8c2c4ec5ade23119a93408dc620d2956d4706592"
     },
     {
-      "path": "reports/stage2_truth_driven_bridge/sensitivity/anchor_claim_tiering.tsv",
+      "path": "reports/truth_driven_bridge/sensitivity/anchor_claim_tiering.tsv",
       "sha256": "098b9ce811ed99575dd84c1c4c4c7a057884365425d65a320e270dfb36b43ef9"
     },
     {
-      "path": "reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv",
+      "path": "reports/truth_driven_bridge/sensitivity/final_claim_matrix.tsv",
       "sha256": "62327f0fc81574920d1e6e33b78abd8fc63b2ec05fa8cd9a6d1f88f84f7ec6a5"
     }
   ],

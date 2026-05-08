@@ -8,7 +8,7 @@ optional jackknife (leave-one-target-out) to report the full rho distribution.
 
 Output
 ------
-reports/stage2_truth_driven_bridge/sensitivity/leave_anchor_out_summary.tsv
+reports/truth_driven_bridge/sensitivity/leave_anchor_out_summary.tsv
 
 Columns
 -------
@@ -28,8 +28,8 @@ import numpy as np
 import pandas as pd
 from scipy.stats import spearmanr
 
-SOURCE = Path("reports/stage2_truth_bridge_decomposition/target_level_joint_grid.tsv")
-OUTDIR = Path("reports/stage2_truth_driven_bridge/sensitivity")
+SOURCE = Path("reports/truth_bridge_decomposition/target_level_joint_grid.tsv")
+OUTDIR = Path("reports/truth_driven_bridge/sensitivity")
 OUTPATH = OUTDIR / "leave_anchor_out_summary.tsv"
 
 CONTEXTS = ("HCC38", "HCC1143")
@@ -39,8 +39,8 @@ DEPMAP_COLUMN = "depmap_gene_dependency"
 STABLE_ANCHORS = ["PFDN5", "PRPF6", "PMF1", "ZNF131"]
 
 # Reference values taken from:
-#   reports/stage2_truth_driven_bridge/HCC38/correlation_summary.tsv   (row: real_shift_mean_abs x depmap_gene_dependency)
-#   reports/stage2_truth_driven_bridge/HCC1143/correlation_summary.tsv (row: real_shift_mean_abs x depmap_gene_dependency)
+#   reports/truth_driven_bridge/HCC38/correlation_summary.tsv   (row: real_shift_mean_abs x depmap_gene_dependency)
+#   reports/truth_driven_bridge/HCC1143/correlation_summary.tsv (row: real_shift_mean_abs x depmap_gene_dependency)
 REFERENCE_RHO = {
     "HCC38": 0.726,
     "HCC1143": 0.779,

@@ -1,0 +1,20 @@
+{
+  "stage": "stage2_rnai_demeter2_endpoint_conversion",
+  "inputs": {
+    "score_matrix_path": "RNAi/D2_combined_gene_dep_scores.csv",
+    "sample_info_path": "RNAi/sample_info.csv",
+    "depmap_model_path": "depmap/Model.csv"
+  },
+  "outputs": {
+    "gene_effect_path": "depmap/RNAiDEMETER2GeneEffect.csv",
+    "gene_dependency_path": "depmap/RNAiDEMETER2GeneDependency.csv",
+    "summary_path": "reports/rnai_demeter2_conversion/summary.tsv",
+    "missing_mapping_path": "reports/rnai_demeter2_conversion/missing_model_id_mapping.tsv"
+  },
+  "conversion": {
+    "score_direction": "lower_is_more_dependent",
+    "cell_line_id_column": "CCLE_ID",
+    "model_ccle_column": "CCLEName",
+    "model_id_column": "ModelID"
+  }
+}

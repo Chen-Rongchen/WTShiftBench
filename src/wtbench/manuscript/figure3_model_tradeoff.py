@@ -32,10 +32,10 @@ CLAIM_BOUNDARY = (
     "primary reference; do not claim model recovery proved."
 )
 
-MODEL_COMPARISON = Path("reports/stage2_real_hcc_smoke/model_comparison.tsv")
-BACKBONE_DIAGNOSIS = Path("reports/stage2_real_hcc_smoke/backbone_diagnosis.tsv")
-SMOKE_SUMMARY = Path("reports/stage2_real_hcc_smoke/smoke_summary.tsv")
-FINAL_CLAIM_MATRIX = Path("reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv")
+MODEL_COMPARISON = Path("reports/real_hcc_smoke/model_comparison.tsv")
+BACKBONE_DIAGNOSIS = Path("reports/real_hcc_smoke/backbone_diagnosis.tsv")
+SMOKE_SUMMARY = Path("reports/real_hcc_smoke/smoke_summary.tsv")
+FINAL_CLAIM_MATRIX = Path("reports/truth_driven_bridge/sensitivity/final_claim_matrix.tsv")
 
 METRICS = [
     "backbone_recovery_score",
@@ -789,7 +789,7 @@ def build_sources(root: Path) -> dict[str, pd.DataFrame]:
     ]
 
     def _load_backbone_scores(model_id: str, cell_line: str) -> np.ndarray:
-        path = root / f"reports/stage2_real_hcc_smoke/details/{model_id}/{cell_line}/axis_projection.tsv"
+        path = root / f"reports/real_hcc_smoke/details/{model_id}/{cell_line}/axis_projection.tsv"
         df = pd.read_csv(path, sep="\t")
         backbone_targets = df.loc[
             df["is_expected_axis"] & df["architecture_role"].eq("canonical_backbone"),

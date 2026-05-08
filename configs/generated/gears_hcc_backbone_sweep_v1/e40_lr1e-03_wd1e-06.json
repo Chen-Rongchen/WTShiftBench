@@ -1,0 +1,38 @@
+{
+  "stage": "stage2_hcc_gears_recipe",
+  "version": 1,
+  "dataset_role": "primary",
+  "entrant_id": "gears",
+  "entrant_version": "gears_hcc_formal_v1_e40_lr1e-03_wd1e-06",
+  "model_id": "gears_hcc_formal_v1_e40_lr1e-03_wd1e-06",
+  "claim_scope": "HCC primary mainline 的 strongest formal entrant smoke raw output source。当前只用于 Stage 2 HCC entrant smoke adjudication，不自动扩写为 fuller model comparison。 当前对象属于 GEARS backbone 有限 sweep 候选，只用于基于诊断摘要的定向比较。",
+  "input_space_description": "HCC38 / HCC1143 的 single-feature called cells，在 in-dataset control baseline 下先做 normalize 到 target_sum=10000，再做 log1p；GEARS 在该 normalized+log1p 单细胞矩阵上训练与预测。",
+  "output_space_description": "GEARS predicted expression 减去共享 control pseudobulk，导出为 perturbation-level predicted_shift；随后再进入 stage2_truth_aligned_log_shift export / validation。",
+  "stage2_truth_config_path": "configs/truth_driven_bridge_hcc38_hcc1143_v1.json",
+  "stage2_contract_path": "configs/hcc_prediction_contract_v1.json",
+  "axis_membership_path": "reports/truth_driven_bridge/master_atlas/shared_target_axis_membership.tsv",
+  "formal_h5ad_root": "data/processed/hcc_gears_formal",
+  "output_root": "data/predictions/gears_raw",
+  "report_root": "reports/stage2_gears_hcc_recipe",
+  "runtime": {
+    "device": "auto",
+    "training_seed": 123,
+    "epochs": 40,
+    "batch_size": 32,
+    "lr": 0.001,
+    "weight_decay": 1e-06,
+    "train_val_fraction": 0.8,
+    "max_control_cells": 2048,
+    "max_cells_per_train_condition": 64,
+    "prediction_num_samples": 64,
+    "perturbation_graph_k": 8
+  },
+  "sweep_context": {
+    "stage": "stage2_gears_backbone_recovery_sweep_candidate",
+    "parent_recipe_config_path": "configs/gears_hcc_backbone_sweep_v1.json",
+    "diagnostic_artifact_path": "reports/real_hcc_smoke/gears_backbone_diagnostic_summary.tsv",
+    "diagnostic_summary": "HCC38=mixed, HCC1143=tradeoff",
+    "candidate_rank": 6,
+    "allowed_materialization_export_sanity": "default_only"
+  }
+}

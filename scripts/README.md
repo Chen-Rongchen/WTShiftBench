@@ -44,9 +44,9 @@
 - recipe、运行实例和可调参数放在 `configs/**/*.json`；脚本只加载配置并执行。
 - 不再新增 Stage 1A 顶层兼容包装。
 - supplementary replication 脚本不能被写成与 HCC primary mainline 并列的主结论入口。
-- `scripts/stage2_dixit_axis_compression.py` 与 `scripts/run_stage2_dixit_axis_compression.py` 的默认配置固定为 `GSE90063 K562 13d-only`。
-- `scripts/run_stage2_dixit_temporal_panel.py` 只汇总 `GSE90063 K562 13d/7d` temporal panel，不把 `7d` 升级为 primary closure。
-- legacy Dixit replay 只能显式传入 `configs/stage2/*legacy_v1.json`，不能依赖脚本默认值。
+- `scripts/pipeline/dixit_axis_compression.py` 与 `scripts/pipeline/dixit_axis_compression.py` 的默认配置固定为 `GSE90063 K562 13d-only`。
+- `scripts/pipeline/dixit_temporal_panel.py` 只汇总 `GSE90063 K562 13d/7d` temporal panel，不把 `7d` 升级为 primary closure。
+- legacy Dixit replay 只能显式传入 `configs/*legacy_v1.json`，不能依赖脚本默认值。
 
 ## 4. 当前推荐的 pixi 入口
 

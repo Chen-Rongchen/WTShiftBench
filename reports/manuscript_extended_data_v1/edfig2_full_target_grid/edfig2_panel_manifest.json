@@ -13,15 +13,15 @@
   },
   "inputs": [
     {
-      "path": "reports/stage2_truth_bridge_decomposition/target_level_joint_grid.tsv",
+      "path": "reports/truth_bridge_decomposition/target_level_joint_grid.tsv",
       "sha256": "38c3c4f8b13828ad32a0fe615cf372b2f68bbf30164e07ed80d84faa4812c1a7"
     },
     {
-      "path": "reports/stage2_truth_bridge_decomposition/target_level_grid_summary.tsv",
+      "path": "reports/truth_bridge_decomposition/target_level_grid_summary.tsv",
       "sha256": "2b4257a87104e0f26ae32e19fa78bd633b90005288bf69dd463dad5b471c0fe2"
     },
     {
-      "path": "reports/stage2_truth_bridge_decomposition/evidence_tier_summary.tsv",
+      "path": "reports/truth_bridge_decomposition/evidence_tier_summary.tsv",
       "sha256": "39fae443c0813ec536990bf77f9d77de9f30b1aa0fe2031f10b6405e96435a40"
     }
   ],

@@ -25,7 +25,7 @@ import pandas as pd
 import umap
 
 from wtbench.manuscript.figure_io import ensure_dir, repo_root, write_tsv
-from wtbench.stage2_truth_bridge import (
+from wtbench.truth_bridge import (
     build_dataset_specs,
     load_config,
     load_depmap_endpoint,
@@ -33,7 +33,7 @@ from wtbench.stage2_truth_bridge import (
     prepare_bridge_inputs,
 )
 
-CONFIG_REL = Path("configs/stage2/truth_driven_bridge_replogle_k562_essential_day7_v1.json")
+CONFIG_REL = Path("configs/truth_driven_bridge_replogle_k562_essential_day7_v1.json")
 OUT_DIR_REL = Path("reports/manuscript_extended_data_v1/edfig1_replogle_panels")
 OUT_UMAP = OUT_DIR_REL / "replogle_k562_essential_umap.tsv"
 OUT_CONTROL = OUT_DIR_REL / "replogle_k562_essential_umap_control.tsv"

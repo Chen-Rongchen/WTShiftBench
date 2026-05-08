@@ -6,7 +6,7 @@
   "entrant_id": "geneformer",
   "source_kind": "geneformer_target_embedding_leave_one_out_kernel",
   "export_timestamp": "2026-04-09T18:38:15.945615+00:00",
-  "prediction_path": "/home/data/gz0705/WTKO/data/predictions/stage2_geneformer_raw/geneformer_hcc_formal_v1/HCC38/predicted_shift.tsv.gz",
+  "prediction_path": "/home/data/gz0705/WTKO/data/predictions/geneformer_raw/geneformer_hcc_formal_v1/HCC38/predicted_shift.tsv.gz",
   "checkpoint_manifest": {
     "checkpoint_key": "geneformer_gf_12l_95m_i4096",
     "checkpoint_root": "/home/data/gz0705/WTKO/models/pretrained/geneformer_gf_12l_95m_i4096",

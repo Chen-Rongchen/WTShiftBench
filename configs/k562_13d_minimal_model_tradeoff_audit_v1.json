@@ -1,0 +1,38 @@
+{
+  "stage": "stage2_k562_13d_minimal_model_tradeoff_audit",
+  "version": 1,
+  "claim_scope": "最小集检查：HCC model-side architecture trade-off 是否在 GSE90063 K562 13d KO context 中以同类方向再次出现。该配置不用于排总榜。",
+  "dataset_label": "K562_13d_GSE90063",
+  "input_h5ad_path": "data/processed/gse90063/dixit_2016_k562_tf_13d_gse90063.h5ad",
+  "axis_membership_path": "reports/truth_driven_bridge/dixit_axis_compression_gse90063_13d/dixit_axis_membership.tsv",
+  "axis_summary_path": "reports/truth_driven_bridge/dixit_axis_compression_gse90063_13d/dixit_axis_summary.tsv",
+  "output_root": "reports/stage2_k562_13d_minimal_model_tradeoff_audit",
+  "normalization": {
+    "target_sum": 10000.0
+  },
+  "generated_baseline": {
+    "model_id": "shared_mean_baseline",
+    "object_role": "baseline"
+  },
+  "prediction_models": [
+    {
+      "model_id": "gears_gse90063_k562_tf_13d_v1",
+      "object_role": "entrant",
+      "prediction_path": "tests/test_gears_gse90063/predictions/gears_gse90063_k562_tf_13d_v1/K562_13d_GSE90063/predicted_shift.tsv.gz",
+      "required": true
+    },
+    {
+      "model_id": "optional_representative_entrant",
+      "object_role": "entrant",
+      "prediction_path": "",
+      "enabled": false,
+      "required": false
+    }
+  ],
+  "thresholds": {
+    "minimum_role_targets": 1,
+    "backbone_gap_min": 0.0,
+    "separation_gain_min": 0.0,
+    "shift_excess_gain_min": 0.0
+  }
+}

@@ -192,11 +192,11 @@ cmd = "python -m wtbench"
 description = "WT Benchmark 统一 CLI 入口；命令由 configs/runtime/wtbench_cli_v1.json 动态注册"
 
 [tasks.download-gse90063-supplementary-dry-run]
-cmd = "python scripts/download_geo_supplementary.py --config configs/stage2/gse90063_supplementary_download_v1.json --dry-run --test-records"
+cmd = "python scripts/download/geo_supplementary.py --config configs/gse90063_supplementary_download_v1.json --dry-run --test-records"
 description = "离线测试 GSE90063 supplementary 下载入口，不访问网络或下载大文件"
 
 [tasks.download-gse90063-supplementary]
-cmd = "python scripts/download_geo_supplementary.py --config configs/stage2/gse90063_supplementary_download_v1.json"
+cmd = "python scripts/download/geo_supplementary.py --config configs/gse90063_supplementary_download_v1.json"
 description = "下载 GSE90063 supplementary 全量文件"
 
 # ============================================================
@@ -204,83 +204,83 @@ description = "下载 GSE90063 supplementary 全量文件"
 # ============================================================
 
 [tasks.build-stage2-truth-driven-bridge]
-cmd = "python scripts/build_stage2_truth_driven_bridge.py --config configs/stage2/truth_driven_bridge_hcc38_hcc1143_v1.json"
+cmd = "python scripts/pipeline/build_truth_driven_bridge.py --config configs/truth_driven_bridge_hcc38_hcc1143_v1.json"
 description = "构建 Stage 2 truth-driven bridge 主线产物"
 
 [tasks.convert-rnai-demeter2-depmap-endpoints]
-cmd = "python scripts/convert_rnai_demeter2_to_depmap_endpoints.py --config configs/stage2/rnai_demeter2_conversion_v1.json"
+cmd = "python scripts/convert_rnai_demeter2_to_depmap_endpoints.py --config configs/rnai_demeter2_conversion_v1.json"
 description = "把 DEMETER2 RNAi 分数转换为现有 bridge 可读取的 DepMap endpoint 宽表"
 
 [tasks.build-stage2-truth-driven-bridge-k562-7d-rnai-demeter2]
-cmd = "python scripts/build_stage2_truth_driven_bridge.py --config configs/stage2/truth_driven_bridge_dixit_k562_tf_7d_gse90063_rnai_demeter2_v1.json"
+cmd = "python scripts/pipeline/build_truth_driven_bridge.py --config configs/truth_driven_bridge_dixit_k562_tf_7d_gse90063_rnai_demeter2_v1.json"
 description = "构建 GSE90063 K562 7d CRISPR KO truth 对 DEMETER2 RNAi endpoint 的对照 bridge"
 
 [tasks.build-stage2-truth-driven-bridge-k562-13d-rnai-demeter2]
-cmd = "python scripts/build_stage2_truth_driven_bridge.py --config configs/stage2/truth_driven_bridge_dixit_k562_tf_13d_gse90063_rnai_demeter2_v1.json"
+cmd = "python scripts/pipeline/build_truth_driven_bridge.py --config configs/truth_driven_bridge_dixit_k562_tf_13d_gse90063_rnai_demeter2_v1.json"
 description = "构建 GSE90063 K562 13d CRISPR KO truth 对 DEMETER2 RNAi endpoint 的对照 bridge"
 
 [tasks.build-stage2-truth-driven-bridge-hcc38-hcc1143-rnai-demeter2]
-cmd = "python scripts/build_stage2_truth_driven_bridge.py --config configs/stage2/truth_driven_bridge_hcc38_hcc1143_rnai_demeter2_v1.json"
+cmd = "python scripts/pipeline/build_truth_driven_bridge.py --config configs/truth_driven_bridge_hcc38_hcc1143_rnai_demeter2_v1.json"
 description = "构建 HCC38 + HCC1143 CRISPR KO truth 对 DEMETER2 RNAi endpoint 的对照 bridge"
 
 [tasks.run-stage2-hcc38-hcc1143-rnai-endpoint-consistency]
-cmd = "python scripts/run_stage2_k562_rnai_endpoint_consistency.py --config configs/stage2/hcc38_hcc1143_rnai_endpoint_consistency_v1.json"
+cmd = "python scripts/pipeline/k562_rnai_endpoint_consistency.py --config configs/hcc38_hcc1143_rnai_endpoint_consistency_v1.json"
 description = "汇总 HCC38 + HCC1143 的 CRISPR DepMap vs DEMETER2 RNAi endpoint consistency"
 
 [tasks.build-stage2-replogle-k562-gwps-day8]
-cmd = "python scripts/build_stage2_truth_driven_bridge.py --config configs/stage2/truth_driven_bridge_replogle_k562_gwps_day8_v1.json"
+cmd = "python scripts/pipeline/build_truth_driven_bridge.py --config configs/truth_driven_bridge_replogle_k562_gwps_day8_v1.json"
 description = "构建 Replogle K562 GWPS day 8 CRISPRi truth 对 DepMap CRISPR endpoint 的 short-horizon external generalization bridge"
 
 [tasks.run-stage2-k562-rnai-endpoint-consistency]
-cmd = "python scripts/run_stage2_k562_rnai_endpoint_consistency.py --config configs/stage2/k562_rnai_endpoint_consistency_v1.json"
+cmd = "python scripts/pipeline/k562_rnai_endpoint_consistency.py --config configs/k562_rnai_endpoint_consistency_v1.json"
 description = "汇总 GSE90063 K562 7d/13d 的 CRISPR DepMap vs DEMETER2 RNAi endpoint consistency"
 
 [tasks.build-stage2-truth-driven-bridge-with-dixit]
-cmd = "python scripts/build_stage2_truth_driven_bridge.py --config configs/stage2/truth_driven_bridge_hcc38_hcc1143_dixit_v1.json"
+cmd = "python scripts/pipeline/build_truth_driven_bridge.py --config configs/truth_driven_bridge_hcc38_hcc1143_dixit_v1.json"
 description = "Stage 2 truth bridge：HCC38 + HCC1143 + Dixit（同参数，输出写入同一 stage2 目录）"
 
 [tasks.run-stage2-truth-bridge-sensitivity]
-cmd = "python scripts/run_stage2_truth_bridge_sensitivity.py --config configs/stage2/truth_bridge_sensitivity_v1.json"
+cmd = "python scripts/pipeline/truth_bridge_sensitivity.py --config configs/truth_bridge_sensitivity_v1.json"
 description = "Stage 2 truth bridge：control 子抽样、DEG 阈值扫描等敏感性分析"
 
 [tasks.run-stage2-truth-bridge-sensitivity-hcc-full]
-cmd = "python scripts/run_stage2_truth_bridge_sensitivity.py --config configs/stage2/truth_bridge_sensitivity_hcc_full_v1.json"
+cmd = "python scripts/pipeline/truth_bridge_sensitivity.py --config configs/truth_bridge_sensitivity_hcc_full_v1.json"
 description = "Stage 2 truth bridge：HCC full closure sensitivity（含 5 条 covariate 轴）"
 
 [tasks.materialize-stage2-covariates]
-cmd = "python scripts/materialize_stage2_covariates.py --config configs/stage2/hcc_covariates_v1.json"
+cmd = "python scripts/materialize/covariates.py --config configs/hcc_covariates_v1.json"
 description = "物化 HCC Stage 2 covariates TSV"
 
 [tasks.run-stage2-covariate-audit]
-cmd = "python scripts/run_stage2_covariate_audit.py --config configs/stage2/truth_bridge_covariate_audit_v1.json"
+cmd = "python scripts/pipeline/covariate_audit.py --config configs/truth_bridge_covariate_audit_v1.json"
 description = "运行 HCC Stage 2 covariate balance audit"
 
 [tasks.run-stage2-closure-pipeline]
-cmd = "python scripts/run_stage2_closure_pipeline.py --config configs/stage2/stage2_closure_pipeline_v1.json"
+cmd = "python scripts/pipeline/closure_pipeline.py --config configs/closure_pipeline_v1.json"
 description = "串联 HCC covariates、sensitivity 与 covariate audit"
 
 [tasks.validate-stage2-closure-artifacts]
-cmd = "python scripts/validate_stage2_closure_artifacts.py --config configs/stage2/closure_artifact_validation_v1.json"
+cmd = "python scripts/pipeline/validate_closure_artifacts.py --config configs/closure_artifact_validation_v1.json"
 description = "校验 Stage 2 closure 关键产物与固定边界"
 
 [tasks.build-stage2-truth-bridge-decomposition]
-cmd = "python scripts/run_stage2_truth_bridge_decomposition.py --config configs/stage2/truth_bridge_decomposition_v1.json"
+cmd = "python scripts/pipeline/truth_bridge_decomposition.py --config configs/truth_bridge_decomposition_v1.json"
 description = "构建 Stage 2 truth bridge decomposition 产物"
 
 [tasks.build-stage2-truth-driven-bridge-dixit-supplement]
-cmd = "python scripts/build_stage2_truth_driven_bridge.py --config configs/stage2/truth_driven_bridge_dixit_k562_supplement.json"
+cmd = "python scripts/pipeline/build_truth_driven_bridge.py --config configs/truth_driven_bridge_dixit_k562_supplement.json"
 description = "构建 Dixit/K562 13d supplementary truth bridge"
 
 [tasks.run-stage2-dixit-axis-compression]
-cmd = "python scripts/run_stage2_dixit_axis_compression.py --config configs/stage2/dixit_axis_compression_v1.json"
+cmd = "python scripts/pipeline/dixit_axis_compression.py --config configs/dixit_axis_compression_v1.json"
 description = "运行 Dixit/K562 13d supplementary axis compression"
 
 [tasks.run-stage2-dixit-temporal-panel]
-cmd = "python scripts/run_stage2_dixit_temporal_panel.py --config configs/stage2/dixit_k562_temporal_panel_gse90063_v1.json"
+cmd = "python scripts/pipeline/dixit_temporal_panel.py --config configs/dixit_k562_temporal_panel_gse90063_v1.json"
 description = "汇总 GSE90063 K562 13d/7d temporal panel"
 
 [tasks.run-stage2-k562-13d-minimal-tradeoff-audit]
-cmd = "python scripts/run_stage2_k562_13d_minimal_tradeoff_audit.py --config configs/stage2/k562_13d_minimal_model_tradeoff_audit_v1.json"
+cmd = "python scripts/pipeline/k562_13d_minimal_tradeoff_audit.py --config configs/k562_13d_minimal_model_tradeoff_audit_v1.json"
 description = "运行 GSE90063 K562 13d 最小 model-side architecture trade-off 方向审计"
 
 [tasks.render-manuscript-figure1]

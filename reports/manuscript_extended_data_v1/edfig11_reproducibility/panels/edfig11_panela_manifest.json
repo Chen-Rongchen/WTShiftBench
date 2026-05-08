@@ -31,7 +31,7 @@
       "sha256": "1643ab9c0827d2de760705f239798a08abc37912dd1f1818296f054817633f57"
     },
     {
-      "path": "reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv",
+      "path": "reports/truth_driven_bridge/sensitivity/final_claim_matrix.tsv",
       "sha256": "62327f0fc81574920d1e6e33b78abd8fc63b2ec05fa8cd9a6d1f88f84f7ec6a5"
     },
     {

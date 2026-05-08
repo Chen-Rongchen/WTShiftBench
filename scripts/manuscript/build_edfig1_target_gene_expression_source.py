@@ -28,11 +28,11 @@ from wtbench.manuscript.figure_io import ensure_dir, repo_root, write_tsv
 
 ROOT = repo_root()
 
-HCC38_PATH = ROOT / "data/processed/stage2_hcc_gears_formal/HCC38.h5ad"
-HCC1143_PATH = ROOT / "data/processed/stage2_hcc_gears_formal/HCC1143.h5ad"
-K562_7D_PATH = ROOT / "data/processed/stage2_gse90063/dixit_2016_k562_tf_7d_gse90063.h5ad"
-K562_13D_PATH = ROOT / "data/processed/stage2_gse90063/dixit_2016_k562_tf_13d_gse90063.h5ad"
-REPLOGLE_PATH = ROOT / "data/processed/stage2_replogle_k562_essential/essential_processed.h5ad"
+HCC38_PATH = ROOT / "data/processed/hcc_gears_formal/HCC38.h5ad"
+HCC1143_PATH = ROOT / "data/processed/hcc_gears_formal/HCC1143.h5ad"
+K562_7D_PATH = ROOT / "data/processed/gse90063/dixit_2016_k562_tf_7d_gse90063.h5ad"
+K562_13D_PATH = ROOT / "data/processed/gse90063/dixit_2016_k562_tf_13d_gse90063.h5ad"
+REPLOGLE_PATH = ROOT / "data/processed/replogle_k562_essential/essential_processed.h5ad"
 
 OUT_TSV = ROOT / "reports/manuscript_extended_data_v1/edfig1_dataset_familiarization/edfig1_target_gene_expression_arrows.tsv"
 
