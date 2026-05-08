@@ -137,3 +137,12 @@ AGENTS.md
 
 # Local backup tree (was tracked previously; physically removed)
 backup/
+
+# Manuscript source assembly tree (kept locally; not part of public repo)
+manuscript/
+
+# Local-only reference bundles
+depmap/
+RNAi/
+downloads/
+
