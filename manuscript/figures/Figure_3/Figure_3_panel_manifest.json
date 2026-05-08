@@ -6,10 +6,10 @@
   },
   "figure_id": "figure3",
   "figure_title": "Model recovery is metric-dependent and reveals an asymmetric recovery pattern",
-  "generated_at_utc": "2026-05-03T13:46:49.576996+00:00",
+  "generated_at_utc": "2026-05-08T14:35:46.844705+00:00",
   "git": {
-    "commit": "8c144b0f9bf7c56c58689c7638d7e5886c129709",
-    "status_short": "M manuscript/extended_data/Extended_Data_Figure_2/Extended_Data_Figure_2.png\n M manuscript/extended_data/Extended_Data_Figure_2/panels/Extended_Data_Figure_2_panel_a.png\n M manuscript/extended_data/Extended_Data_Figure_2/panels/Extended_Data_Figure_2_panel_b.png\n M manuscript/extended_data/Extended_Data_Figure_2/panels/Extended_Data_Figure_2_panel_c.png\n M manuscript/extended_data/Extended_Data_Figure_2/panels/Extended_Data_Figure_2_panel_d.png\n M manuscript/extended_data/Extended_Data_Figure_2/panels/Extended_Data_Figure_2_panel_e.png\n M manuscript/extended_data/Extended_Data_Figure_3/Extended_Data_Figure_3.png\n M manuscript/extended_data/Extended_Data_Figure_3/Extended_Data_Figure_3_source_data.tsv\n M manuscript/extended_data/Extended_Data_Figure_3/panels/Extended_Data_Figure_3_panel_a.png\n M manuscript/extended_data/Extended_Data_Figure_3/panels/Extended_Data_Figure_3_panel_b.png\n M manuscript/extended_data/Extended_Data_Figure_4/Extended_Data_Figure_4.png\n M manuscript/extended_data/Extended_Data_Figure_4/panels/Extended_Data_Figure_4_panel_a.png\n M manuscript/extended_data/Extended_Data_Figure_4/panels/Extended_Data_Figure_4_panel_b.png\n M manuscript/extended_data/Extended_Data_Figure_5/Extended_Data_Figure_5.png\n M manuscript/extended_data/Extended_Data_Figure_5/panels/Extended_Data_Figure_5_panel_a.png\n M manuscript/figures/Figure_1/Figure_1.png\n M manuscript/figures/Figure_1/panels/Figure_1_panel_a.png\n M manuscript/figures/Figure_1/panels/Figure_1_panel_a_manifest.json\n M manuscript/figures/Figure_1/panels/Figure_1_panel_b.png\n M manuscript/figures/Figure_1/panels/Figure_1_panel_b_manifest.json\n M manuscript/figures/Figure_1/panels/Figure_1_panel_c.png\n M manuscript/figures/Figure_1/panels/Figure_1_panel_c_manifest.json\n M manuscript/figures/Figure_1/panels/Figure_1_panel_d.png\n M manuscript/figures/Figure_1/panels/Figure_1_panel_d_manifest.json\n M manuscript/figures/Figure_1/panels/Figure_1_panel_e.png\n M manuscript/figures/Figure_1/panels/Figure_1_panel_e_manifest.json\n M manuscript/figures/Figure_1/panels/Figure_1_panel_f.png\n M manuscript/figures/Figure_1/panels/Figure_1_panel_f_manifest.json\n M manuscript/figures/Figure_2/Figure_2.png\n M manuscript/figures/Figure_2/Figure_2_panel_manifest.json\n M manuscript/figures/Figure_3/Figure_3.png\n M manuscript/text/figure_legends_v1.md\n M scripts/manuscript/build_all_extended_data_figures.py\n M scripts/manuscript/build_edfig2_composite.py\n M scripts/manuscript/fix_edfig3_panelb_square.py\n M src/wtbench/manuscript/extended_data_figure3_v2.py\n M src/wtbench/manuscript/figure4_sweep_controls.py\n M src/wtbench/manuscript/figure_io.py\n?? manuscript/extended_data/Extended_Data_Figure_3/panels/Extended_Data_Figure_3_panel_c.png"
+    "commit": "6e564daf0ef724c18f33c083c3c1b6655929a529",
+    "status_short": "M manuscript/figures/Figure_3/Figure_3_panel_manifest.json"
   },
   "inputs": [
     {
@@ -32,25 +32,25 @@
     },
     {
       "path": "manuscript/figures/Figure_3/Figure_3.pdf",
-      "sha256": "95920ee8777aa66ad4149aba8dbb2ea8884b97448e5c41966f375fbd7026a49a"
+      "sha256": "33bfd7350e1660021a1c9fb31bf3fdebee7f7525a30f8d92032f846aec17e160"
     }
   ],
   "panel_manifests": [
     {
       "path": "reports/manuscript_figures_v2/fig3_model_tradeoff/panels/figure3_panela_manifest.json",
-      "sha256": "f57fc138c43b8d76b7c02946f09e2d5e3b59b6141ee2a5f2fe6ec64fc2911adf"
+      "sha256": "39d2522962b1bd40531672cd021be73b41955ff9fae78452fdc6947835a0ae78"
     },
     {
       "path": "reports/manuscript_figures_v2/fig3_model_tradeoff/panels/figure3_panelb_manifest.json",
-      "sha256": "2671bd7f1f9766f44c3d8b94710b456189e126ada10d70804ddd3a17f0046376"
+      "sha256": "171e3f7d03a08325b985a94f149d8da597ba5fb5413e055ff35eb520f688e509"
     },
     {
       "path": "reports/manuscript_figures_v2/fig3_model_tradeoff/panels/figure3_panelc_manifest.json",
-      "sha256": "f2a0a47af4f07a3d723b36ea0286429bcc045bfb7f6b6e18c11ec46be4038e8e"
+      "sha256": "0bea80920308ffe2766282b778e36b22e95ff9096725f4ba820a567423a73984"
     },
     {
       "path": "reports/manuscript_figures_v2/fig3_model_tradeoff/panels/figure3_paneld_manifest.json",
-      "sha256": "a0ea4a070c946930f6a30f10764dba45f5f2b7a9addfdd6ccf0ed226ec7673c7"
+      "sha256": "bda9244c7441f35a1d6f7a847357146bccda886be1e086775339836fc034d7a1"
     }
   ],
   "script": "scripts/manuscript/build_figure3_model_tradeoff.py"
