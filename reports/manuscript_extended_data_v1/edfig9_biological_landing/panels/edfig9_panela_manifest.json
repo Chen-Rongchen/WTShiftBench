@@ -1,0 +1,59 @@
+{
+  "claim_boundary": "Pathway enrichment is an exploratory response-level summary and was not used to define the benchmark truth object, endpoint hierarchy, or model-adjudication criteria. Cross-context polarity differences are interpreted as bounded response-level divergence rather than as closed mechanism.",
+  "generated_at_utc": "2026-05-07T13:26:27.840160+00:00",
+  "git": {
+    "commit": "77ee2113ec95c8edd23b538c39c9078e65b497fc",
+    "status_short": "M manuscript/extended_data/Extended_Data_Figure_2/Extended_Data_Figure_2.png\n M manuscript/extended_data/Extended_Data_Figure_2/panels/Extended_Data_Figure_2_panel_e.png\n M manuscript/figures/Figure_1/Figure_1.png\n M manuscript/figures/Figure_1/panels/Figure_1_panel_c_manifest.json\n M manuscript/figures/Figure_1/panels/Figure_1_panel_d_manifest.json\n M manuscript/figures/Figure_1/panels/Figure_1_panel_e_manifest.json\n M manuscript/figures/Figure_1/panels/Figure_1_panel_f_manifest.json\n M manuscript/figures/Figure_2/Figure_2_panel_manifest.json\n M manuscript/figures/Figure_3/Figure_3_panel_manifest.json\n M manuscript/figures/Figure_4/Figure_4_panel_manifest.json\n M manuscript/figures/Figure_4/panels/Figure_4_panel_a_manifest.json\n M manuscript/figures/Figure_4/panels/Figure_4_panel_b_manifest.json\n M manuscript/figures/Figure_4/panels/Figure_4_panel_c_manifest.json\n M manuscript/figures/Figure_5/Figure_5_panel_manifest.json\n M manuscript/figures/Figure_5/panels/Figure_5_panel_a_manifest.json\n M manuscript/figures/Figure_5/panels/Figure_5_panel_b_manifest.json\n M manuscript/figures/Figure_5/panels/Figure_5_panel_c_manifest.json\n D scripts/stage1a/__init__.py\n D scripts/stage1a/adapters/__init__.py\n D scripts/stage1a/adapters/common/__init__.py\n D scripts/stage1a/adapters/common/runtime.py\n D scripts/stage1a/adapters/gears/__init__.py\n D scripts/stage1a/adapters/gears/build_predictions.py\n D scripts/stage1a/adapters/geneformer/__init__.py\n D scripts/stage1a/adapters/geneformer/build_predictions.py\n D scripts/stage1a/adapters/scgpt/__init__.py\n D scripts/stage1a/adapters/scgpt/build_predictions.py\n D scripts/stage1a/benchmark_invariant/__init__.py\n D scripts/stage1a/benchmark_invariant/catalog.py\n D scripts/stage1a/benchmark_invariant/prediction_eval_common.py\n D scripts/stage1a/challengers/__init__.py\n D scripts/stage1a/challengers/common.py\n M src/wtbench/manuscript/extended_data_figure1.py\n M src/wtbench/manuscript/extended_data_figure13.py\n M src/wtbench/manuscript/figure1_truth_object_v2.py\n?? backup/reports_stage1a/\n?? backup/reports_stage1a_audit/\n?? backup/scripts_stage1a/\n?? manuscript/build_scripts/\n?? manuscript/extended_data/Extended_Data_Figure_1/build_edfig1_composite.py\n?? manuscript/extended_data/Extended_Data_Figure_1/build_extended_data_figure1.py\n?? manuscript/extended_data/Extended_Data_Figure_1/panels/Extended_Data_Figure_1_panel_j_source_data.tsv\n?? manuscript/extended_data/Extended_Data_Figure_1/panels/Extended_Data_Figure_1_panel_k_source_data.tsv\n?? manuscript/extended_data/Extended_Data_Figure_2/build_edfig2_composite.py\n?? manuscript/extended_data/Extended_Data_Figure_2/build_edfig2_panel_e.py\n?? manuscript/extended_data/Extended_Data_Figure_2/build_extended_data_figure13.py\n?? manuscript/extended_data/Extended_Data_Figure_3/build_extended_data_figure3_v2.py\n?? manuscript/extended_data/Extended_Data_Figure_3/panels/Extended_Data_Figure_3_panel_b_manifest.json\n?? manuscript/extended_data/Extended_Data_Figure_3/panels/Extended_Data_Figure_3_panel_b_source_data.tsv\n?? manuscript/extended_data/Extended_Data_Figure_3/panels/Extended_Data_Figure_3_panel_c_manifest.json\n?? manuscript/extended_data/Extended_Data_Figure_3/panels/Extended_Data_Figure_3_panel_c_source_data.tsv\n?? manuscript/extended_data/Extended_Data_Figure_4/build_extended_data_figure10_axis_explanatory.py\n?? manuscript/extended_data/Extended_Data_Figure_5/build_extended_data_figure9_biological_landing.py\n?? manuscript/extended_data/Extended_Data_Figure_6/Extended_Data_Figure_6_panel_manifest.json\n?? manuscript/extended_data/Extended_Data_Figure_6/build_extended_data_figure_robustness.py\n?? manuscript/extended_data/Extended_Data_Figure_6/panels/Extended_Data_Figure_6_panel_a_manifest.json\n?? manuscript/extended_data/Extended_Data_Figure_6/panels/Extended_Data_Figure_6_panel_a_source_data.tsv\n?? manuscript/extended_data/Extended_Data_Figure_6/panels/Extended_Data_Figure_6_panel_b_manifest.json\n?? manuscript/extended_data/Extended_Data_Figure_6/panels/Extended_Data_Figure_6_panel_b_source_data.tsv\n?? manuscript/extended_data/Extended_Data_Figure_6/panels/Extended_Data_Figure_6_panel_c_manifest.json\n?? manuscript/extended_data/Extended_Data_Figure_6/panels/Extended_Data_Figure_6_panel_c_source_data.tsv\n?? manuscript/extended_data/Extended_Data_Figure_6/panels/Extended_Data_Figure_6_panel_d_manifest.json\n?? manuscript/extended_data/Extended_Data_Figure_6/panels/Extended_Data_Figure_6_panel_d_source_data.tsv\n?? manuscript/figures/Figure_1/build_figure1_truth_object.py\n?? manuscript/figures/Figure_2/build_figure2_anchor_tiering.py\n?? manuscript/figures/Figure_3/build_figure3_model_tradeoff.py\n?? manuscript/figures/Figure_4/build_figure4_sweep_controls.py\n?? manuscript/figures/Figure_5/build_figure6_boundary.py\n?? manuscript/figures/Figure_5/panels/Figure_5_panel_d.png\n?? manuscript/figures/Figure_5/panels/Figure_5_panel_d_manifest.json\n?? manuscript/figures/Figure_5/panels/Figure_5_panel_d_source_data.tsv"
+  },
+  "inputs": [
+    {
+      "path": "reports/pathway_response/fgsea_hallmark_HCC38.tsv",
+      "sha256": "ec7a85fb80ef365be028c0f14907943e7dc872f5c36993c508dce60230f3f1da"
+    },
+    {
+      "path": "reports/pathway_response/fgsea_hallmark_HCC1143.tsv",
+      "sha256": "2509c4fd321187e374c4d6f749049bc395c28660600de45d8843ea2410131341"
+    },
+    {
+      "path": "reports/pathway_response/fgsea_hallmark_K562_7d.tsv",
+      "sha256": "ec91fb580dd6a1be31386d275bded9cd5df850da20c7ae49b321ff64b959d991"
+    },
+    {
+      "path": "reports/pathway_response/fgsea_hallmark_K562_13d.tsv",
+      "sha256": "b7e594b30e3f1194b7c5517ec85a21320e3c109b20978ee7481b4c5135010029"
+    },
+    {
+      "path": "reports/pathway_response/selected_response_gene_set_panel.tsv",
+      "sha256": "c2cc5ef7b57fdef51f6f9021b8a682890ab636b49943ea8201128d2ccc968075"
+    },
+    {
+      "path": "reports/pathway_response/selected_targets_for_display.tsv",
+      "sha256": "cab93374522340642d23784f130d3a8784b275b6fc34d9588e9f7cde70c728df"
+    },
+    {
+      "path": "reports/pathway_response/qc/pathway_display_selection_log.json",
+      "sha256": "2e60ee0b4bffb3ed3257ad50f82467e5fdbaf2b4e1d6031e4bb90b1c79dc945d"
+    },
+    {
+      "path": "reports/pathway_response/qc/gene_set_provenance.json",
+      "sha256": "e863b97cf03c6ec545fadf08008943d0552660e3625f3792f6aa1a253c5ebfba"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig9_biological_landing/panels/edfig9_panela.png",
+      "sha256": "bd6ffbe317bfdc1f091ad31bcd9fa89e79cbc75614f314ea18f1bb91641dab28"
+    },
+    {
+      "path": "reports/manuscript_extended_data_v1/edfig9_biological_landing/panels/edfig9_panela.pdf",
+      "sha256": "ced6ec669ab375fcd93bf55c3b9d664c88f04622245b683fbc19fe936949ea78"
+    }
+  ],
+  "panel_id": "ED5a",
+  "panel_title": "Pathway-response polarity heatmap",
+  "script": "scripts/manuscript/build_extended_data_figure9_biological_landing.py",
+  "source_data": {
+    "path": "reports/manuscript_extended_data_v1/edfig9_biological_landing/panels/edfig9_panela_source_data.tsv",
+    "sha256": "4401fb4f9331da24ba3dab65134e63d692c1816c2dc3fca64cdf9096db8a6197"
+  }
+}

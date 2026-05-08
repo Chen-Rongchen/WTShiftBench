@@ -1,0 +1,37 @@
+{
+  "stage": "stage2_hcc_gears_raw_output",
+  "dataset_role": "primary",
+  "cell_line": "HCC1143",
+  "entrant_id": "gears",
+  "entrant_version": "gears_hcc_formal_v1",
+  "model_id": "gears_hcc_formal_v1",
+  "prediction_space": "normalized_log1p_internal_then_predicted_shift",
+  "normalization_target_sum": 10000.0,
+  "raw_input_source_kind": "mtx_protospacer_single_feature_calls",
+  "raw_prediction_path": "data/predictions/stage2_gears_raw/gears_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz",
+  "runtime": {
+    "device": "auto",
+    "training_seed": 123,
+    "epochs": 30,
+    "batch_size": 32,
+    "lr": 0.001,
+    "weight_decay": 1e-06,
+    "train_val_fraction": 0.8,
+    "max_control_cells": 2048,
+    "max_cells_per_train_condition": 64,
+    "prediction_num_samples": 64,
+    "perturbation_graph_k": 8
+  },
+  "training_summary": {
+    "requested_device": "auto",
+    "device": "cuda",
+    "train_cells": 4227,
+    "train_targets": 47,
+    "all_frozen_targets": 47,
+    "control_cells_before_sampling": 1325,
+    "frozen_target_cells_before_sampling": 10080,
+    "split_train_conditions": 39,
+    "split_val_conditions": 9
+  },
+  "export_timestamp": "2026-04-09T03:11:09.165247+00:00"
+}

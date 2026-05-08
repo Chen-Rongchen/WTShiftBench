@@ -1,0 +1,353 @@
+[
+  {
+    "timestamp_utc": "2026-04-09T08:02:50.495510+00:00",
+    "candidate_rank": 2,
+    "model_id": "gears_hcc_formal_v1_e30_lr1e-03_wd1e-05",
+    "variant_id": "e30_lr1e-03_wd1e-05",
+    "phase": "train",
+    "status": "skipped_existing",
+    "message": "raw predictions already exist"
+  },
+  {
+    "timestamp_utc": "2026-04-09T08:02:50.495531+00:00",
+    "candidate_rank": 2,
+    "model_id": "gears_hcc_formal_v1_e30_lr1e-03_wd1e-05",
+    "variant_id": "e30_lr1e-03_wd1e-05",
+    "phase": "export_HCC38",
+    "status": "started",
+    "message": ""
+  },
+  {
+    "timestamp_utc": "2026-04-09T08:02:51.779216+00:00",
+    "candidate_rank": 2,
+    "model_id": "gears_hcc_formal_v1_e30_lr1e-03_wd1e-05",
+    "variant_id": "e30_lr1e-03_wd1e-05",
+    "phase": "export_HCC38",
+    "status": "completed",
+    "message": ""
+  },
+  {
+    "timestamp_utc": "2026-04-09T08:02:51.779253+00:00",
+    "candidate_rank": 2,
+    "model_id": "gears_hcc_formal_v1_e30_lr1e-03_wd1e-05",
+    "variant_id": "e30_lr1e-03_wd1e-05",
+    "phase": "export_HCC1143",
+    "status": "started",
+    "message": ""
+  },
+  {
+    "timestamp_utc": "2026-04-09T08:02:52.868669+00:00",
+    "candidate_rank": 2,
+    "model_id": "gears_hcc_formal_v1_e30_lr1e-03_wd1e-05",
+    "variant_id": "e30_lr1e-03_wd1e-05",
+    "phase": "export_HCC1143",
+    "status": "completed",
+    "message": ""
+  },
+  {
+    "timestamp_utc": "2026-04-09T08:02:52.868706+00:00",
+    "candidate_rank": 2,
+    "model_id": "gears_hcc_formal_v1_e30_lr1e-03_wd1e-05",
+    "variant_id": "e30_lr1e-03_wd1e-05",
+    "phase": "smoke",
+    "status": "started",
+    "message": ""
+  },
+  {
+    "timestamp_utc": "2026-04-09T08:03:40.606189+00:00",
+    "candidate_rank": 2,
+    "model_id": "gears_hcc_formal_v1_e30_lr1e-03_wd1e-05",
+    "variant_id": "e30_lr1e-03_wd1e-05",
+    "phase": "smoke",
+    "status": "completed",
+    "message": ""
+  },
+  {
+    "timestamp_utc": "2026-04-09T08:03:40.608599+00:00",
+    "candidate_rank": 3,
+    "model_id": "gears_hcc_formal_v1_e30_lr5e-04_wd1e-06",
+    "variant_id": "e30_lr5e-04_wd1e-06",
+    "phase": "train",
+    "status": "started",
+    "message": "configs/stage2/generated/gears_hcc_backbone_sweep_v1/e30_lr5e-04_wd1e-06.json"
+  },
+  {
+    "timestamp_utc": "2026-04-09T08:49:27.116938+00:00",
+    "candidate_rank": 3,
+    "model_id": "gears_hcc_formal_v1_e30_lr5e-04_wd1e-06",
+    "variant_id": "e30_lr5e-04_wd1e-06",
+    "phase": "train",
+    "status": "completed",
+    "message": ""
+  },
+  {
+    "timestamp_utc": "2026-04-09T08:49:27.116990+00:00",
+    "candidate_rank": 3,
+    "model_id": "gears_hcc_formal_v1_e30_lr5e-04_wd1e-06",
+    "variant_id": "e30_lr5e-04_wd1e-06",
+    "phase": "export_HCC38",
+    "status": "started",
+    "message": ""
+  },
+  {
+    "timestamp_utc": "2026-04-09T08:49:28.151093+00:00",
+    "candidate_rank": 3,
+    "model_id": "gears_hcc_formal_v1_e30_lr5e-04_wd1e-06",
+    "variant_id": "e30_lr5e-04_wd1e-06",
+    "phase": "export_HCC38",
+    "status": "completed",
+    "message": ""
+  },
+  {
+    "timestamp_utc": "2026-04-09T08:49:28.151112+00:00",
+    "candidate_rank": 3,
+    "model_id": "gears_hcc_formal_v1_e30_lr5e-04_wd1e-06",
+    "variant_id": "e30_lr5e-04_wd1e-06",
+    "phase": "export_HCC1143",
+    "status": "started",
+    "message": ""
+  },
+  {
+    "timestamp_utc": "2026-04-09T08:49:29.181263+00:00",
+    "candidate_rank": 3,
+    "model_id": "gears_hcc_formal_v1_e30_lr5e-04_wd1e-06",
+    "variant_id": "e30_lr5e-04_wd1e-06",
+    "phase": "export_HCC1143",
+    "status": "completed",
+    "message": ""
+  },
+  {
+    "timestamp_utc": "2026-04-09T08:49:29.181279+00:00",
+    "candidate_rank": 3,
+    "model_id": "gears_hcc_formal_v1_e30_lr5e-04_wd1e-06",
+    "variant_id": "e30_lr5e-04_wd1e-06",
+    "phase": "smoke",
+    "status": "started",
+    "message": ""
+  },
+  {
+    "timestamp_utc": "2026-04-09T08:50:13.928074+00:00",
+    "candidate_rank": 3,
+    "model_id": "gears_hcc_formal_v1_e30_lr5e-04_wd1e-06",
+    "variant_id": "e30_lr5e-04_wd1e-06",
+    "phase": "smoke",
+    "status": "completed",
+    "message": ""
+  },
+  {
+    "timestamp_utc": "2026-04-09T08:50:13.930356+00:00",
+    "candidate_rank": 4,
+    "model_id": "gears_hcc_formal_v1_e30_lr2e-03_wd1e-06",
+    "variant_id": "e30_lr2e-03_wd1e-06",
+    "phase": "train",
+    "status": "started",
+    "message": "configs/stage2/generated/gears_hcc_backbone_sweep_v1/e30_lr2e-03_wd1e-06.json"
+  },
+  {
+    "timestamp_utc": "2026-04-09T09:33:08.368614+00:00",
+    "candidate_rank": 4,
+    "model_id": "gears_hcc_formal_v1_e30_lr2e-03_wd1e-06",
+    "variant_id": "e30_lr2e-03_wd1e-06",
+    "phase": "train",
+    "status": "completed",
+    "message": ""
+  },
+  {
+    "timestamp_utc": "2026-04-09T09:33:08.368657+00:00",
+    "candidate_rank": 4,
+    "model_id": "gears_hcc_formal_v1_e30_lr2e-03_wd1e-06",
+    "variant_id": "e30_lr2e-03_wd1e-06",
+    "phase": "export_HCC38",
+    "status": "started",
+    "message": ""
+  },
+  {
+    "timestamp_utc": "2026-04-09T09:33:09.388420+00:00",
+    "candidate_rank": 4,
+    "model_id": "gears_hcc_formal_v1_e30_lr2e-03_wd1e-06",
+    "variant_id": "e30_lr2e-03_wd1e-06",
+    "phase": "export_HCC38",
+    "status": "completed",
+    "message": ""
+  },
+  {
+    "timestamp_utc": "2026-04-09T09:33:09.388438+00:00",
+    "candidate_rank": 4,
+    "model_id": "gears_hcc_formal_v1_e30_lr2e-03_wd1e-06",
+    "variant_id": "e30_lr2e-03_wd1e-06",
+    "phase": "export_HCC1143",
+    "status": "started",
+    "message": ""
+  },
+  {
+    "timestamp_utc": "2026-04-09T09:33:10.429729+00:00",
+    "candidate_rank": 4,
+    "model_id": "gears_hcc_formal_v1_e30_lr2e-03_wd1e-06",
+    "variant_id": "e30_lr2e-03_wd1e-06",
+    "phase": "export_HCC1143",
+    "status": "completed",
+    "message": ""
+  },
+  {
+    "timestamp_utc": "2026-04-09T09:33:10.429748+00:00",
+    "candidate_rank": 4,
+    "model_id": "gears_hcc_formal_v1_e30_lr2e-03_wd1e-06",
+    "variant_id": "e30_lr2e-03_wd1e-06",
+    "phase": "smoke",
+    "status": "started",
+    "message": ""
+  },
+  {
+    "timestamp_utc": "2026-04-09T09:33:57.452774+00:00",
+    "candidate_rank": 4,
+    "model_id": "gears_hcc_formal_v1_e30_lr2e-03_wd1e-06",
+    "variant_id": "e30_lr2e-03_wd1e-06",
+    "phase": "smoke",
+    "status": "completed",
+    "message": ""
+  },
+  {
+    "timestamp_utc": "2026-04-09T09:33:57.454953+00:00",
+    "candidate_rank": 5,
+    "model_id": "gears_hcc_formal_v1_e20_lr1e-03_wd1e-06",
+    "variant_id": "e20_lr1e-03_wd1e-06",
+    "phase": "train",
+    "status": "started",
+    "message": "configs/stage2/generated/gears_hcc_backbone_sweep_v1/e20_lr1e-03_wd1e-06.json"
+  },
+  {
+    "timestamp_utc": "2026-04-09T10:02:43.647690+00:00",
+    "candidate_rank": 5,
+    "model_id": "gears_hcc_formal_v1_e20_lr1e-03_wd1e-06",
+    "variant_id": "e20_lr1e-03_wd1e-06",
+    "phase": "train",
+    "status": "completed",
+    "message": ""
+  },
+  {
+    "timestamp_utc": "2026-04-09T10:02:43.647738+00:00",
+    "candidate_rank": 5,
+    "model_id": "gears_hcc_formal_v1_e20_lr1e-03_wd1e-06",
+    "variant_id": "e20_lr1e-03_wd1e-06",
+    "phase": "export_HCC38",
+    "status": "started",
+    "message": ""
+  },
+  {
+    "timestamp_utc": "2026-04-09T10:02:44.717852+00:00",
+    "candidate_rank": 5,
+    "model_id": "gears_hcc_formal_v1_e20_lr1e-03_wd1e-06",
+    "variant_id": "e20_lr1e-03_wd1e-06",
+    "phase": "export_HCC38",
+    "status": "completed",
+    "message": ""
+  },
+  {
+    "timestamp_utc": "2026-04-09T10:02:44.717869+00:00",
+    "candidate_rank": 5,
+    "model_id": "gears_hcc_formal_v1_e20_lr1e-03_wd1e-06",
+    "variant_id": "e20_lr1e-03_wd1e-06",
+    "phase": "export_HCC1143",
+    "status": "started",
+    "message": ""
+  },
+  {
+    "timestamp_utc": "2026-04-09T10:02:45.760746+00:00",
+    "candidate_rank": 5,
+    "model_id": "gears_hcc_formal_v1_e20_lr1e-03_wd1e-06",
+    "variant_id": "e20_lr1e-03_wd1e-06",
+    "phase": "export_HCC1143",
+    "status": "completed",
+    "message": ""
+  },
+  {
+    "timestamp_utc": "2026-04-09T10:02:45.760760+00:00",
+    "candidate_rank": 5,
+    "model_id": "gears_hcc_formal_v1_e20_lr1e-03_wd1e-06",
+    "variant_id": "e20_lr1e-03_wd1e-06",
+    "phase": "smoke",
+    "status": "started",
+    "message": ""
+  },
+  {
+    "timestamp_utc": "2026-04-09T10:03:32.955924+00:00",
+    "candidate_rank": 5,
+    "model_id": "gears_hcc_formal_v1_e20_lr1e-03_wd1e-06",
+    "variant_id": "e20_lr1e-03_wd1e-06",
+    "phase": "smoke",
+    "status": "completed",
+    "message": ""
+  },
+  {
+    "timestamp_utc": "2026-04-09T10:03:32.958165+00:00",
+    "candidate_rank": 6,
+    "model_id": "gears_hcc_formal_v1_e40_lr1e-03_wd1e-06",
+    "variant_id": "e40_lr1e-03_wd1e-06",
+    "phase": "train",
+    "status": "started",
+    "message": "configs/stage2/generated/gears_hcc_backbone_sweep_v1/e40_lr1e-03_wd1e-06.json"
+  },
+  {
+    "timestamp_utc": "2026-04-09T10:59:50.823673+00:00",
+    "candidate_rank": 6,
+    "model_id": "gears_hcc_formal_v1_e40_lr1e-03_wd1e-06",
+    "variant_id": "e40_lr1e-03_wd1e-06",
+    "phase": "train",
+    "status": "completed",
+    "message": ""
+  },
+  {
+    "timestamp_utc": "2026-04-09T10:59:50.823717+00:00",
+    "candidate_rank": 6,
+    "model_id": "gears_hcc_formal_v1_e40_lr1e-03_wd1e-06",
+    "variant_id": "e40_lr1e-03_wd1e-06",
+    "phase": "export_HCC38",
+    "status": "started",
+    "message": ""
+  },
+  {
+    "timestamp_utc": "2026-04-09T10:59:51.855666+00:00",
+    "candidate_rank": 6,
+    "model_id": "gears_hcc_formal_v1_e40_lr1e-03_wd1e-06",
+    "variant_id": "e40_lr1e-03_wd1e-06",
+    "phase": "export_HCC38",
+    "status": "completed",
+    "message": ""
+  },
+  {
+    "timestamp_utc": "2026-04-09T10:59:51.855701+00:00",
+    "candidate_rank": 6,
+    "model_id": "gears_hcc_formal_v1_e40_lr1e-03_wd1e-06",
+    "variant_id": "e40_lr1e-03_wd1e-06",
+    "phase": "export_HCC1143",
+    "status": "started",
+    "message": ""
+  },
+  {
+    "timestamp_utc": "2026-04-09T10:59:52.891227+00:00",
+    "candidate_rank": 6,
+    "model_id": "gears_hcc_formal_v1_e40_lr1e-03_wd1e-06",
+    "variant_id": "e40_lr1e-03_wd1e-06",
+    "phase": "export_HCC1143",
+    "status": "completed",
+    "message": ""
+  },
+  {
+    "timestamp_utc": "2026-04-09T10:59:52.891271+00:00",
+    "candidate_rank": 6,
+    "model_id": "gears_hcc_formal_v1_e40_lr1e-03_wd1e-06",
+    "variant_id": "e40_lr1e-03_wd1e-06",
+    "phase": "smoke",
+    "status": "started",
+    "message": ""
+  },
+  {
+    "timestamp_utc": "2026-04-09T11:00:40.779965+00:00",
+    "candidate_rank": 6,
+    "model_id": "gears_hcc_formal_v1_e40_lr1e-03_wd1e-06",
+    "variant_id": "e40_lr1e-03_wd1e-06",
+    "phase": "smoke",
+    "status": "completed",
+    "message": ""
+  }
+]

@@ -21,6 +21,10 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "src"))
 
 from wtbench.manuscript.figure_io import repo_root, save_figure
 from wtbench.manuscript.manuscript_style import COLORS, apply_manuscript_style, clean_axes
+from wtbench.manuscript.extended_data_figure3_v2 import (
+    build_panel_c_source,
+    compute_replogle_bridge_summary,
+)
 
 ROOT = repo_root()
 
@@ -112,7 +116,7 @@ def generate_panel_a(src_a: pd.DataFrame) -> Path:
         clean_axes(sa)
 
     rank_ax.set_ylim(0.35, 0.88)
-    rank_ax.set_ylabel("Bridge rho", labelpad=2)
+    rank_ax.set_ylabel("Bridge Spearman ρ", labelpad=2)
     rank_ax.set_title("Rank bridge weakens at 13d", loc="left", fontsize=7.0, fontweight="bold", pad=2)
     shift_ax.set_ylim(0.55, 1.15)
     shift_ax.set_ylabel("Mean shift (norm.)", labelpad=2)
@@ -132,6 +136,7 @@ def generate_square_panel_b():
     df = pd.read_csv(REPLOGLE_TSV, sep="\t")
     df["shift_quantile"] = df["real_shift_mean_abs"].rank(pct=True)
     df["depmap_quantile"] = df["depmap_gene_dependency"].rank(pct=True)
+    bridge_summ = compute_replogle_bridge_summary(df)
 
     apply_manuscript_style()
     fig, ax = plt.subplots(figsize=(4.5, 1.4))
@@ -162,7 +167,6 @@ def generate_square_panel_b():
     ax.set_xlim(-0.02, 1.02)
     ax.set_ylim(-0.02, 1.02)
 
-    n = len(df)
     n_q1 = int((df["quadrant"] == "Q1_anchor").sum())
     n_q2 = int((df["quadrant"] == "Q2_shift_excess").sum())
     n_q3 = int((df["quadrant"] == "Q3_dep_excess").sum())
@@ -171,11 +175,21 @@ def generate_square_panel_b():
 
     # Stats outside right
     stats_y = 0.95
-    ax.text(1.08, stats_y,
-            f"aligned Spearman rho = 0.402\n"
-            f"95% CI [0.363, 0.439]\n"
-            f"empirical p = 0.001",
-            transform=ax.transAxes, fontsize=5.2, va="top", ha="left", color="#333333")
+    ax.text(
+        1.08,
+        stats_y,
+        (
+            f"Spearman ρ = {bridge_summ['bridge_spearman_rho_aligned']:.3f}\n"
+            f"95% CI {bridge_summ['bridge_ci_lo_fisher95']:.3f}\u2013{bridge_summ['bridge_ci_hi_fisher95']:.3f}\n"
+            f"empirical p = {bridge_summ['bridge_empirical_p_two_sided_shuffle']:.3g}\n"
+            f"n = {bridge_summ['bridge_n_targets']}"
+        ),
+        transform=ax.transAxes,
+        fontsize=5.2,
+        va="top",
+        ha="left",
+        color="#333333",
+    )
 
     # Color swatches outside right
     quad_info = [
@@ -217,20 +231,15 @@ def generate_panel_c() -> Path:
     OCHRE = "#D84315"
     GREEN_FILL = "#E8F5E9"
 
-    rows = [
-        ("Bridge rho above null",            "A1", "yes", "\u03c1=0.733 / 0.515"),
-        ("Joint grid defined",                "",  "yes", "25/75 grid applied"),
-        ("Q1 region present",                 "",  "yes", "quadrant observed"),
-        ("Backbone / shift-excess structure", "A0","yes", "matches primary form"),
-        ("Content-level replication",          "B", "no",  "composition differs"),
-        ("Assigned tier",                      "",  "A0/A1, not B", ""),
-    ]
+    rows = list(
+        build_panel_c_source(ROOT)[["evidence_item", "tier", "status", "note"]].itertuples(index=False, name=None)
+    )
 
     # Header bar (Fig 2f style)
     ax.add_patch(
         plt.Rectangle((0.005, 0.86), 0.99, 0.08, transform=ax.transAxes,
                       facecolor=LIGHT_GRAY, edgecolor="none", zorder=0))
-    headers = [("Evidence item", 0.02), ("Tier", 0.46), ("Status", 0.58)]
+    headers = [("Evidence item", 0.02), ("Tier", 0.42), ("Status", 0.54), ("Note", 0.72)]
     for text, x in headers:
         ax.text(x, 0.90, text, fontsize=7.2, fontweight="bold", color=DARK_TEXT, transform=ax.transAxes)
     ax.plot([0.01, 0.99], [0.86, 0.86], color=DIVIDER_GRAY, linewidth=0.7, transform=ax.transAxes)
@@ -239,7 +248,7 @@ def generate_panel_c() -> Path:
     for i, (item, supports, status, note) in enumerate(rows):
         y = 0.78 - i * row_gap
         is_yes = status == "yes"
-        is_tier = "A0/A1" in status
+        is_tier = "A0/A1" in status and "supported" in status
 
         if is_tier:
             ax.add_patch(
@@ -252,21 +261,21 @@ def generate_panel_c() -> Path:
                 color=GREEN if is_tier else DARK_TEXT, transform=ax.transAxes, va="center")
 
         if supports:
-            ax.text(0.46, y, supports, fontsize=6.8, va="center", fontweight="bold",
+            ax.text(0.42, y, supports, fontsize=6.5, va="center", fontweight="bold",
                     color="#888888", transform=ax.transAxes)
 
-        chip_color = GREEN if is_yes else OCHRE
+        chip_color = GREEN if (is_yes or is_tier) else OCHRE
         ax.add_patch(
-            plt.Rectangle((0.58, y - 0.025), 0.025, 0.05, transform=ax.transAxes,
+            plt.Rectangle((0.54, y - 0.022), 0.022, 0.044, transform=ax.transAxes,
                           facecolor=chip_color, edgecolor="none"))
         status_text = "yes" if is_yes else "no"
         if is_tier:
             status_text = "A0/A1, not B"
-        ax.text(0.615, y, status_text, fontsize=6.8 if is_tier else 6.2, va="center",
+        ax.text(0.57, y, status_text, fontsize=6.5 if is_tier else 6.0, va="center",
                 fontweight="bold", color=chip_color, transform=ax.transAxes)
 
         if note:
-            ax.text(0.98, y, note, fontsize=5.5, va="center", ha="right",
+            ax.text(0.72, y, note, fontsize=5.2, va="center", ha="left",
                     color="#999999", transform=ax.transAxes)
 
     clean_axes(ax)

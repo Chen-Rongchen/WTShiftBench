@@ -3,10 +3,8 @@
 
 Panel layout (top to bottom):
   Row 0 — panel a (dataset table)
-  Row 1 — UMAP panels (b-e from source; j added if Replogle present)
-  Row 2 — arrow panels (f-i from source; k added if Replogle present)
-
-Auto-detects Replogle panels j,k and includes them when available.
+  Row 1 — UMAP panels b–f (HCC38, HCC1143, K562 7d, K562 13d, Replogle K562 essential)
+  Row 2 — target-gene expression arrow panels g–k
 """
 from __future__ import annotations
 from pathlib import Path
@@ -29,11 +27,6 @@ def load(letter: str) -> Image.Image:
     return Image.open(PDIR / f"Extended_Data_Figure_1_panel_{letter}.png")
 
 
-def load_if_exists(letter: str) -> Image.Image | None:
-    p = PDIR / f"Extended_Data_Figure_1_panel_{letter}.png"
-    return Image.open(p) if p.exists() else None
-
-
 def add_panel_letter(img: Image.Image, letter: str) -> Image.Image:
     """Add bold panel letter top-left, matching ED Fig 3a style."""
     draw = ImageDraw.Draw(img)
@@ -47,10 +40,8 @@ def main():
     row0 = load("a")
     row0 = row0.resize((TARGET_W, int(row0.height * TARGET_W / row0.width)), Image.LANCZOS)
 
-    # Row 1: UMAP panels (b-e from source; j for Replogle if exists)
-    umap_letters = list("bcde")
-    if load_if_exists("j"):
-        umap_letters.append("j")
+    # Row 1: UMAP panels b–f
+    umap_letters = list("bcdef")
     umap_imgs = []
     for c in umap_letters:
         im = load(c)
@@ -64,10 +55,8 @@ def main():
         x += im.width
     row1 = row1.resize((TARGET_W, int(UMAP_H * TARGET_W / row1_w)), Image.LANCZOS)
 
-    # Row 2: Arrow panels (f-i from source; k for Replogle if exists)
-    arrow_letters = list("fghi")
-    if load_if_exists("k"):
-        arrow_letters.append("k")
+    # Row 2: Arrow panels g–k
+    arrow_letters = list("ghijk")
     arrow_imgs = []
     for c in arrow_letters:
         im = load(c)

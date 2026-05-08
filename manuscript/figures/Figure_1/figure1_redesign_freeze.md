@@ -196,7 +196,7 @@ freeze 后仅允许以下类型修改：
 重建命令冻结为：
 
 ```bash
-PYTHONPATH="/home/data/gz0705/WTKO/src" python "scripts/manuscript/build_figure1_truth_object.py"
+PYTHONPATH="$(pwd)/src" python "scripts/manuscript/build_figure1_truth_object.py"
 ```
 
 重建输出目录：

@@ -1,0 +1,40 @@
+# Conda environment for WTShiftBench (figure reproduction subset).
+#
+# This is a lighter-weight alternative to the project's pixi configuration
+# (`pixi.toml`). It installs the dependencies needed to:
+#   - run the manuscript figure-build scripts in scripts/manuscript/
+#   - read the cached intermediate TSVs in reports/
+#   - re-run the data preprocessing scripts in scripts/preprocess_*.py
+#
+# It does NOT install the heavy model stacks (GEARS, scGPT, Geneformer);
+# those use cell-line-specific CUDA + PyTorch versions and are described in
+# `pixi.toml`. To reproduce model predictions instead of just the figures,
+# use pixi (recommended) or follow the per-feature dependency lists.
+#
+# Usage:
+#     conda env create -f environment.yml
+#     conda activate wtshiftbench
+#     pip install -e .
+name: wtshiftbench
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.10
+  - pip
+  - numpy>=1.26,<2.0
+  - pandas>=2.1,<2.3
+  - scipy>=1.11,<1.14
+  - scikit-learn
+  - matplotlib
+  - seaborn
+  - anndata
+  - scanpy
+  - h5py
+  - pyyaml
+  - rich
+  - typer
+  - tqdm
+  - pytest
+  - pip:
+      - pertpy>=0.7.0

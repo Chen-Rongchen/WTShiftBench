@@ -1,0 +1,33 @@
+{
+  "stage": "stage2_k562_rnai_endpoint_consistency",
+  "claim_scope": "GSE90063 K562 7d/13d CRISPR KO truth 的 CRISPR DepMap matched primary endpoint 与 DEMETER2 RNAi cross-platform sensitivity endpoint 对照。",
+  "timepoints": [
+    {
+      "label": "7d",
+      "role": "temporal_sensitivity_early_bridge_probe",
+      "crispr_bridge_table_path": "data/processed/stage2_truth_driven_bridge_gse90063_7d/dixit_2016_k562_tf_7d_gse90063/target_level_bridge_table.tsv.gz",
+      "rnai_bridge_table_path": "data/processed/stage2_truth_driven_bridge_gse90063_7d_rnai_demeter2/dixit_2016_k562_tf_7d_gse90063/target_level_bridge_table.tsv.gz"
+    },
+    {
+      "label": "13d",
+      "role": "primary_formal_supplementary_bridge_test",
+      "crispr_bridge_table_path": "data/processed/stage2_truth_driven_bridge_gse90063_13d/dixit_2016_k562_tf_13d_gse90063/target_level_bridge_table.tsv.gz",
+      "rnai_bridge_table_path": "data/processed/stage2_truth_driven_bridge_gse90063_13d_rnai_demeter2/dixit_2016_k562_tf_13d_gse90063/target_level_bridge_table.tsv.gz"
+    }
+  ],
+  "metrics": {
+    "truth_metrics": [
+      "real_shift_mean_abs",
+      "real_shift_L2"
+    ],
+    "depmap_endpoints": [
+      "depmap_gene_dependency",
+      "depmap_gene_effect"
+    ],
+    "primary_truth_metric": "real_shift_mean_abs",
+    "primary_depmap_endpoint": "depmap_gene_dependency"
+  },
+  "output": {
+    "report_root": "reports/stage2_truth_driven_bridge/k562_rnai_endpoint_consistency"
+  }
+}

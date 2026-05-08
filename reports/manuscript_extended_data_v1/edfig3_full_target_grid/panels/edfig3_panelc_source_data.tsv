@@ -1,0 +1,28 @@
+cell_line	joint_grid	n	summary_kind	target_gene
+HCC1143	Q1_anchor	10	grid_category	
+HCC1143	Q4_low_information	6	grid_category	
+HCC1143	middle	32	grid_category	
+HCC38	Q1_anchor	9	grid_category	
+HCC38	Q4_low_information	6	grid_category	
+HCC38	middle	32	grid_category	
+HCC1143	Q1_anchor	1	q1_anchor	PFDN5
+HCC1143	Q1_anchor	1	q1_anchor	PMF1
+HCC1143	Q1_anchor	1	q1_anchor	PRPF6
+HCC1143	Q1_anchor	1	q1_anchor	RPS3
+HCC1143	Q1_anchor	1	q1_anchor	RUVBL2
+HCC1143	Q1_anchor	1	q1_anchor	SS18L2
+HCC1143	Q1_anchor	1	q1_anchor	TADA3
+HCC1143	Q1_anchor	1	q1_anchor	YBX1
+HCC1143	Q1_anchor	1	q1_anchor	ZBTB17
+HCC1143	Q1_anchor	1	q1_anchor	ZNF131
+HCC38	Q1_anchor	1	q1_anchor	ENY2
+HCC38	Q1_anchor	1	q1_anchor	NPM1
+HCC38	Q1_anchor	1	q1_anchor	PFDN5
+HCC38	Q1_anchor	1	q1_anchor	PMF1
+HCC38	Q1_anchor	1	q1_anchor	PRPF6
+HCC38	Q1_anchor	1	q1_anchor	RPS3
+HCC38	Q1_anchor	1	q1_anchor	RUVBL2
+HCC38	Q1_anchor	1	q1_anchor	ZBTB17
+HCC38	Q1_anchor	1	q1_anchor	ZNF131
+all	Q2_transcriptomic_excess	0	zero_count_check	
+all	Q3_dependency_excess	0	zero_count_check	

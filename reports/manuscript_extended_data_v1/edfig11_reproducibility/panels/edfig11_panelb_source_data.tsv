@@ -1,0 +1,14 @@
+table_id	title	claim_layer	n_files	total_bytes	tsv_files	summary_kind	suffix
+supp_table_10_figure_reproducibility	Main figure source data and manifests	reproducibility	16	87845	0.0	table_group	
+supp_table_1_truth_bridge_hcc	HCC truth-DepMap bridge summaries	truth_object	5	22019	5.0	table_group	
+supp_table_2_truth_decomposition	Target-level and axis-level truth decomposition	truth_object_decomposition	5	25549	5.0	table_group	
+supp_table_3_anchor_claim_governance	Anchor tiering, sensitivity and final claim matrix	claim_governance	3	12434	3.0	table_group	
+supp_table_4_model_comparison	HCC model comparison and GEARS diagnostic summaries	model_recovery	4	12241	4.0	table_group	
+supp_table_5_gears_sweep_and_controls	GEARS sweep and linear-control support tables	model_controls	9	12621	2.0	table_group	
+supp_table_6_axis_annotation	Axis annotation and validation	axis_interpretation	3	74983	3.0	table_group	
+supp_table_7_k562_temporal	K562 7d and 13d temporal supplementary evidence	supplementary_external	5	7166	5.0	table_group	
+supp_table_8_endpoint_hierarchy	CRISPR versus RNAi endpoint hierarchy	endpoint_boundary	3	8335	3.0	table_group	
+supp_table_9_covariate_audit	Covariate audit and barcode-gem-group boundary	covariate_boundary	2	6163	1.0	table_group	
+suffix_json			22	90555		hash_suffix	json
+suffix_md			2	6438		hash_suffix	md
+suffix_tsv			31	172363		hash_suffix	tsv

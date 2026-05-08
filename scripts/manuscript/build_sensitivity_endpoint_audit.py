@@ -9,9 +9,11 @@ Output: reports/stage2_truth_driven_bridge/sensitivity/endpoint_hierarchy_audit.
 """
 
 import os
+from pathlib import Path
+
 import pandas as pd
 
-PROJECT_ROOT = "/home/data/gz0705/WTKO"
+PROJECT_ROOT = str(Path(__file__).resolve().parents[2])
 
 INPUT_FILES = {
     "hcc38_hcc1143": os.path.join(

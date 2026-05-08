@@ -1,0 +1,27 @@
+fine_axis	macro_axis	architecture_role	confidence	n_genes	genes	fraction_Q1_HCC38	fraction_Q1_HCC1143	fraction_shift_excess	scp542_coverage	scp542_evaluable	consistency_class	scp542_role_note
+transcription / chromatin	gene expression machinery	canonical_backbone	high	2	ENY2,TADA3	0.5	0.5	1.0	1.0	True	shared_shift_excess	broad/distributed placement — NOT 'single anchor program'
+chromatin remodeling	gene expression machinery	canonical_backbone	high	2	ARID1A,RUVBL2	0.5	0.5	0.5	1.0	True	shared_dual_high	broad/distributed placement — NOT 'single anchor program'
+RNA processing / spliceosome	RNA processing	canonical_backbone	high	1	PRPF6	1.0	1.0	1.0	1.0	True	shared_shift_excess	broad/distributed placement — NOT 'single anchor program'
+ribosomal / translation	ribosome / nucleolar biogenesis	canonical_backbone	high	1	RPS3	1.0	1.0	0.0	1.0	True	shared_dual_high	broad/distributed placement — NOT 'single anchor program'
+mTOR / lysosome / signaling	signaling / growth control	shift_excess	moderate	1	LAMTOR5	0.0	0.0	1.0	1.0	True	shared_shift_excess	distributed basal placement — NOT single basal program match
+transcription regulation	gene expression machinery	context_deviation	moderate	18	ZBTB17,ZNF131,MYBL1,VEZF1,PMF1,GON4L,MIER1,HLX,TMF1,ZBTB20,THAP8,KLF3,ZBTB5,UBP1,MAML3,ETV3,ZNF566,ZNF24	0.167	0.167	0.222	0.444	False	heterogeneous	SCP542 N/A — context-dependence from perturbation data only
+TGF-beta / BMP signaling	signaling / growth control	context_deviation	moderate	2	BMPR1A,SMAD1	0.0	0.0	0.0	0.0	False	heterogeneous	SCP542 N/A — context-dependence from perturbation data only
+nuclear receptor / metabolism	signaling / growth control	context_deviation	moderate	2	THRA,RORC	0.0	0.0	0.0	0.0	False	shared_middle	SCP542 N/A — context-dependence from perturbation data only
+RNA processing / transcription	RNA processing	context_deviation	provisional	1	YBX1	0.0	0.0	0.0	1.0	True	shared_middle	SCP542 evaluable — distributed placement
+cell cycle / replication	cell-state regulation	context_deviation	provisional	1	CDKN2A	0.0	0.0	0.0	0.0	False	line_skewed	SCP542 N/A — context-dependence from perturbation data only
+cytoskeleton / cell motility	cell-state regulation	context_deviation	provisional	1	TMSB4X	0.0	0.0	0.0	1.0	True	shared_middle	SCP542 evaluable — distributed placement
+nuclear receptor / co-activator	gene expression machinery	context_deviation	provisional	1	NCOA1	0.0	0.0	0.0	0.0	False	shared_middle	SCP542 N/A — context-dependence from perturbation data only
+peroxisome / metabolism	metabolism	context_deviation	provisional	1	PEX14	0.0	0.0	0.0	0.0	False	shared_middle	SCP542 N/A — context-dependence from perturbation data only
+metabolism / transcription	metabolism	context_deviation	provisional	1	PCBD1	0.0	0.0	0.0	1.0	True	shared_middle	SCP542 evaluable — distributed placement
+proteostasis / chaperone	proteostasis	context_deviation	provisional	1	PFDN5	1.0	1.0	0.0	1.0	True	line_skewed	SCP542 evaluable — distributed placement
+ribosome biogenesis / nucleolar	ribosome / nucleolar biogenesis	context_deviation	provisional	1	NPM1	1.0	0.0	1.0	1.0	True	shared_shift_excess	SCP542 evaluable — distributed placement
+NF-κB / MAPK signaling	signaling / growth control	context_deviation	provisional	1	TAB3	0.0	0.0	0.0	0.0	False	line_skewed	SCP542 N/A — context-dependence from perturbation data only
+growth / proliferation	signaling / growth control	context_deviation	provisional	1	PA2G4	0.0	0.0	0.0	1.0	True	line_skewed	SCP542 evaluable — distributed placement
+signaling / oncogene	signaling / growth control	context_deviation	provisional	1	MTDH	0.0	0.0	0.0	1.0	True	shared_middle	SCP542 evaluable — distributed placement
+JAK-STAT signaling	signaling / growth control	context_deviation	provisional	1	STAT3	0.0	0.0	0.0	1.0	True	shared_middle	SCP542 evaluable — distributed placement
+synaptic / signaling	signaling / growth control	context_deviation	provisional	1	ERC1	0.0	0.0	0.0	0.0	False	shared_middle	SCP542 N/A — context-dependence from perturbation data only
+growth factor / proliferation	signaling / growth control	context_deviation	provisional	1	HDGF	0.0	0.0	0.0	1.0	True	shared_middle	SCP542 evaluable — distributed placement
+NF-κB / copper signaling	signaling / growth control	context_deviation	provisional	1	COMMD6	0.0	0.0	0.0	1.0	True	shared_middle	SCP542 evaluable — distributed placement
+oxidative stress / mitochondrial	stress response	context_deviation	provisional	1	PARK7	0.0	0.0	0.0	1.0	True	shared_middle	SCP542 evaluable — distributed placement
+ER stress / UPR	stress response	context_deviation	provisional	1	XBP1	0.0	0.0	0.0	1.0	True	shared_middle	SCP542 evaluable — distributed placement
+oxidative stress / antioxidant	stress response	context_deviation	provisional	1	PRDX2	0.0	0.0	0.0	1.0	True	shared_middle	SCP542 evaluable — distributed placement

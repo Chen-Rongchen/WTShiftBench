@@ -1,0 +1,21 @@
+timepoint	role	summary_kind	truth_metric	depmap_endpoint	platform_pair	n_shared_targets	spearman	interpretation
+7d	temporal_sensitivity_early_bridge_probe	endpoint_consistency		depmap_gene_dependency	CRISPR_DepMap_vs_DEMETER2_RNAi	9	0.45	CRISPR DepMap 是 matched primary endpoint；DEMETER2 RNAi 是 cross-platform sensitivity endpoint。
+7d	temporal_sensitivity_early_bridge_probe	truth_endpoint_bridge	real_shift_mean_abs	depmap_gene_dependency	crispr	10	0.7333333333333332	RNAi 不替代 CRISPR 主线，也不提供等价 primary evidence。
+7d	temporal_sensitivity_early_bridge_probe	truth_endpoint_bridge	real_shift_mean_abs	depmap_gene_dependency	rnai	9	0.33333333333333337	RNAi 不替代 CRISPR 主线，也不提供等价 primary evidence。
+7d	temporal_sensitivity_early_bridge_probe	truth_endpoint_bridge	real_shift_L2	depmap_gene_dependency	crispr	10	0.8060606060606059	RNAi 不替代 CRISPR 主线，也不提供等价 primary evidence。
+7d	temporal_sensitivity_early_bridge_probe	truth_endpoint_bridge	real_shift_L2	depmap_gene_dependency	rnai	9	0.3666666666666667	RNAi 不替代 CRISPR 主线，也不提供等价 primary evidence。
+7d	temporal_sensitivity_early_bridge_probe	endpoint_consistency		depmap_gene_effect	CRISPR_DepMap_vs_DEMETER2_RNAi	9	0.45	CRISPR DepMap 是 matched primary endpoint；DEMETER2 RNAi 是 cross-platform sensitivity endpoint。
+7d	temporal_sensitivity_early_bridge_probe	truth_endpoint_bridge	real_shift_mean_abs	depmap_gene_effect	crispr	10	0.7333333333333332	RNAi 不替代 CRISPR 主线，也不提供等价 primary evidence。
+7d	temporal_sensitivity_early_bridge_probe	truth_endpoint_bridge	real_shift_mean_abs	depmap_gene_effect	rnai	9	0.33333333333333337	RNAi 不替代 CRISPR 主线，也不提供等价 primary evidence。
+7d	temporal_sensitivity_early_bridge_probe	truth_endpoint_bridge	real_shift_L2	depmap_gene_effect	crispr	10	0.8060606060606059	RNAi 不替代 CRISPR 主线，也不提供等价 primary evidence。
+7d	temporal_sensitivity_early_bridge_probe	truth_endpoint_bridge	real_shift_L2	depmap_gene_effect	rnai	9	0.3666666666666667	RNAi 不替代 CRISPR 主线，也不提供等价 primary evidence。
+13d	primary_formal_supplementary_bridge_test	endpoint_consistency		depmap_gene_dependency	CRISPR_DepMap_vs_DEMETER2_RNAi	9	0.45	CRISPR DepMap 是 matched primary endpoint；DEMETER2 RNAi 是 cross-platform sensitivity endpoint。
+13d	primary_formal_supplementary_bridge_test	truth_endpoint_bridge	real_shift_mean_abs	depmap_gene_dependency	crispr	10	0.5151515151515151	RNAi 不替代 CRISPR 主线，也不提供等价 primary evidence。
+13d	primary_formal_supplementary_bridge_test	truth_endpoint_bridge	real_shift_mean_abs	depmap_gene_dependency	rnai	9	0.3	RNAi 不替代 CRISPR 主线，也不提供等价 primary evidence。
+13d	primary_formal_supplementary_bridge_test	truth_endpoint_bridge	real_shift_L2	depmap_gene_dependency	crispr	10	0.5030303030303029	RNAi 不替代 CRISPR 主线，也不提供等价 primary evidence。
+13d	primary_formal_supplementary_bridge_test	truth_endpoint_bridge	real_shift_L2	depmap_gene_dependency	rnai	9	0.21666666666666667	RNAi 不替代 CRISPR 主线，也不提供等价 primary evidence。
+13d	primary_formal_supplementary_bridge_test	endpoint_consistency		depmap_gene_effect	CRISPR_DepMap_vs_DEMETER2_RNAi	9	0.45	CRISPR DepMap 是 matched primary endpoint；DEMETER2 RNAi 是 cross-platform sensitivity endpoint。
+13d	primary_formal_supplementary_bridge_test	truth_endpoint_bridge	real_shift_mean_abs	depmap_gene_effect	crispr	10	0.5151515151515151	RNAi 不替代 CRISPR 主线，也不提供等价 primary evidence。
+13d	primary_formal_supplementary_bridge_test	truth_endpoint_bridge	real_shift_mean_abs	depmap_gene_effect	rnai	9	0.3	RNAi 不替代 CRISPR 主线，也不提供等价 primary evidence。
+13d	primary_formal_supplementary_bridge_test	truth_endpoint_bridge	real_shift_L2	depmap_gene_effect	crispr	10	0.5030303030303029	RNAi 不替代 CRISPR 主线，也不提供等价 primary evidence。
+13d	primary_formal_supplementary_bridge_test	truth_endpoint_bridge	real_shift_L2	depmap_gene_effect	rnai	9	0.21666666666666667	RNAi 不替代 CRISPR 主线，也不提供等价 primary evidence。
