@@ -5,7 +5,7 @@
 当前约定：
 
 - 只接受本地 `GMT` 文件
-- `scripts/run_stage2_axis_enrichment.py` 不在脚本内部自动联网下载
+- `scripts/pipeline/axis_enrichment.py` 不在脚本内部自动联网下载
 - 缺失 `gmt_path` 时直接 `fail-fast`
 
 当前文件：
@@ -22,11 +22,11 @@
 
 推荐搭配：
 
-- `configs/stage2/axis_enrichment_template_v1.json`
-- `scripts/run_stage2_axis_enrichment.py`
+- `configs/axis_enrichment_template_v1.json`
+- `scripts/pipeline/axis_enrichment.py`
 
 已生成产物：
 
-- `reports/stage2_axis_analysis/axis_enrichment.tsv`
+- `reports/axis_analysis/axis_enrichment.tsv`
 
 后续如果需要更严格的数据库冻结，可以把这些来源进一步固化到版本化 manifest 中，但当前最小注释流程已经可复现执行。

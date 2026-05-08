@@ -1,6 +1,0 @@
-{
-  "materialize_covariates_config": "configs/stage2/hcc_covariates_v1.json",
-  "sensitivity_config": "configs/stage2/truth_bridge_sensitivity_hcc_full_v1.json",
-  "covariate_audit_config": "configs/stage2/truth_bridge_covariate_audit_v1.json",
-  "validate_outputs": true
-}

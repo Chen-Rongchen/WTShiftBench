@@ -7,11 +7,11 @@
   },
   "inputs": [
     {
-      "path": "reports/stage2_real_hcc_smoke/model_comparison.tsv",
+      "path": "reports/real_hcc_smoke/model_comparison.tsv",
       "sha256": "790934f722a63cc2754978335f081c913d78ca83eea0f39d85d2f7915bfe3a9d"
     },
     {
-      "path": "reports/stage2_real_hcc_smoke/smoke_summary.tsv",
+      "path": "reports/real_hcc_smoke/smoke_summary.tsv",
       "sha256": "2a7cd0c666c9998343892cf5ea3e5f4fbdde1b52da467a9dd9d4d7a06c666f6c"
     }
   ],

@@ -26,9 +26,9 @@ from wtbench.manuscript.manuscript_style import (
 
 ROOT = repo_root()
 
-HCC38_PATH = ROOT / "data/processed/stage2_hcc_gears_formal/HCC38.h5ad"
-HCC1143_PATH = ROOT / "data/processed/stage2_hcc_gears_formal/HCC1143.h5ad"
-JOINT_GRID = ROOT / "reports/stage2_truth_bridge_decomposition/target_level_joint_grid.tsv"
+HCC38_PATH = ROOT / "data/processed/hcc_gears_formal/HCC38.h5ad"
+HCC1143_PATH = ROOT / "data/processed/hcc_gears_formal/HCC1143.h5ad"
+JOINT_GRID = ROOT / "reports/truth_bridge_decomposition/target_level_joint_grid.tsv"
 
 OUT_PANEL_E = ROOT / "manuscript/extended_data/Extended_Data_Figure_2/panels/Extended_Data_Figure_2_panel_e"
 OUT_TEST = ROOT / "reports/manuscript_extended_data_v1/edfig2_test_panel_e"

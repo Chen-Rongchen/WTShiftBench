@@ -1,0 +1,34 @@
+{
+  "stage": "stage2_gears_backbone_recovery_sweep",
+  "version": 1,
+  "purpose": "在 GEARS HCC primary mainline 中，只围绕 canonical_backbone recovery 做一轮有限预算 sweep；sweep 必须建立在正式 backbone 诊断摘要之上，不允许主线扩散。",
+  "base_recipe_config_path": "configs/gears_hcc_formal_v1.json",
+  "prerequisite_artifact_path": "reports/real_hcc_smoke/gears_backbone_diagnostic_summary.tsv",
+  "generated_config_root": "configs/generated/gears_hcc_backbone_sweep_v1",
+  "report_root": "reports/gears_backbone_sweep",
+  "allowed_recipe_axes": {
+    "epochs": [20, 30, 40],
+    "lr": [0.0005, 0.001, 0.002],
+    "weight_decay": [0.000001, 0.00001],
+    "materialization_export_sanity": [
+      "default_only"
+    ]
+  },
+  "allowed_runtime_notes": [
+    "checkpoint 选择只能在同一训练轨迹内做 last/best 的有限比较，不允许改模型结构。",
+    "HCC-specific materialization/export 只允许做 sanity 级确认，不允许改 truth-aligned contract。"
+  ],
+  "disallowed_changes": [
+    "模型结构变更",
+    "新增 entrant",
+    "新增 truth object",
+    "新增评分体系",
+    "把 cosine/L2/top-20 升级为新的主裁决层",
+    "超出单轮有限预算的开放式调参"
+  ],
+  "selection": {
+    "strategy": "nearest_to_base",
+    "max_candidates": 6
+  },
+  "stop_rule": "如果一轮有限 sweep 后，canonical_backbone recovery 仍不能接近或追平 shared_mean_baseline，且任何改进都以明显损失 structure/context separation 为代价，则停止继续把 GEARS 推为 HCC primary winner，并将当前结果收口为 architecture trade-off diagnosis。"
+}

@@ -36,12 +36,12 @@ FIGURE_TITLE = "Shared anchors form a tiered target-level bridge rather than cle
 SCRIPT_PATH = Path("scripts/manuscript/build_figure2_anchor_tiering.py")
 CLAIM_BOUNDARY = "Shared anchors support the bridge but must not be described as fully deconfounded primary objects."
 
-SHARED_ANCHORS = Path("reports/stage2_truth_bridge_decomposition/shared_canonical_anchor_summary.tsv")
-TARGET_GRID = Path("reports/stage2_truth_bridge_decomposition/target_level_joint_grid.tsv")
-ANCHOR_STABILITY = Path("reports/stage2_truth_bridge_decomposition/shared_anchor_stability.tsv")
-ANCHOR_CUTOFF = Path("reports/stage2_truth_bridge_decomposition/anchor_cutoff_sensitivity.tsv")
-ANCHOR_TIERING = Path("reports/stage2_truth_driven_bridge/sensitivity/anchor_claim_tiering.tsv")
-FINAL_CLAIM_MATRIX = Path("reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv")
+SHARED_ANCHORS = Path("reports/truth_bridge_decomposition/shared_canonical_anchor_summary.tsv")
+TARGET_GRID = Path("reports/truth_bridge_decomposition/target_level_joint_grid.tsv")
+ANCHOR_STABILITY = Path("reports/truth_bridge_decomposition/shared_anchor_stability.tsv")
+ANCHOR_CUTOFF = Path("reports/truth_bridge_decomposition/anchor_cutoff_sensitivity.tsv")
+ANCHOR_TIERING = Path("reports/truth_driven_bridge/sensitivity/anchor_claim_tiering.tsv")
+FINAL_CLAIM_MATRIX = Path("reports/truth_driven_bridge/sensitivity/final_claim_matrix.tsv")
 
 # Per-anchor per-axis TVD evidence (panel f): the direct data supporting the
 # PFDN5 vs PMF1/PRPF6/ZNF131 covariate-cleanliness separation in Panel e.
@@ -55,7 +55,7 @@ ANCHOR_TVD_AXES = (
 ANCHOR_TVD_FILES: list[tuple[str, str, Path]] = [
     (cell_line, axis,
      Path(
-         f"reports/stage2_truth_driven_bridge/sensitivity/covariate_balance/"
+         f"reports/truth_driven_bridge/sensitivity/covariate_balance/"
          f"{cell_line}_{axis}_target_control_balance.tsv"
      ))
     for cell_line in ("HCC38", "HCC1143")

@@ -37,21 +37,21 @@ CLAIM_BOUNDARY = (
     "adjudication artefacts only."
 )
 
-MODEL_COMPARISON = Path("reports/stage2_real_hcc_smoke/model_comparison.tsv")
-BACKBONE_DIAGNOSIS = Path("reports/stage2_real_hcc_smoke/backbone_diagnosis.tsv")
-SMOKE_SUMMARY = Path("reports/stage2_real_hcc_smoke/smoke_summary.tsv")
-SWEEP_MANIFEST = Path("reports/stage2_gears_backbone_sweep/candidate_manifest.tsv")
-SWEEP_ADJUDICATION = Path("reports/stage2_gears_backbone_sweep/final_adjudication.md")
+MODEL_COMPARISON = Path("reports/real_hcc_smoke/model_comparison.tsv")
+BACKBONE_DIAGNOSIS = Path("reports/real_hcc_smoke/backbone_diagnosis.tsv")
+SMOKE_SUMMARY = Path("reports/real_hcc_smoke/smoke_summary.tsv")
+SWEEP_MANIFEST = Path("reports/gears_backbone_sweep/candidate_manifest.tsv")
+SWEEP_ADJUDICATION = Path("reports/gears_backbone_sweep/final_adjudication.md")
 WHY_BASELINE_DOC = Path("docs/why_models_do_not_stably_beat_baseline_v1.md")
-FINAL_CLAIM_MATRIX = Path("reports/stage2_truth_driven_bridge/sensitivity/final_claim_matrix.tsv")
+FINAL_CLAIM_MATRIX = Path("reports/truth_driven_bridge/sensitivity/final_claim_matrix.tsv")
 
 COVERAGE_AUDITS = [
-    Path("reports/stage2_lm_g_scgpt_ridge_hcc_recipe/HCC38/coverage_audit.json"),
-    Path("reports/stage2_lm_g_scgpt_ridge_hcc_recipe/HCC1143/coverage_audit.json"),
-    Path("reports/stage2_lm_g_geneformer_ridge_hcc_recipe/HCC38/coverage_audit.json"),
-    Path("reports/stage2_lm_g_geneformer_ridge_hcc_recipe/HCC1143/coverage_audit.json"),
-    Path("reports/stage2_lm_train_lowrank_hcc_recipe/HCC38/coverage_audit.json"),
-    Path("reports/stage2_lm_train_lowrank_hcc_recipe/HCC1143/coverage_audit.json"),
+    Path("reports/lm_g_scgpt_ridge_hcc_recipe/HCC38/coverage_audit.json"),
+    Path("reports/lm_g_scgpt_ridge_hcc_recipe/HCC1143/coverage_audit.json"),
+    Path("reports/lm_g_geneformer_ridge_hcc_recipe/HCC38/coverage_audit.json"),
+    Path("reports/lm_g_geneformer_ridge_hcc_recipe/HCC1143/coverage_audit.json"),
+    Path("reports/lm_train_lowrank_hcc_recipe/HCC38/coverage_audit.json"),
+    Path("reports/lm_train_lowrank_hcc_recipe/HCC1143/coverage_audit.json"),
 ]
 
 EXPECTED = {

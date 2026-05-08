@@ -1,0 +1,40 @@
+{
+  "stage": "stage2_axis_enrichment_template",
+  "version": 1,
+  "purpose": "为 Stage 2 frozen axis 的 annotation 提供最小 enrichment 入口。当前只支持本地 GMT 集合，不自动联网下载基因集。",
+  "input": {
+    "axis_gene_signature_path": "reports/axis_analysis/axis_gene_signature.tsv",
+    "axis_membership_path": "reports/axis_analysis/axis_membership.tsv"
+  },
+  "gene_sets": {
+    "collections": [
+      {
+        "database": "MSigDB_Hallmark",
+        "gmt_path": "data/reference/gene_sets/stage2_axis_annotation/msigdb_hallmark.gmt"
+      },
+      {
+        "database": "Reactome",
+        "gmt_path": "data/reference/gene_sets/stage2_axis_annotation/reactome.gmt"
+      },
+      {
+        "database": "GO_BP",
+        "gmt_path": "data/reference/gene_sets/stage2_axis_annotation/go_bp.gmt"
+      },
+      {
+        "database": "CORUM",
+        "gmt_path": "data/reference/gene_sets/stage2_axis_annotation/corum.gmt"
+      }
+    ]
+  },
+  "analysis": {
+    "method": "ora_hypergeometric",
+    "top_n_per_axis": 10,
+    "min_genes_per_term": 3,
+    "max_genes_per_term": 5000,
+    "min_overlap": 1
+  },
+  "output": {
+    "report_root": "reports/axis_analysis",
+    "table_path": "reports/axis_analysis/axis_enrichment.tsv"
+  }
+}

@@ -13,19 +13,19 @@
   },
   "inputs": [
     {
-      "path": "reports/stage2_truth_driven_bridge/sensitivity/baseline_audit_summary.tsv",
+      "path": "reports/truth_driven_bridge/sensitivity/baseline_audit_summary.tsv",
       "sha256": "49a6033308158105e05e2b40277acf481749bbba12a20a5cf16db6e7727339fd"
     },
     {
-      "path": "reports/stage2_truth_driven_bridge/sensitivity/leave_anchor_out_summary.tsv",
+      "path": "reports/truth_driven_bridge/sensitivity/leave_anchor_out_summary.tsv",
       "sha256": "9a4e2ee8974d88f7cf77de864bcd62dbf4aa921c0c8a4e6f8dd131307e4f8e1b"
     },
     {
-      "path": "reports/stage2_truth_driven_bridge/sensitivity/bootstrap_delta_summary.tsv",
+      "path": "reports/truth_driven_bridge/sensitivity/bootstrap_delta_summary.tsv",
       "sha256": "e965c45a99d069270f5da4aae3eb8105a5189e0457ab0182356f54b14051302e"
     },
     {
-      "path": "reports/stage2_truth_driven_bridge/sensitivity/endpoint_hierarchy_audit.tsv",
+      "path": "reports/truth_driven_bridge/sensitivity/endpoint_hierarchy_audit.tsv",
       "sha256": "4097ee93cac00d5ad55149d373f11b98f3246fbe07cd3c486f73e5de05230ad9"
     }
   ],

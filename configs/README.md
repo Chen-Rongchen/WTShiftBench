@@ -4,9 +4,9 @@
 
 `configs/` 保存当前 truth-first 主线的 machine-readable 入口配置。近端维护对象集中在：
 
-- `configs/stage2/*.json`：Stage 2 truth bridge、covariate audit、model recovery adjudication、Dixit supplementary replication 与 axis validation。
-- `configs/stage2/checkpoint_registry_v1.yaml`：Stage 2 仍需读取的 scGPT / Geneformer checkpoint registry。
-- `configs/stage2/feature_registry_v1.json`：Stage 2 linear control 使用的 target-side feature registry。
+- `configs/*.json`：Stage 2 truth bridge、covariate audit、model recovery adjudication、Dixit supplementary replication 与 axis validation。
+- `configs/checkpoint_registry_v1.yaml`：Stage 2 仍需读取的 scGPT / Geneformer checkpoint registry。
+- `configs/feature_registry_v1.json`：Stage 2 linear control 使用的 target-side feature registry。
 - `configs/runtime/wtbench_cli_v1.json`：`python -m wtbench` / `pixi run --environment core wtbench` 使用的动态命令注册表。
 - `configs/runtime/wtbench_cli.schema.json`：统一 CLI 注册表的结构说明。
 - `configs/manuscript/*.json`：论文图、Extended Data、supplementary tables 与 submission package 生成配置。
