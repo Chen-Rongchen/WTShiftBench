@@ -852,7 +852,7 @@ claim_tiering = build_claim_tiering()
 claim_tiering.to_csv(OUT_DIR / "dixit_claim_tiering.tsv", sep="\t", index=False)
 
 run_manifest = {
-    "stage": "stage2_dixit_k562_structure_replication",
+    "stage": "dixit_k562_structure_replication",
     "config_path": str(resolve_path(str(ARGS.config))),
     "bridge_table_path": str(BRIDGE_TABLE),
     "hcc_fine_axis_summary_path": str(HCC_FINE_SUM),

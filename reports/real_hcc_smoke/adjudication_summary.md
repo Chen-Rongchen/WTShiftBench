@@ -7,7 +7,7 @@
 - `GEARS` 作为 `HCC primary mainline` strongest formal entrant 的 HCC38 / HCC1143 真实 raw output
 - `Geneformer` 作为新增 entrant 的 HCC38 / HCC1143 真实 raw output
 - `scGPT` 作为新增 entrant 的 HCC38 / HCC1143 真实 raw output
-- `stage2_truth_aligned_log_shift` export
+- `truth_aligned_log_shift` export
 - contract validation
 - 真实 HCC entrant smoke adjudication
 - A/B/C 三层辅助裁决层

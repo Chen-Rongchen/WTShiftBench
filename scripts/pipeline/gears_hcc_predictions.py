@@ -61,7 +61,7 @@ def write_json(payload: dict[str, object], path: Path) -> None:
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
-def build_stage2_hcc_formal_adata(
+def build_hcc_formal_adata(
     *,
     spec,
     truth_config: dict[str, object],
@@ -118,7 +118,7 @@ def run_one_cell_line(
     report_root = resolve_path(str(recipe["report_root"]))
     prediction_path = output_root / model_id / spec.cell_line / "predicted_shift.tsv.gz"
     provenance_path = output_root / model_id / spec.cell_line / "provenance.json"
-    cache_dir = PROJECT_ROOT / "tmp" / "stage2_gears_hcc" / model_id / spec.cell_line
+    cache_dir = PROJECT_ROOT / "tmp" / "gears_hcc" / model_id / spec.cell_line
     cache_dir.mkdir(parents=True, exist_ok=True)
 
     target_order, output_genes = expected_target_and_gene_order(axis_membership)
@@ -135,7 +135,7 @@ def run_one_cell_line(
         ).ravel().astype(np.float64)
         log_stage("load_prebuilt_h5ad_done", cell_line=spec.cell_line, n_obs=int(formal_adata.n_obs), n_vars=int(formal_adata.n_vars))
     else:
-        formal_adata, train_targets_full, control_values_full = build_stage2_hcc_formal_adata(
+        formal_adata, train_targets_full, control_values_full = build_hcc_formal_adata(
             spec=spec,
             truth_config=truth_config,
             frozen_targets=frozen_targets,
@@ -253,7 +253,7 @@ def run_one_cell_line(
     log_stage("write_prediction_done", cell_line=spec.cell_line, prediction_path=prediction_path)
 
     provenance = {
-        "stage": "stage2_hcc_gears_raw_output",
+        "stage": "hcc_gears_raw_output",
         "dataset_role": "primary",
         "cell_line": spec.cell_line,
         "entrant_id": str(recipe["entrant_id"]),
@@ -280,7 +280,7 @@ def run_one_cell_line(
     write_json(provenance, provenance_path)
     write_json(
         {
-            "stage": "stage2_hcc_gears_recipe_run",
+            "stage": "hcc_gears_recipe_run",
             "cell_line": spec.cell_line,
             "prediction_path": str(prediction_path.relative_to(PROJECT_ROOT)),
             "provenance_path": str(provenance_path.relative_to(PROJECT_ROOT)),
@@ -308,7 +308,7 @@ def build_parser() -> argparse.ArgumentParser:
 def main() -> None:
     args = build_parser().parse_args()
     recipe = load_recipe(resolve_path(args.config))
-    truth_config = load_config(resolve_path(str(recipe["stage2_truth_config_path"])))
+    truth_config = load_config(resolve_path(str(recipe["truth_config_path"])))
     axis_membership = pd.read_csv(resolve_path(str(recipe["axis_membership_path"])), sep="\t")
     selected = set(args.cell_line or [])
     rows: list[dict[str, object]] = []

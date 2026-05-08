@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Preprocess Frangieh 2021 (melanoma + TIL co-culture) h5ad for stage2_truth_bridge pipeline.
+Preprocess Frangieh 2021 (melanoma + TIL co-culture) h5ad for the truth_bridge pipeline.
 
 Key mapping:
 - sgRNA: "GENENAME_N" -> extract gene name via rsplit('_', 1)[0]

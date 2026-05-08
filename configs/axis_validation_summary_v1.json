@@ -1,5 +1,5 @@
 {
-  "stage": "stage2_axis_validation_summary",
+  "stage": "axis_validation_summary",
   "version": 1,
   "purpose": "汇总 Stage 2 axis enrichment 与 per-target consistency 结果，生成保守的 axis validation summary，不擅自升级 frozen final_call。",
   "input": {

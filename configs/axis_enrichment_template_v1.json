@@ -1,5 +1,5 @@
 {
-  "stage": "stage2_axis_enrichment_template",
+  "stage": "axis_enrichment_template",
   "version": 1,
   "purpose": "为 Stage 2 frozen axis 的 annotation 提供最小 enrichment 入口。当前只支持本地 GMT 集合，不自动联网下载基因集。",
   "input": {
@@ -10,19 +10,19 @@
     "collections": [
       {
         "database": "MSigDB_Hallmark",
-        "gmt_path": "data/reference/gene_sets/stage2_axis_annotation/msigdb_hallmark.gmt"
+        "gmt_path": "data/reference/gene_sets/axis_annotation/msigdb_hallmark.gmt"
       },
       {
         "database": "Reactome",
-        "gmt_path": "data/reference/gene_sets/stage2_axis_annotation/reactome.gmt"
+        "gmt_path": "data/reference/gene_sets/axis_annotation/reactome.gmt"
       },
       {
         "database": "GO_BP",
-        "gmt_path": "data/reference/gene_sets/stage2_axis_annotation/go_bp.gmt"
+        "gmt_path": "data/reference/gene_sets/axis_annotation/go_bp.gmt"
       },
       {
         "database": "CORUM",
-        "gmt_path": "data/reference/gene_sets/stage2_axis_annotation/corum.gmt"
+        "gmt_path": "data/reference/gene_sets/axis_annotation/corum.gmt"
       }
     ]
   },

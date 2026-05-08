@@ -1,9 +1,9 @@
 {
-  "stage": "stage2_geo_supplementary_download",
+  "stage": "geo_supplementary_download",
   "version": 1,
   "series_accession": "GSE90063",
   "output_dir": "data/raw/gse90063_full",
-  "manifest_path": "reports/stage2_gse90063_qc/gse90063_supplementary_manifest.tsv",
+  "manifest_path": "reports/gse90063_qc/gse90063_supplementary_manifest.tsv",
   "include_sample_supplementary": true,
   "include_series_supplementary": true,
   "proxies": {

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Preprocess Replogle 2022 K562 GWPS h5ad for stage2_truth_bridge pipeline.
+Preprocess Replogle 2022 K562 GWPS h5ad for the truth_bridge pipeline.
 
 Adds:
 - is_control: True for nperts==0, False otherwise

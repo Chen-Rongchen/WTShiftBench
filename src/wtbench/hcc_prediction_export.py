@@ -21,8 +21,8 @@ from wtbench.truth_bridge import (
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_STAGE2_TRUTH_CONFIG_PATH = PROJECT_ROOT / "configs/truth_driven_bridge_hcc38_hcc1143_v1.json"
-DEFAULT_STAGE2_CONTRACT_PATH = PROJECT_ROOT / "configs/hcc_prediction_contract_v1.json"
+DEFAULT_TRUTH_CONFIG_PATH = PROJECT_ROOT / "configs/truth_driven_bridge_hcc38_hcc1143_v1.json"
+DEFAULT_CONTRACT_PATH = PROJECT_ROOT / "configs/hcc_prediction_contract_v1.json"
 DEFAULT_AXIS_MEMBERSHIP_PATH = (
     PROJECT_ROOT / "reports/truth_driven_bridge/master_atlas/shared_target_axis_membership.tsv"
 )
@@ -124,7 +124,7 @@ def expected_target_and_gene_order(axis_membership: pd.DataFrame) -> tuple[list[
     return target_order, gene_order
 
 
-def _load_stage2_expression_and_calls(
+def _load_expression_and_calls(
     spec: DatasetSpec,
     config: dict[str, Any],
 ) -> tuple[sparse.csr_matrix, pd.DataFrame, pd.DataFrame]:
@@ -146,15 +146,15 @@ def _load_stage2_expression_and_calls(
     raise ValueError(f"不支持的 source_kind: {spec.source_kind}")
 
 
-def compute_stage2_truth_aligned_log_shift_matrix(
+def compute_truth_aligned_log_shift_matrix(
     spec: DatasetSpec,
-    stage2_truth_config: dict[str, Any],
+    truth_config: dict[str, Any],
     axis_membership: pd.DataFrame,
 ) -> pd.DataFrame:
-    expression, calls, gene_meta = _load_stage2_expression_and_calls(spec, stage2_truth_config)
+    expression, calls, gene_meta = _load_expression_and_calls(spec, truth_config)
     normalized = log_normalize_csr(
         expression,
-        target_sum=float(stage2_truth_config["metrics"]["normalization_target_sum"]),
+        target_sum=float(truth_config["metrics"]["normalization_target_sum"]),
     )
     target_order, gene_order = expected_target_and_gene_order(axis_membership)
     gene_index = pd.Series(
@@ -167,7 +167,7 @@ def compute_stage2_truth_aligned_log_shift_matrix(
     selected_gene_positions = gene_index.loc[gene_order].to_numpy(dtype=np.int64)
 
     control_mask = calls["is_control"].to_numpy(dtype=bool)
-    if int(control_mask.sum()) < int(stage2_truth_config["filters"]["min_control_cells"]):
+    if int(control_mask.sum()) < int(truth_config["filters"]["min_control_cells"]):
         raise ValueError(f"{spec.cell_line} control cells 不足，无法导出 Stage 2 HCC prediction contract。")
 
     normalized_selected = normalized[:, selected_gene_positions]
@@ -227,7 +227,7 @@ def build_builtin_shared_mean_baseline(
     return pd.DataFrame(records)
 
 
-def align_prediction_to_stage2_contract(
+def align_prediction_to_contract(
     prediction: pd.DataFrame,
     axis_membership: pd.DataFrame,
 ) -> pd.DataFrame:
@@ -283,7 +283,7 @@ def load_prediction_matrix(path: Path) -> pd.DataFrame:
     return frame
 
 
-def validate_stage2_prediction_contract(
+def validate_prediction_contract(
     prediction: pd.DataFrame,
     contract: dict[str, Any],
     manifest: dict[str, Any],
@@ -319,7 +319,7 @@ def validate_stage2_prediction_contract(
         and log1p_matches
     )
     return {
-        "stage": "stage2_hcc_prediction_contract_validation",
+        "stage": "hcc_prediction_contract_validation",
         "first_column_ok": prediction.columns[0] == contract["required_first_column"],
         "expected_target_count": len(expected_targets),
         "actual_target_count": len(actual_targets),
@@ -360,7 +360,7 @@ def build_manifest(
     extra_manifest_fields: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     payload = {
-        "stage": "stage2_hcc_prediction_contract",
+        "stage": "hcc_prediction_contract",
         "cell_line": cell_line,
         "model_id": model_id,
         "model_version": model_version,
@@ -423,7 +423,7 @@ def _finalize_export(
 
     try:
         raw_alignment_summary = summarize_raw_prediction_alignment(raw_prediction, axis_membership)
-        aligned = align_prediction_to_stage2_contract(raw_prediction, axis_membership)
+        aligned = align_prediction_to_contract(raw_prediction, axis_membership)
     except Exception as exc:
         manifest["export_status"] = EXPORT_STATUS_ALIGNMENT_FAILED
         manifest["alignment_error"] = str(exc)
@@ -433,7 +433,7 @@ def _finalize_export(
     manifest["raw_alignment_summary"] = raw_alignment_summary
     write_prediction_matrix(aligned, artifacts.aligned_prediction_path)
     write_prediction_matrix(aligned, artifacts.scorer_ready_prediction_path)
-    validation_summary = validate_stage2_prediction_contract(aligned, contract, manifest, axis_membership)
+    validation_summary = validate_prediction_contract(aligned, contract, manifest, axis_membership)
     manifest["contract_pass"] = bool(validation_summary["contract_pass"])
     manifest["export_status"] = (
         EXPORT_STATUS_CONTRACT_VALIDATED
@@ -456,23 +456,23 @@ def _finalize_export(
     }
 
 
-def export_builtin_stage2_hcc_prediction(
+def export_builtin_hcc_prediction(
     *,
     cell_line: str,
     model_id: str,
     model_version: str,
     object_role: str,
     export_timestamp: str,
-    stage2_truth_config_path: Path = DEFAULT_STAGE2_TRUTH_CONFIG_PATH,
-    contract_path: Path = DEFAULT_STAGE2_CONTRACT_PATH,
+    truth_config_path: Path = DEFAULT_TRUTH_CONFIG_PATH,
+    contract_path: Path = DEFAULT_CONTRACT_PATH,
     axis_membership_path: Path = DEFAULT_AXIS_MEMBERSHIP_PATH,
     truth_contract_path: Path = DEFAULT_TRUTH_CONTRACT_PATH,
 ) -> dict[str, Any]:
-    stage2_truth_config = load_config(stage2_truth_config_path)
+    truth_config = load_config(truth_config_path)
     contract = load_json(contract_path)
     axis_membership = load_axis_membership(axis_membership_path)
     truth_contract = load_truth_contract(truth_contract_path)
-    specs = {spec.cell_line: spec for spec in build_dataset_specs(stage2_truth_config)}
+    specs = {spec.cell_line: spec for spec in build_dataset_specs(truth_config)}
     if cell_line not in specs:
         raise ValueError(f"未在 Stage 2 truth config 中找到 cell_line={cell_line}")
     spec = specs[cell_line]
@@ -484,7 +484,7 @@ def export_builtin_stage2_hcc_prediction(
     if object_role == "null":
         raw_prediction = build_builtin_null_prediction(target_order, gene_order)
     elif object_role == "baseline":
-        truth_matrix = compute_stage2_truth_aligned_log_shift_matrix(spec, stage2_truth_config, axis_membership)
+        truth_matrix = compute_truth_aligned_log_shift_matrix(spec, truth_config, axis_membership)
         raw_prediction = build_builtin_shared_mean_baseline(
             truth_aligned_log_shift=truth_matrix,
             axis_membership=axis_membership,
@@ -508,7 +508,7 @@ def export_builtin_stage2_hcc_prediction(
     )
 
 
-def export_external_stage2_hcc_prediction(
+def export_external_hcc_prediction(
     *,
     cell_line: str,
     model_id: str,
@@ -516,7 +516,7 @@ def export_external_stage2_hcc_prediction(
     object_role: str,
     export_timestamp: str,
     raw_source: RawPredictionSource,
-    contract_path: Path = DEFAULT_STAGE2_CONTRACT_PATH,
+    contract_path: Path = DEFAULT_CONTRACT_PATH,
     axis_membership_path: Path = DEFAULT_AXIS_MEMBERSHIP_PATH,
 ) -> dict[str, Any]:
     contract = load_json(contract_path)

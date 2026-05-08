@@ -15,31 +15,31 @@
     },
     "stage2.sensitivity": {
       "description": "运行 Stage 2 truth bridge sensitivity。",
-      "callable": "scripts.run_stage2_truth_bridge_sensitivity:run_sensitivity_from_config",
+      "callable": "scripts.pipeline.truth_bridge_sensitivity:run_sensitivity_from_config",
       "default_config": "configs/truth_bridge_sensitivity_hcc_full_v1.json",
       "config_env": "WTBENCH_STAGE2_SENSITIVITY_CONFIG"
     },
     "stage2.closure": {
       "description": "串联 HCC covariates、sensitivity 与 covariate audit。",
-      "callable": "scripts.run_stage2_closure_pipeline:run_closure_pipeline_from_config",
+      "callable": "scripts.pipeline.closure_pipeline:run_closure_pipeline_from_config",
       "default_config": "configs/closure_pipeline_v1.json",
       "config_env": "WTBENCH_STAGE2_CLOSURE_CONFIG"
     },
     "stage2.materialize_covariates": {
       "description": "物化 HCC Stage 2 covariates TSV。",
-      "callable": "scripts.materialize_stage2_covariates:materialize_covariates_from_config",
+      "callable": "scripts.materialize.covariates:materialize_covariates_from_config",
       "default_config": "configs/hcc_covariates_v1.json",
       "config_env": "WTBENCH_STAGE2_COVARIATES_CONFIG"
     },
     "stage2.covariate_audit": {
       "description": "运行 HCC Stage 2 covariate balance audit。",
-      "callable": "scripts.run_stage2_covariate_audit:run_covariate_audit_from_config",
+      "callable": "scripts.pipeline.covariate_audit:run_covariate_audit_from_config",
       "default_config": "configs/truth_bridge_covariate_audit_v1.json",
       "config_env": "WTBENCH_STAGE2_COVARIATE_AUDIT_CONFIG"
     },
     "stage2.validate_closure": {
       "description": "校验 Stage 2 closure 关键产物与固定边界。",
-      "callable": "scripts.validate_stage2_closure_artifacts:validate_artifacts_from_config",
+      "callable": "scripts.pipeline.validate_closure_artifacts:validate_artifacts_from_config",
       "default_config": "configs/closure_artifact_validation_v1.json",
       "config_env": "WTBENCH_STAGE2_VALIDATION_CONFIG"
     },
@@ -57,19 +57,19 @@
     },
     "stage2.k562_rnai_endpoint_consistency": {
       "description": "汇总 GSE90063 K562 7d/13d 的 CRISPR DepMap vs DEMETER2 RNAi endpoint consistency。",
-      "callable": "scripts.run_stage2_k562_rnai_endpoint_consistency:run_from_config",
+      "callable": "scripts.pipeline.k562_rnai_endpoint_consistency:run_from_config",
       "default_config": "configs/k562_rnai_endpoint_consistency_v1.json",
       "config_env": "WTBENCH_STAGE2_K562_RNAI_ENDPOINT_CONSISTENCY_CONFIG"
     },
     "stage2.dixit_axis_compression": {
       "description": "运行 Dixit/K562 13d supplementary axis compression。",
-      "callable": "scripts.run_stage2_dixit_axis_compression:run_from_config",
+      "callable": "scripts.pipeline.dixit_axis_compression:run_from_config",
       "default_config": "configs/dixit_axis_compression_v1.json",
       "config_env": "WTBENCH_STAGE2_DIXIT_AXIS_COMPRESSION_CONFIG"
     },
     "stage2.dixit_temporal_panel": {
       "description": "汇总 GSE90063 K562 13d/7d temporal panel。",
-      "callable": "scripts.run_stage2_dixit_temporal_panel:run_from_config",
+      "callable": "scripts.pipeline.dixit_temporal_panel:run_from_config",
       "default_config": "configs/dixit_k562_temporal_panel_gse90063_v1.json",
       "config_env": "WTBENCH_STAGE2_DIXIT_TEMPORAL_PANEL_CONFIG"
     }
