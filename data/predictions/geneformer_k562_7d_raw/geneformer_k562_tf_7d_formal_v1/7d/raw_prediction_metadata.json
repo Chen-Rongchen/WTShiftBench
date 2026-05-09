@@ -6,12 +6,12 @@
   "entrant_id": "geneformer",
   "source_kind": "geneformer_target_embedding_leave_one_out_kernel",
   "export_timestamp": "2026-04-15T07:24:23.396575+00:00",
-  "prediction_path": "/home/data/gz0705/WTKO/data/predictions/geneformer_k562_7d_raw/geneformer_k562_tf_7d_formal_v1/7d/predicted_shift.tsv.gz",
+  "prediction_path": "data/predictions/geneformer_k562_7d_raw/geneformer_k562_tf_7d_formal_v1/7d/predicted_shift.tsv.gz",
   "checkpoint_manifest": {
     "checkpoint_key": "geneformer_gf_12l_95m_i4096",
-    "checkpoint_root": "/home/data/gz0705/WTKO/models/pretrained/geneformer_gf_12l_95m_i4096",
-    "checkpoint_dir": "/home/data/gz0705/WTKO/models/pretrained/geneformer_gf_12l_95m_i4096/gf-12L-95M-i4096",
-    "asset_root": "/home/data/gz0705/WTKO/models/pretrained/geneformer_assets/geneformer",
+    "checkpoint_root": "models/pretrained/geneformer_gf_12l_95m_i4096",
+    "checkpoint_dir": "models/pretrained/geneformer_gf_12l_95m_i4096/gf-12L-95M-i4096",
+    "asset_root": "models/pretrained/geneformer_assets/geneformer",
     "embedding_shape": [
       20275,
       512
