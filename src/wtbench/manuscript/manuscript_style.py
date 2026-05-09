@@ -66,7 +66,7 @@ def apply_manuscript_style() -> None:
             "lines.markersize": 3.0,
             "pdf.fonttype": 42,
             "ps.fonttype": 42,
-            "savefig.dpi": 300,
+            "savefig.dpi": 1200,
         }
     )
 

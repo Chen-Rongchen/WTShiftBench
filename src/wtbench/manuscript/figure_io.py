@@ -30,7 +30,7 @@ def save_figure(
     pdf_path: Path,
     *,
     dpi: int = 1200,
-    max_width: int = 5000,
+    max_width: int | None = None,
     bbox_inches: Literal["tight"] | None = "tight",
 ) -> list[Path]:
     ensure_dir(png_path.parent)
@@ -44,12 +44,13 @@ def save_figure(
     fig.savefig(png_path, **save_kw)
     fig.savefig(pdf_path, **save_kw)
     plt.close(fig)
-    # Downscale PNG if exceeds max width (PDF stays vector)
+    # Optional cap on PNG width (PDF always stays vector). Default: keep
+    # full resolution at requested DPI. Pass max_width to enable cap.
     if max_width and png_path.exists():
         from PIL import Image as PILImage
         im = PILImage.open(png_path)
         if im.width > max_width:
             im = im.resize((max_width, int(im.height * max_width / im.width)), PILImage.LANCZOS)
-            im.save(png_path)
+            im.save(png_path, dpi=(dpi, dpi))
     return [png_path, pdf_path]
 

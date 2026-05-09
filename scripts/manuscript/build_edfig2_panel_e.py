@@ -150,8 +150,8 @@ def render_scatter(ax: plt.Axes, df: pd.DataFrame, title: str) -> None:
 
     ax.text(0.03, 0.95,
             f"{title}\nn = {n}\n"
-            f"target-gene log2FC vs dependency: Spearman \u03c1 = {log2fc_rho:.2f}\n"
-            f"whole-transcriptome shift vs dependency: Spearman \u03c1 = {shift_rho:.2f}",
+            f"target-gene log2FC vs dependency: Spearman $\\rho$ = {log2fc_rho:.2f}\n"
+            f"whole-transcriptome shift vs dependency: Spearman $\\rho$ = {shift_rho:.2f}",
             transform=ax.transAxes, fontsize=5.8, va="top", ha="left",
             color="#333333")
 
@@ -237,7 +237,7 @@ def render_scatter_shift_colormap(
     ax.text(
         rho_x,
         0.98,
-        f"n = {n}\nSpearman \u03c1 (tg_logFC) = {log2fc_rho:.2f}\nSpearman \u03c1 (transcr.) = {shift_rho:.2f}",
+        f"n = {n}\nSpearman $\\rho$ (tg_logFC) = {log2fc_rho:.2f}\nSpearman $\\rho$ (transcr.) = {shift_rho:.2f}",
         transform=ax.transAxes,
         fontsize=5.8,
         va="top",

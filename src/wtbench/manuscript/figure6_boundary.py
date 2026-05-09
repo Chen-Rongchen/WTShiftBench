@@ -75,7 +75,7 @@ CONTEXT_ORDER = ["HCC38", "HCC1143", "K562 7d", "K562 13d"]
 RANK_7D_FILL = FIG5_K562_BOX_7D_FILL
 RANK_13D_FILL = FIG5_K562_BOX_13D_FILL
 FIG5_GRID = "#F0F0F0"  # unused in main F5 panels (grids off); kept for any legacy call
-ALIGNED_RHO_LABEL = "Aligned Spearman ρ"
+ALIGNED_RHO_LABEL = r"Aligned Spearman $\rho$"
 # Main composite heading typography matches the other manuscript figures.
 FIG5_MAIN_TITLE_FS = 8.6
 FIG5_MAIN_LETTER_FS = 9.0
@@ -155,9 +155,9 @@ def write_panel(
     for path in [png_path, pdf_path, manuscript_png_path, manuscript_pdf_path]:
         ensure_dir(path.parent)
     finalize_manuscript_figure(fig, font_scale=FIG5_FONT_SCALE)
-    fig.savefig(png_path, dpi=300, bbox_inches="tight")
+    fig.savefig(png_path, dpi=1200, bbox_inches="tight")
     fig.savefig(pdf_path, bbox_inches="tight")
-    fig.savefig(manuscript_png_path, dpi=300, bbox_inches="tight")
+    fig.savefig(manuscript_png_path, dpi=1200, bbox_inches="tight")
     fig.savefig(manuscript_pdf_path, bbox_inches="tight")
     output_paths = [png_path, pdf_path]
     plt.close(fig)
@@ -230,7 +230,7 @@ def write_overview_asset(root: Path, source_df: pd.DataFrame) -> dict[str, Path]
         manuscript_out / "boundary_gate_flow_overview.pdf",
     ]:
         ensure_dir(path.parent)
-        fig.savefig(path, dpi=300 if path.suffix == ".png" else None, bbox_inches="tight")
+        fig.savefig(path, dpi=1200 if path.suffix == ".png" else None, bbox_inches="tight")
     plt.close(fig)
     return {
         "source": source_path,
@@ -594,7 +594,7 @@ def render_panel_c(ax: plt.Axes, df: pd.DataFrame, *, compact: bool = False, mai
         ax.set_xticks(x)
         ax.set_xticklabels(temporal["timepoint"], fontsize=6.0)
         ax.set_ylim(0, 0.86)
-        ylab = "Rank bridge Spearman ρ"
+        ylab = r"Rank bridge Spearman $\rho$"
         ax.set_ylabel(ylab, fontsize=ylabel_fs, labelpad=ylp)
         ax.grid(axis="y", color=COLORS["grid"], linewidth=0.5)
     clean_axes(ax)
@@ -859,7 +859,7 @@ def render_endpoint_hierarchy(
         pax.set_xlim(*FIG5_MAIN_ENDPOINT_XLIM)
     else:
         pax.set_xlim(0.20, 0.84)
-    xlab_str = ALIGNED_RHO_LABEL if (main_fig and plot_ax is None) else "Bridge Spearman ρ"
+    xlab_str = ALIGNED_RHO_LABEL if (main_fig and plot_ax is None) else r"Bridge Spearman $\rho$"
     xlab_s = 8.0 if (main_fig and plot_ax is None) else 6.0
     pax.set_xlabel(xlab_str, fontsize=xlab_s, labelpad=xlab_pad)
     if not (main_fig and plot_ax is None):
@@ -1004,9 +1004,9 @@ def render_combined(root: Path, sources: dict[str, pd.DataFrame], panel_outputs:
     for path in [png_path, pdf_path, manuscript_png, manuscript_pdf]:
         ensure_dir(path.parent)
     finalize_manuscript_figure(fig, font_scale=FIG5_FONT_SCALE)
-    fig.savefig(png_path, dpi=300, bbox_inches="tight")
+    fig.savefig(png_path, dpi=1200, bbox_inches="tight")
     fig.savefig(pdf_path, bbox_inches="tight")
-    fig.savefig(manuscript_png, dpi=300, bbox_inches="tight")
+    fig.savefig(manuscript_png, dpi=1200, bbox_inches="tight")
     fig.savefig(manuscript_pdf, bbox_inches="tight")
     output_paths = [png_path, pdf_path]
     plt.close(fig)

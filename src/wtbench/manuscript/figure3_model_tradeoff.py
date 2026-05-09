@@ -927,9 +927,9 @@ def render_combined(root: Path, sources: dict[str, pd.DataFrame], panel_outputs:
     for path in [png_path, pdf_path, manuscript_png, manuscript_pdf]:
         ensure_dir(path.parent)
     finalize_manuscript_figure(fig)
-    fig.savefig(png_path, dpi=300, bbox_inches="tight")
+    fig.savefig(png_path, dpi=1200, bbox_inches="tight")
     fig.savefig(pdf_path, bbox_inches="tight")
-    fig.savefig(manuscript_png, dpi=300, bbox_inches="tight")
+    fig.savefig(manuscript_png, dpi=1200, bbox_inches="tight")
     fig.savefig(manuscript_pdf, bbox_inches="tight")
     plt.close(fig)
     output_paths = [png_path, pdf_path]

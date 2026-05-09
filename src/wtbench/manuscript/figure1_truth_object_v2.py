@@ -126,9 +126,9 @@ def write_panel(
     for path in [png_path, pdf_path, manuscript_png_path, manuscript_pdf_path]:
         ensure_dir(path.parent)
     finalize_manuscript_figure(fig)
-    fig.savefig(png_path, dpi=300, bbox_inches="tight")
+    fig.savefig(png_path, dpi=1200, bbox_inches="tight")
     fig.savefig(pdf_path, bbox_inches="tight")
-    fig.savefig(manuscript_png_path, dpi=300, bbox_inches="tight")
+    fig.savefig(manuscript_png_path, dpi=1200, bbox_inches="tight")
     fig.savefig(manuscript_pdf_path, bbox_inches="tight")
     plt.close(fig)
     output_paths = [png_path, pdf_path]
@@ -652,7 +652,7 @@ def render_joint_grid(ax: plt.Axes, df: pd.DataFrame, cell_line: str, label: str
         title_fontsize=8.8,
     )
     ax.text(0.03, 0.96, f"n={n_text}", transform=ax.transAxes, fontsize=8.0, color=FIG1_BLACK, fontweight="bold", va="top")
-    ax.text(0.03, 0.89, f"Spearman \u03c1 = {rho_text}", transform=ax.transAxes, fontsize=8.0, color=FIG1_BLACK, fontweight="bold", va="top")
+    ax.text(0.03, 0.89, f"Spearman $\\rho$ = {rho_text}", transform=ax.transAxes, fontsize=8.0, color=FIG1_BLACK, fontweight="bold", va="top")
     ax.text(
         0.03,
         0.82,
@@ -993,9 +993,9 @@ def render_combined(root: Path, sources: dict[str, pd.DataFrame], panel_outputs:
     for path in [png_path, pdf_path, manuscript_png, manuscript_pdf]:
         ensure_dir(path.parent)
     finalize_manuscript_figure(fig)
-    fig.savefig(png_path, dpi=300, bbox_inches="tight")
+    fig.savefig(png_path, dpi=1200, bbox_inches="tight")
     fig.savefig(pdf_path, bbox_inches="tight")
-    fig.savefig(manuscript_png, dpi=300, bbox_inches="tight")
+    fig.savefig(manuscript_png, dpi=1200, bbox_inches="tight")
     fig.savefig(manuscript_pdf, bbox_inches="tight")
     output_paths = [png_path, pdf_path]
     plt.close(fig)

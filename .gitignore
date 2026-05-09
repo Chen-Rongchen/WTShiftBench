@@ -44,7 +44,6 @@ manuscript/build_scripts/test_output/
 data/*
 !data/predictions/
 !data/reference/
-!data/stage2/
 data/raw/
 data/processed/
 data/baselines/
@@ -63,19 +62,19 @@ RNAi/
 # manuscript figure-build scripts (small TSV/JSON/MD only).
 # ----------------------------------------------------------------------
 reports/*
-!reports/stage2_truth_driven_bridge/
-!reports/stage2_truth_bridge_decomposition/
-!reports/stage2_real_hcc_smoke/
+!reports/truth_driven_bridge/
+!reports/truth_bridge_decomposition/
+!reports/real_hcc_smoke/
 !reports/manuscript_permutation_null_v1/
 !reports/manuscript_extended_data_v1/
 !reports/extended_data_candidates/
 !reports/pathway_response/
-!reports/stage2_rnai_demeter2_conversion/
-!reports/stage2_lm_g_scgpt_ridge_hcc_recipe/
-!reports/stage2_lm_g_geneformer_ridge_hcc_recipe/
-!reports/stage2_lm_train_lowrank_hcc_recipe/
-!reports/stage2_gears_backbone_sweep/
-!reports/stage2_axis_analysis/
+!reports/rnai_demeter2_conversion/
+!reports/lm_g_scgpt_ridge_hcc_recipe/
+!reports/lm_g_geneformer_ridge_hcc_recipe/
+!reports/lm_train_lowrank_hcc_recipe/
+!reports/gears_backbone_sweep/
+!reports/axis_analysis/
 
 # Within whitelisted reports/, drop bulky figure outputs
 reports/**/*.pdf
@@ -87,9 +86,9 @@ reports/**/*.parquet
 reports/manuscript_extended_data_v1/edfig1_test_*/
 reports/manuscript_extended_data_v1/edfig2_test_*/
 
-# Inside stage2_axis_analysis (266MB) keep only the validation summary
-reports/stage2_axis_analysis/*
-!reports/stage2_axis_analysis/axis_validation_summary.tsv
+# Inside axis_analysis (266MB) keep only the validation summary
+reports/axis_analysis/*
+!reports/axis_analysis/axis_validation_summary.tsv
 
 # Reference PDFs
 *.pdf
