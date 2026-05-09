@@ -2,9 +2,9 @@
 #
 # This is a lighter-weight alternative to the project's pixi configuration
 # (`pixi.toml`). It installs the dependencies needed to:
-#   - run the manuscript figure-build scripts in scripts/manuscript/
+#   - run the public figure wrappers in figure_build/
 #   - read the cached intermediate TSVs in reports/
-#   - re-run the data preprocessing scripts in scripts/preprocess_*.py
+#   - re-run the data preprocessing scripts in scripts/preprocess/ and scripts/materialize/
 #
 # It does NOT install the heavy model stacks (GEARS, scGPT, Geneformer);
 # those use cell-line-specific CUDA + PyTorch versions and are described in

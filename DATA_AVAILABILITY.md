@@ -13,7 +13,7 @@ single-cell repositories. The repository ships only:
 
 Raw and processed `h5ad` objects (≈ 14 GB total) are **not** stored in git;
 they must be re-downloaded and re-preprocessed before running the
-`build_*_truth_object`, `build_extended_data_figure*`, etc., scripts.
+public figure wrappers under `figure_build/`.
 
 ## Datasets used in the manuscript
 
@@ -52,8 +52,9 @@ python scripts/materialize/hcc_gears_formal_h5ad.py
 python scripts/materialize/gse90063_k562_h5ad.py
 ```
 
-After these complete, the manuscript figure scripts under `scripts/manuscript/`
-can read every input they need and regenerate the panels under `figures/`.
+After these complete, `bash reproduce_figures.sh` can regenerate the public
+figure bundle under `figure_build/output/` and sync the GitHub display snapshot
+under `figures/`.
 
 ## Code availability
 

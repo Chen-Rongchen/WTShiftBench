@@ -1,6 +1,6 @@
 {
   "stage": "dixit_k562_structure_replication",
-  "config_path": "/home/data/gz0705/WTKO/configs/dixit_k562_structure_replication_v1.json",
+  "config_path": "configs/dixit_k562_structure_replication_v1.json",
   "bridge_table_path": "data/processed/truth_driven_bridge/dixit_2016_raw__control_context/target_level_bridge_table.tsv.gz",
   "hcc_fine_axis_summary_path": "reports/truth_driven_bridge/master_atlas/axis_summary_fine.tsv",
   "output_dir": "reports/truth_driven_bridge/dixit_axis_compression",

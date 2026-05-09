@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
-# Driver for regenerating the manuscript figures from the cached
-# intermediates checked into the repository.
+# Driver for regenerating the public manuscript figure bundle from the
+# cached intermediates checked into the repository.
 #
 # Prerequisite: an environment satisfying environment.yml or pixi.toml,
 # with this repository's `src/` on PYTHONPATH (set automatically below).
 #
-# Steps that require the raw h5ad files (e.g. extended_data_figure3 axis
-# panels that read data/processed/.../*.h5ad) will be skipped automatically;
-# follow DATA_AVAILABILITY.md to fetch and preprocess them first.
+# Steps that require raw h5ad files will fail until those public datasets have
+# been downloaded and preprocessed; see DATA_AVAILABILITY.md.
 
 set -euo pipefail
 
@@ -16,28 +15,52 @@ cd "$ROOT"
 
 export PYTHONPATH="$ROOT/src:$ROOT/scripts:$ROOT${PYTHONPATH+:$PYTHONPATH}"
 
+FAILED_STEPS=()
+
 run() {
     echo
     echo "==> $*"
     if ! python "$@"; then
-        echo "    (skipped: prerequisites missing — see DATA_AVAILABILITY.md)"
+        echo "    ERROR: figure step failed. Check the traceback above and DATA_AVAILABILITY.md for required inputs."
+        FAILED_STEPS+=("$*")
     fi
 }
 
 # Main figures
-run scripts/manuscript/build_figure1_truth_object.py
-run scripts/manuscript/build_figure2_anchor_tiering.py
-run scripts/manuscript/build_figure3_model_tradeoff.py
-run scripts/manuscript/build_figure4_sweep_controls.py
-run scripts/manuscript/build_figure6_boundary.py
+run figure_build/figure1/build_figure1_truth_object.py
+run figure_build/figure2/build_figure2_anchor_tiering.py
+run figure_build/figure3/build_figure3_model_tradeoff.py
+run figure_build/figure4/build_figure4_sweep_controls.py
+run figure_build/figure5/build_figure5_boundary.py
 
 # Extended Data figures
-run scripts/manuscript/build_extended_data_figure1.py
-run scripts/manuscript/build_extended_data_figure3_v2.py
-run scripts/manuscript/build_extended_data_figure9_biological_landing.py
-run scripts/manuscript/build_extended_data_figure10_axis_explanatory.py
-run scripts/manuscript/build_extended_data_figure13.py
+run figure_build/ed_figure1/build_ed_figure1_panela.py
+run figure_build/ed_figure1/build_ed_figure1_panelb.py
+run figure_build/ed_figure1/build_ed_figure1_panelc.py
+run figure_build/ed_figure1/build_ed_figure1_paneld.py
+run figure_build/ed_figure1/build_ed_figure1_panele.py
+run figure_build/ed_figure1/build_ed_figure1_panelf.py
+run figure_build/ed_figure1/build_ed_figure1_panelg.py
+run figure_build/ed_figure1/build_ed_figure1_panelh.py
+run figure_build/ed_figure1/build_ed_figure1_paneli.py
+run figure_build/ed_figure1/build_ed_figure1_panelj.py
+run figure_build/ed_figure1/build_ed_figure1_panelk.py
+run figure_build/ed_figure2/build_edfigure2_metric_robustness.py
+run figure_build/ed_figure3/build_edfigure3_combined.py
+run figure_build/ed_figure4/build_edfigure4_combined.py
+run figure_build/ed_figure5/build_edfigure5_combined.py
+
+if [[ "${#FAILED_STEPS[@]}" -ne 0 ]]; then
+    echo
+    echo "One or more figure steps failed:"
+    printf '  - %s\n' "${FAILED_STEPS[@]}"
+    echo "Existing figures/ snapshot was left unchanged."
+    exit 1
+fi
+
+rm -rf figures
+cp -a figure_build/output figures
 
 echo
-echo "Done. Fresh artefacts are written under reports/… (see each script)."
-echo "    Repo root figures/ holds a curated, git-tracked panel snapshot — copy panels there manually if updating the submission bundle."
+echo "Done. Fresh artefacts are written under figure_build/output/."
+echo "    Repo root figures/ has been synced from figure_build/output/ for GitHub browsing."

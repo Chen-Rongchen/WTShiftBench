@@ -6,14 +6,14 @@
   "entrant_id": "geneformer",
   "source_kind": "geneformer_target_embedding_leave_one_out_kernel",
   "export_timestamp": "2026-04-09T18:38:49.595106+00:00",
-  "prediction_path": "/home/data/gz0705/WTKO/data/predictions/geneformer_raw/geneformer_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz",
+  "prediction_path": "data/predictions/geneformer_raw/geneformer_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz",
   "checkpoint_manifest": {
     "checkpoint_key": "geneformer_gf_12l_95m_i4096",
-    "checkpoint_root": "/home/data/gz0705/WTKO/models/pretrained/geneformer_gf_12l_95m_i4096",
-    "checkpoint_dir": "/home/data/gz0705/WTKO/models/pretrained/geneformer_gf_12l_95m_i4096/gf-12L-95M-i4096",
-    "asset_root": "/home/data/gz0705/WTKO/models/pretrained/geneformer_assets/geneformer",
-    "token_dict_path": "/home/data/gz0705/WTKO/models/pretrained/geneformer_assets/geneformer/token_dictionary_gc104M.pkl",
-    "gene_mapping_path": "/home/data/gz0705/WTKO/models/pretrained/geneformer_assets/geneformer/gene_name_id_dict_gc104M.pkl",
+    "checkpoint_root": "models/pretrained/geneformer_gf_12l_95m_i4096",
+    "checkpoint_dir": "models/pretrained/geneformer_gf_12l_95m_i4096/gf-12L-95M-i4096",
+    "asset_root": "models/pretrained/geneformer_assets/geneformer",
+    "token_dict_path": "models/pretrained/geneformer_assets/geneformer/token_dictionary_gc104M.pkl",
+    "gene_mapping_path": "models/pretrained/geneformer_assets/geneformer/gene_name_id_dict_gc104M.pkl",
     "embedding_shape": [
       20275,
       512

@@ -6,10 +6,14 @@
 #     docker run --rm -it \
 #         -v $(pwd)/data:/app/data \
 #         -v $(pwd)/reports:/app/reports \
+#         -v $(pwd)/figure_build/output:/app/figure_build/output \
+#         -v $(pwd)/figures:/app/figures \
 #         wtshiftbench:latest
+# Then, inside the container:
+#     bash reproduce_figures.sh
 #
-# This image installs the lightweight Python stack used by the manuscript
-# figure scripts. It does not include the GEARS / scGPT / Geneformer model
+# This image installs the lightweight Python stack used by the public
+# figure-reproduction wrappers. It does not include the GEARS / scGPT / Geneformer model
 # environments; reproduce those locally via pixi (see pixi.toml) on a host
 # with a matching CUDA driver.
 FROM continuumio/miniconda3:24.7.1-0

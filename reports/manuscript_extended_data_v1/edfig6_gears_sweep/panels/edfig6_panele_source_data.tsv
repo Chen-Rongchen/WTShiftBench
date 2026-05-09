@@ -1,2 +1,0 @@
-rule	baseline_backbone	best_sweep_backbone	decision
-stop	0.8066666666666666	0.6433333333333333	do not promote GEARS as primary winner
