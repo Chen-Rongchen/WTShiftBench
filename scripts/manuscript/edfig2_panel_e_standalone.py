@@ -261,8 +261,6 @@ def render_scatter_shift_colormap(
     title: str,
     norm: Normalize,
     cmap_name: str = "YlOrRd",
-    *,
-    rho_pos: str,
 ) -> None:
     cmap = plt.get_cmap(cmap_name).copy()
     shift = df["shift_mean_abs"].to_numpy(dtype=float)
@@ -290,8 +288,7 @@ def render_scatter_shift_colormap(
     shift_rho = df["shift_mean_abs"].corr(df["depmap_dependency"], method="spearman")
     n = len(df)
 
-    rho_ha = "left" if rho_pos == "left" else "left"
-    rho_x = 1.04 if rho_pos == "left" else 1.02
+    rho_x = 1.02
     ax.text(
         rho_x,
         0.98,
@@ -300,7 +297,7 @@ def render_scatter_shift_colormap(
         transform=ax.transAxes,
         fontsize=5.8,
         va="top",
-        ha=rho_ha,
+        ha="left",
         color="#333333",
         linespacing=1.35,
         clip_on=False,
@@ -344,8 +341,8 @@ def build_figure_shift_colormap(src_38: pd.DataFrame, src_1143: pd.DataFrame) ->
     ax2 = fig.add_subplot(gs[0, 1])
 
     cmap = plt.get_cmap("YlOrRd").copy()
-    render_scatter_shift_colormap(ax1, src_38, "HCC38", norm, rho_pos="left")
-    render_scatter_shift_colormap(ax2, src_1143, "HCC1143", norm, rho_pos="right")
+    render_scatter_shift_colormap(ax1, src_38, "HCC38", norm)
+    render_scatter_shift_colormap(ax2, src_1143, "HCC1143", norm)
 
     fig.suptitle(
         "Whole-transcriptome shift vs target-gene self-expression",
@@ -356,7 +353,7 @@ def build_figure_shift_colormap(src_38: pd.DataFrame, src_1143: pd.DataFrame) ->
 
     sm = plt.cm.ScalarMappable(norm=norm, cmap=cmap)
     sm.set_array([])
-    cb = fig.colorbar(sm, ax=ax2, fraction=0.085, pad=0.002)
+    cb = fig.colorbar(sm, ax=ax2, fraction=0.085, pad=0.008)
     cb.set_label("Mean abs shift", fontsize=AXIS_LABEL_SIZE)
     cb.ax.minorticks_off()
     cb.ax.tick_params(labelsize=TICK_LABEL_SIZE)

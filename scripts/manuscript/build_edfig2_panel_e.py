@@ -203,7 +203,6 @@ def render_scatter_shift_colormap(
     title: str,
     norm: Normalize,
     cmap_name: str = "YlOrRd",
-    rho_pos: str = "left",
 ):
     """Scatter colored + sized by mean abs shift (shared norm across contexts)."""
     cmap = plt.get_cmap(cmap_name).copy()
@@ -232,9 +231,8 @@ def render_scatter_shift_colormap(
     shift_rho = df["shift_mean_abs"].corr(df["depmap_dependency"], method="spearman")
     n = len(df)
 
-    # HCC1143: keep stats in the narrow gutter before the colorbar (colorbar pad tightened below).
-    rho_x = 1.04 if rho_pos == "left" else 1.02
-    rho_ha = "left"
+    # Stats block just outside right spine (both panels); shifted left vs 1.04 default.
+    rho_x = 1.02
     ax.text(
         rho_x,
         0.98,
@@ -242,7 +240,7 @@ def render_scatter_shift_colormap(
         transform=ax.transAxes,
         fontsize=5.8,
         va="top",
-        ha=rho_ha,
+        ha="left",
         color="#333333",
         linespacing=1.35,
         clip_on=False,
@@ -281,13 +279,13 @@ def build_figure_shift_colormap(src_38: pd.DataFrame, src_1143: pd.DataFrame) ->
     ax1 = fig.add_subplot(gs[0, 0])
     ax2 = fig.add_subplot(gs[0, 1])
 
-    sm = render_scatter_shift_colormap(ax1, src_38, "HCC38", norm, rho_pos="left")
-    render_scatter_shift_colormap(ax2, src_1143, "HCC1143", norm, rho_pos="right")
+    sm = render_scatter_shift_colormap(ax1, src_38, "HCC38", norm)
+    render_scatter_shift_colormap(ax2, src_1143, "HCC1143", norm)
 
     fig.suptitle("Whole-transcriptome shift vs target-gene self-expression", fontsize=8.5, fontweight="bold", y=1.04)
 
-    # Colorbar (right “legend”): small pad only — wspace between the two scatters unchanged.
-    cb = fig.colorbar(sm, ax=ax2, fraction=0.085, pad=0.002)
+    # Colorbar on right panel (shared norm); minimal pad keeps scale close to HCC1143 scatter.
+    cb = fig.colorbar(sm, ax=ax2, fraction=0.085, pad=0.008)
     cb.set_label("Mean abs shift", fontsize=AXIS_LABEL_SIZE)
     cb.ax.minorticks_off()
     cb.ax.tick_params(labelsize=TICK_LABEL_SIZE)
