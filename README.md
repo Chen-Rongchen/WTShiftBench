@@ -116,9 +116,13 @@ After the [Quick start](#quick-start) preprocessing has finished:
 | Extended Data Figures 1-5           | `python scripts/manuscript/build_extended_data_figure*.py`       |
 | Sensitivity / robustness panels     | `python scripts/manuscript/build_sensitivity_*.py`               |
 
-Or simply `bash reproduce_figures.sh` to run them in sequence. Reference panel
-artefacts produced by these scripts are cached under `figures/` in the repo so
-that reviewers can match expected outputs without rerunning the full pipeline.
+Or simply `bash reproduce_figures.sh` to run them in sequence. By default each
+script writes into `reports/manuscript_*` (and Extended Data Fig. 2 panel e also
+writes under `manuscript/extended_data/...` on disk — see
+`scripts/manuscript/build_edfig2_panel_e.py`; that folder is gitignored).
+
+The top-level `figures/` directory is a **committed snapshot** (PNG/PDF/source
+TSV per panel for Fig 1–5 and ED Fig 1–5) bundled for reviewers — it does not auto-update when you rerun scripts; copy fresh panels there if refreshing the Zenodo/repo bundle.
 
 ---
 
