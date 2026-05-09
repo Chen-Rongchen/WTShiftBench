@@ -1,6 +1,6 @@
 # WTShiftBench
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20095921.svg)](https://doi.org/10.5281/zenodo.20095921)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20098869.svg)](https://doi.org/10.5281/zenodo.20098869)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 Public code and figure-reproduction bundle for:
@@ -205,7 +205,7 @@ If you use WTShiftBench, please cite both the manuscript and this code release:
 }
 ```
 
-**Code (Zenodo, archived snapshot of `v1.0-submission`):**
+**Code (Zenodo, archived snapshot of `v1.0`):**
 
 ```bibtex
 @software{chen_wtshiftbench_zenodo_2026,
@@ -213,13 +213,13 @@ If you use WTShiftBench, please cite both the manuscript and this code release:
     title     = {{WTShiftBench: Truth-anchored evaluation of perturbation-response models}},
     year      = {2026},
     publisher = {Zenodo},
-    version   = {v1.0-submission},
-    doi       = {10.5281/zenodo.20095921},
-    url       = {https://doi.org/10.5281/zenodo.20095921}
+    version   = {v1.0},
+    doi       = {10.5281/zenodo.20098869},
+    url       = {https://doi.org/10.5281/zenodo.20098869}
 }
 ```
 
-DOI: [10.5281/zenodo.20095921](https://doi.org/10.5281/zenodo.20095921)
+DOI: [10.5281/zenodo.20098869](https://doi.org/10.5281/zenodo.20098869)
 
 ---
 
