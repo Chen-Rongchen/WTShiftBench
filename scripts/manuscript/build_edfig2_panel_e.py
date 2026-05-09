@@ -232,8 +232,9 @@ def render_scatter_shift_colormap(
     shift_rho = df["shift_mean_abs"].corr(df["depmap_dependency"], method="spearman")
     n = len(df)
 
-    rho_x = 1.04 if rho_pos == "left" else 1.04
-    rho_ha = "left" if rho_pos == "left" else "left"
+    # HCC1143: keep stats in the narrow gutter before the colorbar (colorbar pad tightened below).
+    rho_x = 1.04 if rho_pos == "left" else 1.02
+    rho_ha = "left"
     ax.text(
         rho_x,
         0.98,
@@ -268,28 +269,28 @@ def build_figure_shift_colormap(src_38: pd.DataFrame, src_1143: pd.DataFrame) ->
     fig = plt.figure(figsize=(11.0, 2.2))
     gs = gridspec.GridSpec(
         1,
-        3,
+        2,
         figure=fig,
-        width_ratios=[1.0, 1.0, 0.08],
-        wspace=0.60,
+        width_ratios=[1.0, 1.0],
+        wspace=0.38,
         left=0.07,
-        right=0.94,
+        right=0.93,
         top=0.85,
         bottom=0.16,
     )
     ax1 = fig.add_subplot(gs[0, 0])
     ax2 = fig.add_subplot(gs[0, 1])
-    cax = fig.add_subplot(gs[0, 2])
 
     sm = render_scatter_shift_colormap(ax1, src_38, "HCC38", norm, rho_pos="left")
     render_scatter_shift_colormap(ax2, src_1143, "HCC1143", norm, rho_pos="right")
 
     fig.suptitle("Whole-transcriptome shift vs target-gene self-expression", fontsize=8.5, fontweight="bold", y=1.04)
 
-    cb = fig.colorbar(sm, cax=cax)
+    # Colorbar (right “legend”): small pad only — wspace between the two scatters unchanged.
+    cb = fig.colorbar(sm, ax=ax2, fraction=0.085, pad=0.002)
     cb.set_label("Mean abs shift", fontsize=AXIS_LABEL_SIZE)
     cb.ax.minorticks_off()
-    cax.tick_params(labelsize=TICK_LABEL_SIZE)
+    cb.ax.tick_params(labelsize=TICK_LABEL_SIZE)
 
     return fig
 
