@@ -116,10 +116,6 @@ def overview_asset_dir(root: Path) -> Path:
     return output_dir(root) / "overview_assets"
 
 
-def manuscript_overview_asset_dir(root: Path) -> Path:
-    return manuscript_figure_dir(root) / "overview_assets"
-
-
 def input_paths(root: Path) -> list[Path]:
     return [
         root / COVARIATE_SUMMARY,
@@ -216,9 +212,7 @@ def _place_figure5_composite_letters(fig: plt.Figure, ax_a: plt.Axes, ax_b: plt.
 def write_overview_asset(root: Path, source_df: pd.DataFrame) -> dict[str, Path]:
     """Save the boundary gate flow outside the Figure 5 panel set for future Figure 1a reuse."""
     out = ensure_dir(overview_asset_dir(root))
-    manuscript_out = ensure_dir(manuscript_overview_asset_dir(root))
     source_path = write_tsv(source_df, out / "boundary_gate_flow_overview_source_data.tsv")
-    manuscript_source_path = write_tsv(source_df, manuscript_out / "boundary_gate_flow_overview_source_data.tsv")
 
     fig, ax = plt.subplots(figsize=(6.8, 1.5))
     render_panel_a(ax, source_df)
@@ -226,15 +220,12 @@ def write_overview_asset(root: Path, source_df: pd.DataFrame) -> dict[str, Path]
     for path in [
         out / "boundary_gate_flow_overview.png",
         out / "boundary_gate_flow_overview.pdf",
-        manuscript_out / "boundary_gate_flow_overview.png",
-        manuscript_out / "boundary_gate_flow_overview.pdf",
     ]:
         ensure_dir(path.parent)
         fig.savefig(path, dpi=1200 if path.suffix == ".png" else None, bbox_inches="tight")
     plt.close(fig)
     return {
         "source": source_path,
-        "manuscript_source": manuscript_source_path,
         "png": out / "boundary_gate_flow_overview.png",
         "pdf": out / "boundary_gate_flow_overview.pdf",
     }

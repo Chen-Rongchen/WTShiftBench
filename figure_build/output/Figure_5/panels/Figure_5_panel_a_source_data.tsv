@@ -1,0 +1,11 @@
+cell_line	strat_column	mean_tvd	n_targets_tvd_gt_0.25	median_tvd
+HCC1143	barcode_gem_group	0.0553688001480439	0	0.04943644796777
+HCC38	barcode_gem_group	0.0529180609984402	2	0.0422997207243601
+HCC1143	transcriptome_detected_genes_quantile_bin	0.0763635715127252	1	0.0643932036186256
+HCC38	transcriptome_detected_genes_quantile_bin	0.0576238872498433	0	0.0448482811520195
+HCC1143	transcriptome_total_signal_quantile_bin	0.0779806104417702	0	0.0632640516191688
+HCC38	transcriptome_total_signal_quantile_bin	0.0706879015433831	2	0.0504229109277646
+HCC1143	num_umis_over_threshold_bin	0.1038378228257645	3	0.0822786816030881
+HCC38	num_umis_over_threshold_bin	0.0926564213166551	3	0.0575314999730691
+HCC1143	num_umis_quantile_bin	0.1331656892393771	2	0.1270131410936646
+HCC38	num_umis_quantile_bin	0.1087842315983835	6	0.0743581581316291
