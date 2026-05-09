@@ -58,5 +58,7 @@ can read every input they need and regenerate the panels under `figures/`.
 ## Code availability
 
 This repository is the canonical source for the analysis and figure-build
-code. A snapshot will be archived on Zenodo at the manuscript-acceptance stage
-and the resulting DOI added to the manuscript and to this file.
+code. A versioned, citable snapshot corresponding to the Genome Biology
+submission has been archived at Zenodo under DOI
+[10.5281/zenodo.20095921](https://doi.org/10.5281/zenodo.20095921), with
+GitHub release tag [`v1.0-submission`](https://github.com/Chen-Rongchen/WTShiftBench/releases/tag/v1.0-submission).
