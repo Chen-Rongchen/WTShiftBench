@@ -217,7 +217,7 @@ def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
         clean_axes(sub_ax)
 
     rank_ax.set_ylim(0.35, 0.88)
-    rank_ax.set_ylabel("Bridge Spearman ρ", labelpad=2)
+    rank_ax.set_ylabel(r"Bridge Spearman $\rho$", labelpad=2)
     rank_ax.set_title("Rank bridge weakens at 13d", loc="left", fontsize=7.0, fontweight="bold", pad=2)
     shift_ax.set_ylim(0.55, 1.15)
     shift_ax.set_ylabel("Mean shift (norm.)", labelpad=2)
@@ -302,7 +302,7 @@ def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
     # Rho stats — right of scatter, clipped outside axes
     ax.text(
         1.06, 0.78,
-        f"Spearman ρ = {rho_val:.3f}\n95% CI {ci_low:.3f}\u2013{ci_high:.3f}\nempirical p = {p_perm:.3g}\nn = {n}",
+        f"Spearman $\\rho$ = {rho_val:.3f}\n95% CI {ci_low:.3f}\u2013{ci_high:.3f}\nempirical p = {p_perm:.3g}\nn = {n}",
         transform=ax.transAxes, fontsize=5.8, va="top", ha="left", color="#333333", clip_on=False,
     )
 
@@ -327,7 +327,7 @@ def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
 
 
 def build_panel_c_source(root: Path) -> pd.DataFrame:
-    """Evidence-tier checklist; numeric ρ row is taken from the same temporal bridge table as panel a."""
+    ""r"Evidence-tier checklist; numeric $\rho$ row is taken from the same temporal bridge table as panel a."""
     bridge = pd.read_csv(root / TEMPORAL_BRIDGE, sep="\t")
     primary = bridge.loc[
         bridge["truth_metric"].eq(BRIDGE_TRUTH_METRIC)
@@ -339,10 +339,10 @@ def build_panel_c_source(root: Path) -> pd.DataFrame:
     return pd.DataFrame(
         [
             {
-                "evidence_item": "Bridge Spearman ρ above null",
+                "evidence_item": r"Bridge Spearman $\rho$ above null",
                 "tier": "A1",
                 "status": "yes",
-                "note": f"ρ = {rho_7d:.3f} / {rho_13d:.3f}",
+                "note": rf"$\rho$ = {rho_7d:.3f} / {rho_13d:.3f}",
             },
             {
                 "evidence_item": "Joint grid defined",
