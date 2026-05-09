@@ -203,6 +203,8 @@ def render_scatter_shift_colormap(
     title: str,
     norm: Normalize,
     cmap_name: str = "YlOrRd",
+    stats_x: float = 1.02,
+    stats_ha: str = "left",
 ):
     """Scatter colored + sized by mean abs shift (shared norm across contexts)."""
     cmap = plt.get_cmap(cmap_name).copy()
@@ -231,16 +233,14 @@ def render_scatter_shift_colormap(
     shift_rho = df["shift_mean_abs"].corr(df["depmap_dependency"], method="spearman")
     n = len(df)
 
-    # Stats block just outside right spine (both panels); shifted left vs 1.04 default.
-    rho_x = 1.02
     ax.text(
-        rho_x,
+        stats_x,
         0.98,
         f"n = {n}\nSpearman $\\rho$ (tg_logFC) = {log2fc_rho:.2f}\nSpearman $\\rho$ (transcr.) = {shift_rho:.2f}",
         transform=ax.transAxes,
         fontsize=5.8,
         va="top",
-        ha="left",
+        ha=stats_ha,
         color="#333333",
         linespacing=1.35,
         clip_on=False,
@@ -265,27 +265,26 @@ def build_figure_shift_colormap(src_38: pd.DataFrame, src_1143: pd.DataFrame) ->
     norm = Normalize(vmin=low, vmax=high)
 
     fig = plt.figure(figsize=(11.0, 2.2))
-    gs = gridspec.GridSpec(
-        1,
-        2,
-        figure=fig,
-        width_ratios=[1.0, 1.0],
-        wspace=0.38,
-        left=0.07,
-        right=0.93,
-        top=0.85,
-        bottom=0.16,
-    )
-    ax1 = fig.add_subplot(gs[0, 0])
-    ax2 = fig.add_subplot(gs[0, 1])
+    # Keep the left panel origin fixed, shrink both panels slightly, and use the
+    # freed middle space for the HCC38 stats block without colliding with HCC1143.
+    panel_bottom = 0.16
+    panel_height = 0.69
+    left_x = 0.07
+    panel_width = 0.265
+    right_x = 0.50
+    cbar_x = 0.885
+    cbar_width = 0.014
+    ax1 = fig.add_axes([left_x, panel_bottom, panel_width, panel_height])
+    ax2 = fig.add_axes([right_x, panel_bottom, panel_width, panel_height])
+    cax = fig.add_axes([cbar_x, panel_bottom, cbar_width, panel_height])
 
     sm = render_scatter_shift_colormap(ax1, src_38, "HCC38", norm)
     render_scatter_shift_colormap(ax2, src_1143, "HCC1143", norm)
 
     fig.suptitle("Whole-transcriptome shift vs target-gene self-expression", fontsize=8.5, fontweight="bold", y=1.04)
 
-    # Colorbar on right panel (shared norm); minimal pad keeps scale close to HCC1143 scatter.
-    cb = fig.colorbar(sm, ax=ax2, fraction=0.085, pad=0.008)
+    # Dedicated far-right colorbar axis prevents overlap with the Spearman stats blocks.
+    cb = fig.colorbar(sm, cax=cax)
     cb.set_label("Mean abs shift", fontsize=AXIS_LABEL_SIZE)
     cb.ax.minorticks_off()
     cb.ax.tick_params(labelsize=TICK_LABEL_SIZE)

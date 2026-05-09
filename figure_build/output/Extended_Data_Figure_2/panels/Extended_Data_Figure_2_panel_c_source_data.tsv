@@ -1,0 +1,17 @@
+summary_kind	cell_line	timepoint	truth_metric	depmap_endpoint	platform_pair	context_role	n_targets	spearman_rho_aligned
+endpoint_sensitivity	HCC38	HCC38	real_shift_mean_abs	depmap_gene_dependency	crispr	primary_hcc	47	0.7257957275155708
+endpoint_sensitivity	HCC38	HCC38	real_shift_mean_abs	depmap_gene_dependency	rnai	primary_hcc	48	0.2763786365610073
+endpoint_sensitivity	HCC38	HCC38	real_shift_L2	depmap_gene_dependency	crispr	primary_hcc	47	0.7019745023314382
+endpoint_sensitivity	HCC38	HCC38	real_shift_L2	depmap_gene_dependency	rnai	primary_hcc	48	0.2627008250108554
+endpoint_sensitivity	HCC1143	HCC1143	real_shift_mean_abs	depmap_gene_dependency	crispr	primary_hcc	48	0.7792497165337711
+endpoint_sensitivity	HCC1143	HCC1143	real_shift_mean_abs	depmap_gene_dependency	rnai	primary_hcc	48	0.3844984802431611
+endpoint_sensitivity	HCC1143	HCC1143	real_shift_L2	depmap_gene_dependency	crispr	primary_hcc	48	0.7612248502417618
+endpoint_sensitivity	HCC1143	HCC1143	real_shift_L2	depmap_gene_dependency	rnai	primary_hcc	48	0.3971993052540165
+endpoint_sensitivity	7d	7d	real_shift_mean_abs	depmap_gene_dependency	crispr	supplementary_k562	10	0.7333333333333332
+endpoint_sensitivity	7d	7d	real_shift_mean_abs	depmap_gene_dependency	rnai	supplementary_k562	9	0.3333333333333333
+endpoint_sensitivity	7d	7d	real_shift_L2	depmap_gene_dependency	crispr	supplementary_k562	10	0.8060606060606059
+endpoint_sensitivity	7d	7d	real_shift_L2	depmap_gene_dependency	rnai	supplementary_k562	9	0.3666666666666667
+endpoint_sensitivity	13d	13d	real_shift_mean_abs	depmap_gene_dependency	crispr	supplementary_k562	10	0.5151515151515151
+endpoint_sensitivity	13d	13d	real_shift_mean_abs	depmap_gene_dependency	rnai	supplementary_k562	9	0.3
+endpoint_sensitivity	13d	13d	real_shift_L2	depmap_gene_dependency	crispr	supplementary_k562	10	0.5030303030303029
+endpoint_sensitivity	13d	13d	real_shift_L2	depmap_gene_dependency	rnai	supplementary_k562	9	0.2166666666666666
