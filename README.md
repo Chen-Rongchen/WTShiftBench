@@ -1,5 +1,8 @@
 # WTShiftBench
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20095921.svg)](https://doi.org/10.5281/zenodo.20095921)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 Code, intermediate tables, and figure artefacts for the manuscript
 
 > **Truth-anchored evaluation of perturbation-response models: a fitness-bridge
@@ -150,6 +153,10 @@ The model stack (`pixi.toml` provides feature-pinned environments):
 
 ## Citing
 
+If you use WTShiftBench, please cite both the manuscript and this code release:
+
+**Manuscript:**
+
 ```bibtex
 @article{chen_wtshiftbench_2026,
     author  = {Chen, Rongchen and ...},
@@ -160,8 +167,21 @@ The model stack (`pixi.toml` provides feature-pinned environments):
 }
 ```
 
-A Zenodo DOI for this repository will be added here once the manuscript is
-accepted.
+**Code (Zenodo, archived snapshot of `v1.0-submission`):**
+
+```bibtex
+@software{chen_wtshiftbench_zenodo_2026,
+    author    = {Chen, Rongchen},
+    title     = {{WTShiftBench: Truth-anchored evaluation of perturbation-response models}},
+    year      = {2026},
+    publisher = {Zenodo},
+    version   = {v1.0-submission},
+    doi       = {10.5281/zenodo.20095921},
+    url       = {https://doi.org/10.5281/zenodo.20095921}
+}
+```
+
+DOI: [10.5281/zenodo.20095921](https://doi.org/10.5281/zenodo.20095921)
 
 ---
 
