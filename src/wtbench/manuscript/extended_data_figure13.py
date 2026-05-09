@@ -327,7 +327,7 @@ def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
         inset.set_title(RANKING_LABELS[ranking], loc="left", fontsize=7.0, fontweight="normal")
         inset.set_xlabel("Top n genes")
         if ranking == "control_expression":
-            inset.set_ylabel("Aligned Spearman ρ")
+            inset.set_ylabel(r"Aligned Spearman $\rho$")
         clean_axes(inset)
         inset.grid(axis="y", color=COLORS["grid"], linewidth=0.5)
     axes[1].legend(loc="lower right", fontsize=5.8, frameon=False)
@@ -437,7 +437,7 @@ def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
     endpoint_ax.set_ylim(8.6, -0.9)
     endpoint_ax.set_yticks(y_ticks)
     endpoint_ax.set_yticklabels(y_labels)
-    endpoint_ax.set_xlabel("Aligned Spearman ρ")
+    endpoint_ax.set_xlabel(r"Aligned Spearman $\rho$")
     legend_x = 0.80
     ax.scatter([legend_x], [0.39], color=colors["CRISPR"], s=16, transform=ax.transAxes, clip_on=False)
     ax.text(legend_x + 0.035, 0.39, "CRISPR", color=colors["CRISPR"], fontsize=5.6, va="center", transform=ax.transAxes)
@@ -499,7 +499,7 @@ def render_panel_d(ax: plt.Axes, df: pd.DataFrame) -> None:
         inset.set_yticks(y)
         inset.set_yticklabels([METRIC_LABELS[r] for r in rows] if cell_line == "HCC38" else [])
         inset.set_title(cell_line, loc="left", fontsize=7.0, fontweight="normal")
-        inset.set_xlabel("Aligned Spearman ρ")
+        inset.set_xlabel(r"Aligned Spearman $\rho$")
         clean_axes(inset)
         inset.grid(axis="x", color=COLORS["grid"], linewidth=0.5)
     axes[0].set_ylabel("Truth metric")
