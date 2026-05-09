@@ -39,4 +39,5 @@ run scripts/manuscript/build_extended_data_figure10_axis_explanatory.py
 run scripts/manuscript/build_extended_data_figure13.py
 
 echo
-echo "Done. Reference panel outputs are cached under figures/."
+echo "Done. Fresh artefacts are written under reports/… (see each script)."
+echo "    Repo root figures/ holds a curated, git-tracked panel snapshot — copy panels there manually if updating the submission bundle."
