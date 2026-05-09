@@ -6,15 +6,15 @@
   "entrant_id": "lm_G_geneformer_ridge",
   "source_kind": "linear_ridge_geneformer_embedding_leave_one_out",
   "export_timestamp": "2026-04-10T04:58:30.187409+00:00",
-  "prediction_path": "/home/data/gz0705/WTKO/data/predictions/lm_g_geneformer_ridge_raw/lm_g_geneformer_ridge_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz",
+  "prediction_path": "data/predictions/lm_g_geneformer_ridge_raw/lm_g_geneformer_ridge_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz",
   "feature_manifest": {
     "feature_id": "geneformer_gene_embedding_gc104m",
     "checkpoint_key": "geneformer_gf_12l_95m_i4096",
-    "checkpoint_root": "/home/data/gz0705/WTKO/models/pretrained/geneformer_gf_12l_95m_i4096",
-    "checkpoint_dir": "/home/data/gz0705/WTKO/models/pretrained/geneformer_gf_12l_95m_i4096/gf-12L-95M-i4096",
-    "asset_root": "/home/data/gz0705/WTKO/models/pretrained/geneformer_assets/geneformer",
-    "token_dict_path": "/home/data/gz0705/WTKO/models/pretrained/geneformer_assets/geneformer/token_dictionary_gc104M.pkl",
-    "gene_mapping_path": "/home/data/gz0705/WTKO/models/pretrained/geneformer_assets/geneformer/gene_name_id_dict_gc104M.pkl",
+    "checkpoint_root": "models/pretrained/geneformer_gf_12l_95m_i4096",
+    "checkpoint_dir": "models/pretrained/geneformer_gf_12l_95m_i4096/gf-12L-95M-i4096",
+    "asset_root": "models/pretrained/geneformer_assets/geneformer",
+    "token_dict_path": "models/pretrained/geneformer_assets/geneformer/token_dictionary_gc104M.pkl",
+    "gene_mapping_path": "models/pretrained/geneformer_assets/geneformer/gene_name_id_dict_gc104M.pkl",
     "embedding_shape": [
       20275,
       512

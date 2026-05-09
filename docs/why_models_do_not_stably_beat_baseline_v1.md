@@ -18,15 +18,15 @@
 
 如果需要把这件事继续拆成“方法学解释”与“生物学解释”两层，请继续看：
 
-- [`docs/model_vs_baseline_deeper_explanation_note_v1.md`](/home/data/gz0705/WTKO/docs/model_vs_baseline_deeper_explanation_note_v1.md)
-- [`docs/model_vs_baseline_next_step_breakdown_v1.md`](/home/data/gz0705/WTKO/docs/model_vs_baseline_next_step_breakdown_v1.md)
+- [`docs/model_vs_baseline_deeper_explanation_note_v1.md`](docs/model_vs_baseline_deeper_explanation_note_v1.md)
+- [`docs/model_vs_baseline_next_step_breakdown_v1.md`](docs/model_vs_baseline_next_step_breakdown_v1.md)
 
 ## 2. 先固定现象
 
 当前现象不是单次偶然波动，而是已经在统一 contract 下重复出现的稳定模式：
 
-- [`reports/stage2_real_hcc_smoke/model_comparison.tsv`](/home/data/gz0705/WTKO/reports/stage2_real_hcc_smoke/model_comparison.tsv)
-- [`reports/stage2_real_hcc_smoke/backbone_diagnosis.tsv`](/home/data/gz0705/WTKO/reports/stage2_real_hcc_smoke/backbone_diagnosis.tsv)
+- [`reports/stage2_real_hcc_smoke/model_comparison.tsv`](reports/stage2_real_hcc_smoke/model_comparison.tsv)
+- [`reports/stage2_real_hcc_smoke/backbone_diagnosis.tsv`](reports/stage2_real_hcc_smoke/backbone_diagnosis.tsv)
 
 当前跨细胞系均值中：
 
@@ -89,10 +89,10 @@
 
 两条 embedding ablation control 当前都已经实现运行时 checkpoint lookup，并且 coverage 达到 `1.000`：
 
-- [`reports/stage2_lm_g_scgpt_ridge_hcc_recipe/HCC38/coverage_audit.json`](/home/data/gz0705/WTKO/reports/stage2_lm_g_scgpt_ridge_hcc_recipe/HCC38/coverage_audit.json)
-- [`reports/stage2_lm_g_scgpt_ridge_hcc_recipe/HCC1143/coverage_audit.json`](/home/data/gz0705/WTKO/reports/stage2_lm_g_scgpt_ridge_hcc_recipe/HCC1143/coverage_audit.json)
-- [`reports/stage2_lm_g_geneformer_ridge_hcc_recipe/HCC38/coverage_audit.json`](/home/data/gz0705/WTKO/reports/stage2_lm_g_geneformer_ridge_hcc_recipe/HCC38/coverage_audit.json)
-- [`reports/stage2_lm_g_geneformer_ridge_hcc_recipe/HCC1143/coverage_audit.json`](/home/data/gz0705/WTKO/reports/stage2_lm_g_geneformer_ridge_hcc_recipe/HCC1143/coverage_audit.json)
+- [`reports/stage2_lm_g_scgpt_ridge_hcc_recipe/HCC38/coverage_audit.json`](reports/stage2_lm_g_scgpt_ridge_hcc_recipe/HCC38/coverage_audit.json)
+- [`reports/stage2_lm_g_scgpt_ridge_hcc_recipe/HCC1143/coverage_audit.json`](reports/stage2_lm_g_scgpt_ridge_hcc_recipe/HCC1143/coverage_audit.json)
+- [`reports/stage2_lm_g_geneformer_ridge_hcc_recipe/HCC38/coverage_audit.json`](reports/stage2_lm_g_geneformer_ridge_hcc_recipe/HCC38/coverage_audit.json)
+- [`reports/stage2_lm_g_geneformer_ridge_hcc_recipe/HCC1143/coverage_audit.json`](reports/stage2_lm_g_geneformer_ridge_hcc_recipe/HCC1143/coverage_audit.json)
 
 因此当前不能再把 ridge control 的弱势简单解释成“held-out target 根本没覆盖到”。
 
@@ -250,22 +250,22 @@
 
 默认先看：
 
-1. [`reports/stage2_real_hcc_smoke/model_comparison.tsv`](/home/data/gz0705/WTKO/reports/stage2_real_hcc_smoke/model_comparison.tsv)
-2. [`reports/stage2_real_hcc_smoke/backbone_diagnosis.tsv`](/home/data/gz0705/WTKO/reports/stage2_real_hcc_smoke/backbone_diagnosis.tsv)
-3. [`docs/stage2_fuller_hcc_model_comparison_note_v1.md`](/home/data/gz0705/WTKO/docs/stage2_fuller_hcc_model_comparison_note_v1.md)
-4. [`docs/model_vs_baseline_deeper_explanation_note_v1.md`](/home/data/gz0705/WTKO/docs/model_vs_baseline_deeper_explanation_note_v1.md)
-5. [`docs/model_vs_baseline_next_step_breakdown_v1.md`](/home/data/gz0705/WTKO/docs/model_vs_baseline_next_step_breakdown_v1.md)
+1. [`reports/stage2_real_hcc_smoke/model_comparison.tsv`](reports/stage2_real_hcc_smoke/model_comparison.tsv)
+2. [`reports/stage2_real_hcc_smoke/backbone_diagnosis.tsv`](reports/stage2_real_hcc_smoke/backbone_diagnosis.tsv)
+3. [`docs/stage2_fuller_hcc_model_comparison_note_v1.md`](docs/stage2_fuller_hcc_model_comparison_note_v1.md)
+4. [`docs/model_vs_baseline_deeper_explanation_note_v1.md`](docs/model_vs_baseline_deeper_explanation_note_v1.md)
+5. [`docs/model_vs_baseline_next_step_breakdown_v1.md`](docs/model_vs_baseline_next_step_breakdown_v1.md)
 
 若要下钻，再看：
 
-- [`reports/stage2_real_hcc_smoke/details/shared_mean_baseline/HCC38/expression_summary.tsv`](/home/data/gz0705/WTKO/reports/stage2_real_hcc_smoke/details/shared_mean_baseline/HCC38/expression_summary.tsv)
-- [`reports/stage2_real_hcc_smoke/details/shared_mean_baseline/HCC1143/expression_summary.tsv`](/home/data/gz0705/WTKO/reports/stage2_real_hcc_smoke/details/shared_mean_baseline/HCC1143/expression_summary.tsv)
-- [`reports/stage2_real_hcc_smoke/details/geneformer_hcc_formal_v1/HCC38/expression_summary.tsv`](/home/data/gz0705/WTKO/reports/stage2_real_hcc_smoke/details/geneformer_hcc_formal_v1/HCC38/expression_summary.tsv)
-- [`reports/stage2_real_hcc_smoke/details/geneformer_hcc_formal_v1/HCC1143/expression_summary.tsv`](/home/data/gz0705/WTKO/reports/stage2_real_hcc_smoke/details/geneformer_hcc_formal_v1/HCC1143/expression_summary.tsv)
-- [`reports/stage2_real_hcc_smoke/details/lm_g_geneformer_ridge_hcc_formal_v1/HCC38/expression_summary.tsv`](/home/data/gz0705/WTKO/reports/stage2_real_hcc_smoke/details/lm_g_geneformer_ridge_hcc_formal_v1/HCC38/expression_summary.tsv)
-- [`reports/stage2_real_hcc_smoke/details/lm_g_geneformer_ridge_hcc_formal_v1/HCC1143/expression_summary.tsv`](/home/data/gz0705/WTKO/reports/stage2_real_hcc_smoke/details/lm_g_geneformer_ridge_hcc_formal_v1/HCC1143/expression_summary.tsv)
-- [`reports/stage2_real_hcc_smoke/details/lm_g_scgpt_ridge_hcc_formal_v1/HCC38/expression_summary.tsv`](/home/data/gz0705/WTKO/reports/stage2_real_hcc_smoke/details/lm_g_scgpt_ridge_hcc_formal_v1/HCC38/expression_summary.tsv)
-- [`reports/stage2_real_hcc_smoke/details/lm_g_scgpt_ridge_hcc_formal_v1/HCC1143/expression_summary.tsv`](/home/data/gz0705/WTKO/reports/stage2_real_hcc_smoke/details/lm_g_scgpt_ridge_hcc_formal_v1/HCC1143/expression_summary.tsv)
+- [`reports/stage2_real_hcc_smoke/details/shared_mean_baseline/HCC38/expression_summary.tsv`](reports/stage2_real_hcc_smoke/details/shared_mean_baseline/HCC38/expression_summary.tsv)
+- [`reports/stage2_real_hcc_smoke/details/shared_mean_baseline/HCC1143/expression_summary.tsv`](reports/stage2_real_hcc_smoke/details/shared_mean_baseline/HCC1143/expression_summary.tsv)
+- [`reports/stage2_real_hcc_smoke/details/geneformer_hcc_formal_v1/HCC38/expression_summary.tsv`](reports/stage2_real_hcc_smoke/details/geneformer_hcc_formal_v1/HCC38/expression_summary.tsv)
+- [`reports/stage2_real_hcc_smoke/details/geneformer_hcc_formal_v1/HCC1143/expression_summary.tsv`](reports/stage2_real_hcc_smoke/details/geneformer_hcc_formal_v1/HCC1143/expression_summary.tsv)
+- [`reports/stage2_real_hcc_smoke/details/lm_g_geneformer_ridge_hcc_formal_v1/HCC38/expression_summary.tsv`](reports/stage2_real_hcc_smoke/details/lm_g_geneformer_ridge_hcc_formal_v1/HCC38/expression_summary.tsv)
+- [`reports/stage2_real_hcc_smoke/details/lm_g_geneformer_ridge_hcc_formal_v1/HCC1143/expression_summary.tsv`](reports/stage2_real_hcc_smoke/details/lm_g_geneformer_ridge_hcc_formal_v1/HCC1143/expression_summary.tsv)
+- [`reports/stage2_real_hcc_smoke/details/lm_g_scgpt_ridge_hcc_formal_v1/HCC38/expression_summary.tsv`](reports/stage2_real_hcc_smoke/details/lm_g_scgpt_ridge_hcc_formal_v1/HCC38/expression_summary.tsv)
+- [`reports/stage2_real_hcc_smoke/details/lm_g_scgpt_ridge_hcc_formal_v1/HCC1143/expression_summary.tsv`](reports/stage2_real_hcc_smoke/details/lm_g_scgpt_ridge_hcc_formal_v1/HCC1143/expression_summary.tsv)
 
 ## 10. 一句话收口
 

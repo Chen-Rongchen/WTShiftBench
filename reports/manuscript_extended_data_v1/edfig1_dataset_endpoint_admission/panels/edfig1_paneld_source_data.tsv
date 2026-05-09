@@ -1,4 +1,0 @@
-endpoint	tier	admission
-CRISPR DepMap	primary	global bridge
-RNAi DEMETER2	sensitivity	admission required
-K562 GSE90063	supplementary	temporal support
