@@ -1,0 +1,47 @@
+model_id	model_label	model_family	plot_color	backbone_recovery_score	shift_excess_identification_score	structure_vs_context_separation_score	panel	object_role	cell_line	ratio_mean	se
+shared_mean_baseline	"shared mean
+baseline"	baseline	#333333	0.8066666666666666	0.3333333333333333	0.3526145586462627	a				
+gears_hcc_formal_v1	"GEARS
+formal"	GEARS formal	#0072B2	0.6599999999999999	0.3333333333333333	0.4284153807253488	a				
+geneformer_hcc_formal_v1	Geneformer	foundation entrants	#8E8E8E	0.5333333333333333	0.75	0.401165394979353	a				
+scgpt_hcc_formal_v1	scGPT	foundation entrants	#8E8E8E	0.4466666666666667	0.3333333333333333	0.2948250032704949	a				
+lm_g_geneformer_ridge_hcc_formal_v1	"LM +
+Geneformer"	linear controls	#D0D0D0	0.6266666666666666	0.1666666666666666	0.3256623817641846	a				
+lm_train_lowrank_hcc_formal_v1	"LM
+low-rank"	linear controls	#D0D0D0	0.5366666666666666	0.5833333333333333	0.2862358413992706	a				
+lm_g_scgpt_ridge_hcc_formal_v1	"LM +
+scGPT"	linear controls	#D0D0D0	0.4666666666666667	0.1666666666666666	0.2589613597519035	a				
+null_model	null	null	#D0D0D0	0.5	0.5	0.0	a				
+shared_mean_baseline	"shared mean
+baseline"		#333333	0.8066666666666666	0.3333333333333333	0.3526145586462627	b				
+gears_hcc_formal_v1	"GEARS
+formal"		#0072B2	0.6599999999999999	0.3333333333333333	0.4284153807253488	b				
+shared_mean_baseline	"shared mean
+baseline"	baseline	#333333	0.8066666666666666		0.3526145586462627	c	baseline			
+gears_hcc_formal_v1	"GEARS
+formal"	GEARS formal	#0072B2	0.6599999999999999		0.4284153807253488	c	entrant			
+gears_hcc_formal_v1_e30_lr2e-03_wd1e-06	"GEARS
+sweep A"	GEARS sweep	#D0D0D0	0.6433333333333333		0.4485243810877402	c	entrant			
+gears_hcc_formal_v1_e20_lr1e-03_wd1e-06	"GEARS
+sweep B"	GEARS sweep	#D0D0D0	0.6266666666666667		0.4591562997768912	c	entrant			
+lm_g_geneformer_ridge_hcc_formal_v1	"LM +
+Geneformer"	linear controls	#D0D0D0	0.6266666666666666		0.3256623817641846	c	entrant			
+gears_hcc_formal_v1_e30_lr1e-03_wd1e-05	"GEARS
+sweep C"	GEARS sweep	#D0D0D0	0.6133333333333333		0.427833160600328	c	entrant			
+lm_train_lowrank_hcc_formal_v1	"LM
+low-rank"	linear controls	#D0D0D0	0.5366666666666666		0.2862358413992706	c	entrant			
+geneformer_hcc_formal_v1	Geneformer	foundation entrants	#8E8E8E	0.5333333333333333		0.401165394979353	c	entrant			
+gears_hcc_formal_v1_e30_lr5e-04_wd1e-06	"GEARS
+sweep D"	GEARS sweep	#D0D0D0	0.53		0.4458928896160027	c	entrant			
+null_model	null	null	#D0D0D0	0.5		0.0	c				
+gears_hcc_formal_v1_e40_lr1e-03_wd1e-06	"GEARS
+sweep E"	GEARS sweep	#D0D0D0	0.4933333333333333		0.4684217036980002	c	entrant			
+lm_g_scgpt_ridge_hcc_formal_v1	"LM +
+scGPT"	linear controls	#D0D0D0	0.4666666666666667		0.2589613597519035	c	entrant			
+scgpt_hcc_formal_v1	scGPT	foundation entrants	#8E8E8E	0.4466666666666667		0.2948250032704949	c	entrant			
+gears_hcc_formal_v1							d		HCC38	0.7886970516646765	0.15910115555118548
+geneformer_hcc_formal_v1							d		HCC38	0.6458197299182209	0.13977803495682242
+scgpt_hcc_formal_v1							d		HCC38	0.5524354562354316	0.13621260038181732
+gears_hcc_formal_v1							d		HCC1143	0.862510658960916	0.0862523237549417
+geneformer_hcc_formal_v1							d		HCC1143	0.6939965920612361	0.12457613808811265
+scgpt_hcc_formal_v1							d		HCC1143	0.564257579665344	0.13333102591120052

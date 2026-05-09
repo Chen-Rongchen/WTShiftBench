@@ -36,7 +36,6 @@ results/
 # Test scratch
 tests/test_gears_dixit/
 tests/test_gears_gse90063/
-manuscript/build_scripts/test_output/
 
 # ----------------------------------------------------------------------
 # Large data / model assets (downloaded or regenerated; see DATA_AVAILABILITY.md)
@@ -136,9 +135,15 @@ AGENTS.md
 
 # Local backup tree (was tracked previously; physically removed)
 backup/
+local_archive/
 
-# Manuscript source assembly tree (kept locally; not part of public repo)
-/manuscript/
+# Manuscript source assembly tree is local only. Public figure build scripts and
+# outputs live under figure_build/.
+manuscript/
+
+# Legacy manuscript assembly outputs are local only.
+manuscript/figures/
+manuscript/extended_data/
 
 # Local-only reference bundles
 depmap/

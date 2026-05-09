@@ -5,8 +5,8 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parents[2]
-PDIR = ROOT / "manuscript/extended_data/Extended_Data_Figure_2/panels"
-OUT = ROOT / "manuscript/extended_data/Extended_Data_Figure_2"
+OUT = ROOT / "manuscript/build_scripts/output/Extended_Data_Figure_2"
+PDIR = OUT / "panels"
 
 FONT_PATH = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
 FONT_SIZE = 34

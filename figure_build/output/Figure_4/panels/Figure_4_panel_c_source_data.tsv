@@ -1,0 +1,11 @@
+model_id	display_label	cell_line	backbone_recovery_score	baseline_backbone	delta_backbone
+gears_hcc_formal_v1	GEARS formal	HCC38	0.6	0.7733333333333333	-0.17333333333333334
+gears_hcc_formal_v1	GEARS formal	HCC1143	0.7199999999999999	0.84	-0.1200000000000001
+gears_hcc_formal_v1_e30_lr2e-03_wd1e-06	Best GEARS sweep candidate	HCC38	0.58	0.7733333333333333	-0.19333333333333336
+gears_hcc_formal_v1_e30_lr2e-03_wd1e-06	Best GEARS sweep candidate	HCC1143	0.7066666666666667	0.84	-0.1333333333333333
+lm_g_scgpt_ridge_hcc_formal_v1	scGPT-ridge control	HCC38	0.5	0.7733333333333333	-0.2733333333333333
+lm_g_scgpt_ridge_hcc_formal_v1	scGPT-ridge control	HCC1143	0.4333333333333333	0.84	-0.4066666666666667
+lm_g_geneformer_ridge_hcc_formal_v1	Geneformer-ridge control	HCC38	0.5333333333333333	0.7733333333333333	-0.24
+lm_g_geneformer_ridge_hcc_formal_v1	Geneformer-ridge control	HCC1143	0.7199999999999999	0.84	-0.1200000000000001
+lm_train_lowrank_hcc_formal_v1	Low-rank decoder	HCC38	0.5599999999999999	0.7733333333333333	-0.21333333333333337
+lm_train_lowrank_hcc_formal_v1	Low-rank decoder	HCC1143	0.5133333333333333	0.84	-0.32666666666666666

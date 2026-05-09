@@ -18,7 +18,13 @@ def sha256_file(path: Path) -> str:
 
 def file_record(path: Path, *, root: Path | None = None) -> dict[str, str]:
     p = path.resolve()
-    display = str(p if root is None else p.relative_to(root.resolve()))
+    if root is None:
+        display = str(p)
+    else:
+        try:
+            display = str(p.relative_to(root.resolve()))
+        except ValueError:
+            display = str(p)
     return {"path": display, "sha256": sha256_file(p)}
 
 
