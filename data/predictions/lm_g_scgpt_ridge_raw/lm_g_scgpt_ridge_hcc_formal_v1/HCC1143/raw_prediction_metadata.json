@@ -6,13 +6,13 @@
   "entrant_id": "lm_G_scgpt_ridge",
   "source_kind": "linear_ridge_scgpt_embedding_leave_one_out",
   "export_timestamp": "2026-04-10T01:42:36.385913+00:00",
-  "prediction_path": "/home/data/gz0705/WTKO/data/predictions/lm_g_scgpt_ridge_raw/lm_g_scgpt_ridge_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz",
+  "prediction_path": "data/predictions/lm_g_scgpt_ridge_raw/lm_g_scgpt_ridge_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz",
   "feature_manifest": {
     "feature_id": "scgpt_gene_embedding_human",
     "checkpoint_key": "scgpt_human",
-    "checkpoint_dir": "/home/data/gz0705/WTKO/models/pretrained/scgpt_human",
-    "vocab_path": "/home/data/gz0705/WTKO/models/pretrained/scgpt_human/vocab.json",
-    "checkpoint_path": "/home/data/gz0705/WTKO/models/pretrained/scgpt_human/best_model.pt",
+    "checkpoint_dir": "models/pretrained/scgpt_human",
+    "vocab_path": "models/pretrained/scgpt_human/vocab.json",
+    "checkpoint_path": "models/pretrained/scgpt_human/best_model.pt",
     "embedding_shape": [
       60697,
       512

@@ -1,3 +1,0 @@
-timepoint	role	dataset_label	n_formal_bridgeable_targets	target_genes	n_cells_with_single_feature	n_control_cells	qc_guide_rows	qc_sg_guides	qc_intergenic_guides	truth_metric	depmap_endpoint	aligned_spearman	mean_truth_metric	median_truth_metric
-7d	temporal_sensitivity_early_bridge_probe	dixit_2016_k562_tf_7d_gse90063	10	CREB1/E2F4/EGR1/ELF1/ELK1/ETS1/GABPA/IRF1/NR2C2/YY1	28034	5381	30	26	4	real_shift_mean_abs	depmap_gene_dependency	0.7333333333333332	0.0030991873866114	0.0029023397479872
-13d	primary_formal_supplementary_bridge_test	dixit_2016_k562_tf_13d_gse90063	10	CREB1/E2F4/EGR1/ELF1/ELK1/ETS1/GABPA/IRF1/NR2C2/YY1	15849	3491	30	26	4	real_shift_mean_abs	depmap_gene_dependency	0.5151515151515151	0.004382685449453	0.0044183505802962

@@ -6,11 +6,11 @@
   "entrant_id": "lm_train_lowrank",
   "source_kind": "linear_lowrank_external_feature_leave_one_out",
   "export_timestamp": "2026-04-10T01:33:49.126721+00:00",
-  "prediction_path": "/home/data/gz0705/WTKO/data/predictions/lm_train_lowrank_raw/lm_train_lowrank_hcc_formal_v1/HCC38/predicted_shift.tsv.gz",
+  "prediction_path": "data/predictions/lm_train_lowrank_raw/lm_train_lowrank_hcc_formal_v1/HCC38/predicted_shift.tsv.gz",
   "feature_manifest": {
     "feature_id": "gene_symbol_chargram_v1",
     "feature_family": "symbolic_target_feature",
-    "source_path": "/home/data/gz0705/WTKO/data/features/stage1a_target_features/gene_symbol_chargram_v1.tsv.gz",
+    "source_path": "data/features/stage1a_target_features/gene_symbol_chargram_v1.tsv.gz",
     "coverage_on_current_smoke": 1.0,
     "missing_policy": "no_missing_allowed",
     "is_frozen": true

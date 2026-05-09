@@ -1,5 +1,5 @@
 {
-  "source": "/home/data/gz0705/WTKO/reports/truth_bridge_decomposition/target_level_joint_grid.tsv",
+  "source": "reports/truth_bridge_decomposition/target_level_joint_grid.tsv",
   "iterations": 1000,
   "master_seed": 20260422,
   "truth_metric": "real_shift_mean_abs",

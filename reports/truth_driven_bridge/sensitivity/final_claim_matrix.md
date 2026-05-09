@@ -10,7 +10,7 @@
 
 ## 当前使用原则
 
-- 以后主文稿、README、summary、supplementary 的对象级口径，都应优先从 [`final_claim_matrix.tsv`](/home/data/gz0705/WTKO/reports/truth_driven_bridge/sensitivity/final_claim_matrix.tsv) 取值
+- 以后主文稿、README、summary、supplementary 的对象级口径，都应优先从 [`final_claim_matrix.tsv`](reports/truth_driven_bridge/sensitivity/final_claim_matrix.tsv) 取值
 - 若对象不在表中，不默认升级措辞
 - 若后续有新 covariate 元数据，先更新这张表，再改主文稿表述
 
