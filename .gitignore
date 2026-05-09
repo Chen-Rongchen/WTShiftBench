@@ -138,7 +138,7 @@ AGENTS.md
 backup/
 
 # Manuscript source assembly tree (kept locally; not part of public repo)
-manuscript/
+/manuscript/
 
 # Local-only reference bundles
 depmap/
