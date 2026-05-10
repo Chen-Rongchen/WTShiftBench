@@ -72,9 +72,11 @@ def main():
         final = final.resize((target_w, int(total_h * target_w / W)), Image.LANCZOS)
 
     final.save(OUT / "Extended_Data_Figure_2.png", dpi=(1200, 1200))
+    final.save(OUT / "Extended_Data_Figure_2.pdf", "PDF", resolution=1200.0)
     test_dir = ROOT / "reports/manuscript_extended_data_v1/edfig2_test_composite"
     test_dir.mkdir(parents=True, exist_ok=True)
     final.save(test_dir / "edfig2_composite.png", dpi=(1200, 1200))
+    final.save(test_dir / "edfig2_composite.pdf", "PDF", resolution=1200.0)
     print(f"[OK] ED Fig 2 composite: {final.size}")
 
 
