@@ -1,5 +1,5 @@
 model_id	model_label	model_family	plot_color	backbone_recovery_score	shift_excess_identification_score	structure_vs_context_separation_score	panel	object_role	cell_line	ratio_mean	se
-shared_mean_baseline	diagnostic reference	baseline	#333333	0.8066666666666666	0.3333333333333333	0.3526145586462627	a				
+shared_mean_baseline	diagnostic shared-mean	baseline	#333333	0.8066666666666666	0.3333333333333333	0.3526145586462627	a				
 gears_hcc_formal_v1	"GEARS
 formal"	GEARS formal	#0072B2	0.6599999999999999	0.3333333333333333	0.4284153807253488	a				
 geneformer_hcc_formal_v1	Geneformer	foundation entrants	#8E8E8E	0.5333333333333333	0.75	0.401165394979353	a				
@@ -11,10 +11,10 @@ low-rank"	linear controls	#D0D0D0	0.5366666666666666	0.5833333333333333	0.286235
 lm_g_scgpt_ridge_hcc_formal_v1	"LM +
 scGPT"	linear controls	#D0D0D0	0.4666666666666667	0.1666666666666666	0.2589613597519035	a				
 null_model	null	null	#D0D0D0	0.5	0.5	0.0	a				
-shared_mean_baseline	diagnostic reference		#333333	0.8066666666666666	0.3333333333333333	0.3526145586462627	b				
+shared_mean_baseline	diagnostic shared-mean		#333333	0.8066666666666666	0.3333333333333333	0.3526145586462627	b				
 gears_hcc_formal_v1	"GEARS
 formal"		#0072B2	0.6599999999999999	0.3333333333333333	0.4284153807253488	b				
-shared_mean_baseline	diagnostic reference	baseline	#333333	0.8066666666666666		0.3526145586462627	c	baseline			
+shared_mean_baseline	diagnostic shared-mean	baseline	#333333	0.8066666666666666		0.3526145586462627	c	baseline			
 gears_hcc_formal_v1	"GEARS
 formal"	GEARS formal	#0072B2	0.6599999999999999		0.4284153807253488	c	entrant			
 gears_hcc_formal_v1_e30_lr2e-03_wd1e-06	"GEARS

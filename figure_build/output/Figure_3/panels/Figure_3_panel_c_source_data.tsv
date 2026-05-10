@@ -1,5 +1,5 @@
 model_id	object_role	model_family	model_label	plot_color	backbone_recovery_score	structure_vs_context_separation_score
-shared_mean_baseline	baseline	baseline	diagnostic reference	#333333	0.8066666666666666	0.3526145586462627
+shared_mean_baseline	baseline	baseline	diagnostic shared-mean	#333333	0.8066666666666666	0.3526145586462627
 gears_hcc_formal_v1	entrant	GEARS formal	"GEARS
 formal"	#0072B2	0.6599999999999999	0.4284153807253488
 gears_hcc_formal_v1_e30_lr2e-03_wd1e-06	entrant	GEARS sweep	"GEARS
