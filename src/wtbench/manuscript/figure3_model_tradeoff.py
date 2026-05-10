@@ -124,6 +124,7 @@ def load_model_comparison(root: Path) -> pd.DataFrame:
 def add_model_annotations(df: pd.DataFrame) -> pd.DataFrame:
     out = df.copy()
     out["model_label"] = out["model_id"].map(short_model_label)
+    out.loc[out["model_id"].eq("shared_mean_baseline"), "model_label"] = "diagnostic reference"
     out["model_family"] = out["model_id"].map(model_family)
     out["is_formal_gears"] = out["model_id"].eq("gears_hcc_formal_v1")
     out["is_gears_sweep"] = out["model_id"].str.startswith("gears_hcc_formal_v1_")
