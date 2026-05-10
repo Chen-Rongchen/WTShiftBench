@@ -31,7 +31,7 @@ CLAIM_BOUNDARY = (
     "The backbone recovery gap remains after prespecified local rebuttal tests: "
     "a finite-budget GEARS neighborhood sweep (6 prespecified candidates) and "
     "embedding-based linear controls do not close the backbone recovery gap to "
-    "the shared-mean baseline. Most stably, no tested rebuttal candidate closes "
+    "the diagnostic shared-mean reference. Most stably, no tested variant closes "
     "the backbone gap under the pre-specified neighborhood. GEARS training is not "
     "rerun during figure production; figure panels recompose frozen Stage 2 "
     "adjudication artefacts only."
@@ -459,7 +459,7 @@ def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
     add_panel_heading(
         ax,
         "",
-        "Tested rebuttal candidates do not close the backbone gap",
+        "Tested variants do not close the backbone gap",
         label_x=-0.08,
         title_fontsize=8.8,
     )
@@ -481,7 +481,7 @@ def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
     )
 
     ax.set_xlabel("Backbone recovery score")
-    ax.set_ylabel("Structure / context separation")
+    ax.set_ylabel("Structure-versus-context separation")
     ax.set_xticks([0.45, 0.55, 0.65, 0.75, 0.85])
     ax.set_yticks([0.25, 0.30, 0.35, 0.40, 0.45, 0.50])
     clean_axes(ax)
@@ -530,7 +530,7 @@ def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
         ax.text(
             row.backbone_recovery_score - 0.014,
             row.structure_vs_context_separation_score + 0.004,
-            "shared mean\nbaseline (0.807)",
+            "diagnostic\nreference (0.807)",
             fontsize=7.0,
             fontweight="bold",
             ha="right",
@@ -585,7 +585,7 @@ def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
             linestyle="",
             color=F4_COLORS["baseline"],
             markersize=5.0,
-            label="shared mean baseline",
+            label="diagnostic shared-mean reference",
         ),
         Line2D(
             [],
@@ -657,7 +657,7 @@ def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
     ax.text(
         baseline_x + 0.012,
         0.488,
-        "baseline boundary",
+        "reference boundary",
         fontsize=7.0,
         color=F4_COLORS["threshold"],
         ha="left",
@@ -760,7 +760,7 @@ def _render_c_facet(
         [labels[mid] for mid in ordered_ids] if show_labels else [""] * len(ordered_ids),
         fontsize=7.5,
     )
-    facet_ax.set_xlabel("\u0394 backbone recovery vs baseline", fontsize=7.5, labelpad=2)
+    facet_ax.set_xlabel("\u0394 backbone recovery vs reference", fontsize=7.5, labelpad=2)
     facet_ax.set_title(cell_line, fontsize=9, fontweight="bold", pad=0)
     facet_ax.tick_params(axis="y", labelleft=show_labels, left=True, length=2.2, width=0.6)
     clean_axes(facet_ax)
@@ -776,7 +776,7 @@ def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
     add_panel_heading(
         ax,
         "",
-        "No tested rebuttal candidate closes the backbone gap to the shared-mean baseline",
+        "No tested variant closes the backbone gap",
         title_x=0.00,
         title_fontsize=8.8,
     )
@@ -861,7 +861,7 @@ def build_sources(root: Path) -> dict[str, pd.DataFrame]:
         {
             "step_order": 4,
             "step": "check_gap_closure",
-            "detail": "compare sweep candidates to shared-mean baseline",
+            "detail": "compare sweep candidates to the diagnostic reference",
         },
         {
             "step_order": 5,
@@ -969,8 +969,8 @@ def render_panel_by_id(panel_id: str) -> Callable[[plt.Axes, pd.DataFrame], None
 def panel_title(panel_id: str) -> str:
     return {
         "a": "Analysis-locked finite-budget GEARS candidates",
-        "b": "Tested rebuttal candidates do not close the backbone gap",
-        "c": "No tested rebuttal candidate closes the backbone gap to the shared-mean baseline",
+        "b": "Tested variants do not close the backbone gap",
+        "c": "No tested variant closes the backbone gap to the diagnostic reference",
     }[panel_id]
 
 

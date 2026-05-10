@@ -2,7 +2,7 @@ step_order	step	detail	variant_id	epochs	lr	weight_decay	candidate_rank	model_id
 1	pre_specified_neighborhood	GEARS hyperparameter neighborhood defined in advance							
 2	finite_sweep_budget	limited candidate set, no open-ended search							
 3	truth_and_scoring_unchanged	truth object and scoring system fixed							
-4	check_gap_closure	compare sweep candidates to shared-mean baseline							
+4	check_gap_closure	compare sweep candidates to the diagnostic reference							
 5	stop_if_gap_remains	stop rule triggered when baseline backbone gap remains open							
 0	sweep_recipe_entry	epochs=30, lr=0.001, wd=1e-06	e30_lr1e-03_wd1e-06	30.0	0.001	1e-06	1.0	gears_hcc_formal_v1_e30_lr1e-03_wd1e-06	configs/generated/gears_hcc_backbone_sweep_v1/e30_lr1e-03_wd1e-06.json
 0	sweep_recipe_entry	epochs=30, lr=0.001, wd=1e-05	e30_lr1e-03_wd1e-05	30.0	0.001	1e-05	2.0	gears_hcc_formal_v1_e30_lr1e-03_wd1e-05	configs/generated/gears_hcc_backbone_sweep_v1/e30_lr1e-03_wd1e-05.json
