@@ -64,7 +64,7 @@ COVARIATE_ORDER = [
     "num_umis_quantile_bin",
 ]
 COVARIATE_LABELS = {
-    "barcode_gem_group": "barcode gem group",
+    "barcode_gem_group": "barcode GEM group",
     "transcriptome_detected_genes_quantile_bin": "detected genes",
     "transcriptome_total_signal_quantile_bin": "UMI signal",
     "num_umis_over_threshold_bin": "UMI threshold",

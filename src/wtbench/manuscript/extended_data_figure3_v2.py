@@ -323,7 +323,7 @@ def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
 
     clean_axes(ax)
     ax.set_box_aspect(1)
-    add_panel_heading(ax, "", "Large-scale bridge confirmation", label_x=-0.08, title_x=0.02, y=1.035)
+    add_panel_heading(ax, "", "Large-scale bridge-form support", label_x=-0.08, title_x=0.02, y=1.035)
 
 
 def build_panel_c_source(root: Path) -> pd.DataFrame:

@@ -267,7 +267,7 @@ def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
 
     ax.set_xlim(0.68, 1.03)
     ax.set_xlabel("Mean within-cell-line quantile")
-    _add_panel_heading(ax, "a", "Shared-canonical candidates occupy high joint ranks", label_x=-0.04)
+    _add_panel_heading(ax, "a", "Shared-anchor candidates occupy high joint ranks", label_x=-0.04)
 
     legend_handles = [
         plt.Line2D(

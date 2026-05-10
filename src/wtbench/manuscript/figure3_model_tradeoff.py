@@ -380,7 +380,7 @@ def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
     add_panel_heading(
         ax,
         "",
-        "Baseline leads backbone recovery, whereas GEARS leads context separation",
+        "Reference leads backbone; GEARS leads separation",
         title_x=0.00,
     )
     clean_axes(ax)
@@ -388,7 +388,7 @@ def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
         plt.Line2D(
             [], [], marker="o", linestyle="", color=FIG3_COLORS["baseline"],
             markersize=5.5, markeredgecolor="white", markeredgewidth=0.5,
-            label="shared mean baseline",
+            label="diagnostic shared-mean reference",
         ),
         plt.Line2D(
             [], [], marker="o", linestyle="", color=FIG3_COLORS["gears"],
@@ -436,7 +436,7 @@ def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
     ax.add_patch(absence)
 
     named = {
-        "shared_mean_baseline": ("shared mean baseline", "right"),
+        "shared_mean_baseline": ("diagnostic\nshared-mean reference", "right"),
         "gears_hcc_formal_v1": ("GEARS formal", "left"),
         "geneformer_hcc_formal_v1": ("Geneformer", "left"),
         "scgpt_hcc_formal_v1": ("scGPT", "left"),
@@ -491,7 +491,7 @@ def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
             )
 
     ax.set_xlabel("Backbone recovery", fontsize=7.5)
-    ax.set_ylabel("Structure / context separation", fontsize=7.5)
+    ax.set_ylabel("Structure-versus-context separation", fontsize=7.5)
     add_panel_heading(
         ax,
         "",
@@ -507,7 +507,7 @@ def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
         plt.Line2D(
             [], [], marker="o", linestyle="", color=FIG3_COLORS["baseline"],
             markersize=6.0, markeredgecolor="white", markeredgewidth=0.5,
-            label="baseline reference",
+            label="diagnostic reference",
         ),
         plt.Line2D(
             [], [], marker="o", linestyle="", color=FIG3_COLORS["gears"],
@@ -575,7 +575,7 @@ def render_panel_d(ax: plt.Axes, df: pd.DataFrame) -> None:
         zorder=1,
     )
     ax_plot.text(
-        1.0 + 0.012, len(ORDERED_IDS) - 0.5, "baseline = 1.0",
+        1.0 + 0.012, len(ORDERED_IDS) - 0.5, "reference = 1.0",
         fontsize=7.5, color=FIG3_COLORS["threshold"], va="top", ha="left",
     )
 
@@ -645,7 +645,7 @@ def render_panel_d(ax: plt.Axes, df: pd.DataFrame) -> None:
         [LABELS[mid] for mid in reversed(ORDERED_IDS)],
         fontsize=7.5,
     )
-    ax_plot.set_xlabel("Relative backbone recovery (baseline = 1.0)", fontsize=7.5, labelpad=1)
+    ax_plot.set_xlabel("Relative backbone recovery (reference = 1.0)", fontsize=7.5, labelpad=1)
     ax_plot.set_xlim(0.0, xmax)
     clean_axes(ax_plot)
     ax_plot.tick_params(axis="x", labelsize=7.5)
@@ -874,9 +874,9 @@ def render_panel_by_id(panel_id: str) -> Callable[[plt.Axes, pd.DataFrame], None
 def panel_title(panel_id: str) -> str:
     return {
         "a": "Three-metric adjudication overview heatmap",
-        "b": "Headline baseline versus GEARS dumbbell",
+        "b": "Headline diagnostic reference versus GEARS dumbbell",
         "c": "Backbone–separation asymmetric recovery scatter",
-        "d": "Backbone recovery relative to the shared-mean baseline is consistent across the two primary contexts",
+        "d": "Backbone recovery relative to the diagnostic reference is consistent across the two primary contexts",
     }[panel_id]
 
 
