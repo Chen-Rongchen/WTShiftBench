@@ -63,7 +63,7 @@ ANCHOR_TVD_FILES: list[tuple[str, str, Path]] = [
 ]
 TVD_HARD_IMBALANCE = 0.25
 AXIS_SHORT_LABELS = {
-    "barcode_gem_group": "barcode\ngem group",
+    "barcode_gem_group": "barcode\nGEM group",
     "num_umis_over_threshold_bin": "UMI\nthreshold",
     "num_umis_quantile_bin": "UMI\nquantile",
     "transcriptome_detected_genes_quantile_bin": "detected\ngenes",
