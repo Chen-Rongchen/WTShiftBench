@@ -124,7 +124,7 @@ def load_model_comparison(root: Path) -> pd.DataFrame:
 def add_model_annotations(df: pd.DataFrame) -> pd.DataFrame:
     out = df.copy()
     out["model_label"] = out["model_id"].map(short_model_label)
-    out.loc[out["model_id"].eq("shared_mean_baseline"), "model_label"] = "diagnostic reference"
+    out.loc[out["model_id"].eq("shared_mean_baseline"), "model_label"] = "diagnostic shared-mean"
     out["model_family"] = out["model_id"].map(model_family)
     out["is_formal_gears"] = out["model_id"].eq("gears_hcc_formal_v1")
     out["is_gears_sweep"] = out["model_id"].str.startswith("gears_hcc_formal_v1_")
@@ -322,7 +322,7 @@ def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
         "backbone_recovery_score",
         "structure_vs_context_separation_score",
     ]
-    short_labels = ["Backbone\nrecovery", "Structure /\ncontext separation"]
+    short_labels = ["Backbone\nrecovery", "Separation"]
 
     y = np.arange(len(metrics))[::-1]
     for yi, metric in zip(y, metrics):
@@ -389,7 +389,7 @@ def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
         plt.Line2D(
             [], [], marker="o", linestyle="", color=FIG3_COLORS["baseline"],
             markersize=5.5, markeredgecolor="white", markeredgewidth=0.5,
-            label="diagnostic shared-mean reference",
+            label="diagnostic shared-mean",
         ),
         plt.Line2D(
             [], [], marker="o", linestyle="", color=FIG3_COLORS["gears"],
@@ -437,7 +437,7 @@ def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
     ax.add_patch(absence)
 
     named = {
-        "shared_mean_baseline": ("diagnostic\nshared-mean reference", "right"),
+        "shared_mean_baseline": ("diagnostic\nshared-mean", "right"),
         "gears_hcc_formal_v1": ("GEARS formal", "left"),
         "geneformer_hcc_formal_v1": ("Geneformer", "left"),
         "scgpt_hcc_formal_v1": ("scGPT", "left"),

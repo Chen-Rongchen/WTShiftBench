@@ -339,7 +339,7 @@ def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
     ax.text(
         0.04,
         0.93,
-        "Metric x CRISPR endpoint",
+        "Metric × CRISPR endpoint",
         fontsize=8.0,
         fontweight="bold",
         va="bottom",
