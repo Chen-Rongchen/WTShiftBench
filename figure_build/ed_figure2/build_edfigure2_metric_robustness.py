@@ -8,12 +8,17 @@ env = {**os.environ, "PYTHONPATH": str(ROOT / "src")}
 subprocess.run([sys.executable, str(ROOT / "scripts/manuscript/build_extended_data_figure13.py")], cwd=ROOT, check=True, env=env)
 pdst = TEST / "Extended_Data_Figure_2" / "panels"
 pdst.mkdir(parents=True, exist_ok=True)
+composite_out = ROOT / "manuscript/build_scripts/output/Extended_Data_Figure_2"
+composite_pdst = composite_out / "panels"
+composite_pdst.mkdir(parents=True, exist_ok=True)
 src = ROOT / "reports/manuscript_extended_data_v1/edfig13_metric_robustness/panels"
 for letter in ("a", "b", "c", "d"):
     for ext in [".png", ".pdf", "_source_data.tsv"]:
         s = src / f"edfig13_panel{letter}{ext}"
         if s.exists():
-            shutil.copy2(s, pdst / f"Extended_Data_Figure_2_panel_{letter}{ext}")
+            dst_name = f"Extended_Data_Figure_2_panel_{letter}{ext}"
+            shutil.copy2(s, pdst / dst_name)
+            shutil.copy2(s, composite_pdst / dst_name)
 
 # Combined figure
 for ext in [".png", ".pdf", "_source_data.tsv"]:
@@ -39,7 +44,11 @@ for src_name, dst_name in {
     s = panel_e_tmp / src_name
     if s.exists():
         shutil.copy2(s, pdst / dst_name)
+        shutil.copy2(s, composite_pdst / dst_name)
 shutil.rmtree(panel_e_tmp)
 subprocess.run([sys.executable, str(ROOT / "scripts/manuscript/build_edfig2_composite.py")], cwd=ROOT, check=True, env=env)
+composite_png = composite_out / "Extended_Data_Figure_2.png"
+if composite_png.exists():
+    shutil.copy2(composite_png, TEST / "Extended_Data_Figure_2" / "Extended_Data_Figure_2.png")
 
 print(f"  Extended_Data_Figure_2 all panels + combined -> {TEST}")

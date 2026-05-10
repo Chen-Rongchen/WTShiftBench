@@ -444,7 +444,7 @@ def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
     ax.scatter([legend_x], [0.31], color=colors["RNAi"], s=16, transform=ax.transAxes, clip_on=False)
     ax.text(legend_x + 0.035, 0.31, "RNAi", color=colors["RNAi"], fontsize=5.6, va="center", transform=ax.transAxes)
     ax.scatter([legend_x], [0.23], color=NEUTRAL_GRAY, marker="o", s=16, transform=ax.transAxes, clip_on=False)
-    ax.text(legend_x + 0.035, 0.23, "HCC", color=NEUTRAL_GRAY, fontsize=5.6, va="center", transform=ax.transAxes)
+    ax.text(legend_x + 0.035, 0.23, "HCC38/HCC1143", color=NEUTRAL_GRAY, fontsize=5.6, va="center", transform=ax.transAxes)
     ax.scatter([legend_x], [0.15], color=NEUTRAL_GRAY, marker="^", s=16, transform=ax.transAxes, clip_on=False)
     ax.text(legend_x + 0.035, 0.15, "K562", color=NEUTRAL_GRAY, fontsize=5.6, va="center", transform=ax.transAxes)
     clean_axes(endpoint_ax)
@@ -502,7 +502,7 @@ def render_panel_d(ax: plt.Axes, df: pd.DataFrame) -> None:
         inset.set_xlabel(r"Aligned Spearman $\rho$")
         clean_axes(inset)
         inset.grid(axis="x", color=COLORS["grid"], linewidth=0.5)
-    axes[0].set_ylabel("Truth metric")
+    axes[0].set_ylabel("Operational metric")
 
 
 def render_panel_by_id(panel_id: str) -> Callable[[plt.Axes, pd.DataFrame], None]:
