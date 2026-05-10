@@ -376,7 +376,7 @@ def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
             fontweight="bold",
             color=PRIMARY_GREEN if cl == "HCC1143" else VERMILLION,
         )
-    _add_panel_heading(ax, "b", "Stable anchors recur across both HCC contexts", label_x=-0.04)
+    _add_panel_heading(ax, "b", "Stable anchors recur in HCC38 and HCC1143", label_x=-0.04)
     ax.tick_params(length=0)
     ax.set_facecolor("white")
     for spine in ax.spines.values():
