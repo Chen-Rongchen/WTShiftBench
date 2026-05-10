@@ -1,5 +1,5 @@
 model_id	model_label	model_family	plot_color	backbone_recovery_score	shift_excess_identification_score	structure_vs_context_separation_score
-shared_mean_baseline	diagnostic reference	baseline	#333333	0.8066666666666666	0.3333333333333333	0.3526145586462627
+shared_mean_baseline	diagnostic shared-mean	baseline	#333333	0.8066666666666666	0.3333333333333333	0.3526145586462627
 gears_hcc_formal_v1	"GEARS
 formal"	GEARS formal	#0072B2	0.6599999999999999	0.3333333333333333	0.4284153807253488
 geneformer_hcc_formal_v1	Geneformer	foundation entrants	#8E8E8E	0.5333333333333333	0.75	0.401165394979353
