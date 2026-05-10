@@ -50,5 +50,8 @@ subprocess.run([sys.executable, str(ROOT / "scripts/manuscript/build_edfig2_comp
 composite_png = composite_out / "Extended_Data_Figure_2.png"
 if composite_png.exists():
     shutil.copy2(composite_png, TEST / "Extended_Data_Figure_2" / "Extended_Data_Figure_2.png")
+composite_pdf = composite_out / "Extended_Data_Figure_2.pdf"
+if composite_pdf.exists():
+    shutil.copy2(composite_pdf, TEST / "Extended_Data_Figure_2" / "Extended_Data_Figure_2.pdf")
 
 print(f"  Extended_Data_Figure_2 all panels + combined -> {TEST}")
