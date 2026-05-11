@@ -61,5 +61,5 @@ under `figures/`.
 This repository is the canonical source for the analysis and figure-build
 code. A versioned, citable snapshot corresponding to the Genome Biology
 submission has been archived at Zenodo under DOI
-[10.5281/zenodo.20098869](https://doi.org/10.5281/zenodo.20098869), with
-GitHub release tag [`v1.0`](https://github.com/Chen-Rongchen/WTShiftBench/releases/tag/v1.0).
+[10.5281/zenodo.20098897](https://doi.org/10.5281/zenodo.20098897), with
+GitHub release tag [`v1.0.1`](https://github.com/Chen-Rongchen/WTShiftBench/releases/tag/v1.0.1).
