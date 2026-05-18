@@ -94,14 +94,14 @@ reports/axis_analysis/*
 
 # ----------------------------------------------------------------------
 # Manuscript content: ship build infrastructure + panel-level outputs
-# only. Composite figures, manuscript text, and submission packaging
-# stay local (the corresponding author assembles them by hand).
+# only. Composite figures, manuscript text, and local packaging
+# stay local.
 # ----------------------------------------------------------------------
 manuscript/text/
 manuscript/additional_files/
 manuscript/audits/
 manuscript/source_data_manifests/
-manuscript/submission_pdfs/
+manuscript/*_pdfs/
 manuscript/supplementary_tables/
 manuscript/file_index.txt
 manuscript/README.md
@@ -120,7 +120,7 @@ manuscript/extended_data/Extended_Data_Figure_*/Extended_Data_Figure_*.pdf
 manuscript/extended_data/Extended_Data_Figure_*/Extended_Data_Figure_*_source_data.tsv
 manuscript/extended_data/Extended_Data_Figure_*/Extended_Data_Figure_*_panel_manifest.json
 
-# Extended Data Figure 6 is a backup-only set; not part of the submission.
+# Extended Data Figure 6 is a backup-only set; not part of the public bundle.
 manuscript/extended_data/Extended_Data_Figure_6/
 
 # Local backup directories scattered under panels/.
@@ -149,4 +149,3 @@ manuscript/extended_data/
 depmap/
 RNAi/
 downloads/
-

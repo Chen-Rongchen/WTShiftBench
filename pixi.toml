@@ -301,6 +301,6 @@ description = "重建 ED Fig 2 panel e reference 输出"
 cmd = "python scripts/manuscript/build_supplementary_table_index.py --config configs/manuscript/supplementary_tables_v1.json"
 description = "重建补充表 index / workbook"
 
-[tasks.build-submission-package]
-cmd = "python scripts/manuscript/build_submission_package.py --config configs/manuscript/submission_package_v1.json"
+[tasks.build-public-materials-package]
+cmd = "python scripts/manuscript/build_public_materials_package.py --config configs/manuscript/public_materials_package_v1.json"
 description = "汇编公开材料包 manifest"
