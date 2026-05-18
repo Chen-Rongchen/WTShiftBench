@@ -1,6 +1,6 @@
 # Data Availability
 
-All raw data used in the WTShiftBench manuscript come from public Perturb-seq /
+All raw data used in WTShiftBench come from public Perturb-seq /
 single-cell repositories. The repository ships only:
 
 - per-panel **source data** under `figures/Figure_*/panels/*_source_data.tsv`
@@ -15,9 +15,9 @@ Raw and processed `h5ad` objects (≈ 14 GB total) are **not** stored in git;
 they must be re-downloaded and re-preprocessed before running the
 public figure wrappers under `figure_build/`.
 
-## Datasets used in the manuscript
+## Datasets used in WTShiftBench
 
-| Identifier in manuscript | Public source | Local target | Used in figures |
+| Dataset identifier | Public source | Local target | Used in figures |
 | --- | --- | --- | --- |
 | HCC38 / HCC1143 (breast cancer) | GEO **GSE241115** | `data/raw/...` then `data/processed/hcc_gears_formal/HCC{38,1143}.h5ad` | Fig 2-4, ED Fig 1-2 |
 | Dixit 2016 K562 TF pool, 7 day | GEO **GSE90063** | `data/processed/gse90063/dixit_2016_k562_tf_7d_gse90063.h5ad` | ED Fig 1, ED Fig 3 |
@@ -59,7 +59,6 @@ under `figures/`.
 ## Code availability
 
 This repository is the canonical source for the analysis and figure-build
-code. A versioned, citable snapshot corresponding to the Genome Biology
-submission has been archived at Zenodo under DOI
+code. A versioned, citable public snapshot has been archived at Zenodo under DOI
 [10.5281/zenodo.20098897](https://doi.org/10.5281/zenodo.20098897), with
 GitHub release tag [`v1.0.1`](https://github.com/Chen-Rongchen/WTShiftBench/releases/tag/v1.0.1).
