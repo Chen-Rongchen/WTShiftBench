@@ -194,7 +194,7 @@ The model stack (`pixi.toml` provides feature-pinned environments):
 If you use WTShiftBench, please cite the code release below. A manuscript or
 preprint citation can be added when available.
 
-**Code (Zenodo, archived snapshot of `v1.0.1`):**
+**Code (Zenodo, archived snapshot of `v1.0`):**
 
 ```bibtex
 @software{chen_wtshiftbench_zenodo_2026,
@@ -202,7 +202,7 @@ preprint citation can be added when available.
     title     = {{WTShiftBench: Truth-anchored evaluation of perturbation-response models}},
     year      = {2026},
     publisher = {Zenodo},
-    version   = {v1.0.1},
+    version   = {v1.0},
     doi       = {10.5281/zenodo.20098897},
     url       = {https://doi.org/10.5281/zenodo.20098897}
 }
