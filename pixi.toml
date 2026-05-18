@@ -303,4 +303,4 @@ description = "重建补充表 index / workbook"
 
 [tasks.build-submission-package]
 cmd = "python scripts/manuscript/build_submission_package.py --config configs/manuscript/submission_package_v1.json"
-description = "汇编 Genome Biology 投稿包 manifest"
+description = "汇编公开材料包 manifest"
