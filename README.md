@@ -7,20 +7,19 @@ Public code and figure-reproduction bundle for:
 
 > **Truth-anchored evaluation of perturbation-response models: a fitness-bridge
 > benchmark on cancer cell lines and K562 Perturb-seq panels**
-> *Submitted to Genome Biology, 2026.*
 
 WTShiftBench is a truth-first benchmark for virtual perturbation models. It
 defines bridge architecture objects linking single-cell perturbation responses
 to cellular-fitness and gene-dependency endpoints, then asks whether model
-predictions recover those structures. The repository is organized for external
-reviewers and readers: figure panels, per-panel source data, cached
-intermediate tables, and the scripts used to rebuild the public figure bundle
-are included here; large raw and processed single-cell objects are downloaded
-separately from public sources.
+predictions recover those structures. The repository is organized as a public
+code and figure-reproduction bundle: figure panels, per-panel source data,
+cached intermediate tables, and the scripts used to rebuild the public figure
+bundle are included here; large raw and processed single-cell objects are
+downloaded separately from public sources.
 
 ## What Is Included
 
-- `figures/`: GitHub-browsable snapshot of the submitted figure panels and
+- `figures/`: GitHub-browsable snapshot of the public figure panels and
   source-data TSVs for Figure 1-5 and Extended Data Figure 1-5.
 - `figure_build/`: canonical public wrappers for regenerating the figure bundle.
   Fresh outputs are written to `figure_build/output/`.
@@ -72,7 +71,8 @@ bash reproduce_figures.sh
 ```
 
 A `Dockerfile` is provided for building a local figure-reproduction image. No
-prebuilt container registry image is required for the submission bundle:
+prebuilt container registry image is required for the public reproduction
+bundle:
 
 ```bash
 docker build -t wtshiftbench:latest .
@@ -136,7 +136,7 @@ WTShiftBench/
 
 ## Reproducing Figures
 
-The submitted figure snapshot is already committed under `figures/`. To rebuild
+The public figure snapshot is already committed under `figures/`. To rebuild
 the public bundle after downloading/preprocessing the public datasets, run:
 
 ```bash
@@ -191,19 +191,8 @@ The model stack (`pixi.toml` provides feature-pinned environments):
 
 ## Citing
 
-If you use WTShiftBench, please cite both the manuscript and this code release:
-
-**Manuscript:**
-
-```bibtex
-@article{chen_wtshiftbench_2026,
-    author  = {Chen, Rongchen and ...},
-    title   = {Truth-anchored evaluation of perturbation-response models},
-    journal = {Genome Biology},
-    year    = {2026},
-    note    = {Submitted}
-}
-```
+If you use WTShiftBench, please cite the code release below. A manuscript or
+preprint citation can be added when available.
 
 **Code (Zenodo, archived snapshot of `v1.0.1`):**
 
