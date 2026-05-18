@@ -61,4 +61,4 @@ under `figures/`.
 This repository is the canonical source for the analysis and figure-build
 code. A versioned, citable public snapshot has been archived at Zenodo under DOI
 [10.5281/zenodo.20098897](https://doi.org/10.5281/zenodo.20098897), with
-GitHub release tag [`v1.0.1`](https://github.com/Chen-Rongchen/WTShiftBench/releases/tag/v1.0.1).
+GitHub release tag [`v1.0`](https://github.com/Chen-Rongchen/WTShiftBench/releases/tag/v1.0).
