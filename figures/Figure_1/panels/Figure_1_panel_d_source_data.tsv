@@ -1,3 +1,7 @@
-cell_line	truth_metric	depmap_endpoint	n_targets	spearman_rho_aligned	ci_lo_fisher95	ci_hi_fisher95	ci_method	null_q025	null_q975	null_iterations	empirical_p_two_sided	null_type
-HCC38	real_shift_mean_abs	depmap_gene_dependency	47	0.7257957275155708	0.5541175884911274	0.8382522334994763	fisher_z_transform	-0.3011563702799313	0.2869489174683512	1000	0.0009990009990009	target_to_depmap_permutation
-HCC1143	real_shift_mean_abs	depmap_gene_dependency	48	0.7792497165337711	0.6359107181815138	0.870620317810349	fisher_z_transform	-0.2793976431734833	0.2887928332693635	1000	0.0009990009990009	target_to_depmap_permutation
+claim	supported
+Endpoint-recovery audit	Yes
+Common-response collapse detection	Yes
+Dataset eligibility governance	Yes
+Direct DepMap score prediction	No
+Broad unseen-target/cell-line generalization	No
+Causal fitness mechanism inference	No

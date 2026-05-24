@@ -1,0 +1,17 @@
+{
+  "config": "configs/resource_registry_v1.json",
+  "note": "Registry tables define benchmark resource governance and do not rerun model training.",
+  "output_dir": "resource_registry",
+  "tables": {
+    "benchmark_contexts.tsv": 6,
+    "claim_boundary_registry.tsv": 6,
+    "dataset_eligibility_registry.tsv": 14,
+    "endpoint_registry.tsv": 3,
+    "figure_source_data_manifest.tsv": 87,
+    "metric_definition_registry.tsv": 3,
+    "model_eligibility_audits.tsv": 4,
+    "model_entrant_registry.tsv": 11,
+    "model_inclusion_exclusion_audit.tsv": 7,
+    "temporal_compatibility_audit.tsv": 5
+  }
+}

@@ -34,21 +34,7 @@ run figure_build/figure4/build_figure4_sweep_controls.py
 run figure_build/figure5/build_figure5_boundary.py
 
 # Extended Data figures
-run figure_build/ed_figure1/build_ed_figure1_panela.py
-run figure_build/ed_figure1/build_ed_figure1_panelb.py
-run figure_build/ed_figure1/build_ed_figure1_panelc.py
-run figure_build/ed_figure1/build_ed_figure1_paneld.py
-run figure_build/ed_figure1/build_ed_figure1_panele.py
-run figure_build/ed_figure1/build_ed_figure1_panelf.py
-run figure_build/ed_figure1/build_ed_figure1_panelg.py
-run figure_build/ed_figure1/build_ed_figure1_panelh.py
-run figure_build/ed_figure1/build_ed_figure1_paneli.py
-run figure_build/ed_figure1/build_ed_figure1_panelj.py
-run figure_build/ed_figure1/build_ed_figure1_panelk.py
-run figure_build/ed_figure2/build_edfigure2_metric_robustness.py
-run figure_build/ed_figure3/build_edfigure3_combined.py
-run figure_build/ed_figure4/build_edfigure4_combined.py
-run figure_build/ed_figure5/build_edfigure5_combined.py
+run scripts/manuscript/build_extended_data_resource_bundle.py
 
 if [[ "${#FAILED_STEPS[@]}" -ne 0 ]]; then
     echo

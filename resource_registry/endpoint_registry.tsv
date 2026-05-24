@@ -1,0 +1,4 @@
+endpoint	role	interpretation	forbidden_claim
+DepMap CRISPR dependency	primary	External cancer-dependency endpoint used to define endpoint-aligned recovery categories.	causal mechanism or time-matched expression endpoint
+RNAi DEMETER2	sensitivity	Orthogonal dependency evidence used for endpoint-hierarchy sensitivity.	interchangeable with DepMap CRISPR
+early-readout temporal comparison	boundary	Temporal-compatibility evidence from earlier perturbation-expression contexts.	replacement for primary late-readout contexts
