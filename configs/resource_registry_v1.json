@@ -1,0 +1,573 @@
+{
+  "output_dir": "resource_registry",
+  "dataset_eligibility_registry": [
+    {
+      "dataset": "GSE241115",
+      "context": "HCC38 day 14",
+      "cell_line": "HCC38",
+      "perturbation_modality": "CRISPR KO CROP-seq",
+      "readout_day": "14",
+      "endpoint_mappability": "DepMap CRISPR available",
+      "target_type": "targeted gene panel",
+      "benchmark_role": "primary",
+      "claim_ceiling": "endpoint-aligned recovery",
+      "inclusion_rationale": "Late-readout gene perturbation context with direct cancer-dependency endpoint mapping."
+    },
+    {
+      "dataset": "GSE241115",
+      "context": "HCC1143 day 14",
+      "cell_line": "HCC1143",
+      "perturbation_modality": "CRISPR KO CROP-seq",
+      "readout_day": "14",
+      "endpoint_mappability": "DepMap CRISPR available",
+      "target_type": "targeted gene panel",
+      "benchmark_role": "primary",
+      "claim_ceiling": "endpoint-aligned recovery",
+      "inclusion_rationale": "Late-readout gene perturbation context with direct cancer-dependency endpoint mapping."
+    },
+    {
+      "dataset": "Replogle K562 genome-scale Perturb-seq",
+      "context": "K562 day 8",
+      "cell_line": "K562",
+      "perturbation_modality": "CRISPRi",
+      "readout_day": "8",
+      "endpoint_mappability": "DepMap mappable, audit required",
+      "target_type": "genome-scale",
+      "benchmark_role": "secondary_boundary",
+      "claim_ceiling": "temporal and modality boundary evidence",
+      "inclusion_rationale": "Large target breadth and gene-level perturbations; early readout and CRISPRi modality keep the claim below primary contexts."
+    },
+    {
+      "dataset": "Replogle K562 essential Perturb-seq",
+      "context": "K562 day 6",
+      "cell_line": "K562",
+      "perturbation_modality": "CRISPRi",
+      "readout_day": "6",
+      "endpoint_mappability": "DepMap mappable, audit required",
+      "target_type": "essential-scale",
+      "benchmark_role": "boundary",
+      "claim_ceiling": "temporal and modality boundary evidence",
+      "inclusion_rationale": "Useful for early-readout boundary checks, not a replacement for primary late-readout contexts."
+    },
+    {
+      "dataset": "Replogle RPE1 essential Perturb-seq",
+      "context": "RPE1 day 7",
+      "cell_line": "RPE1",
+      "perturbation_modality": "CRISPRi",
+      "readout_day": "7",
+      "endpoint_mappability": "not a cancer-dependency endpoint context",
+      "target_type": "essential-scale",
+      "benchmark_role": "excluded_boundary",
+      "claim_ceiling": "non-cancer boundary only",
+      "inclusion_rationale": "RPE1 is not a cancer cell line; retain in the registry as an excluded non-cancer boundary rather than a cancer-dependency endpoint analysis context."
+    },
+    {
+      "dataset": "GSE264667",
+      "context": "HepG2 day 7",
+      "cell_line": "HepG2",
+      "perturbation_modality": "dual-sgRNA CRISPR",
+      "readout_day": "7",
+      "endpoint_mappability": "DepMap common-essential mapping candidate",
+      "target_type": "common essential candidate set",
+      "benchmark_role": "candidate_secondary",
+      "claim_ceiling": "endpoint-extension audit if target mapping is sufficient",
+      "inclusion_rationale": "Cancer-line day-7 CRISPR context with a DepMap common-essential target design; prioritize target-level count, sgRNA assignment, and endpoint-coverage audit."
+    },
+    {
+      "dataset": "GSE264667",
+      "context": "Jurkat day 7",
+      "cell_line": "Jurkat",
+      "perturbation_modality": "dual-sgRNA CRISPR",
+      "readout_day": "7",
+      "endpoint_mappability": "DepMap common-essential mapping candidate",
+      "target_type": "common essential candidate set",
+      "benchmark_role": "candidate_secondary",
+      "claim_ceiling": "endpoint-extension audit if target mapping is sufficient",
+      "inclusion_rationale": "Leukemia-line day-7 CRISPR context with a DepMap common-essential target design; prioritize target-level count, sgRNA assignment, and endpoint-coverage audit."
+    },
+    {
+      "dataset": "MOLM13 Perturb-seq",
+      "context": "MOLM13 study-specific perturbation",
+      "cell_line": "MOLM13",
+      "perturbation_modality": "CRISPR perturbation, possibly combinatorial",
+      "readout_day": "study-specific",
+      "endpoint_mappability": "candidate, target design audit required",
+      "target_type": "narrow or study-specific target set",
+      "benchmark_role": "registry_candidate",
+      "claim_ceiling": "candidate hematologic cancer boundary if single-target mapping is sufficient",
+      "inclusion_rationale": "Cancer-line candidate, but narrow or combinatorial perturbation design may not support the current single-target recovery object."
+    },
+    {
+      "dataset": "Adamson K562 UPR Perturb-seq",
+      "context": "K562 UPR CRISPRi",
+      "cell_line": "K562",
+      "perturbation_modality": "CRISPRi",
+      "readout_day": "study-specific",
+      "endpoint_mappability": "DepMap mappable, narrow target audit required",
+      "target_type": "narrow pathway-focused target set",
+      "benchmark_role": "registry_candidate",
+      "claim_ceiling": "narrow cancer-line boundary audit",
+      "inclusion_rationale": "Cancer-line CRISPRi dataset useful for eligibility audit, but pathway-specific target design limits endpoint-extension claims."
+    },
+    {
+      "dataset": "Norman K562 CRISPRa",
+      "context": "K562 CRISPRa",
+      "cell_line": "K562",
+      "perturbation_modality": "CRISPRa",
+      "readout_day": "study-specific",
+      "endpoint_mappability": "direction mismatch for loss-of-function dependency endpoint",
+      "target_type": "single-gene and gene-pair activation",
+      "benchmark_role": "excluded",
+      "claim_ceiling": "not a loss-of-function dependency benchmark",
+      "inclusion_rationale": "Activation perturbation direction is not aligned with DepMap CRISPR/RNAi loss-of-function dependency endpoints."
+    },
+    {
+      "dataset": "Gasperini K562 enhancer CRISPRi",
+      "context": "K562 enhancer CRISPRi",
+      "cell_line": "K562",
+      "perturbation_modality": "enhancer CRISPRi",
+      "readout_day": "study-specific",
+      "endpoint_mappability": "indirect regulatory-element to gene mapping",
+      "target_type": "regulatory element",
+      "benchmark_role": "excluded_future_extension",
+      "claim_ceiling": "future regulatory-extension only",
+      "inclusion_rationale": "The perturbation object is a regulatory element rather than a direct gene-level dependency target."
+    },
+    {
+      "dataset": "THP-1 stimulated Perturb-seq",
+      "context": "THP-1 LPS boundary",
+      "cell_line": "THP-1",
+      "perturbation_modality": "CRISPR or CRISPRi under stimulation",
+      "readout_day": "stimulated study-specific",
+      "endpoint_mappability": "stimulus-confounded for baseline dependency endpoint",
+      "target_type": "gene-level perturbation",
+      "benchmark_role": "excluded_boundary",
+      "claim_ceiling": "stimulus-boundary registry only",
+      "inclusion_rationale": "Cancer-like monocytic line, but acute stimulation changes endpoint interpretation relative to baseline DepMap dependency."
+    },
+    {
+      "dataset": "Frangieh melanoma/TIL Perturb-CITE-seq",
+      "context": "melanoma immune co-culture",
+      "cell_line": "melanoma models and immune co-culture",
+      "perturbation_modality": "CRISPR Perturb-CITE-seq",
+      "readout_day": "co-culture study-specific",
+      "endpoint_mappability": "non-DepMap immune-evasion endpoint",
+      "target_type": "gene-level perturbation",
+      "benchmark_role": "excluded_future_extension",
+      "claim_ceiling": "future non-DepMap endpoint extension",
+      "inclusion_rationale": "Relevant to cancer immune-evasion biology, but the endpoint object is not baseline DepMap dependency."
+    },
+    {
+      "dataset": "enhancer or variant perturbation resources",
+      "context": "future extension",
+      "cell_line": "various",
+      "perturbation_modality": "non-gene-level perturbation",
+      "readout_day": "various",
+      "endpoint_mappability": "not direct gene-level dependency mapping",
+      "target_type": "enhancer, variant, or region-level",
+      "benchmark_role": "excluded_future_extension",
+      "claim_ceiling": "not primary",
+      "inclusion_rationale": "Target-to-endpoint mapping is not a direct gene-level DepMap dependency benchmark."
+    }
+  ],
+  "benchmark_contexts": [
+    {
+      "context": "HCC38 day 14",
+      "cell_line": "HCC38",
+      "readout_day": "14",
+      "perturbation_modality": "CRISPR KO CROP-seq",
+      "role": "primary",
+      "endpoint": "DepMap CRISPR dependency",
+      "claim_ceiling": "endpoint-aligned recovery"
+    },
+    {
+      "context": "HCC1143 day 14",
+      "cell_line": "HCC1143",
+      "readout_day": "14",
+      "perturbation_modality": "CRISPR KO CROP-seq",
+      "role": "primary",
+      "endpoint": "DepMap CRISPR dependency",
+      "claim_ceiling": "endpoint-aligned recovery"
+    },
+    {
+      "context": "K562 day 6/8",
+      "cell_line": "K562",
+      "readout_day": "6;8",
+      "perturbation_modality": "CRISPRi",
+      "role": "secondary_boundary",
+      "endpoint": "DepMap mappable",
+      "claim_ceiling": "temporal and modality boundary evidence"
+    },
+    {
+      "context": "RPE1 day 7",
+      "cell_line": "RPE1",
+      "readout_day": "7",
+      "perturbation_modality": "CRISPRi",
+      "role": "excluded_boundary",
+      "endpoint": "not a cancer-dependency endpoint context",
+      "claim_ceiling": "non-cancer boundary only"
+    },
+    {
+      "context": "HepG2 day 7",
+      "cell_line": "HepG2",
+      "readout_day": "7",
+      "perturbation_modality": "dual-sgRNA CRISPR",
+      "role": "candidate_secondary",
+      "endpoint": "DepMap common-essential mapping candidate",
+      "claim_ceiling": "endpoint-extension audit"
+    },
+    {
+      "context": "Jurkat day 7",
+      "cell_line": "Jurkat",
+      "readout_day": "7",
+      "perturbation_modality": "dual-sgRNA CRISPR",
+      "role": "candidate_secondary",
+      "endpoint": "DepMap common-essential mapping candidate",
+      "claim_ceiling": "endpoint-extension audit"
+    }
+  ],
+  "endpoint_registry": [
+    {
+      "endpoint": "DepMap CRISPR dependency",
+      "role": "primary",
+      "interpretation": "External cancer-dependency endpoint used to define endpoint-aligned recovery categories.",
+      "forbidden_claim": "causal mechanism or time-matched expression endpoint"
+    },
+    {
+      "endpoint": "RNAi DEMETER2",
+      "role": "sensitivity",
+      "interpretation": "Orthogonal dependency evidence used for endpoint-hierarchy sensitivity.",
+      "forbidden_claim": "interchangeable with DepMap CRISPR"
+    },
+    {
+      "endpoint": "early-readout temporal comparison",
+      "role": "boundary",
+      "interpretation": "Temporal-compatibility evidence from earlier perturbation-expression contexts.",
+      "forbidden_claim": "replacement for primary late-readout contexts"
+    }
+  ],
+  "temporal_compatibility_audit": [
+    {
+      "context": "HCC38 day 14",
+      "readout_class": "late",
+      "benchmark_role": "primary",
+      "temporal_claim": "temporally compatible with long-horizon dependency endpoints",
+      "forbidden_claim": "time-matched endpoint readout"
+    },
+    {
+      "context": "HCC1143 day 14",
+      "readout_class": "late",
+      "benchmark_role": "primary",
+      "temporal_claim": "temporally compatible with long-horizon dependency endpoints",
+      "forbidden_claim": "time-matched endpoint readout"
+    },
+    {
+      "context": "K562 day 6/8",
+      "readout_class": "early",
+      "benchmark_role": "secondary_boundary",
+      "temporal_claim": "secondary cancer-line temporal and modality-boundary evidence",
+      "forbidden_claim": "validation of day-14 contexts"
+    },
+    {
+      "context": "RPE1 day 7",
+      "readout_class": "early",
+      "benchmark_role": "excluded_boundary",
+      "temporal_claim": "non-cancer boundary registry only",
+      "forbidden_claim": "cancer-dependency endpoint analysis"
+    },
+    {
+      "context": "HepG2/Jurkat day 7",
+      "readout_class": "early",
+      "benchmark_role": "candidate_secondary",
+      "temporal_claim": "candidate secondary endpoint-extension evidence if target and endpoint audits pass",
+      "forbidden_claim": "replacement for primary late-readout contexts"
+    }
+  ],
+  "metric_definition_registry": [
+    {
+      "metric_name": "endpoint-aligned recovery",
+      "input_table": "target-level observed or predicted perturbation shifts plus endpoint categories",
+      "output_table": "model recovery score table",
+      "formula_or_definition": "Assess whether model-derived perturbation structure recovers predefined endpoint-aligned target organization.",
+      "chance_baseline": "endpoint permutation and target-label permutation",
+      "claim_boundary": "recovery audit, not causal mechanism"
+    },
+    {
+      "metric_name": "model endpoint-recovery audit",
+      "input_table": "model prediction contracts and fixed endpoint categories",
+      "output_table": "model endpoint-recovery reports",
+      "formula_or_definition": "Score whether model-generated perturbation shifts recover total endpoint alignment, axis-aligned endpoint structure, endpoint-category separation, target identity, and common-response behavior under a fixed endpoint-aligned recovery object.",
+      "chance_baseline": "model-output shuffle, endpoint permutation, target-label permutation, and diagnostic shared-mean reference",
+      "claim_boundary": "within-context endpoint-recovery audit, not broad model generalization leaderboard"
+    },
+    {
+      "metric_name": "finite-budget sensitivity",
+      "input_table": "GEARS sweep outputs and model scoring reports",
+      "output_table": "finite-budget sweep summary",
+      "formula_or_definition": "Evaluate whether recovery profiles are stable across a finite hyper-parameter budget.",
+      "chance_baseline": "best diagnostic reference and null controls",
+      "claim_boundary": "budget sensitivity, not exhaustive model optimization"
+    }
+  ],
+  "claim_boundary_registry": [
+    {
+      "allowed_phrase": "endpoint-aligned recovery object",
+      "not_allowed": "causal truth object"
+    },
+    {
+      "allowed_phrase": "temporally compatible late-readout context",
+      "not_allowed": "time-matched endpoint readout"
+    },
+    {
+      "allowed_phrase": "representative entrant panel",
+      "not_allowed": "all perturbation models"
+    },
+    {
+      "allowed_phrase": "recovery asymmetry",
+      "not_allowed": "universal model failure"
+    },
+    {
+      "allowed_phrase": "diagnostic reference",
+      "not_allowed": "deployable model"
+    },
+    {
+      "allowed_phrase": "sensitivity endpoint",
+      "not_allowed": "interchangeable endpoint"
+    }
+  ],
+  "model_entrant_registry": [
+    {
+      "model_name": "shared_mean_diagnostic_reference",
+      "model_family": "diagnostic reference",
+      "perturbation_type_supported": "target-level observed shift reference",
+      "input_required": "observed perturbation shifts",
+      "output_type": "target-level reference score",
+      "target_coverage": "HCC38/HCC1143 evaluated targets",
+      "endpoint_compatible_output": "yes",
+      "included_role": "diagnostic_control",
+      "reason_included": "Calibrates score behavior and upper/reference structure.",
+      "reason_excluded": "",
+      "claim_ceiling": "score calibration, not deployable prediction"
+    },
+    {
+      "model_name": "GEARS",
+      "model_family": "GNN perturbation-specific model",
+      "perturbation_type_supported": "gene perturbation",
+      "input_required": "expression matrix; perturbation labels; gene graph assumptions",
+      "output_type": "predicted perturbed expression",
+      "target_coverage": "HCC38/HCC1143 evaluated targets",
+      "endpoint_compatible_output": "yes",
+      "included_role": "primary_entrant",
+      "reason_included": "Representative genetic perturbation prediction entrant.",
+      "reason_excluded": "",
+      "claim_ceiling": "genetic perturbation recovery in evaluated contexts"
+    },
+    {
+      "model_name": "scGPT",
+      "model_family": "foundation-model embedding",
+      "perturbation_type_supported": "embedding control",
+      "input_required": "pretrained model; expression matrix",
+      "output_type": "embedding-derived prediction or score",
+      "target_coverage": "HCC38/HCC1143 evaluated targets",
+      "endpoint_compatible_output": "yes",
+      "included_role": "embedding_control",
+      "reason_included": "Tests recovery from pretrained single-cell representation.",
+      "reason_excluded": "",
+      "claim_ceiling": "embedding-based recovery, not direct perturbation deployment"
+    },
+    {
+      "model_name": "Geneformer",
+      "model_family": "foundation-model embedding",
+      "perturbation_type_supported": "embedding control",
+      "input_required": "pretrained model; expression matrix",
+      "output_type": "embedding-derived prediction or score",
+      "target_coverage": "HCC38/HCC1143 evaluated targets",
+      "endpoint_compatible_output": "yes",
+      "included_role": "embedding_control",
+      "reason_included": "Tests recovery from pretrained single-cell representation.",
+      "reason_excluded": "",
+      "claim_ceiling": "embedding-based recovery, not direct perturbation deployment"
+    },
+    {
+      "model_name": "scGPT-ridge",
+      "model_family": "embedding-ridge control",
+      "perturbation_type_supported": "linear control on pretrained embedding",
+      "input_required": "scGPT embeddings; target labels; endpoint-aligned scoring input",
+      "output_type": "linear predicted expression or target score",
+      "target_coverage": "HCC38/HCC1143 evaluated targets",
+      "endpoint_compatible_output": "yes",
+      "included_role": "linear_embedding_control",
+      "reason_included": "Separates pretrained representation signal from model-specific decoder behavior.",
+      "reason_excluded": "",
+      "claim_ceiling": "linear recovery from pretrained embedding"
+    },
+    {
+      "model_name": "Geneformer-ridge",
+      "model_family": "embedding-ridge control",
+      "perturbation_type_supported": "linear control on pretrained embedding",
+      "input_required": "Geneformer embeddings; target labels; endpoint-aligned scoring input",
+      "output_type": "linear predicted expression or target score",
+      "target_coverage": "HCC38/HCC1143 evaluated targets",
+      "endpoint_compatible_output": "yes",
+      "included_role": "linear_embedding_control",
+      "reason_included": "Separates pretrained representation signal from model-specific decoder behavior.",
+      "reason_excluded": "",
+      "claim_ceiling": "linear recovery from pretrained embedding"
+    },
+    {
+      "model_name": "low-rank linear decoder",
+      "model_family": "linear control",
+      "perturbation_type_supported": "linear target-conditioned prediction",
+      "input_required": "training expression matrix; perturbation labels",
+      "output_type": "predicted perturbed expression",
+      "target_coverage": "HCC38/HCC1143 evaluated targets",
+      "endpoint_compatible_output": "yes",
+      "included_role": "linear_control",
+      "reason_included": "Finite-capacity expression decoder control.",
+      "reason_excluded": "",
+      "claim_ceiling": "linear recovery behavior"
+    },
+    {
+      "model_name": "CPA",
+      "model_family": "autoencoder perturbation-response model",
+      "perturbation_type_supported": "gene perturbation",
+      "input_required": "expression matrix; perturbation labels; compatible training design",
+      "output_type": "predicted perturbed expression",
+      "target_coverage": "HCC38/HCC1143 evaluated targets",
+      "endpoint_compatible_output": "yes",
+      "included_role": "boundary_negative_entrant",
+      "reason_included": "Non-GNN perturbation-response model family included under the unified output contract.",
+      "reason_excluded": "",
+      "claim_ceiling": "current within-context endpoint-recovery entrant; HCC1143 interpreted as common/stress-like boundary case"
+    },
+    {
+      "model_name": "CellOT",
+      "model_family": "optimal-transport perturbation-response mapping",
+      "perturbation_type_supported": "condition mapping candidate",
+      "input_required": "control and perturbed cell states; compatible mapping design",
+      "output_type": "candidate mapped perturbed expression",
+      "target_coverage": "audit required",
+      "endpoint_compatible_output": "candidate",
+      "included_role": "P2_candidate_sensitivity_entrant",
+      "reason_included": "Transport-style model-family sensitivity candidate.",
+      "reason_excluded": "Implementation and gene-target compatibility must be audited before inclusion.",
+      "claim_ceiling": "optional sensitivity entrant"
+    },
+    {
+      "model_name": "scGen",
+      "model_family": "generative latent perturbation-response model",
+      "perturbation_type_supported": "condition perturbation",
+      "input_required": "expression matrix; perturbation labels; compatible latent-shift design",
+      "output_type": "predicted perturbed expression",
+      "target_coverage": "HCC38/HCC1143 evaluated targets",
+      "endpoint_compatible_output": "yes",
+      "included_role": "positive_entrant",
+      "reason_included": "Historical generative perturbation-response baseline evaluated under the unified output contract.",
+      "reason_excluded": "",
+      "claim_ceiling": "most consistent current within-context target-observed endpoint-recovery entrant"
+    },
+    {
+      "model_name": "scDisInFact",
+      "model_family": "disentangled condition model",
+      "perturbation_type_supported": "condition and batch disentanglement candidate",
+      "input_required": "multi-condition data with compatible covariates",
+      "output_type": "candidate condition-effect prediction",
+      "target_coverage": "audit required",
+      "endpoint_compatible_output": "candidate",
+      "included_role": "registry_only",
+      "reason_included": "Documents condition/batch disentanglement model-family eligibility.",
+      "reason_excluded": "Not central to target-level endpoint recovery in the current benchmark design.",
+      "claim_ceiling": "registry-only unless benchmark design expands"
+    }
+  ],
+  "model_inclusion_exclusion_audit": [
+    {
+      "model_or_category": "GEARS",
+      "include_now": "yes",
+      "rationale": "Explicit target-conditioned gene perturbation prediction entrant.",
+      "claim_ceiling": "primary perturbation-specific entrant"
+    },
+    {
+      "model_or_category": "scGPT and Geneformer",
+      "include_now": "yes",
+      "rationale": "Pretrained foundation-model embeddings provide representation-level sensitivity controls.",
+      "claim_ceiling": "embedding controls, not direct perturbation deployment"
+    },
+    {
+      "model_or_category": "CPA",
+      "include_now": "yes",
+      "rationale": "Non-GNN perturbation-response model family evaluated under the HCC38/HCC1143 output contract; current results define a boundary/negative case, especially HCC1143 common-response collapse.",
+      "claim_ceiling": "within-context endpoint-recovery entrant; not broad OOD generalization evidence"
+    },
+    {
+      "model_or_category": "CellOT",
+      "include_now": "candidate",
+      "rationale": "Transport-style perturbation mapping model family.",
+      "claim_ceiling": "P2 sensitivity entrant if compatible"
+    },
+    {
+      "model_or_category": "scGen",
+      "include_now": "yes",
+      "rationale": "Historical generative perturbation-response baseline evaluated under the HCC38/HCC1143 output contract; current results define the strongest positive entrant in the evaluated panel.",
+      "claim_ceiling": "within-context target-observed endpoint-recovery entrant; not broad OOD generalization evidence"
+    },
+    {
+      "model_or_category": "scDisInFact",
+      "include_now": "registry_only",
+      "rationale": "Condition/batch disentanglement family is documented but not central to target-level endpoint recovery.",
+      "claim_ceiling": "registry-only"
+    },
+    {
+      "model_or_category": "broad additional foundation models",
+      "include_now": "no",
+      "rationale": "Foundation-model layer is already represented; additional stacking would shift focus away from endpoint-aligned recovery.",
+      "claim_ceiling": "out of scope for current strengthening cycle"
+    }
+  ],
+  "model_eligibility_audits": [
+    {
+      "model_name": "CPA",
+      "priority": "P1",
+      "candidate_role": "non-GNN perturbation-response endpoint-recovery entrant",
+      "required_output": "target-level predicted expression shift",
+      "must_preserve_truth_object": "yes",
+      "custom_metric_allowed": "no",
+      "decision_rule": "include under unified HCC38/HCC1143 output contract",
+      "local_audit_result": "include_now",
+      "audit_evidence": "HCC38/HCC1143 output contract completed; current audit interprets CPA as boundary/negative, especially HCC1143 common-response collapse"
+    },
+    {
+      "model_name": "CellOT",
+      "priority": "P2",
+      "candidate_role": "transport-style perturbation-response sensitivity entrant",
+      "required_output": "target-level mapped perturbed expression",
+      "must_preserve_truth_object": "yes",
+      "custom_metric_allowed": "no",
+      "decision_rule": "include only if mapping design is reproducible and output is scoring-compatible",
+      "local_audit_result": "defer_p2_pending_installation",
+      "audit_evidence": "HCC input, target coverage, and scorer output checks passed; cellot module not installed locally"
+    },
+    {
+      "model_name": "scGen",
+      "priority": "P1",
+      "candidate_role": "historical generative perturbation-response baseline",
+      "required_output": "target-level predicted expression shift",
+      "must_preserve_truth_object": "yes",
+      "custom_metric_allowed": "no",
+      "decision_rule": "include under unified HCC38/HCC1143 output contract",
+      "local_audit_result": "include_now",
+      "audit_evidence": "HCC38/HCC1143 output contract completed; current audit interprets scGen as the most consistent positive entrant in this within-context target-observed panel"
+    },
+    {
+      "model_name": "scDisInFact",
+      "priority": "registry_only",
+      "candidate_role": "condition/batch disentanglement candidate",
+      "required_output": "eligibility rationale",
+      "must_preserve_truth_object": "yes",
+      "custom_metric_allowed": "no",
+      "decision_rule": "keep registry-only unless benchmark design expands toward condition disentanglement",
+      "local_audit_result": "registry_only",
+      "audit_evidence": "HCC input and target coverage checks passed; direct scorer output contract is not the current role"
+    }
+  ]
+}
