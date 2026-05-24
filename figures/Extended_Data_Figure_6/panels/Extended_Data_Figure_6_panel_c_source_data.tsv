@@ -1,0 +1,113 @@
+target_gene	fine_axis	projected_mean_abs
+NPM1	RNA processing / transcription	0.3537373510491295
+YBX1	RNA processing / transcription	1.6682088048780424
+PARK7	RNA processing / transcription	0.3200420848669996
+PFDN5	RNA processing / transcription	0.3387747013073046
+RPS3	RNA processing / transcription	0.324278492236937
+TMSB4X	RNA processing / transcription	0.3126840824854948
+RUVBL2	RNA processing / transcription	0.3373217851214938
+PA2G4	RNA processing / transcription	0.2454942019097208
+ENY2	RNA processing / transcription	0.3084605921505878
+PRDX2	RNA processing / transcription	0.2675221014778128
+LAMTOR5	RNA processing / transcription	0.2691096303664411
+ZBTB17	RNA processing / transcription	0.2749889054454844
+PMF1	RNA processing / transcription	0.1979777550876265
+MTDH	RNA processing / transcription	0.2319736625306574
+NPM1	ribosomal / translation	0.4205007135891021
+YBX1	ribosomal / translation	0.2466685391901131
+PARK7	ribosomal / translation	0.2922020119282891
+PFDN5	ribosomal / translation	0.2313079912449285
+RPS3	ribosomal / translation	1.2455113544352103
+TMSB4X	ribosomal / translation	0.3019022919513601
+RUVBL2	ribosomal / translation	0.3320642914603797
+PA2G4	ribosomal / translation	0.251108474818086
+ENY2	ribosomal / translation	0.3588835628606692
+PRDX2	ribosomal / translation	0.2516895837345667
+LAMTOR5	ribosomal / translation	0.1978841334210708
+ZBTB17	ribosomal / translation	0.2351522779206516
+PMF1	ribosomal / translation	0.1297133796361711
+MTDH	ribosomal / translation	0.2458816084063735
+NPM1	ribosome biogenesis / nucleolar	1.8887299139887053
+YBX1	ribosome biogenesis / nucleolar	0.4052437292184989
+PARK7	ribosome biogenesis / nucleolar	0.2200673025282165
+PFDN5	ribosome biogenesis / nucleolar	0.2467047737318908
+RPS3	ribosome biogenesis / nucleolar	0.2342346584042807
+TMSB4X	ribosome biogenesis / nucleolar	0.2567237615414623
+RUVBL2	ribosome biogenesis / nucleolar	0.3799489969350493
+PA2G4	ribosome biogenesis / nucleolar	0.2403642997375592
+ENY2	ribosome biogenesis / nucleolar	0.302877331654217
+PRDX2	ribosome biogenesis / nucleolar	0.1956056437435536
+LAMTOR5	ribosome biogenesis / nucleolar	0.2316319244205344
+ZBTB17	ribosome biogenesis / nucleolar	0.2868290201080534
+PMF1	ribosome biogenesis / nucleolar	0.4236934933465002
+MTDH	ribosome biogenesis / nucleolar	0.1800217513435811
+NPM1	oxidative stress / mitochondrial	0.3410961683574822
+YBX1	oxidative stress / mitochondrial	0.3273345839248625
+PARK7	oxidative stress / mitochondrial	1.2056759118642555
+PFDN5	oxidative stress / mitochondrial	0.2079096735931902
+RPS3	oxidative stress / mitochondrial	0.2431307480753703
+TMSB4X	oxidative stress / mitochondrial	0.247207030828505
+RUVBL2	oxidative stress / mitochondrial	0.3033859563382277
+PA2G4	oxidative stress / mitochondrial	0.196829895298672
+ENY2	oxidative stress / mitochondrial	0.3141710654521998
+PRDX2	oxidative stress / mitochondrial	0.2355104896822175
+LAMTOR5	oxidative stress / mitochondrial	0.2144375769374615
+ZBTB17	oxidative stress / mitochondrial	0.4550124111155404
+PMF1	oxidative stress / mitochondrial	0.2041967618748936
+MTDH	oxidative stress / mitochondrial	0.1617592254058479
+NPM1	cytoskeleton / cell motility	0.4486670908612788
+YBX1	cytoskeleton / cell motility	0.1689592592207089
+PARK7	cytoskeleton / cell motility	0.1845899442723659
+PFDN5	cytoskeleton / cell motility	0.2634213747828959
+RPS3	cytoskeleton / cell motility	0.4241016108767366
+TMSB4X	cytoskeleton / cell motility	1.2525566423515428
+RUVBL2	cytoskeleton / cell motility	0.3710902145968617
+PA2G4	cytoskeleton / cell motility	0.1931648666917476
+ENY2	cytoskeleton / cell motility	0.2433969096066017
+PRDX2	cytoskeleton / cell motility	0.2718479679454373
+LAMTOR5	cytoskeleton / cell motility	0.0172649093070442
+ZBTB17	cytoskeleton / cell motility	0.2661460196704559
+PMF1	cytoskeleton / cell motility	0.1138886338092568
+MTDH	cytoskeleton / cell motility	0.0527734364470546
+NPM1	proteostasis / chaperone	0.2836775959750746
+YBX1	proteostasis / chaperone	0.2487036425975488
+PARK7	proteostasis / chaperone	0.295004223357767
+PFDN5	proteostasis / chaperone	1.0268854342236065
+RPS3	proteostasis / chaperone	0.2211925402259282
+TMSB4X	proteostasis / chaperone	0.2139043325948619
+RUVBL2	proteostasis / chaperone	0.2136645389534748
+PA2G4	proteostasis / chaperone	0.1634041853084109
+ENY2	proteostasis / chaperone	0.2188543849231292
+PRDX2	proteostasis / chaperone	0.2103369787086086
+LAMTOR5	proteostasis / chaperone	0.2814096700839632
+ZBTB17	proteostasis / chaperone	0.1744841591905104
+PMF1	proteostasis / chaperone	0.1771427454901546
+MTDH	proteostasis / chaperone	0.1666831921663278
+NPM1	growth / proliferation	0.1840424347985567
+YBX1	growth / proliferation	0.1925353641717042
+PARK7	growth / proliferation	0.1777257623024808
+PFDN5	growth / proliferation	0.2432979565571043
+RPS3	growth / proliferation	0.1026744444239917
+TMSB4X	growth / proliferation	0.1603758851699213
+RUVBL2	growth / proliferation	0.2721571452684099
+PA2G4	growth / proliferation	1.0638704745689755
+ENY2	growth / proliferation	0.2545592053930816
+PRDX2	growth / proliferation	0.1754978941065064
+LAMTOR5	growth / proliferation	0.1976762624162651
+ZBTB17	growth / proliferation	0.1919739287916322
+PMF1	growth / proliferation	0.1696894285188632
+MTDH	growth / proliferation	0.1514479559540851
+NPM1	oxidative stress / antioxidant	0.2129994755725567
+YBX1	oxidative stress / antioxidant	0.1159096813815695
+PARK7	oxidative stress / antioxidant	0.12846319467555
+PFDN5	oxidative stress / antioxidant	0.1972177499795049
+RPS3	oxidative stress / antioxidant	0.0970277251326564
+TMSB4X	oxidative stress / antioxidant	0.1138303802452873
+RUVBL2	oxidative stress / antioxidant	0.2982866956302893
+PA2G4	oxidative stress / antioxidant	0.1503501060515956
+ENY2	oxidative stress / antioxidant	0.0564427958410054
+PRDX2	oxidative stress / antioxidant	0.6408898005482193
+LAMTOR5	oxidative stress / antioxidant	0.1532166067611529
+ZBTB17	oxidative stress / antioxidant	0.2364803025986258
+PMF1	oxidative stress / antioxidant	0.1413244016491893
+MTDH	oxidative stress / antioxidant	0.1417062248130203

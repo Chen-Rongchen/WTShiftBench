@@ -1,0 +1,5 @@
+context	contrast_id	positive_category	negative_category	claim_role	included	reason	n_genes	n_targets_positive	n_targets_negative
+HCC1143	Q1_anchor_vs_Q4_low_information	Q1_anchor	Q4_low_information	anchor response-program contrast against low-information targets	True		36591	9	6
+HCC1143	Q1_anchor_vs_middle	Q1_anchor	middle	anchor response-program contrast against retained middle band	True		36591	9	32
+HCC38	Q1_anchor_vs_Q4_low_information	Q1_anchor	Q4_low_information	anchor response-program contrast against low-information targets	True		36591	9	6
+HCC38	Q1_anchor_vs_middle	Q1_anchor	middle	anchor response-program contrast against retained middle band	True		36591	9	32

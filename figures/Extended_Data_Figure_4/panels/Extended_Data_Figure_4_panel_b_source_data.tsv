@@ -1,11 +1,7 @@
-axis_id	shift_r2_mean	depmap_r2_mean	n_targets	targets	call_tier	explanatory_call	bootstrap_stability_call	bootstrap_dominant_call_fraction	enrichment_hits	databases	structure_support	max_axis_r2	signal_profile
-RNA processing / spliceosome	0.2456341088499313	0.1154327916242644	1	PRPF6	preliminary	preliminary_shared_signal_axis	stable_axis_call	1.0	1	1	1	0.2456341088499313	shift-dominant
-ribosomal / translation	0.0237625515304477	0.1158481284956462	1	RPS3	preliminary	preliminary_dependency_heavy_axis	moderately_stable_axis_call	0.6746031746031746	32	3	4	0.1158481284956462	dependency-dominant
-RNA processing / transcription	0.0053510116361707	0.1145923282065776	1	YBX1	preliminary	preliminary_dependency_heavy_axis	stable_axis_call	1.0	2	1	4	0.1145923282065776	dependency-dominant
-transcription / chromatin	0.0918059091099973	0.0003096163305515	2	ENY2; TADA3	formal	transcriptomic_heavy_axis	stable_axis_call	0.9733333333333334	6	2	1	0.0918059091099973	shift-dominant
-proteostasis / chaperone	0.0351846655998828	0.0871909235205539	1	PFDN5	preliminary	preliminary_dependency_heavy_axis	moderately_stable_axis_call	0.5275590551181102	0	0	3	0.0871909235205539	dependency-dominant
-chromatin remodeling	0.0457102885494596	0.0516473950639248	2	ARID1A; RUVBL2	formal	mixed_or_low_signal_axis	unstable_axis_call	0.4496644295302013	7	3	1	0.0516473950639248	balanced
-ribosome biogenesis / nucleolar	0.0491582655306062	0.03923951613219	1	NPM1	preliminary	preliminary_mixed_or_low_signal_axis	moderately_stable_axis_call	0.5255474452554745	29	3	1	0.0491582655306062	balanced
-mTOR / lysosome / signaling	0.0471206748830778	0.0028366077924279	1	LAMTOR5	preliminary	preliminary_transcriptomic_heavy_axis	stable_axis_call	0.8769230769230769	13	1	2	0.0471206748830778	shift-dominant
-nuclear receptor / co-activator	0.0184880600067985	0.0068993829410221	1	NCOA1	preliminary	preliminary_mixed_or_low_signal_axis	stable_axis_call	1.0	12	1	4	0.0184880600067985	low signal
-transcription regulation	0.0119799375335992	0.0172372187300257	18	ETV3; GON4L; HLX; KLF3; MAML3; MIER1; MYBL1; PMF1; THAP8; TMF1; UBP1; VEZF1; ZBTB17; ZBTB20; ZBTB5; ZNF131; ZNF24; ZNF566	formal	mixed_or_low_signal_axis	stable_axis_call	0.9933333333333332	0	0	1	0.0172372187300257	low signal
+model_id	selection_role	endpoint_used_for_selection	allowed_claim_role	selection_note
+gears_hcc_formal_v1	pre_specified_formal	False	primary	Locked formal GEARS configuration; endpoint scores are audit outputs only.
+gears_hcc_formal_v1_e20_lr1e-03_wd1e-06	finite_budget_sensitivity	False	sensitivity	Finite-budget sweep configuration; do not promote endpoint-best runs to primary claims.
+gears_hcc_formal_v1_e30_lr1e-03_wd1e-05	finite_budget_sensitivity	False	sensitivity	Finite-budget sweep configuration; do not promote endpoint-best runs to primary claims.
+gears_hcc_formal_v1_e30_lr2e-03_wd1e-06	finite_budget_sensitivity	False	sensitivity	Finite-budget sweep configuration; do not promote endpoint-best runs to primary claims.
+gears_hcc_formal_v1_e30_lr5e-04_wd1e-06	finite_budget_sensitivity	False	sensitivity	Finite-budget sweep configuration; do not promote endpoint-best runs to primary claims.
+gears_hcc_formal_v1_e40_lr1e-03_wd1e-06	finite_budget_sensitivity	False	sensitivity	Finite-budget sweep configuration; do not promote endpoint-best runs to primary claims.

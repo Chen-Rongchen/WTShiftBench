@@ -1,3 +1,5 @@
-timepoint	aligned_spearman	mean_truth_metric	median_truth_metric	subpanel
-7d	0.7333333333333332	0.0030991873866114	0.0029023397479872	temporal
-13d	0.5151515151515151	0.004382685449453	0.0044183505802962	temporal
+layer	n_contexts	supported_claim	not_used_to_claim
+Primary model-audit layer	2	primary bridge and model-audit claim	do not expand into broad model-generalization language
+External bridge-form / boundary layer	4	recovery-object external validity and boundary evidence	do not use as model-generalization evidence
+Secondary endpoint-extension layer	0		
+Excluded / future-extension registry	5	governance and scope definition	requires a separate endpoint module before inclusion

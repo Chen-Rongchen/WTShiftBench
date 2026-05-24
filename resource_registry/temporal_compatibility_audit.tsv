@@ -1,0 +1,6 @@
+context	readout_class	benchmark_role	temporal_claim	forbidden_claim
+HCC38 day 14	late	primary	temporally compatible with long-horizon dependency endpoints	time-matched endpoint readout
+HCC1143 day 14	late	primary	temporally compatible with long-horizon dependency endpoints	time-matched endpoint readout
+K562 day 6/8	early	secondary_boundary	secondary cancer-line temporal and modality-boundary evidence	validation of day-14 contexts
+RPE1 day 7	early	excluded_boundary	non-cancer boundary registry only	cancer-dependency endpoint analysis
+HepG2/Jurkat day 7	early	candidate_secondary	candidate secondary endpoint-extension evidence if target and endpoint audits pass	replacement for primary late-readout contexts

@@ -1,0 +1,113 @@
+target_gene	fine_axis	projected_mean_abs
+THAP8	ER stress / UPR	0.075278962588585
+STAT3	ER stress / UPR	0.0746857771637803
+VEZF1	ER stress / UPR	0.0725236484768754
+MIER1	ER stress / UPR	0.0728371391060715
+ZBTB20	ER stress / UPR	0.0722190985443955
+ARID1A	ER stress / UPR	0.0718033561470872
+LAMTOR5	ER stress / UPR	0.0720785507920152
+PRPF6	ER stress / UPR	0.0706295022728806
+HDGF	ER stress / UPR	0.0713857958081132
+BMPR1A	ER stress / UPR	0.0719508478405839
+ETV3	ER stress / UPR	0.0711710700753098
+PEX14	ER stress / UPR	0.0708564469578629
+TADA3	ER stress / UPR	0.0704595098259812
+ZBTB17	ER stress / UPR	0.0713011572125321
+THAP8	signaling / oncogene	0.0445820959993801
+STAT3	signaling / oncogene	0.042863574881216
+VEZF1	signaling / oncogene	0.0382500561663112
+MIER1	signaling / oncogene	0.0374204787203273
+ZBTB20	signaling / oncogene	0.0361241969057521
+ARID1A	signaling / oncogene	0.0356286438890895
+LAMTOR5	signaling / oncogene	0.0353972586580715
+PRPF6	signaling / oncogene	0.0354730757662258
+HDGF	signaling / oncogene	0.0339766415544948
+BMPR1A	signaling / oncogene	0.0336378487535915
+ETV3	signaling / oncogene	0.0328809889742336
+PEX14	signaling / oncogene	0.0320580872484645
+TADA3	signaling / oncogene	0.0314759882875881
+ZBTB17	signaling / oncogene	0.0314514311739406
+THAP8	JAK-STAT signaling	0.0249247334216323
+STAT3	JAK-STAT signaling	0.0249869606707778
+VEZF1	JAK-STAT signaling	0.023768194696733
+MIER1	JAK-STAT signaling	0.0242380581114974
+ZBTB20	JAK-STAT signaling	0.0232406637881484
+ARID1A	JAK-STAT signaling	0.022151299497911
+LAMTOR5	JAK-STAT signaling	0.0225953541014877
+PRPF6	JAK-STAT signaling	0.0227880559180465
+HDGF	JAK-STAT signaling	0.0232351503585067
+BMPR1A	JAK-STAT signaling	0.0223555944178787
+ETV3	JAK-STAT signaling	0.0223139009688583
+PEX14	JAK-STAT signaling	0.022438564083406
+TADA3	JAK-STAT signaling	0.0213488421652999
+ZBTB17	JAK-STAT signaling	0.0219686112616744
+THAP8	nuclear receptor / co-activator	0.0196911801434074
+STAT3	nuclear receptor / co-activator	0.0195748169756446
+VEZF1	nuclear receptor / co-activator	0.0197689642048393
+MIER1	nuclear receptor / co-activator	0.0196771432495628
+ZBTB20	nuclear receptor / co-activator	0.0194335763192688
+ARID1A	nuclear receptor / co-activator	0.0195171122289215
+LAMTOR5	nuclear receptor / co-activator	0.0191773508525405
+PRPF6	nuclear receptor / co-activator	0.0210384388304267
+HDGF	nuclear receptor / co-activator	0.0200134028530632
+BMPR1A	nuclear receptor / co-activator	0.0203850899673019
+ETV3	nuclear receptor / co-activator	0.0196934302187477
+PEX14	nuclear receptor / co-activator	0.0194485668874298
+TADA3	nuclear receptor / co-activator	0.0186286975479637
+ZBTB17	nuclear receptor / co-activator	0.0195999701357399
+THAP8	ribosomal / translation	0.0568400880717336
+STAT3	ribosomal / translation	0.0537981054209768
+VEZF1	ribosomal / translation	0.0431250593089163
+MIER1	ribosomal / translation	0.0376254579447805
+ZBTB20	ribosomal / translation	0.0361093542002737
+ARID1A	ribosomal / translation	0.036213304700762
+LAMTOR5	ribosomal / translation	0.0349725744151174
+PRPF6	ribosomal / translation	0.0311650297068655
+HDGF	ribosomal / translation	0.0300039312266409
+BMPR1A	ribosomal / translation	0.0286680719279348
+ETV3	ribosomal / translation	0.0266646406077444
+PEX14	ribosomal / translation	0.0269617101573049
+TADA3	ribosomal / translation	0.0256654283427297
+ZBTB17	ribosomal / translation	0.0250026246928274
+THAP8	NF-κB / copper signaling	0.0304455393962579
+STAT3	NF-κB / copper signaling	0.0293285483531671
+VEZF1	NF-κB / copper signaling	0.0258934134654718
+MIER1	NF-κB / copper signaling	0.0239026183299737
+ZBTB20	NF-κB / copper signaling	0.023779951971026
+ARID1A	NF-κB / copper signaling	0.0238597029857354
+LAMTOR5	NF-κB / copper signaling	0.0236843461208062
+PRPF6	NF-κB / copper signaling	0.0208123559169488
+HDGF	NF-κB / copper signaling	0.0219710702113824
+BMPR1A	NF-κB / copper signaling	0.0207428569011407
+ETV3	NF-κB / copper signaling	0.0202806824855523
+PEX14	NF-κB / copper signaling	0.0204027527980523
+TADA3	NF-κB / copper signaling	0.0197766656093316
+ZBTB17	NF-κB / copper signaling	0.020621501844378
+THAP8	cytoskeleton / cell motility	0.0467632151141805
+STAT3	cytoskeleton / cell motility	0.0443864202991171
+VEZF1	cytoskeleton / cell motility	0.0355837679401083
+MIER1	cytoskeleton / cell motility	0.032141718913619
+ZBTB20	cytoskeleton / cell motility	0.0308397150531454
+ARID1A	cytoskeleton / cell motility	0.0301325655475301
+LAMTOR5	cytoskeleton / cell motility	0.029571089793746
+PRPF6	cytoskeleton / cell motility	0.0262055731311483
+HDGF	cytoskeleton / cell motility	0.0261679029956503
+BMPR1A	cytoskeleton / cell motility	0.0251021719470663
+ETV3	cytoskeleton / cell motility	0.0231714582935018
+PEX14	cytoskeleton / cell motility	0.0228970385089559
+TADA3	cytoskeleton / cell motility	0.021477017451827
+ZBTB17	cytoskeleton / cell motility	0.0215070581927938
+THAP8	growth / proliferation	0.0047102309559978
+STAT3	growth / proliferation	0.0027083493565716
+VEZF1	growth / proliferation	0.0028234385157428
+MIER1	growth / proliferation	0.0056273602152667
+ZBTB20	growth / proliferation	0.006537761559566
+ARID1A	growth / proliferation	0.0062882565165363
+LAMTOR5	growth / proliferation	0.0069806240702472
+PRPF6	growth / proliferation	0.0099254511500201
+HDGF	growth / proliferation	0.0095569752360187
+BMPR1A	growth / proliferation	0.0096194409037433
+ETV3	growth / proliferation	0.0114335678721271
+PEX14	growth / proliferation	0.0116607807780109
+TADA3	growth / proliferation	0.012151684632381
+ZBTB17	growth / proliferation	0.0122478865290485

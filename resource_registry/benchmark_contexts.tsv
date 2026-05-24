@@ -1,0 +1,7 @@
+context	cell_line	readout_day	perturbation_modality	role	endpoint	claim_ceiling
+HCC38 day 14	HCC38	14	CRISPR KO CROP-seq	primary	DepMap CRISPR dependency	endpoint-aligned recovery
+HCC1143 day 14	HCC1143	14	CRISPR KO CROP-seq	primary	DepMap CRISPR dependency	endpoint-aligned recovery
+K562 day 6/8	K562	6;8	CRISPRi	secondary_boundary	DepMap mappable	temporal and modality boundary evidence
+RPE1 day 7	RPE1	7	CRISPRi	excluded_boundary	not a cancer-dependency endpoint context	non-cancer boundary only
+HepG2 day 7	HepG2	7	dual-sgRNA CRISPR	candidate_secondary	DepMap common-essential mapping candidate	endpoint-extension audit
+Jurkat day 7	Jurkat	7	dual-sgRNA CRISPR	candidate_secondary	DepMap common-essential mapping candidate	endpoint-extension audit

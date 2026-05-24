@@ -1,0 +1,113 @@
+target_gene	fine_axis	projected_mean_abs
+ARID1A	ribosomal / translation	0.2202206645521839
+TMF1	ribosomal / translation	0.2202206645521839
+RORC	ribosomal / translation	0.2202206645521839
+RPS3	ribosomal / translation	0.2202206645521839
+RUVBL2	ribosomal / translation	0.2202206645521839
+SMAD1	ribosomal / translation	0.2202206645521839
+STAT3	ribosomal / translation	0.2202206645521839
+TAB3	ribosomal / translation	0.2202206645521839
+TADA3	ribosomal / translation	0.2202206645521839
+THAP8	ribosomal / translation	0.2202206645521839
+THRA	ribosomal / translation	0.2202206645521839
+TMSB4X	ribosomal / translation	0.2202206645521839
+PRDX2	ribosomal / translation	0.2202206645521839
+UBP1	ribosomal / translation	0.2202206645521839
+ARID1A	oxidative stress / mitochondrial	0.0764578922761815
+TMF1	oxidative stress / mitochondrial	0.0764578922761815
+RORC	oxidative stress / mitochondrial	0.0764578922761815
+RPS3	oxidative stress / mitochondrial	0.0764578922761815
+RUVBL2	oxidative stress / mitochondrial	0.0764578922761815
+SMAD1	oxidative stress / mitochondrial	0.0764578922761815
+STAT3	oxidative stress / mitochondrial	0.0764578922761815
+TAB3	oxidative stress / mitochondrial	0.0764578922761815
+TADA3	oxidative stress / mitochondrial	0.0764578922761815
+THAP8	oxidative stress / mitochondrial	0.0764578922761815
+THRA	oxidative stress / mitochondrial	0.0764578922761815
+TMSB4X	oxidative stress / mitochondrial	0.0764578922761815
+PRDX2	oxidative stress / mitochondrial	0.0764578922761815
+UBP1	oxidative stress / mitochondrial	0.0764578922761815
+ARID1A	transcription / chromatin	0.0674993391814572
+TMF1	transcription / chromatin	0.0674993391814572
+RORC	transcription / chromatin	0.0674993391814572
+RPS3	transcription / chromatin	0.0674993391814572
+RUVBL2	transcription / chromatin	0.0674993391814572
+SMAD1	transcription / chromatin	0.0674993391814572
+STAT3	transcription / chromatin	0.0674993391814572
+TAB3	transcription / chromatin	0.0674993391814572
+TADA3	transcription / chromatin	0.0674993391814572
+THAP8	transcription / chromatin	0.0674993391814572
+THRA	transcription / chromatin	0.0674993391814572
+TMSB4X	transcription / chromatin	0.0674993391814572
+PRDX2	transcription / chromatin	0.0674993391814572
+UBP1	transcription / chromatin	0.0674993391814572
+ARID1A	growth / proliferation	0.0535638109910706
+TMF1	growth / proliferation	0.0535638109910706
+RORC	growth / proliferation	0.0535638109910706
+RPS3	growth / proliferation	0.0535638109910706
+RUVBL2	growth / proliferation	0.0535638109910706
+SMAD1	growth / proliferation	0.0535638109910706
+STAT3	growth / proliferation	0.0535638109910706
+TAB3	growth / proliferation	0.0535638109910706
+TADA3	growth / proliferation	0.0535638109910706
+THAP8	growth / proliferation	0.0535638109910706
+THRA	growth / proliferation	0.0535638109910706
+TMSB4X	growth / proliferation	0.0535638109910706
+PRDX2	growth / proliferation	0.0535638109910706
+UBP1	growth / proliferation	0.0535638109910706
+ARID1A	chromatin remodeling	0.0493588875831131
+TMF1	chromatin remodeling	0.0493588875831131
+RORC	chromatin remodeling	0.0493588875831131
+RPS3	chromatin remodeling	0.0493588875831131
+RUVBL2	chromatin remodeling	0.0493588875831131
+SMAD1	chromatin remodeling	0.0493588875831131
+STAT3	chromatin remodeling	0.0493588875831131
+TAB3	chromatin remodeling	0.0493588875831131
+TADA3	chromatin remodeling	0.0493588875831131
+THAP8	chromatin remodeling	0.0493588875831131
+THRA	chromatin remodeling	0.0493588875831131
+TMSB4X	chromatin remodeling	0.0493588875831131
+PRDX2	chromatin remodeling	0.0493588875831131
+UBP1	chromatin remodeling	0.0493588875831131
+ARID1A	NF-κB / copper signaling	0.0488540611423575
+TMF1	NF-κB / copper signaling	0.0488540611423575
+RORC	NF-κB / copper signaling	0.0488540611423575
+RPS3	NF-κB / copper signaling	0.0488540611423575
+RUVBL2	NF-κB / copper signaling	0.0488540611423575
+SMAD1	NF-κB / copper signaling	0.0488540611423575
+STAT3	NF-κB / copper signaling	0.0488540611423575
+TAB3	NF-κB / copper signaling	0.0488540611423575
+TADA3	NF-κB / copper signaling	0.0488540611423575
+THAP8	NF-κB / copper signaling	0.0488540611423575
+THRA	NF-κB / copper signaling	0.0488540611423575
+TMSB4X	NF-κB / copper signaling	0.0488540611423575
+PRDX2	NF-κB / copper signaling	0.0488540611423575
+UBP1	NF-κB / copper signaling	0.0488540611423575
+ARID1A	cytoskeleton / cell motility	0.0467257663744749
+TMF1	cytoskeleton / cell motility	0.0467257663744749
+RORC	cytoskeleton / cell motility	0.0467257663744749
+RPS3	cytoskeleton / cell motility	0.0467257663744749
+RUVBL2	cytoskeleton / cell motility	0.0467257663744749
+SMAD1	cytoskeleton / cell motility	0.0467257663744749
+STAT3	cytoskeleton / cell motility	0.0467257663744749
+TAB3	cytoskeleton / cell motility	0.0467257663744749
+TADA3	cytoskeleton / cell motility	0.0467257663744749
+THAP8	cytoskeleton / cell motility	0.0467257663744749
+THRA	cytoskeleton / cell motility	0.0467257663744749
+TMSB4X	cytoskeleton / cell motility	0.0467257663744749
+PRDX2	cytoskeleton / cell motility	0.0467257663744749
+UBP1	cytoskeleton / cell motility	0.0467257663744749
+ARID1A	mTOR / lysosome / signaling	0.0456035252662751
+TMF1	mTOR / lysosome / signaling	0.0456035252662751
+RORC	mTOR / lysosome / signaling	0.0456035252662751
+RPS3	mTOR / lysosome / signaling	0.0456035252662751
+RUVBL2	mTOR / lysosome / signaling	0.0456035252662751
+SMAD1	mTOR / lysosome / signaling	0.0456035252662751
+STAT3	mTOR / lysosome / signaling	0.0456035252662751
+TAB3	mTOR / lysosome / signaling	0.0456035252662751
+TADA3	mTOR / lysosome / signaling	0.0456035252662751
+THAP8	mTOR / lysosome / signaling	0.0456035252662751
+THRA	mTOR / lysosome / signaling	0.0456035252662751
+TMSB4X	mTOR / lysosome / signaling	0.0456035252662751
+PRDX2	mTOR / lysosome / signaling	0.0456035252662751
+UBP1	mTOR / lysosome / signaling	0.0456035252662751
