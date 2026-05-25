@@ -83,11 +83,14 @@ def panel_heading(ax: plt.Axes, letter: str, title: str) -> None:
     ax.text(0, 1.08, f"{letter}  {title}", transform=ax.transAxes, ha="left", va="bottom", weight="bold", fontsize=9)
 
 
-def clean(ax: plt.Axes) -> None:
+def clean(ax: plt.Axes, *, light_grid: bool = False, grid_axis: str = "both") -> None:
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
     ax.tick_params(labelsize=7)
-    ax.grid(True, color="#EDEDED", linewidth=0.5, zorder=0)
+    if light_grid:
+        ax.grid(True, axis=grid_axis, color="#F5F5F5", linewidth=0.35, zorder=0)
+    else:
+        ax.grid(False)
 
 
 def table_panel(ax: plt.Axes, df: pd.DataFrame, letter: str, title: str, *, font: float = 6.5, scale_y: float = 1.25) -> None:
@@ -131,7 +134,7 @@ def status_matrix_panel(ax: plt.Axes, df: pd.DataFrame, letter: str, title: str,
     panel_heading(ax, letter, title)
     d = df[[row_col] + [c for c in cols if c in df.columns]].copy().head(12)
     status = d.set_index(row_col)
-    numeric = status.applymap(lambda x: 1.0 if str(x).lower() in {"estimated", "yes", "true", "primary", "sensitivity"} else 0.35)
+    numeric = status.map(lambda x: 1.0 if str(x).lower() in {"estimated", "yes", "true", "primary", "sensitivity"} else 0.35)
     ax.imshow(numeric.to_numpy(), aspect="auto", cmap="Greens", vmin=0, vmax=1)
     ax.set_yticks(range(len(numeric.index)))
     ax.set_yticklabels(numeric.index.astype(str).str.slice(0, 22), fontsize=5.2)
@@ -193,6 +196,97 @@ def ora_dot_panel(ax: plt.Axes, df: pd.DataFrame, letter: str, title: str) -> pd
     ax.invert_yaxis()
     ax.set_xlabel("Overlap count")
     ax.text(0.02, -0.16, "Descriptive target-membership annotation only", transform=ax.transAxes, fontsize=5.3, color="#555555")
+    clean(ax)
+    return d
+
+
+def binary_matrix(
+    ax: plt.Axes,
+    mat: pd.DataFrame,
+    letter: str,
+    title: str,
+    *,
+    yes_label: str = "yes",
+    no_label: str = "-",
+) -> None:
+    panel_heading(ax, letter, title)
+    values = mat.astype(float).to_numpy()
+    ax.imshow(values, aspect="auto", cmap="Greens", vmin=0, vmax=1)
+    ax.set_yticks(range(len(mat.index)))
+    ax.set_yticklabels(mat.index.astype(str).str.slice(0, 26), fontsize=5.4)
+    ax.set_xticks(range(len(mat.columns)))
+    ax.set_xticklabels([str(c).replace("_", "\n") for c in mat.columns], fontsize=5.5)
+    ax.tick_params(length=0)
+    for i in range(values.shape[0]):
+        for j in range(values.shape[1]):
+            ax.text(j, i, yes_label if values[i, j] >= 0.5 else no_label, ha="center", va="center", fontsize=5.2)
+    for spine in ax.spines.values():
+        spine.set_visible(False)
+
+
+def registry_role_matrix(ax: plt.Axes, registry: pd.DataFrame, letter: str, title: str) -> pd.DataFrame:
+    d = registry.copy()
+    d["label"] = d["model_name"].astype(str).str.slice(0, 24)
+    roles = ["primary_entrant", "embedding_control", "diagnostic_control", "excluded"]
+    mat = pd.DataFrame(0.0, index=d["label"], columns=roles)
+    for _, row in d.iterrows():
+        role = row.get("included_role", "")
+        if role in roles:
+            mat.loc[row["label"], role] = 1.0
+    binary_matrix(ax, mat, letter, title)
+    return mat.reset_index(names="model_name")
+
+
+def regime_matrix(ax: plt.Axes, regime: pd.DataFrame, letter: str, title: str) -> pd.DataFrame:
+    d = regime.copy()
+    d["label"] = d["model_id"].map(MODEL_LABELS).fillna(d["model_id"]).astype(str).str.slice(0, 26)
+    mat = pd.DataFrame(
+        {
+            "formal": d["selection_role"].eq("pre_specified_formal").astype(float).to_numpy(),
+            "sensitivity": d["selection_role"].str.contains("sensitivity", na=False).astype(float).to_numpy(),
+            "endpoint selected": d["endpoint_used_for_selection"].astype(bool).astype(float).to_numpy(),
+        },
+        index=d["label"],
+    )
+    binary_matrix(ax, mat, letter, title)
+    return mat.reset_index(names="model_id")
+
+
+def hash_size_panel(ax: plt.Axes, hashes: pd.DataFrame, letter: str, title: str) -> pd.DataFrame:
+    panel_heading(ax, letter, title)
+    d = hashes.copy()
+    label_col = "artifact_role" if "artifact_role" in d.columns else "artifact"
+    d["size_mb"] = pd.to_numeric(d["size_bytes"], errors="coerce").fillna(0) / 1_000_000
+    d = d.sort_values("size_mb", ascending=False).head(10)
+    ax.barh(d[label_col].astype(str).str.slice(0, 28), d["size_mb"], color=COLORS["gray"])
+    ax.invert_yaxis()
+    ax.set_xlabel("Artifact size (MB)")
+    clean(ax)
+    return d
+
+
+def manifest_coverage_panel(ax: plt.Axes, manifest: pd.DataFrame, letter: str, title: str) -> pd.DataFrame:
+    panel_heading(ax, letter, title)
+    d = manifest.groupby("figure_group").agg(n_files=("path", "count"), total_mb=("bytes", lambda x: float(pd.to_numeric(x, errors="coerce").fillna(0).sum()) / 1_000_000)).reset_index()
+    d = d.sort_values("figure_group")
+    ax.scatter(d["total_mb"], np.arange(len(d)), s=18 + d["n_files"] * 2.5, color=COLORS["green"], alpha=0.85, edgecolor="white", linewidth=0.5)
+    ax.set_yticks(np.arange(len(d)))
+    ax.set_yticklabels(d["figure_group"].astype(str).str.replace("_", " "), fontsize=5.5)
+    ax.set_xlabel("Source-data size (MB); point size = files")
+    clean(ax)
+    return d
+
+
+def qc_availability_panel(ax: plt.Axes, qc: pd.DataFrame, letter: str, title: str) -> pd.DataFrame:
+    panel_heading(ax, letter, title)
+    d = qc.copy()
+    d["label"] = d["context"] + "\n" + d["contrast_id"].str.replace("_", " ")
+    d["n_targets_total"] = d["n_targets_positive"] + d["n_targets_negative"]
+    y = np.arange(len(d))
+    ax.scatter(d["n_genes"], y, s=20 + d["n_targets_total"] * 3.5, color=COLORS["green"], edgecolor="white", linewidth=0.5)
+    ax.set_yticks(y)
+    ax.set_yticklabels(d["label"], fontsize=5.6)
+    ax.set_xlabel("Ranked genes; point size = targets in contrast")
     clean(ax)
     return d
 
@@ -303,14 +397,14 @@ def ed2() -> None:
     for metric, g in d.groupby("truth_metric"):
         gg = g.groupby("top_n_numeric")["aligned_spearman"].mean().reset_index()
         ax.plot(gg["top_n_numeric"], gg["aligned_spearman"], marker="o", label=metric.replace("real_shift_", ""))
-    ax.set_xlabel("Top n genes"); ax.set_ylabel("Spearman rho"); ax.legend(frameon=False, fontsize=6); clean(ax)
+    ax.set_xlabel("Top n genes"); ax.set_ylabel("Spearman ρ"); ax.legend(frameon=False, fontsize=6); clean(ax)
     ax = fig.add_subplot(gs[0, 1]); panel_heading(ax, "b", "Endpoint sensitivity")
     d = panels["b"].dropna(subset=["spearman_rho_aligned"]).copy()
     show = d.loc[d["truth_metric"].isin(["real_shift_mean_abs", "real_shift_L2"])].copy()
     show = show.groupby(["truth_metric", "depmap_endpoint"])["spearman_rho_aligned"].mean().reset_index().head(12)
     ax.barh(np.arange(len(show)), show["spearman_rho_aligned"], color=COLORS["green"])
     ax.set_yticks(np.arange(len(show))); ax.set_yticklabels((show["truth_metric"] + "\n" + show["depmap_endpoint"]).str.replace("depmap_", ""), fontsize=5)
-    ax.set_xlabel("Mean rho"); clean(ax)
+    ax.set_xlabel("Mean Spearman ρ"); clean(ax)
     ax = fig.add_subplot(gs[0, 2]); panel_heading(ax, "c", "Control subsampling")
     d = panels["c"].dropna(subset=["spearman_aligned_mean"]).copy()
     y = np.arange(len(d))
@@ -365,7 +459,7 @@ def ed3() -> None:
         plot = d.sample(min(len(d), 2500), random_state=1) if len(d) > 2500 else d
         ax.scatter(plot["depmap_gene_dependency"], plot["real_shift_mean_abs"], s=8, color=COLORS["blue"], alpha=0.35, edgecolors="none")
         r = summary.loc[summary["context"].eq(ctx)].iloc[0]
-        ax.text(0.04, 0.96, f"rho={r['spearman_rho']:.3f}\nn={int(r['n_targets_matched_depmap']):,}; p={r['spearman_permutation_pvalue']:.3g}", transform=ax.transAxes, va="top", fontsize=7)
+        ax.text(0.04, 0.96, f"Spearman ρ = {r['spearman_rho']:.3f}\nn = {int(r['n_targets_matched_depmap']):,}; P = {r['spearman_permutation_pvalue']:.3g}", transform=ax.transAxes, va="top", fontsize=7)
         ax.set_xlabel("Dependency strength (-DepMap)")
         ax.set_ylabel("Observed shift mean abs")
         clean(ax)
@@ -376,7 +470,7 @@ def ed3() -> None:
     ax.errorbar(d["spearman_rho"], np.arange(len(d)), xerr=xerr, fmt="o", color=COLORS["green"])
     ax.axvline(0, color="#BBBBBB", linewidth=0.8)
     ax.set_yticks(np.arange(len(d))); ax.set_yticklabels(d["context"], fontsize=7)
-    ax.set_xlabel("Spearman rho with bootstrap CI")
+    ax.set_xlabel("Spearman ρ with bootstrap CI")
     clean(ax)
     save(fig, *[d / "Extended_Data_Figure_3" for d in (out_dirs(fig_id)[0], out_dirs(fig_id)[2])])
     finish_figure(fig_id, panels)
@@ -410,25 +504,46 @@ def ed4() -> None:
     }
     fig = plt.figure(figsize=(12, 8))
     gs = fig.add_gridspec(3, 2, hspace=0.5, wspace=0.25)
-    titles = {"a":"Model entrant registry","b":"Training/evaluation regime","c":"Output-contract availability","d":"Inclusion/exclusion audit","e":"Artifact hash closure","f":"Figure/source-data manifest"}
+    titles = {"a":"Model family inclusion matrix","b":"Training/evaluation regime","c":"Output-contract availability","d":"Inclusion/exclusion audit","e":"Artifact hash closure","f":"Figure/source-data manifest"}
     ax = fig.add_subplot(gs[0, 0])
-    compact_table_panel(ax, panels["a"], "a", titles["a"], columns=["model_name", "model_family", "included_role", "claim_ceiling"], max_rows=8, font=4.9, scale_y=1.0)
+    panels["a_display"] = registry_role_matrix(ax, panels["a"], "a", titles["a"])
     ax = fig.add_subplot(gs[0, 1])
-    compact_table_panel(ax, panels["b"], "b", titles["b"], columns=["model_id", "selection_role", "endpoint_used_for_selection", "allowed_claim_role"], max_rows=8, font=4.9, scale_y=1.0)
+    panels["b_display"] = regime_matrix(ax, panels["b"], "b", titles["b"])
     ax = fig.add_subplot(gs[1, 0])
     status_matrix_panel(ax, panels["c"], "c", titles["c"], "model_id", ["total_shift_depmap_status", "axis_aligned_depmap_status", "target_identity_preservation_status"])
     ax = fig.add_subplot(gs[1, 1])
-    compact_table_panel(ax, panels["d"], "d", titles["d"], columns=["model_name", "included_role", "claim_ceiling"], max_rows=8, font=5.0, scale_y=1.0)
+    include = panels["d"].copy()
+    include["included"] = include["included_role"].ne("excluded").astype(float)
+    include["excluded/future"] = include["included_role"].eq("excluded").astype(float)
+    include_mat = include.set_index(include["model_name"].astype(str).str.slice(0, 24))[["included", "excluded/future"]]
+    binary_matrix(ax, include_mat, "d", titles["d"])
+    panels["d_display"] = include_mat.reset_index(names="model_name")
     ax = fig.add_subplot(gs[2, 0])
-    compact_table_panel(ax, panels["e"], "e", titles["e"], columns=["artifact_role", "path", "sha256"], max_rows=6, font=4.9, scale_y=1.0)
+    panels["e_display"] = hash_size_panel(ax, panels["e"], "e", titles["e"])
     ax = fig.add_subplot(gs[2, 1])
-    compact_table_panel(ax, panels["f"], "f", titles["f"], columns=["path", "figure_group", "sha256"], max_rows=6, font=4.9, scale_y=1.0)
+    panels["f_display"] = manifest_coverage_panel(ax, panels["f"], "f", titles["f"])
     save(fig, *[d / "Extended_Data_Figure_4" for d in (out_dirs(fig_id)[0], out_dirs(fig_id)[2])])
-    finish_figure(fig_id, panels)
+    finish_figure(fig_id, {k: v for k, v in panels.items() if not k.endswith("_display")})
     for k, src in panels.items():
+        if k.endswith("_display"):
+            continue
         figp = plt.figure(figsize=(5, 3))
         axp = figp.add_subplot(111)
-        table_panel(axp, src.head(12), k, titles[k], font=5.2, scale_y=1.0)
+        if k == "a":
+            registry_role_matrix(axp, src, k, titles[k])
+        elif k == "b":
+            regime_matrix(axp, src, k, titles[k])
+        elif k == "c":
+            status_matrix_panel(axp, src, k, titles[k], "model_id", ["total_shift_depmap_status", "axis_aligned_depmap_status", "target_identity_preservation_status"])
+        elif k == "d":
+            include = src.copy()
+            include["included"] = include["included_role"].ne("excluded").astype(float)
+            include["excluded/future"] = include["included_role"].eq("excluded").astype(float)
+            binary_matrix(axp, include.set_index(include["model_name"].astype(str).str.slice(0, 24))[["included", "excluded/future"]], k, titles[k])
+        elif k == "e":
+            hash_size_panel(axp, src, k, titles[k])
+        else:
+            manifest_coverage_panel(axp, src, k, titles[k])
         save_panel(fig_id, k, figp, src)
 
 
@@ -470,19 +585,38 @@ def ed5() -> None:
     ax = fig.add_subplot(gs[1, 1]); panel_heading(ax, "e", "GEARS formal versus sweep")
     d = panels["e"].dropna(subset=["axis_aligned_depmap_spearman"]).copy()
     ax.scatter(d["axis_aligned_depmap_spearman"], d["anchor_vs_low_information_axis_auc"], c=np.where(d["model_id"].eq("gears_hcc_formal_v1"), COLORS["green"], COLORS["orange"]), s=42)
-    ax.set_xlabel("Axis rho"); ax.set_ylabel("Anchor AUC"); clean(ax)
+    ax.set_xlabel("Axis Spearman ρ"); ax.set_ylabel("Anchor AUC"); clean(ax)
     ax = fig.add_subplot(gs[1, 2]); panel_heading(ax, "f", "Null/reference output structure")
     d = panels["f"].groupby(["model_id","cell_line"])["predicted_shift_mean_abs"].nunique().reset_index(name="unique_total_shift")
     ax.barh(d["model_id"].map(MODEL_LABELS).fillna(d["model_id"]) + " " + d["cell_line"].str.replace("HCC",""), d["unique_total_shift"], color=COLORS["gray"])
     ax.set_xlabel("Unique target-level total shifts"); clean(ax)
-    ax = fig.add_subplot(gs[2, :]); table_panel(ax, panels["g"][["context","n_targets_matched_depmap","spearman_rho","spearman_permutation_pvalue","supported_claim"]], "g", "Observed-shift oracle / truth-side ceiling", font=6)
+    ax = fig.add_subplot(gs[2, :]); panel_heading(ax, "g", "Observed-shift oracle / truth-side ceiling")
+    d = panels["g"].sort_values("spearman_rho")
+    y = np.arange(len(d))
+    xerr = np.vstack([d["spearman_rho"] - d["spearman_bootstrap_ci_low"], d["spearman_bootstrap_ci_high"] - d["spearman_rho"]])
+    ax.errorbar(d["spearman_rho"], y, xerr=xerr, fmt="o", color=COLORS["green"], ecolor=COLORS["green"], elinewidth=1.2, capsize=2)
+    ax.set_yticks(y); ax.set_yticklabels(d["context"], fontsize=6)
+    ax.set_xlabel("Observed-shift Spearman ρ with 95% CI")
+    ax.axvline(0, color="#BBBBBB", linewidth=0.8)
+    clean(ax, light_grid=True, grid_axis="x")
     save(fig, *[d / "Extended_Data_Figure_5" for d in (out_dirs(fig_id)[0], out_dirs(fig_id)[2])])
     finish_figure(fig_id, {k: v for k, v in panels.items() if k != "d_display"})
     for k, src in panels.items():
         if k.endswith("_display"):
             continue
         figp = plt.figure(figsize=(5, 3)); axp = figp.add_subplot(111)
-        table_panel(axp, src.head(12), k, {"a":"Total-shift calibration","b":"Axis calibration","c":"AUC calibration","d":"FDR families","e":"GEARS sensitivity","f":"Shuffle/null structure","g":"Oracle ceiling"}[k], font=5.2)
+        if k == "g":
+            panel_heading(axp, k, "Oracle ceiling")
+            d = src.sort_values("spearman_rho")
+            y = np.arange(len(d))
+            xerr = np.vstack([d["spearman_rho"] - d["spearman_bootstrap_ci_low"], d["spearman_bootstrap_ci_high"] - d["spearman_rho"]])
+            axp.errorbar(d["spearman_rho"], y, xerr=xerr, fmt="o", color=COLORS["green"], ecolor=COLORS["green"], elinewidth=1.2, capsize=2)
+            axp.set_yticks(y); axp.set_yticklabels(d["context"], fontsize=6)
+            axp.set_xlabel("Observed-shift Spearman ρ with 95% CI")
+            axp.axvline(0, color="#BBBBBB", linewidth=0.8)
+            clean(axp, light_grid=True, grid_axis="x")
+        else:
+            table_panel(axp, src.head(12), k, {"a":"Total-shift calibration","b":"Axis calibration","c":"AUC calibration","d":"FDR families","e":"GEARS sensitivity","f":"Shuffle/null structure","g":"Oracle ceiling"}[k], font=5.2)
         save_panel(fig_id, k, figp, src)
 
 
@@ -525,7 +659,7 @@ def ed6() -> None:
     ax = fig.add_subplot(gs[0, 2]); panel_heading(ax, "d", "Target-identity preservation")
     d = identity.loc[identity["target_identity_preservation_status"].eq("estimated")].copy()
     ax.scatter(d["target_identity_preservation_spearman"], d["target_identity_label_permutation_qvalue"], s=34, c=d["model_id"].map({m: i for i,m in enumerate(MODEL_ORDER)}), cmap="tab20", edgecolor="white", linewidth=0.4)
-    ax.set_xlabel("Identity Spearman rho"); ax.set_ylabel("label-permutation q"); clean(ax)
+    ax.set_xlabel("Identity Spearman ρ"); ax.set_ylabel("label-permutation q"); clean(ax)
     panels["c"] = _axis_heat(fig.add_subplot(gs[1, 0]), axis, "scgen_hcc_formal_v1", "HCC1143", "c", "scGen HCC1143 axis profile")
     panels["e"] = _axis_heat(fig.add_subplot(gs[1, 1]), axis, "cpa_v0.8.8", "HCC1143", "e", "CPA HCC1143 axis profile")
     panels["f"] = _axis_heat(fig.add_subplot(gs[1, 2]), axis, "shared_mean_baseline", "HCC1143", "f", "Shared mean HCC1143 axis profile")
@@ -558,7 +692,7 @@ def ed7() -> None:
     panels = {"a": qc, "b": hall, "c": react, "d": gobp, "e": hall.loc[hall["contrast_id"].str.contains("Q4_low_information", na=False)].copy(), "f": hall.loc[hall["contrast_id"].str.contains("middle", na=False)].copy(), "g": ora, "h": hashes}
     fig = plt.figure(figsize=(12, 9))
     gs = fig.add_gridspec(3, 3, hspace=0.5, wspace=0.45)
-    ax = fig.add_subplot(gs[0, 0]); table_panel(ax, qc, "a", "Response-signature construction QC", font=5.5)
+    ax = fig.add_subplot(gs[0, 0]); panels["a_display"] = qc_availability_panel(ax, qc, "a", "Response-signature construction QC")
     for idx, (k, title, df) in enumerate([("b","Hallmark NES",hall),("c","Reactome sensitivity",react),("d","GO BP sensitivity",gobp)]):
         ax = fig.add_subplot(gs[(idx+1)//3, (idx+1)%3])
         panel_heading(ax, k, title)
@@ -576,14 +710,19 @@ def ed7() -> None:
     ax = fig.add_subplot(gs[2, 0])
     panels["g_display"] = ora_dot_panel(ax, ora, "g", "Descriptive target-set ORA")
     ax = fig.add_subplot(gs[2, 1:])
-    compact_table_panel(ax, hashes, "h", "Gene-set/source-data provenance", columns=["artifact", "path", "sha256"], max_rows=7, font=5.2, scale_y=1.0)
+    panels["h_display"] = hash_size_panel(ax, hashes, "h", "Gene-set/source-data provenance")
     save(fig, *[d / "Extended_Data_Figure_7" for d in (out_dirs(fig_id)[0], out_dirs(fig_id)[2])])
     finish_figure(fig_id, {k: v for k, v in panels.items() if k != "g_display"})
     for k, src in panels.items():
         if k.endswith("_display"):
             continue
         figp = plt.figure(figsize=(5, 3)); axp = figp.add_subplot(111)
-        table_panel(axp, src.head(12), k, f"ED7 panel {k}", font=5.0)
+        if k == "a":
+            qc_availability_panel(axp, src, k, "Response-signature construction QC")
+        elif k == "h":
+            hash_size_panel(axp, src, k, "Gene-set/source-data provenance")
+        else:
+            table_panel(axp, src.head(12), k, f"ED7 panel {k}", font=5.0)
         save_panel(fig_id, k, figp, src)
 
 
