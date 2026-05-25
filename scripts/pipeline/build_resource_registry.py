@@ -119,7 +119,13 @@ def write_tsv(path: Path, rows: Iterable[dict[str, object]], columns: list[str])
     path.parent.mkdir(parents=True, exist_ok=True)
     row_count = 0
     with path.open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=columns, delimiter="\t", extrasaction="ignore")
+        writer = csv.DictWriter(
+            handle,
+            fieldnames=columns,
+            delimiter="\t",
+            extrasaction="ignore",
+            lineterminator="\n",
+        )
         writer.writeheader()
         for row in rows:
             missing = [column for column in columns if column not in row]
@@ -156,6 +162,139 @@ def build_figure_source_data_manifest(root: Path, outdir: Path) -> int:
     return write_tsv(outdir / "figure_source_data_manifest.tsv", rows, columns)
 
 
+def read_tsv(path: Path) -> list[dict[str, str]]:
+    if not path.exists():
+        return []
+    with path.open("r", encoding="utf-8", newline="") as handle:
+        return list(csv.DictReader(handle, delimiter="\t"))
+
+
+def build_exclusion_future_extension_registry(outdir: Path) -> int:
+    source = read_tsv(outdir / "dataset_eligibility_registry.tsv")
+    rows = []
+    for row in source:
+        role = row.get("benchmark_role", "")
+        if "excluded" in role or "future" in role or "registry_candidate" in role:
+            rows.append(
+                {
+                    "dataset": row.get("dataset", ""),
+                    "context": row.get("context", ""),
+                    "perturbation_modality": row.get("perturbation_modality", ""),
+                    "registry_status": role,
+                    "reason": row.get("inclusion_rationale", ""),
+                    "future_module_condition": row.get("claim_ceiling", ""),
+                }
+            )
+    return write_tsv(
+        outdir / "exclusion_future_extension_registry.tsv",
+        rows,
+        ["dataset", "context", "perturbation_modality", "registry_status", "reason", "future_module_condition"],
+    )
+
+
+def build_endpoint_category_grid(root: Path, outdir: Path) -> int:
+    rows: list[dict[str, object]] = []
+    hcc = read_tsv(root / "reports/truth_bridge_decomposition/target_level_joint_grid.tsv")
+    for row in hcc:
+        if row.get("cell_line") in {"HCC38", "HCC1143"}:
+            rows.append(
+                {
+                    "context": f"{row.get('cell_line')} day 14",
+                    "cell_line": row.get("cell_line", ""),
+                    "target_gene": row.get("target_gene", ""),
+                    "shift_percentile": row.get("shift_quantile", ""),
+                    "dependency_percentile": row.get("depmap_quantile", ""),
+                    "endpoint_category": row.get("joint_grid", ""),
+                    "evidence_role": "primary_model_audit",
+                    "category_interpretation": "operational endpoint-aligned recovery annotation; not a causal truth label or direct fitness readout",
+                }
+            )
+    gse = read_tsv(root / "reports/gse264667_endpoint_extension/category_grid/gse264667_endpoint_category_grid.tsv")
+    for row in gse:
+        rows.append(
+            {
+                "context": row.get("context", ""),
+                "cell_line": row.get("cell_line", ""),
+                "target_gene": row.get("target_gene", ""),
+                "shift_percentile": row.get("shift_quantile", ""),
+                "dependency_percentile": row.get("depmap_quantile", ""),
+                "endpoint_category": row.get("endpoint_category", row.get("joint_grid", "")),
+                "evidence_role": "secondary_endpoint_extension",
+                "category_interpretation": "operational endpoint-aligned recovery annotation; not primary model-audit evidence",
+            }
+        )
+    return write_tsv(
+        outdir / "endpoint_category_grid.tsv",
+        rows,
+        [
+            "context",
+            "cell_line",
+            "target_gene",
+            "shift_percentile",
+            "dependency_percentile",
+            "endpoint_category",
+            "evidence_role",
+            "category_interpretation",
+        ],
+    )
+
+
+def build_model_output_contract_audit(root: Path, outdir: Path) -> int:
+    registry = read_tsv(outdir / "model_entrant_registry.tsv")
+    metrics = read_tsv(root / "reports/model_endpoint_recovery/source_data/model_endpoint_recovery_metrics.tsv")
+    scored = {(row.get("model_id", ""), row.get("cell_line", "")) for row in metrics}
+    rows = []
+    for row in registry:
+        name = row.get("model_name", "")
+        model_id = name
+        for cell_line in ["HCC38", "HCC1143"]:
+            matched = any(mid.startswith(model_id) or model_id.lower() in mid.lower() for mid, cell in scored if cell == cell_line)
+            rows.append(
+                {
+                    "model_name": name,
+                    "cell_line": cell_line,
+                    "included_role": row.get("included_role", ""),
+                    "predicted_shift_contract": "available" if matched else "not_scored_or_reference",
+                    "metadata_required": "yes",
+                    "endpoint_used_for_training": "no",
+                    "endpoint_used_for_selection": "no for primary claims",
+                    "claim_ceiling": row.get("claim_ceiling", ""),
+                }
+            )
+    return write_tsv(
+        outdir / "model_output_contract_audit.tsv",
+        rows,
+        [
+            "model_name",
+            "cell_line",
+            "included_role",
+            "predicted_shift_contract",
+            "metadata_required",
+            "endpoint_used_for_training",
+            "endpoint_used_for_selection",
+            "claim_ceiling",
+        ],
+    )
+
+
+def build_artifact_hash_manifest(root: Path, outdir: Path) -> int:
+    candidates = [
+        outdir / "figure_source_data_manifest.tsv",
+        outdir / "observed_shift_depmap_bridge_summary.tsv",
+        outdir / "gse264667_endpoint_category_grid.tsv",
+        outdir / "category_response_contrast_gsea_hallmark.tsv",
+        root / "reports/model_endpoint_recovery/closure_artifact_hashes.tsv",
+        root / "reports/external_bridge_form_robustness/artifact_hashes.tsv",
+        root / "reports/category_response_pathway/contrasts/artifact_hashes.tsv",
+    ]
+    rows = []
+    for path in candidates:
+        if path.exists():
+            rel = path.relative_to(root) if path.is_relative_to(root) else path
+            rows.append({"artifact": path.stem, "path": str(rel), "sha256": sha256_file(path)})
+    return write_tsv(outdir / "artifact_hash_manifest.tsv", rows, ["artifact", "path", "sha256"])
+
+
 def build_registry(config_path: Path, *, root: Path) -> dict[str, int]:
     config = read_json(config_path)
     outdir = root / config.get("output_dir", "resource_registry")
@@ -167,6 +306,10 @@ def build_registry(config_path: Path, *, root: Path) -> dict[str, int]:
         counts[filename] = write_tsv(outdir / filename, rows, columns)
 
     counts["figure_source_data_manifest.tsv"] = build_figure_source_data_manifest(root, outdir)
+    counts["exclusion_future_extension_registry.tsv"] = build_exclusion_future_extension_registry(outdir)
+    counts["endpoint_category_grid.tsv"] = build_endpoint_category_grid(root, outdir)
+    counts["model_output_contract_audit.tsv"] = build_model_output_contract_audit(root, outdir)
+    counts["artifact_hash_manifest.tsv"] = build_artifact_hash_manifest(root, outdir)
 
     metadata = {
         "config": str(config_path.relative_to(root) if config_path.is_relative_to(root) else config_path),

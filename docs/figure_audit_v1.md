@@ -27,13 +27,27 @@ ceiling.
 
 ## Main Figures
 
+Final Cell Genomics Resource rule:
+
+- Main figures prove scientific validity.
+- Extended Data figures provide visual support, robustness, and calibration.
+- Supplementary tables and `resource_registry/` files carry registry,
+  eligibility, claim-boundary, and hash/source-data responsibilities.
+- Avoid large table/checklist/card panels in main figures. If a panel is mainly
+  administrative text, move it to ED Fig. 4, a supplementary table, README, or
+  a registry TSV.
+- Use background grid lines sparingly. Default to no grid; when numeric reading
+  requires a grid, use very light gray lines. For percentile planes or
+  predicted-versus-observed style panels, add a pale gray diagonal reference
+  line when it helps interpretation.
+
 | Figure | Current role | Audit status | Action taken / next guardrail |
 |---|---|---|---|
-| Figure 1 | Endpoint-recovery resource contract | Rebuilt as a contract map, not a workflow/card figure. | Uses endpoint plane, dataset evidence-layer map, model-output contract table, and claim-boundary matrix. |
-| Figure 2 | Primary HCC endpoint-recovery object | Rebuilt from the old anchor-focused figure into the primary HCC evidence figure. | Uses HCC38/HCC1143 observed shift-DepMap scatters, endpoint-category composition, endpoint-label permutation calibration, and compact anchor claim tiering. |
+| Figure 1 | Endpoint-aligned recovery object and resource evidence landscape | Rebuild as a data-like overview, not a contract/checklist figure. | Use an evaluation-object contrast, endpoint percentile plane, dataset evidence-layer matrix, and analysis coverage heatmap. Move output contracts and claim checklists to ED Fig. 4 / supplementary tables. |
+| Figure 2 | Primary HCC endpoint object | Rebuilt from the old anchor-focused figure into the primary HCC evidence figure. | Use HCC38/HCC1143 percentile endpoint planes, raw bridge strength/calibration, endpoint-label permutation calibration, and compact anchor/covariate governance. |
 | Figure 3 | Full model endpoint-recovery audit | Rebuilt to include native perturbation-response entrants, foundation/repurposed entrants, linear controls, and diagnostic references. | Keep as an audit-profile figure, not a leaderboard; rows are grouped by model role rather than performance rank. Scatter small multiples are restricted to scGen, CPA, GEARS formal, CellOT, scGPT and Geneformer; controls, shared_mean and null stay in summary panels. |
 | Figure 4 | External bridge-form robustness and boundaries | Rebuilt from the old GEARS sensitivity figure into the external bridge evidence layer. | Uses rho+CI forest plot, evidence-layer governance, GSE264667 HepG2/Jurkat category composition, and boundary interpretation. |
-| Figure 5 | Response-program annotation and governance | Rebuilt from boundary-only governance into response-level GSEA plus resource governance. | GSEA is response-signature enrichment, not target-set mechanism discovery; governance/source-data panels carry claim boundaries and reproducibility. |
+| Figure 5 | Response-program annotation of endpoint-aligned recovery classes | Rebuild as response-level GSEA annotation, not governance/source-data closure. | Use response contrast availability, HCC38/HCC1143 response-level GSEA dot plots, and cross-context NES heatmap. Move source/hash closure and claim governance to ED Fig. 4 / source-data manifests. |
 
 ## Extended Data Figures
 
@@ -42,8 +56,8 @@ ceiling.
 | Extended Data Fig. 1 | Dataset inventory and perturbation-readout QC | Keep as three evidence blocks, not 11 independent claims. | Dataset inventory, embedding/familiarization, and target-expression readout only; no endpoint or model conclusions. |
 | Extended Data Fig. 2 | Robustness of the primary HCC endpoint-recovery object | Primary support for Figure 2. | Panels a-c cover bridge robustness; panels d-f cover category, anchor-influence and covariate governance. |
 | Extended Data Fig. 3 | Raw external bridge-form evidence and endpoint-extension eligibility | Primary support for Figure 4 raw evidence. | Include K562 temporal, Replogle essential/GWPS, and GSE264667 HepG2/Jurkat raw scatter or category grids. HepG2/Jurkat are completed secondary endpoint-extension evidence, not primary model-audit contexts. |
-| Extended Data Fig. 4 | Model registry, output-contract status and reproducibility closure | Resource-transparency support for Figures 1 and 3. | Use compact matrices rather than table screenshots; full registries remain supplementary/source-data tables. |
-| Extended Data Fig. 5 | Null calibration, multiple-testing control and model-sensitivity analyses | Statistical support for Figure 3. | Report q values within pre-specified metric families; GEARS sweep remains sensitivity/upper-bound diagnostic, not endpoint-selected primary evidence. |
+| Extended Data Fig. 4 | Model-entrant eligibility and output-contract audit | Visual audit support for Figure 3. | Show model eligibility, training/evaluation regime, output-contract availability, and source/hash closure. Full registries remain supplementary/source-data tables. |
+| Extended Data Fig. 5 | Model statistical calibration | Statistical support for Figure 3. | Calibrate metrics with nulls, FDR families, oracle/shared-mean references, and finite-budget sensitivity. GEARS sweep remains sensitivity/upper-bound diagnostic, not endpoint-selected primary evidence. |
 | Extended Data Fig. 6 | Common-response and target-identity diagnostics for model-generated shifts | Artifact/recovery support for Figure 3. | Separate endpoint-relevant recovery from shared/common/stress-like collapse; include CPA HCC1143 boundary diagnosis and scGen/shared_mean/CPA contrasts. |
 | Extended Data Fig. 7 | Response-level pathway-enrichment details and gene-set provenance | Support for Figure 5. | Response-level GSEA only for primary interpretation; target-set ORA, if retained, is descriptive-only or supplementary-table material. |
 
@@ -67,14 +81,14 @@ ceiling.
 | ED3 | e | HepG2 raw scatter/category grid | Secondary cancer-line endpoint extension | Primary model-audit evidence |
 | ED3 | f | Jurkat raw scatter/category grid | Secondary lineage-boundary endpoint extension | Primary model-audit evidence |
 | ED3 | g | External permutation/null summary | Bridge-form calibration beyond primary contexts | Cross-dataset model superiority |
-| ED4 | a | Model entrant registry | Formal/control/reference roles | Performance ranking |
+| ED4 | a | Model family inclusion matrix | Formal/control/reference/deferred roles | Performance ranking |
 | ED4 | b | Training/evaluation regime matrix | Within-context target-observed claim ceiling | Unseen-target generalization |
 | ED4 | c | Output-contract availability | Common scorer contract | Identical original-model objectives |
 | ED4 | d | Inclusion/exclusion audit | Claim-governed model inclusion | Arbitrary model omission |
 | ED4 | e | Artifact hash manifest | Reproducibility closure | Biological conclusion |
 | ED4 | f | Figure/source-data manifest | Source-data traceability | New evidence |
-| ED5 | a | Total-shift endpoint permutation null | Total rho calibration | Direct DepMap prediction |
-| ED5 | b | Axis-aligned endpoint permutation null | Axis rho calibration | Mechanism proof |
+| ED5 | a | Total-shift endpoint permutation null | Total ρ calibration | Direct DepMap prediction |
+| ED5 | b | Axis-aligned endpoint permutation null | Axis ρ calibration | Mechanism proof |
 | ED5 | c | Anchor-vs-low-info AUC null | Category separation calibration | Category causality |
 | ED5 | d | FDR/q-value by metric family | Multiple-testing control | Global omnibus winner |
 | ED5 | e | GEARS formal versus sweep | Hyperparameter sensitivity | Endpoint-selected primary model |
@@ -95,6 +109,44 @@ ceiling.
 | ED7 | f | Anchor versus middle details | Retained-band contrast support | New category definition |
 | ED7 | g | Descriptive target-set ORA, optional | Category membership annotation only | Mechanistic enrichment claim |
 | ED7 | h | Gene-set/source-data version manifest | Reproducibility | Biological evidence |
+
+## Supplementary Table Contract
+
+The following tables are resource outputs and should be mirrored as
+Supplementary Tables. They should not replace key visual evidence in main
+figures.
+
+| Table | Resource file | Responsibility |
+|---|---|---|
+| Supplementary Table 1 | `resource_registry/dataset_eligibility_registry.tsv` | Dataset registry |
+| Supplementary Table 2 | `resource_registry/dataset_evidence_layers.tsv` | Dataset evidence layers |
+| Supplementary Table 3 | `resource_registry/exclusion_future_extension_registry.tsv` | Exclusion and future-extension registry |
+| Supplementary Table 4 | `resource_registry/endpoint_category_grid.tsv` | Operational endpoint category grid; not a causal truth label or direct fitness readout |
+| Supplementary Table 5 | `resource_registry/model_entrant_registry.tsv` | Model entrant registry |
+| Supplementary Table 6 | `resource_registry/model_output_contract_audit.tsv` | Model output-contract audit |
+| Supplementary Table 7 | `resource_registry/metric_definition_registry.tsv` | Metric definition and interpretation limits |
+| Supplementary Table 8 | `resource_registry/claim_boundary_registry.tsv` | Supported and unsupported claims |
+| Supplementary Table 9 | `resource_registry/figure_source_data_manifest.tsv` | Figure source-data manifest |
+| Supplementary Table 10 | `resource_registry/artifact_hash_manifest.tsv` | Artifact hash manifest |
+
+Supplementary Table 4 must state that endpoint categories are operational,
+endpoint-aligned recovery annotations. GSE264667 HepG2/Jurkat rows must be
+marked as secondary endpoint-extension evidence, not primary model-audit
+evidence.
+
+## Text Style Rules
+
+- Use `Spearman ρ`, not mixed `rho` / `ρ`.
+- Use `R²`, not mixed `R2` / `R²`.
+- Use en dashes for intervals and ranges, for example `0.554–0.838` and
+  `47–48`.
+- Use `≤` and `≥`, not `<=` or `>=`.
+- Prefer `permutation P = ...` and `FDR q = ...` in figure annotations.
+- Background grid lines should be absent by default. If a panel needs read-off
+  support, use only very light major grid lines (`#F5F5F5`, thin strokes).
+- Percentile planes and predicted-versus-observed agreement panels may include
+  a pale gray identity reference line from `(0,0)` to `(1,1)` or `0–100`; this
+  is a reference guide, not a fitted trend.
 
 ## Current Production Checks
 
