@@ -1,0 +1,23 @@
+model_name	cell_line	included_role	predicted_shift_contract	metadata_required	endpoint_used_for_training	endpoint_used_for_selection	claim_ceiling
+shared_mean_diagnostic_reference	HCC38	diagnostic_control	not_scored_or_reference	yes	no	no for primary claims	score calibration, not deployable prediction
+shared_mean_diagnostic_reference	HCC1143	diagnostic_control	not_scored_or_reference	yes	no	no for primary claims	score calibration, not deployable prediction
+GEARS	HCC38	primary_entrant	available	yes	no	no for primary claims	genetic perturbation recovery in evaluated contexts
+GEARS	HCC1143	primary_entrant	available	yes	no	no for primary claims	genetic perturbation recovery in evaluated contexts
+scGPT	HCC38	embedding_control	available	yes	no	no for primary claims	embedding-based recovery, not direct perturbation deployment
+scGPT	HCC1143	embedding_control	available	yes	no	no for primary claims	embedding-based recovery, not direct perturbation deployment
+Geneformer	HCC38	embedding_control	available	yes	no	no for primary claims	embedding-based recovery, not direct perturbation deployment
+Geneformer	HCC1143	embedding_control	available	yes	no	no for primary claims	embedding-based recovery, not direct perturbation deployment
+scGPT-ridge	HCC38	linear_embedding_control	not_scored_or_reference	yes	no	no for primary claims	linear recovery from pretrained embedding
+scGPT-ridge	HCC1143	linear_embedding_control	not_scored_or_reference	yes	no	no for primary claims	linear recovery from pretrained embedding
+Geneformer-ridge	HCC38	linear_embedding_control	not_scored_or_reference	yes	no	no for primary claims	linear recovery from pretrained embedding
+Geneformer-ridge	HCC1143	linear_embedding_control	not_scored_or_reference	yes	no	no for primary claims	linear recovery from pretrained embedding
+low-rank linear decoder	HCC38	linear_control	not_scored_or_reference	yes	no	no for primary claims	linear recovery behavior
+low-rank linear decoder	HCC1143	linear_control	not_scored_or_reference	yes	no	no for primary claims	linear recovery behavior
+CPA	HCC38	boundary_negative_entrant	available	yes	no	no for primary claims	current within-context endpoint-recovery entrant; HCC1143 interpreted as common/stress-like boundary case
+CPA	HCC1143	boundary_negative_entrant	available	yes	no	no for primary claims	current within-context endpoint-recovery entrant; HCC1143 interpreted as common/stress-like boundary case
+CellOT	HCC38	P2_candidate_sensitivity_entrant	available	yes	no	no for primary claims	optional sensitivity entrant
+CellOT	HCC1143	P2_candidate_sensitivity_entrant	available	yes	no	no for primary claims	optional sensitivity entrant
+scGen	HCC38	positive_entrant	available	yes	no	no for primary claims	most consistent current within-context target-observed endpoint-recovery entrant
+scGen	HCC1143	positive_entrant	available	yes	no	no for primary claims	most consistent current within-context target-observed endpoint-recovery entrant
+scDisInFact	HCC38	registry_only	not_scored_or_reference	yes	no	no for primary claims	registry-only unless benchmark design expands
+scDisInFact	HCC1143	registry_only	not_scored_or_reference	yes	no	no for primary claims	registry-only unless benchmark design expands

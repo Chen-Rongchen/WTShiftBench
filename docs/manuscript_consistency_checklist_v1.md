@@ -44,7 +44,7 @@ Disallowed wording:
 
 Current completed external bridge summary:
 
-| Context | Matched targets | Spearman rho | Empirical p | Interpretation |
+| Context | Matched targets | Spearman ρ | Empirical P | Interpretation |
 | --- | ---: | ---: | ---: | --- |
 | HCC38 day 14 | 47 | 0.726 | 0.001 | primary bridge/model-audit context |
 | HCC1143 day 14 | 48 | 0.779 | 0.001 | primary bridge/model-audit context |
@@ -107,16 +107,16 @@ Required model-layer checks:
 
 | Figure | Role | Source-data location |
 | --- | --- | --- |
-| Figure 1 | endpoint-recovery resource contract | `figures/Figure_1/Figure_1_source_data.tsv` |
-| Figure 2 | primary HCC endpoint-recovery object | `figures/Figure_2/Figure_2_source_data.tsv` |
-| Figure 3 | model endpoint-recovery audit | `figures/Figure_3/Figure_3_source_data.tsv` |
-| Figure 4 | external bridge-form robustness and boundaries | `figures/Figure_4/Figure_4_source_data.tsv` |
-| Figure 5 | response-program annotation and governance | `figures/Figure_5/Figure_5_source_data.tsv` |
+| Figure 1 | endpoint-aligned recovery object and resource evidence landscape | `figures/Figure_1/Figure_1_source_data.tsv` |
+| Figure 2 | primary HCC endpoint object | `figures/Figure_2/Figure_2_source_data.tsv` |
+| Figure 3 | model-output audit under fixed endpoint categories | `figures/Figure_3/Figure_3_source_data.tsv` |
+| Figure 4 | external bridge-form robustness and boundary evidence | `figures/Figure_4/Figure_4_source_data.tsv` |
+| Figure 5 | response-program annotation of endpoint-aligned recovery classes | `figures/Figure_5/Figure_5_source_data.tsv` |
 | Extended Data Figure 1 | dataset inventory and perturbation-readout QC | `figures/Extended_Data_Figure_1/` |
 | Extended Data Figure 2 | primary HCC endpoint-object robustness | `figures/Extended_Data_Figure_2/Extended_Data_Figure_2_source_data.tsv` |
 | Extended Data Figure 3 | raw external bridge-form evidence and endpoint-extension eligibility | `figures/Extended_Data_Figure_3/Extended_Data_Figure_3_source_data.tsv` |
-| Extended Data Figure 4 | model registry, output-contract status and reproducibility closure | `figures/Extended_Data_Figure_4/Extended_Data_Figure_4_source_data.tsv` |
-| Extended Data Figure 5 | null calibration, FDR and model sensitivity | `figures/Extended_Data_Figure_5/Extended_Data_Figure_5_source_data.tsv` |
+| Extended Data Figure 4 | model-entrant eligibility and output-contract audit | `figures/Extended_Data_Figure_4/Extended_Data_Figure_4_source_data.tsv` |
+| Extended Data Figure 5 | model statistical calibration | `figures/Extended_Data_Figure_5/Extended_Data_Figure_5_source_data.tsv` |
 | Extended Data Figure 6 | common-response and target-identity diagnostics | `figures/Extended_Data_Figure_6/Extended_Data_Figure_6_source_data.tsv` |
 | Extended Data Figure 7 | response-level pathway-enrichment details and gene-set provenance | `figures/Extended_Data_Figure_7/Extended_Data_Figure_7_source_data.tsv` |
 
@@ -141,8 +141,8 @@ Final Extended Data titles:
 1. Dataset inventory and perturbation-readout quality control.
 2. Robustness of the primary HCC endpoint-recovery object.
 3. Raw external bridge-form evidence and endpoint-extension eligibility.
-4. Model registry, output-contract status and reproducibility closure.
-5. Null calibration, multiple-testing control and model-sensitivity analyses.
+4. Model-entrant eligibility and output-contract audit.
+5. Model statistical calibration.
 6. Common-response and target-identity diagnostics for model-generated shifts.
 7. Response-level pathway-enrichment details and gene-set provenance.
 
@@ -152,13 +152,14 @@ Required boundaries:
 - ED2 protects the primary HCC endpoint object; panels a-c are bridge
   robustness and panels d-f are category/anchor/covariate governance.
 - ED3 contains raw external bridge evidence. HepG2 day 7 and Jurkat day 7 are
-  completed secondary endpoint-extension contexts (n=1,000, rho=0.493,
-  p=0.001; n=1,687, rho=0.311, p=0.001), not primary model-audit contexts and
+  completed secondary endpoint-extension contexts (n=1,000, Spearman ρ = 0.493,
+  P = 0.001; n=1,687, Spearman ρ = 0.311, P = 0.001), not primary model-audit contexts and
   not cross-dataset model-generalization evidence.
-- ED4 is compact registry/contract/reproducibility visualization; complete
-  tables remain source-data or supplementary tables.
-- ED5 q values must be computed and described within pre-specified metric
-  families. GEARS sweep is sensitivity/upper-bound evidence only.
+- ED4 is a visual audit of model eligibility, regime and output-contract
+  availability; complete registries remain source-data or supplementary tables.
+- ED5 calibrates metrics with nulls, q values, oracle/shared-mean references
+  and finite-budget sensitivity. GEARS sweep is sensitivity/upper-bound
+  evidence only.
 - ED6 must answer whether model-generated shifts preserve endpoint-relevant
   and target-specific structure or collapse into shared/common/stress-like
   responses.
@@ -206,6 +207,43 @@ Required wording:
   endpoint categories.
 - It does not define endpoint categories, tune model scoring, or establish
   causal mechanisms for target membership.
+
+## Supplementary Table Contract
+
+Resource tables are versioned files under `resource_registry/` and should be
+mirrored as Supplementary Tables.
+
+| Table | Resource file | Responsibility |
+| --- | --- | --- |
+| Supplementary Table 1 | `resource_registry/dataset_eligibility_registry.tsv` | Dataset registry |
+| Supplementary Table 2 | `resource_registry/dataset_evidence_layers.tsv` | Dataset evidence layers |
+| Supplementary Table 3 | `resource_registry/exclusion_future_extension_registry.tsv` | Exclusion and future-extension registry |
+| Supplementary Table 4 | `resource_registry/endpoint_category_grid.tsv` | Operational endpoint category grid |
+| Supplementary Table 5 | `resource_registry/model_entrant_registry.tsv` | Model entrant registry |
+| Supplementary Table 6 | `resource_registry/model_output_contract_audit.tsv` | Model output-contract audit |
+| Supplementary Table 7 | `resource_registry/metric_definition_registry.tsv` | Metric definition registry |
+| Supplementary Table 8 | `resource_registry/claim_boundary_registry.tsv` | Claim boundary registry |
+| Supplementary Table 9 | `resource_registry/figure_source_data_manifest.tsv` | Figure source-data manifest |
+| Supplementary Table 10 | `resource_registry/artifact_hash_manifest.tsv` | Artifact hash manifest |
+
+Supplementary Table 4 wording:
+
+- Endpoint category is an operational, endpoint-aligned recovery annotation,
+  not a causal truth label or direct fitness readout.
+- GSE264667 HepG2/Jurkat entries are secondary endpoint-extension evidence, not
+  primary model-audit evidence.
+
+## Figure Text Style
+
+- Use `Spearman ρ`, not mixed `rho` / `ρ`.
+- Use `R²`, not mixed `R2` / `R²`.
+- Use en dashes for ranges and intervals, for example `47–48` and
+  `0.554–0.838`.
+- Use `≤` and `≥`, not `<=` or `>=`.
+- Background grid lines are off by default; use only very faint major grid lines
+  where numeric read-off is needed.
+- Percentile and agreement panels may use a pale gray identity line from
+  `(0,0)` to `(1,1)` or `0–100`; do not style it as a fitted trend.
 
 Current contrast-GSEA source tables:
 
