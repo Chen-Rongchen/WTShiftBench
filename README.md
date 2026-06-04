@@ -1,27 +1,27 @@
 # WTShiftBench
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20098897.svg)](https://doi.org/10.5281/zenodo.20098897)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 Public code and figure-reproduction bundle for:
 
-> **Endpoint-anchored evaluation of perturbation-response models: a
-> claim-governed benchmark resource for cancer dependency recovery**
+> **WTShiftBench, a cancer-dependency-anchored benchmark resource for
+> auditing endpoint-aligned recovery by transcriptomic perturbation models**
 
-WTShiftBench is an endpoint-anchored benchmark resource for virtual
-perturbation models. It fixes a cancer-dependency-aligned perturbation recovery
-object before model scoring, then audits whether model-generated shifts recover
-that structure or collapse into shared/common responses. The repository is
-organized as a public code and figure-reproduction bundle: figure panels,
-per-panel source data, cached intermediate tables, and the scripts used to
-rebuild the public figure bundle are included here; large raw and processed
-single-cell objects are downloaded separately from public sources.
+WTShiftBench (Whole-Transcriptome Shift Benchmark) is a
+cancer-dependency-anchored benchmark resource for virtual perturbation models.
+It fixes a cancer-dependency-aligned perturbation recovery object before model
+scoring, then audits whether model-generated shifts recover that structure or
+collapse into shared/common responses. The repository is organized as a public
+code and figure-reproduction bundle: figure panels, per-panel source data,
+cached intermediate tables, and the scripts used to rebuild the public figure
+bundle are included here; large raw and processed single-cell objects are
+downloaded separately from public sources.
 
 ## What Is Included
 
 - `figures/`: GitHub-browsable snapshot of the public figure panels and
-  source-data TSVs for Figure 1-5 and current Extended Data figures, including
-  the model endpoint-recovery and external bridge/pathway panels.
+  source-data TSVs for active Figure 1–4 and Extended Data Figure 1–6,
+  including the model endpoint-recovery, external bridge and pathway panels.
 - `benchmark/`: publication-facing entry point for the benchmark/resource
   layer, with pointers to governed contexts, model entrants and claim ceilings.
 - `source_data/`: publication-facing index for figure source-data files and the
@@ -116,19 +116,20 @@ The key active items are:
   as primary model-audit or model-generalization evidence,
 - keep Replogle essential/GWPS as large-scale CRISPRi bridge-form and
   modality/scale-boundary evidence, not model-generalization evidence,
-- keep Extended Data Figure 7 source data, pathway summaries, and manuscript
-  wording synchronized during any later figure edits,
-- keep Q1/Q2/Q3/Q4 target-gene ORA, if used, as descriptive annotation only.
+- keep active Extended Data Figure 1–6 source data, pathway summaries, and
+  manuscript wording synchronized during any later figure edits,
+- keep endpoint-category target-gene ORA, if used, as descriptive annotation only.
 
 Pathway analyses should prioritize response-level GSEA over target-set
 over-representation. The primary question is whether endpoint categories have
 distinct transcriptomic response programs, not whether the small category target
 gene lists themselves are mechanistically enriched. In the current HCC38/HCC1143
-frozen endpoint grid, response-level GSEA is available for Q1 anchor,
-Q4 low-information, and middle categories; Q2/Q3 categories are not reported
-because they are absent from the frozen HCC grid. Response-level contrast GSEA
-is also available for Q1 anchor versus Q4 low-information and Q1 anchor versus
-retained middle in `reports/category_response_pathway/contrasts/`.
+frozen endpoint grid, response-level GSEA is available for endpoint anchors,
+low-information, and middle-band categories; shift-excess and dependency-excess
+categories are not reported because they are absent from the frozen HCC grid.
+Response-level contrast GSEA is also available for endpoint anchors versus
+low-information and endpoint anchors versus retained middle-band targets in
+`reports/category_response_pathway/contrasts/`.
 
 All public commands are intended to run from the repository root and use
 relative paths. The figure driver sets `PYTHONPATH` automatically; single
@@ -327,7 +328,8 @@ WTShiftBench/
 │   ├── manuscript/             Low-level renderers called by figure_build/
 │   └── utils/                  Environment probes, conversions
 ├── figure_build/               Canonical public figure-build wrappers + outputs
-│   ├── figure1/ … figure5/     Main-figure build wrappers
+│   ├── myfig/                  Manual Fig. 1 assembly from figures/myfig/
+│   ├── figure2/ … figure4/     Main-figure build wrappers
 │   ├── ed_figure1/ … ed_figure7/ Extended Data support wrappers
 │   └── output/                 Regenerated PNG/source-data bundle
 ├── figures/                    GitHub display snapshot copied from figure_build/output
@@ -387,7 +389,7 @@ GEO accessions, figshare URLs, and per-figure dataset → file mappings.
 
 Briefly:
 
-- **GEO GSE241115** — HCC38 / HCC1143 single-cell perturbation atlas (Fig 2-4, ED Fig 1-2)
+- **GEO GSE241115** — HCC38 / HCC1143 single-cell perturbation atlas (Fig 2–4, ED Fig 1–2)
 - **GEO GSE90063** — Dixit 2016 K562 TF-pool Perturb-seq, 7 day and 13 day (ED Fig 1, 3)
 - **figshare 20029387** — Replogle 2022 K562 essential Perturb-seq (ED Fig 1, 3)
 - **DepMap 23Q4 + DEMETER2 v6** — fitness / dependency endpoints (truth-bridge construction)
@@ -411,24 +413,22 @@ The model stack (`pixi.toml` provides feature-pinned environments):
 
 ## Citing
 
-If you use WTShiftBench, please cite the code release below. A manuscript or
-preprint citation can be added when available.
+If you use WTShiftBench, please cite the repository below. A Zenodo DOI and
+manuscript or preprint citation can be added when available.
 
-**Code (Zenodo, archived snapshot of `v1.0`):**
+**Code repository:**
 
 ```bibtex
-@software{chen_wtshiftbench_zenodo_2026,
+@software{chen_wtshiftbench_2026,
     author    = {Chen, Rongchen},
-    title     = {{WTShiftBench: Endpoint-anchored evaluation of perturbation-response models}},
+    title     = {{WTShiftBench, a cancer-dependency-anchored benchmark resource for auditing endpoint-aligned recovery by transcriptomic perturbation models}},
     year      = {2026},
-    publisher = {Zenodo},
-    version   = {v1.0},
-    doi       = {10.5281/zenodo.20098897},
-    url       = {https://doi.org/10.5281/zenodo.20098897}
+    url       = {https://github.com/Chen-Rongchen/WTShiftBench},
+    note      = {Zenodo DOI pending}
 }
 ```
 
-DOI: [10.5281/zenodo.20098897](https://doi.org/10.5281/zenodo.20098897)
+Zenodo DOI: pending.
 
 ---
 
