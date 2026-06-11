@@ -1,65 +1,97 @@
-# Data Availability
+# Data availability and reproduction
 
-All raw data used in WTShiftBench come from public Perturb-seq /
-single-cell repositories. The repository ships only:
+WTShiftBench uses public perturbation and dependency resources. Large raw
+single-cell objects and model-prediction intermediates are intentionally not
+stored in Git. The repository contains:
 
-- per-panel **source data** under `figures/Figure_*/panels/*_source_data.tsv`
-  and `figures/Extended_Data_Figure_*/panels/*_source_data.tsv`,
-- governed benchmark registries under `benchmark/registry/`,
-- and small reference or covariate tables under `data/reference/` and
-  `data/covariates/`.
+- editable SVG panels and panel-level source tables under `figures/`;
+- governed benchmark registries under `benchmark/registry/`;
+- compact reference gene sets under `data/reference/`;
+- primary-context covariate tables under `data/covariates/`.
 
-Analysis intermediates under `reports/` and model predictions under
-`data/predictions/` are generated locally and are intentionally not versioned.
+All paths below are relative to the repository root.
 
-Raw and processed `h5ad` objects (≈ 14 GB total) are **not** stored in git;
-they must be re-downloaded and re-preprocessed before running the
-public figure wrappers under `figure_build/`.
+## Public datasets
 
-## Datasets used in WTShiftBench
+| Context | Public source | Role |
+| --- | --- | --- |
+| HCC38 and HCC1143, day 14 | GEO [GSE241115](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE241115) | Primary endpoint object and model audit |
+| K562 TF perturbations, days 7 and 13 | GEO [GSE90063](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE90063) | Temporal-boundary evidence |
+| K562 essential CRISPRi, day 6 | Replogle et al. figshare [20029387](https://plus.figshare.com/articles/dataset/20029387) | Scale and modality boundary |
+| K562 genome-wide CRISPRi, day 8 | Replogle et al. 2022 public Perturb-seq release | Target-universe boundary |
+| HepG2 and Jurkat, day 7 | GEO [GSE264667](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE264667) | Secondary endpoint extension |
 
-| Dataset identifier | Public source | Local target | Used in figures |
-| --- | --- | --- | --- |
-| HCC38 / HCC1143 (breast cancer) | GEO **GSE241115** | `data/raw/...` then `data/processed/hcc_gears_formal/HCC{38,1143}.h5ad` | Fig 2-4, ED Fig 1-2 |
-| Dixit 2016 K562 TF pool, 7 day | GEO **GSE90063** | `data/processed/gse90063/dixit_2016_k562_tf_7d_gse90063.h5ad` | ED Fig 1, ED Fig 3 |
-| Dixit 2016 K562 TF pool, 13 day | GEO **GSE90063** | `data/processed/gse90063/dixit_2016_k562_tf_13d_gse90063.h5ad` | ED Fig 1, ED Fig 3 |
-| Replogle 2022 K562 essential Perturb-seq | figshare 20029387 (published with [Replogle et al., *Cell* 2022](https://doi.org/10.1016/j.cell.2022.05.013)) | `data/raw/replogle_2022_k562_essential.h5ad` then `data/processed/replogle_k562_essential/essential_processed.h5ad` | ED Fig 1, ED Fig 3 |
+DepMap CRISPR dependency and gene-effect tables are obtained from the
+[DepMap data portal](https://depmap.org/portal/download/). The frozen endpoint
+release and interpretation boundaries are recorded in
+`benchmark/registry/endpoint_registry.tsv`.
 
-DepMap / RNAi DEMETER2 dependency tables (used for the truth-fitness bridge)
-are obtained from [depmap.org](https://depmap.org/portal/download/) (DepMap
-Public 23Q4 release) and the DEMETER2 v6 RNAi screen.
-
-## Step-by-step reproduction
-
-### 1. Download raw data
+## Environment
 
 ```bash
-# (a) Replogle 2022 K562 essential — via pertpy (preferred) or figshare fallback
-python scripts/download/replogle_k562_essential.py
-
-# (b) GSE241115 (HCC38 / HCC1143) and GSE90063 (Dixit 2016 K562) — via the
-#     bundled GEO supplementary fetcher, or by hand from
-#     https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE241115
-#     https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE90063
-python scripts/download/geo_supplementary.py --accession GSE241115
-python scripts/download/geo_supplementary.py --accession GSE90063
+pixi install --environment core
+pixi run --environment core check-env
 ```
 
-### 2. Preprocess into the layout expected by the figure scripts
+Model-specific environments are installed only when their predictions must be
+regenerated:
 
 ```bash
-python scripts/preprocess/replogle_k562_essential.py
-python scripts/materialize/hcc_gears_formal_h5ad.py
-python scripts/materialize/gse90063_k562_h5ad.py
+pixi install --environment gears
+pixi install --environment scgpt
+pixi install --environment geneformer
+pixi install --environment cpa
+pixi install --environment scgen
+pixi install --environment cellot
 ```
 
-After these complete, `bash reproduce_figures.sh` can regenerate the public
-figure bundle under `figure_build/output/` and sync the GitHub display snapshot
-under `figures/`.
+## Data acquisition
 
-## Code availability
+The acquisition registry is `configs/dataset_acquisition_registry_v1.json`.
+It records expected repository-relative destinations and dataset roles.
 
-This repository is the canonical source for the analysis and figure-build
-code. A versioned, citable public snapshot has been archived at Zenodo under DOI
-[10.5281/zenodo.20098897](https://doi.org/10.5281/zenodo.20098897), with
-GitHub release tag [`v1.0`](https://github.com/Chen-Rongchen/WTShiftBench/releases/tag/v1.0).
+```bash
+# Generate an auditable acquisition plan.
+pixi run --environment core plan-data
+
+# GEO supplementary files.
+pixi run --environment core download-gse90063
+pixi run --environment core download-gse264667
+
+# Replogle essential CRISPRi object.
+pixi run --environment core python scripts/download/replogle_k562_essential.py
+```
+
+GSE241115 and Replogle genome-wide files can be downloaded from their public
+records and placed at the repository-relative locations recorded in
+`configs/dataset_acquisition_registry_v1.json`. Raw-file redistribution terms
+remain governed by the original repositories.
+
+## Analysis and figures
+
+After the required raw data, DepMap tables and model outputs have been
+materialized:
+
+```bash
+pixi run --environment gears materialize-edfig1
+pixi run --environment core build-registry
+pixi run --environment core build-figures
+pixi run --environment core test
+pixi run --environment core validate-release
+```
+
+`build-figures` regenerates active panel-level SVG and source-data files under
+`figures/`. It does not publish manuscripts, assembled figures, raster exports
+or prediction intermediates.
+
+The exact figure-to-source mapping and hashes are provided in:
+
+- `source_data/figure_source_data_manifest.tsv`;
+- `benchmark/registry/figure_source_data_manifest.tsv`;
+- `benchmark/registry/artifact_hash_manifest.tsv`.
+
+## Versioned archive
+
+Use GitHub release `v1.1.0` for the manuscript-aligned code snapshot. Zenodo
+metadata are stored in `.zenodo.json`; the permanent DOI should be cited only
+after the GitHub release has been archived successfully by Zenodo.

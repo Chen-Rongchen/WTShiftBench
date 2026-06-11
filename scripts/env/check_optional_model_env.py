@@ -29,13 +29,6 @@ CHECKS: dict[str, list[tuple[str, str | None]]] = {
         ("scanpy", None),
         ("scgen", None),
     ],
-    "scdisinfact": [
-        ("torch", None),
-        ("numpy", None),
-        ("pandas", None),
-        ("anndata", None),
-        ("scDisInFact", None),
-    ],
 }
 
 

@@ -465,19 +465,6 @@
       "reason_included": "Historical generative perturbation-response baseline evaluated under the unified output contract.",
       "reason_excluded": "",
       "claim_ceiling": "most consistent current within-context target-observed endpoint-recovery entrant"
-    },
-    {
-      "model_name": "scDisInFact",
-      "model_family": "disentangled condition model",
-      "perturbation_type_supported": "condition and batch disentanglement candidate",
-      "input_required": "multi-condition data with compatible covariates",
-      "output_type": "candidate condition-effect prediction",
-      "target_coverage": "audit required",
-      "endpoint_compatible_output": "candidate",
-      "included_role": "registry_only",
-      "reason_included": "Documents condition/batch disentanglement model-family eligibility.",
-      "reason_excluded": "Not central to target-level endpoint recovery in the current benchmark design.",
-      "claim_ceiling": "registry-only unless benchmark design expands"
     }
   ],
   "model_inclusion_exclusion_audit": [
@@ -510,12 +497,6 @@
       "include_now": "yes",
       "rationale": "Historical generative perturbation-response baseline evaluated under the HCC38/HCC1143 output contract; current results define the strongest positive entrant in the evaluated panel.",
       "claim_ceiling": "within-context target-observed endpoint-recovery entrant; not broad OOD generalization evidence"
-    },
-    {
-      "model_or_category": "scDisInFact",
-      "include_now": "registry_only",
-      "rationale": "Condition/batch disentanglement family is documented but not central to target-level endpoint recovery.",
-      "claim_ceiling": "registry-only"
     },
     {
       "model_or_category": "broad additional foundation models",
@@ -557,17 +538,6 @@
       "decision_rule": "include under unified HCC38/HCC1143 output contract",
       "local_audit_result": "include_now",
       "audit_evidence": "HCC38/HCC1143 output contract completed; current audit interprets scGen as the most consistent positive entrant in this within-context target-observed panel"
-    },
-    {
-      "model_name": "scDisInFact",
-      "priority": "registry_only",
-      "candidate_role": "condition/batch disentanglement candidate",
-      "required_output": "eligibility rationale",
-      "must_preserve_truth_object": "yes",
-      "custom_metric_allowed": "no",
-      "decision_rule": "keep registry-only unless benchmark design expands toward condition disentanglement",
-      "local_audit_result": "registry_only",
-      "audit_evidence": "HCC input and target coverage checks passed; direct scorer output contract is not the current role"
     }
   ]
 }

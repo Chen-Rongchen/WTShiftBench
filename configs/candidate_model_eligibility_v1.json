@@ -46,18 +46,6 @@
       "decision_if_missing_package": "fallback_pending_installation",
       "decision_if_not_ready": "not_ready",
       "claim_ceiling": "fallback sensitivity entrant if CPA is unavailable or insufficient"
-    },
-    {
-      "model_name": "scDisInFact",
-      "priority": "registry_only",
-      "candidate_role": "condition/batch disentanglement candidate",
-      "expected_output": "eligibility rationale",
-      "required_input_design": "multi-condition design where disentanglement is part of the benchmark question",
-      "package_modules": ["scDisInFact"],
-      "decision_if_ready": "registry_only",
-      "decision_if_missing_package": "registry_only",
-      "decision_if_not_ready": "registry_only",
-      "claim_ceiling": "registry-only unless the benchmark expands to condition disentanglement"
     }
   ]
 }

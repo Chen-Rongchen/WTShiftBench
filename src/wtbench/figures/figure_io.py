@@ -6,7 +6,7 @@ from typing import Literal
 import matplotlib.pyplot as plt
 import pandas as pd
 
-from wtbench.manuscript.manuscript_style import finalize_manuscript_figure
+from wtbench.figures.manuscript_style import finalize_manuscript_figure
 
 
 def repo_root() -> Path:

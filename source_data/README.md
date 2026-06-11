@@ -21,8 +21,8 @@ PNG/PDF exports and model-prediction intermediates.
 ## Refresh
 
 ```bash
-pixi install
-./reproduce_figures.sh
+pixi install --environment core
+pixi run --environment core build-figures
 pixi run --environment core validate-release
 ```
 

@@ -25,11 +25,11 @@ for panel in a b c; do
     test -f "figures/Figure_1/panels/Figure_1_panel_${panel}.svg"
 done
 
-# Main figure panels. These builders write canonical panel outputs under
-# manuscript/figures; only SVG and panel source data are copied publicly.
-run_python scripts/manuscript/build_figure2_anchor_tiering.py --panels-only
-run_python scripts/manuscript/build_figure3_model_endpoint_recovery.py --panels-only
-run_python scripts/manuscript/build_figure4_sweep_controls.py --panels-only
+# Main figure panels. Builders write their canonical public copies under
+# figures/ and may also create ignored local caches.
+run_python scripts/figures/build_figure2.py --panels-only
+run_python scripts/figures/build_figure3.py --panels-only
+run_python scripts/figures/build_figure4.py --panels-only
 
 for figure in 2 3 4; do
     mkdir -p "figures/Figure_${figure}/panels"
@@ -40,12 +40,12 @@ for figure in 2 3 4; do
 done
 
 # Extended Data panels.
-run_python scripts/manuscript/build_extended_data_figure1.py --panels-only
-run_python scripts/manuscript/build_extended_data_figure2_active.py
-run_python scripts/manuscript/build_extended_data_figure3_raw_bridge_small_multiples.py
-run_python scripts/manuscript/build_extended_data_figure4_active.py
-run_python scripts/manuscript/build_extended_data_figure5_output_geometry.py
-run_python scripts/manuscript/build_extended_data_figure6_response_programs.py --panels-only
+run_python scripts/figures/build_extended_data_figure1.py --panels-only
+run_python scripts/figures/build_extended_data_figure2.py
+run_python scripts/figures/build_extended_data_figure3.py
+run_python scripts/figures/build_extended_data_figure4.py
+run_python scripts/figures/build_extended_data_figure5.py
+run_python scripts/figures/build_extended_data_figure6.py --panels-only
 
 # Replace internal category IDs in publication-facing panel tables before
 # hashes are calculated.
