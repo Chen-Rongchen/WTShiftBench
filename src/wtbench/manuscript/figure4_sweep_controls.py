@@ -78,7 +78,7 @@ LINEAR_CONTROL_LABELS = {
 F4_COLORS = {
     "baseline": "#333333",
     "gears": "#0072B2",
-    "gears_sweep": "#85C1E9",
+    "gears_sweep": "#56B4E9",
     "linear": "#8E8E8E",
     "threshold": "#56B4E9",
     "shaded": "#FAFAFA",
@@ -280,7 +280,7 @@ def write_panel(
 
 def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
     ax.set_axis_off()
-    add_panel_heading(ax, "", "Analysis-locked finite-budget GEARS candidates", title_x=0.00, title_fontsize=8.8)
+    add_panel_heading(ax, "a", "Analysis-locked finite-budget GEARS candidates", title_x=0.06, title_fontsize=8.8)
 
     recipes = df[df["step"] == "sweep_recipe_entry"].copy()
     recipes = recipes[recipes["model_id"].isin(SWEEP_LETTERS.keys())].copy()
@@ -458,9 +458,10 @@ def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
 
     add_panel_heading(
         ax,
-        "",
+        "b",
         "Tested variants do not close the backbone gap",
         label_x=-0.08,
+        title_x=0.02,
         title_fontsize=8.8,
     )
     ax.set_xlim(0.45, 0.85)
@@ -775,9 +776,9 @@ def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
     ax.set_axis_off()
     add_panel_heading(
         ax,
-        "",
+        "c",
         "No tested variant closes the backbone gap",
-        title_x=0.00,
+        title_x=0.06,
         title_fontsize=8.8,
     )
 

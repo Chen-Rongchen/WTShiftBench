@@ -1,12 +1,67 @@
-model_name	model_family	perturbation_type_supported	input_required	output_type	target_coverage	endpoint_compatible_output	included_role	reason_included	reason_excluded	claim_ceiling
-shared_mean_diagnostic_reference	diagnostic reference	target-level observed shift reference	observed perturbation shifts	target-level reference score	HCC38/HCC1143 evaluated targets	yes	diagnostic_control	Calibrates score behavior and upper/reference structure.		score calibration, not deployable prediction
-GEARS	GNN perturbation-specific model	gene perturbation	expression matrix; perturbation labels; gene graph assumptions	predicted perturbed expression	HCC38/HCC1143 evaluated targets	yes	primary_entrant	Representative genetic perturbation prediction entrant.		genetic perturbation recovery in evaluated contexts
-scGPT	foundation-model embedding	embedding control	pretrained model; expression matrix	embedding-derived prediction or score	HCC38/HCC1143 evaluated targets	yes	embedding_control	Tests recovery from pretrained single-cell representation.		embedding-based recovery, not direct perturbation deployment
-Geneformer	foundation-model embedding	embedding control	pretrained model; expression matrix	embedding-derived prediction or score	HCC38/HCC1143 evaluated targets	yes	embedding_control	Tests recovery from pretrained single-cell representation.		embedding-based recovery, not direct perturbation deployment
-scGPT-ridge	embedding-ridge control	linear control on pretrained embedding	scGPT embeddings; target labels; endpoint-aligned scoring input	linear predicted expression or target score	HCC38/HCC1143 evaluated targets	yes	linear_embedding_control	Separates pretrained representation signal from model-specific decoder behavior.		linear recovery from pretrained embedding
-Geneformer-ridge	embedding-ridge control	linear control on pretrained embedding	Geneformer embeddings; target labels; endpoint-aligned scoring input	linear predicted expression or target score	HCC38/HCC1143 evaluated targets	yes	linear_embedding_control	Separates pretrained representation signal from model-specific decoder behavior.		linear recovery from pretrained embedding
-low-rank linear decoder	linear control	linear target-conditioned prediction	training expression matrix; perturbation labels	predicted perturbed expression	HCC38/HCC1143 evaluated targets	yes	linear_control	Finite-capacity expression decoder control.		linear recovery behavior
-CPA	autoencoder perturbation-response model	gene perturbation	expression matrix; perturbation labels; compatible training design	predicted perturbed expression	HCC38/HCC1143 evaluated targets	yes	boundary_negative_entrant	Non-GNN perturbation-response model family included under the unified output contract.		current within-context endpoint-recovery entrant; HCC1143 interpreted as common/stress-like boundary case
-CellOT	optimal-transport perturbation-response mapping	condition mapping candidate	control and perturbed cell states; compatible mapping design	candidate mapped perturbed expression	audit required	candidate	P2_candidate_sensitivity_entrant	Transport-style model-family sensitivity candidate.	Implementation and gene-target compatibility must be audited before inclusion.	optional sensitivity entrant
-scGen	generative latent perturbation-response model	condition perturbation	expression matrix; perturbation labels; compatible latent-shift design	predicted perturbed expression	HCC38/HCC1143 evaluated targets	yes	positive_entrant	Historical generative perturbation-response baseline evaluated under the unified output contract.		most consistent current within-context target-observed endpoint-recovery entrant
-scDisInFact	disentangled condition model	condition and batch disentanglement candidate	multi-condition data with compatible covariates	candidate condition-effect prediction	audit required	candidate	registry_only	Documents condition/batch disentanglement model-family eligibility.	Not central to target-level endpoint recovery in the current benchmark design.	registry-only unless benchmark design expands
+model_id	model	cell_line	q_value	metric_family
+cellot_hcc_formal_v1	CellOT	HCC1143	0.880458457516254	Total-shift endpoint
+cellot_hcc_formal_v1	CellOT	HCC38	0.3737035710435227	Total-shift endpoint
+cpa_v0.8.8	CPA	HCC1143	0.4217477078063519	Total-shift endpoint
+cpa_v0.8.8	CPA	HCC38	0.6351291298640721	Total-shift endpoint
+gears_hcc_formal_v1	GEARS formal	HCC1143	0.9616213527792268	Total-shift endpoint
+gears_hcc_formal_v1	GEARS formal	HCC38	0.3737035710435227	Total-shift endpoint
+geneformer_hcc_formal_v1	Geneformer	HCC1143	0.4306153744016348	Total-shift endpoint
+geneformer_hcc_formal_v1	Geneformer	HCC38	0.6351291298640721	Total-shift endpoint
+lm_g_geneformer_ridge_hcc_formal_v1	Geneformer-ridge	HCC1143	0.971078286353992	Total-shift endpoint
+lm_g_geneformer_ridge_hcc_formal_v1	Geneformer-ridge	HCC38	0.926243491979	Total-shift endpoint
+lm_g_scgpt_ridge_hcc_formal_v1	scGPT-ridge	HCC1143	0.880458457516254	Total-shift endpoint
+lm_g_scgpt_ridge_hcc_formal_v1	scGPT-ridge	HCC38	0.8862250549290295	Total-shift endpoint
+lm_train_lowrank_hcc_formal_v1	low-rank	HCC1143	0.3932102923396653	Total-shift endpoint
+lm_train_lowrank_hcc_formal_v1	low-rank	HCC38	0.8405214792073776	Total-shift endpoint
+null_model	null	HCC1143		Total-shift endpoint
+null_model	null	HCC38		Total-shift endpoint
+scgen_hcc_formal_v1	scGen	HCC1143	0.0012516262061201	Total-shift endpoint
+scgen_hcc_formal_v1	scGen	HCC38	0.0083268715724212	Total-shift endpoint
+scgpt_hcc_formal_v1	scGPT	HCC1143	0.268862730336075	Total-shift endpoint
+scgpt_hcc_formal_v1	scGPT	HCC38	0.0083268715724212	Total-shift endpoint
+shared_mean_baseline	shared mean	HCC1143		Total-shift endpoint
+shared_mean_baseline	shared mean	HCC38		Total-shift endpoint
+cellot_hcc_formal_v1	CellOT	HCC1143	0.4843764330155596	Response-aligned endpoint
+cellot_hcc_formal_v1	CellOT	HCC38	0.3739549408407946	Response-aligned endpoint
+cpa_v0.8.8	CPA	HCC1143	0.8358717622817377	Response-aligned endpoint
+cpa_v0.8.8	CPA	HCC38	0.1179533234341914	Response-aligned endpoint
+gears_hcc_formal_v1	GEARS formal	HCC1143	0.4549326785913322	Response-aligned endpoint
+gears_hcc_formal_v1	GEARS formal	HCC38	0.0343771237425064	Response-aligned endpoint
+geneformer_hcc_formal_v1	Geneformer	HCC1143	0.6658262955701184	Response-aligned endpoint
+geneformer_hcc_formal_v1	Geneformer	HCC38	0.6183688636743575	Response-aligned endpoint
+lm_g_geneformer_ridge_hcc_formal_v1	Geneformer-ridge	HCC1143	0.88738086858262	Response-aligned endpoint
+lm_g_geneformer_ridge_hcc_formal_v1	Geneformer-ridge	HCC38	0.6183688636743575	Response-aligned endpoint
+lm_g_scgpt_ridge_hcc_formal_v1	scGPT-ridge	HCC1143	0.8358717622817377	Response-aligned endpoint
+lm_g_scgpt_ridge_hcc_formal_v1	scGPT-ridge	HCC38	0.7514707862729322	Response-aligned endpoint
+lm_train_lowrank_hcc_formal_v1	low-rank	HCC1143	0.4549326785913322	Response-aligned endpoint
+lm_train_lowrank_hcc_formal_v1	low-rank	HCC38	0.9667730478729228	Response-aligned endpoint
+null_model	null	HCC1143		Response-aligned endpoint
+null_model	null	HCC38		Response-aligned endpoint
+scgen_hcc_formal_v1	scGen	HCC1143	0.0136710214346711	Response-aligned endpoint
+scgen_hcc_formal_v1	scGen	HCC38	0.012653927092111	Response-aligned endpoint
+scgpt_hcc_formal_v1	scGPT	HCC1143	0.4107337853259247	Response-aligned endpoint
+scgpt_hcc_formal_v1	scGPT	HCC38	0.3739549408407946	Response-aligned endpoint
+shared_mean_baseline	shared mean	HCC1143	0.9464915433713944	Response-aligned endpoint
+shared_mean_baseline	shared mean	HCC38	0.1573086230677725	Response-aligned endpoint
+cellot_hcc_formal_v1	CellOT	HCC1143	0.2798534798534798	Response-aligned permutation
+cellot_hcc_formal_v1	CellOT	HCC38	0.2117882117882117	Response-aligned permutation
+cpa_v0.8.8	CPA	HCC1143	0.5067155067155067	Response-aligned permutation
+cpa_v0.8.8	CPA	HCC38	0.075353218210361	Response-aligned permutation
+gears_hcc_formal_v1	GEARS formal	HCC1143	0.1978021978021978	Response-aligned permutation
+gears_hcc_formal_v1	GEARS formal	HCC38	0.0219780219780219	Response-aligned permutation
+geneformer_hcc_formal_v1	Geneformer	HCC1143	0.7922553636839351	Response-aligned permutation
+geneformer_hcc_formal_v1	Geneformer	HCC38	0.2915750915750916	Response-aligned permutation
+lm_g_geneformer_ridge_hcc_formal_v1	Geneformer-ridge	HCC1143	0.5263157894736842	Response-aligned permutation
+lm_g_geneformer_ridge_hcc_formal_v1	Geneformer-ridge	HCC38	0.2915750915750916	Response-aligned permutation
+lm_g_scgpt_ridge_hcc_formal_v1	scGPT-ridge	HCC1143	0.5067155067155067	Response-aligned permutation
+lm_g_scgpt_ridge_hcc_formal_v1	scGPT-ridge	HCC38	0.7001569858712716	Response-aligned permutation
+lm_train_lowrank_hcc_formal_v1	low-rank	HCC1143	0.2079459002535925	Response-aligned permutation
+lm_train_lowrank_hcc_formal_v1	low-rank	HCC38	0.5829959514170041	Response-aligned permutation
+null_model	null	HCC1143		Response-aligned permutation
+null_model	null	HCC38		Response-aligned permutation
+scgen_hcc_formal_v1	scGen	HCC1143	0.0073260073260073	Response-aligned permutation
+scgen_hcc_formal_v1	scGen	HCC38	0.0109890109890109	Response-aligned permutation
+scgpt_hcc_formal_v1	scGPT	HCC1143	0.1978021978021978	Response-aligned permutation
+scgpt_hcc_formal_v1	scGPT	HCC38	0.1758241758241758	Response-aligned permutation
+shared_mean_baseline	shared mean	HCC1143	0.5648351648351648	Response-aligned permutation
+shared_mean_baseline	shared mean	HCC38	0.0824175824175824	Response-aligned permutation

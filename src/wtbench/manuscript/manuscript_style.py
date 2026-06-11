@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import matplotlib.pyplot as plt
+from matplotlib.colors import LinearSegmentedColormap
 from matplotlib.text import Text
 
 
@@ -13,30 +14,40 @@ TICK_LABEL_SIZE = 6.2
 LEGEND_FONT_SIZE = 6.0
 
 COLORS = {
-    "baseline": "#2B2B2B",
-    "gears": "#4C78A8",
-    "gears_sweep": "#8DB7D6",
-    "foundation": "#72A39A",
+    # Nature Methods-style restrained Okabe-Ito compatible palette.
+    "baseline": "#333333",
+    "scgen": "#009E73",
+    "cpa": "#D55E00",
+    "gears": "#0072B2",
+    "gears_sweep": "#56B4E9",
+    "foundation": "#CC79A7",
     "linear": "#A6A6A6",
     "null": "#D9D9D9",
-    "primary_qualified": "#4B8A5A",
-    "supporting": "#B8A64A",
-    "boundary": "#C65A4A",
-    "grid": "#EDEDED",
-    "text": "#1F1F1F",
+    "primary_qualified": "#009E73",
+    "supporting": "#C2A83E",
+    "boundary": "#D55E00",
+    "grid": "#EFEFEF",
+    "text": "#222222",
     "point": "#8F8F8F",
     "point_light": "#C9C9C9",
-    "accent_red": "#D95F4B",
-    "accent_blue": "#5DA5DA",
-    "accent_orange": "#E6A05A",
-    "accent_purple": "#9C89C9",
+    "accent_red": "#D55E00",
+    "accent_blue": "#56B4E9",
+    "accent_orange": "#E69F00",
+    "accent_purple": "#CC79A7",
+    "low_info": "#8E8E8E",
+    "middle": "#56B4E9",
+    "pale_green": "#E8F5E9",
+    "pale_blue": "#EAF4FB",
+    "pale_orange": "#FFF3E0",
 }
+
+DIVERGING_STOPS = ("#3B6EA8", "#F7F7F7", "#B44A3C")
 
 
 def apply_manuscript_style() -> None:
     plt.rcParams.update(
         {
-            "font.family": "sans-serif",
+            "font.family": FONT_FAMILY,
             "font.sans-serif": FONT_FAMILY,
             "font.size": BASE_FONT_SIZE,
             "axes.titlesize": PANEL_HEADING_SIZE,
@@ -66,9 +77,15 @@ def apply_manuscript_style() -> None:
             "lines.markersize": 3.0,
             "pdf.fonttype": 42,
             "ps.fonttype": 42,
+            "svg.fonttype": "none",
             "savefig.dpi": 1200,
         }
     )
+
+
+def muted_diverging_cmap(name: str = "wtbench_muted_diverging") -> LinearSegmentedColormap:
+    """Low-saturation diverging map for manuscript heat maps."""
+    return LinearSegmentedColormap.from_list(name, DIVERGING_STOPS)
 
 
 def clean_axes(ax: plt.Axes) -> None:
@@ -82,7 +99,7 @@ def clean_axes(ax: plt.Axes) -> None:
 def finalize_manuscript_figure(fig: plt.Figure, *, font_scale: float = 1.0) -> None:
     """Normalize typography just before saving a manuscript figure."""
     for text in fig.findobj(match=Text):
-        text.set_fontfamily("sans-serif")
+        text.set_fontfamily(FONT_FAMILY)
         if font_scale != 1.0:
             text.set_fontsize(text.get_fontsize() * font_scale)
     for ax in fig.axes:

@@ -1,6 +1,6 @@
-contract_object	derived_readout	audit_question
-target x gene predicted shift	total shift magnitude	dependency-associated magnitude?
-target x axis projection	axis-aligned magnitude	endpoint-relevant structure?
-axis profile	common/stress score	common-response collapse?
-target-target similarity	identity preservation	target-specific structure?
-frozen endpoint categories	anchor separation	category recovery?
+evidence_layer	contexts	n_contexts
+Primary model-audit layer	HCC1143 day 14; HCC38 day 14	2
+External bridge-form / boundary layer	K562 TF day 13; K562 TF day 7; K562 essential CRISPRi day 6; K562 genome-scale CRISPRi day 8	4
+Secondary endpoint-extension layer	HepG2 day 7; Jurkat day 7	2
+Narrow pathway boundary candidate	MOLM13 mSWI/SNF Perturb-seq; Adamson K562 UPR Perturb-seq	2
+Excluded / future-extension registry	Frangieh melanoma/TIL Perturb-CITE-seq; Gasperini K562 enhancer CRISPRi; Norman K562 CRISPRa; RPE1 essential CRISPRi day 7; THP-1 stimulated Perturb-seq	5

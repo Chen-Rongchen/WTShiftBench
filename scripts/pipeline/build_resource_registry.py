@@ -17,6 +17,34 @@ from typing import Iterable
 
 
 DEFAULT_CONFIG = Path("configs/resource_registry_v1.json")
+ACTIVE_FIGURE_GROUPS = {
+    *(f"Figure_{index}" for index in range(1, 5)),
+    *(f"Extended_Data_Figure_{index}" for index in range(1, 7)),
+}
+ACTIVE_PANEL_IDS = {
+    "Figure_1": set("abc"),
+    "Figure_2": set("abcde"),
+    "Figure_3": set("abcdef"),
+    "Figure_4": set("abc"),
+    "Extended_Data_Figure_1": set("abc"),
+    "Extended_Data_Figure_2": set("abcdef"),
+    "Extended_Data_Figure_3": set("abcdef"),
+    "Extended_Data_Figure_4": set("ab"),
+    "Extended_Data_Figure_5": set("abc"),
+    "Extended_Data_Figure_6": set("abcd"),
+}
+MANIFEST_EXCLUDED_REGISTRY_FILES = {
+    "figure_source_data_manifest.tsv",
+    "artifact_hash_manifest.tsv",
+}
+PUBLIC_LABEL_REPLACEMENTS = (
+    ("Q1_anchor_vs_middle", "endpoint_anchor_vs_middle"),
+    ("Q1_anchor", "endpoint_anchor"),
+    ("Q2_transcriptomic_excess", "shift_excess"),
+    ("Q2_shift_excess", "shift_excess"),
+    ("Q3_dependency_excess", "dependency_excess"),
+    ("Q4_low_information", "low_information"),
+)
 
 TABLE_SPECS: dict[str, tuple[str, list[str]]] = {
     "dataset_eligibility_registry": (
@@ -131,7 +159,14 @@ def write_tsv(path: Path, rows: Iterable[dict[str, object]], columns: list[str])
             missing = [column for column in columns if column not in row]
             if missing:
                 raise ValueError(f"{path}: row is missing required columns {missing}: {row}")
-            writer.writerow({column: row.get(column, "") for column in columns})
+            values = {}
+            for column in columns:
+                value = row.get(column, "")
+                if isinstance(value, str):
+                    for internal_label, public_label in PUBLIC_LABEL_REPLACEMENTS:
+                        value = value.replace(internal_label, public_label)
+                values[column] = value
+            writer.writerow(values)
             row_count += 1
     return row_count
 
@@ -151,10 +186,31 @@ def build_figure_source_data_manifest(root: Path, outdir: Path) -> int:
         rel = source_path.relative_to(root)
         parts = rel.parts
         figure_group = parts[1] if len(parts) > 1 else ""
+        if figure_group not in ACTIVE_FIGURE_GROUPS:
+            continue
+        if "panels" not in parts:
+            continue
+        if "_panel_" not in source_path.name:
+            continue
+        panel_id = source_path.name.split("_panel_", 1)[1].split("_", 1)[0]
+        if panel_id not in ACTIVE_PANEL_IDS[figure_group]:
+            continue
         rows.append(
             {
                 "path": str(rel),
                 "figure_group": figure_group,
+                "bytes": source_path.stat().st_size,
+                "sha256": sha256_file(source_path),
+            }
+        )
+    for source_path in sorted(outdir.glob("*.tsv")):
+        if source_path.name in MANIFEST_EXCLUDED_REGISTRY_FILES:
+            continue
+        rel = source_path.relative_to(root)
+        rows.append(
+            {
+                "path": str(rel),
+                "figure_group": "Supplementary_Tables",
                 "bytes": source_path.stat().st_size,
                 "sha256": sha256_file(source_path),
             }
@@ -305,10 +361,10 @@ def build_registry(config_path: Path, *, root: Path) -> dict[str, int]:
         rows = config.get(key, [])
         counts[filename] = write_tsv(outdir / filename, rows, columns)
 
-    counts["figure_source_data_manifest.tsv"] = build_figure_source_data_manifest(root, outdir)
     counts["exclusion_future_extension_registry.tsv"] = build_exclusion_future_extension_registry(outdir)
     counts["endpoint_category_grid.tsv"] = build_endpoint_category_grid(root, outdir)
     counts["model_output_contract_audit.tsv"] = build_model_output_contract_audit(root, outdir)
+    counts["figure_source_data_manifest.tsv"] = build_figure_source_data_manifest(root, outdir)
     counts["artifact_hash_manifest.tsv"] = build_artifact_hash_manifest(root, outdir)
 
     metadata = {

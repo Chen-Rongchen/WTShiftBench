@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1740 590">
+  <!-- Generator: Adobe Illustrator 29.0.0, SVG Export Plug-In . SVG Version: 2.1.0 Build 186)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: #83aaa1;
+      }
+
+      .st1 {
+        fill: #c9c0df;
+      }
+
+      .st2 {
+        fill: #f8f6fc;
+        stroke: #e0d9ee;
+      }
+
+      .st3, .st4, .st5, .st6, .st7, .st8, .st9, .st10, .st11, .st12, .st13, .st14, .st15 {
+        font-family: ArialMT, Arial;
+      }
+
+      .st3, .st4, .st5, .st6, .st7, .st16, .st9, .st10, .st11, .st12, .st17, .st13, .st14, .st15 {
+        isolation: isolate;
+      }
+
+      .st3, .st9 {
+        font-size: 24px;
+      }
+
+      .st3, .st10, .st12, .st17, .st18 {
+        fill: #2f8f83;
+      }
+
+      .st4 {
+        fill: #231815;
+      }
+
+      .st4, .st6, .st8, .st13, .st14 {
+        font-size: 18px;
+      }
+
+      .st19 {
+        fill: #e1dcef;
+      }
+
+      .st5 {
+        fill: #7469aa;
+      }
+
+      .st5, .st12 {
+        font-size: 31px;
+      }
+
+      .st20 {
+        fill: #7b72b0;
+      }
+
+      .st21 {
+        fill: #b8b0da;
+      }
+
+      .st22 {
+        fill: #95a3af;
+      }
+
+      .st7 {
+        fill: #24313a;
+        font-size: 30px;
+      }
+
+      .st23 {
+        fill: #d8d2eb;
+      }
+
+      .st24 {
+        fill: #f6f3fb;
+        stroke: #c9c0df;
+      }
+
+      .st24, .st25 {
+        stroke-width: 1.8px;
+      }
+
+      .st26 {
+        stroke: #b7d9d3;
+      }
+
+      .st26, .st27 {
+        fill: #fff;
+      }
+
+      .st26, .st27, .st28 {
+        stroke-width: 1.3px;
+      }
+
+      .st29 {
+        fill: #a59ccd;
+      }
+
+      .st30 {
+        fill: #4ea395;
+      }
+
+      .st31 {
+        fill: #8d83be;
+      }
+
+      .st9 {
+        fill: #33424d;
+      }
+
+      .st32 {
+        stroke: #5f6c77;
+        stroke-width: 1.7px;
+      }
+
+      .st32, .st33, .st34, .st28 {
+        fill: none;
+      }
+
+      .st35 {
+        fill: #aea6d2;
+      }
+
+      .st36 {
+        fill: #b7c3ce;
+      }
+
+      .st10 {
+        font-size: 22.6px;
+      }
+
+      .st27 {
+        stroke: #d8d0e9;
+      }
+
+      .st25 {
+        fill: #eef8f5;
+        stroke: #9ecbc3;
+      }
+
+      .st11, .st37 {
+        fill: #61707b;
+      }
+
+      .st11, .st15 {
+        font-size: 21px;
+      }
+
+      .st38 {
+        fill: #8277b8;
+      }
+
+      .st33 {
+        stroke: #dde4ea;
+        stroke-width: 1.4px;
+      }
+
+      .st39 {
+        fill: #c5bddf;
+      }
+
+      .st34 {
+        stroke: #a8b4be;
+        stroke-dasharray: 6 5;
+        stroke-width: 1.2px;
+      }
+
+      .st40 {
+        fill: #958bc4;
+      }
+
+      .st28 {
+        stroke: #2f8f83;
+      }
+
+      .st17 {
+        opacity: .2;
+      }
+
+      .st13, .st15 {
+        fill: #40515e;
+      }
+
+      .st41 {
+        fill: #7a8792;
+      }
+
+      .st42 {
+        fill: #aab7c4;
+      }
+
+      .st14 {
+        fill: #c35f4a;
+      }
+    </style>
+  </defs>
+  <g class="st16">
+    <text class="st7" transform="translate(39 41.8)"><tspan x="0" y="0">From expression fidelity to endpoint-aligned recovery</tspan></text>
+  </g>
+  <path class="st24" d="M67,111h634c15.5,0,28,10.2,28,22.9v379.2c0,12.6-12.5,22.9-28,22.9H67c-15.5,0-28-10.2-28-22.9V133.9c0-12.6,12.5-22.9,28-22.9Z"/>
+  <g class="st16">
+    <text class="st9" transform="translate(85 141.7)"><tspan x="0" y="0">Expression-centric evaluation</tspan></text>
+  </g>
+  <g class="st16">
+    <text class="st11" transform="translate(85 169.7)"><tspan x="0" y="0">Common expression-centric scoring targets</tspan></text>
+  </g>
+  <rect class="st27" x="78.8" y="215.7" width="235" height="150" rx="18" ry="18"/>
+  <g class="st16">
+    <text class="st15" transform="translate(98.3 251.7)"><tspan x="0" y="0">Predicted expression</tspan></text>
+  </g>
+  <g class="st16">
+    <text class="st4" transform="translate(143.5 275.7)"><tspan x="0" y="0">cells × genes</tspan></text>
+  </g>
+  <g>
+    <rect class="st2" x="111.3" y="297.7" width="170" height="44" rx="10" ry="10"/>
+    <rect class="st38" x="123.3" y="307.7" width="18" height="10" rx="2" ry="2"/>
+    <rect class="st35" x="147.3" y="307.7" width="18" height="10" rx="2" ry="2"/>
+    <rect class="st23" x="171.3" y="307.7" width="18" height="10" rx="2" ry="2"/>
+    <rect class="st40" x="195.3" y="307.7" width="18" height="10" rx="2" ry="2"/>
+    <rect class="st39" x="219.3" y="307.7" width="18" height="10" rx="2" ry="2"/>
+    <rect class="st20" x="243.3" y="307.7" width="18" height="10" rx="2" ry="2"/>
+    <rect class="st1" x="123.3" y="323.7" width="18" height="10" rx="2" ry="2"/>
+    <rect class="st31" x="147.3" y="323.7" width="18" height="10" rx="2" ry="2"/>
+    <rect class="st21" x="171.3" y="323.7" width="18" height="10" rx="2" ry="2"/>
+    <rect class="st19" x="195.3" y="323.7" width="18" height="10" rx="2" ry="2"/>
+    <rect class="st20" x="219.3" y="323.7" width="18" height="10" rx="2" ry="2"/>
+    <rect class="st29" x="243.3" y="323.7" width="18" height="10" rx="2" ry="2"/>
+  </g>
+  <path class="st29" d="M-37-67.3"/>
+  <path class="st41" d="M366.8,278.1l33.6,12.6-33.6,12.6v-25.2Z"/>
+  <path class="st41" d="M401.4,458.9"/>
+  <path class="st27" d="M422.8,235.7h224c9.9,0,18,6,18,13.4v85.1c0,7.4-8.1,13.4-18,13.4h-224c-9.9,0-18-6-18-13.4v-85.1c0-7.4,8.1-13.4,18-13.4Z"/>
+  <g class="st16">
+    <text class="st15" transform="translate(458.4 268.7)"><tspan x="0" y="0">Typical readouts</tspan></text>
+  </g>
+  <line class="st33" x1="432.8" y1="281.7" x2="634.8" y2="281.7"/>
+  <g class="st16">
+    <text class="st13" transform="translate(432.3 305.7)"><tspan x="0" y="0">expression reconstruction</tspan></text>
+  </g>
+  <g class="st16">
+    <text class="st13" transform="translate(420.8 331.3)"><tspan x="0" y="0">profile similarity / DE overlap</tspan></text>
+  </g>
+  <path class="st27" d="M129.4,406h496c12.2,0,22,9.7,22,21.8v71.2c0,12-9.8,21.8-22,21.8H129.4c-12.2,0-22-9.7-22-21.8v-71.2c0-12,9.8-21.8,22-21.8Z"/>
+  <g class="st16">
+    <text class="st15" transform="translate(126.4 439)"><tspan x="0" y="0">Primary objective</tspan></text>
+  </g>
+  <g class="st16">
+    <text class="st5" transform="translate(124.8 472.7)"><tspan x="0" y="0">Expression fidelity</tspan></text>
+  </g>
+  <path class="st37" d="M-37-67.3"/>
+  <path class="st41" d="M826,308.1l33.6,12.6-33.6,12.6v-25.2Z"/>
+  <path class="st41" d="M861,400.6"/>
+  <path class="st25" d="M931,72.7h724c15.5,0,28,12,28,26.7v442.8c0,14.8-12.5,26.7-28,26.7h-724c-15.5,0-28-12-28-26.7V99.4c0-14.8,12.5-26.7,28-26.7Z"/>
+  <g class="st16">
+    <text class="st3" transform="translate(949 111.7)"><tspan x="0" y="0">WTShiftBench endpoint-aligned audit</tspan></text>
+  </g>
+  <g class="st16">
+    <text class="st11" transform="translate(949 139.7)"><tspan x="0" y="0">The recovery object is fixed before model scoring</tspan></text>
+  </g>
+  <path class="st26" d="M967,162.7h294c9.9,0,18,10.1,18,22.5v172.8c0,12.4-8.1,22.5-18,22.5h-294c-9.9,0-18-10.1-18-22.5v-172.8c0-12.4,8.1-22.5,18-22.5h0Z"/>
+  <g class="st16">
+    <text class="st15" transform="translate(976 198.7)"><tspan x="0" y="0" xml:space="preserve">  Observed perturbation shift</tspan></text>
+  </g>
+  <g class="st16">
+    <text class="st4" transform="translate(985.8 222.2)"><tspan x="0" y="0">paired with DepMap dependency</tspan></text>
+  </g>
+  <line class="st32" x1="983.6" y1="346" x2="1251.4" y2="346"/>
+  <line class="st32" x1="983.6" y1="346" x2="983.6" y2="262.3"/>
+  <line class="st34" x1="1051.3" y1="346" x2="1051.3" y2="262.3"/>
+  <line class="st34" x1="1185.2" y1="346" x2="1185.2" y2="262.3"/>
+  <line class="st34" x1="983.6" y1="325.9" x2="1251.4" y2="325.9"/>
+  <line class="st34" x1="983.6" y1="284" x2="1251.4" y2="284"/>
+  <rect class="st17" x="1185.2" y="262.3" width="66.2" height="21.8"/>
+  <rect class="st28" x="1185.2" y="262.3" width="66.2" height="21.8"/>
+  <ellipse class="st42" cx="1015.1" cy="334.2" rx="5.5" ry="5.9"/>
+  <ellipse class="st22" cx="1034" cy="317.5" rx="5.2" ry="5.5"/>
+  <ellipse class="st36" cx="1075" cy="299.1" rx="5" ry="5.4"/>
+  <ellipse class="st42" cx="1115.9" cy="329.2" rx="5.2" ry="5.5"/>
+  <ellipse class="st0" cx="1141.1" cy="305.8" rx="5.2" ry="5.5"/>
+  <ellipse class="st18" cx="1191.5" cy="287.4" rx="5.5" ry="5.9"/>
+  <ellipse class="st18" cx="1212" cy="275.6" rx="5.7" ry="6"/>
+  <ellipse class="st30" cx="1235.7" cy="294.1" rx="5" ry="5.4"/>
+  <g class="st16">
+    <text class="st10" transform="translate(1178.9 248.9) scale(.9 1)"><tspan x="0" y="0">anchor</tspan></text>
+  </g>
+  <g class="st16">
+    <text class="st6" transform="translate(1061.5 369.9)"><tspan x="0" y="0">shift percentile</tspan></text>
+  </g>
+  <path d="M-37-67.3"/>
+  <path class="st18" d="M1351,429.6"/>
+  <path class="st26" d="M1386.4,209.3h249c9.9,0,18,4.2,18,9.3v84c0,5.2-8.1,9.3-18,9.3h-249c-9.9,0-18-4.2-18-9.3v-84c0-5.2,8.1-9.3,18-9.3Z"/>
+  <g class="st16">
+    <text class="st15" transform="translate(1411.1 241.4)"><tspan x="0" y="0">Fixed recovery object</tspan></text>
+  </g>
+  <text class="st13" transform="translate(1405.3 290.8)"><tspan x="0" y="0">analysis-locked categories</tspan></text>
+  <line class="st33" x1="1397.4" y1="260.9" x2="1621.4" y2="260.9"/>
+  <path class="st26" d="M995.3,400.7h600.3c12.3,0,22.3,9.8,22.3,22v72c0,12.2-10,22-22.3,22h-600.3c-12.3,0-22.3-9.8-22.3-22v-72c0-12.2,10-22,22.3-22Z"/>
+  <g class="st16">
+    <text class="st15" transform="translate(992 438.7)"><tspan x="0" y="0">Primary objective</tspan></text>
+  </g>
+  <g class="st16">
+    <text class="st12" transform="translate(991 473.7)"><tspan x="0" y="0">Endpoint-aligned structure recovery</tspan></text>
+  </g>
+  <g class="st16">
+    <text class="st14" transform="translate(1430.6 550.8)"><tspan x="0" y="0">Not a direct DepMap predictor</tspan></text>
+  </g>
+  <rect class="st41" x="324.3" y="288.3" width="42.5" height="5.7"/>
+  <rect class="st41" x="783.5" y="318.4" width="42.5" height="5.7"/>
+  <path class="st41" d="M1328.4,243.1l33.6,12.6-33.6,12.6v-25.2Z"/>
+  <rect class="st41" x="1284.9" y="253.4" width="42.5" height="5.7"/>
+  <g class="st16">
+    <text class="st6" transform="translate(973 334.2) rotate(-90)"><tspan x="0" y="0">DepMap</tspan></text>
+  </g>
+  <text class="st8" transform="translate(128 502)"><tspan x="0" y="0">May miss endpoint-aligned structure</tspan></text>
+  <text class="st8" transform="translate(993.2 501.3)"><tspan x="0" y="0">Audit model-generated shifts against a fixed recovery object</tspan></text>
+  <g class="st16">
+    <text class="st11" transform="translate(737.2 277.9)"><tspan x="0" y="0">Evaluation object </tspan><tspan x="0" y="25.2" xml:space="preserve">      redefined</tspan></text>
+  </g>
+</svg>

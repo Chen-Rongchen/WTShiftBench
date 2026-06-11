@@ -96,7 +96,7 @@ COVARIATE_EXPOSED_MARK = "*"
 ACTIVE_PANELS = list("abcdef")
 
 def _add_panel_heading(ax: plt.Axes, label: str, title: str, *, label_x: float = -0.10) -> None:
-    add_panel_heading(ax, "", title, title_x=0.00)
+    add_panel_heading(ax, label, title, label_x=label_x, title_x=0.06)
 
 
 def output_dir(root: Path) -> Path:

@@ -1,0 +1,63 @@
+{
+  "outdir": "reports/model_eligibility",
+  "hcc_contexts": {
+    "HCC38": "data/processed/hcc_gears_formal/HCC38.h5ad",
+    "HCC1143": "data/processed/hcc_gears_formal/HCC1143.h5ad"
+  },
+  "perturbation_label_column": "target_gene",
+  "control_column": "is_control",
+  "axis_membership_path": "reports/truth_driven_bridge/master_atlas/shared_target_axis_membership.tsv",
+  "prediction_contract_path": "configs/hcc_prediction_contract_v1.json",
+  "minimum_overlapping_targets": 25,
+  "minimum_cells_per_target": 5,
+  "candidate_models": [
+    {
+      "model_name": "CPA",
+      "priority": "P1",
+      "candidate_role": "non-GNN perturbation-response sensitivity entrant",
+      "expected_output": "target-level predicted expression shift",
+      "required_input_design": "expression matrix plus perturbation labels and controls",
+      "package_modules": ["cpa"],
+      "decision_if_ready": "ready_for_sensitivity_run",
+      "decision_if_missing_package": "eligible_pending_installation",
+      "decision_if_not_ready": "not_ready",
+      "claim_ceiling": "P1 sensitivity entrant if compatible"
+    },
+    {
+      "model_name": "CellOT",
+      "priority": "P2",
+      "candidate_role": "transport-style perturbation-response sensitivity entrant",
+      "expected_output": "target-level mapped perturbed expression",
+      "required_input_design": "control and perturbed cell states with reproducible target mapping",
+      "package_modules": ["cellot"],
+      "decision_if_ready": "defer_p2_ready",
+      "decision_if_missing_package": "defer_p2_pending_installation",
+      "decision_if_not_ready": "not_ready",
+      "claim_ceiling": "P2 transport-style sensitivity entrant if design is reproducible"
+    },
+    {
+      "model_name": "scGen",
+      "priority": "P2_fallback",
+      "candidate_role": "historical generative perturbation-response baseline",
+      "expected_output": "target-level predicted expression shift",
+      "required_input_design": "expression matrix plus condition labels and controls",
+      "package_modules": ["scgen"],
+      "decision_if_ready": "fallback_ready",
+      "decision_if_missing_package": "fallback_pending_installation",
+      "decision_if_not_ready": "not_ready",
+      "claim_ceiling": "fallback sensitivity entrant if CPA is unavailable or insufficient"
+    },
+    {
+      "model_name": "scDisInFact",
+      "priority": "registry_only",
+      "candidate_role": "condition/batch disentanglement candidate",
+      "expected_output": "eligibility rationale",
+      "required_input_design": "multi-condition design where disentanglement is part of the benchmark question",
+      "package_modules": ["scDisInFact"],
+      "decision_if_ready": "registry_only",
+      "decision_if_missing_package": "registry_only",
+      "decision_if_not_ready": "registry_only",
+      "claim_ceiling": "registry-only unless the benchmark expands to condition disentanglement"
+    }
+  ]
+}

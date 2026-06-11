@@ -1,21 +1,18 @@
 # Figure source data
 
-This directory is the publication-facing index for figure source data. The
-canonical source tables are kept next to each figure panel under `../figures/`
-and are indexed by `../resource_registry/figure_source_data_manifest.tsv`.
+This directory provides the publication-facing index for figure source data.
+Canonical source tables are stored next to each active figure panel under
+`../figures/` and indexed by
+`../resource_registry/figure_source_data_manifest.tsv`.
 
-The repository intentionally does not require committing regenerated composite
-PNG/PDF figures. Figures can be rebuilt from the checked-in code and source
-tables.
+The public repository includes editable SVG panels and panel-level source
+tables. It intentionally excludes assembled figures, manuscript files,
+PNG/PDF exports and model-prediction intermediates.
 
 ## Main locations
 
-- `../figures/Figure_*/Figure_*_source_data.tsv`: combined source data for each
-  main figure.
 - `../figures/Figure_*/panels/*_source_data.tsv`: panel-level source data for
   main figures.
-- `../figures/Extended_Data_Figure_*/Extended_Data_Figure_*_source_data.tsv`:
-  combined source data for each Extended Data figure.
 - `../figures/Extended_Data_Figure_*/panels/*_source_data.tsv`: panel-level
   source data for Extended Data figures.
 - `../resource_registry/figure_source_data_manifest.tsv`: source-data manifest
@@ -24,9 +21,10 @@ tables.
 ## Refresh
 
 ```bash
-pixi run python scripts/manuscript/build_extended_data_resource_bundle.py
-pixi run build-resource-registry
+pixi install
+./reproduce_figures.sh
+pixi run --environment core validate-release
 ```
 
-After refreshing, stage source-data TSVs and registry/manifests, but do not
-stage regenerated PNG/PDF files unless preparing a release archive outside Git.
+The rebuild retains the publication-designed Figure 1 SVG panels and
+regenerates the remaining active panels through the Pixi `core` environment.

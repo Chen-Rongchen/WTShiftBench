@@ -646,9 +646,9 @@ def render_joint_grid(ax: plt.Axes, df: pd.DataFrame, cell_line: str, label: str
     n_text = f"{int(n_targets.iloc[0])}" if not n_targets.empty else f"{len(plot)}"
     add_panel_heading(
         ax,
-        "",
+        label,
         f"{cell_line} target-level joint grid",
-        title_x=0.00,
+        title_x=0.08,
         title_fontsize=8.8,
     )
     ax.text(0.03, 0.96, f"n={n_text}", transform=ax.transAxes, fontsize=8.0, color=FIG1_BLACK, fontweight="bold", va="top")
@@ -668,11 +668,11 @@ def render_joint_grid(ax: plt.Axes, df: pd.DataFrame, cell_line: str, label: str
 
 
 def render_panel_d(ax: plt.Axes, df: pd.DataFrame) -> None:
-    render_joint_grid(ax, df, "HCC38", "c")
+    render_joint_grid(ax, df, "HCC38", "a")
 
 
 def render_panel_e(ax: plt.Axes, df: pd.DataFrame) -> None:
-    render_joint_grid(ax, df, "HCC1143", "d")
+    render_joint_grid(ax, df, "HCC1143", "b")
 
 
 def render_panel_f(ax: plt.Axes, df: pd.DataFrame) -> None:
@@ -730,7 +730,7 @@ def render_panel_f(ax: plt.Axes, df: pd.DataFrame) -> None:
     ax.set_xticks(np.linspace(0, 1, 6))
     ax.set_xticklabels([f"{int(x * 100)}%" for x in np.linspace(0, 1, 6)], fontsize=7.5)
     ax.set_xlabel("Target composition")
-    add_panel_heading(ax, "", "Grid composition across primary contexts", title_x=0.00, title_fontsize=8.8)
+    add_panel_heading(ax, "c", "Grid composition across primary contexts", title_x=0.08, title_fontsize=8.8)
     ax.tick_params(axis="y", length=0)
     ax.grid(False)
     for side in ("top", "right", "left"):
@@ -819,7 +819,7 @@ def render_panel_bridge_strength(ax: plt.Axes, df: pd.DataFrame) -> None:
     ax.set_yticks([0.0, 0.25, 0.5, 0.75, 1.0])
     ax.set_yticklabels(["0.00", "0.25", "0.50", "0.75", "1.00"], fontsize=7.5)
     ax.set_ylabel(r"Aligned Spearman $\rho$")
-    add_panel_heading(ax, "", "Bridge strength", title_x=0.00, title_fontsize=8.8)
+    add_panel_heading(ax, "d", "Bridge strength", title_x=0.08, title_fontsize=8.8)
     _style_axes_for_figure1(ax)
     ax.legend(
         handles=[

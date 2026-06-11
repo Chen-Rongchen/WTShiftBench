@@ -1,6 +1,9 @@
-category	x	y	definition
-Anchor	0.83	0.84	high dependency / high shift
-Shift-excess	0.17	0.84	lower dependency / high shift
-Dependency-excess	0.83	0.16	high dependency / lower shift
-Low-information	0.17	0.16	lower dependency / lower shift
-Middle	0.5	0.5	retained middle band
+evaluation_object	x	y	role
+expression-centric	0.12	0.18	observed profile
+expression-centric	0.24	0.34	observed profile
+expression-centric	0.36	0.42	observed profile
+expression-centric	0.48	0.52	observed profile
+expression-centric	0.6	0.6	observed profile
+endpoint-anchored	0.17	0.16	low-information
+endpoint-anchored	0.84	0.84	anchor
+endpoint-anchored	0.5	0.52	middle

@@ -9,9 +9,7 @@ subprocess.run([sys.executable, str(ROOT / "scripts/manuscript/build_figure1_tru
 pdst = TEST / "Figure_1" / "panels"
 pdst.mkdir(parents=True, exist_ok=True)
 src = ROOT / "reports/manuscript_figures_v2/fig1_truth_object/panels"
-# Map code-generated panels cdef → abcd (panels a,b are hand-drawn overview)
-PANEL_MAP = {"c": "a", "d": "b", "e": "c", "f": "d"}
-for src_panel, dst_panel in PANEL_MAP.items():
+for src_panel, dst_panel in {"a": "a", "b": "b", "c": "c", "d": "d"}.items():
     for ext in [".png", ".pdf", "_source_data.tsv"]:
         s = src / f"figure1_panel{src_panel}{ext}"
         if s.exists(): shutil.copy2(s, pdst / f"Figure_1_panel_{dst_panel}{ext}")

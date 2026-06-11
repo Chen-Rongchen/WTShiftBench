@@ -1,0 +1,84 @@
+{
+  "stage": "hcc_model_execution_plan",
+  "version": 1,
+  "primary_question": "Does each model recover DepMap-aligned endpoint-relevant perturbation structure, or does it generate homogenized target-level outputs?",
+  "fixed_evaluation_regime": {
+    "training_context": "within-context",
+    "target_status": "target-observed",
+    "target_context_pair_status": "pair-observed",
+    "endpoint_supervision_status": "endpoint-not-supervised",
+    "prediction_object": "model-generated perturbation shift",
+    "shift_definition": "matched-control generated shift when supported; otherwise target-conditioned generated shift aligned to the frozen HCC scorer contract"
+  },
+  "required_output_contract": {
+    "scorer_ready_matrix": "data/predictions/hcc_scorer_ready/<model_id>/<cell_line>/predicted_shift.tsv.gz",
+    "rows": "frozen evaluated perturbation targets",
+    "columns": "frozen scorer genes from reports/truth_driven_bridge/master_atlas/shared_target_axis_membership.tsv",
+    "first_column": "target_gene",
+    "values": "predicted expression shift in truth-aligned log-shift space"
+  },
+  "frozen_truth_rules": {
+    "endpoint_categories": "Frozen from observed_shift_mean_abs and dependency_strength before model scoring.",
+    "dependency_strength": "-depmap_gene_effect",
+    "model_prediction_not_used_for": [
+      "endpoint category definition",
+      "endpoint threshold tuning",
+      "model hyperparameter selection"
+    ]
+  },
+  "mandatory_postrun_audit": {
+    "command_template": "pixi run audit-hcc-model-after-run --model-id <model_id>",
+    "outputs": [
+      "reports/model_endpoint_recovery/by_model/<model_id>/target_summary.tsv",
+      "reports/model_endpoint_recovery/by_model/<model_id>/model_summary.tsv",
+      "reports/model_endpoint_recovery/by_model/<model_id>/category_summary.tsv",
+      "reports/model_endpoint_recovery/by_model/<model_id>/interpretation_summary.tsv"
+    ]
+  },
+  "interpretation_guardrails": [
+    "Do not interpret high predicted_shift_mean_abs alone as endpoint-relevant recovery.",
+    "Require endpoint alignment and axis-aligned recovery to support endpoint-relevant structure.",
+    "Treat high mean off-diagonal target-target similarity as an output-homogenization warning, not a performance metric.",
+    "Treat the observed-shift oracle as an observed-data reference only, not a predictive model entrant.",
+    "Treat backbone recovery as a secondary architecture diagnostic, not the primary endpoint-recovery claim."
+  ],
+  "recommended_order": [
+    {
+      "step": 1,
+      "model_id": "existing scorer-ready entrants",
+      "action": "Run endpoint recovery audit to establish current reference table.",
+      "command": "pixi run run-model-endpoint-recovery"
+    },
+    {
+      "step": 2,
+      "model_id": "cpa_v0.8.8",
+      "action": "Train or rerun CPA full materialization per cell line, then export both cell lines, then audit CPA only.",
+      "commands": [
+        "pixi run --environment cpa python scripts/models/cpa/run_cpa_full_materialization.py --cell-line HCC38 --max-epochs 400 --early-stopping-patience 15 --seed 1",
+        "pixi run --environment cpa python scripts/models/cpa/run_cpa_full_materialization.py --cell-line HCC1143 --max-epochs 400 --early-stopping-patience 15 --seed 1",
+        "pixi run export-cpa-hcc38-full",
+        "pixi run export-cpa-hcc1143-full",
+        "pixi run audit-hcc-model-after-run --model-id cpa_v0.8.8"
+      ]
+    },
+    {
+      "step": 3,
+      "model_id": "scgen_hcc_smoke_v1",
+      "action": "Run scGen smoke or full target set, export under a stable model_id, then audit immediately.",
+      "commands": [
+        "pixi run --environment scgen python scripts/models/scgen/run_scgen_hcc_smoke.py --cell-line HCC38 --max-targets 0 --max-epochs <epochs>",
+        "pixi run --environment scgen python scripts/models/scgen/run_scgen_hcc_smoke.py --cell-line HCC1143 --max-targets 0 --max-epochs <epochs>",
+        "pixi run audit-hcc-model-after-run --model-id scgen_hcc_smoke_v1"
+      ]
+    },
+    {
+      "step": 4,
+      "model_id": "cellot_hcc_smoke_v1",
+      "action": "Stage/run CellOT per target only after export code exists for CellOT outputs; audit immediately after both cell lines pass contract.",
+      "commands": [
+        "pixi run prepare-cellot-hcc38-smoke",
+        "pixi run prepare-cellot-hcc1143-smoke"
+      ]
+    }
+  ]
+}

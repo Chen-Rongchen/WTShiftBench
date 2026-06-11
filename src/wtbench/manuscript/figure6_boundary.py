@@ -333,7 +333,13 @@ def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
 
 
 def render_panel_b(
-    ax: plt.Axes, df: pd.DataFrame, *, composite: bool = False, main_fig: bool = False, draw_panel_letter: bool = True
+    ax: plt.Axes,
+    df: pd.DataFrame,
+    *,
+    composite: bool = False,
+    main_fig: bool = False,
+    draw_panel_letter: bool = True,
+    panel_label: str = "a",
 ) -> None:
     """Heatmap with target-level threshold-hit glyphs.
 
@@ -344,9 +350,9 @@ def render_panel_b(
     ax.set_axis_off()
     add_panel_heading(
         ax,
-        "",
+        panel_label if draw_panel_letter else "",
         "Covariate boundary",
-        title_x=0.00,
+        title_x=0.08 if draw_panel_letter else 0.00,
         y=1.055,
         label_fontsize=FIG5_MAIN_LETTER_FS if main_fig else 8.5,
         title_fontsize=FIG5_MAIN_TITLE_FS if main_fig else 8.4,
@@ -604,14 +610,15 @@ def render_temporal_target_shift_box(
     main_fig: bool = False,
     draw_panel_letter: bool = True,
     fig5_composite: bool = False,
+    panel_label: str = "c",
 ) -> None:
     """K562 per-target 7d vs 13d |real shift| with paired boxplot, lines, and two-sided Wilcoxon P."""
     if main_fig:
         add_panel_heading(
             ax,
-            "",
+            panel_label if draw_panel_letter else "",
             "K562 temporal shift magnitude",
-            title_x=0.00,
+            title_x=0.08 if draw_panel_letter else 0.00,
             y=1.055,
             label_fontsize=FIG5_MAIN_LETTER_FS,
             title_fontsize=FIG5_MAIN_TITLE_FS,
@@ -620,9 +627,9 @@ def render_temporal_target_shift_box(
         ti_fs = 4.2 if compact else 5.6
         add_panel_heading(
             ax,
-            "",
+            panel_label if draw_panel_letter else "",
             "Per-target |shift|" if compact else "Per-target |shift| (K562)",
-            title_x=0.00,
+            title_x=0.08 if draw_panel_letter else 0.00,
             y=1.055,
             label_fontsize=8.5,
             title_fontsize=ti_fs,
@@ -766,6 +773,7 @@ def render_endpoint_hierarchy(
     plot_ax: plt.Axes | None = None,
     main_fig: bool = False,
     draw_panel_letter: bool = True,
+    panel_label: str = "b",
 ) -> None:
     """Endpoint hierarchy as a paired dumbbell plot.
 
@@ -774,20 +782,32 @@ def render_endpoint_hierarchy(
     """
     pax = plot_ax if plot_ax is not None else ax
     if plot_ax is not None:
-        add_panel_heading(ax, "", "Endpoint hierarchy", title_x=0.00, y=1.055)
+        add_panel_heading(
+            ax,
+            panel_label if draw_panel_letter else "",
+            "Endpoint hierarchy",
+            title_x=0.08 if draw_panel_letter else 0.00,
+            y=1.055,
+        )
         ax.set_axis_off()
     elif main_fig:
         add_panel_heading(
             ax,
-            "",
+            panel_label if draw_panel_letter else "",
             "Endpoint hierarchy",
-            title_x=0.00,
+            title_x=0.08 if draw_panel_letter else 0.00,
             y=1.055,
             label_fontsize=FIG5_MAIN_LETTER_FS,
             title_fontsize=FIG5_MAIN_TITLE_FS,
         )
     else:
-        add_panel_heading(ax, "", "Endpoint hierarchy", title_x=0.00, y=1.055)
+        add_panel_heading(
+            ax,
+            panel_label if draw_panel_letter else "",
+            "Endpoint hierarchy",
+            title_x=0.08 if draw_panel_letter else 0.00,
+            y=1.055,
+        )
 
     plot = df.copy().sort_values("context")
     crispr = plot.loc[plot["platform_pair"].eq("crispr")].set_index("context").loc[CONTEXT_ORDER].reset_index()
@@ -981,10 +1001,16 @@ def render_combined(root: Path, sources: dict[str, pd.DataFrame], panel_outputs:
     ax_a = fig.add_subplot(gs[0, 0])
     ax_b = fig.add_subplot(gs[0, 1])
     ax_c = fig.add_subplot(gs[1, 0])
-    render_panel_b(ax_a, sources["a"], composite=True, main_fig=True, draw_panel_letter=True)
-    render_panel_d(ax_b, sources["b"], compact=False, plot_ax=None, main_fig=True, draw_panel_letter=True)
+    render_panel_b(ax_a, sources["a"], composite=True, main_fig=True, draw_panel_letter=True, panel_label="a")
+    render_panel_d(ax_b, sources["b"], compact=False, plot_ax=None, main_fig=True, draw_panel_letter=True, panel_label="b")
     render_temporal_target_shift_box(
-        ax_c, sources["c"], compact=False, main_fig=True, draw_panel_letter=True, fig5_composite=True
+        ax_c,
+        sources["c"],
+        compact=False,
+        main_fig=True,
+        draw_panel_letter=True,
+        fig5_composite=True,
+        panel_label="c",
     )
     fig.subplots_adjust(left=0.08, right=0.98, top=0.95, bottom=0.07)
 

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_图层_1" data-name="图层_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 621.6 393.1">
+  <!-- Generator: Adobe Illustrator 29.0.0, SVG Export Plug-In . SVG Version: 2.1.0 Build 186)  -->
+  <defs>
+    <style>
+      .st0, .st1, .st2, .st3, .st4 {
+        font-size: 10px;
+      }
+
+      .st0, .st2, .st5 {
+        fill: #111;
+        font-family: ArialMT, Arial;
+      }
+
+      .st6, .st7 {
+        fill: #f0f0f0;
+      }
+
+      .st6, .st8, .st9, .st10, .st11 {
+        stroke: #000;
+      }
+
+      .st7, .st12, .st13 {
+        opacity: .8;
+      }
+
+      .st1 {
+        fill: #9b5a30;
+      }
+
+      .st1, .st2, .st3, .st5, .st14, .st4 {
+        isolation: isolate;
+      }
+
+      .st1, .st3, .st14, .st4 {
+        font-family: Arial-BoldMT, Arial;
+        font-weight: 700;
+      }
+
+      .st8, .st13 {
+        fill: #fbefdd;
+      }
+
+      .st3 {
+        fill: #3b827a;
+      }
+
+      .st15 {
+        stroke: #111;
+        stroke-width: 1.1px;
+      }
+
+      .st15, .st16 {
+        fill: none;
+      }
+
+      .st12, .st10 {
+        fill: #e9f4f0;
+      }
+
+      .st5 {
+        font-size: 16px;
+      }
+
+      .st14 {
+        fill: #73729f;
+        font-size: 10.8px;
+      }
+
+      .st4 {
+        fill: #465261;
+      }
+
+      .st17, .st9 {
+        fill: #f9f7ee;
+      }
+
+      .st18, .st11 {
+        fill: #eeeffb;
+      }
+
+      .st16 {
+        stroke: #555;
+        stroke-dasharray: 6 5;
+      }
+    </style>
+  </defs>
+  <text class="st5" transform="translate(34.2 26.4)"><tspan x="0" y="0">Fixed 25/75 endpoint-category rule</tspan></text>
+  <rect class="st10" x="414.1" y="168.6" width="22" height="22"/>
+  <text class="st3" transform="translate(448.1 174.6)"><tspan x="0" y="0">Endpoint anchors</tspan></text>
+  <text class="st2" transform="translate(448.1 192.6)"><tspan x="0" y="0">High dependency / high shift</tspan></text>
+  <rect class="st11" x="414.1" y="211.1" width="22" height="22"/>
+  <text class="st14" transform="translate(448.1 217.1) scale(.9 1)"><tspan x="0" y="0">Shift-excess</tspan></text>
+  <text class="st2" transform="translate(448.1 235.1)"><tspan x="0" y="0">Low dependency / high shift</tspan></text>
+  <rect class="st8" x="414.1" y="253.7" width="22" height="22"/>
+  <text class="st1" transform="translate(448.1 259.7)"><tspan x="0" y="0">Dependency-excess</tspan></text>
+  <text class="st2" transform="translate(448.1 277.7)"><tspan x="0" y="0">High dependency / low shift</tspan></text>
+  <rect class="st6" x="414.1" y="296.2" width="22" height="22"/>
+  <text class="st4" transform="translate(448.1 302.2)"><tspan x="0" y="0">Low-information</tspan></text>
+  <text class="st2" transform="translate(448.1 320.2)"><tspan x="0" y="0">Low dependency / low shift</tspan></text>
+  <rect class="st9" x="414.1" y="338.7" width="22" height="22"/>
+  <text class="st2" transform="translate(448.1 344.7)"><tspan x="0" y="0">Middle band</tspan></text>
+  <text class="st2" transform="translate(448.1 362.7)"><tspan x="0" y="0">non-corner targets</tspan></text>
+  <rect class="st17" x="81.3" y="49.8" width="300" height="300"/>
+  <rect class="st12" x="273.4" y="49.8" width="107.9" height="75"/>
+  <rect class="st18" x="273.7" y="274.8" width="107.6" height="75"/>
+  <rect class="st13" x="81.3" y="49.8" width="108.6" height="75"/>
+  <rect class="st7" x="81.3" y="274.8" width="108.6" height="75"/>
+  <rect class="st15" x="81.3" y="49.8" width="300" height="300"/>
+  <line class="st16" x1="189.9" y1="49.8" x2="189.9" y2="349.8"/>
+  <line class="st16" x1="81.3" y1="274.8" x2="381.3" y2="274.8"/>
+  <line class="st16" x1="273.7" y1="49.8" x2="273.7" y2="349.8"/>
+  <line class="st16" x1="81.3" y1="124.8" x2="381.3" y2="124.8"/>
+  <text class="st2" transform="translate(78.6 367.8)"><tspan x="0" y="0">0</tspan></text>
+  <text class="st2" transform="translate(62.6 353.8)"><tspan x="0" y="0">0</tspan></text>
+  <text class="st2" transform="translate(184.4 367.8)"><tspan x="0" y="0">25</tspan></text>
+  <text class="st2" transform="translate(59.8 278.8)"><tspan x="0" y="0">25</tspan></text>
+  <text class="st2" transform="translate(268.2 367.8)"><tspan x="0" y="0">75</tspan></text>
+  <text class="st2" transform="translate(59.8 128.8)"><tspan x="0" y="0">75</tspan></text>
+  <text class="st2" transform="translate(373.1 367.8)"><tspan x="0" y="0">100</tspan></text>
+  <text class="st2" transform="translate(57.1 53.8)"><tspan x="0" y="0">100</tspan></text>
+  <text class="st2" transform="translate(107.1 380.8)"><tspan x="0" y="0">Observed transcriptomic shift percentile (within context)</tspan></text>
+  <text class="st2" transform="translate(39.4 270.4) rotate(-90)"><tspan x="0" y="0">CRISPR dependency percentile</tspan></text>
+  <text class="st2" transform="translate(52.1 304.1) rotate(-90)"><tspan x="0" y="0">(within context; higher = stronger dependency) </tspan></text>
+  <text class="st3" transform="translate(285 74.8)"><tspan x="0" y="0">Endpoint anchors</tspan></text>
+  <text class="st2" transform="translate(285.7 91.8)"><tspan x="0" y="0">High dependency /</tspan></text>
+  <text class="st2" transform="translate(307.4 108.8)"><tspan x="0" y="0">high shift</tspan></text>
+  <text class="st14" transform="translate(298.8 297.5) scale(.9 1)"><tspan x="0" y="0">Shift-excess</tspan></text>
+  <text class="st2" transform="translate(287 314.8)"><tspan x="0" y="0">Low dependency /</tspan></text>
+  <text class="st2" transform="translate(307.5 331.8)"><tspan x="0" y="0">high shift</tspan></text>
+  <text class="st1" transform="translate(87.6 74.8)"><tspan x="0" y="0">Dependency-excess</tspan></text>
+  <text class="st2" transform="translate(93.9 91.8)"><tspan x="0" y="0">High dependency /</tspan></text>
+  <text class="st2" transform="translate(117.6 108.8)"><tspan x="0" y="0">low shift</tspan></text>
+  <text class="st4" transform="translate(96.5 297.8)"><tspan x="0" y="0">Low-information</tspan></text>
+  <text class="st2" transform="translate(95.1 314.8)"><tspan x="0" y="0">Low dependency /</tspan></text>
+  <text class="st2" transform="translate(117.6 331.8)"><tspan x="0" y="0">low shift</tspan></text>
+  <text class="st2" transform="translate(204.1 189.8)"><tspan x="0" y="0">Middle band</tspan></text>
+  <text class="st2" transform="translate(205.8 202.4)"><tspan x="0" y="0">non-corner </tspan></text>
+  <text class="st0" transform="translate(216.1 215.5)"><tspan x="0" y="0">targets</tspan></text>
+</svg>

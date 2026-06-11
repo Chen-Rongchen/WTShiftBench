@@ -2,6 +2,8 @@
   "datasets": [
     {
       "cell_line": "K562_essential_day7",
+      "official_context": "K562_essential_day6",
+      "context_alias_note": "Historical local identifier retained for compatibility; author figshare record labels K562 essential as day 6 post-transduction.",
       "dataset_role": "supplementary",
       "depmap_model_id": "ACH-000551",
       "source_kind": "h5ad_obs",

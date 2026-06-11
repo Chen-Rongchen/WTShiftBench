@@ -2,8 +2,13 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
+
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(PROJECT_ROOT))
+sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
 import anndata as ad
 import numpy as np
@@ -28,9 +33,6 @@ from wtbench.truth_bridge import (
     load_single_feature_calls,
     log_normalize_csr,
 )
-
-
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 
 def log_stage(stage: str, **fields: object) -> None:
@@ -222,6 +224,9 @@ def run_one_cell_line(
         weight_decay=float(runtime["weight_decay"]),
     )
     log_stage("train_done", cell_line=spec.cell_line)
+    checkpoint_dir = cache_dir / "trained_model"
+    gears_model.save_model(str(checkpoint_dir))
+    log_stage("checkpoint_saved", cell_line=spec.cell_line, checkpoint_dir=checkpoint_dir)
 
     log_stage("predict_start", cell_line=spec.cell_line, target_count=len(target_order))
     transcriptome_predictions = predict_transcriptomes(
