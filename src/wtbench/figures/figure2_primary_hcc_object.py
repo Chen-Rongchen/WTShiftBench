@@ -10,15 +10,15 @@ from matplotlib.patches import Patch
 import numpy as np
 import pandas as pd
 
-from wtbench.manuscript.figure_io import ensure_dir, repo_root, write_tsv
-from wtbench.manuscript.hash_manifest import write_figure_manifest, write_panel_manifest
-from wtbench.manuscript.manuscript_style import COLORS, apply_manuscript_style, clean_axes, finalize_manuscript_figure, muted_diverging_cmap
+from wtbench.figures.figure_io import ensure_dir, repo_root, write_tsv
+from wtbench.figures.hash_manifest import write_figure_manifest, write_panel_manifest
+from wtbench.figures.manuscript_style import COLORS, apply_manuscript_style, clean_axes, finalize_manuscript_figure, muted_diverging_cmap
 
 
 FIGURE_ID = "figure2"
 PUBLIC_FIGURE_ID = "Figure_2"
 FIGURE_TITLE = "Primary HCC contexts establish the endpoint-aligned recovery object"
-SCRIPT_PATH = Path("scripts/manuscript/build_figure2_anchor_tiering.py")
+SCRIPT_PATH = Path("scripts/figures/build_figure2.py")
 CLAIM_BOUNDARY = (
     "HCC38/HCC1143 define the primary endpoint-recovery object for model audit. "
     "Anchor and covariate summaries qualify claim wording and do not establish "

@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
-SERIES_DIR="/home/data/gz0705/WTKO/data/raw/gse264667/series"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+SERIES_DIR="$ROOT/data/raw/gse264667/series"
 EXPECTED_JURKAT=9366490264
 EXPECTED_HEPG2=5614460941
 
@@ -20,10 +21,10 @@ while true; do
         echo ""
         echo "=== BOTH FILES COMPLETE ==="
         echo "Verifying jurkat..."
-        python3 /home/data/gz0705/WTKO/scripts/download/verify_h5ad.py "$SERIES_DIR/GSE264667_jurkat_raw_singlecell_01.h5ad" || true
+        python3 "$ROOT/scripts/download/verify_h5ad.py" "$SERIES_DIR/GSE264667_jurkat_raw_singlecell_01.h5ad" || true
         echo ""
         echo "Verifying hepg2..."
-        python3 /home/data/gz0705/WTKO/scripts/download/verify_h5ad.py "$SERIES_DIR/GSE264667_hepg2_raw_singlecell_01.h5ad" || true
+        python3 "$ROOT/scripts/download/verify_h5ad.py" "$SERIES_DIR/GSE264667_hepg2_raw_singlecell_01.h5ad" || true
         echo "=== DONE at $(date) ==="
         break
     fi

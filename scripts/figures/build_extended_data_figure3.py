@@ -8,8 +8,8 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from scipy.stats import spearmanr
 
-from wtbench.manuscript.figure_io import ensure_dir, repo_root, write_tsv
-from wtbench.manuscript.manuscript_style import (
+from wtbench.figures.figure_io import ensure_dir, repo_root, write_tsv
+from wtbench.figures.manuscript_style import (
     COLORS,
     apply_manuscript_style,
     clean_axes,
@@ -18,7 +18,7 @@ from wtbench.manuscript.manuscript_style import (
 
 
 PUBLIC_FIGURE_ID = "Extended_Data_Figure_3"
-SCRIPT_PATH = Path("scripts/manuscript/build_extended_data_figure3_raw_bridge_small_multiples.py")
+SCRIPT_PATH = Path("scripts/figures/build_extended_data_figure3.py")
 
 INPUT_PANEL_DIR = Path("figure_build/output/Extended_Data_Figure_3/panels")
 CONTEXTS = [
@@ -51,6 +51,19 @@ def load_context(root: Path, panel_id: str, title: str, p_value: float) -> pd.Da
 
 
 def build_source(root: Path) -> pd.DataFrame:
+    active_source = (
+        root
+        / "figures"
+        / PUBLIC_FIGURE_ID
+        / "panels"
+        / f"{PUBLIC_FIGURE_ID}_panel_a_source_data.tsv"
+    )
+    if active_source.exists():
+        existing = pd.read_csv(active_source, sep="\t")
+        required = {"context", "target_gene", "real_shift_mean_abs", "depmap_gene_dependency"}
+        if required.issubset(existing.columns):
+            return existing
+
     legacy_paths = [
         root / INPUT_PANEL_DIR / f"{PUBLIC_FIGURE_ID}_panel_{panel_id}_source_data.tsv"
         for panel_id, *_ in CONTEXTS

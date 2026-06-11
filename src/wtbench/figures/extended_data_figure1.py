@@ -12,9 +12,9 @@ import numpy as np
 import pandas as pd
 from matplotlib.lines import Line2D
 
-from wtbench.manuscript.figure_io import ensure_dir, repo_root, write_tsv
-from wtbench.manuscript.hash_manifest import write_figure_manifest, write_panel_manifest
-from wtbench.manuscript.manuscript_style import COLORS, apply_manuscript_style, clean_axes, finalize_manuscript_figure
+from wtbench.figures.figure_io import ensure_dir, repo_root, write_tsv
+from wtbench.figures.hash_manifest import write_figure_manifest, write_panel_manifest
+from wtbench.figures.manuscript_style import COLORS, apply_manuscript_style, clean_axes, finalize_manuscript_figure
 
 warnings.filterwarnings("ignore", category=FutureWarning)
 warnings.filterwarnings("ignore", category=UserWarning)
@@ -22,7 +22,7 @@ warnings.filterwarnings("ignore", category=UserWarning)
 FIGURE_ID = "extended_data_figure1"
 PUBLIC_FIGURE_ID = "Extended_Data_Figure_1"
 FIGURE_TITLE = "Dataset inventory and perturbation-readout quality control"
-SCRIPT_PATH = Path("scripts/manuscript/build_extended_data_figure1.py")
+SCRIPT_PATH = Path("scripts/figures/build_extended_data_figure1.py")
 CLAIM_BOUNDARY = (
     "Extended Data Fig. 1 provides descriptive dataset familiarization and target-gene "
     "readout checks. These panels do not define endpoint categories, model scores, or "
@@ -305,7 +305,7 @@ def build_panel_b_source(root: Path) -> pd.DataFrame:
     materialized_path = root / MATERIALIZED_UMAP_SOURCE
     if not materialized_path.exists():
         raise FileNotFoundError(
-            f"{materialized_path} missing. Run scripts/manuscript/materialize_edfig1_missing_profiles.py "
+            f"{materialized_path} missing. Run scripts/figures/materialize_extended_data_figure1.py "
             "with the gears environment before building Extended Data Fig. 1."
         )
     materialized = pd.read_csv(materialized_path, sep="\t")
@@ -338,7 +338,7 @@ def build_panel_c_source(root: Path) -> pd.DataFrame:
     materialized_path = root / MATERIALIZED_EXPRESSION_SOURCE
     if not materialized_path.exists():
         raise FileNotFoundError(
-            f"{materialized_path} missing. Run scripts/manuscript/materialize_edfig1_missing_profiles.py "
+            f"{materialized_path} missing. Run scripts/figures/materialize_extended_data_figure1.py "
             "with the gears environment before building Extended Data Fig. 1."
         )
     missing_expression = pd.read_csv(materialized_path, sep="\t")

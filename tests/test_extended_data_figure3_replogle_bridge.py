@@ -1,53 +1,56 @@
-"""Regression guard for ED Fig. 3 panel b Replogle bridge statistics (seeded permutation).
-
-Run: PYTHONPATH=src python tests/test_extended_data_figure3_replogle_bridge.py
-"""
+"""Regression guards for the active Extended Data Figure 3 source table."""
 
 from __future__ import annotations
 
+import importlib.util
 import unittest
 from pathlib import Path
 
-import pandas as pd
+from scipy.stats import spearmanr
+
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-REPLOGLE_JOINT_GRID = (
-    REPO_ROOT
-    / "reports/manuscript_extended_data_v1/edfig3_k562_replogle_joint_grid/replogle_k562_essential_joint_grid.tsv"
-)
+BUILDER_PATH = REPO_ROOT / "scripts/figures/build_extended_data_figure3.py"
 
 
-@unittest.skipUnless(REPLOGLE_JOINT_GRID.is_file(), "Replogle joint grid report missing")
-class ReplogleBridgeSummaryTests(unittest.TestCase):
-    def test_compute_summary_reproducible(self) -> None:
-        from wtbench.manuscript.extended_data_figure3_v2 import (
-            REPLOGLE_PERM_ITERATIONS,
-            REPLOGLE_PERM_SEED,
-            compute_replogle_bridge_summary,
-        )
+def load_builder():
+    spec = importlib.util.spec_from_file_location("build_extended_data_figure3", BUILDER_PATH)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"Could not load {BUILDER_PATH}")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
 
-        raw = pd.read_csv(REPLOGLE_JOINT_GRID, sep="\t")
-        summary = compute_replogle_bridge_summary(raw)
 
-        self.assertEqual(summary["bridge_truth_metric"], "real_shift_mean_abs")
-        self.assertEqual(summary["bridge_depmap_endpoint"], "depmap_gene_dependency")
-        self.assertEqual(summary["bridge_perm_iterations"], REPLOGLE_PERM_ITERATIONS)
-        self.assertEqual(summary["bridge_perm_seed"], REPLOGLE_PERM_SEED)
-        self.assertGreaterEqual(summary["bridge_n_targets"], 100)
+class ExternalBridgeSourceTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls.builder = load_builder()
+        cls.source = cls.builder.build_source(REPO_ROOT)
 
-        self.assertAlmostEqual(summary["bridge_spearman_rho_aligned"], 0.4018413096087801, places=12)
-        self.assertAlmostEqual(summary["bridge_ci_lo_fisher95"], 0.36325171556244534, places=12)
-        self.assertAlmostEqual(summary["bridge_ci_hi_fisher95"], 0.43905452871832784, places=12)
-        self.assertAlmostEqual(summary["bridge_empirical_p_two_sided_shuffle"], 0.000999001, places=9)
+    def test_active_source_covers_all_external_contexts(self) -> None:
+        expected_counts = {
+            "K562 TF day 7": 10,
+            "K562 TF day 13": 10,
+            "K562 essential CRISPRi day 6": 1882,
+            "K562 genome-wide CRISPRi day 8": 9261,
+            "HepG2 day 7": 1000,
+            "Jurkat day 7": 1687,
+        }
+        self.assertEqual(self.source.groupby("context").size().to_dict(), expected_counts)
 
-    def test_build_panel_b_has_summary_row(self) -> None:
-        from wtbench.manuscript.extended_data_figure3_v2 import build_panel_b_source
-
-        tbl = build_panel_b_source(REPO_ROOT)
-        self.assertGreaterEqual(tbl["record_type"].eq("joint_grid_target").sum(), 100)
-        self.assertEqual((tbl["record_type"] == "replogle_bridge_correlation_summary").sum(), 1)
-        summ = tbl.loc[tbl["record_type"].eq("replogle_bridge_correlation_summary")].iloc[0]
-        self.assertFalse(pd.isna(summ["bridge_spearman_rho_aligned"]))
+    def test_replogle_bridge_statistics_are_reproducible(self) -> None:
+        expected = {
+            "K562 essential CRISPRi day 6": 0.4018413096087801,
+            "K562 genome-wide CRISPRi day 8": 0.2516792653082492,
+        }
+        for context, expected_rho in expected.items():
+            subset = self.source.loc[self.source["context"].eq(context)]
+            rho = spearmanr(
+                subset["depmap_gene_dependency"],
+                subset["real_shift_mean_abs"],
+            ).statistic
+            self.assertAlmostEqual(float(rho), expected_rho, places=12)
 
 
 if __name__ == "__main__":

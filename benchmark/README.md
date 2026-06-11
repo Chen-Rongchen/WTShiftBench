@@ -50,9 +50,9 @@ Run from the repository root:
 
 ```bash
 pixi install --environment core
-pixi run --environment core build-resource-registry
+pixi run --environment core build-registry
 pixi run --environment core validate-release
-./reproduce_figures.sh
+pixi run --environment core build-figures
 ```
 
 Large input objects are acquired separately; see
