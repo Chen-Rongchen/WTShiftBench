@@ -31,7 +31,7 @@ CLAIM_BOUNDARY = (
 )
 
 BRIDGE = Path("reports/external_bridge_form_robustness/observed_shift_depmap_bridge_summary.tsv")
-GSE264667_GRID = Path("resource_registry/gse264667_endpoint_category_grid.tsv")
+GSE264667_GRID = Path("benchmark/registry/gse264667_endpoint_category_grid.tsv")
 
 ORDERED_CONTEXTS = [
     "HCC38 day 14",

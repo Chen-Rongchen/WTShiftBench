@@ -1,9 +1,0 @@
-fine_axis	macro_axis	n_genes	genes	fraction_Q1	fraction_Q2	fraction_shift_excess	mean_shift	mean_liability	mean_residual	architecture_role
-unresolved_3	unresolved	2	E2F4,NR2C2	0.0	0.0	0.0	0.003063	0.123712	-6.4e-05	mixed
-unresolved_5	translation initiation / RNA processing	2	CREB1,ETS1	0.0	0.0	0.0	0.002721	-0.108962	0.000323	mixed
-signaling / stress	signaling / stress	1	IRF1	0.0	0.0	1.0	0.003242	0.02708	0.000417	shift_excess
-transcription regulation	transcription regulation	1	YY1	1.0	0.0	0.0	0.00532	0.626152	0.000621	backbone
-transcription regulation_2	transcription regulation	1	EGR1	0.0	0.0	0.0	0.002842	0.178462	-0.000456	mixed
-unresolved	unresolved	1	ELF1	0.0	0.0	0.0	0.00232	-0.004464	-0.000406	mixed
-unresolved_2	translation / chromatin machinery	1	GABPA	1.0	0.0	0.0	0.003234	0.366346	-0.000653	backbone
-unresolved_4	unresolved	1	ELK1	0.0	0.0	0.0	0.002465	-0.075055	-4e-05	mixed

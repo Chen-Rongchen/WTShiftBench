@@ -18,7 +18,7 @@ The active model audit reports:
 Output homogenization is a warning diagnostic, not a performance metric.
 Target-identity preservation compares predicted and observed target-target
 similarity geometry. Full definitions are in
-[`metric_definition_registry.tsv`](../resource_registry/metric_definition_registry.tsv).
+[`metric_definition_registry.tsv`](registry/metric_definition_registry.tsv).
 
 ## Evidence layers
 
@@ -37,9 +37,9 @@ The active audit includes formal perturbation-response entrants, repurposed
 foundation-model entrants, linear controls and diagnostic references. Entrant
 status and allowed interpretations are recorded in:
 
-- [`model_entrant_registry.tsv`](../resource_registry/model_entrant_registry.tsv)
-- [`model_output_contract_audit.tsv`](../resource_registry/model_output_contract_audit.tsv)
-- [`claim_boundary_registry.tsv`](../resource_registry/claim_boundary_registry.tsv)
+- [`model_entrant_registry.tsv`](registry/model_entrant_registry.tsv)
+- [`model_output_contract_audit.tsv`](registry/model_output_contract_audit.tsv)
+- [`claim_boundary_registry.tsv`](registry/claim_boundary_registry.tsv)
 
 Finite-budget runs define sensitivity envelopes and do not replace formal
 entries in the primary audit.

@@ -55,7 +55,7 @@ run_python scripts/release/normalize_public_labels.py figures
 # the same publication-label normalization before calculating file hashes.
 run_python scripts/pipeline/build_resource_registry.py \
     --config configs/resource_registry_v1.json
-cp resource_registry/figure_source_data_manifest.tsv \
+cp benchmark/registry/figure_source_data_manifest.tsv \
    source_data/figure_source_data_manifest.tsv
 
 echo
