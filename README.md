@@ -18,8 +18,9 @@ is not a direct DepMap predictor or a broad model-generalization leaderboard.
   and Extended Data Figures 1-6.
 - `source_data/`: publication-facing figure source-data index.
 - `src/wtbench/`: reusable scoring and figure-generation code.
-- `scripts/`: data preparation, model adapters and analysis entry points.
-- `configs/`: frozen analysis and model-run configurations.
+- `scripts/figures/`: stable entry points for active figure panels.
+- `scripts/`: data acquisition, preprocessing, model adapters and analyses.
+- `configs/`: frozen, repository-relative analysis and model configurations.
 
 Large raw single-cell objects, model-training intermediates, manuscripts,
 assembled figures and raster exports are not included. Dataset accessions and
@@ -35,7 +36,7 @@ git clone https://github.com/Chen-Rongchen/WTShiftBench.git
 cd WTShiftBench
 
 pixi install --environment core
-pixi run --environment core env-check-core
+pixi run --environment core check-env
 ```
 
 Model-specific environments are isolated:
@@ -54,7 +55,7 @@ pixi install --environment cellot
 Build the active registries:
 
 ```bash
-pixi run --environment core build-resource-registry
+pixi run --environment core build-registry
 ```
 
 Validate the public release bundle:
@@ -66,16 +67,30 @@ pixi run --environment core validate-release
 Regenerate public figure panels after acquiring the required datasets:
 
 ```bash
-./reproduce_figures.sh
+pixi run --environment core build-figures
 ```
 
 Detailed benchmark definitions and scoring boundaries are documented in
 [`benchmark/README.md`](benchmark/README.md).
 
+The figure-to-script and figure-to-source-data mappings are indexed in
+[`source_data/figure_source_data_manifest.tsv`](source_data/figure_source_data_manifest.tsv).
+All repository paths are relative to the repository root.
+
+## Verification
+
+```bash
+pixi run --environment core test
+pixi run --environment core validate-release
+```
+
+The release validator rejects manuscripts, assembled figures, raster exports,
+prediction intermediates and machine-specific absolute paths.
+
 ## Citation
 
-The manuscript citation and permanent Zenodo DOI will be added after archival
-release. Until then, cite this repository and the corresponding GitHub release.
+Use the metadata in [`CITATION.cff`](CITATION.cff) and cite the versioned
+GitHub release corresponding to the analysis snapshot.
 
 ## License
 

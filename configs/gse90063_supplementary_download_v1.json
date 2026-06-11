@@ -6,12 +6,6 @@
   "manifest_path": "reports/gse90063_qc/gse90063_supplementary_manifest.tsv",
   "include_sample_supplementary": true,
   "include_series_supplementary": true,
-  "proxies": {
-    "https_proxy": "http://10.10.10.215:7897",
-    "http_proxy": "http://10.10.10.215:7897",
-    "all_proxy": "socks5://10.10.10.215:7897",
-    "use_all_proxy": false
-  },
   "download": {
     "resume": true,
     "overwrite": false,

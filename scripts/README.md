@@ -4,11 +4,11 @@ Command-line entry points for WTShiftBench. Scripts are grouped by purpose:
 
 | Subdirectory | Purpose | Examples |
 | --- | --- | --- |
+| `figures/` | Stable builders for active main and Extended Data panels | `build_figure2.py`, `build_extended_data_figure5.py` |
 | `download/` | Fetch raw public datasets | `replogle_k562_essential.py`, `geo_supplementary.py` |
 | `preprocess/` | Convert raw `h5ad` files to the layout expected by the truth-bridge pipeline | `replogle_k562_essential.py`, `frangieh_2021_melanoma.py`, `replogle_rpe1.py`, `replogle_gwps_k562.py` |
 | `materialize/` | Build derived tables / signatures used downstream | `covariates.py`, `gse90063_k562_h5ad.py`, `hcc_gears_formal_h5ad.py`, `per_target_signature.py`, `axis_per_target_signature.py`, `gears_backbone_sweep.py` |
 | `pipeline/` | Per-model and per-analysis runners (training, scoring, sensitivity, validation, registry building) | `build_resource_registry.py`, `gears_hcc_predictions.py`, `scgpt_hcc_predictions.py`, `geneformer_hcc_predictions.py`, `truth_bridge_decomposition.py`, `truth_bridge_sensitivity.py`, `closure_pipeline.py`, `validate_closure_artifacts.py`, … |
-| `manuscript/` | Low-level manuscript figure renderers used by the public `figure_build/` wrappers | `build_figure{1..4}_*.py`, `build_figure6_boundary.py`, `build_extended_data_figure*.py` |
 | `utils/` | Environment probes and ad-hoc converters | `cuda_env_probe.py`, `convert_rnai_demeter2_to_depmap_endpoints.py`, `convert_scp542_rds.R` |
 
 ## Conventions
@@ -22,13 +22,13 @@ Command-line entry points for WTShiftBench. Scripts are grouped by purpose:
 For a one-shot rerun of the public main and Extended Data figure bundle:
 
 ```bash
-bash reproduce_figures.sh
+pixi run --environment core build-figures
 ```
 
-For a single public figure wrapper:
+For a single public figure:
 
 ```bash
-PYTHONPATH=src:scripts:. python figure_build/figure1/build_figure1_truth_object.py
+pixi run --environment core python scripts/figures/build_figure3.py --panels-only
 ```
 
 See `DATA_AVAILABILITY.md` and the top-level `README.md` for the full
@@ -45,7 +45,7 @@ python scripts/pipeline/build_resource_registry.py --config configs/resource_reg
 or via Pixi:
 
 ```bash
-pixi run build-resource-registry
+pixi run --environment core build-registry
 ```
 
 ## Running model score-calibration controls
@@ -60,22 +60,7 @@ python scripts/pipeline/model_score_calibration_controls.py --config configs/mod
 or via Pixi:
 
 ```bash
-pixi run run-model-score-calibration
-```
-
-## Auditing candidate model families
-
-The fixed candidate model-family extension set can be audited without training
-new entrants:
-
-```bash
-python scripts/pipeline/audit_candidate_model_eligibility.py --config configs/candidate_model_eligibility_v1.json
-```
-
-or via Pixi:
-
-```bash
-pixi run audit-candidate-models
+pixi run --environment core run-model-score-calibration
 ```
 
 ## Preparing CPA HCC inputs

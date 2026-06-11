@@ -12,9 +12,9 @@ import matplotlib.image as mpimg
 import numpy as np
 import pandas as pd
 
-from wtbench.manuscript.figure_io import ensure_dir, repo_root, write_tsv
-from wtbench.manuscript.hash_manifest import write_panel_manifest
-from wtbench.manuscript.manuscript_style import (
+from wtbench.figures.figure_io import ensure_dir, repo_root, write_tsv
+from wtbench.figures.hash_manifest import write_panel_manifest
+from wtbench.figures.manuscript_style import (
     COLORS,
     apply_manuscript_style,
     clean_axes,
@@ -25,7 +25,7 @@ from wtbench.manuscript.manuscript_style import (
 
 FIGURE_ID = "extended_data_figure6"
 PUBLIC_FIGURE_ID = "Extended_Data_Figure_6"
-SCRIPT_PATH = Path("scripts/manuscript/build_extended_data_figure6_response_programs.py")
+SCRIPT_PATH = Path("scripts/figures/build_extended_data_figure6.py")
 CLAIM_BOUNDARY = (
     "Response-program enrichment panels annotate category-level response signatures "
     "and aggregation robustness. They do not establish causal pathway mechanisms, "

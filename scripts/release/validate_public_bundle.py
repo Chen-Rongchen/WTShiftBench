@@ -6,7 +6,9 @@ entering the public release.
 
 from __future__ import annotations
 
+import re
 import subprocess
+from pathlib import Path
 from pathlib import PurePosixPath
 
 
@@ -25,6 +27,7 @@ ALLOWED_ACTIVE_PANELS = {
 
 ALLOWED_TOP_LEVEL = {
     ".gitignore",
+    ".github",
     ".zenodo.json",
     "CITATION.cff",
     "DATA_AVAILABILITY.md",
@@ -42,6 +45,30 @@ ALLOWED_TOP_LEVEL = {
     "source_data",
     "src",
     "tests",
+}
+
+MACHINE_PATH_PATTERNS = (
+    re.compile(r"/home/[^/\s]+/"),
+    re.compile(r"/Users/[^/\s]+/"),
+    re.compile(r"/mnt/(?:data|scratch|home)/"),
+    re.compile(r"/scratch/"),
+    re.compile(r"file://"),
+)
+
+TEXT_SUFFIXES = {
+    ".cff",
+    ".csv",
+    ".json",
+    ".md",
+    ".py",
+    ".r",
+    ".sh",
+    ".svg",
+    ".toml",
+    ".tsv",
+    ".txt",
+    ".yaml",
+    ".yml",
 }
 
 
@@ -74,7 +101,9 @@ def validate_path(path_text: str) -> list[str]:
         errors.append("model prediction intermediates are excluded")
 
     if path.parts and path.parts[0] == "figures":
-        if "panels" not in path.parts:
+        if path == PurePosixPath("figures/README.md"):
+            pass
+        elif "panels" not in path.parts:
             errors.append("only panel-level figure files are public")
         elif path.suffix.lower() not in {".svg", ".tsv", ".json"}:
             errors.append("panel files must be SVG, TSV or JSON")
@@ -90,8 +119,30 @@ def validate_path(path_text: str) -> list[str]:
     return [f"{path_text}: {message}" for message in errors]
 
 
+def validate_contents(path_text: str) -> list[str]:
+    path = Path(path_text)
+    if path_text == "scripts/release/validate_public_bundle.py":
+        return []
+    if path.suffix.lower() not in TEXT_SUFFIXES or not path.is_file():
+        return []
+    try:
+        text = path.read_text(encoding="utf-8")
+    except UnicodeDecodeError:
+        return []
+    errors = []
+    for pattern in MACHINE_PATH_PATTERNS:
+        match = pattern.search(text)
+        if match:
+            errors.append(
+                f"{path_text}: machine-specific absolute path is forbidden ({match.group(0)})"
+            )
+    return errors
+
+
 def main() -> None:
-    errors = [error for path in tracked_paths() for error in validate_path(path)]
+    paths = tracked_paths()
+    errors = [error for path in paths for error in validate_path(path)]
+    errors.extend(error for path in paths for error in validate_contents(path))
     if errors:
         raise SystemExit("Public release validation failed:\n" + "\n".join(errors))
     print("Public release validation passed.")

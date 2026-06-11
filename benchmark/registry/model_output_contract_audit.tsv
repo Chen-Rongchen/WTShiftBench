@@ -19,5 +19,3 @@ CellOT	HCC38	P2_candidate_sensitivity_entrant	available	yes	no	no for primary cl
 CellOT	HCC1143	P2_candidate_sensitivity_entrant	available	yes	no	no for primary claims	optional sensitivity entrant
 scGen	HCC38	positive_entrant	available	yes	no	no for primary claims	most consistent current within-context target-observed endpoint-recovery entrant
 scGen	HCC1143	positive_entrant	available	yes	no	no for primary claims	most consistent current within-context target-observed endpoint-recovery entrant
-scDisInFact	HCC38	registry_only	not_scored_or_reference	yes	no	no for primary claims	registry-only unless benchmark design expands
-scDisInFact	HCC1143	registry_only	not_scored_or_reference	yes	no	no for primary claims	registry-only unless benchmark design expands

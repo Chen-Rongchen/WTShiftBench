@@ -99,7 +99,7 @@ scipy = "*"
 matplotlib = "*"
 seaborn = "*"
 
-# Optional candidate model features. These are isolated because each upstream
+# Optional formal model features. These are isolated because each upstream
 # package carries its own dependency assumptions.
 [feature.cellot.dependencies]
 python = "3.9.*"
@@ -110,12 +110,6 @@ wheel = "*"
 [feature.scgen.dependencies]
 python = "3.10.*"
 pip = "*"
-wheel = "*"
-
-[feature.scdisinfact.dependencies]
-python = "3.10.*"
-pip = "*"
-git = "*"
 wheel = "*"
 
 # ============================================================
@@ -150,10 +144,6 @@ features = ["cellot"]
 solve-group = "scgen"
 features = ["scgen"]
 
-[environments.scdisinfact]
-solve-group = "scdisinfact"
-features = ["scdisinfact"]
-
 # ============================================================
 # Tasks: 环境安装
 # ============================================================
@@ -185,10 +175,6 @@ description = "安装 CellOT 候选环境"
 cmd = "pixi install --environment scgen"
 description = "安装 scGen 候选环境"
 
-[tasks.env-install-scdisinfact]
-cmd = "pixi install --environment scdisinfact"
-description = "安装 scDisInFact 候选环境"
-
 [tasks.pip-install-gears]
 default-environment = "gears"
 cmd = "python -m pip install --timeout 120 --no-deps cell-gears==0.1.2"
@@ -219,14 +205,9 @@ default-environment = "scgen"
 cmd = "python -m pip install --timeout 120 --constraint configs/env/scgen_constraints_v1.txt scgen"
 description = "在 scGen Pixi 环境内安装 PyPI 包"
 
-[tasks.pip-install-scdisinfact]
-default-environment = "scdisinfact"
-cmd = "rm -rf /tmp/wtko_scdisinfact_install && git clone --depth 1 https://github.com/ZhangLabGT/scDisInFact /tmp/wtko_scdisinfact_install && python -m pip install --timeout 120 --constraint configs/env/scdisinfact_constraints_v1.txt /tmp/wtko_scdisinfact_install"
-description = "在 scDisInFact Pixi 环境内安装官方源码包"
-
 [tasks.pip-install-model-packages]
-cmd = "pixi run --environment gears pip-install-gears && pixi run --environment scgpt pip-install-scgpt && pixi run --environment geneformer pip-install-geneformer && pixi run --environment cpa pip-install-cpa && pixi run --environment cellot pip-install-cellot && pixi run --environment scgen pip-install-scgen && pixi run --environment scdisinfact pip-install-scdisinfact"
-description = "安装各模型环境的 PyPI/Git 包"
+cmd = "pixi run --environment gears pip-install-gears && pixi run --environment scgpt pip-install-scgpt && pixi run --environment geneformer pip-install-geneformer && pixi run --environment cpa pip-install-cpa && pixi run --environment cellot pip-install-cellot && pixi run --environment scgen pip-install-scgen"
+description = "Install packages required by the formal model environments"
 
 [tasks.fetch-geneformer-gf-12l-95m-i4096]
 cmd = "hf download ctheodoris/Geneformer --include \"gf-12L-95M-i4096/*\" --local-dir models/pretrained/geneformer_gf_12l_95m_i4096 --revision 933ca80e39d421c47a12168699766bb7e4e2c197"
@@ -267,17 +248,13 @@ description = "验证 CellOT 候选环境"
 cmd = "python scripts/env/check_optional_model_env.py scgen"
 description = "验证 scGen 候选环境"
 
-[tasks.env-check-scdisinfact]
-cmd = "python scripts/env/check_optional_model_env.py scdisinfact"
-description = "验证 scDisInFact 候选环境"
-
 [tasks.check-envs]
 cmd = "pixi run --environment core env-check-core && pixi run --environment gears env-check-gears && pixi run --environment scgpt env-check-scgpt && pixi run --environment geneformer env-check-geneformer && pixi run --environment cpa env-check-cpa"
 description = "验证所有环境"
 
 [tasks.check-optional-model-envs]
-cmd = "pixi run --environment cellot env-check-cellot && pixi run --environment scgen env-check-scgen && pixi run --environment scdisinfact env-check-scdisinfact"
-description = "验证可选候选模型环境"
+cmd = "pixi run --environment cellot env-check-cellot && pixi run --environment scgen env-check-scgen"
+description = "Validate optional formal model environments"
 
 # ============================================================
 # Tasks: 版本检查
@@ -309,6 +286,43 @@ description = "打印所有环境版本信息"
 [tasks.test-stage2]
 cmd = "pytest tests/test_hcc_prediction_export.py tests/test_model_structure_scorer.py tests/test_truth_driven_bridge.py tests/test_truth_sensitivity.py"
 description = "运行当前 Stage 2 测试"
+
+# Stable public entry points used in README and CI.
+[tasks.setup]
+cmd = "pixi install --environment core"
+description = "Install the core reproducibility environment"
+
+[tasks.check-env]
+cmd = "python scripts/env/check_core_env.py"
+description = "Validate the core reproducibility environment"
+
+[tasks.test]
+cmd = "pytest -q"
+description = "Run the public test suite"
+
+[tasks.build-figures]
+cmd = "bash reproduce_figures.sh"
+description = "Regenerate active editable SVG panels and panel source data"
+
+[tasks.materialize-edfig1]
+cmd = "python scripts/figures/materialize_extended_data_figure1.py"
+description = "Materialize Extended Data Figure 1 profile and readout inputs"
+
+[tasks.build-registry]
+cmd = "python scripts/pipeline/build_resource_registry.py --config configs/resource_registry_v1.json && cp benchmark/registry/figure_source_data_manifest.tsv source_data/figure_source_data_manifest.tsv"
+description = "Rebuild the governed benchmark registry"
+
+[tasks.plan-data]
+cmd = "python scripts/download/build_dataset_acquisition_manifest.py --config configs/dataset_acquisition_registry_v1.json"
+description = "Generate the public dataset-acquisition plan"
+
+[tasks.download-gse90063]
+cmd = "python scripts/download/geo_supplementary.py --config configs/gse90063_supplementary_download_v1.json"
+description = "Download GSE90063 supplementary files"
+
+[tasks.download-gse264667]
+cmd = "python scripts/download/geo_supplementary.py --config configs/download_gse264667_supplementary_v1.json"
+description = "Download GSE264667 supplementary files"
 
 [tasks.wtbench]
 cmd = "python -m wtbench"
@@ -382,7 +396,7 @@ description = "汇总 HCC38 + HCC1143 的 CRISPR DepMap vs DEMETER2 RNAi endpoin
 
 [tasks.build-stage2-replogle-k562-gwps-day8]
 cmd = "python scripts/pipeline/build_truth_driven_bridge.py --config configs/truth_driven_bridge_replogle_k562_gwps_day8_v1.json"
-description = "构建 Replogle K562 GWPS day 8 CRISPRi truth 对 DepMap CRISPR endpoint 的 short-horizon external generalization bridge"
+description = "构建 Replogle K562 GWPS day 8 CRISPRi 的 boundary-aware bridge-form evidence"
 
 [tasks.run-stage2-k562-rnai-endpoint-consistency]
 cmd = "python scripts/pipeline/k562_rnai_endpoint_consistency.py --config configs/k562_rnai_endpoint_consistency_v1.json"
@@ -436,14 +450,10 @@ description = "汇总 GSE90063 K562 13d/7d temporal panel"
 cmd = "python scripts/pipeline/k562_13d_minimal_tradeoff_audit.py --config configs/k562_13d_minimal_model_tradeoff_audit_v1.json"
 description = "运行 GSE90063 K562 13d 最小 model-side architecture trade-off 方向审计"
 
-[tasks.render-manuscript-figure1]
-cmd = "python scripts/render_manuscript_figure1.py --config configs/manuscript/figure1_truth_object_v1.json"
-description = "渲染 manuscript Figure 1 truth object"
-
 [tasks.build-public-figures]
 default-environment = "core"
 cmd = "bash reproduce_figures.sh"
-description = "重建公开 GitHub figure bundle：figure_build/output/ 并同步 figures/"
+description = "Regenerate active public figure panels under figures/"
 
 [tasks.build-resource-registry]
 default-environment = "core"
@@ -493,7 +503,7 @@ description = "单个 HCC 模型跑完并 export 后，立即执行 endpoint/axi
 [tasks.audit-candidate-models]
 default-environment = "core"
 cmd = "python scripts/pipeline/audit_candidate_model_eligibility.py --config configs/candidate_model_eligibility_v1.json"
-description = "审计 CPA、CellOT、scGen、scDisInFact 候选模型家族的 eligibility"
+description = "Audit CPA, CellOT and scGen model-family eligibility"
 
 [tasks.prepare-cellot-hcc38-smoke]
 default-environment = "core"
@@ -574,16 +584,3 @@ description = "dry-run 准备 CPA HCC 输入 metadata；不写大型 H5AD"
 default-environment = "core"
 cmd = "python scripts/pipeline/prepare_cpa_hcc_inputs.py --config configs/cpa_hcc_input_preparation_v1.json --write-h5ad"
 description = "写出 CPA-ready HCC H5AD 文件"
-
-[tasks.build-edfig2-panel-e-reference]
-default-environment = "core"
-cmd = "python scripts/manuscript/build_edfig2_panel_e.py --reference"
-description = "重建 ED Fig 2 panel e reference 输出"
-
-[tasks.build-supplementary-table-index]
-cmd = "python scripts/manuscript/build_supplementary_table_index.py --config configs/manuscript/supplementary_tables_v1.json"
-description = "重建补充表 index / workbook"
-
-[tasks.build-public-materials-package]
-cmd = "python scripts/manuscript/build_public_materials_package.py --config configs/manuscript/public_materials_package_v1.json"
-description = "汇编公开材料包 manifest"

@@ -130,12 +130,11 @@ AGENTS.md
 backup/
 local_archive/
 
-# Manuscript source assembly tree is local only. Public figure build scripts and
-# outputs live under figure_build/.
+# Manuscript source assembly tree is local only. Public figure builders live
+# under scripts/figures/ and editable panels live under figures/.
 manuscript/
-!scripts/manuscript/
-!src/wtbench/manuscript/
-!src/wtbench/manuscript/**
+!src/wtbench/figures/
+!src/wtbench/figures/**
 
 # Legacy manuscript assembly outputs are local only.
 manuscript/figures/

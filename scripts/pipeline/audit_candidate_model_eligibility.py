@@ -235,9 +235,7 @@ def audit_model(
     )
 
     all_required_ok = context_contract_ok and coverage_ok and output_ok and truth_object_ok
-    if model_name == "scDisInFact":
-        decision = str(candidate.get("decision_if_ready", "registry_only"))
-    elif all_required_ok and package_ok:
+    if all_required_ok and package_ok:
         decision = str(candidate.get("decision_if_ready", "ready"))
     elif all_required_ok and not package_ok:
         decision = str(candidate.get("decision_if_missing_package", "pending_installation"))

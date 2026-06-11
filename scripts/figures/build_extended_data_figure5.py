@@ -23,7 +23,7 @@ from wtbench.hcc_prediction_export import (
     compute_truth_aligned_log_shift_matrix,
     load_config,
 )
-from wtbench.manuscript.manuscript_style import (
+from wtbench.figures.manuscript_style import (
     COLORS,
     apply_manuscript_style,
     clean_axes,

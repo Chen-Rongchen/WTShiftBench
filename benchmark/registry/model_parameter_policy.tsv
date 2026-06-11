@@ -3,6 +3,5 @@ GEARS	primary entrant	cell line	finite sweep (lr, n_layers, hidden_dim, edge_att
 CPA	P1 non-GNN perturbation-response entrant	cell line	default architecture + small fixed probe (hidden_dims, epochs)	yes	yes	target-level predicted shift	include if pass input/output/fixed-object/target-coverage
 scGen	P2 fallback historical generative baseline	cell line	default/fixed	yes	yes	target-level predicted shift	include if CPA fail or low-cost fallback needed
 CellOT	P2 optimal-transport sensitivity entrant	target/map	small target probe (5-10 targets)	yes	yes	predicted distribution shift	include only if per-target cost feasible
-scDisInFact	registry-only / lower priority	N/A	N/A	no	yes	N/A	exclude unless batch-condition disentanglement required
 scGPT	foundation embedding control	fixed embedding	fixed checkpoint, fixed layer/pooling	no	yes	embedding/control score	already included
 Geneformer	foundation embedding control	fixed embedding	fixed checkpoint, fixed layer/pooling	no	yes	embedding/control score	already included

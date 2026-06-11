@@ -12,10 +12,10 @@
     "exclusion_future_extension_registry.tsv": 8,
     "figure_source_data_manifest.tsv": 59,
     "metric_definition_registry.tsv": 3,
-    "model_eligibility_audits.tsv": 4,
-    "model_entrant_registry.tsv": 11,
-    "model_inclusion_exclusion_audit.tsv": 7,
-    "model_output_contract_audit.tsv": 22,
+    "model_eligibility_audits.tsv": 3,
+    "model_entrant_registry.tsv": 10,
+    "model_inclusion_exclusion_audit.tsv": 6,
+    "model_output_contract_audit.tsv": 20,
     "temporal_compatibility_audit.tsv": 5
   }
 }

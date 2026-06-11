@@ -4,5 +4,4 @@ scGPT and Geneformer	yes	Pretrained foundation-model embeddings provide represen
 CPA	yes	Non-GNN perturbation-response model family evaluated under the HCC38/HCC1143 output contract; current results define a boundary/negative case with high output homogenization and weak target-identity preservation in both primary contexts.	within-context endpoint-recovery entrant; not broad OOD generalization evidence
 CellOT	candidate	Transport-style perturbation mapping model family.	P2 sensitivity entrant if compatible
 scGen	yes	Historical generative perturbation-response baseline evaluated under the HCC38/HCC1143 output contract; current results define the strongest positive entrant in the evaluated panel.	within-context target-observed endpoint-recovery entrant; not broad OOD generalization evidence
-scDisInFact	registry_only	Condition/batch disentanglement family is documented but not central to target-level endpoint recovery.	registry-only
 broad additional foundation models	no	Foundation-model layer is already represented; additional stacking would shift focus away from endpoint-aligned recovery.	out of scope for current strengthening cycle
