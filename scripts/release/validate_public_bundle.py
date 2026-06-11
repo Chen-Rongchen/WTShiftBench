@@ -1,7 +1,7 @@
-"""Validate the curated public release file set.
+"""Validate the curated public release file set in Git's index.
 
-The validator inspects Git's staged file list. Local manuscript and build
-artifacts may remain in the working tree without entering the public release.
+Local manuscript and build artifacts may remain in the working tree without
+entering the public release.
 """
 
 from __future__ import annotations
@@ -23,10 +23,31 @@ ALLOWED_ACTIVE_PANELS = {
     "Extended_Data_Figure_6": set("abcd"),
 }
 
+ALLOWED_TOP_LEVEL = {
+    ".gitignore",
+    ".zenodo.json",
+    "CITATION.cff",
+    "DATA_AVAILABILITY.md",
+    "LICENSE",
+    "README.md",
+    "benchmark",
+    "configs",
+    "data",
+    "figures",
+    "pixi.lock",
+    "pixi.toml",
+    "pytest.ini",
+    "reproduce_figures.sh",
+    "scripts",
+    "source_data",
+    "src",
+    "tests",
+}
 
-def staged_paths() -> list[str]:
+
+def tracked_paths() -> list[str]:
     result = subprocess.run(
-        ["git", "diff", "--cached", "--name-only", "--diff-filter=ACMR"],
+        ["git", "ls-files"],
         check=True,
         capture_output=True,
         text=True,
@@ -37,9 +58,14 @@ def staged_paths() -> list[str]:
 def validate_path(path_text: str) -> list[str]:
     path = PurePosixPath(path_text)
     errors: list[str] = []
+    top_level = path.parts[0] if path.parts else ""
 
-    if path.parts and path.parts[0] == "manuscript":
-        errors.append("manuscript files are local submission artifacts")
+    if top_level not in ALLOWED_TOP_LEVEL:
+        errors.append("path is outside the curated public repository layout")
+    if top_level in {"manuscript", "reports", "docs", "resource_registry", "model_registry"}:
+        errors.append("internal analysis or submission material is excluded")
+    if "caption" in path.name.lower() or "figure_legend" in path.name.lower():
+        errors.append("figure captions and manuscript legends are excluded")
     if path.parts[:2] == ("figure_build", "output"):
         errors.append("figure_build/output is a local generated directory")
     if path.suffix.lower() in {".png", ".pdf", ".docx"}:
@@ -65,7 +91,7 @@ def validate_path(path_text: str) -> list[str]:
 
 
 def main() -> None:
-    errors = [error for path in staged_paths() for error in validate_path(path)]
+    errors = [error for path in tracked_paths() for error in validate_path(path)]
     if errors:
         raise SystemExit("Public release validation failed:\n" + "\n".join(errors))
     print("Public release validation passed.")

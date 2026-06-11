@@ -1,8 +1,0 @@
-{
-  "n_genes_7d_raw": 23111,
-  "n_genes_13d_raw": 21713,
-  "n_genes_intersection": 20824,
-  "k562_normalization": "sc.pp.normalize_total(target_sum=1e4) + sc.pp.log1p()",
-  "panel_b_identity": "UMAP of perturbation-level mean expression profiles (each point = one target mean vector + control mean vector)",
-  "panel_c_identity": "Absolute mean whole-transcriptome perturbation shift magnitude (perturbed mean - control mean, averaged across all genes)"
-}

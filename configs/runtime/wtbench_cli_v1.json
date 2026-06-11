@@ -22,7 +22,7 @@
     "stage2.closure": {
       "description": "串联 HCC covariates、sensitivity 与 covariate audit。",
       "callable": "scripts.pipeline.closure_pipeline:run_closure_pipeline_from_config",
-      "default_config": "configs/closure_pipeline_v1.json",
+      "default_config": "configs/stage2_closure_pipeline_v1.json",
       "config_env": "WTBENCH_STAGE2_CLOSURE_CONFIG"
     },
     "stage2.materialize_covariates": {
@@ -51,7 +51,7 @@
     },
     "stage2.rnai_demeter2_conversion": {
       "description": "把 DEMETER2 RNAi 分数转换为 DepMap-style endpoint 宽表。",
-      "callable": "scripts.convert_rnai_demeter2_to_depmap_endpoints:run_from_config",
+      "callable": "scripts.utils.convert_rnai_demeter2_to_depmap_endpoints:run_from_config",
       "default_config": "configs/rnai_demeter2_conversion_v1.json",
       "config_env": "WTBENCH_STAGE2_RNAI_DEMETER2_CONVERSION_CONFIG"
     },

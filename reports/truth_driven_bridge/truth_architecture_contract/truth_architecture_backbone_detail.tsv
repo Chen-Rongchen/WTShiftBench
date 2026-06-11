@@ -1,5 +1,0 @@
-fine_axis	macro_axis	n_genes	genes	fraction_Q1_HCC38	fraction_Q1_HCC1143	mean_residual_HCC38	mean_residual_HCC1143	scp542_coverage	scp542_evaluable	SCP542_role_note
-RNA processing / spliceosome	RNA processing	1	PRPF6	1.0	1.0	0.004668	0.002429	1.0	True	broad/distributed placement — NOT 'single anchor program'
-ribosomal / translation	ribosome / nucleolar biogenesis	1	RPS3	1.0	1.0	-0.001221	-0.004996	1.0	True	broad/distributed placement — NOT 'single anchor program'
-transcription / chromatin	gene expression machinery	2	ENY2,TADA3	0.5	0.5	0.003392	0.003855	1.0	True	broad/distributed placement — NOT 'single anchor program'
-chromatin remodeling	gene expression machinery	2	ARID1A,RUVBL2	0.5	0.5	0.000801	-0.002717	1.0	True	broad/distributed placement — NOT 'single anchor program'

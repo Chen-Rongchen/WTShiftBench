@@ -1,5 +1,5 @@
 {
-  "output_dir": "resource_registry",
+  "output_dir": "benchmark/registry",
   "dataset_eligibility_registry": [
     {
       "dataset": "GSE241115",

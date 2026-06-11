@@ -1,9 +1,0 @@
-metric	value
-input_score_matrix_path	RNAi/D2_combined_gene_dep_scores.csv
-input_cell_lines	712
-mapped_cell_lines	701
-missing_model_id_mappings	11
-genes	17309
-score_direction	lower_is_more_dependent
-gene_effect_output	depmap/RNAiDEMETER2GeneEffect.csv
-gene_dependency_output	depmap/RNAiDEMETER2GeneDependency.csv

@@ -1,7 +1,0 @@
-metric	model	mean	ci_lower	ci_upper	n_valid_draws	n_total_draws	sign_stability_pct	n_valid_comparisons
-backbone_recovery	shared_mean_baseline	0.807958	0.704000	0.906667	998	1000	100.000000	998
-backbone_recovery	gears_hcc_formal_v1	0.660876	0.550000	0.768000	998	1000	100.000000	998
-shift_excess_identification	shared_mean_baseline	0.324421	0.000000	0.666667	633	1000	38.546603	633
-shift_excess_identification	gears_hcc_formal_v1	0.331590	0.125000	0.500000	633	1000	38.546603	633
-structure_vs_context_separation	shared_mean_baseline	0.352930	0.309215	0.397769	1000	1000	0.100000	1000
-structure_vs_context_separation	gears_hcc_formal_v1	0.428062	0.390978	0.471017	1000	1000	0.100000	1000

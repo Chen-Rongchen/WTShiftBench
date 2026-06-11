@@ -1,7 +1,0 @@
-model_id	selection_role	endpoint_used_for_selection	allowed_claim_role	selection_note
-gears_hcc_formal_v1	pre_specified_formal	False	primary	Locked formal GEARS configuration; endpoint scores are audit outputs only.
-gears_hcc_formal_v1_e20_lr1e-03_wd1e-06	finite_budget_sensitivity	False	sensitivity	Finite-budget sweep configuration; do not promote endpoint-best runs to primary claims.
-gears_hcc_formal_v1_e30_lr1e-03_wd1e-05	finite_budget_sensitivity	False	sensitivity	Finite-budget sweep configuration; do not promote endpoint-best runs to primary claims.
-gears_hcc_formal_v1_e30_lr2e-03_wd1e-06	finite_budget_sensitivity	False	sensitivity	Finite-budget sweep configuration; do not promote endpoint-best runs to primary claims.
-gears_hcc_formal_v1_e30_lr5e-04_wd1e-06	finite_budget_sensitivity	False	sensitivity	Finite-budget sweep configuration; do not promote endpoint-best runs to primary claims.
-gears_hcc_formal_v1_e40_lr1e-03_wd1e-06	finite_budget_sensitivity	False	sensitivity	Finite-budget sweep configuration; do not promote endpoint-best runs to primary claims.

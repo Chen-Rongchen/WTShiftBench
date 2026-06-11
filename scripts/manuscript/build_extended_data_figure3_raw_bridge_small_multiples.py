@@ -121,16 +121,6 @@ def clear_legacy_panels(out_dir: Path) -> None:
         path.unlink()
 
 
-def write_caption(root: Path) -> None:
-    caption = """Extended Data Fig. 3. Raw external bridge evidence across perturbation contexts.
-
-Raw matched-target scatterplots show continuous observed transcriptomic-shift magnitude versus CRISPR dependency strength across K562 temporal-boundary, Replogle scale/target-universe-boundary and GSE264667 secondary endpoint-extension contexts. Each point represents one matched perturbation target. Spearman rho, empirical P and matched-target count are shown within each small multiple. These panels use raw continuous values, not percentile endpoint planes or model predictions. Raw shift-magnitude scales are context-specific and are not interpreted as directly comparable across datasets; cross-context bridge strength is summarized using rank-based Spearman rho. These panels provide raw bridge-form evidence underlying Fig. 4 and are not model predictions, direct DepMap predictions or cross-dataset model-generalization tests.
-"""
-    for out_dir in output_dirs(root):
-        ensure_dir(out_dir)
-        (out_dir / f"{PUBLIC_FIGURE_ID}_caption.md").write_text(caption, encoding="utf-8")
-
-
 def main() -> None:
     root = repo_root()
     source = build_source(root)
@@ -149,7 +139,6 @@ def main() -> None:
         fig.savefig(panel_dir / f"{PUBLIC_FIGURE_ID}_panel_a.pdf", bbox_inches="tight")
         fig.savefig(panel_dir / f"{PUBLIC_FIGURE_ID}_panel_a.svg", bbox_inches="tight")
     plt.close(fig)
-    write_caption(root)
     print(f"Built {PUBLIC_FIGURE_ID} raw external bridge small multiples")
 
 

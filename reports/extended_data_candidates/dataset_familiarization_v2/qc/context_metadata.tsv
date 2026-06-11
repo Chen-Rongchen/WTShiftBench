@@ -1,6 +1,0 @@
-context	role	n_cells	n_controls	n_unique_targets	n_genes
-HCC38	primary	14175	1666	47	36601
-HCC1143	primary	11405	1325	47	36601
-Dixit 2016 K562 7d	supplementary temporal	28034	5381	10	20824
-Dixit 2016 K562 13d	supplementary temporal	15849	3491	10	20824
-Replogle K562 essential day 7	supplementary architecture-form	310385	10691	2057	8563

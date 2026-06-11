@@ -5,11 +5,12 @@ single-cell repositories. The repository ships only:
 
 - per-panel **source data** under `figures/Figure_*/panels/*_source_data.tsv`
   and `figures/Extended_Data_Figure_*/panels/*_source_data.tsv`,
-- small precomputed **intermediate tables** under
-  `reports/truth_driven_bridge/`, `reports/real_hcc_smoke/`,
-  `reports/pathway_response/`, etc., that the figure-build scripts read,
-- and a few **derived prediction tables** under `data/predictions/`,
-  `data/reference/`, `data/covariates/`.
+- governed benchmark registries under `benchmark/registry/`,
+- and small reference or covariate tables under `data/reference/` and
+  `data/covariates/`.
+
+Analysis intermediates under `reports/` and model predictions under
+`data/predictions/` are generated locally and are intentionally not versioned.
 
 Raw and processed `h5ad` objects (≈ 14 GB total) are **not** stored in git;
 they must be re-downloaded and re-preprocessed before running the
