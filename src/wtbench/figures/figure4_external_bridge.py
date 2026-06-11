@@ -9,9 +9,9 @@ import numpy as np
 import pandas as pd
 from matplotlib.lines import Line2D
 
-from wtbench.manuscript.figure_io import ensure_dir, repo_root, write_tsv
-from wtbench.manuscript.hash_manifest import write_figure_manifest, write_panel_manifest
-from wtbench.manuscript.manuscript_style import (
+from wtbench.figures.figure_io import ensure_dir, repo_root, write_tsv
+from wtbench.figures.hash_manifest import write_figure_manifest, write_panel_manifest
+from wtbench.figures.manuscript_style import (
     COLORS,
     apply_manuscript_style,
     clean_axes,
@@ -22,7 +22,7 @@ from wtbench.manuscript.manuscript_style import (
 FIGURE_ID = "figure4"
 PUBLIC_FIGURE_ID = "Figure_4"
 FIGURE_TITLE = "External perturbation datasets delimit bridge-form detectability"
-SCRIPT_PATH = Path("scripts/manuscript/build_figure4_sweep_controls.py")
+SCRIPT_PATH = Path("scripts/figures/build_figure4.py")
 CLAIM_BOUNDARY = (
     "External perturbation datasets test whether the observed transcriptomic "
     "shift-DepMap bridge form can be re-detected beyond the primary HCC model-audit "

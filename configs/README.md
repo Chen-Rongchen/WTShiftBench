@@ -7,20 +7,19 @@ Machine-readable recipes used by every entry point under `scripts/` and
 
 | Group | Contents |
 | --- | --- |
-| `configs/*.json` | Truth-driven bridge recipes, model formal-evaluation recipes (GEARS / scGPT / Geneformer / linear controls), Dixit supplementary configurations, sensitivity / covariate-audit configurations, axis-validation summaries, and closure-pipeline / artifact-validation configs. |
-| `configs/manuscript/` | Figure / Extended-Data / supplementary-table generation configurations. |
+| `configs/*.json` | Frozen bridge, model, sensitivity and data-materialization recipes used by the active analysis. |
 | `configs/runtime/` | The dynamic CLI registry (`wtbench_cli_v1.json`) that backs `python -m wtbench`, and its JSON schema. |
-| `configs/generated/` | Auto-generated configs produced by sweep batchers (e.g. GEARS backbone hyper-parameter sweep). |
 | `configs/feature_registry_v1.json` | Target-side feature registry shared by the linear controls. |
 | `configs/checkpoint_registry_v1.yaml` | scGPT / Geneformer checkpoint registry consumed by the model runners. |
 | `configs/resource_registry_v1.json` | Source records for generated benchmark resource registry TSVs. |
 | `configs/model_score_calibration_controls_v1.json` | Model score-calibration inputs and null-control definitions. |
-| `configs/candidate_model_eligibility_v1.json` | Eligibility audit inputs for CPA, CellOT, scGen, and scDisInFact candidate model families. |
 | `configs/cpa_hcc_input_preparation_v1.json` | Metadata preparation recipe for CPA-ready HCC AnnData inputs. |
 
 ## Conventions
 
-- New recipes go under the appropriate top-level group as JSON.
+- Paths are relative to the repository root; machine-specific absolute paths
+  are not allowed.
+- New recipes use JSON unless a model-specific text constraint is required.
 - Cross-dataset / cross-cell-line parameters live in `configs/**/*.json`;
   scripts only load and execute them.
 - New runners should be registered in `configs/runtime/wtbench_cli_v1.json`
