@@ -1,5 +1,0 @@
-metric	ks_statistic	ks_pvalue	interpretation
-real_shift_L2	0.1323529411764706	0.7450869729905638	distributions differ
-real_shift_mean_abs	0.1323529411764706	0.7450869729905638	distributions differ
-real_Edistance	0.19444444444444445	0.2868702754512996	distributions differ
-real_DEG_burden	0.13453159041394336	0.727731980649749	distributions differ

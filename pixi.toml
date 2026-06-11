@@ -307,7 +307,7 @@ cmd = "pixi run --environment core versions-core && pixi run --environment gears
 description = "打印所有环境版本信息"
 
 [tasks.test-stage2]
-cmd = "pytest tests/test_stage2_hcc_prediction_export.py tests/test_stage2_model_structure_scorer.py tests/test_stage2_truth_driven_bridge.py tests/test_stage2_truth_sensitivity.py"
+cmd = "pytest tests/test_hcc_prediction_export.py tests/test_model_structure_scorer.py tests/test_truth_driven_bridge.py tests/test_truth_sensitivity.py"
 description = "运行当前 Stage 2 测试"
 
 [tasks.wtbench]

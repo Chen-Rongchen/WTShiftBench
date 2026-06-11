@@ -57,51 +57,11 @@ models/pretrained/
 depmap/
 RNAi/
 
-# ----------------------------------------------------------------------
-# reports/: ignored by default; whitelist intermediates required by
-# manuscript figure-build scripts (small TSV/JSON/MD only).
-# ----------------------------------------------------------------------
-reports/*
-!reports/truth_driven_bridge/
-!reports/truth_bridge_decomposition/
-!reports/real_hcc_smoke/
-!reports/manuscript_permutation_null_v1/
-!reports/manuscript_extended_data_v1/
-!reports/extended_data_candidates/
-!reports/pathway_response/
-!reports/category_response_pathway/
-!reports/category_response_pathway/**
-reports/category_response_pathway/category_response_gsea_*.tsv
-reports/category_response_pathway/category_response_gsea_summary.tsv
-reports/category_response_pathway/category_response_summary.tsv
-!reports/model_endpoint_recovery/
-!reports/model_endpoint_recovery/**
-reports/model_endpoint_recovery/by_model/
-reports/model_endpoint_recovery/figures/
-reports/model_endpoint_recovery/axis_projection.tsv
-!reports/manuscript_figures_v2/
-reports/manuscript_figures_v2/*
-!reports/rnai_demeter2_conversion/
-!reports/lm_g_scgpt_ridge_hcc_recipe/
-!reports/lm_g_geneformer_ridge_hcc_recipe/
-!reports/lm_train_lowrank_hcc_recipe/
-!reports/gears_backbone_sweep/
-!reports/axis_analysis/
-
-# Within whitelisted reports/, drop bulky figure outputs
-reports/**/*.pdf
-reports/**/*.png
-reports/**/*.svg
-reports/**/*.tsv.gz
-reports/**/*.h5ad
-reports/**/*.npz
-reports/**/*.parquet
-reports/manuscript_extended_data_v1/edfig1_test_*/
-reports/manuscript_extended_data_v1/edfig2_test_*/
-
-# Inside axis_analysis (266MB) keep only the validation summary
-reports/axis_analysis/*
-!reports/axis_analysis/axis_validation_summary.tsv
+# Analysis intermediates and internal audits are regenerated locally.
+reports/
+docs/
+resource_registry/
+model_registry/
 
 # Reference PDFs
 *.pdf
@@ -134,6 +94,8 @@ figures/Extended_Data_Figure_*/Extended_Data_Figure_*_source_data.tsv
 figures/**/panels/*.png
 figures/**/panels/*.pdf
 figures/**/panels/*_manifest.json
+figures/**/*caption*.md
+figures/**/*legend*.md
 figures/Figure_5/
 figures/Extended_Data_Figure_7/
 figures/Graphical_overview.svg
