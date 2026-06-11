@@ -17,7 +17,7 @@ ALLOWED_ACTIVE_PANELS = {
     "Figure_4": set("abc"),
     "Extended_Data_Figure_1": set("abc"),
     "Extended_Data_Figure_2": set("abcdef"),
-    "Extended_Data_Figure_3": set("abcdef"),
+    "Extended_Data_Figure_3": set("a"),
     "Extended_Data_Figure_4": set("ab"),
     "Extended_Data_Figure_5": set("abc"),
     "Extended_Data_Figure_6": set("abcd"),

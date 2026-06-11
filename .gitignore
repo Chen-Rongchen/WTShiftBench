@@ -69,6 +69,18 @@ reports/*
 !reports/manuscript_extended_data_v1/
 !reports/extended_data_candidates/
 !reports/pathway_response/
+!reports/category_response_pathway/
+!reports/category_response_pathway/**
+reports/category_response_pathway/category_response_gsea_*.tsv
+reports/category_response_pathway/category_response_gsea_summary.tsv
+reports/category_response_pathway/category_response_summary.tsv
+!reports/model_endpoint_recovery/
+!reports/model_endpoint_recovery/**
+reports/model_endpoint_recovery/by_model/
+reports/model_endpoint_recovery/figures/
+reports/model_endpoint_recovery/axis_projection.tsv
+!reports/manuscript_figures_v2/
+reports/manuscript_figures_v2/*
 !reports/rnai_demeter2_conversion/
 !reports/lm_g_scgpt_ridge_hcc_recipe/
 !reports/lm_g_geneformer_ridge_hcc_recipe/
@@ -80,6 +92,7 @@ reports/*
 reports/**/*.pdf
 reports/**/*.png
 reports/**/*.svg
+reports/**/*.tsv.gz
 reports/**/*.h5ad
 reports/**/*.npz
 reports/**/*.parquet
@@ -112,10 +125,15 @@ manuscript/MANUSCRIPT_REPRODUCIBILITY.md
 # Composite figures and raster/PDF panel exports are local build products.
 figures/**/Figure_*.png
 figures/**/Figure_*.pdf
+figures/Figure_*/Figure_*.svg
+figures/Figure_*/Figure_*_source_data.tsv
 figures/**/Extended_Data_Figure_*.png
 figures/**/Extended_Data_Figure_*.pdf
+figures/Extended_Data_Figure_*/Extended_Data_Figure_*.svg
+figures/Extended_Data_Figure_*/Extended_Data_Figure_*_source_data.tsv
 figures/**/panels/*.png
 figures/**/panels/*.pdf
+figures/**/panels/*_manifest.json
 figures/Figure_5/
 figures/Extended_Data_Figure_7/
 figures/Graphical_overview.svg
@@ -153,6 +171,9 @@ local_archive/
 # Manuscript source assembly tree is local only. Public figure build scripts and
 # outputs live under figure_build/.
 manuscript/
+!scripts/manuscript/
+!src/wtbench/manuscript/
+!src/wtbench/manuscript/**
 
 # Legacy manuscript assembly outputs are local only.
 manuscript/figures/
