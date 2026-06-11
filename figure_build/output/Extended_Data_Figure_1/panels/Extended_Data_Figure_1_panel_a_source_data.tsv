@@ -1,8 +1,0 @@
-dataset_kind	dataset_label	role	cells_or_models	features	benchmark_use
-perturbation_expression	HCC38	primary	14,175 cells	36,601 genes	47 targets; 1,666 controls
-perturbation_expression	HCC1143	primary	11,405 cells	36,601 genes	47 targets; 1,325 controls
-perturbation_expression	Dixit 2016 K562 7d	supplementary temporal	28,034 cells	20,824 genes	10 targets; 5,381 controls
-perturbation_expression	Dixit 2016 K562 13d	supplementary temporal	15,849 cells	20,824 genes	10 targets; 3,491 controls
-perturbation_expression	Replogle K562 essential day 7	supplementary architecture-form	310,385 cells	8,563 genes	2057 targets; 10,691 controls
-endpoint_dataset	DepMap CRISPR dependency	primary endpoint	1,186 cell lines	18,435 genes	HCC38 47; HCC1143 48; K562 7d 10; K562 13d 10
-endpoint_dataset	DEMETER2 RNAi	sensitivity endpoint	701 mapped cell lines	17,309 genes	HCC38 48; HCC1143 48; K562 7d 9; K562 13d 9

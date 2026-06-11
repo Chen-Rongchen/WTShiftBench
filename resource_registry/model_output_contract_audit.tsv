@@ -13,8 +13,8 @@ Geneformer-ridge	HCC38	linear_embedding_control	not_scored_or_reference	yes	no	n
 Geneformer-ridge	HCC1143	linear_embedding_control	not_scored_or_reference	yes	no	no for primary claims	linear recovery from pretrained embedding
 low-rank linear decoder	HCC38	linear_control	not_scored_or_reference	yes	no	no for primary claims	linear recovery behavior
 low-rank linear decoder	HCC1143	linear_control	not_scored_or_reference	yes	no	no for primary claims	linear recovery behavior
-CPA	HCC38	boundary_negative_entrant	available	yes	no	no for primary claims	current within-context endpoint-recovery entrant; HCC1143 interpreted as common/stress-like boundary case
-CPA	HCC1143	boundary_negative_entrant	available	yes	no	no for primary claims	current within-context endpoint-recovery entrant; HCC1143 interpreted as common/stress-like boundary case
+CPA	HCC38	boundary_negative_entrant	available	yes	no	no for primary claims	current within-context endpoint-recovery entrant; axis-free diagnostics show high output homogenization and weak target-identity preservation in both primary contexts
+CPA	HCC1143	boundary_negative_entrant	available	yes	no	no for primary claims	current within-context endpoint-recovery entrant; axis-free diagnostics show high output homogenization and weak target-identity preservation in both primary contexts
 CellOT	HCC38	P2_candidate_sensitivity_entrant	available	yes	no	no for primary claims	optional sensitivity entrant
 CellOT	HCC1143	P2_candidate_sensitivity_entrant	available	yes	no	no for primary claims	optional sensitivity entrant
 scGen	HCC38	positive_entrant	available	yes	no	no for primary claims	most consistent current within-context target-observed endpoint-recovery entrant

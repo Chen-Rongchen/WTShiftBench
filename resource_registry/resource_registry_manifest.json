@@ -10,7 +10,7 @@
     "endpoint_category_grid.tsv": 2782,
     "endpoint_registry.tsv": 3,
     "exclusion_future_extension_registry.tsv": 8,
-    "figure_source_data_manifest.tsv": 86,
+    "figure_source_data_manifest.tsv": 63,
     "metric_definition_registry.tsv": 3,
     "model_eligibility_audits.tsv": 4,
     "model_entrant_registry.tsv": 11,

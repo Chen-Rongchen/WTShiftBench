@@ -1,7 +1,0 @@
-claim	supported
-Endpoint-recovery audit	Yes
-Common-response collapse detection	Yes
-Dataset eligibility governance	Yes
-Direct DepMap score prediction	No
-Broad unseen-target/cell-line generalization	No
-Causal fitness mechanism inference	No

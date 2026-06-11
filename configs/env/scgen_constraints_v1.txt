@@ -1,0 +1,6 @@
+# scGen fallback entrant. Keep this separate from primary model environments.
+scgen
+torch>=2.0
+anndata>=0.9
+scanpy>=1.9
+scvi-tools

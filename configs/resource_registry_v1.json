@@ -296,7 +296,7 @@
       "metric_name": "model endpoint-recovery audit",
       "input_table": "model prediction contracts and fixed endpoint categories",
       "output_table": "model endpoint-recovery reports",
-      "formula_or_definition": "Score whether model-generated perturbation shifts recover total endpoint alignment, axis-aligned endpoint structure, endpoint-category separation, target identity, and common-response behavior under a fixed endpoint-aligned recovery object.",
+      "formula_or_definition": "Score whether model-generated perturbation shifts recover total endpoint alignment, observed-response-aligned endpoint structure, endpoint-category separation and target identity, while separately auditing axis-free output homogenization.",
       "chance_baseline": "model-output shuffle, endpoint permutation, target-label permutation, and diagnostic shared-mean reference",
       "claim_boundary": "within-context endpoint-recovery audit, not broad model generalization leaderboard"
     },
@@ -305,14 +305,14 @@
       "input_table": "GEARS sweep outputs and model scoring reports",
       "output_table": "finite-budget sweep summary",
       "formula_or_definition": "Evaluate whether recovery profiles are stable across a finite hyper-parameter budget.",
-      "chance_baseline": "best diagnostic reference and null controls",
+      "chance_baseline": "diagnostic reference and null controls",
       "claim_boundary": "budget sensitivity, not exhaustive model optimization"
     }
   ],
   "claim_boundary_registry": [
     {
       "allowed_phrase": "endpoint-aligned recovery object",
-      "not_allowed": "causal truth object"
+      "not_allowed": "causal endpoint label"
     },
     {
       "allowed_phrase": "temporally compatible late-readout context",
@@ -438,7 +438,7 @@
       "included_role": "boundary_negative_entrant",
       "reason_included": "Non-GNN perturbation-response model family included under the unified output contract.",
       "reason_excluded": "",
-      "claim_ceiling": "current within-context endpoint-recovery entrant; HCC1143 interpreted as common/stress-like boundary case"
+      "claim_ceiling": "current within-context endpoint-recovery entrant; axis-free diagnostics show high output homogenization and weak target-identity preservation in both primary contexts"
     },
     {
       "model_name": "CellOT",
@@ -496,7 +496,7 @@
     {
       "model_or_category": "CPA",
       "include_now": "yes",
-      "rationale": "Non-GNN perturbation-response model family evaluated under the HCC38/HCC1143 output contract; current results define a boundary/negative case, especially HCC1143 common-response collapse.",
+      "rationale": "Non-GNN perturbation-response model family evaluated under the HCC38/HCC1143 output contract; current results define a boundary/negative case with high output homogenization and weak target-identity preservation in both primary contexts.",
       "claim_ceiling": "within-context endpoint-recovery entrant; not broad OOD generalization evidence"
     },
     {
@@ -534,7 +534,7 @@
       "custom_metric_allowed": "no",
       "decision_rule": "include under unified HCC38/HCC1143 output contract",
       "local_audit_result": "include_now",
-      "audit_evidence": "HCC38/HCC1143 output contract completed; current audit interprets CPA as boundary/negative, especially HCC1143 common-response collapse"
+      "audit_evidence": "HCC38/HCC1143 output contract completed; current audit interprets CPA as a boundary/negative case with high output homogenization and weak target-identity preservation in both primary contexts"
     },
     {
       "model_name": "CellOT",

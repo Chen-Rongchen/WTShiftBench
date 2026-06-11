@@ -2,8 +2,13 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
+
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(PROJECT_ROOT))
+sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
 import numpy as np
 import pandas as pd
@@ -22,9 +27,6 @@ from wtbench.truth_bridge import (
     load_single_feature_calls,
     log_normalize_csr,
 )
-
-
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 
 def log_stage(stage: str, **fields: object) -> None:

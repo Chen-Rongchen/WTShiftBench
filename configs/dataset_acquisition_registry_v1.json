@@ -1,0 +1,288 @@
+{
+  "schema_version": "1.1",
+  "outdir": "reports/dataset_acquisition",
+  "local_inventory_path": "reports/dataset_acquisition/local_dataset_inventory.tsv",
+  "acquisition_manifest_path": "reports/dataset_acquisition/dataset_acquisition_manifest.tsv",
+  "download_plan_path": "reports/dataset_acquisition/download_plan.sh",
+  "exclusion_rules": [
+    {
+      "category": "non-cancer cell line",
+      "examples": ["RPE1", "iPSC", "fibroblast"],
+      "reason": "Not eligible for cancer-dependency endpoint alignment; DepMap common-essential endpoint requires cancer-line context."
+    },
+    {
+      "category": "gain-of-function perturbation",
+      "examples": ["CRISPRa", "ORF overexpression", "cDNA rescue"],
+      "reason": "Perturbation direction mismatch with LOF dependency endpoint; WTShiftBench measures loss-of-function induced shift, not gain-of-function."
+    },
+    {
+      "category": "regulatory-element perturbation",
+      "examples": ["enhancer CRISPRi", "promoter tiling", "CRE deletion"],
+      "reason": "Perturbation object is not gene-level; endpoint mapping to DepMap gene dependency scores is not well-defined."
+    },
+    {
+      "category": "infection or stimulation context",
+      "examples": ["LPS stimulation", "viral infection", "cytokine treatment"],
+      "reason": "Not eligible for baseline DepMap dependency alignment; endpoint confounded by external stimulus. Possible future non-baseline endpoint extension (e.g. stimulus-response subtyping) if a separate endpoint framework is defined."
+    },
+    {
+      "category": "immune co-culture",
+      "examples": ["melanoma/TIL co-culture", "tumor/immune spheroid"],
+      "reason": "Endpoint is immune-evasion or immune-recognition context, not baseline DepMap cancer-dependency context."
+    }
+  ],
+  "label_schema": {
+    "n_perturbation_labels": "Total number of distinct perturbation labels (target_gene values) in the processed H5AD, including controls if they share a label.",
+    "n_gene_targets": "Number of distinct gene-level targets after excluding control labels, multi-guide aggregate labels and QC labels.",
+    "n_control_labels": "Number of distinct control labels (e.g. non-targeting, safe-targeting, scramble).",
+    "n_scored_targets": "Number of targets that can be mapped to DepMap common-essential endpoint and receive a truth label."
+  },
+  "datasets": [
+    {
+      "dataset_id": "gse90063_dixit_k562_temporal",
+      "display_name": "Dixit 2016 K562 TF Perturb-seq 7d/13d temporal panel",
+      "priority": "P0",
+      "role": "current_manuscript_temporal_boundary",
+      "official_source_type": "GEO",
+      "official_accession": "GSE90063",
+      "readout_day": "7,13",
+      "source_preference": "GEO supplementary; author-provided count matrices and guide assignments",
+      "local_paths": [
+        "data/raw/gse90063",
+        "data/processed/gse90063",
+        "data/pertpy_cache/dixit_2016_raw.h5ad",
+        "data/raw/candidates/dixit_2016_raw.h5ad",
+        "data/processed/truth_driven_bridge_dixit"
+      ],
+      "h5ad_audit": [
+        {
+          "context": "Dixit K562 TF 7d",
+          "path": "data/processed/gse90063/dixit_2016_k562_tf_7d_gse90063.h5ad",
+          "label_column": "target_gene",
+          "control_column": "is_control",
+          "label_stats": {
+            "n_perturbation_labels": 14,
+            "n_gene_targets": 10,
+            "n_control_labels": 4,
+            "control_label_examples": ["intergenic_chr_216151", "intergenic_chr_393453", "intergenic_chr_1216445"],
+            "note": "10 TF targets + 4 intergenic controls. Temporal-boundary panel paired with 13d readout."
+          }
+        },
+        {
+          "context": "Dixit K562 TF 13d",
+          "path": "data/processed/gse90063/dixit_2016_k562_tf_13d_gse90063.h5ad",
+          "label_column": "target_gene",
+          "control_column": "is_control",
+          "label_stats": {
+            "n_perturbation_labels": 14,
+            "n_gene_targets": 10,
+            "n_control_labels": 4,
+            "control_label_examples": ["intergenic_chr_1216445", "intergenic_chr_1144056", "intergenic_chr_393453"],
+            "note": "Same 10 TF targets as 7d; 13d readout for temporal-boundary comparison."
+          }
+        }
+      ],
+      "download_actions": [
+        {
+          "action": "geo_supplementary",
+          "series_accession": "GSE90063",
+          "config_path": "configs/download_gse90063_supplementary_v1.json",
+          "note": "Current manuscript temporal-boundary evidence (Figure 4). Must be registered and auditable."
+        }
+      ]
+    },
+    {
+      "dataset_id": "gse241115_hcc38_hcc1143",
+      "display_name": "GSE241115 HCC38/HCC1143 CROP-seq",
+      "priority": "P0",
+      "role": "primary",
+      "official_source_type": "GEO",
+      "official_accession": "GSE241115",
+      "readout_day": "14",
+      "source_preference": "GEO supplementary/raw files already mirrored locally",
+      "local_paths": [
+        "data/GSE241115",
+        "data/processed/hcc_gears_formal/HCC38.h5ad",
+        "data/processed/hcc_gears_formal/HCC1143.h5ad"
+      ],
+      "h5ad_audit": [
+        {
+          "context": "HCC38 day 14",
+          "path": "data/processed/hcc_gears_formal/HCC38.h5ad",
+          "label_column": "target_gene",
+          "control_column": "is_control",
+          "label_stats": {
+            "n_perturbation_labels": 62,
+            "n_gene_targets": 47,
+            "n_control_labels": 15,
+            "control_label_examples": ["intergenic_chr_5", "intergenic_chr_11", "intergenic_chr_6"],
+            "note": "62 perturbation labels = 47 gene targets + 15 intergenic safe-targeting controls. Screen design targets 50 genes; 3 labels map to non-gene or multi-target guide pools."
+          }
+        },
+        {
+          "context": "HCC1143 day 14",
+          "path": "data/processed/hcc_gears_formal/HCC1143.h5ad",
+          "label_column": "target_gene",
+          "control_column": "is_control",
+          "label_stats": {
+            "n_perturbation_labels": 62,
+            "n_gene_targets": 47,
+            "n_control_labels": 15,
+            "control_label_examples": ["intergenic_chr_9", "intergenic_chr_13", "intergenic_chr_11"],
+            "note": "Same guide library as HCC38; 47 gene targets + 15 intergenic controls."
+          }
+        }
+      ],
+      "download_actions": [
+        {
+          "action": "geo_supplementary",
+          "series_accession": "GSE241115",
+          "config_path": "configs/download_gse241115_supplementary_v1.json",
+          "note": "Only needed if local data/GSE241115 is absent."
+        }
+      ]
+    },
+    {
+      "dataset_id": "replogle_k562_essential_day6",
+      "display_name": "Replogle 2022 K562 essential CRISPRi",
+      "priority": "P1",
+      "role": "large_scale_crispri_supplementary_modality_boundary",
+      "official_source_type": "author_figshare",
+      "official_accession": "figshare_20029387",
+      "readout_day": "6",
+      "source_preference": "author-provided AnnData; not a third-party reprocessing",
+      "local_paths": [
+        "data/raw/replogle_2022_k562_essential.h5ad",
+        "data/processed/replogle_k562_essential/essential_processed.h5ad",
+        "data/processed/truth_driven_bridge_replogle_k562_essential_day7"
+      ],
+      "h5ad_audit": [
+        {
+          "context": "K562 essential day 6",
+          "path": "data/processed/replogle_k562_essential/essential_processed.h5ad",
+          "label_column": "target_gene",
+          "control_column": "is_control",
+          "label_stats": {
+            "n_perturbation_labels": 2058,
+            "n_gene_targets": 2057,
+            "n_control_labels": 1,
+            "control_label_examples": ["non-targeting"],
+            "note": "Genome-scale essential CRISPRi; 2057 gene targets + 1 non-targeting control. Supports bridge detectability in a larger target-space CRISPRi context."
+          }
+        }
+      ],
+      "download_actions": [
+        {
+          "action": "custom_script",
+          "command": "python scripts/download/replogle_k562_essential.py",
+          "note": "Existing script fetches the author figshare AnnData fallback; historical result paths may say day7 but official figshare says day6."
+        }
+      ]
+    },
+    {
+      "dataset_id": "replogle_k562_gwps_day8",
+      "display_name": "Replogle 2022 K562 genome-scale CRISPRi",
+      "priority": "P1",
+      "role": "resource_suite_extension",
+      "official_source_type": "author_figshare",
+      "official_accession": "figshare_20029387",
+      "readout_day": "8",
+      "source_preference": "author-provided AnnData; not a third-party reprocessing",
+      "local_paths": [
+        "data/raw/candidates/replogle_2022_k562_gwps.h5ad",
+        "data/processed/replogle_gwps_k562/replogle_2022_k562_gwps_processed.h5ad",
+        "data/processed/truth_driven_bridge_replogle_k562_gwps_day8"
+      ],
+      "h5ad_audit": [
+        {
+          "context": "K562 GWPS day 8",
+          "path": "data/processed/replogle_gwps_k562/replogle_2022_k562_gwps_processed.h5ad",
+          "label_column": "target_gene",
+          "control_column": "is_control"
+        }
+      ],
+      "download_actions": [
+        {
+          "action": "manual_author_figshare",
+          "url": "https://plus.figshare.com/articles/dataset/_Mapping_information-rich_genotype-phenotype_landscapes_with_genome-scale_Perturb-seq_Replogle_et_al_2022_processed_Perturb-seq_datasets/20029387",
+          "note": "Prefer the author figshare files over pertpy/scPerturb wrappers when building audit-grade provenance."
+        }
+      ]
+    },
+    {
+      "dataset_id": "gse264667_hepg2_jurkat_day7",
+      "display_name": "GSE264667 HepG2/Jurkat day-7 Perturb-seq",
+      "priority": "P1",
+      "role": "candidate_secondary_endpoint_extension",
+      "official_source_type": "GEO/SRA",
+      "official_accession": "GSE264667",
+      "readout_day": "7",
+      "source_preference": "GEO supplementary and SRA raw data from NCBI",
+      "local_paths": [
+        "data/raw/gse264667",
+        "data/processed/gse264667"
+      ],
+      "h5ad_audit": [],
+      "download_actions": [
+        {
+          "action": "geo_supplementary",
+          "series_accession": "GSE264667",
+          "config_path": "configs/download_gse264667_supplementary_v1.json",
+          "note": "First inspect supplementary files; then decide whether SRA BAM/FASTQ reconstruction is needed."
+        },
+        {
+          "action": "sra_runinfo",
+          "series_accession": "GSE264667",
+          "url": "https://trace.ncbi.nlm.nih.gov/Traces/sra-db-be/runinfo?acc=GSE264667",
+          "note": "Use this to enumerate official SRA runs before downloading large raw files."
+        }
+      ]
+    },
+    {
+      "dataset_id": "gse200201_molm13_mswi_snf",
+      "display_name": "GSE200201 MOLM13 mSWI/SNF Perturb-seq",
+      "priority": "P2",
+      "role": "registry_candidate",
+      "official_source_type": "GEO/SRA",
+      "official_accession": "GSE200201",
+      "readout_day": "study-specific",
+      "source_preference": "GEO/SRA original files",
+      "local_paths": [
+        "data/raw/gse200201",
+        "data/processed/gse200201"
+      ],
+      "h5ad_audit": [],
+      "download_actions": [
+        {
+          "action": "geo_supplementary",
+          "series_accession": "GSE200201",
+          "config_path": "configs/download_gse200201_supplementary_v1.json",
+          "note": "Registry candidate only; audit single-target versus combinatorial perturbation structure before analysis."
+        }
+      ]
+    },
+    {
+      "dataset_id": "gse90546_adamson_k562_upr",
+      "display_name": "GSE90546 Adamson K562 UPR Perturb-seq",
+      "priority": "P2",
+      "role": "registry_candidate",
+      "official_source_type": "GEO/SRA",
+      "official_accession": "GSE90546",
+      "readout_day": "study-specific",
+      "source_preference": "GEO/SRA original files",
+      "local_paths": [
+        "data/raw/gse90546",
+        "data/processed/gse90546"
+      ],
+      "h5ad_audit": [],
+      "download_actions": [
+        {
+          "action": "geo_supplementary",
+          "series_accession": "GSE90546",
+          "config_path": "configs/download_gse90546_supplementary_v1.json",
+          "note": "Narrow pathway-focused K562 boundary candidate."
+        }
+      ]
+    }
+  ]
+}
