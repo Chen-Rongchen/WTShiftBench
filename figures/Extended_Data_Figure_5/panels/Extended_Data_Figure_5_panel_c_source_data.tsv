@@ -1,33 +1,21 @@
-model_id	cell_line	anchor_vs_low_information_axis_auc
-cellot_hcc_formal_v1	HCC1143	0.5384615384615384
-cellot_hcc_formal_v1	HCC38	0.6115702479338843
-cpa_v0.8.8	HCC1143	0.3286713286713286
-cpa_v0.8.8	HCC38	0.7603305785123967
-gears_hcc_formal_v1	HCC1143	0.5594405594405595
-gears_hcc_formal_v1	HCC38	0.7520661157024794
-gears_hcc_formal_v1_e20_lr1e-03_wd1e-06	HCC1143	0.4895104895104895
-gears_hcc_formal_v1_e20_lr1e-03_wd1e-06	HCC38	0.628099173553719
-gears_hcc_formal_v1_e30_lr1e-03_wd1e-05	HCC1143	0.5944055944055944
-gears_hcc_formal_v1_e30_lr1e-03_wd1e-05	HCC38	0.6694214876033058
-gears_hcc_formal_v1_e30_lr2e-03_wd1e-06	HCC1143	0.5944055944055944
-gears_hcc_formal_v1_e30_lr2e-03_wd1e-06	HCC38	0.6859504132231405
-gears_hcc_formal_v1_e30_lr5e-04_wd1e-06	HCC1143	0.4615384615384615
-gears_hcc_formal_v1_e30_lr5e-04_wd1e-06	HCC38	0.71900826446281
-gears_hcc_formal_v1_e40_lr1e-03_wd1e-06	HCC1143	0.4685314685314685
-gears_hcc_formal_v1_e40_lr1e-03_wd1e-06	HCC38	0.6694214876033058
-geneformer_hcc_formal_v1	HCC1143	0.5944055944055944
-geneformer_hcc_formal_v1	HCC38	0.628099173553719
-lm_g_geneformer_ridge_hcc_formal_v1	HCC1143	0.5594405594405595
-lm_g_geneformer_ridge_hcc_formal_v1	HCC38	0.6776859504132231
-lm_g_scgpt_ridge_hcc_formal_v1	HCC1143	0.4405594405594406
-lm_g_scgpt_ridge_hcc_formal_v1	HCC38	0.5454545454545454
-lm_train_lowrank_hcc_formal_v1	HCC1143	0.6013986013986014
-lm_train_lowrank_hcc_formal_v1	HCC38	0.7024793388429752
-null_model	HCC1143	0.5
-null_model	HCC38	0.5
-scgen_hcc_formal_v1	HCC1143	0.6573426573426573
-scgen_hcc_formal_v1	HCC38	0.8347107438016529
-scgpt_hcc_formal_v1	HCC1143	0.6503496503496503
-scgpt_hcc_formal_v1	HCC38	0.6446280991735537
-shared_mean_baseline	HCC1143	0.5454545454545454
-shared_mean_baseline	HCC38	0.8925619834710743
+model_id	cell_line	predicted_target_similarity_mean	target_identity_preservation_spearman	target_identity_preservation_status	interpretation
+cellot_hcc_formal_v1	HCC1143	0.3089680808051099	0.0317567825596778	estimated	High predicted similarity indicates homogenization and is not a performance metric.
+cellot_hcc_formal_v1	HCC38	0.3270921291540744	0.0573004959352234	estimated	High predicted similarity indicates homogenization and is not a performance metric.
+cpa_v0.8.8	HCC1143	0.938743860910642	0.0061119841227771	estimated	High predicted similarity indicates homogenization and is not a performance metric.
+cpa_v0.8.8	HCC38	0.9943975900943732	0.0330358918939869	estimated	High predicted similarity indicates homogenization and is not a performance metric.
+gears_hcc_formal_v1	HCC1143	0.4724202434574844	0.0034259390670155	estimated	High predicted similarity indicates homogenization and is not a performance metric.
+gears_hcc_formal_v1	HCC38	0.5460301042813954	0.0957375941622403	estimated	High predicted similarity indicates homogenization and is not a performance metric.
+geneformer_hcc_formal_v1	HCC1143	0.477756564362139	-0.0296412539525389	estimated	High predicted similarity indicates homogenization and is not a performance metric.
+geneformer_hcc_formal_v1	HCC38	0.5146872998631231	0.0857608567407805	estimated	High predicted similarity indicates homogenization and is not a performance metric.
+lm_g_geneformer_ridge_hcc_formal_v1	HCC1143	0.0367955238109856	-0.0180060508543069	estimated	High predicted similarity indicates homogenization and is not a performance metric.
+lm_g_geneformer_ridge_hcc_formal_v1	HCC38	0.0240288470057757	0.042451032975142	estimated	High predicted similarity indicates homogenization and is not a performance metric.
+lm_g_scgpt_ridge_hcc_formal_v1	HCC1143	0.0272587066867515	0.0107242215994295	estimated	High predicted similarity indicates homogenization and is not a performance metric.
+lm_g_scgpt_ridge_hcc_formal_v1	HCC38	0.0072176059978728	-0.0123767880352373	estimated	High predicted similarity indicates homogenization and is not a performance metric.
+lm_train_lowrank_hcc_formal_v1	HCC1143	0.0325874415324252	0.0281941444951152	estimated	High predicted similarity indicates homogenization and is not a performance metric.
+lm_train_lowrank_hcc_formal_v1	HCC38	0.0175076917214645	-0.0130078453255117	estimated	High predicted similarity indicates homogenization and is not a performance metric.
+scgen_hcc_formal_v1	HCC1143	0.7789692471597667	0.3272104246902518	estimated	High predicted similarity indicates homogenization and is not a performance metric.
+scgen_hcc_formal_v1	HCC38	0.7937453571091759	0.4312415061854633	estimated	High predicted similarity indicates homogenization and is not a performance metric.
+scgpt_hcc_formal_v1	HCC1143	0.2535636536365697	-0.0338890114335079	estimated	High predicted similarity indicates homogenization and is not a performance metric.
+scgpt_hcc_formal_v1	HCC38	0.2021883619648669	-0.0143393828576987	estimated	High predicted similarity indicates homogenization and is not a performance metric.
+shared_mean_baseline	HCC1143	1.0		non_estimable_constant_score	Shared-mean reference illustrates complete output homogenization; target-identity correlation is undefined when predicted geometry is degenerate.
+shared_mean_baseline	HCC38	1.0000000000000002		non_estimable_constant_score	Shared-mean reference illustrates complete output homogenization; target-identity correlation is undefined when predicted geometry is degenerate.

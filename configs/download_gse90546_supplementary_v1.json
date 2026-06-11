@@ -1,0 +1,17 @@
+{
+  "stage": "geo_supplementary_download",
+  "version": 1,
+  "series_accession": "GSE90546",
+  "output_dir": "data/raw/gse90546",
+  "manifest_path": "reports/dataset_acquisition/gse90546_supplementary_manifest.tsv",
+  "include_sample_supplementary": true,
+  "include_series_supplementary": true,
+  "download": {
+    "resume": true,
+    "overwrite": false,
+    "fallback_without_proxy": true,
+    "retry": 3,
+    "connect_timeout_seconds": 120
+  },
+  "test_records": []
+}
