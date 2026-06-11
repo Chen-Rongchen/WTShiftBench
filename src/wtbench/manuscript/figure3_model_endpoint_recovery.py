@@ -41,8 +41,8 @@ IDENTITY = ROOT_SOURCE / "model_target_identity_preservation.tsv"
 REGISTRY = ROOT_SOURCE / "model_registry.tsv"
 PQ = ROOT_SOURCE / "model_endpoint_recovery_pq_values.tsv"
 FINITE_BUDGET_SENSITIVITY = Path(
-    "reports/manuscript_figures_v2/fig5_sensitivity_controls/panels/"
-    "figure5_finite_budget_model_sensitivity.tsv"
+    "reports/model_endpoint_recovery/source_data/"
+    "figure3_finite_budget_model_sensitivity.tsv"
 )
 FINITE_BUDGET_MANIFEST = Path("reports/figure5_sensitivity/finite_budget_manifest.tsv")
 FROZEN_ENDPOINT_GRID = Path("reports/truth_bridge_decomposition/target_level_joint_grid.tsv")
@@ -976,6 +976,9 @@ def update_panel_source_manifest(root: Path) -> None:
             source_root / "model_output_homogenization_metrics.tsv"
         ),
         "model_target_identity_preservation.tsv": sha256_file(source_root / "model_target_identity_preservation.tsv"),
+        "figure3_finite_budget_model_sensitivity.tsv": sha256_file(
+            source_root / "figure3_finite_budget_model_sensitivity.tsv"
+        ),
     }
     records = [
         ("Figure_3", "a", "model_endpoint_recovery_interpretation.md", "claim ceiling/evaluation regime", "scripts/manuscript/build_figure3_model_endpoint_recovery.py", "reports/manuscript_figures_v2/fig3_model_endpoint_recovery/panels/figure3_panela.png"),
@@ -983,7 +986,7 @@ def update_panel_source_manifest(root: Path) -> None:
         ("Figure_3", "c", "source_data/model_endpoint_recovery_metrics.tsv; reports/model_endpoint_recovery/target_summary.tsv", "dependency_strength,predicted_shift_response_aligned_magnitude,response_aligned_endpoint_permutation_qvalue", "scripts/manuscript/build_figure3_model_endpoint_recovery.py", "reports/manuscript_figures_v2/fig3_model_endpoint_recovery/panels/figure3_panelc.png"),
         ("Figure_3", "d", "source_data/model_output_homogenization_metrics.tsv", "endpoint_recovery_score,predicted_target_similarity_mean,output_homogenization_quadrant", "scripts/manuscript/build_figure3_model_endpoint_recovery.py", "reports/manuscript_figures_v2/fig3_model_endpoint_recovery/panels/figure3_paneld.png"),
         ("Figure_3", "e", "source_data/model_target_identity_preservation.tsv", "target_identity_preservation_spearman,target_identity_label_permutation_qvalue,target_identity_preservation_status", "scripts/manuscript/build_figure3_model_endpoint_recovery.py", "reports/manuscript_figures_v2/fig3_model_endpoint_recovery/panels/figure3_panele.png"),
-        ("Figure_3", "f", "reports/manuscript_figures_v2/fig5_sensitivity_controls/panels/figure5_finite_budget_model_sensitivity.tsv", "model_family,run_type,cell_line,metric,metric_value", "scripts/manuscript/build_figure3_model_endpoint_recovery.py", "reports/manuscript_figures_v2/fig3_model_endpoint_recovery/panels/figure3_panelf.png"),
+        ("Figure_3", "f", "reports/model_endpoint_recovery/source_data/figure3_finite_budget_model_sensitivity.tsv", "model_family,run_type,cell_line,metric,metric_value", "scripts/manuscript/build_figure3_model_endpoint_recovery.py", "reports/manuscript_figures_v2/fig3_model_endpoint_recovery/panels/figure3_panelf.png"),
     ]
     for figure_id, panel_id, source_file, columns, script, output_file in records:
         output_path = root / output_file
@@ -999,6 +1002,10 @@ def update_panel_source_manifest(root: Path) -> None:
             or (
                 key == "model_target_identity_preservation.tsv"
                 and "model_target_identity_preservation" in source_file
+            )
+            or (
+                key == "figure3_finite_budget_model_sensitivity.tsv"
+                and "figure3_finite_budget_model_sensitivity" in source_file
             )
         )
         rows.append(
