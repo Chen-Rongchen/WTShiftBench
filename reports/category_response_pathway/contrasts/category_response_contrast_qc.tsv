@@ -1,0 +1,5 @@
+context	contrast_id	positive_category	negative_category	claim_role	included	reason	n_genes	n_targets_positive	n_targets_negative
+HCC1143	endpoint_anchor_vs_low_information	endpoint_anchor	low_information	anchor response-program contrast against low-information targets	True		36591	9	6
+HCC1143	endpoint_anchor_vs_middle	endpoint_anchor	middle	anchor response-program contrast against retained middle band	True		36591	9	32
+HCC38	endpoint_anchor_vs_low_information	endpoint_anchor	low_information	anchor response-program contrast against low-information targets	True		36591	9	6
+HCC38	endpoint_anchor_vs_middle	endpoint_anchor	middle	anchor response-program contrast against retained middle band	True		36591	9	32

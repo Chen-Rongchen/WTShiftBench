@@ -43,8 +43,7 @@ HCC_SUPPLEMENTAL_EXPR_ARROWS = Path(
 EXTERNAL_BRIDGE = Path("reports/external_bridge_form_robustness/observed_shift_depmap_bridge_summary.tsv")
 HEPG2_QC = Path("reports/gse264667_endpoint_extension/gse264667_hepg2_day7/materialization_qc.tsv")
 JURKAT_QC = Path("reports/gse264667_endpoint_extension/gse264667_jurkat_day7/materialization_qc.tsv")
-GWPS_SOURCE = Path("figures/Extended_Data_Figure_3/panels/Extended_Data_Figure_3_panel_d_source_data.tsv")
-ESSENTIAL_SOURCE = Path("figures/Extended_Data_Figure_3/panels/Extended_Data_Figure_3_panel_c_source_data.tsv")
+PREVIOUS_PANEL_A_SOURCE = Path("figures/Extended_Data_Figure_1/panels/Extended_Data_Figure_1_panel_a_source_data.tsv")
 PREVIOUS_UMAP_SOURCE = Path("figures/Extended_Data_Figure_1/panels/Extended_Data_Figure_1_panel_b_source_data.tsv")
 MATERIALIZED_UMAP_SOURCE = Path(
     "reports/manuscript_extended_data_v1/edfig1_dataset_familiarization/materialized/"
@@ -125,8 +124,7 @@ def input_paths(root: Path) -> list[Path]:
         root / EXTERNAL_BRIDGE,
         root / HEPG2_QC,
         root / JURKAT_QC,
-        root / GWPS_SOURCE,
-        root / ESSENTIAL_SOURCE,
+        root / PREVIOUS_PANEL_A_SOURCE,
         root / PREVIOUS_UMAP_SOURCE,
         root / MATERIALIZED_UMAP_SOURCE,
         root / MATERIALIZED_EXPRESSION_SOURCE,
@@ -224,6 +222,9 @@ def build_panel_a_source(root: Path) -> pd.DataFrame:
     meta = _load_meta(root)
     bridge = pd.read_csv(root / EXTERNAL_BRIDGE, sep="\t")
     bridge_targets = dict(zip(bridge["context"], bridge["n_targets_matched_depmap"]))
+    previous = pd.DataFrame()
+    if (root / PREVIOUS_PANEL_A_SOURCE).exists():
+        previous = pd.read_csv(root / PREVIOUS_PANEL_A_SOURCE, sep="\t")
     bridge_context_map = {
         "HCC38": "HCC38 day 14",
         "HCC1143": "HCC1143 day 14",
@@ -241,12 +242,13 @@ def build_panel_a_source(root: Path) -> pd.DataFrame:
         if context in set(meta["context_norm"]):
             row = meta.loc[meta["context_norm"].eq(context)].iloc[0]
             n_cells, n_genes, n_perturbations = row["n_cells"], row["n_genes"], row["n_unique_targets"]
-        elif context == "Replogle K562 GWPS" and (root / GWPS_SOURCE).exists():
-            src = pd.read_csv(root / GWPS_SOURCE, sep="\t", usecols=["truth_source_cell_count", "gene_universe_size"])
-            n_cells = src["truth_source_cell_count"].dropna().iloc[0]
-            n_genes = src["gene_universe_size"].dropna().iloc[0]
-            n_perturbations = bridge_targets.get("K562 genome-scale CRISPRi day 8")
-            source_note = "external bridge source"
+        elif context == "Replogle K562 GWPS" and not previous.empty:
+            prev = previous.loc[previous["context"].eq(context)]
+            if not prev.empty:
+                n_cells = prev["n_cells"].iloc[0]
+                n_genes = prev["n_genes"].iloc[0]
+                n_perturbations = bridge_targets.get("K562 genome-scale CRISPRi day 8")
+                source_note = "previous active panel source"
         elif context == "HepG2 day 7" and (root / HEPG2_QC).exists():
             row = pd.read_csv(root / HEPG2_QC, sep="\t").iloc[0]
             n_cells, n_genes, n_perturbations = row["n_obs"], row["n_vars"], row["n_targets_output"]

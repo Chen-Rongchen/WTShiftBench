@@ -1,7 +1,7 @@
 cell_line	joint_grid	n_targets	category_label	fraction
-HCC1143	Endpoint anchors	10	Endpoint anchors	0.20833333333333334
-HCC1143	Low-information	6	Low-information	0.125
+HCC1143	endpoint_anchor	10	Endpoint anchors	0.20833333333333334
+HCC1143	low_information	6	Low-information	0.125
 HCC1143	middle	32	Middle band	0.6666666666666666
-HCC38	Endpoint anchors	9	Endpoint anchors	0.19148936170212766
-HCC38	Low-information	6	Low-information	0.1276595744680851
+HCC38	endpoint_anchor	9	Endpoint anchors	0.19148936170212766
+HCC38	low_information	6	Low-information	0.1276595744680851
 HCC38	middle	32	Middle band	0.6808510638297872
