@@ -42,7 +42,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--context", required=True, help="Context label (e.g. HCC38, HCC1143, K562_7d, K562_13d)")
     parser.add_argument("--h5ad", required=True, help="Path to h5ad file")
     parser.add_argument("--output-dir", default="reports/pathway_response", help="Output directory")
-    parser.add_argument("--gmt", default="resources/msigdb/h.all.symbols.gmt", help="Path to Hallmark GMT file")
+    parser.add_argument(
+        "--gmt",
+        default="data/reference/gene_sets/axis_annotation/msigdb_hallmark.gmt",
+        help="Path to Hallmark GMT file",
+    )
     parser.add_argument("--k562-preprocess", action="store_true", help="Apply K562 preprocessing (normalize_total + log1p)")
     parser.add_argument("--gene-filter", action="store_true", help="Apply detection fraction filter (>= 0.05)")
     parser.add_argument("--min-target-cells", type=int, default=20)

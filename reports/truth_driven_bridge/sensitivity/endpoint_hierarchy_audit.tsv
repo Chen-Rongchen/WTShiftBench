@@ -1,6 +1,0 @@
-Context	CRISPR_rho	RNAi_rho	Delta	n_shared_targets
-HCC38	0.726	0.276	+0.449	47
-HCC1143	0.779	0.384	+0.395	48
-7d	0.733	0.333	+0.400	9
-13d	0.515	0.300	+0.215	9
-# All four tested contexts showed positive CRISPR-RNAi delta. N=4 contexts, descriptive sign consistency only; not a formal statistical test.

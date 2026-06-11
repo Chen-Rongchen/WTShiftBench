@@ -12,14 +12,13 @@ is not a direct DepMap predictor or a broad model-generalization leaderboard.
 
 ## Repository contents
 
-- `benchmark/`: benchmark definition, evaluation contract and claim boundary.
-- `figures/`: editable SVG panels and panel-level source data for main Figures
-  1-4 and Extended Data Figures 1-6. Composite figures are not distributed.
-- `source_data/`: publication-facing source-data index.
-- `resource_registry/`: governed datasets, endpoints, metrics, model entrants
-  and figure-source manifests.
+- `benchmark/`: benchmark definition and governed dataset, endpoint, metric and
+  model registries.
+- `figures/`: editable SVG panels and panel-level source data for Figures 1-4
+  and Extended Data Figures 1-6.
+- `source_data/`: publication-facing figure source-data index.
 - `src/wtbench/`: reusable scoring and figure-generation code.
-- `scripts/`: dataset preparation, model adapters and analysis entry points.
+- `scripts/`: data preparation, model adapters and analysis entry points.
 - `configs/`: frozen analysis and model-run configurations.
 
 Large raw single-cell objects, model-training intermediates, manuscripts,
@@ -71,8 +70,7 @@ Regenerate public figure panels after acquiring the required datasets:
 ```
 
 Detailed benchmark definitions and scoring boundaries are documented in
-[`benchmark/README.md`](benchmark/README.md). Release-specific changes are
-listed in [`RELEASE_NOTES_v1.1.0.md`](RELEASE_NOTES_v1.1.0.md).
+[`benchmark/README.md`](benchmark/README.md).
 
 ## Citation
 

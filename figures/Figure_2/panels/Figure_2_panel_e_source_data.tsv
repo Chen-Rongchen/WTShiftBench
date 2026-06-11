@@ -1,49 +1,33 @@
 context	pathway	sensitivity_layer	value	FDR	minus_log10_FDR	sign_agree	mean_NES	median_NES	loo_sign_retained_fraction	loo_fdr010_retained_fraction	full_NES	loo_NES_min	loo_NES_max	pathway_label
-HCC1143	Myc Targets V1	anchor_vs_middle_direction	-1.62801320827276	9.172565029156037e-05	4.037509200618238									MYC Targets V1
 HCC1143	Myc Targets V1	leave_one_target_direction_retained	1.0						1.0	1.0	-1.62552959573515	-1.82952718588192	-1.514720346796	MYC Targets V1
 HCC1143	Myc Targets V1	median_aggregation_agrees	1.0			True	-1.62552959573515	-1.61986526022951						MYC Targets V1
-HCC1143	E2F Targets	anchor_vs_middle_direction	-1.79465049736359	2.5e-09	8.602059991327963									E2F Targets
 HCC1143	E2F Targets	leave_one_target_direction_retained	1.0						1.0	1.0	-1.7932426190015	-1.87747447484784	-1.70548952387164	E2F Targets
 HCC1143	E2F Targets	median_aggregation_agrees	1.0			True	-1.7932426190015	-1.73472186503913						E2F Targets
-HCC1143	G2-M Checkpoint	anchor_vs_middle_direction	-1.81470532267488	2.5e-09	8.602059991327963									G2-M Checkpoint
 HCC1143	G2-M Checkpoint	leave_one_target_direction_retained	1.0						1.0	1.0	-1.81145487723892	-1.89432978018023	-1.75851204908831	G2-M Checkpoint
 HCC1143	G2-M Checkpoint	median_aggregation_agrees	1.0			True	-1.81145487723892	-1.77138589658366						G2-M Checkpoint
-HCC1143	Mitotic Spindle	anchor_vs_middle_direction	-1.74632889980082	1.459386850231672e-07	6.835829571265174									Mitotic Spindle
 HCC1143	Mitotic Spindle	leave_one_target_direction_retained	1.0						1.0	1.0	-1.74556995999108	-1.7755434787164	-1.69889658475339	Mitotic Spindle
 HCC1143	Mitotic Spindle	median_aggregation_agrees	1.0			True	-1.74556995999108	-1.68507614432395						Mitotic Spindle
-HCC1143	mTORC1 Signaling	anchor_vs_middle_direction	-1.28175333955761	0.1573363701750179	0.8031708734318184									mTORC1 Signaling
 HCC1143	mTORC1 Signaling	leave_one_target_direction_retained	1.0						1.0	0.0	-1.28074782188442	-1.30434396794508	-1.21336499657037	mTORC1 Signaling
 HCC1143	mTORC1 Signaling	median_aggregation_agrees	1.0			True	-1.28074782188442	-1.35799662951272						mTORC1 Signaling
-HCC1143	Glycolysis	anchor_vs_middle_direction	-1.44833255482441	0.0223552814978642	1.6506198571223023									Glycolysis
 HCC1143	Glycolysis	leave_one_target_direction_retained	1.0						1.0	1.0	-1.44770312171263	-1.48255591202225	-1.37416819643072	Glycolysis
 HCC1143	Glycolysis	median_aggregation_agrees	1.0			True	-1.44770312171263	-1.4425659439986						Glycolysis
-HCC1143	p53 Pathway	anchor_vs_middle_direction	1.33966170462469	0.057091346153846	1.2434297166658586									p53 Pathway
 HCC1143	p53 Pathway	leave_one_target_direction_retained	1.0						1.0	0.8888888888888888	1.3453479476648	1.28601939465299	1.44433752141654	p53 Pathway
 HCC1143	p53 Pathway	median_aggregation_agrees	1.0			True	1.3453479476648	1.38581843747236						p53 Pathway
-HCC1143	TNF-alpha Signaling via NF-kB	anchor_vs_middle_direction	1.46937705474539	0.014786061114273	1.830147503093413									TNF-alpha Signaling via NF-κB
 HCC1143	TNF-alpha Signaling via NF-kB	leave_one_target_direction_retained	1.0						1.0	1.0	1.47299279729122	1.35362747050716	1.63207420785076	TNF-alpha Signaling via NF-κB
 HCC1143	TNF-alpha Signaling via NF-kB	median_aggregation_agrees	1.0			True	1.47299279729122	1.47051585481585						TNF-alpha Signaling via NF-κB
-HCC38	Myc Targets V1	anchor_vs_middle_direction	-1.94695144151258	5e-09	8.301029995663981									MYC Targets V1
 HCC38	Myc Targets V1	leave_one_target_direction_retained	1.0						1.0	1.0	-1.95026327884799	-2.00892328243655	-1.85475101008917	MYC Targets V1
 HCC38	Myc Targets V1	median_aggregation_agrees	1.0			True	-1.95026327884799	-1.8277889610088						MYC Targets V1
-HCC38	E2F Targets	anchor_vs_middle_direction	-1.64885938657052	1.911411103837233e-05	4.718645895401014									E2F Targets
 HCC38	E2F Targets	leave_one_target_direction_retained	1.0						1.0	0.8888888888888888	-1.65190353703246	-1.83514270860737	-1.21491537647812	E2F Targets
 HCC38	E2F Targets	median_aggregation_agrees	1.0			True	-1.65190353703246	-1.4785951423661						E2F Targets
-HCC38	G2-M Checkpoint	anchor_vs_middle_direction	-1.62201755975431	2.891542675297512e-05	4.538870393708145									G2-M Checkpoint
 HCC38	G2-M Checkpoint	leave_one_target_direction_retained	1.0						1.0	0.7777777777777778	-1.62495522546412	-1.81536823396946	-1.17231765004265	G2-M Checkpoint
 HCC38	G2-M Checkpoint	median_aggregation_agrees	1.0			True	-1.62495522546412	-1.51296243737521						G2-M Checkpoint
-HCC38	Mitotic Spindle	anchor_vs_middle_direction	-1.43977693004029	0.0143332186675837	1.8436562734820428									Mitotic Spindle
 HCC38	Mitotic Spindle	leave_one_target_direction_retained	1.0						1.0	0.7777777777777778	-1.44338904739184	-1.59893739602921	-1.1546285641138	Mitotic Spindle
 HCC38	Mitotic Spindle	median_aggregation_agrees	1.0			True	-1.44338904739184	-1.37955959378275						Mitotic Spindle
-HCC38	mTORC1 Signaling	anchor_vs_middle_direction	-1.75043816899215	1.4815908233209626e-07	6.829271720587499									mTORC1 Signaling
 HCC38	mTORC1 Signaling	leave_one_target_direction_retained	1.0						1.0	1.0	-1.75366985582011	-1.80198663875137	-1.63668711533603	mTORC1 Signaling
 HCC38	mTORC1 Signaling	median_aggregation_agrees	1.0			True	-1.75366985582011	-1.65702733741786						mTORC1 Signaling
-HCC38	Glycolysis	anchor_vs_middle_direction	-1.49917986096619	0.001833032623762	2.736829805526745									Glycolysis
 HCC38	Glycolysis	leave_one_target_direction_retained	1.0						1.0	1.0	-1.5029410085967	-1.58392040111856	-1.41069626402532	Glycolysis
 HCC38	Glycolysis	median_aggregation_agrees	1.0			True	-1.5029410085967	-1.49583641137278						Glycolysis
-HCC38	p53 Pathway	anchor_vs_middle_direction	0.984998668918647	0.5705294722711342	0.24372191598876994									p53 Pathway
 HCC38	p53 Pathway	leave_one_target_direction_retained	0.5555555555555556						0.5555555555555556	0.0	0.989898520618659	-0.999085315461357	1.2236746976175	p53 Pathway
 HCC38	p53 Pathway	median_aggregation_agrees	0.0			False	0.989898520618659	-1.02994809451782						p53 Pathway
-HCC38	TNF-alpha Signaling via NF-kB	anchor_vs_middle_direction	0.975823792001845	0.5941532405044837	0.2261015298967909									TNF-alpha Signaling via NF-κB
 HCC38	TNF-alpha Signaling via NF-kB	leave_one_target_direction_retained	0.6666666666666666						0.6666666666666666	0.0	0.979809473844066	-1.06571250194489	1.22371493247067	TNF-alpha Signaling via NF-κB
 HCC38	TNF-alpha Signaling via NF-kB	median_aggregation_agrees	0.0			False	0.979809473844066	-0.896381072885171						TNF-alpha Signaling via NF-κB
