@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_图层_1" data-name="图层_1" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 481.3 227.3">
+  <!-- Generator: Adobe Illustrator 29.0.0, SVG Export Plug-In . SVG Version: 2.1.0 Build 186)  -->
+  <defs>
+    <style>
+      .st0 {
+        font-size: 13.5px;
+      }
+
+      .st0, .st1, .st2, .st3, .st4, .st5, .st6 {
+        isolation: isolate;
+      }
+
+      .st0, .st5 {
+        fill: #111;
+      }
+
+      .st0, .st5, .st6 {
+        font-family: ArialMT, Arial;
+      }
+
+      .st1, .st2, .st3, .st4 {
+        font-family: Arial-BoldMT, Arial;
+        font-size: 8.6px;
+        font-weight: 700;
+      }
+
+      .st1, .st7 {
+        fill: #9b5a30;
+      }
+
+      .st8 {
+        clip-path: url(#clippath-6);
+      }
+
+      .st9 {
+        clip-path: url(#clippath-7);
+      }
+
+      .st2, .st6, .st10 {
+        fill: #465261;
+      }
+
+      .st11 {
+        clip-path: url(#clippath-15);
+      }
+
+      .st3, .st12 {
+        fill: #3b827a;
+      }
+
+      .st13 {
+        clip-path: url(#clippath-4);
+      }
+
+      .st14 {
+        clip-path: url(#clippath-9);
+      }
+
+      .st15 {
+        clip-path: url(#clippath-10);
+      }
+
+      .st4, .st16 {
+        fill: #73729f;
+      }
+
+      .st17 {
+        clip-path: url(#clippath-11);
+      }
+
+      .st18, .st19, .st20 {
+        fill: none;
+      }
+
+      .st5 {
+        font-size: 10.4px;
+      }
+
+      .st21 {
+        clip-path: url(#clippath-1);
+      }
+
+      .st16, .st12, .st19, .st7, .st20, .st10 {
+        stroke-linejoin: round;
+      }
+
+      .st16, .st12, .st7, .st20, .st10 {
+        stroke: #111;
+      }
+
+      .st16, .st12, .st7, .st10 {
+        stroke-width: .6px;
+      }
+
+      .st6 {
+        font-size: 10px;
+      }
+
+      .st22 {
+        clip-path: url(#clippath-5);
+      }
+
+      .st23 {
+        clip-path: url(#clippath-8);
+      }
+
+      .st24 {
+        clip-path: url(#clippath-3);
+      }
+
+      .st25 {
+        clip-path: url(#clippath-12);
+      }
+
+      .st19 {
+        stroke: #d8d8d8;
+        stroke-linecap: square;
+        stroke-opacity: .6;
+        stroke-width: .4px;
+      }
+
+      .st26 {
+        clip-path: url(#clippath-14);
+      }
+
+      .st27 {
+        clip-path: url(#clippath-16);
+      }
+
+      .st28 {
+        clip-path: url(#clippath-2);
+      }
+
+      .st29 {
+        clip-path: url(#clippath-13);
+      }
+
+      .st30 {
+        clip-path: url(#clippath);
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="st18" x="-11.7" y="-26.9" width="481.6" height="302.7"/>
+    </clipPath>
+    <clipPath id="clippath-1">
+      <rect class="st18" x="-11.7" y="-26.9" width="481.6" height="302.7"/>
+    </clipPath>
+    <clipPath id="clippath-2">
+      <rect class="st18" x="-11.7" y="-26.9" width="481.6" height="302.7"/>
+    </clipPath>
+    <clipPath id="clippath-3">
+      <rect class="st18" x="-11.7" y="-26.9" width="481.6" height="302.7"/>
+    </clipPath>
+    <clipPath id="clippath-4">
+      <rect class="st18" x="-11.7" y="-26.9" width="481.6" height="302.7"/>
+    </clipPath>
+    <clipPath id="clippath-5">
+      <rect class="st18" x="-11.7" y="-26.9" width="481.6" height="302.7"/>
+    </clipPath>
+    <clipPath id="clippath-6">
+      <rect class="st18" x="-11.7" y="-26.9" width="481.6" height="302.7"/>
+    </clipPath>
+    <clipPath id="clippath-7">
+      <rect class="st18" x="-11.7" y="-26.9" width="481.6" height="302.7"/>
+    </clipPath>
+    <clipPath id="clippath-8">
+      <rect class="st18" x="-11.7" y="-26.9" width="481.6" height="302.7"/>
+    </clipPath>
+    <clipPath id="clippath-9">
+      <rect class="st18" x="-11.7" y="-26.9" width="481.6" height="302.7"/>
+    </clipPath>
+    <clipPath id="clippath-10">
+      <rect class="st18" x="-11.7" y="-26.9" width="481.6" height="302.7"/>
+    </clipPath>
+    <clipPath id="clippath-11">
+      <rect class="st18" x="-11.7" y="-26.9" width="481.6" height="302.7"/>
+    </clipPath>
+    <clipPath id="clippath-12">
+      <rect class="st18" x="-11.7" y="-26.9" width="481.6" height="302.7"/>
+    </clipPath>
+    <clipPath id="clippath-13">
+      <rect class="st18" x="-11.7" y="-26.9" width="481.6" height="302.7"/>
+    </clipPath>
+    <clipPath id="clippath-14">
+      <rect class="st18" x="-11.7" y="-26.9" width="481.6" height="302.7"/>
+    </clipPath>
+    <clipPath id="clippath-15">
+      <rect class="st18" x="-11.7" y="-26.9" width="481.6" height="302.7"/>
+    </clipPath>
+    <clipPath id="clippath-16">
+      <rect class="st18" x="-11.7" y="-26.9" width="481.6" height="302.7"/>
+    </clipPath>
+  </defs>
+  <g id="line2d_1">
+    <g class="st30">
+      <path class="st20" d="M14.8,59.4h433.4"/>
+    </g>
+  </g>
+  <g id="line2d_2">
+    <g class="st21">
+      <path class="st19" d="M17.2,81.5h428.6"/>
+    </g>
+  </g>
+  <g id="line2d_3">
+    <g class="st28">
+      <path class="st19" d="M17.2,101.5h428.6"/>
+    </g>
+  </g>
+  <g id="line2d_4">
+    <g class="st24">
+      <path class="st19" d="M17.2,121.5h428.6"/>
+    </g>
+  </g>
+  <g id="line2d_5">
+    <g class="st13">
+      <path class="st19" d="M17.2,141.5h428.6"/>
+    </g>
+  </g>
+  <g id="line2d_6">
+    <g class="st22">
+      <path class="st19" d="M17.2,161.4h428.6"/>
+    </g>
+  </g>
+  <g id="line2d_7">
+    <g class="st8">
+      <path class="st19" d="M17.2,181.4h428.6"/>
+    </g>
+  </g>
+  <g id="line2d_8">
+    <g class="st9">
+      <path class="st19" d="M17.2,201.4h428.6"/>
+    </g>
+  </g>
+  <g id="line2d_9">
+    <g class="st23">
+      <path class="st19" d="M17.2,221.4h428.6"/>
+    </g>
+  </g>
+  <g id="text_1">
+    <text class="st0" transform="translate(19.6 17.7)"><tspan x="0" y="0">Dataset evidence landscape</tspan></text>
+  </g>
+  <g id="text_2">
+    <text class="st6" transform="translate(24.4 49.9)"><tspan x="0" y="0">Context</tspan></text>
+  </g>
+  <g id="text_3">
+    <text class="st3" transform="translate(184.8 45.5)"><tspan x="0" y="0">Primary model</tspan></text>
+    <text class="st3" transform="translate(204.4 53.5)"><tspan x="0" y="0">audit</tspan></text>
+  </g>
+  <g id="text_4">
+    <text class="st4" transform="translate(255.2 45.5)"><tspan x="0" y="0">Secondary endpoint</tspan></text>
+    <text class="st4" transform="translate(276.5 53.5)"><tspan x="0" y="0">extension</tspan></text>
+  </g>
+  <g id="text_5">
+    <text class="st1" transform="translate(344.9 45.5)"><tspan x="0" y="0">Temporal</tspan></text>
+    <text class="st1" transform="translate(344.4 53.5)"><tspan x="0" y="0">boundary</tspan></text>
+  </g>
+  <g id="text_6">
+    <text class="st2" transform="translate(387.9 45.5)"><tspan x="0" y="0">Scale/target-universe</tspan></text>
+    <text class="st2" transform="translate(411.8 53.5)"><tspan x="0" y="0">boundary</tspan></text>
+  </g>
+  <g id="text_7">
+    <text class="st5" transform="translate(24.4 74.2)"><tspan x="0" y="0">HCC38 day 14</tspan></text>
+  </g>
+  <g id="PathCollection_1">
+    <g class="st14">
+      <path id="mbebfb42c6e" class="st12" d="M214.7,77.3c1.5,0,3-.6,4.1-1.7,1.1-1.1,1.7-2.6,1.7-4.1s-.6-3-1.7-4.1c-1.1-1.1-2.6-1.7-4.1-1.7s-3,.6-4.1,1.7c-1.1,1.1-1.7,2.6-1.7,4.1s.6,3,1.7,4.1c1.1,1.1,2.6,1.7,4.1,1.7Z"/>
+    </g>
+  </g>
+  <g id="text_8">
+    <text class="st5" transform="translate(24.4 94.2)"><tspan x="0" y="0">HCC1143 day 14</tspan></text>
+  </g>
+  <g id="PathCollection_2">
+    <g class="st15">
+      <path id="mbebfb42c6e1" data-name="mbebfb42c6e" class="st12" d="M214.7,97.3c1.5,0,3-.6,4.1-1.7,1.1-1.1,1.7-2.6,1.7-4.1s-.6-3-1.7-4.1c-1.1-1.1-2.6-1.7-4.1-1.7s-3,.6-4.1,1.7c-1.1,1.1-1.7,2.6-1.7,4.1s.6,3,1.7,4.1c1.1,1.1,2.6,1.7,4.1,1.7Z"/>
+    </g>
+  </g>
+  <g id="text_9">
+    <text class="st5" transform="translate(24.4 114.2)"><tspan x="0" y="0">HepG2 day 7</tspan></text>
+  </g>
+  <g id="PathCollection_3">
+    <g class="st17">
+      <path id="m63dae2385e" class="st16" d="M296.5,117.3c1.5,0,3-.6,4.1-1.7,1.1-1.1,1.7-2.6,1.7-4.1s-.6-3-1.7-4.1c-1.1-1.1-2.6-1.7-4.1-1.7s-3,.6-4.1,1.7c-1.1,1.1-1.7,2.6-1.7,4.1s.6,3,1.7,4.1c1.1,1.1,2.6,1.7,4.1,1.7Z"/>
+    </g>
+  </g>
+  <g id="text_10">
+    <text class="st5" transform="translate(24.4 134.2)"><tspan x="0" y="0">Jurkat day 7</tspan></text>
+  </g>
+  <g id="PathCollection_4">
+    <g class="st25">
+      <path id="m63dae2385e1" data-name="m63dae2385e" class="st16" d="M296.5,137.3c1.5,0,3-.6,4.1-1.7,1.1-1.1,1.7-2.6,1.7-4.1s-.6-3-1.7-4.1c-1.1-1.1-2.6-1.7-4.1-1.7s-3,.6-4.1,1.7c-1.1,1.1-1.7,2.6-1.7,4.1s.6,3,1.7,4.1c1.1,1.1,2.6,1.7,4.1,1.7Z"/>
+    </g>
+  </g>
+  <g id="text_11">
+    <text class="st5" transform="translate(24.4 154.1)"><tspan x="0" y="0">K562 TF day 7</tspan></text>
+  </g>
+  <g id="PathCollection_5">
+    <g class="st29">
+      <path id="mcaeacabcb4" class="st7" d="M363.9,157.2c1.5,0,3-.6,4.1-1.7,1.1-1.1,1.7-2.6,1.7-4.1s-.6-3-1.7-4.1c-1.1-1.1-2.6-1.7-4.1-1.7s-3,.6-4.1,1.7c-1.1,1.1-1.7,2.6-1.7,4.1s.6,3,1.7,4.1c1.1,1.1,2.6,1.7,4.1,1.7Z"/>
+    </g>
+  </g>
+  <g id="text_12">
+    <text class="st5" transform="translate(24.4 174.1)"><tspan x="0" y="0">K562 TF day 13</tspan></text>
+  </g>
+  <g id="PathCollection_6">
+    <g class="st26">
+      <path id="mcaeacabcb41" data-name="mcaeacabcb4" class="st7" d="M363.9,177.2c1.5,0,3-.6,4.1-1.7,1.1-1.1,1.7-2.6,1.7-4.1s-.6-3-1.7-4.1c-1.1-1.1-2.6-1.7-4.1-1.7s-3,.6-4.1,1.7c-1.1,1.1-1.7,2.6-1.7,4.1s.6,3,1.7,4.1c1.1,1.1,2.6,1.7,4.1,1.7Z"/>
+    </g>
+  </g>
+  <g id="text_13">
+    <text class="st5" transform="translate(24.4 194.1)"><tspan x="0" y="0">K562 essential CRISPRi day 6</tspan></text>
+  </g>
+  <g id="PathCollection_7">
+    <g class="st11">
+      <path id="mb5ab709cb8" class="st10" d="M431.4,197.2c1.5,0,3-.6,4.1-1.7,1.1-1.1,1.7-2.6,1.7-4.1s-.6-3-1.7-4.1c-1.1-1.1-2.6-1.7-4.1-1.7s-3,.6-4.1,1.7c-1.1,1.1-1.7,2.6-1.7,4.1s.6,3,1.7,4.1c1.1,1.1,2.6,1.7,4.1,1.7Z"/>
+    </g>
+  </g>
+  <g id="text_14">
+    <text class="st5" transform="translate(24.4 214.1)"><tspan x="0" y="0">K562 GWPS CRISPRi day 8</tspan></text>
+  </g>
+  <g id="PathCollection_8">
+    <g class="st27">
+      <path id="mb5ab709cb81" data-name="mb5ab709cb8" class="st10" d="M431.4,217.2c1.5,0,3-.6,4.1-1.7,1.1-1.1,1.7-2.6,1.7-4.1s-.6-3-1.7-4.1c-1.1-1.1-2.6-1.7-4.1-1.7s-3,.6-4.1,1.7c-1.1,1.1-1.7,2.6-1.7,4.1s.6,3,1.7,4.1c1.1,1.1,2.6,1.7,4.1,1.7Z"/>
+    </g>
+  </g>
+</svg>

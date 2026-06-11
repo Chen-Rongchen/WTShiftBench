@@ -43,9 +43,9 @@ REPLOGLE_PERM_ITERATIONS = 1000
 REPLOGLE_PERM_SEED = 42
 
 PRIMARY_GREEN = COLORS["primary_qualified"]  # "#4B8A5A"
-NEUTRAL_GRAY = "#888888"
-SKY_BLUE = "#56B4E9"
-VERMILLION = "#D55E00"
+NEUTRAL_GRAY = "#8E8E8E"
+SKY_BLUE = COLORS["accent_blue"]
+VERMILLION = COLORS["boundary"]
 
 
 def output_dir(root: Path) -> Path:
@@ -233,7 +233,7 @@ def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
     summ = summ.iloc[0]
 
     quadrant_colors = {
-        "Q1_anchor": "#D55E00",          # red-orange, matching Fig 1 Q1
+        "Q1_anchor": PRIMARY_GREEN,
         "Q2_shift_excess": SKY_BLUE,
         "Q3_dep_excess": SKY_BLUE,
         "Q4_low_info": "#BDBDBD",
@@ -302,7 +302,7 @@ def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
     # Rho stats — right of scatter, clipped outside axes
     ax.text(
         1.06, 0.78,
-        f"Spearman $\\rho$ = {rho_val:.3f}\n95% CI {ci_low:.3f}\u2013{ci_high:.3f}\nempirical p = {p_perm:.3g}\nn = {n}",
+        f"Spearman $\\rho$ = {rho_val:.3f}\n95% CI {ci_low:.3f}\u2013{ci_high:.3f}\nempirical p = {p_perm:.3g}\nn={n}",
         transform=ax.transAxes, fontsize=5.8, va="top", ha="left", color="#333333", clip_on=False,
     )
 
@@ -385,9 +385,9 @@ def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
     LIGHT_GRAY = "#F0F0F0"
     DIVIDER_GRAY = "#CCCCCC"
     DARK_TEXT = "#1F1F1F"
-    GREEN = "#2E7D32"
-    OCHRE = "#D84315"
-    GREEN_FILL = "#E8F5E9"
+    GREEN = COLORS["primary_qualified"]
+    OCHRE = COLORS["boundary"]
+    GREEN_FILL = COLORS["pale_green"]
 
     rows = list(df[["evidence_item", "tier", "status", "note"]].itertuples(index=False, name=None))
 

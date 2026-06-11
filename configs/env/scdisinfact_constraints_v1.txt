@@ -1,0 +1,8 @@
+# scDisInFact registry-only candidate entrant.
+# Install from the official source repository with its package metadata.
+torch>=1.10
+numpy
+pandas
+scipy
+scikit-learn
+anndata

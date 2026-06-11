@@ -1,0 +1,111 @@
+{
+  "outdir": "reports/model_score_calibration_v1",
+  "truth_contract_path": "reports/truth_driven_bridge/truth_architecture_contract/truth_architecture_contract.tsv",
+  "axis_membership_path": "reports/truth_driven_bridge/master_atlas/shared_target_axis_membership.tsv",
+  "iterations": 25,
+  "seed": 20260518,
+  "skip_missing": false,
+  "controls": [
+    "target_label_permutation",
+    "model_output_shuffle",
+    "truth_contract_role_permutation"
+  ],
+  "predictions": [
+    {
+      "model_id": "shared_mean_baseline",
+      "cell_line": "HCC38",
+      "role": "diagnostic_reference",
+      "prediction_path": "data/predictions/hcc_scorer_ready/shared_mean_baseline/HCC38/predicted_shift.tsv.gz"
+    },
+    {
+      "model_id": "shared_mean_baseline",
+      "cell_line": "HCC1143",
+      "role": "diagnostic_reference",
+      "prediction_path": "data/predictions/hcc_scorer_ready/shared_mean_baseline/HCC1143/predicted_shift.tsv.gz"
+    },
+    {
+      "model_id": "null_model",
+      "cell_line": "HCC38",
+      "role": "null_reference",
+      "prediction_path": "data/predictions/hcc_scorer_ready/null_model/HCC38/predicted_shift.tsv.gz"
+    },
+    {
+      "model_id": "null_model",
+      "cell_line": "HCC1143",
+      "role": "null_reference",
+      "prediction_path": "data/predictions/hcc_scorer_ready/null_model/HCC1143/predicted_shift.tsv.gz"
+    },
+    {
+      "model_id": "gears_hcc_formal_v1",
+      "cell_line": "HCC38",
+      "role": "primary_entrant",
+      "prediction_path": "data/predictions/hcc_scorer_ready/gears_hcc_formal_v1/HCC38/predicted_shift.tsv.gz"
+    },
+    {
+      "model_id": "gears_hcc_formal_v1",
+      "cell_line": "HCC1143",
+      "role": "primary_entrant",
+      "prediction_path": "data/predictions/hcc_scorer_ready/gears_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz"
+    },
+    {
+      "model_id": "scgpt_hcc_formal_v1",
+      "cell_line": "HCC38",
+      "role": "embedding_control",
+      "prediction_path": "data/predictions/hcc_scorer_ready/scgpt_hcc_formal_v1/HCC38/predicted_shift.tsv.gz"
+    },
+    {
+      "model_id": "scgpt_hcc_formal_v1",
+      "cell_line": "HCC1143",
+      "role": "embedding_control",
+      "prediction_path": "data/predictions/hcc_scorer_ready/scgpt_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz"
+    },
+    {
+      "model_id": "geneformer_hcc_formal_v1",
+      "cell_line": "HCC38",
+      "role": "embedding_control",
+      "prediction_path": "data/predictions/hcc_scorer_ready/geneformer_hcc_formal_v1/HCC38/predicted_shift.tsv.gz"
+    },
+    {
+      "model_id": "geneformer_hcc_formal_v1",
+      "cell_line": "HCC1143",
+      "role": "embedding_control",
+      "prediction_path": "data/predictions/hcc_scorer_ready/geneformer_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz"
+    },
+    {
+      "model_id": "lm_g_scgpt_ridge_hcc_formal_v1",
+      "cell_line": "HCC38",
+      "role": "linear_embedding_control",
+      "prediction_path": "data/predictions/hcc_scorer_ready/lm_g_scgpt_ridge_hcc_formal_v1/HCC38/predicted_shift.tsv.gz"
+    },
+    {
+      "model_id": "lm_g_scgpt_ridge_hcc_formal_v1",
+      "cell_line": "HCC1143",
+      "role": "linear_embedding_control",
+      "prediction_path": "data/predictions/hcc_scorer_ready/lm_g_scgpt_ridge_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz"
+    },
+    {
+      "model_id": "lm_g_geneformer_ridge_hcc_formal_v1",
+      "cell_line": "HCC38",
+      "role": "linear_embedding_control",
+      "prediction_path": "data/predictions/hcc_scorer_ready/lm_g_geneformer_ridge_hcc_formal_v1/HCC38/predicted_shift.tsv.gz"
+    },
+    {
+      "model_id": "lm_g_geneformer_ridge_hcc_formal_v1",
+      "cell_line": "HCC1143",
+      "role": "linear_embedding_control",
+      "prediction_path": "data/predictions/hcc_scorer_ready/lm_g_geneformer_ridge_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz"
+    },
+    {
+      "model_id": "lm_train_lowrank_hcc_formal_v1",
+      "cell_line": "HCC38",
+      "role": "linear_control",
+      "prediction_path": "data/predictions/hcc_scorer_ready/lm_train_lowrank_hcc_formal_v1/HCC38/predicted_shift.tsv.gz"
+    },
+    {
+      "model_id": "lm_train_lowrank_hcc_formal_v1",
+      "cell_line": "HCC1143",
+      "role": "linear_control",
+      "prediction_path": "data/predictions/hcc_scorer_ready/lm_train_lowrank_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz"
+    }
+  ]
+}

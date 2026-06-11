@@ -3,35 +3,27 @@
   "figures": [
     {
       "figure_id": "figure1",
-      "name": "truth_object",
-      "script": "scripts/manuscript/build_figure1_truth_object.py",
-      "output_dir": "reports/manuscript_figures_v2/fig1_truth_object"
+      "name": "endpoint_recovery_contract",
+      "script": "figure_build/myfig/assemble_figure1_from_myfig.py",
+      "output_dir": "figure_build/output/Figure_1"
     },
     {
       "figure_id": "figure2",
-      "name": "anchor_tiering",
-      "script": "scripts/manuscript/build_figure2_anchor_tiering.py",
-      "output_dir": "reports/manuscript_figures_v2/fig2_anchor_tiering"
+      "name": "primary_hcc_endpoint_object",
+      "script": "figure_build/figure2/build_figure2_anchor_tiering.py",
+      "output_dir": "figure_build/output/Figure_2"
     },
     {
       "figure_id": "figure3",
-      "name": "model_tradeoff",
-      "script": "scripts/manuscript/build_figure3_model_tradeoff.py",
-      "output_dir": "reports/manuscript_figures_v2/fig3_model_tradeoff"
+      "name": "model_endpoint_recovery_audit",
+      "script": "figure_build/figure3/build_figure3_model_tradeoff.py",
+      "output_dir": "figure_build/output/Figure_3"
     },
     {
       "figure_id": "figure4",
-      "name": "sweep_controls",
-      "script": "scripts/manuscript/build_figure4_sweep_controls.py",
-      "output_dir": "reports/manuscript_figures_v2/fig4_sweep_controls"
-    },
-    {
-      "figure_id": "figure5",
-      "name": "boundary",
-      "script": "scripts/manuscript/build_figure6_boundary.py",
-      "output_dir": "reports/manuscript_figures_v2/fig6_boundary",
-      "source_stem": "figure6",
-      "manuscript_stem": "Figure_5"
+      "name": "external_bridge_boundary",
+      "script": "figure_build/figure4/build_figure4_sweep_controls.py",
+      "output_dir": "figure_build/output/Figure_4"
     }
   ]
 }

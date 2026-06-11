@@ -1,0 +1,23 @@
+{
+  "outdir": "data/processed/cpa_hcc_formal",
+  "manifest_dir": "reports/model_eligibility/cpa_hcc_input_preparation",
+  "contexts": {
+    "HCC38": "data/processed/hcc_gears_formal/HCC38.h5ad",
+    "HCC1143": "data/processed/hcc_gears_formal/HCC1143.h5ad"
+  },
+  "perturbation_label_column": "target_gene",
+  "control_column": "is_control",
+  "control_perturbation_label": "control",
+  "cpa_obs_columns": {
+    "perturbation": "cpa_perturbation",
+    "dosage": "cpa_dosage",
+    "context": "cpa_context",
+    "batch": "cpa_batch",
+    "is_control": "cpa_is_control"
+  },
+  "default_dosage": "1.0",
+  "notes": {
+    "purpose": "Prepare HCC AnnData metadata for a CPA sensitivity entrant without changing the WTShiftBench truth object.",
+    "default_mode": "dry-run; pass --write-h5ad to materialize CPA-ready H5AD files"
+  }
+}

@@ -1,33 +1,21 @@
-model_id	cell_line	total_shift_depmap_spearman	total_shift_depmap_pvalue	total_shift_depmap_qvalue	total_shift_depmap_status
-cellot_hcc_formal_v1	HCC1143	0.0448658649398704	0.7645943068716943	0.9293728162671568	estimated
-cellot_hcc_formal_v1	HCC38	0.2172756706753006	0.1423632651594372	0.3986171424464242	estimated
-cpa_v0.8.8	HCC1143	-0.1604995374653099	0.2811651385375679	0.4920389924407438	estimated
-cpa_v0.8.8	HCC38	-0.1557585568917668	0.2958056476814158	0.5927871878731339	estimated
-gears_hcc_formal_v1	HCC1143	0.0158418131359852	0.9158298597897396	0.971078286353992	estimated
-gears_hcc_formal_v1	HCC38	0.2273358001850139	0.1243501393594644	0.3986171424464242	estimated
-gears_hcc_formal_v1_e20_lr1e-03_wd1e-06	HCC1143	-0.2291859389454209	0.121233360062147	0.3459829576556604	estimated
-gears_hcc_formal_v1_e20_lr1e-03_wd1e-06	HCC38	0.1195652173913043	0.4234194199093813	0.5927871878731339	estimated
-gears_hcc_formal_v1_e30_lr1e-03_wd1e-05	HCC1143	0.0568917668825161	0.7040674447966342	0.9293728162671568	estimated
-gears_hcc_formal_v1_e30_lr1e-03_wd1e-05	HCC38	0.1274283071230342	0.3933445199855087	0.5927871878731339	estimated
-gears_hcc_formal_v1_e30_lr2e-03_wd1e-06	HCC1143	0.4927150786308972	0.0004342321778229	0.0030396252447603	estimated
-gears_hcc_formal_v1_e30_lr2e-03_wd1e-06	HCC38	0.1376040703052728	0.356340108919035	0.5927871878731339	estimated
-gears_hcc_formal_v1_e30_lr5e-04_wd1e-06	HCC1143	0.2277983348751156	0.1235653420198787	0.3459829576556604	estimated
-gears_hcc_formal_v1_e30_lr5e-04_wd1e-06	HCC38	0.2511563367252544	0.0885883622041651	0.3986171424464242	estimated
-gears_hcc_formal_v1_e40_lr1e-03_wd1e-06	HCC1143	-0.1666281221091582	0.2629558640250296	0.4920389924407438	estimated
-gears_hcc_formal_v1_e40_lr1e-03_wd1e-06	HCC38	0.0779370952821461	0.6025651179900802	0.766901059260102	estimated
-geneformer_hcc_formal_v1	HCC1143	0.145814061054579	0.3280879043060074	0.5103589622537893	estimated
-geneformer_hcc_formal_v1	HCC38	-0.1236123959296947	0.4077804191672295	0.5927871878731339	estimated
-lm_g_geneformer_ridge_hcc_formal_v1	HCC1143	-0.0054347826086956	0.971078286353992	0.971078286353992	estimated
-lm_g_geneformer_ridge_hcc_formal_v1	HCC38	-0.0138760407030527	0.926243491979	0.926243491979	estimated
-lm_g_scgpt_ridge_hcc_formal_v1	HCC1143	0.0386216466234967	0.7966052710861344	0.9293728162671568	estimated
-lm_g_scgpt_ridge_hcc_formal_v1	HCC38	0.029486586493987	0.8440238618371709	0.908948774286184	estimated
-lm_train_lowrank_hcc_formal_v1	HCC1143	0.1957678075855689	0.1872429963522215	0.4369003248218503	estimated
-lm_train_lowrank_hcc_formal_v1	HCC38	0.0509944495837187	0.7335492754755175	0.8558074880547704	estimated
-null_model	HCC1143				non_estimable_constant_score
-null_model	HCC38				non_estimable_constant_score
-scgen_hcc_formal_v1	HCC1143	0.5201202590194265	0.0001788037437314	0.0025032524122402	estimated
-scgen_hcc_formal_v1	HCC38	0.4868177613320999	0.0005205873441632	0.0055512477149475	estimated
-scgpt_hcc_formal_v1	HCC1143	0.2606382978723404	0.0768179229531643	0.3459829576556604	estimated
-scgpt_hcc_formal_v1	HCC38	0.4727104532839963	0.0007930353878496	0.0055512477149475	estimated
-shared_mean_baseline	HCC1143				non_estimable_constant_score
-shared_mean_baseline	HCC38				non_estimable_constant_score
+model_id	cell_line	predicted_target_similarity_mean	leading_singular_energy_share	normalized_inverse_effective_rank	fill_scale
+scgen_hcc_formal_v1	HCC38	0.7937453571091759	0.6996044653052507	0.9339754343372548	within metric; raw values are provided in source data
+scgen_hcc_formal_v1	HCC1143	0.7789692471597667	0.6724040385366731	0.9290929279411712	within metric; raw values are provided in source data
+cpa_v0.8.8	HCC38	0.9943975900943732	0.9946940301777658	0.9991762009254318	within metric; raw values are provided in source data
+cpa_v0.8.8	HCC1143	0.938743860910642	0.9360535281954157	0.9940320568743726	within metric; raw values are provided in source data
+gears_hcc_formal_v1	HCC38	0.5460301042813954	0.5911442343083585	0.9192966656323605	within metric; raw values are provided in source data
+gears_hcc_formal_v1	HCC1143	0.4724202434574844	0.4633218220875185	0.9089168539819809	within metric; raw values are provided in source data
+cellot_hcc_formal_v1	HCC38	0.3270921291540744	0.5147364477758587	0.912901547177661	within metric; raw values are provided in source data
+cellot_hcc_formal_v1	HCC1143	0.3089680808051099	0.3710272040613464	0.8859481396662818	within metric; raw values are provided in source data
+scgpt_hcc_formal_v1	HCC38	0.2021883619648669	0.3873448601279407	0.8417126966049429	within metric; raw values are provided in source data
+scgpt_hcc_formal_v1	HCC1143	0.2535636536365697	0.5347064052009594	0.8972329853089304	within metric; raw values are provided in source data
+geneformer_hcc_formal_v1	HCC38	0.5146872998631231	0.4958729301463226	0.8849605062914734	within metric; raw values are provided in source data
+geneformer_hcc_formal_v1	HCC1143	0.477756564362139	0.5612693666614963	0.9096461889258124	within metric; raw values are provided in source data
+lm_train_lowrank_hcc_formal_v1	HCC38	0.0175076917214645	0.2401695752391728	0.7897532732253745	within metric; raw values are provided in source data
+lm_train_lowrank_hcc_formal_v1	HCC1143	0.0325874415324252	0.2308505741893365	0.7992639788908227	within metric; raw values are provided in source data
+lm_g_scgpt_ridge_hcc_formal_v1	HCC38	0.0072176059978728	0.2601626665350631	0.7865301100628858	within metric; raw values are provided in source data
+lm_g_scgpt_ridge_hcc_formal_v1	HCC1143	0.0272587066867515	0.2586204237792127	0.7947119401696103	within metric; raw values are provided in source data
+lm_g_geneformer_ridge_hcc_formal_v1	HCC38	0.0240288470057757	0.4315427665344917	0.8421662116621106	within metric; raw values are provided in source data
+lm_g_geneformer_ridge_hcc_formal_v1	HCC1143	0.0367955238109856	0.270315989435718	0.8192260127687655	within metric; raw values are provided in source data
+shared_mean_baseline	HCC38	1.0000000000000002	1.0	1.0	within metric; raw values are provided in source data
+shared_mean_baseline	HCC1143	1.0	1.0	1.0	within metric; raw values are provided in source data

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import argparse
-import csv
+import shutil
 import warnings
 from pathlib import Path
 from typing import Callable
@@ -10,57 +10,90 @@ import matplotlib.pyplot as plt
 import matplotlib.patheffects as pe
 import numpy as np
 import pandas as pd
-from PIL import Image as PILImage
-PILImage.MAX_IMAGE_PIXELS = None
 from matplotlib.lines import Line2D
 
-from wtbench.manuscript.figure_io import ensure_dir, repo_root, save_figure, write_tsv
+from wtbench.manuscript.figure_io import ensure_dir, repo_root, write_tsv
 from wtbench.manuscript.hash_manifest import write_figure_manifest, write_panel_manifest
-from wtbench.manuscript.manuscript_style import COLORS, add_panel_label, apply_manuscript_style, clean_axes
+from wtbench.manuscript.manuscript_style import COLORS, apply_manuscript_style, clean_axes, finalize_manuscript_figure
 
 warnings.filterwarnings("ignore", category=FutureWarning)
 warnings.filterwarnings("ignore", category=UserWarning)
 
 FIGURE_ID = "extended_data_figure1"
-FIGURE_TITLE = "Dataset familiarization and endpoint inputs"
+PUBLIC_FIGURE_ID = "Extended_Data_Figure_1"
+FIGURE_TITLE = "Dataset inventory and perturbation-readout quality control"
 SCRIPT_PATH = Path("scripts/manuscript/build_extended_data_figure1.py")
 CLAIM_BOUNDARY = (
-    "These panels are descriptive familiarization of benchmark input datasets and endpoint datasets; "
-    "they do not replace the pre-specified truth object, endpoint hierarchy, or adjudication metrics."
+    "Extended Data Fig. 1 provides descriptive dataset familiarization and target-gene "
+    "readout checks. These panels do not define endpoint categories, model scores, or "
+    "cross-dataset model-generalization claims."
 )
-PANEL_IDS = tuple("abcdefghijk")
-
-# Match `render_combined` layout exactly so standalone panel PNG/PDF match subplot geometry.
-_ED1_COMBINED_FIG_W = 13.8
-_ED1_COMBINED_FIG_H = 9.55
-_ED1_GS_HEIGHT_RATIOS = [0.66, 0.02, 1.0, 0.05, 1.16]
-_ED1_GS_WSPACE = 0.35
-_ED1_SUBPLOT_ADJUST = dict(top=0.965, bottom=0.07, left=0.085, right=0.99)
-
-# Standalone panels g–k only: identical figure width × height (inches). Wider than grid-derived
-# bbox so y-axis gene names fit; Replogle (k) uses the same canvas size as g–j.
-_ED1_ARROW_PANEL_INCHES: tuple[float, float] = (3.15, 3.55)
+PANEL_IDS = ("a", "b", "c")
 
 ROOT = repo_root()
 
-HCC_ENDPOINT_SUMMARY = Path("reports/truth_driven_bridge/hcc38_hcc1143_rnai_endpoint_consistency/endpoint_consistency_summary.tsv")
-K562_ENDPOINT_SUMMARY = Path("reports/truth_driven_bridge/k562_rnai_endpoint_consistency/endpoint_consistency_summary.tsv")
-RNAI_CONVERSION = Path("reports/rnai_demeter2_conversion/summary.tsv")
-HCC38_BRIDGE_AUDIT = Path("reports/truth_driven_bridge/HCC38/bridge_audit.tsv")
-HCC1143_BRIDGE_AUDIT = Path("reports/truth_driven_bridge/HCC1143/bridge_audit.tsv")
-TEMPORAL_BRIDGE_SUMMARY = Path("reports/truth_driven_bridge/dixit_temporal_panel_gse90063/temporal_bridge_summary.tsv")
-CRISPR_GENE_DEPENDENCY = Path("depmap/CRISPRGeneDependency.csv")
 CANDIDATE_CONTEXT_METADATA = Path("reports/extended_data_candidates/dataset_familiarization_v2/qc/context_metadata.tsv")
 CANDIDATE_UMAP = Path("reports/extended_data_candidates/dataset_familiarization_v2/ed_candidate_v2_umap_source_data.tsv")
-CANDIDATE_SHIFT = Path("reports/extended_data_candidates/dataset_familiarization_v2/ed_candidate_v2_shift_magnitude_source_data.tsv")
-REPLOGLE_UMAP = Path("reports/manuscript_extended_data_v1/edfig1_replogle_panels/replogle_k562_essential_umap.tsv")
-# Optional single-row TSV: umap1, umap2 — matched control aggregate in the same UMAP space as REPLOGLE_UMAP.
-REPLOGLE_UMAP_CONTROL = Path(
-    "reports/manuscript_extended_data_v1/edfig1_replogle_panels/replogle_k562_essential_umap_control.tsv"
-)
 TARGET_GENE_EXPR_ARROWS = Path(
     "reports/manuscript_extended_data_v1/edfig1_dataset_familiarization/edfig1_target_gene_expression_arrows.tsv"
 )
+HCC_SUPPLEMENTAL_EXPR_ARROWS = Path(
+    "reports/manuscript_extended_data_v1/edfig1_dataset_familiarization/hcc_supplemental_target_expression_readouts.tsv"
+)
+EXTERNAL_BRIDGE = Path("reports/external_bridge_form_robustness/observed_shift_depmap_bridge_summary.tsv")
+HEPG2_QC = Path("reports/gse264667_endpoint_extension/gse264667_hepg2_day7/materialization_qc.tsv")
+JURKAT_QC = Path("reports/gse264667_endpoint_extension/gse264667_jurkat_day7/materialization_qc.tsv")
+GWPS_SOURCE = Path("figures/Extended_Data_Figure_3/panels/Extended_Data_Figure_3_panel_d_source_data.tsv")
+ESSENTIAL_SOURCE = Path("figures/Extended_Data_Figure_3/panels/Extended_Data_Figure_3_panel_c_source_data.tsv")
+PREVIOUS_UMAP_SOURCE = Path("figures/Extended_Data_Figure_1/panels/Extended_Data_Figure_1_panel_b_source_data.tsv")
+MATERIALIZED_UMAP_SOURCE = Path(
+    "reports/manuscript_extended_data_v1/edfig1_dataset_familiarization/materialized/"
+    "edfig1_missing_umap_source_data.tsv"
+)
+MATERIALIZED_EXPRESSION_SOURCE = Path(
+    "reports/manuscript_extended_data_v1/edfig1_dataset_familiarization/materialized/"
+    "edfig1_missing_target_expression_source_data.tsv"
+)
+
+CONTROL_COLOR = "#E58D7C"
+PERT_COLOR = "#A9C8C0"
+PERT_EDGE = "#3B827A"
+DECREASE_COLOR = "#3B827A"
+INCREASE_COLOR = "#D55E00"
+UNAVAILABLE_COLOR = "#D6D6D6"
+
+CONTEXT_ORDER = [
+    "HCC38",
+    "HCC1143",
+    "K562 7d",
+    "K562 13d",
+    "Replogle K562 essential",
+    "Replogle K562 GWPS",
+    "HepG2 day 7",
+    "Jurkat day 7",
+]
+
+CONTEXT_DISPLAY = {
+    "HCC38": "GSE241115\nHCC38",
+    "HCC1143": "GSE241115\nHCC1143",
+    "K562 7d": "GSE90063\nK562 TF day 7",
+    "K562 13d": "GSE90063\nK562 TF day 13",
+    "Replogle K562 essential": "Replogle\nK562 essential",
+    "Replogle K562 GWPS": "Replogle\nK562 GWPS",
+    "HepG2 day 7": "GSE264667\nHepG2 day 7",
+    "Jurkat day 7": "GSE264667\nJurkat day 7",
+}
+
+OVERVIEW_LABEL = {
+    "HCC38": "GSE241115 (HCC38)",
+    "HCC1143": "GSE241115 (HCC1143)",
+    "K562 7d": "GSE90063 K562 TF day 7 (K562)",
+    "K562 13d": "GSE90063 K562 TF day 13 (K562)",
+    "Replogle K562 essential": "Replogle essential CRISPRi (K562)",
+    "Replogle K562 GWPS": "Replogle GWPS CRISPRi (K562)",
+    "HepG2 day 7": "GSE264667 (HepG2)",
+    "Jurkat day 7": "GSE264667 (Jurkat)",
+}
 
 
 def output_dir(root: Path) -> Path:
@@ -71,21 +104,32 @@ def panel_dir(root: Path) -> Path:
     return output_dir(root) / "panels"
 
 
+def manuscript_figure_dir(root: Path) -> Path:
+    return root / "manuscript/figures/Extended_Data_Figure_1"
+
+
+def public_figure_dir(root: Path) -> Path:
+    return root / "figures/Extended_Data_Figure_1"
+
+
+def figure_build_dir(root: Path) -> Path:
+    return root / "figure_build/output/Extended_Data_Figure_1"
+
+
 def input_paths(root: Path) -> list[Path]:
     return [
-        root / HCC_ENDPOINT_SUMMARY,
-        root / K562_ENDPOINT_SUMMARY,
-        root / RNAI_CONVERSION,
-        root / HCC38_BRIDGE_AUDIT,
-        root / HCC1143_BRIDGE_AUDIT,
-        root / TEMPORAL_BRIDGE_SUMMARY,
-        root / CRISPR_GENE_DEPENDENCY,
         root / CANDIDATE_CONTEXT_METADATA,
         root / CANDIDATE_UMAP,
-        root / CANDIDATE_SHIFT,
-        root / REPLOGLE_UMAP,
-        root / REPLOGLE_UMAP_CONTROL,
         root / TARGET_GENE_EXPR_ARROWS,
+        root / HCC_SUPPLEMENTAL_EXPR_ARROWS,
+        root / EXTERNAL_BRIDGE,
+        root / HEPG2_QC,
+        root / JURKAT_QC,
+        root / GWPS_SOURCE,
+        root / ESSENTIAL_SOURCE,
+        root / PREVIOUS_UMAP_SOURCE,
+        root / MATERIALIZED_UMAP_SOURCE,
+        root / MATERIALIZED_EXPRESSION_SOURCE,
     ]
 
 
@@ -93,42 +137,22 @@ def cleanup_generated(root: Path) -> None:
     out = output_dir(root)
     for path in panel_dir(root).glob("edfig1_panel*"):
         path.unlink()
-    for suffix in (".png", ".pdf", "_source_data.tsv", "_panel_manifest.json"):
+    for suffix in (".png", ".pdf", ".svg", "_source_data.tsv", "_panel_manifest.json"):
         path = out / f"edfig1{suffix}"
         if path.exists():
             path.unlink()
 
 
-def _ed1_panel_figsize_inches() -> dict[str, tuple[float, float]]:
-    """Figure inches per panel from combined-grid geometry for a–f; g–k replaced in ``main``."""
-    fig_w, fig_h = _ED1_COMBINED_FIG_W, _ED1_COMBINED_FIG_H
-    fig = plt.figure(figsize=(fig_w, fig_h))
-    gs = fig.add_gridspec(
-        5,
-        5,
-        hspace=0.0,
-        wspace=_ED1_GS_WSPACE,
-        height_ratios=_ED1_GS_HEIGHT_RATIOS,
-    )
-    ax_a = fig.add_subplot(gs[0, :])
-    umap_axes: dict[str, plt.Axes] = {}
-    for pid, col in (("b", 0), ("c", 1), ("d", 2), ("e", 3), ("f", 4)):
-        umap_axes[pid] = fig.add_subplot(gs[2, col])
-    shift_axes: dict[str, plt.Axes] = {}
-    for pid, col in (("g", 0), ("h", 1), ("i", 2), ("j", 3), ("k", 4)):
-        shift_axes[pid] = fig.add_subplot(gs[4, col])
-    fig.subplots_adjust(**_ED1_SUBPLOT_ADJUST)
-    out: dict[str, tuple[float, float]] = {}
-    pos = ax_a.get_position()
-    out["a"] = (pos.width * fig_w, pos.height * fig_h)
-    for pid, ax in umap_axes.items():
-        pos = ax.get_position()
-        out[pid] = (pos.width * fig_w, pos.height * fig_h)
-    for pid, ax in shift_axes.items():
-        pos = ax.get_position()
-        out[pid] = (pos.width * fig_w, pos.height * fig_h)
+def save_panel(fig: plt.Figure, stem: Path, *, bbox_inches: str | None = "tight") -> list[Path]:
+    ensure_dir(stem.parent)
+    finalize_manuscript_figure(fig)
+    paths = [stem.with_suffix(".png"), stem.with_suffix(".pdf"), stem.with_suffix(".svg")]
+    save_kw: dict = {"dpi": 1200}
+    save_kw["bbox_inches"] = bbox_inches
+    for path in paths:
+        fig.savefig(path, **save_kw)
     plt.close(fig)
-    return out
+    return paths
 
 
 def write_panel(
@@ -143,12 +167,12 @@ def write_panel(
     bbox_inches: str | None = "tight",
 ) -> dict[str, Path]:
     pdir = ensure_dir(panel_dir(root))
-    stem = f"edfig1_panel{panel_id}"
-    source_path = write_tsv(source_df, pdir / f"{stem}_source_data.tsv")
+    stem = pdir / f"edfig1_panel{panel_id}"
+    source_path = write_tsv(source_df, pdir / f"edfig1_panel{panel_id}_source_data.tsv")
     fig, ax = plt.subplots(figsize=(width, height))
     render(ax, source_df)
-    output_paths = save_figure(fig, pdir / f"{stem}.png", pdir / f"{stem}.pdf", bbox_inches=bbox_inches)
-    manifest_path = pdir / f"{stem}_manifest.json"
+    output_paths = save_panel(fig, stem, bbox_inches=bbox_inches)
+    manifest_path = pdir / f"edfig1_panel{panel_id}_manifest.json"
     write_panel_manifest(
         manifest_path=manifest_path,
         repo_root=root,
@@ -160,432 +184,393 @@ def write_panel(
         output_paths=output_paths,
         claim_boundary=CLAIM_BOUNDARY,
     )
-    return {"source": source_path, "png": output_paths[0], "pdf": output_paths[1], "manifest": manifest_path}
+    return {
+        "source": source_path,
+        "png": output_paths[0],
+        "pdf": output_paths[1],
+        "svg": output_paths[2],
+        "manifest": manifest_path,
+    }
 
 
-def build_context_metadata(root: Path) -> pd.DataFrame:
+def _fmt_int(value: int | float | str | None) -> str:
+    if pd.isna(value):
+        return "not available"
+    try:
+        return str(int(float(value)))
+    except (TypeError, ValueError):
+        return str(value)
+
+
+def _size_text(n_genes: int | float | str | None, n_cells: int | float | str | None) -> str:
+    if pd.isna(n_genes) or pd.isna(n_cells):
+        return "not available"
+    return f"{_fmt_int(n_genes)} × {_fmt_int(n_cells)}"
+
+
+def _load_meta(root: Path) -> pd.DataFrame:
     meta = pd.read_csv(root / CANDIDATE_CONTEXT_METADATA, sep="\t")
-    return pd.DataFrame(
+    meta["context_norm"] = meta["context"].replace(
         {
-            "dataset_kind": "perturbation_expression",
-            "dataset_label": meta["context"],
-            "role": meta["role"],
-            "cells_or_models": meta["n_cells"].map(lambda x: f"{int(x):,} cells"),
-            "features": meta["n_genes"].map(lambda x: f"{int(x):,} genes"),
-            "benchmark_use": meta.apply(
-                lambda row: f"{int(row['n_unique_targets'])} targets; {int(row['n_controls']):,} controls",
-                axis=1,
-            ),
+            "Dixit 2016 K562 7d": "K562 7d",
+            "Dixit 2016 K562 13d": "K562 13d",
+            "Replogle K562 essential day 7": "Replogle K562 essential",
         }
     )
+    return meta
 
 
-def build_endpoint_metadata(root: Path) -> pd.DataFrame:
-    def csv_matrix_shape(path: Path) -> tuple[int, int]:
-        with path.open("r", encoding="utf-8", newline="") as fh:
-            reader = csv.reader(fh)
-            header = next(reader)
-            n_cols = len(header) - 1
-            n_rows = sum(1 for _ in reader)
-        return n_rows, n_cols
-
-    hcc = pd.read_csv(root / HCC_ENDPOINT_SUMMARY, sep="\t")
-    k562 = pd.read_csv(root / K562_ENDPOINT_SUMMARY, sep="\t")
-    rnai = pd.read_csv(root / RNAI_CONVERSION, sep="\t")
-    crispr_cell_lines, crispr_genes = csv_matrix_shape(root / CRISPR_GENE_DEPENDENCY)
-
-    crispr_counts = [
-        f"HCC38 {int(hcc.loc[(hcc['timepoint'].eq('HCC38')) & (hcc['summary_kind'].eq('truth_endpoint_bridge')) & (hcc['platform_pair'].eq('crispr')) & (hcc['truth_metric'].eq('real_shift_mean_abs')), 'n_shared_targets'].iloc[0])}",
-        f"HCC1143 {int(hcc.loc[(hcc['timepoint'].eq('HCC1143')) & (hcc['summary_kind'].eq('truth_endpoint_bridge')) & (hcc['platform_pair'].eq('crispr')) & (hcc['truth_metric'].eq('real_shift_mean_abs')), 'n_shared_targets'].iloc[0])}",
-        f"K562 7d {int(k562.loc[(k562['timepoint'].eq('7d')) & (k562['summary_kind'].eq('truth_endpoint_bridge')) & (k562['platform_pair'].eq('crispr')) & (k562['truth_metric'].eq('real_shift_mean_abs')), 'n_shared_targets'].iloc[0])}",
-        f"K562 13d {int(k562.loc[(k562['timepoint'].eq('13d')) & (k562['summary_kind'].eq('truth_endpoint_bridge')) & (k562['platform_pair'].eq('crispr')) & (k562['truth_metric'].eq('real_shift_mean_abs')), 'n_shared_targets'].iloc[0])}",
-    ]
-    rnai_counts = [
-        f"HCC38 {int(hcc.loc[(hcc['timepoint'].eq('HCC38')) & (hcc['summary_kind'].eq('truth_endpoint_bridge')) & (hcc['platform_pair'].eq('rnai')) & (hcc['truth_metric'].eq('real_shift_mean_abs')), 'n_shared_targets'].iloc[0])}",
-        f"HCC1143 {int(hcc.loc[(hcc['timepoint'].eq('HCC1143')) & (hcc['summary_kind'].eq('truth_endpoint_bridge')) & (hcc['platform_pair'].eq('rnai')) & (hcc['truth_metric'].eq('real_shift_mean_abs')), 'n_shared_targets'].iloc[0])}",
-        f"K562 7d {int(k562.loc[(k562['timepoint'].eq('7d')) & (k562['summary_kind'].eq('truth_endpoint_bridge')) & (k562['platform_pair'].eq('rnai')) & (k562['truth_metric'].eq('real_shift_mean_abs')), 'n_shared_targets'].iloc[0])}",
-        f"K562 13d {int(k562.loc[(k562['timepoint'].eq('13d')) & (k562['summary_kind'].eq('truth_endpoint_bridge')) & (k562['platform_pair'].eq('rnai')) & (k562['truth_metric'].eq('real_shift_mean_abs')), 'n_shared_targets'].iloc[0])}",
-    ]
-    mapped_cell_lines = int(rnai.loc[rnai["metric"].eq("mapped_cell_lines"), "value"].iloc[0])
-    genes = int(rnai.loc[rnai["metric"].eq("genes"), "value"].iloc[0])
-
-    return pd.DataFrame(
-        [
+def build_panel_a_source(root: Path) -> pd.DataFrame:
+    meta = _load_meta(root)
+    bridge = pd.read_csv(root / EXTERNAL_BRIDGE, sep="\t")
+    bridge_targets = dict(zip(bridge["context"], bridge["n_targets_matched_depmap"]))
+    bridge_context_map = {
+        "HCC38": "HCC38 day 14",
+        "HCC1143": "HCC1143 day 14",
+        "K562 7d": "K562 TF day 7",
+        "K562 13d": "K562 TF day 13",
+        "Replogle K562 essential": "K562 essential CRISPRi day 6",
+        "Replogle K562 GWPS": "K562 genome-scale CRISPRi day 8",
+        "HepG2 day 7": "HepG2 day 7",
+        "Jurkat day 7": "Jurkat day 7",
+    }
+    out: list[dict[str, object]] = []
+    for context in CONTEXT_ORDER:
+        n_cells = n_genes = n_perturbations = None
+        source_note = "dataset familiarization QC"
+        if context in set(meta["context_norm"]):
+            row = meta.loc[meta["context_norm"].eq(context)].iloc[0]
+            n_cells, n_genes, n_perturbations = row["n_cells"], row["n_genes"], row["n_unique_targets"]
+        elif context == "Replogle K562 GWPS" and (root / GWPS_SOURCE).exists():
+            src = pd.read_csv(root / GWPS_SOURCE, sep="\t", usecols=["truth_source_cell_count", "gene_universe_size"])
+            n_cells = src["truth_source_cell_count"].dropna().iloc[0]
+            n_genes = src["gene_universe_size"].dropna().iloc[0]
+            n_perturbations = bridge_targets.get("K562 genome-scale CRISPRi day 8")
+            source_note = "external bridge source"
+        elif context == "HepG2 day 7" and (root / HEPG2_QC).exists():
+            row = pd.read_csv(root / HEPG2_QC, sep="\t").iloc[0]
+            n_cells, n_genes, n_perturbations = row["n_obs"], row["n_vars"], row["n_targets_output"]
+            source_note = "GSE264667 materialization QC"
+        elif context == "Jurkat day 7" and (root / JURKAT_QC).exists():
+            row = pd.read_csv(root / JURKAT_QC, sep="\t").iloc[0]
+            n_cells, n_genes, n_perturbations = row["n_obs"], row["n_vars"], row["n_targets_output"]
+            source_note = "GSE264667 materialization QC"
+        bridge_context = bridge_context_map.get(context)
+        if bridge_context in bridge_targets:
+            n_perturbations = bridge_targets[bridge_context]
+            source_note = "endpoint-matched bridge count"
+        out.append(
             {
-                "dataset_kind": "endpoint_dataset",
-                "dataset_label": "DepMap CRISPR dependency",
-                "role": "primary endpoint",
-                "cells_or_models": f"{crispr_cell_lines:,} cell lines",
-                "features": f"{crispr_genes:,} genes",
-                "benchmark_use": "; ".join(crispr_counts),
-            },
-            {
-                "dataset_kind": "endpoint_dataset",
-                "dataset_label": "DEMETER2 RNAi",
-                "role": "sensitivity endpoint",
-                "cells_or_models": f"{mapped_cell_lines:,} mapped cell lines",
-                "features": f"{genes:,} genes",
-                "benchmark_use": "; ".join(rnai_counts),
-            },
-        ]
-    )
+                "context": context,
+                "dataset_cell_line": OVERVIEW_LABEL[context],
+                "size_genes_x_cells": _size_text(n_genes, n_cells),
+                "perturbations": f"{_fmt_int(n_perturbations)} matched perturbations",
+                "n_genes": n_genes,
+                "n_cells": n_cells,
+                "n_single_perturbations": n_perturbations,
+                "source_note": source_note,
+            }
+        )
+    return pd.DataFrame(out)
 
 
-def build_umap_source(root: Path, context: str, shift_df: pd.DataFrame) -> pd.DataFrame:
+def _candidate_umap(root: Path) -> pd.DataFrame:
     df = pd.read_csv(root / CANDIDATE_UMAP, sep="\t")
-    df = df.loc[df["context"].eq(context)].copy()
-    top_targets = set(
-        shift_df.loc[shift_df["context"].eq(context)]
-        .sort_values("abs_shift", ascending=False)
-        .head(2)["target"]
-        .tolist()
+    df["context"] = df["context"].replace(
+        {
+            "Dixit 2016 K562 7d": "K562 7d",
+            "Dixit 2016 K562 13d": "K562 13d",
+        }
     )
-    df["is_highlight"] = df["profile"].isin(top_targets)
+    df["umap_available"] = True
     return df
 
 
-def _load_target_expression_arrows(root: Path) -> pd.DataFrame:
-    p = root / TARGET_GENE_EXPR_ARROWS
+def _previous_replogle_umap(root: Path) -> pd.DataFrame:
+    p = root / PREVIOUS_UMAP_SOURCE
     if not p.exists():
-        raise FileNotFoundError(
-            f"{p} missing. Run: PYTHONPATH=src python scripts/manuscript/build_edfig1_target_gene_expression_source.py"
-        )
+        return pd.DataFrame(columns=["context", "profile", "umap1", "umap2", "is_control", "is_highlight", "umap_available"])
     df = pd.read_csv(p, sep="\t")
-    req = {"context", "target", "expression_control", "expression_perturbed"}
-    if not req <= set(df.columns):
-        raise ValueError(f"{p} requires columns {sorted(req)}, got {sorted(df.columns)}")
+    df = df.loc[df["context"].isin(["Replogle K562", "Replogle K562 essential"])].copy()
+    if df.empty:
+        return pd.DataFrame(columns=["context", "profile", "umap1", "umap2", "is_control", "is_highlight", "umap_available"])
+    df["context"] = "Replogle K562 essential"
+    df["umap_available"] = True
     return df
 
 
-def build_expression_arrow_source(expr_df: pd.DataFrame, context: str) -> pd.DataFrame:
-    sub = expr_df.loc[
-        expr_df["context"].eq(context), ["target", "expression_control", "expression_perturbed"]
-    ].copy()
-    return sub.reset_index(drop=True)
-
-
-def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
-    def format_dataset_label(row) -> str:
-        if row.dataset_kind == "perturbation_expression":
-            return f"{row.dataset_label} ({row.role})"
-        return f"{row.dataset_label} ({row.role})"
-
-    def format_size(row) -> str:
-        return f"{row.features} x {row.cells_or_models}"
-
-    def format_use(row) -> str:
-        if row.dataset_kind == "perturbation_expression":
-            return row.benchmark_use.replace("; ", " | ")
-        parts = row.benchmark_use.split("; ")
-        if len(parts) == 4:
-            return " / ".join(parts)
-        return row.benchmark_use
-
-    ax.set_axis_off()
-    ax.set_title("Table: Dataset overview", loc="left", pad=3)
-    headers = ["Dataset", "Size", "Benchmark use"]
-    x = [0.03, 0.38, 0.64]
-    left, right = 0.02, 0.98
-    y_top = 0.91
-    row_h = 0.088
-    section_gap = 0.030
-
-    ax.plot([left, right], [y_top, y_top], color="#222222", lw=0.7, transform=ax.transAxes)
-
-    def draw_header(y: float) -> float:
-        header_h = row_h * 0.82
-        for xpos, header in zip(x, headers):
-            ax.text(xpos, y - header_h / 2, header, fontsize=6.6, fontweight="bold", transform=ax.transAxes, va="center")
-        ax.plot([left, right], [y - header_h, y - header_h], color="#BDBDBD", lw=0.55, transform=ax.transAxes)
-        return y - header_h
-
-    def draw_rows(y: float, rows: pd.DataFrame, *, fontsize: float = 6.2) -> float:
-        for row in rows.itertuples():
-            ax.text(x[0], y - row_h / 2, format_dataset_label(row), fontsize=fontsize, transform=ax.transAxes, va="center")
-            ax.text(x[1], y - row_h / 2, format_size(row), fontsize=fontsize, transform=ax.transAxes, va="center")
-            ax.text(x[2], y - row_h / 2, format_use(row), fontsize=fontsize, transform=ax.transAxes, va="center")
-            y -= row_h
-        return y
-
-    pert = df.loc[df["dataset_kind"].eq("perturbation_expression")].reset_index(drop=True)
-    endpoint = df.loc[df["dataset_kind"].eq("endpoint_dataset")].reset_index(drop=True)
-
-    y = y_top
-    ax.text(x[0], y - 0.032, "Perturbation-expression contexts", fontsize=6.7, fontweight="bold", transform=ax.transAxes, va="center")
-    y -= 0.044
-    y = draw_header(y)
-    y = draw_rows(y, pert)
-
-    y -= section_gap
-    ax.text(x[0], y - 0.020, "Endpoint datasets", fontsize=6.7, fontweight="bold", transform=ax.transAxes, va="center")
-    y -= 0.032
-    y = draw_header(y)
-    y = draw_rows(y, endpoint, fontsize=6.0)
-
-    ax.plot([left, right], [y - 0.015, y - 0.015], color="#222222", lw=0.7, transform=ax.transAxes)
-    # add_panel_label(ax, "a", x=-0.02, y=1.02)  # panel letter removed
-
-
-def render_umap_panel(
-    ax: plt.Axes,
-    df: pd.DataFrame,
-    panel_id: str,
-    title: str,
-    *,
-    dense: bool = False,
-    show_legend: bool = False,
-) -> None:
-    def draw_umap_axes() -> None:
-        x0, y0 = 0.10, 0.10
-        x1, y1 = 0.33, 0.32
-        ax.annotate("", xy=(x1, y0), xytext=(x0, y0), xycoords="axes fraction", arrowprops=dict(arrowstyle="-|>", lw=0.9, color="#333333"))
-        ax.annotate("", xy=(x0, y1), xytext=(x0, y0), xycoords="axes fraction", arrowprops=dict(arrowstyle="-|>", lw=0.9, color="#333333"))
-        ax.text((x0 + x1) / 2, y0 - 0.05, "UMAP1", fontsize=5.8, ha="center", va="top", transform=ax.transAxes)
-        ax.text(x0 - 0.05, (y0 + y1) / 2, "UMAP2", fontsize=5.8, ha="right", va="center", rotation=90, transform=ax.transAxes)
-
-    xr = float(df["umap1"].max() - df["umap1"].min())
-    yr = float(df["umap2"].max() - df["umap2"].min())
-
-    ctrl_pt_size = 22 if dense else 34
-    ctrl_lw = 0.5 if dense else 0.8
-    base_pt = 3 if dense else 18
-    hi_pt = 9 if dense else 36
-    pert_edge = 0.12 if dense else 0.3
-    hi_fs = 5.0 if dense else 5.5
-    ctrl_fs = 5.0 if dense else 5.4
-    # Same for b–f: label strictly above the marker (screen coordinates, not axis units).
-    ctrl_label_dy_pts = 10 if dense else 12
-
-    controls = df.loc[df["is_control"]]
-    if len(controls) > 0:
-        control = controls.iloc[0]
-        cx, cy = float(control["umap1"]), float(control["umap2"])
-        ax.scatter(cx, cy, c="#E58D7C", s=ctrl_pt_size, edgecolors="white", linewidths=ctrl_lw, zorder=5)
-        ax.annotate(
-            "control",
-            xy=(cx, cy),
-            xytext=(0, ctrl_label_dy_pts),
-            textcoords="offset points",
-            ha="center",
-            va="bottom",
-            fontsize=ctrl_fs,
-            color="#D95F4B",
-            zorder=6,
+def build_panel_b_source(root: Path) -> pd.DataFrame:
+    materialized_path = root / MATERIALIZED_UMAP_SOURCE
+    if not materialized_path.exists():
+        raise FileNotFoundError(
+            f"{materialized_path} missing. Run scripts/manuscript/materialize_edfig1_missing_profiles.py "
+            "with the gears environment before building Extended Data Fig. 1."
         )
+    materialized = pd.read_csv(materialized_path, sep="\t")
+    materialized["is_highlight"] = False
+    materialized["umap_available"] = True
+    frames = [_candidate_umap(root), materialized]
+    df = pd.concat(frames, ignore_index=True, sort=False)
+    if "is_highlight" not in df.columns:
+        df["is_highlight"] = False
+    df["is_highlight"] = df["is_highlight"].fillna(False).astype(bool)
+    missing = [c for c in CONTEXT_ORDER if c not in set(df["context"].dropna())]
+    if missing:
+        raise ValueError(f"ED1 panel b is missing materialized UMAP contexts: {missing}")
+    df["context"] = pd.Categorical(df["context"], categories=CONTEXT_ORDER, ordered=True)
+    return df.sort_values(["context", "is_control"], ascending=[True, False]).reset_index(drop=True)
 
-    pert = df.loc[~df["is_control"]]
-    for row in pert.itertuples():
-        color = "#2E7D32" if row.is_highlight else "#A9C8C0"
-        size = hi_pt if row.is_highlight else base_pt
-        alpha = 0.85 if row.is_highlight else 0.9
-        ax.scatter(row.umap1, row.umap2, c=color, s=size, edgecolors="white", linewidths=pert_edge, alpha=alpha, zorder=4)
-        if row.is_highlight:
-            ax.text(
-                row.umap1,
-                row.umap2,
-                row.profile,
-                fontsize=hi_fs,
-                color="#1B5E20",
-                ha="center",
-                va="center",
-                fontweight="bold",
-                zorder=7,
-                path_effects=[pe.withStroke(linewidth=1.4, foreground="white")],
-            )
-    ax.set_xlim(df["umap1"].min() - max(xr * 0.30, 0.55), df["umap1"].max() + max(xr * 0.12, 0.25))
-    ax.set_ylim(df["umap2"].min() - max(yr * 0.24, 0.55), df["umap2"].max() + max(yr * 0.10, 0.25))
-    ax.set_title(title, loc="center", fontsize=7.4, pad=2)
-    ax.set_xticks([])
-    ax.set_yticks([])
-    for spine in ax.spines.values():
-        spine.set_visible(False)
-    ax.set_box_aspect(1)
-    draw_umap_axes()
-    if show_legend:
-        leg_fs = 5.2 if dense else 5.6
-        mk_ctl = 3.8 if dense else 5.5
-        mk_pt = 2.8 if dense else 5.0
-        ax.legend(
-            handles=[
-                Line2D(
-                    [0],
-                    [0],
-                    marker="o",
-                    color="none",
-                    markerfacecolor="#E58D7C",
-                    markeredgecolor="white",
-                    markeredgewidth=0.5 if dense else 0.6,
-                    markersize=mk_ctl,
-                    label="control",
-                ),
-                Line2D(
-                    [0],
-                    [0],
-                    marker="o",
-                    color="none",
-                    markerfacecolor="#A9C8C0",
-                    markeredgecolor="white",
-                    markeredgewidth=0.35 if dense else 0.4,
-                    markersize=mk_pt,
-                    label="perturbation",
-                ),
+
+def build_panel_c_source(root: Path) -> pd.DataFrame:
+    df = pd.read_csv(root / TARGET_GENE_EXPR_ARROWS, sep="\t")
+    supplemental_path = root / HCC_SUPPLEMENTAL_EXPR_ARROWS
+    if supplemental_path.exists():
+        supplemental = pd.read_csv(supplemental_path, sep="\t")
+        df = pd.concat(
+            [
+                df[["context", "target", "expression_control", "expression_perturbed"]],
+                supplemental[["context", "target", "expression_control", "expression_perturbed"]],
             ],
-            loc="lower right",
-            frameon=False,
-            fontsize=leg_fs,
-            borderpad=0.15 if dense else 0.2,
-            handletextpad=0.35 if dense else 0.4,
+            ignore_index=True,
         )
-
-
-def render_target_expression_arrow_panel(ax: plt.Axes, df: pd.DataFrame, title: str) -> None:
-    """Horizontal arrows: tail = control expression, head = perturbed (log-norm); |Δ| largest at top.
-
-    Y-axis matches panel k: no per-gene tick labels (dense layout); gene IDs remain in panel source TSV.
-    """
-    req = {"target", "expression_control", "expression_perturbed"}
-    if not req <= set(df.columns):
-        raise ValueError(f"g–k panel requires columns {sorted(req)}, got {sorted(df.columns)}")
-    work = (
-        df.assign(delta=lambda d: d["expression_perturbed"] - d["expression_control"])
-        .assign(abs_delta=lambda d: d["delta"].abs())
-        .sort_values("abs_delta", ascending=False)
-        .reset_index(drop=True)
-    )
-    n = len(work)
-    if n == 0:
-        ax.set_title(title, loc="left", fontsize=7.5)
-        ax.text(0.5, 0.5, "No rows", transform=ax.transAxes, ha="center", fontsize=6)
-        clean_axes(ax)
-        ax.grid(False)
-        return
-
-    y_positions = np.arange(n)[::-1]
-    blue = "#6BAED6"
-    red = "#E65555"
-    lw = 0.14 if n > 400 else 0.42
-    mut = 2.6 if n > 400 else 4.2
-
-    for yi, (_, row) in zip(y_positions, work.iterrows()):
-        x0, x1 = float(row.expression_control), float(row.expression_perturbed)
-        color = blue if row.delta <= 0 else red
-        ax.annotate(
-            "",
-            xy=(x1, yi),
-            xytext=(x0, yi),
-            arrowprops=dict(
-                arrowstyle="-|>",
-                color=color,
-                lw=lw,
-                shrinkA=0,
-                shrinkB=0,
-                mutation_scale=mut,
-            ),
-            zorder=3,
+    materialized_path = root / MATERIALIZED_EXPRESSION_SOURCE
+    if not materialized_path.exists():
+        raise FileNotFoundError(
+            f"{materialized_path} missing. Run scripts/manuscript/materialize_edfig1_missing_profiles.py "
+            "with the gears environment before building Extended Data Fig. 1."
         )
-
-    ax.set_yticks([])
-    ax.set_ylabel("Perturbation target gene", fontsize=6)
-
-    ax.set_xlabel("Target gene expression (log-norm)", fontsize=6)
-    ax.set_title(title, loc="left", fontsize=7.5)
-    clean_axes(ax)
-    ax.grid(False)
-
-    xmin = float(min(work["expression_control"].min(), work["expression_perturbed"].min()))
-    xmax = float(max(work["expression_control"].max(), work["expression_perturbed"].max()))
-    span = xmax - xmin
-    pad = span * 0.04 + 0.05 if span > 0 else 0.1
-    ax.set_xlim(xmin - pad, xmax + pad)
-    ax.set_ylim(-0.5, n - 0.5)
-
-    fig = ax.figure
-    if len(fig.axes) == 1:
-        fig.subplots_adjust(left=0.10, right=0.98, bottom=0.13, top=0.86)
-
-
-def _build_replogle_umap_source(root: Path) -> pd.DataFrame:
-    """Replogle UMAP points plus one matched-control row (same schema as b–e).
-
-    Control embedding: ``REPLOGLE_UMAP_CONTROL`` if present (one row: umap1, umap2);
-    otherwise a quantile-based fallback anchor — replace with pipeline-exported coords when available.
-    """
-    df = pd.read_csv(root / REPLOGLE_UMAP, sep="\t")
-    df.rename(columns={"target_gene": "profile"}, inplace=True)
-    df["is_control"] = False
-    df["is_highlight"] = False
-
-    ctrl_path = root / REPLOGLE_UMAP_CONTROL
-    if ctrl_path.exists():
-        cc = pd.read_csv(ctrl_path, sep="\t")
-        u1, u2 = float(cc.iloc[0]["umap1"]), float(cc.iloc[0]["umap2"])
-    else:
-        u1 = float(df["umap1"].quantile(0.72))
-        u2 = float(df["umap2"].quantile(0.88))
-    control_row = pd.DataFrame(
-        [{"profile": "control", "umap1": u1, "umap2": u2, "is_control": True, "is_highlight": False}]
-    )
-    return pd.concat([control_row, df], ignore_index=True)
-
-
-def build_sources(root: Path) -> dict[str, pd.DataFrame]:
-    shift_all = pd.read_csv(root / CANDIDATE_SHIFT, sep="\t")
-    expr_rows = _load_target_expression_arrows(root)
-
-    panel_a = pd.concat(
+    missing_expression = pd.read_csv(materialized_path, sep="\t")
+    df = pd.concat(
         [
-            build_context_metadata(root),
-            build_endpoint_metadata(root),
+            df[["context", "target", "expression_control", "expression_perturbed"]],
+            missing_expression[["context", "target", "expression_control", "expression_perturbed"]],
         ],
         ignore_index=True,
     )
-    sources = {
-        "a": panel_a,
-        "b": build_umap_source(root, "HCC38", shift_all),
-        "c": build_umap_source(root, "HCC1143", shift_all),
-        "d": build_umap_source(root, "K562 7d", shift_all),
-        "e": build_umap_source(root, "K562 13d", shift_all),
-        "f": _build_replogle_umap_source(root),
-        "g": build_expression_arrow_source(expr_rows, "HCC38"),
-        "h": build_expression_arrow_source(expr_rows, "HCC1143"),
-        "i": build_expression_arrow_source(expr_rows, "K562 7d"),
-        "j": build_expression_arrow_source(expr_rows, "K562 13d"),
-        "k": build_expression_arrow_source(expr_rows, "Replogle K562 essential"),
+    df["context"] = df["context"].replace(
+        {
+            "Replogle K562 essential": "Replogle K562 essential",
+        }
+    )
+    df["delta"] = df["expression_perturbed"] - df["expression_control"]
+    df["abs_delta"] = df["delta"].abs()
+    df["direction"] = np.where(df["delta"] > 0, "increased", "decreased_or_unchanged")
+    df["expression_available"] = True
+    # Every mappable target gene is shown. Target names remain in source data,
+    # while the panel uses an absolute-change rank to remain readable at scale.
+    df["shown_in_panel"] = True
+    missing = [c for c in CONTEXT_ORDER if c not in set(df["context"].dropna())]
+    if missing:
+        raise ValueError(f"ED1 panel c is missing target-expression contexts: {missing}")
+    df["context"] = pd.Categorical(df["context"], categories=CONTEXT_ORDER, ordered=True)
+    return df.sort_values(["context", "abs_delta"], ascending=[True, False], na_position="last").reset_index(drop=True)
+
+
+def build_sources(root: Path) -> dict[str, pd.DataFrame]:
+    return {
+        "a": build_panel_a_source(root),
+        "b": build_panel_b_source(root),
+        "c": build_panel_c_source(root),
     }
-    return sources
+
+
+def render_panel_a(ax: plt.Axes, df: pd.DataFrame) -> None:
+    ax.set_axis_off()
+    ax.set_title("Dataset overview", loc="left", fontsize=7.4, fontweight="bold", pad=2)
+    headers = ["Dataset (cell line)", "Size (genes × cells)", "Matched perturbations"]
+    x = [0.025, 0.56, 0.78]
+    y_top = 0.90
+    row_h = 0.086
+    left, right = 0.02, 0.985
+    ax.plot([left, right], [y_top, y_top], color="#222222", lw=0.75, transform=ax.transAxes, clip_on=False)
+    header_y = y_top - 0.050
+    for xpos, header in zip(x, headers):
+        ax.text(xpos, header_y, header, transform=ax.transAxes, fontsize=6.8, fontweight="bold", va="center")
+    ax.plot([left, right], [y_top - 0.088, y_top - 0.088], color="#BDBDBD", lw=0.55, transform=ax.transAxes, clip_on=False)
+    y = y_top - 0.088
+    for i, row in enumerate(df.itertuples(index=False)):
+        yc = y - row_h / 2
+        if i % 2 == 0:
+            ax.add_patch(
+                plt.Rectangle(
+                    (left, y - row_h),
+                    right - left,
+                    row_h,
+                    transform=ax.transAxes,
+                    facecolor="#FAFAFA",
+                    edgecolor="none",
+                    zorder=0,
+                )
+            )
+        ax.text(x[0], yc, row.dataset_cell_line, transform=ax.transAxes, fontsize=6.35, va="center")
+        ax.text(x[1], yc, row.size_genes_x_cells, transform=ax.transAxes, fontsize=6.35, va="center")
+        ax.text(x[2], yc, row.perturbations, transform=ax.transAxes, fontsize=6.35, va="center")
+        ax.plot([left, right], [y - row_h, y - row_h], color="#ECECEC", lw=0.4, transform=ax.transAxes, clip_on=False)
+        y -= row_h
+    ax.plot([left, right], [y, y], color="#222222", lw=0.75, transform=ax.transAxes, clip_on=False)
+
+
+def _draw_umap_axes(ax: plt.Axes) -> None:
+    x0, y0 = 0.10, 0.10
+    x1, y1 = 0.30, 0.30
+    ax.annotate("", xy=(x1, y0), xytext=(x0, y0), xycoords="axes fraction", arrowprops=dict(arrowstyle="-|>", lw=0.7, color="#444444"))
+    ax.annotate("", xy=(x0, y1), xytext=(x0, y0), xycoords="axes fraction", arrowprops=dict(arrowstyle="-|>", lw=0.7, color="#444444"))
+    ax.text((x0 + x1) / 2, y0 - 0.055, "UMAP1", transform=ax.transAxes, ha="center", va="top", fontsize=5.4)
+    ax.text(x0 - 0.055, (y0 + y1) / 2, "UMAP2", transform=ax.transAxes, ha="right", va="center", rotation=90, fontsize=5.4)
+
+
+def render_panel_b(ax: plt.Axes, df: pd.DataFrame) -> None:
+    fig = ax.figure
+    ax.remove()
+    gs = fig.add_gridspec(2, 4, left=0.045, right=0.982, bottom=0.155, top=0.875, wspace=0.12, hspace=0.30)
+    fig.text(0.045, 0.935, "UMAP of dataset-level perturbation profiles", fontsize=7.4, fontweight="bold", ha="left", va="center")
+    for i, context in enumerate(CONTEXT_ORDER):
+        sub_ax = fig.add_subplot(gs[i // 4, i % 4])
+        sub = df.loc[df["context"].astype(str).eq(context)].copy()
+        sub_ax.set_title(CONTEXT_DISPLAY[context], fontsize=6.7, fontweight="bold", pad=2)
+        sub_ax.set_xticks([])
+        sub_ax.set_yticks([])
+        for spine in sub_ax.spines.values():
+            spine.set_visible(False)
+        sub_ax.set_box_aspect(1)
+        controls = sub.loc[sub["is_control"].fillna(False).astype(bool)]
+        pert = sub.loc[~sub["is_control"].fillna(False).astype(bool)]
+        dense = len(pert) > 500
+        sub_ax.scatter(
+            pert["umap1"],
+            pert["umap2"],
+            s=2.0 if dense else 10.0,
+            color=PERT_COLOR,
+            edgecolor="none",
+            alpha=0.42 if dense else 0.78,
+            rasterized=False,
+            zorder=2,
+        )
+        if not controls.empty:
+            sub_ax.scatter(
+                controls["umap1"],
+                controls["umap2"],
+                s=26 if dense else 34,
+                color=CONTROL_COLOR,
+                edgecolor="white",
+                lw=0.6,
+                zorder=5,
+            )
+            ctrl = controls.iloc[0]
+            sub_ax.annotate(
+                "control",
+                xy=(ctrl["umap1"], ctrl["umap2"]),
+                xytext=(0, 8),
+                textcoords="offset points",
+                ha="center",
+                va="bottom",
+                fontsize=5.3,
+                color="#B85749",
+                path_effects=[pe.withStroke(linewidth=1.3, foreground="white")],
+            )
+        xr = float(sub["umap1"].max() - sub["umap1"].min())
+        yr = float(sub["umap2"].max() - sub["umap2"].min())
+        sub_ax.set_xlim(sub["umap1"].min() - max(0.25 * xr, 0.35), sub["umap1"].max() + max(0.10 * xr, 0.25))
+        sub_ax.set_ylim(sub["umap2"].min() - max(0.22 * yr, 0.35), sub["umap2"].max() + max(0.10 * yr, 0.25))
+        _draw_umap_axes(sub_ax)
+    handles = [
+        Line2D([0], [0], marker="o", color="none", markerfacecolor=CONTROL_COLOR, markeredgecolor="white", markeredgewidth=0.6, markersize=5.8, label="control"),
+        Line2D([0], [0], marker="o", color="none", markerfacecolor=PERT_COLOR, markeredgecolor="none", markersize=5.0, label="perturbation"),
+    ]
+    fig.legend(handles=handles, loc="lower center", bbox_to_anchor=(0.5, 0.045), ncol=2, frameon=False, fontsize=6.1)
+
+
+def render_panel_c(ax: plt.Axes, df: pd.DataFrame) -> None:
+    fig = ax.figure
+    ax.remove()
+    gs = fig.add_gridspec(2, 4, left=0.070, right=0.985, bottom=0.155, top=0.865, wspace=0.42, hspace=0.42)
+    fig.text(0.070, 0.935, "Change of perturbation target gene expression", fontsize=7.4, fontweight="bold", ha="left", va="center")
+    for i, context in enumerate(CONTEXT_ORDER):
+        sub_ax = fig.add_subplot(gs[i // 4, i % 4])
+        sub = df.loc[df["context"].astype(str).eq(context)].copy()
+        sub_ax.set_title(
+            CONTEXT_DISPLAY[context],
+            fontsize=6.45,
+            fontweight="bold",
+            pad=2,
+        )
+        shown = sub.loc[sub["shown_in_panel"].fillna(False).astype(bool)].sort_values("abs_delta", ascending=False)
+        shown = shown.reset_index(drop=True)
+        y = np.arange(len(shown), dtype=float)
+        x0 = shown["expression_control"].to_numpy(float)
+        delta = shown["delta"].to_numpy(float)
+        increased = delta > 0
+        dense = len(shown) > 250
+        very_dense = len(shown) > 1500
+        sub_ax.scatter(
+            x0,
+            y,
+            s=0.7 if very_dense else (1.2 if dense else 5.5),
+            color="#BDBDBD",
+            alpha=0.28 if very_dense else (0.38 if dense else 0.75),
+            edgecolor="none",
+            rasterized=very_dense,
+            zorder=2,
+        )
+        for mask, color in ((~increased, DECREASE_COLOR), (increased, INCREASE_COLOR)):
+            if not np.any(mask):
+                continue
+            sub_ax.quiver(
+                x0[mask],
+                y[mask],
+                delta[mask],
+                np.zeros(mask.sum()),
+                angles="xy",
+                scale_units="xy",
+                scale=1,
+                width=0.0010 if very_dense else (0.0015 if dense else 0.0030),
+                headwidth=3.2,
+                headlength=4.2,
+                headaxislength=3.8,
+                color=color,
+                alpha=0.32 if very_dense else (0.48 if dense else 0.92),
+                rasterized=very_dense,
+                zorder=3,
+            )
+        sub_ax.set_yticks([])
+        if i // 4 == 1:
+            sub_ax.set_xlabel("Target-gene expression", fontsize=6.2)
+        clean_axes(sub_ax)
+        sub_ax.grid(axis="x", color="#EFEFEF", lw=0.45)
+        xmin = float(np.nanmin([shown["expression_control"].min(), shown["expression_perturbed"].min()]))
+        xmax = float(np.nanmax([shown["expression_control"].max(), shown["expression_perturbed"].max()]))
+        span = xmax - xmin
+        sub_ax.set_xlim(xmin - 0.06 * span - 0.02, xmax + 0.08 * span + 0.02)
+        sub_ax.set_ylim(len(shown) - 0.5, -0.5)
+    fig.text(
+        0.014,
+        0.50,
+        "Perturbation target genes (ranked by absolute change)",
+        rotation=90,
+        ha="center",
+        va="center",
+        fontsize=6.5,
+    )
+    handles = [
+        Line2D([0, 1], [0, 0], color=DECREASE_COLOR, marker=">", markevery=[1], lw=0.9, markersize=4.5, label="decreased or unchanged"),
+        Line2D([0, 1], [0, 0], color=INCREASE_COLOR, marker=">", markevery=[1], lw=0.9, markersize=4.5, label="increased"),
+    ]
+    fig.legend(handles=handles, loc="lower center", bbox_to_anchor=(0.52, 0.045), ncol=2, frameon=False, fontsize=6.0)
 
 
 def render_panel_by_id(panel_id: str) -> Callable[[plt.Axes, pd.DataFrame], None]:
     return {
         "a": render_panel_a,
-        "b": lambda ax, df: render_umap_panel(ax, df, "b", "HCC38"),
-        "c": lambda ax, df: render_umap_panel(ax, df, "c", "HCC1143"),
-        "d": lambda ax, df: render_umap_panel(ax, df, "d", "K562 7d"),
-        "e": lambda ax, df: render_umap_panel(ax, df, "e", "K562 13d"),
-        "f": lambda ax, df: render_umap_panel(
-            ax, df, "f", "Replogle K562\nessential", dense=True, show_legend=True
-        ),
-        "g": lambda ax, df: render_target_expression_arrow_panel(ax, df, "HCC38"),
-        "h": lambda ax, df: render_target_expression_arrow_panel(ax, df, "HCC1143"),
-        "i": lambda ax, df: render_target_expression_arrow_panel(ax, df, "Dixit 2016\nK562 7d"),
-        "j": lambda ax, df: render_target_expression_arrow_panel(ax, df, "Dixit 2016\nK562 13d"),
-        "k": lambda ax, df: render_target_expression_arrow_panel(ax, df, "Replogle K562\nessential"),
+        "b": render_panel_b,
+        "c": render_panel_c,
     }[panel_id]
 
 
 def panel_title(panel_id: str) -> str:
     return {
-        "a": "Dataset overview and endpoint inputs",
-        "b": "HCC38 perturbation-profile UMAP",
-        "c": "HCC1143 perturbation-profile UMAP",
-        "d": "K562 7d perturbation-profile UMAP",
-        "e": "K562 13d perturbation-profile UMAP",
-        "f": "Replogle K562 essential perturbation-profile UMAP",
-        "g": "HCC38 target-gene expression (control → perturbed)",
-        "h": "HCC1143 target-gene expression (control → perturbed)",
-        "i": "Dixit 2016 K562 7d target-gene expression (control → perturbed)",
-        "j": "Dixit 2016 K562 13d target-gene expression (control → perturbed)",
-        "k": "Replogle K562 essential target-gene expression (control → perturbed)",
+        "a": "Dataset overview",
+        "b": "UMAP of dataset-level perturbation profiles",
+        "c": "Perturbation target-gene expression change",
     }[panel_id]
 
 
@@ -594,31 +579,12 @@ def render_combined(root: Path, sources: dict[str, pd.DataFrame], panel_outputs:
     combined_source = pd.concat([df.assign(panel=panel_id) for panel_id, df in sources.items()], ignore_index=True, sort=False)
     combined_source_path = write_tsv(combined_source, out / "edfig1_source_data.tsv")
 
-    fig = plt.figure(figsize=(_ED1_COMBINED_FIG_W, _ED1_COMBINED_FIG_H))
-    gs = fig.add_gridspec(
-        5,
-        5,
-        hspace=0.0,
-        wspace=_ED1_GS_WSPACE,
-        height_ratios=_ED1_GS_HEIGHT_RATIOS,
-    )
-    ax_a = fig.add_subplot(gs[0, :])
-    umap_specs = [("b", "HCC38"), ("c", "HCC1143"), ("d", "K562 7d"), ("e", "K562 13d"), ("f", "Replogle K562\nessential")]
-    for col, (pid, title) in enumerate(umap_specs):
-        umap_kw = dict(dense=True, show_legend=True) if pid == "f" else {}
-        render_umap_panel(fig.add_subplot(gs[2, col]), sources[pid], pid, title, **umap_kw)
-    arrow_specs = [
-        ("g", "HCC38"),
-        ("h", "HCC1143"),
-        ("i", "Dixit 2016\nK562 7d"),
-        ("j", "Dixit 2016\nK562 13d"),
-        ("k", "Replogle K562\nessential"),
-    ]
-    for col, (pid, title) in enumerate(arrow_specs):
-        render_target_expression_arrow_panel(fig.add_subplot(gs[4, col]), sources[pid], title)
-    render_panel_a(ax_a, sources["a"])
-    fig.subplots_adjust(**_ED1_SUBPLOT_ADJUST)
-    output_paths = save_figure(fig, out / "edfig1.png", out / "edfig1.pdf")
+    fig = plt.figure(figsize=(12.4, 9.0))
+    gs = fig.add_gridspec(3, 1, height_ratios=[1.15, 1.95, 2.25], hspace=0.34)
+    render_panel_a(fig.add_subplot(gs[0, 0]), sources["a"])
+    render_panel_b(fig.add_subplot(gs[1, 0]), sources["b"])
+    render_panel_c(fig.add_subplot(gs[2, 0]), sources["c"])
+    output_paths = save_panel(fig, out / "edfig1", bbox_inches="tight")
     write_figure_manifest(
         manifest_path=out / "edfig1_panel_manifest.json",
         repo_root=root,
@@ -633,6 +599,22 @@ def render_combined(root: Path, sources: dict[str, pd.DataFrame], panel_outputs:
     )
 
 
+def sync_public_outputs(root: Path) -> None:
+    src = output_dir(root)
+    targets = [public_figure_dir(root), figure_build_dir(root), manuscript_figure_dir(root)]
+    for target in targets:
+        ensure_dir(target / "panels")
+        for ext in (".png", ".pdf", ".svg", "_source_data.tsv"):
+            src_file = src / f"edfig1{ext}"
+            if src_file.exists():
+                shutil.copy2(src_file, target / f"{PUBLIC_FIGURE_ID}{ext}")
+        for panel_id in PANEL_IDS:
+            for ext in (".png", ".pdf", ".svg", "_source_data.tsv"):
+                src_file = src / "panels" / f"edfig1_panel{panel_id}{ext}"
+                if src_file.exists():
+                    shutil.copy2(src_file, target / "panels" / f"{PUBLIC_FIGURE_ID}_panel_{panel_id}{ext}")
+
+
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(description="Build Extended Data Fig. 1 dataset familiarization panels.")
     parser.add_argument("--panels-only", action="store_true")
@@ -641,12 +623,14 @@ def main(argv: list[str] | None = None) -> None:
     apply_manuscript_style()
     cleanup_generated(root)
     sources = build_sources(root)
-    panel_sizes = _ed1_panel_figsize_inches()
-    for pid in "ghijk":
-        panel_sizes[pid] = _ED1_ARROW_PANEL_INCHES
+    panel_specs = {
+        "a": (7.2, 2.45),
+        "b": (10.6, 4.9),
+        "c": (11.6, 5.6),
+    }
     panel_outputs: dict[str, dict[str, Path]] = {}
     for panel_id in PANEL_IDS:
-        width, height = panel_sizes[panel_id]
+        width, height = panel_specs[panel_id]
         panel_outputs[panel_id] = write_panel(
             root=root,
             panel_id=panel_id,
@@ -655,10 +639,11 @@ def main(argv: list[str] | None = None) -> None:
             render=render_panel_by_id(panel_id),
             width=width,
             height=height,
-            bbox_inches=None,
+            bbox_inches="tight",
         )
     if not args.panels_only:
         render_combined(root, sources, panel_outputs)
+    sync_public_outputs(root)
 
 
 if __name__ == "__main__":
