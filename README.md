@@ -21,7 +21,6 @@ is not a direct DepMap predictor or a broad model-generalization leaderboard.
 - `src/wtbench/`: reusable scoring and figure-generation code.
 - `scripts/`: dataset preparation, model adapters and analysis entry points.
 - `configs/`: frozen analysis and model-run configurations.
-- `figure_build/`: panel-generation wrappers.
 
 Large raw single-cell objects, model-training intermediates, manuscripts,
 assembled figures and raster exports are not included. Dataset accessions and
