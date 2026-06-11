@@ -176,32 +176,26 @@ cmd = "pixi install --environment scgen"
 description = "安装 scGen 候选环境"
 
 [tasks.pip-install-gears]
-default-environment = "gears"
 cmd = "python -m pip install --timeout 120 --no-deps cell-gears==0.1.2"
 description = "在 GEARS Pixi 环境内安装 PyPI 包"
 
 [tasks.pip-install-scgpt]
-default-environment = "scgpt"
 cmd = "python -m pip install --timeout 120 --no-deps scgpt==0.2.4"
 description = "在 scGPT Pixi 环境内安装 PyPI 包"
 
 [tasks.pip-install-geneformer]
-default-environment = "geneformer"
 cmd = "rm -rf /tmp/wtko_geneformer_install && GIT_LFS_SKIP_SMUDGE=1 git clone --depth 1 https://huggingface.co/ctheodoris/Geneformer /tmp/wtko_geneformer_install && python -m pip install --timeout 120 --no-deps /tmp/wtko_geneformer_install"
 description = "在 Geneformer Pixi 环境内安装 PyPI/Git 包"
 
 [tasks.pip-install-cpa]
-default-environment = "cpa"
 cmd = "python -m pip install --timeout 120 --constraint configs/env/cpa_constraints_v1.txt cpa-tools==0.8.8"
 description = "在 CPA Pixi 环境内安装 PyPI 包"
 
 [tasks.pip-install-cellot]
-default-environment = "cellot"
 cmd = "rm -rf /tmp/wtko_cellot_install && git clone --depth 1 https://github.com/bunnech/cellot /tmp/wtko_cellot_install && python -m pip install --timeout 120 --constraint configs/env/cellot_constraints_v1.txt /tmp/wtko_cellot_install && env -u https_proxy -u http_proxy -u all_proxy -u HTTPS_PROXY -u HTTP_PROXY -u ALL_PROXY python -m pip install -i https://pypi.tuna.tsinghua.edu.cn/simple --timeout 120 array-api-compat natsort python-dateutil six typing_extensions numpy pandas scipy scikit-learn anndata pyyaml absl-py filelock jinja2 networkx 'sympy>=1.13.3'"
 description = "在 CellOT Pixi 环境内安装官方源码包"
 
 [tasks.pip-install-scgen]
-default-environment = "scgen"
 cmd = "python -m pip install --timeout 120 --constraint configs/env/scgen_constraints_v1.txt scgen"
 description = "在 scGen Pixi 环境内安装 PyPI 包"
 
@@ -337,32 +331,26 @@ cmd = "python scripts/download/geo_supplementary.py --config configs/gse90063_su
 description = "下载 GSE90063 supplementary 全量文件"
 
 [tasks.plan-dataset-acquisition]
-default-environment = "core"
 cmd = "python scripts/download/build_dataset_acquisition_manifest.py --config configs/dataset_acquisition_registry_v1.json"
 description = "生成原始来源优先的数据集下载 manifest 和 shell 计划"
 
 [tasks.audit-local-datasets]
-default-environment = "core"
 cmd = "python scripts/pipeline/audit_local_dataset_inventory.py --config configs/dataset_acquisition_registry_v1.json"
 description = "审计本地 HCC/K562/候选数据集是否已存在及 h5ad 基本结构"
 
 [tasks.download-gse264667-supplementary-dry-run]
-default-environment = "core"
 cmd = "python scripts/download/geo_supplementary.py --config configs/download_gse264667_supplementary_v1.json --dry-run"
 description = "只生成 GSE264667 GEO supplementary manifest，不下载文件"
 
 [tasks.download-gse264667-supplementary]
-default-environment = "core"
 cmd = "python scripts/download/geo_supplementary.py --config configs/download_gse264667_supplementary_v1.json"
 description = "下载 GSE264667 GEO supplementary 文件"
 
 [tasks.download-gse200201-supplementary-dry-run]
-default-environment = "core"
 cmd = "python scripts/download/geo_supplementary.py --config configs/download_gse200201_supplementary_v1.json --dry-run"
 description = "只生成 GSE200201 MOLM13 GEO supplementary manifest，不下载文件"
 
 [tasks.download-gse90546-supplementary-dry-run]
-default-environment = "core"
 cmd = "python scripts/download/geo_supplementary.py --config configs/download_gse90546_supplementary_v1.json --dry-run"
 description = "只生成 GSE90546 Adamson K562 GEO supplementary manifest，不下载文件"
 
@@ -451,136 +439,109 @@ cmd = "python scripts/pipeline/k562_13d_minimal_tradeoff_audit.py --config confi
 description = "运行 GSE90063 K562 13d 最小 model-side architecture trade-off 方向审计"
 
 [tasks.build-public-figures]
-default-environment = "core"
 cmd = "bash reproduce_figures.sh"
 description = "Regenerate active public figure panels under figures/"
 
 [tasks.build-resource-registry]
-default-environment = "core"
 cmd = "python scripts/pipeline/build_resource_registry.py --config configs/resource_registry_v1.json"
 description = "生成 endpoint-anchored benchmark resource registry TSV 文件"
 
 [tasks.validate-release]
-default-environment = "core"
 cmd = "python scripts/release/validate_public_bundle.py"
 description = "验证暂存区只包含公开代码、registry、活动 SVG panel 与 source data"
 
 [tasks.run-external-bridge-form-robustness]
-default-environment = "core"
 cmd = "python scripts/pipeline/external_bridge_form_robustness.py"
 description = "汇总 primary/external/candidate contexts 的 observed shift-DepMap bridge-form robustness"
 
 [tasks.build-gse264667-category-grid]
-default-environment = "core"
 cmd = "python scripts/pipeline/gse264667_endpoint_category_grid.py"
 description = "生成 GSE264667 HepG2/Jurkat secondary endpoint-extension category grid"
 
 [tasks.run-category-response-contrast-gsea]
-default-environment = "core"
 cmd = "python scripts/pipeline/category_response_contrast_gsea.py"
 description = "运行 HCC38/HCC1143 endpoint-category response-level contrast GSEA"
 
 [tasks.build-dataset-governance-table]
-default-environment = "core"
 cmd = "python scripts/pipeline/dataset_governance_decision_table.py"
 description = "生成 dataset evidence-layer / eligibility governance decision table"
 
 [tasks.run-model-score-calibration]
-default-environment = "core"
 cmd = "python scripts/pipeline/model_score_calibration_controls.py --config configs/model_score_calibration_controls_v1.json"
 description = "运行模型层 null/control score calibration"
 
 [tasks.run-model-endpoint-recovery]
-default-environment = "core"
 cmd = "python scripts/pipeline/model_endpoint_recovery.py"
 description = "运行 HCC 模型 endpoint recovery 与 axis-free output-homogenization 审计"
 
 [tasks.audit-hcc-model-after-run]
-default-environment = "core"
 cmd = "python scripts/pipeline/audit_hcc_model_after_run.py"
 description = "单个 HCC 模型跑完并 export 后，立即执行 endpoint/axis/stress 审计"
 
 [tasks.audit-candidate-models]
-default-environment = "core"
 cmd = "python scripts/pipeline/audit_candidate_model_eligibility.py --config configs/candidate_model_eligibility_v1.json"
 description = "Audit CPA, CellOT and scGen model-family eligibility"
 
 [tasks.prepare-cellot-hcc38-smoke]
-default-environment = "core"
 cmd = "python scripts/models/cellot/prepare_cellot_hcc_smoke.py --cell-line HCC38 --max-targets 3"
 description = "为 CellOT HCC38 smoke 生成 per-target h5ad/config/command staging 文件"
 
 [tasks.prepare-cellot-hcc1143-smoke]
-default-environment = "core"
 cmd = "python scripts/models/cellot/prepare_cellot_hcc_smoke.py --cell-line HCC1143 --max-targets 3"
 description = "为 CellOT HCC1143 smoke 生成 per-target h5ad/config/command staging 文件"
 
 [tasks.prepare-cellot-hcc38-full]
-default-environment = "core"
 cmd = "python scripts/models/cellot/prepare_cellot_hcc_smoke.py --cell-line HCC38 --max-targets 0"
 description = "为 CellOT HCC38 full target set 生成 per-target h5ad/config/command staging 文件"
 
 [tasks.prepare-cellot-hcc1143-full]
-default-environment = "core"
 cmd = "python scripts/models/cellot/prepare_cellot_hcc_smoke.py --cell-line HCC1143 --max-targets 0"
 description = "为 CellOT HCC1143 full target set 生成 per-target h5ad/config/command staging 文件"
 
 [tasks.run-scgen-hcc38-smoke]
-default-environment = "scgen"
 cmd = "python scripts/models/scgen/run_scgen_hcc_smoke.py --cell-line HCC38 --max-epochs 20 --max-targets 3"
 description = "运行 scGen HCC38 小规模 smoke，输出 raw predicted_shift"
 
 [tasks.run-scgen-hcc1143-smoke]
-default-environment = "scgen"
 cmd = "python scripts/models/scgen/run_scgen_hcc_smoke.py --cell-line HCC1143 --max-epochs 20 --max-targets 3"
 description = "运行 scGen HCC1143 小规模 smoke，输出 raw predicted_shift"
 
 [tasks.export-cpa-hcc38-full]
-default-environment = "cpa"
 cmd = "python scripts/models/cpa/export_cpa_predicted_shift.py --cell-line HCC38 --raw-prediction-path reports/model_eligibility/cpa_full_materialization/predicted_shift_HCC38.tsv.gz"
 description = "导出 CPA HCC38 full materialization 到统一 HCC scorer-ready contract"
 
 [tasks.export-cpa-hcc1143-full]
-default-environment = "cpa"
 cmd = "python scripts/models/cpa/export_cpa_predicted_shift.py --cell-line HCC1143 --raw-prediction-path reports/model_eligibility/cpa_full_materialization/predicted_shift_HCC1143.tsv.gz"
 description = "导出 CPA HCC1143 full materialization 到统一 HCC scorer-ready contract"
 
 [tasks.export-scgen-hcc38-full]
-default-environment = "core"
 cmd = "python scripts/pipeline/hcc_prediction_export.py --cell-line HCC38 --model-id scgen_hcc_formal_v1 --model-version v1 --object-role entrant --input-prediction-path reports/model_eligibility/scgen_hcc_smoke/HCC38/predicted_shift.tsv.gz --source-kind scgen_generated_shift"
 description = "导出 scGen HCC38 raw predicted_shift 到统一 HCC scorer-ready contract"
 
 [tasks.export-scgen-hcc1143-full]
-default-environment = "core"
 cmd = "python scripts/pipeline/hcc_prediction_export.py --cell-line HCC1143 --model-id scgen_hcc_formal_v1 --model-version v1 --object-role entrant --input-prediction-path reports/model_eligibility/scgen_hcc_smoke/HCC1143/predicted_shift.tsv.gz --source-kind scgen_generated_shift"
 description = "导出 scGen HCC1143 raw predicted_shift 到统一 HCC scorer-ready contract"
 
 [tasks.export-cellot-hcc38-full]
-default-environment = "core"
 cmd = "python scripts/pipeline/hcc_prediction_export.py --cell-line HCC38 --model-id cellot_hcc_formal_v1 --model-version v1 --object-role entrant --input-prediction-path reports/model_eligibility/cellot_hcc_predictions/HCC38/predicted_shift.tsv.gz --source-kind cellot_transport_shift"
 description = "导出 CellOT HCC38 raw predicted_shift 到统一 HCC scorer-ready contract"
 
 [tasks.export-cellot-hcc1143-full]
-default-environment = "core"
 cmd = "python scripts/pipeline/hcc_prediction_export.py --cell-line HCC1143 --model-id cellot_hcc_formal_v1 --model-version v1 --object-role entrant --input-prediction-path reports/model_eligibility/cellot_hcc_predictions/HCC1143/predicted_shift.tsv.gz --source-kind cellot_transport_shift"
 description = "导出 CellOT HCC1143 raw predicted_shift 到统一 HCC scorer-ready contract"
 
 [tasks.run-hcc-model-queue]
-default-environment = "core"
 cmd = "python scripts/pipeline/run_hcc_model_queue.py"
 description = "按固定顺序运行 HCC 模型队列：每个模型完成后立即 export/audit"
 
 [tasks.hash-hcc-model-artifacts]
-default-environment = "core"
 cmd = "python scripts/pipeline/hash_hcc_model_artifacts.py"
 description = "记录指定 HCC 模型 raw/scorer/audit artifacts 的 SHA256 哈希"
 
 [tasks.prepare-cpa-hcc-inputs]
-default-environment = "core"
 cmd = "python scripts/pipeline/prepare_cpa_hcc_inputs.py --config configs/cpa_hcc_input_preparation_v1.json"
 description = "dry-run 准备 CPA HCC 输入 metadata；不写大型 H5AD"
 
 [tasks.materialize-cpa-hcc-inputs]
-default-environment = "core"
 cmd = "python scripts/pipeline/prepare_cpa_hcc_inputs.py --config configs/cpa_hcc_input_preparation_v1.json --write-h5ad"
 description = "写出 CPA-ready HCC H5AD 文件"
