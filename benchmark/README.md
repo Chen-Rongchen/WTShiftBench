@@ -29,7 +29,9 @@ similarity geometry. Full definitions are in
   CRISPRi.
 
 External contexts test bridge-form detectability and attenuation. They do not
-establish direct DepMap prediction or broad cross-dataset model generalization.
+establish direct DepMap prediction, direct cell-death prediction, drug efficacy,
+causal dependency mechanisms, universal model ranking or broad cross-dataset
+model generalization.
 
 ## Model entrants
 

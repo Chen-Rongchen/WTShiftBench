@@ -21,8 +21,8 @@ All paths below are relative to the repository root.
 | K562 genome-wide CRISPRi, day 8 | Replogle et al. 2022 public Perturb-seq release | Target-universe boundary |
 | HepG2 and Jurkat, day 7 | GEO [GSE264667](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE264667) | Secondary endpoint extension |
 
-DepMap CRISPR dependency and gene-effect tables are obtained from the
-[DepMap data portal](https://depmap.org/portal/download/). The frozen endpoint
+DepMap Public 25Q3 CRISPR dependency and gene-effect tables are obtained from
+the [DepMap data portal](https://depmap.org/portal/download/). The frozen endpoint
 release and interpretation boundaries are recorded in
 `benchmark/registry/endpoint_registry.tsv`.
 
@@ -92,6 +92,7 @@ The exact figure-to-source mapping and hashes are provided in:
 
 ## Versioned archive
 
-Use GitHub release `v1.1.0` for the manuscript-aligned code snapshot. Zenodo
-metadata are stored in `.zenodo.json`; the permanent DOI should be cited only
-after the GitHub release has been archived successfully by Zenodo.
+Use the manuscript-aligned GitHub release for the code and source-data snapshot.
+A version-specific Zenodo archival DOI should be cited only after the final
+public record is deposited and verified. Do not reuse an older archive DOI for a
+new manuscript-aligned release.

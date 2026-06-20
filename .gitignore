@@ -65,6 +65,23 @@ model_registry/
 
 # Reference PDFs
 *.pdf
+*.docx
+*.doc
+*.rtf
+
+# Submission-only files should never enter the public repository.
+*manuscript*
+*Manuscript*
+*cover_letter*
+*Cover_Letter*
+*submission*
+*Submission*
+*rebuttal*
+*response_to_reviewers*
+*journal*
+*BIB_protocol*
+RELEASE_NOTES*.md
+!src/wtbench/figures/manuscript_style.py
 
 # ----------------------------------------------------------------------
 # Manuscript content: ship build infrastructure + panel-level outputs
@@ -135,6 +152,8 @@ local_archive/
 manuscript/
 !src/wtbench/figures/
 !src/wtbench/figures/**
+src/wtbench/figures/__pycache__/
+src/wtbench/figures/**/*.pyc
 
 # Legacy manuscript assembly outputs are local only.
 manuscript/figures/
