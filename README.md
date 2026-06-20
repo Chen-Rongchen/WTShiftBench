@@ -2,13 +2,17 @@
 
 Code and source-data repository for:
 
-> **WTShiftBench, a cancer-dependency-anchored benchmark resource for
-> auditing endpoint-aligned recovery by transcriptomic perturbation models**
+> **WTShiftBench: a problem-solving benchmark protocol for endpoint-aligned
+> auditing of transcriptomic perturbation model outputs**
+
+Article type: Problem solving protocol.
 
 WTShiftBench evaluates whether model-generated perturbation shifts recover a
-fixed, cancer-dependency-aligned endpoint structure. The audit separates
-endpoint recovery, target-identity preservation and output homogenization. It
-is not a direct DepMap predictor or a broad model-generalization leaderboard.
+fixed endpoint-aligned recovery object anchored to DepMap Public 25Q3 CRISPR
+dependency. The audit separates endpoint recovery, target-identity preservation
+and output homogenization while keeping claim boundaries explicit. It is not a
+direct DepMap predictor, a drug-efficacy model, a cell-death mechanism assay or
+a universal model-ranking leaderboard.
 
 ## Repository contents
 
@@ -21,6 +25,7 @@ is not a direct DepMap predictor or a broad model-generalization leaderboard.
 - `scripts/figures/`: stable entry points for active figure panels.
 - `scripts/`: data acquisition, preprocessing, model adapters and analyses.
 - `configs/`: frozen, repository-relative analysis and model configurations.
+- `reproduce_figures.sh`: public figure and source-data rebuild entry point.
 
 Large raw single-cell objects, model-training intermediates, manuscripts,
 assembled figures and raster exports are not included. Dataset accessions and
@@ -51,6 +56,11 @@ pixi install --environment cellot
 ```
 
 ## Reproduction
+
+The active manuscript-aligned figure set is Figures 1-4 and Extended Data
+Figures 1-6. The repository provides editable figure panels, panel-level
+source-data tables, governed registries, artifact hashes and reproducibility
+manifests for this bundle.
 
 Build the active registries:
 
@@ -90,7 +100,9 @@ prediction intermediates and machine-specific absolute paths.
 ## Citation
 
 Use the metadata in [`CITATION.cff`](CITATION.cff) and cite the versioned
-GitHub release corresponding to the analysis snapshot.
+GitHub release corresponding to the analysis snapshot. A version-specific
+Zenodo DOI should be cited once the manuscript-aligned archival release has
+been deposited.
 
 ## License
 

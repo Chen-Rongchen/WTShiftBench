@@ -1,5 +1,5 @@
 {
-  "title": "WTShiftBench, a cancer-dependency-anchored benchmark resource for auditing endpoint-aligned recovery by transcriptomic perturbation models",
+  "title": "WTShiftBench: a problem-solving benchmark protocol for endpoint-aligned auditing of transcriptomic perturbation model outputs",
   "creators": [
     {
       "name": "Chen, Rongchen"
@@ -20,14 +20,14 @@
       "name": "Cheng, Shuqun"
     }
   ],
-  "description": "WTShiftBench is a cancer-dependency-anchored benchmark resource for auditing endpoint-aligned recovery by transcriptomic perturbation models. This release includes source-data manifests, resource registries, active manuscript figure source data, artifact hashes, scripts and documentation for reproducing the active Figure 1-4 and Extended Data Figure 1-6 panel bundle.",
+  "description": "WTShiftBench is a problem-solving benchmark protocol for endpoint-aligned auditing of transcriptomic perturbation model outputs. This release includes code, source-data manifests, governed benchmark registries, active figure-panel source data, artifact hashes, scripts and documentation for reproducing the active Figure 1-4 and Extended Data Figure 1-6 panel bundle. The release does not include manuscripts, cover letters, submission packages, unpublished biological materials or private human-subject data.",
   "license": "MIT",
   "keywords": [
     "Perturb-seq",
     "DepMap",
     "cancer dependency",
     "single-cell transcriptomics",
-    "benchmark resource",
+    "benchmark protocol",
     "perturbation models",
     "endpoint-aligned recovery"
   ],
