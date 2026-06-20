@@ -1,9 +1,9 @@
 cff-version: 1.2.0
 message: "If you use WTShiftBench, cite the software release and associated manuscript."
-title: "WTShiftBench"
+title: "WTShiftBench: a problem-solving benchmark protocol for endpoint-aligned auditing of transcriptomic perturbation model outputs"
 type: software
-version: 1.1.0
-date-released: 2026-06-11
+version: 1.1.1
+date-released: 2026-06-20
 authors:
   - family-names: Chen
     given-names: Rongchen
@@ -24,4 +24,5 @@ keywords:
   - DepMap
   - cancer dependency
   - single-cell transcriptomics
-  - benchmark resource
+  - benchmark protocol
+  - endpoint-aligned recovery
