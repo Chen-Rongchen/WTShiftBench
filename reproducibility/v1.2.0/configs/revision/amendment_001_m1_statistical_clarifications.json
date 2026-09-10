@@ -1,0 +1,24 @@
+{
+  "amendment_id": "A001",
+  "date": "2026-09-04",
+  "reason": "在实现 M1 前补全 base registry 中遗漏的 permutation tail、partial Spearman 计算细节和 endpoint-plane outlier sensitivity。",
+  "affected_decisions": [
+    {
+      "field": "truth_side.inference.permutation_alternative",
+      "value": "two_sided_absolute",
+      "rationale": "与现有 bridge permutation null 和原稿 empirical P 的定义一致。"
+    },
+    {
+      "field": "truth_side.covariates.partial_rank_method",
+      "value": "Pearson correlation between OLS residuals of rank-transformed shift and dependency after residualizing both on rank-transformed covariates",
+      "rationale": "这是标准 partial Spearman 的可复现实现。"
+    },
+    {
+      "field": "truth_side.coverage_sensitivity.endpoint_plane_outliers",
+      "value": "exclude the union of targets outside the within-context 5th to 95th percentile for observed shift or dependency strength",
+      "rationale": "直接回答 reviewer 关于 extreme outliers 的 sensitivity 要求。"
+    }
+  ],
+  "whether_results_were_seen": false,
+  "results_status_at_amendment": "M1 revised analyses had not been run"
+}

@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "audit_id": "wtshiftbench_hcc_attrition_v1",
+  "status": "frozen_before_revised_model_scoring",
+  "frozen_date": "2026-09-04",
+  "inputs": {
+    "base_truth_config": "configs/truth_driven_bridge_hcc38_hcc1143_v1.json",
+    "endpoint_object": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+    "endpoint_object_manifest": "reports/revision/m2_endpoint_object/run_manifest.json",
+    "endpoint_candidate_summary": "reports/revision/m2_endpoint_object/endpoint_statistic_candidate_summary.tsv",
+    "legacy_context_bridge_summary": "reports/external_bridge_form_robustness/observed_shift_depmap_bridge_summary.tsv",
+    "depmap_dependency": "depmap/CRISPRGeneDependency.csv"
+  },
+  "filters": {
+    "barcode_membership_required": true,
+    "single_feature_required": true,
+    "single_feature_definition": "num_features == 1",
+    "control_definition": "parsed target_gene starts with intergenic_chr_",
+    "minimum_perturbed_cells": 20,
+    "depmap_exact_model_value_required": true,
+    "observed_shift_threshold_used": false,
+    "dependency_magnitude_threshold_used": false,
+    "model_output_used": false
+  },
+  "preprocessing": {
+    "feature_type": "Gene Expression",
+    "gene_filter": "no highly-variable-gene filter; retain every Gene Expression row in the supplied 10x feature file",
+    "normalization": "per-cell total-count scaling to 10000 followed by log1p",
+    "control_matching": "all context-matched single-feature intergenic controls; no additional lane/batch/guide matching",
+    "target_parser": "substring before the first _sgRNA token"
+  },
+  "depmap_release": {
+    "release": "DepMap Public 25Q3",
+    "release_citation": "DepMap, Broad (2025). DepMap Public 25Q3. Dataset. depmap.org",
+    "official_release_page": "https://depmap.org/portal/data_page/?filename=CRISPRGeneDependency.csv&releasename=DepMap+Public+25Q3&tab=allData",
+    "official_release_notes": "https://forum.depmap.org/t/announcing-the-25q3-release/4476",
+    "primary_endpoint_description": "Post-Chronos gene dependency probability estimates for all models in the integrated gene effect",
+    "secondary_endpoint_filename": "CRISPRGeneEffect.csv",
+    "secondary_endpoint_description": "Post-Chronos gene-effect estimates integrated across screens; copy-number corrected, scaled and screen-quality corrected",
+    "secondary_endpoint_local_status": "missing; restore before release-bundle closure",
+    "chronos_release_label": "DepMap Public 25Q3+Score, Chronos",
+    "chronos_release_specific_change": "25Q3 separated Humagne-CD HiSeq and NovaSeq screen-type batches and changed library-effect regularization to a screen-count-weighted mean gene effect",
+    "chronos_semantic_version": null,
+    "chronos_version_note": "The local CSV and accessed official release metadata do not expose a semantic Chronos package version; report the release/pipeline label without inventing a version."
+  },
+  "filter_comparison": {
+    "statistic": "raw mean absolute shift, because low-coverage targets do not have an M1 matched-null object",
+    "filter_off": "all endpoint-nonmissing assayed targets with at least one single-feature cell",
+    "filter_on": "filter_off plus n_cells_target >= 20",
+    "bootstrap_replicates": 5000,
+    "endpoint_label_permutations": 10000,
+    "bootstrap_seed": 20261001,
+    "permutation_seed": 20261002,
+    "multiple_testing": "Benjamini-Hochberg within filter status across HCC38 and HCC1143"
+  },
+  "legacy_raw_gate": {
+    "minimum_spearman_rho": 0.3,
+    "bootstrap_ci_lower_must_exceed": 0.0,
+    "permutation_p_max": 0.05,
+    "interpretation": "descriptive legacy raw-shift qualification only; external contexts require sampling-aware reassessment before promotion to a revised full audit"
+  },
+  "chronology": {
+    "primary_context_designation": "selected during benchmark development, not preregistered before observed bridge inspection",
+    "first_traceable_hcc_truth_config_commit": "a5e0a39",
+    "first_traceable_hcc_truth_config_date": "2026-04-08",
+    "first_traceable_25_75_category_commit": "c311a4c",
+    "first_traceable_25_75_category_date": "2026-04-09",
+    "historical_model_exploration_predated_endpoint_object": true,
+    "defensible_claim": "the revised sampling-aware endpoint object was locked before revised model rescoring",
+    "claim_not_made": "the HCC contexts or 25/75 cutoffs were preregistered before all observed-data and model exploration"
+  }
+}

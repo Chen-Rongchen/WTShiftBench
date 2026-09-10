@@ -1,0 +1,13 @@
+check_id	cell_line	observed	threshold	rule	passed
+oracle_signed_cosine	HCC1143	0.0	1e-10	absolute_error<=threshold	True
+negated_signed_cosine	HCC1143	0.0	1e-10	absolute_error<=threshold	True
+absolute_projection_sign_blindness	HCC1143	0.0	1e-10	absolute_difference<=threshold	True
+random_direction_near_zero	HCC1143	0.0017928365023014673	0.1	absolute_grand_mean<=threshold	True
+shared_mean_homogenization	HCC1143	1.0	0.999999	value>=threshold	True
+random_direction_l2_preservation	HCC1143	3.602077611555461e-16	1e-10	max_relative_error<=threshold	True
+oracle_signed_cosine	HCC38	0.0	1e-10	absolute_error<=threshold	True
+negated_signed_cosine	HCC38	0.0	1e-10	absolute_error<=threshold	True
+absolute_projection_sign_blindness	HCC38	0.0	1e-10	absolute_difference<=threshold	True
+random_direction_near_zero	HCC38	0.00945885393675509	0.1	absolute_grand_mean<=threshold	True
+shared_mean_homogenization	HCC38	1.0000000000000002	0.999999	value>=threshold	True
+random_direction_l2_preservation	HCC38	4.022728787929439e-16	1e-10	max_relative_error<=threshold	True

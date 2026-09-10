@@ -1,0 +1,40 @@
+{
+  "amendment_id": "A004",
+  "date": "2026-09-04",
+  "reason": "Reviewer 2 and Reviewer 3 identified orientation and scale defects in the absolute scalar-projection metric. Before revised real-model rescoring, freeze a signed, scale-free directional summary and a common across-model output contract.",
+  "affected_decisions": [
+    {
+      "field": "metric_revision.directional_response_recovery",
+      "value": "target-level signed cosine; context-level median with target bootstrap 95% CI",
+      "rationale": "Correctly distinguishes aligned (+1), orthogonal (0), and negated (-1) predictions and is invariant to model-specific positive output scaling."
+    },
+    {
+      "field": "metric_revision.zero_norm_policy",
+      "value": "norm <= 1e-12 is non-estimable for cosine, Pearson, and scalar-projection summaries",
+      "rationale": "A zero vector has undefined direction and must not be assigned an artificial recovery score of zero."
+    },
+    {
+      "field": "metric_revision.endpoint_anchor_separation",
+      "value": "AUC of predicted mean-absolute shift for frozen endpoint anchors versus frozen low-information targets, with stratified target bootstrap CI",
+      "rationale": "Keeps anchor separation interpretable as an explicitly magnitude-sensitive endpoint diagnostic while direction is assessed separately."
+    },
+    {
+      "field": "metric_revision.common_hcc_contract",
+      "value": "47 targets by 47 response genes defined by shared_target_axis_membership.tsv",
+      "rationale": "This is the maximum existing common scorer-ready axis across all HCC entrants and contexts. It supports exact across-model comparability but not a whole-transcriptome reconstruction claim."
+    },
+    {
+      "field": "metric_revision.hcc1143_missing_target_policy",
+      "value": "retain the full 48-target frozen endpoint categories and score their intersection with the 47-target prediction contract; do not recompute percentiles/categories",
+      "rationale": "SS18L2 is a corrected HCC1143 endpoint anchor absent from the historical common prediction target axis. Recomputing categories after its removal would redefine the benchmark in response to output availability."
+    },
+    {
+      "field": "metric_revision.normalized_rmse",
+      "value": "per-target RMSE(predicted minus observed) divided by RMS(observed), summarized by target median",
+      "rationale": "Makes reconstruction error dimensionless within the frozen common contract while exposing near-zero observed-vector cases as non-estimable."
+    }
+  ],
+  "whether_results_were_seen": true,
+  "results_status_at_amendment": "Historical raw-endpoint model audits existed. Revised sampling-aware endpoint categories and the A004 metric definitions had not yet been used for a unified real-model rescore.",
+  "model_score_blinding_statement": "A004 is not preregistration before all model inspection. It freezes reviewer-requested revised definitions before the new unified M3/M4 scoring run; subsequent changes require a dated amendment and cannot be selected from favorable revised scores."
+}
