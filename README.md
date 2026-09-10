@@ -1,5 +1,19 @@
 # WTShiftBench
 
+## v1.2.0 返修公开复现入口
+
+WT由作者确认代表whole-transcriptome；HCC模型评分仍为共同47基因空间。本次冻结矩阵、endpoint/category表、配置、可用seeds、原评分代码和provenance全部位于[`reproducibility/v1.2.0/`](reproducibility/v1.2.0/docs/README.md)。
+
+```sh
+cd reproducibility/v1.2.0
+pixi install --environment core --locked
+pixi run --environment core python recompute.py --output /tmp/wtshiftbench_recomputed
+```
+
+该入口复算M3/M4/M5和CellOT seed123补充评分及原有CI/P/q，不要求重新训练。明确的历史seed/Chronos来源缺口保留；不新增identity或homogenization的CI。下面的根目录布局与图件入口保留为v1.1.1历史实现，不与本次修订评分入口混用。私有稿件、回复信和本地私有Git历史未发布。
+
+---
+
 Code and source-data repository for:
 
 > **WTShiftBench: a problem-solving benchmark protocol for endpoint-aligned

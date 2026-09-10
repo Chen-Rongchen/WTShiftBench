@@ -1,0 +1,7 @@
+{
+  "mode": "full_frozen_inference",
+  "files_verified": 174,
+  "comparisons": 50,
+  "failed": [],
+  "source_module": "/tmp/wtshiftbench_public_v1_2_0/src/wtbench/revision_metric_validity.py"
+}

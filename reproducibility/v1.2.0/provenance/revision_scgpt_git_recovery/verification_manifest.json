@@ -1,0 +1,144 @@
+{
+  "status": "数值复现通过",
+  "completed_utc": "2026-09-07T09:27:12.770802+00:00",
+  "upstream_revision": "571a0445d68fa48381f863ff75dd4f6d0eae3dfc",
+  "historical_download_revision_was_recorded": false,
+  "checkpoint_directory": "models/pretrained/scgpt_human",
+  "embedding_shape": [
+    60697,
+    512
+  ],
+  "vocab_entries": 60697,
+  "rtol": 1e-06,
+  "atol": 1e-08,
+  "prediction_comparisons": [
+    {
+      "context": "HCC38",
+      "model_id": "scgpt_hcc_formal_v1",
+      "reference": "raw_prediction",
+      "n_values": 2209,
+      "max_abs_difference": 1.4365678785432934e-16,
+      "rmse_difference": 4.853826139532683e-17,
+      "exact_numeric_equal": false,
+      "within_frozen_tolerance": true
+    },
+    {
+      "context": "HCC38",
+      "model_id": "scgpt_hcc_formal_v1",
+      "reference": "frozen_scorer_input",
+      "n_values": 2209,
+      "max_abs_difference": 1.4365678785432934e-16,
+      "rmse_difference": 4.853826139532683e-17,
+      "exact_numeric_equal": false,
+      "within_frozen_tolerance": true
+    },
+    {
+      "context": "HCC38",
+      "model_id": "lm_g_scgpt_ridge_hcc_formal_v1",
+      "reference": "raw_prediction",
+      "n_values": 2209,
+      "max_abs_difference": 7.771561172376096e-16,
+      "rmse_difference": 1.2318904630322685e-16,
+      "exact_numeric_equal": false,
+      "within_frozen_tolerance": true
+    },
+    {
+      "context": "HCC38",
+      "model_id": "lm_g_scgpt_ridge_hcc_formal_v1",
+      "reference": "frozen_scorer_input",
+      "n_values": 2209,
+      "max_abs_difference": 7.771561172376096e-16,
+      "rmse_difference": 1.2318904693555122e-16,
+      "exact_numeric_equal": false,
+      "within_frozen_tolerance": true
+    },
+    {
+      "context": "HCC1143",
+      "model_id": "scgpt_hcc_formal_v1",
+      "reference": "raw_prediction",
+      "n_values": 2209,
+      "max_abs_difference": 1.5222198501696482e-16,
+      "rmse_difference": 4.9861713803343925e-17,
+      "exact_numeric_equal": false,
+      "within_frozen_tolerance": true
+    },
+    {
+      "context": "HCC1143",
+      "model_id": "scgpt_hcc_formal_v1",
+      "reference": "frozen_scorer_input",
+      "n_values": 2209,
+      "max_abs_difference": 1.5222198501696482e-16,
+      "rmse_difference": 4.9861713803343925e-17,
+      "exact_numeric_equal": false,
+      "within_frozen_tolerance": true
+    },
+    {
+      "context": "HCC1143",
+      "model_id": "lm_g_scgpt_ridge_hcc_formal_v1",
+      "reference": "raw_prediction",
+      "n_values": 2209,
+      "max_abs_difference": 6.106226635438361e-16,
+      "rmse_difference": 1.1271942967392692e-16,
+      "exact_numeric_equal": false,
+      "within_frozen_tolerance": true
+    },
+    {
+      "context": "HCC1143",
+      "model_id": "lm_g_scgpt_ridge_hcc_formal_v1",
+      "reference": "frozen_scorer_input",
+      "n_values": 2209,
+      "max_abs_difference": 6.106226635438361e-16,
+      "rmse_difference": 1.1271943013723573e-16,
+      "exact_numeric_equal": false,
+      "within_frozen_tolerance": true
+    }
+  ],
+  "package_versions": {
+    "torch": "2.3.0",
+    "numpy": "1.26.4",
+    "pandas": "2.2.3"
+  },
+  "kernel_restoration": {
+    "commit": "505ee4533af368fc0cd4dda5e54a35820bc36693",
+    "path": "scripts/stage1a/adapters/common/runtime.py",
+    "blob": "c00bd8122f68f0fd90e791fae0e1407a6c84f398",
+    "source_sha256": "bf3f539f736499b23f4f1c26e561bc4d7d85b6ac9e76a5624ecd05bea961f372",
+    "lines": [
+      180,
+      230
+    ],
+    "policy": "项目helper恢复Git历史CPU分支；M5使用其独立softmax函数，不改变M5"
+  },
+  "inputs_sha256": {
+    "models/pretrained/scgpt_human/best_model.pt": "6cb5d451ab5c4b33eb673adbe4fddc61d2389df1b89b7651a9fe2e557572b922",
+    "models/pretrained/scgpt_human/vocab.json": "acca93d114ca62c3f0f50debbd23e8c87f0714f4737764454f6b2b13f2e8580f",
+    "docs/revision_scgpt_git_recovery/historical_checkpoint_registry.yaml": "7cb486110109c40ed25c3142c9c25be9c2b66f646b11fc21f5a4b65d4b61c3e2",
+    "docs/revision_scgpt_git_recovery/git_provenance.json": "f77618e8ef27f2f2803244a35637e899842346c84198ef43d818ef241eed766d",
+    "scripts/revision/verify_scgpt_git_recovery.py": "b9f9780a271eadad82229817d3edb65a23d1a2c597a36c42a2caf11dde7d4d0a",
+    "scripts/pipeline/scgpt_hcc_predictions.py": "a97cd7113252550ddc9f7cb86a5a46f95a14f12a6dd396f7bb682078066cbb58",
+    "scripts/pipeline/lm_g_scgpt_ridge_hcc_predictions.py": "055a2e2a692da0f151c8d3a75b2bc4fc7451892718b82755c49784f15d5863d8",
+    "src/wtbench/baselines/linear_utils.py": "54cb131f56d8413073f6468c39160f2fc43d6303cb321ccfee9273e17c9c501e",
+    "scripts/stage1a/adapters/common/runtime.py": "ce229423759cf6a21861e832ee35c17631d26f270e077442baf041da8e519823",
+    "reports/revision/m4_hcc_full_audit/run_manifest.json": "bda7235c7d1f92eb2ee7fa2f35951cbd7db43f5286e7e7e601ac512892cd5297",
+    "reports/revision/m3_metric_validity/observed_shift_HCC38.tsv.gz": "3f142d64401398f5841d59f8a9137b274668b57cb16bb1723df2588663aa69f4",
+    "data/predictions/scgpt_raw/scgpt_hcc_formal_v1/HCC38/predicted_shift.tsv.gz": "a7341267c371c871ac632ca4bf05b3b3c664878f9005dbebb2d7a2f4d01c2e59",
+    "data/predictions/hcc_scorer_ready/scgpt_hcc_formal_v1/HCC38/predicted_shift.tsv.gz": "6700c257ae263b4ad4160093cef946a77b250090642e962fdf0f7c0cd41d4d43",
+    "data/predictions/lm_g_scgpt_ridge_raw/lm_g_scgpt_ridge_hcc_formal_v1/HCC38/predicted_shift.tsv.gz": "48088b28b2627a0756524b5f47e0c79253acdf53e9d84a1c26315670a7d5ac84",
+    "data/predictions/hcc_scorer_ready/lm_g_scgpt_ridge_hcc_formal_v1/HCC38/predicted_shift.tsv.gz": "9e22aefc51a9e60b66ff083da4e42368efd635c6af35b62bfdb5499f9b056023",
+    "reports/revision/m3_metric_validity/observed_shift_HCC1143.tsv.gz": "453eb845e3ee1514b74d9453ba8f1903a0288832d4ec6d018ca572f7dd7361d9",
+    "data/predictions/scgpt_raw/scgpt_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz": "c334f1721a25affdc8ed62488fd6f55cdecb87db1940f21cc201306ec87f228c",
+    "data/predictions/hcc_scorer_ready/scgpt_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz": "ba7c5159a50701924cd127d470f31520e0825cfb7fd4065ea30d6bb813b53fc1",
+    "data/predictions/lm_g_scgpt_ridge_raw/lm_g_scgpt_ridge_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz": "2243ede15e71a019f788b449401fb964140a594f0cad8cea6872eb4e3862ee77",
+    "data/predictions/hcc_scorer_ready/lm_g_scgpt_ridge_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz": "7335bcbd4a60a26f4363e58471855c17273c3a69cca46d0c06984cd56a59232d"
+  },
+  "outputs_sha256": {
+    "docs/revision_scgpt_git_recovery/reconstructed_scgpt_hcc_formal_v1_HCC38.tsv.gz": "7f867ed04dfd003a1faee6cee35164d7057b5ba450af33971d59e2bd36a7700c",
+    "docs/revision_scgpt_git_recovery/reconstructed_lm_g_scgpt_ridge_hcc_formal_v1_HCC38.tsv.gz": "2c3b5c843948ac1943f84346c2db0602c653f852cfe14bef1666b75ae15933cf",
+    "docs/revision_scgpt_git_recovery/reconstructed_scgpt_hcc_formal_v1_HCC1143.tsv.gz": "99e3f342cb971f5b606dd03e704fac6d36cbca78f46ec3eaa786d624fb7d1a02",
+    "docs/revision_scgpt_git_recovery/reconstructed_lm_g_scgpt_ridge_hcc_formal_v1_HCC1143.tsv.gz": "20b381231e39db1a6e3819d57d6fef1e660462915c6b632261d2f9b75ca22400",
+    "docs/revision_scgpt_git_recovery/prediction_comparison.tsv": "9c25c491ba25e24bb9cba833fdc698beb069195d1cae741d38fb83923991951e"
+  },
+  "model_rescoring": false,
+  "historical_predictions_overwritten": false,
+  "conclusion": "来源登记与上游唯一权重历史相符，当前文件通过LFS/词表hash；数值复现不冒称原下载已记录hash或全模型所有参数逐字节被历史预测唯一确定。"
+}

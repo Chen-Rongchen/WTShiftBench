@@ -1,0 +1,32 @@
+{
+  "stage": "hcc_prediction_contract",
+  "cell_line": "HCC1143",
+  "model_id": "cellot_hcc_formal_v1",
+  "model_version": "v1",
+  "prediction_space": "truth_aligned_log_shift",
+  "normalization_applied_in_export": true,
+  "log1p_applied_in_export": true,
+  "source_kind": "cellot_transport_shift",
+  "object_role": "entrant",
+  "export_script": "scripts/pipeline/hcc_prediction_export.py",
+  "export_timestamp": "2026-05-19T07:42:32.303981+00:00",
+  "input_prediction_path": "reports/model_eligibility/cellot_hcc_predictions/HCC1143/predicted_shift.tsv.gz",
+  "aligned_prediction_path": "data/predictions/hcc_aligned/cellot_hcc_formal_v1/HCC1143/predicted_shift_aligned.tsv.gz",
+  "scorer_ready_prediction_path": "data/predictions/hcc_scorer_ready/cellot_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz",
+  "target_universe_source": "reports/truth_driven_bridge/master_atlas/shared_target_axis_membership.tsv",
+  "gene_space_source": "reports/truth_driven_bridge/master_atlas/shared_target_axis_membership.tsv",
+  "allow_missing_targets": false,
+  "allow_missing_genes": false,
+  "contract_pass": true,
+  "export_status": "contract_validated",
+  "raw_alignment_summary": {
+    "first_column": "target_gene",
+    "raw_target_count": 47,
+    "raw_gene_count": 47,
+    "raw_duplicate_targets": [],
+    "raw_missing_targets": [],
+    "raw_missing_genes": [],
+    "raw_extra_targets": [],
+    "raw_extra_genes": []
+  }
+}

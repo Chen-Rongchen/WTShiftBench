@@ -1,0 +1,5 @@
+cell_line	object	n_targets	n_genes	full_endpoint_n_targets	missing_endpoint_targets	passed
+HCC1143	observed_shift	47	47	48	SS18L2	True
+HCC1143	shared_mean_baseline	47	47	48	SS18L2	True
+HCC38	observed_shift	47	47	47		True
+HCC38	shared_mean_baseline	47	47	47		True

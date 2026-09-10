@@ -1,0 +1,5 @@
+context	model_id	reference	n_targets	n_genes	n_values	max_abs_difference	rmse_difference	exact_numeric_equal	within_frozen_tolerance
+HCC38	cellot_hcc_formal_v1	historical_raw	47	47	2209	0.0	0.0	True	True
+HCC38	cellot_hcc_formal_v1	frozen_scorer_input	47	47	2209	4.440892098500626e-16	2.7139343474843168e-17	False	True
+HCC1143	cellot_hcc_formal_v1	historical_raw	47	47	2209	0.0	0.0	True	True
+HCC1143	cellot_hcc_formal_v1	frozen_scorer_input	47	47	2209	4.440892098500626e-16	2.499892785511577e-17	False	True

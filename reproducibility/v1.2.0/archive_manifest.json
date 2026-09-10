@@ -1,0 +1,1863 @@
+{
+  "schema_version": 1,
+  "version": "1.2.0",
+  "date": "2026-09-10",
+  "source_commit": "7ff620aa8bda78f56fc0f0a4fb51d80524ceedaa",
+  "scope": "冻结矩阵到评分；不声称从原始数据重现全部历史训练；不包含私有稿件与回复信",
+  "wt_confirmation": "作者确认WT=whole-transcriptome；HCC评分空间仍为47genes",
+  "files": [
+    {
+      "path": "LICENSE",
+      "source": "LICENSE",
+      "bytes": 1087,
+      "sha256": "04d6275bc2bb6709e146c95314448d152bb9d3872a5314e8158b06978c69b3d0"
+    },
+    {
+      "path": "configs/checkpoint_registry_v1.yaml",
+      "source": "configs/checkpoint_registry_v1.yaml",
+      "bytes": 518,
+      "sha256": "146fb5bea3caf5d78da23692f8dd5fc814f91d040b1ff0b78cffeae237e50ae5"
+    },
+    {
+      "path": "configs/revision/amendment_001_m1_statistical_clarifications.json",
+      "source": "configs/revision/amendment_001_m1_statistical_clarifications.json",
+      "bytes": 1180,
+      "sha256": "40c51b79ce20b2e0b5bc569cdc05e53ae5ca8e953f42c1aaeaebd9ff7d0aeb7c"
+    },
+    {
+      "path": "configs/revision/amendment_002_m1_code_audit.json",
+      "source": "configs/revision/amendment_002_m1_code_audit.json",
+      "bytes": 2855,
+      "sha256": "8f2ddc7bd3243684d3a15cc1511dc48d1ae2792073c7512b3f432ab242cd500f"
+    },
+    {
+      "path": "configs/revision/amendment_003_corrected_endpoint_object.json",
+      "source": "configs/revision/amendment_003_corrected_endpoint_object.json",
+      "bytes": 2634,
+      "sha256": "b61e824fd2473b4710a4a2240c3625303724238393620c8a6040a660cac18520"
+    },
+    {
+      "path": "configs/revision/amendment_004_metric_contract.json",
+      "source": "configs/revision/amendment_004_metric_contract.json",
+      "bytes": 3083,
+      "sha256": "874882b6034756d9d02a642aa26a573e65d44ccb413eaf58cbc1e6c596b9ef9f"
+    },
+    {
+      "path": "configs/revision/amendment_005_hcc_audit_scope.json",
+      "source": "configs/revision/amendment_005_hcc_audit_scope.json",
+      "bytes": 2839,
+      "sha256": "c3e0eaa5c0f503729a54c0eb4de8a205d9ae346801882e7b3e0c72c68e638490"
+    },
+    {
+      "path": "configs/revision/amendment_006_independent_context_qualification.json",
+      "source": "configs/revision/amendment_006_independent_context_qualification.json",
+      "bytes": 4317,
+      "sha256": "2e9fd7cf9feacb3827f05fd7f76f96b97fbc5b9da9ef0c7dffb3c682f95e3b0a"
+    },
+    {
+      "path": "configs/revision/amendment_007_independent_full_audit.json",
+      "source": "configs/revision/amendment_007_independent_full_audit.json",
+      "bytes": 2548,
+      "sha256": "f7c9b9e68e6d21c30b4bfd425ba63a8e05e6fe0da3ce71bc9666e269fbf15db1"
+    },
+    {
+      "path": "configs/revision/amendment_008_constant_similarity_guard.json",
+      "source": "configs/revision/amendment_008_constant_similarity_guard.json",
+      "bytes": 1006,
+      "sha256": "8f4250436003d0b63d10c71714d2bce3357c0eb5864985ca18ef9ae51cc862ea"
+    },
+    {
+      "path": "configs/revision/amendment_009_endpoint_tuning_counterfactual.json",
+      "source": "configs/revision/amendment_009_endpoint_tuning_counterfactual.json",
+      "bytes": 1913,
+      "sha256": "12430e1f8e81d964b839f443584da3102908795d53c22f7c5fc8035b0f1c0342"
+    },
+    {
+      "path": "configs/revision/cellot_seed123_retrain_v1.json",
+      "source": "configs/revision/cellot_seed123_retrain_v1.json",
+      "bytes": 3729,
+      "sha256": "fad0dcc7559d4deccf44c2726dc135a3fd3a3fbd9d4fb1d1a88310470f14b88f"
+    },
+    {
+      "path": "configs/revision/revision_analysis_registry_v1.json",
+      "source": "configs/revision/revision_analysis_registry_v1.json",
+      "bytes": 7209,
+      "sha256": "8ae26754516d12e9af160b6a3178f7b4f4ef7eadc5edc701883af47d1bba66f5"
+    },
+    {
+      "path": "configs/revision/revision_attrition_audit_v1.json",
+      "source": "configs/revision/revision_attrition_audit_v1.json",
+      "bytes": 4466,
+      "sha256": "e9164bb5ca75848729fbc880c79ee1c740c44b47ebaaf5cf831521dd2b314942"
+    },
+    {
+      "path": "configs/revision/revision_endpoint_object_v1.json",
+      "source": "configs/revision/revision_endpoint_object_v1.json",
+      "bytes": 2449,
+      "sha256": "8cdf76f8e53556f9991ab8fa630f69d6451b8fedb1ba7309ca6495d0ea4bbc97"
+    },
+    {
+      "path": "configs/revision/revision_hcc_full_audit_v1.json",
+      "source": "configs/revision/revision_hcc_full_audit_v1.json",
+      "bytes": 4640,
+      "sha256": "07b11c288a0709fe6c11d5d04ad2973b5f2d016c4abe35487bb2a064bd51e7e2"
+    },
+    {
+      "path": "configs/revision/revision_m5_candidate_qualification_v1.json",
+      "source": "configs/revision/revision_m5_candidate_qualification_v1.json",
+      "bytes": 4649,
+      "sha256": "a56ed474bfb2880f7ce0bd28e155ca5c8764b68639dfcb2ca42fbb1fb8fcb488"
+    },
+    {
+      "path": "configs/revision/revision_m5_full_audit_v1.json",
+      "source": "configs/revision/revision_m5_full_audit_v1.json",
+      "bytes": 3690,
+      "sha256": "e383fe699fd47d4063a93f8ecd3479900f58f55bcc11da2bdf3941f3dfe0e305"
+    },
+    {
+      "path": "configs/revision/revision_m6_endpoint_tuning_v1.json",
+      "source": "configs/revision/revision_m6_endpoint_tuning_v1.json",
+      "bytes": 2307,
+      "sha256": "e670cfac2e0b62d3b490cf293160b84404afa8a2b2e8dc241dfd6d324ba3b731"
+    },
+    {
+      "path": "configs/revision/revision_metric_spec_v1.json",
+      "source": "configs/revision/revision_metric_spec_v1.json",
+      "bytes": 7894,
+      "sha256": "6c7fffa1c032dbf789b1a1a000a7c32d598262122b2c04f1e6c8ba72f7cde0e9"
+    },
+    {
+      "path": "configs/revision/revision_model_context_completion_v1.tsv",
+      "source": "configs/revision/revision_model_context_completion_v1.tsv",
+      "bytes": 16769,
+      "sha256": "f1d841cd1167f984f6db62d86a730ce520f4bd0fa91c3b6fcaeee1902908881c"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/cellot_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/cellot_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz",
+      "bytes": 21137,
+      "sha256": "adf36a2d545c72f109d31f5e5a4c936e13925c3abf7911de6c64aa2c59b941f9"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/cellot_hcc_formal_v1/HCC38/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/cellot_hcc_formal_v1/HCC38/predicted_shift.tsv.gz",
+      "bytes": 21123,
+      "sha256": "4161c656e376e52fbcd9cdf461b7299e09b6ef01add8c7243c8cd2b36cc60777"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/cellot_hcc_sens_iter100_seed1/HCC1143/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/cellot_hcc_sens_iter100_seed1/HCC1143/predicted_shift.tsv.gz",
+      "bytes": 18440,
+      "sha256": "1b980eda287dcb5ee88b808bdee61bb86ed4742ebf16ad0d1534ba94aa8245d7"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/cellot_hcc_sens_iter100_seed1/HCC38/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/cellot_hcc_sens_iter100_seed1/HCC38/predicted_shift.tsv.gz",
+      "bytes": 18363,
+      "sha256": "2fdc8aa56ba4fc6a17f2c61593f20dc03ce6c7db8471d994aea02014628ac311"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/cellot_hcc_sens_iter200_seed2/HCC1143/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/cellot_hcc_sens_iter200_seed2/HCC1143/predicted_shift.tsv.gz",
+      "bytes": 18275,
+      "sha256": "9a512b3a8d211372fdbb66ce6b2bd66419516e1e4637a6a881ea68f3144b9cb7"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/cellot_hcc_sens_iter200_seed2/HCC38/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/cellot_hcc_sens_iter200_seed2/HCC38/predicted_shift.tsv.gz",
+      "bytes": 18275,
+      "sha256": "203eaff96365b3aa741aacd78d14cf5415c33489d3afd254321ad932f3f6643a"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/cellot_hcc_sens_iter500_seed1_full/HCC1143/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/cellot_hcc_sens_iter500_seed1_full/HCC1143/predicted_shift.tsv.gz",
+      "bytes": 20791,
+      "sha256": "cb3be49da7fb9ec591486fc1f6b6bd9ececf10d171d4497b9e58b37f86fe1a6b"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/cellot_hcc_sens_iter500_seed1_full/HCC38/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/cellot_hcc_sens_iter500_seed1_full/HCC38/predicted_shift.tsv.gz",
+      "bytes": 20470,
+      "sha256": "1906fe87ba6385e7c7bf8126f01d6b1770f7246bd0e782f6fe9000d53bcc44ac"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/cpa_hcc_sens_e200_latent32_seed1/HCC1143/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/cpa_hcc_sens_e200_latent32_seed1/HCC1143/predicted_shift.tsv.gz",
+      "bytes": 19559,
+      "sha256": "89852d11fe27ab6cd1a9222f2a2e96cddf9400d31fcaca891c1f89c7ec6a750c"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/cpa_hcc_sens_e200_latent32_seed1/HCC38/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/cpa_hcc_sens_e200_latent32_seed1/HCC38/predicted_shift.tsv.gz",
+      "bytes": 19780,
+      "sha256": "cfcbd9f5579054b6dc54858c6590ccc4a45f5bd37341e4be3e09bf9df72fa8d3"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/cpa_hcc_sens_e200_latent64_seed2/HCC1143/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/cpa_hcc_sens_e200_latent64_seed2/HCC1143/predicted_shift.tsv.gz",
+      "bytes": 19583,
+      "sha256": "ec46ed731e3985e85420022910e7b487415448e349de1448ea1e068ef83f34f4"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/cpa_hcc_sens_e200_latent64_seed2/HCC38/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/cpa_hcc_sens_e200_latent64_seed2/HCC38/predicted_shift.tsv.gz",
+      "bytes": 19685,
+      "sha256": "3d7289e52af69a05f8783e94df3ac9a783b84ccaec69cff997b6bd5c2015b55c"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/cpa_v0.8.8/HCC1143/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/cpa_v0.8.8/HCC1143/predicted_shift.tsv.gz",
+      "bytes": 19583,
+      "sha256": "f8695b57bc78832647c12cba9f3b255b2f4c102fd63037b63ce7c6e19749178d"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/cpa_v0.8.8/HCC38/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/cpa_v0.8.8/HCC38/predicted_shift.tsv.gz",
+      "bytes": 19845,
+      "sha256": "b3feec83b9318e297583b6ee3c39b7c13e06c0eaaf71c9769a116c2ee3423699"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/gears_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/gears_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz",
+      "bytes": 20151,
+      "sha256": "ce1aecc47262a3afef2bc86e72b050bae72478ee92b5c1b7f81d63a317c3e5ab"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/gears_hcc_formal_v1/HCC38/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/gears_hcc_formal_v1/HCC38/predicted_shift.tsv.gz",
+      "bytes": 20225,
+      "sha256": "f6e24e099edb022244ac52c3c782fe2bff03d495787e6ffbb849c0403f47a2df"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/gears_hcc_formal_v1_e20_lr1e-03_wd1e-06/HCC1143/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/gears_hcc_formal_v1_e20_lr1e-03_wd1e-06/HCC1143/predicted_shift.tsv.gz",
+      "bytes": 20320,
+      "sha256": "e0213a8488749afc7bec4226c37ec9b51d9bc04f63c599fced389e7bf79eeb37"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/gears_hcc_formal_v1_e20_lr1e-03_wd1e-06/HCC38/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/gears_hcc_formal_v1_e20_lr1e-03_wd1e-06/HCC38/predicted_shift.tsv.gz",
+      "bytes": 20141,
+      "sha256": "cd63e3e5716b9e8d7694e39e42fc1b8731484c5228658233f9453e86dc887367"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/gears_hcc_formal_v1_e30_lr1e-03_wd1e-05/HCC1143/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/gears_hcc_formal_v1_e30_lr1e-03_wd1e-05/HCC1143/predicted_shift.tsv.gz",
+      "bytes": 20187,
+      "sha256": "d38206ebf366c310685166b82b2de2caab9e10e5cff6f46c6d77184d3faa5b8a"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/gears_hcc_formal_v1_e30_lr1e-03_wd1e-05/HCC38/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/gears_hcc_formal_v1_e30_lr1e-03_wd1e-05/HCC38/predicted_shift.tsv.gz",
+      "bytes": 20403,
+      "sha256": "de46443d01b70ef07c55e0e70e63fd7a6672d2d3c73f54d5046dc4fcb5e96d69"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/gears_hcc_formal_v1_e30_lr2e-03_wd1e-06/HCC1143/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/gears_hcc_formal_v1_e30_lr2e-03_wd1e-06/HCC1143/predicted_shift.tsv.gz",
+      "bytes": 20246,
+      "sha256": "9e2b430d178f6c3784fa5a4e38e7bf9c938153e890ac392e800d9448937840cf"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/gears_hcc_formal_v1_e30_lr2e-03_wd1e-06/HCC38/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/gears_hcc_formal_v1_e30_lr2e-03_wd1e-06/HCC38/predicted_shift.tsv.gz",
+      "bytes": 20154,
+      "sha256": "659372a0054b0aad381d74e6591f43f4f737c31c56d0027871c582160609f9d6"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/gears_hcc_formal_v1_e30_lr5e-04_wd1e-06/HCC1143/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/gears_hcc_formal_v1_e30_lr5e-04_wd1e-06/HCC1143/predicted_shift.tsv.gz",
+      "bytes": 20278,
+      "sha256": "8731893d6db75fbf2922c36113347a75ca867afd0af11d9e43983d68efacaf46"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/gears_hcc_formal_v1_e30_lr5e-04_wd1e-06/HCC38/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/gears_hcc_formal_v1_e30_lr5e-04_wd1e-06/HCC38/predicted_shift.tsv.gz",
+      "bytes": 20155,
+      "sha256": "5d3f1f583ceec9ca448f66f6a12cce37e349ba5e26cf820651963c4577658bb9"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/gears_hcc_formal_v1_e40_lr1e-03_wd1e-06/HCC1143/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/gears_hcc_formal_v1_e40_lr1e-03_wd1e-06/HCC1143/predicted_shift.tsv.gz",
+      "bytes": 20227,
+      "sha256": "3f474c8032cebb94645474d5b174182dfbfbe3b395393c911342608da633b126"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/gears_hcc_formal_v1_e40_lr1e-03_wd1e-06/HCC38/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/gears_hcc_formal_v1_e40_lr1e-03_wd1e-06/HCC38/predicted_shift.tsv.gz",
+      "bytes": 20173,
+      "sha256": "5023746280f0db6b92c50bf6985a3fa663162819939a3bb10f2e684d3d55d23a"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/geneformer_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/geneformer_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz",
+      "bytes": 19725,
+      "sha256": "2abd50a0a5843c83ca60cfb679242cf05e798f4fca877a3e34f58d638c026d5d"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/geneformer_hcc_formal_v1/HCC38/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/geneformer_hcc_formal_v1/HCC38/predicted_shift.tsv.gz",
+      "bytes": 19430,
+      "sha256": "b083f38585ef88be27bb978159a519919cb6f859e85338ad53053303fa36c09e"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/lm_g_geneformer_ridge_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/lm_g_geneformer_ridge_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz",
+      "bytes": 20221,
+      "sha256": "f96020dcacc734dddd5bcc5e583ed1a430c370967a786b6bdb6ae3be39095c4f"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/lm_g_geneformer_ridge_hcc_formal_v1/HCC38/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/lm_g_geneformer_ridge_hcc_formal_v1/HCC38/predicted_shift.tsv.gz",
+      "bytes": 20371,
+      "sha256": "7c737fe16da8648358238dc72bada9983206c5d9d3e2c88f0f5d55554d99fe46"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/lm_g_scgpt_ridge_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/lm_g_scgpt_ridge_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz",
+      "bytes": 20282,
+      "sha256": "7335bcbd4a60a26f4363e58471855c17273c3a69cca46d0c06984cd56a59232d"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/lm_g_scgpt_ridge_hcc_formal_v1/HCC38/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/lm_g_scgpt_ridge_hcc_formal_v1/HCC38/predicted_shift.tsv.gz",
+      "bytes": 20369,
+      "sha256": "9e22aefc51a9e60b66ff083da4e42368efd635c6af35b62bfdb5499f9b056023"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/lm_train_lowrank_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/lm_train_lowrank_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz",
+      "bytes": 20160,
+      "sha256": "5145a3ba8f3da1e3fe70810486c04685fb69792102bf11aacbbde052548d9b5d"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/lm_train_lowrank_hcc_formal_v1/HCC38/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/lm_train_lowrank_hcc_formal_v1/HCC38/predicted_shift.tsv.gz",
+      "bytes": 20302,
+      "sha256": "76595c8d8d3ad45feffad91b9039168cb26d86c0769dc21c43c371f065e30bf3"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/null_model/HCC1143/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/null_model/HCC1143/predicted_shift.tsv.gz",
+      "bytes": 474,
+      "sha256": "7b30fce1958afffa972936f0550b5ed33031adb035a40537085238c4bb3c4689"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/null_model/HCC38/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/null_model/HCC38/predicted_shift.tsv.gz",
+      "bytes": 474,
+      "sha256": "2b3194d7906ccb8f9a6ca106a6b9e6af56deeabc561c04a42c40c6817f11a0eb"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/scgen_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/scgen_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz",
+      "bytes": 20193,
+      "sha256": "c00cc60f93f4bc45ddb71efe7975d652dcd6ecd4e2104b844e3c15e7d9493aba"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/scgen_hcc_formal_v1/HCC38/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/scgen_hcc_formal_v1/HCC38/predicted_shift.tsv.gz",
+      "bytes": 20274,
+      "sha256": "d88aaff5d16fc447c16b1ff79737c36b01c5886dc92de28bae626cfee7457941"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/scgen_hcc_sens_e100_seed2/HCC1143/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/scgen_hcc_sens_e100_seed2/HCC1143/predicted_shift.tsv.gz",
+      "bytes": 20188,
+      "sha256": "591db97fe755dd50ade76e2193f4aac713aaef36a1b733286331aeba794464eb"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/scgen_hcc_sens_e100_seed2/HCC38/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/scgen_hcc_sens_e100_seed2/HCC38/predicted_shift.tsv.gz",
+      "bytes": 20213,
+      "sha256": "d3a58ef4e7be851c81e52cd0b8b924da2b5da5eafe41153b71e22ed50f03fb07"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/scgen_hcc_sens_e60_seed1/HCC1143/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/scgen_hcc_sens_e60_seed1/HCC1143/predicted_shift.tsv.gz",
+      "bytes": 20283,
+      "sha256": "b29c1bbdd4cb26373d96f2831325104d5f9bf332220a00503bf4d19dfccbe789"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/scgen_hcc_sens_e60_seed1/HCC38/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/scgen_hcc_sens_e60_seed1/HCC38/predicted_shift.tsv.gz",
+      "bytes": 20227,
+      "sha256": "adab1f015fd7173d2cead3ebba4f3fac423588b7ba25ab990d19723e6fd41e57"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/scgpt_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/scgpt_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz",
+      "bytes": 19829,
+      "sha256": "ba7c5159a50701924cd127d470f31520e0825cfb7fd4065ea30d6bb813b53fc1"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/scgpt_hcc_formal_v1/HCC38/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/scgpt_hcc_formal_v1/HCC38/predicted_shift.tsv.gz",
+      "bytes": 19528,
+      "sha256": "6700c257ae263b4ad4160093cef946a77b250090642e962fdf0f7c0cd41d4d43"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/shared_mean_baseline/HCC1143/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/shared_mean_baseline/HCC1143/predicted_shift.tsv.gz",
+      "bytes": 1265,
+      "sha256": "a367bf5953e29a2096b1ad3785520ca1fb096b741a565539d0edbe87629b3f61"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/shared_mean_baseline/HCC38/predicted_shift.tsv.gz",
+      "source": "data/predictions/hcc_scorer_ready/shared_mean_baseline/HCC38/predicted_shift.tsv.gz",
+      "bytes": 1260,
+      "sha256": "041d4e995635f10a9abb138fd01a952b343a4b7f67e03c10adfcf51476a995a1"
+    },
+    {
+      "path": "data/predictions/revision_m5_replogle/chargram_lowrank_ridge_loo_predicted_shift.npz",
+      "source": "data/predictions/revision_m5_replogle/chargram_lowrank_ridge_loo_predicted_shift.npz",
+      "bytes": 7138478,
+      "sha256": "1a2eeae5876ff31fe29c29b2a25559508998c62d65f4783608cdbbc3e697e992"
+    },
+    {
+      "path": "data/predictions/revision_m5_replogle/geneformer_embedding_kernel_loo_predicted_shift.npz",
+      "source": "data/predictions/revision_m5_replogle/geneformer_embedding_kernel_loo_predicted_shift.npz",
+      "bytes": 7166152,
+      "sha256": "dd78117ad06f76650e49e40205a8644b19774285c244022b6166eebd19d8ae80"
+    },
+    {
+      "path": "data/predictions/revision_m5_replogle/geneformer_embedding_ridge_loo_predicted_shift.npz",
+      "source": "data/predictions/revision_m5_replogle/geneformer_embedding_ridge_loo_predicted_shift.npz",
+      "bytes": 7140281,
+      "sha256": "9e82693d297b4add10b7f762e029ff79b4591a855e5e561e7f3c0498d6b5b1d1"
+    },
+    {
+      "path": "data/predictions/revision_m5_replogle/observed_shift_contract.npz",
+      "source": "data/predictions/revision_m5_replogle/observed_shift_contract.npz",
+      "bytes": 7181724,
+      "sha256": "e0182d7655af315d44dd3b8672e2914897119ea699091a449911ffc628b30ebd"
+    },
+    {
+      "path": "docs/README.md",
+      "source": "docs/revision_public_archive/README.md",
+      "bytes": 3554,
+      "sha256": "f4daadd51c09f2857477d0d95d53fe2161ceff2e312c65a2411e2ef1b0bc5e62"
+    },
+    {
+      "path": "docs/prepublication/hcc_comparison.tsv",
+      "source": "docs/revision_public_archive/prepublication/hcc_comparison.tsv",
+      "bytes": 8855,
+      "sha256": "784e8fa99cef91463214b144403024d1f353ac8a09ae82790d75474fed74e2dc"
+    },
+    {
+      "path": "docs/prepublication/hcc_verification.json",
+      "source": "docs/revision_public_archive/prepublication/hcc_verification.json",
+      "bytes": 195,
+      "sha256": "5903c85737900ca1d8d509c383bb3ef21118f74d409b7c53dc47deaa052f9e90"
+    },
+    {
+      "path": "docs/prepublication/m5_comparison.tsv",
+      "source": "docs/revision_public_archive/prepublication/m5_comparison.tsv",
+      "bytes": 2906,
+      "sha256": "c994065c3e71f48a0891c409a2f1e72a50201cf9d995398a2709126dda63a57a"
+    },
+    {
+      "path": "docs/prepublication/m5_verification.json",
+      "source": "docs/revision_public_archive/prepublication/m5_verification.json",
+      "bytes": 194,
+      "sha256": "ddbdea647f328a2d4c953e0f5dfc44bbb66326c73ea7213c7a500a5bd69be158"
+    },
+    {
+      "path": "docs/revision_cellot_seed123/new_context_metrics.tsv",
+      "source": "docs/revision_cellot_seed123/new_context_metrics.tsv",
+      "bytes": 3127,
+      "sha256": "8e8f4e6e4c899dd02c73a68df462cb1b8b45096856b883fa6b001b5b9324c18b"
+    },
+    {
+      "path": "docs/revision_cellot_seed123/old_new_comparison.tsv",
+      "source": "docs/revision_cellot_seed123/old_new_comparison.tsv",
+      "bytes": 1554,
+      "sha256": "8641b6d22c2b0556e9134e35c6a92cf3557128af727c04467d5c9df13e0c8940"
+    },
+    {
+      "path": "docs/revision_equal_n_attrition/group_comparison.tsv",
+      "source": "docs/revision_equal_n_attrition/group_comparison.tsv",
+      "bytes": 17058,
+      "sha256": "33dbb9c3b0384491081cbf13c2af64d7f3b6907d9bc6d8a54726f281812b4b3e"
+    },
+    {
+      "path": "docs/revision_external_cell_count/association_inference.tsv",
+      "source": "docs/revision_external_cell_count/association_inference.tsv",
+      "bytes": 5858,
+      "sha256": "8a8c5dd250df03c26c97fb4be5db71ea46fec7f04ee57a573c0762b5ba3254fa"
+    },
+    {
+      "path": "docs/revision_external_cell_count/cohort_sources.tsv",
+      "source": "docs/revision_external_cell_count/cohort_sources.tsv",
+      "bytes": 1323,
+      "sha256": "58807613857f2dc998c5e26b4af26a6bbddcc118b72c8a2ef4808c9666660743"
+    },
+    {
+      "path": "docs/revision_external_cell_count/count_shift_dependency_summary.tsv",
+      "source": "docs/revision_external_cell_count/count_shift_dependency_summary.tsv",
+      "bytes": 1229,
+      "sha256": "60cc7a46138ed569371e06f9f5933d7b1002ec8948d639e37b165b0c3374a47e"
+    },
+    {
+      "path": "expected/cellot_seed123.tsv",
+      "source": "docs/revision_cellot_seed123/new_context_metrics.tsv",
+      "bytes": 3127,
+      "sha256": "8e8f4e6e4c899dd02c73a68df462cb1b8b45096856b883fa6b001b5b9324c18b"
+    },
+    {
+      "path": "expected/m3.tsv",
+      "source": "reports/revision/m3_metric_validity/reference_context_metrics.tsv",
+      "bytes": 18632,
+      "sha256": "a54ec5275a7bd42bde8643f12eff8a057bdb9dc409eb80a1e792fa32a204b4ec"
+    },
+    {
+      "path": "expected/m4.tsv",
+      "source": "reports/revision/m4_hcc_full_audit/formal_and_diagnostic_context_metrics.tsv",
+      "bytes": 16876,
+      "sha256": "1f0350fc374353a96309680ad702e50c4351b178ece3a545d7350a37c5975c9a"
+    },
+    {
+      "path": "expected/m5.tsv",
+      "source": "reports/revision/m5_independent_full_audit/formal_and_reference_context_metrics.tsv",
+      "bytes": 6562,
+      "sha256": "c59805e3e7cdc06ceaeccea5074f1690dd4e90492681e0f9b2df6c26d52ae6a6"
+    },
+    {
+      "path": "matrices/cellot_seed123/HCC1143.tsv.gz",
+      "source": "docs/revision_cellot_seed123/predicted_shift_HCC1143.tsv.gz",
+      "bytes": 21362,
+      "sha256": "c41f2a75439a9c5fbdb8937d69a8f13090eff92d54dbb5328e18e62489416243"
+    },
+    {
+      "path": "matrices/cellot_seed123/HCC38.tsv.gz",
+      "source": "docs/revision_cellot_seed123/predicted_shift_HCC38.tsv.gz",
+      "bytes": 21305,
+      "sha256": "e3f46f0237892717d340ded1d0c870898fc211650d7c866a13aef95f9569a1f1"
+    },
+    {
+      "path": "pixi.lock",
+      "source": "pixi.lock",
+      "bytes": 534711,
+      "sha256": "d5cde7e0a5a6fd39d72ee928c3d82ab50c41cfdb048d7c1990c0fe86cffb203e"
+    },
+    {
+      "path": "pixi.toml",
+      "source": "pixi.toml",
+      "bytes": 31330,
+      "sha256": "fb0ffc2e6bae32b989dfe4708eb05bc2290dfe69dc1946a435afe83454812aca"
+    },
+    {
+      "path": "provenance/revision_cellot_replay/prediction_comparison.tsv",
+      "source": "docs/revision_cellot_replay/prediction_comparison.tsv",
+      "bytes": 506,
+      "sha256": "4a84c4dfbcf325bcac6d21b38a80a28a7df6508da9ead4d85ec2c83d29436c9e"
+    },
+    {
+      "path": "provenance/revision_cellot_replay/verification_manifest.json",
+      "source": "docs/revision_cellot_replay/verification_manifest.json",
+      "bytes": 127892,
+      "sha256": "36db55efeeef676421b270521a68c9d37e70fa86f4e3b0be42b21eba92017780"
+    },
+    {
+      "path": "provenance/revision_cellot_seed123/new_context_metrics.tsv",
+      "source": "docs/revision_cellot_seed123/new_context_metrics.tsv",
+      "bytes": 3127,
+      "sha256": "8e8f4e6e4c899dd02c73a68df462cb1b8b45096856b883fa6b001b5b9324c18b"
+    },
+    {
+      "path": "provenance/revision_cellot_seed123/new_target_metrics.tsv.gz",
+      "source": "docs/revision_cellot_seed123/new_target_metrics.tsv.gz",
+      "bytes": 11714,
+      "sha256": "af5565a486b54473ab167d8773e55bbec1a2165425a77f53aa320d76a3304c6c"
+    },
+    {
+      "path": "provenance/revision_cellot_seed123/old_new_comparison.tsv",
+      "source": "docs/revision_cellot_seed123/old_new_comparison.tsv",
+      "bytes": 1554,
+      "sha256": "8641b6d22c2b0556e9134e35c6a92cf3557128af727c04467d5c9df13e0c8940"
+    },
+    {
+      "path": "provenance/revision_cellot_seed123/pilot_comparison.json",
+      "source": "docs/revision_cellot_seed123/pilot_comparison.json",
+      "bytes": 258,
+      "sha256": "91af991b17d83e30793a7c622ce97463faf89e36b2365db513eeac7626a12038"
+    },
+    {
+      "path": "provenance/revision_cellot_seed123/pilot_repeat_1_completed.json",
+      "source": "docs/revision_cellot_seed123/pilot_repeat_1_completed.json",
+      "bytes": 1095,
+      "sha256": "4a614dd9b058df4609a3748111c5a6a481b7faaefc26808903eb7246a4a640b2"
+    },
+    {
+      "path": "provenance/revision_cellot_seed123/pilot_repeat_2_completed.json",
+      "source": "docs/revision_cellot_seed123/pilot_repeat_2_completed.json",
+      "bytes": 1094,
+      "sha256": "4a3d622724db9f9f71f967daca459a2a6f9a2e2c8063d7fcf6fefe75534a79a3"
+    },
+    {
+      "path": "provenance/revision_cellot_seed123/predicted_shift_HCC1143.tsv.gz",
+      "source": "docs/revision_cellot_seed123/predicted_shift_HCC1143.tsv.gz",
+      "bytes": 21362,
+      "sha256": "c41f2a75439a9c5fbdb8937d69a8f13090eff92d54dbb5328e18e62489416243"
+    },
+    {
+      "path": "provenance/revision_cellot_seed123/predicted_shift_HCC38.tsv.gz",
+      "source": "docs/revision_cellot_seed123/predicted_shift_HCC38.tsv.gz",
+      "bytes": 21305,
+      "sha256": "e3f46f0237892717d340ded1d0c870898fc211650d7c866a13aef95f9569a1f1"
+    },
+    {
+      "path": "provenance/revision_cellot_seed123/scoring_manifest.json",
+      "source": "docs/revision_cellot_seed123/scoring_manifest.json",
+      "bytes": 3765,
+      "sha256": "db38c232bf1b1426a434ab801c7675209be0df41abbe96aadf5d4afce1d6998b"
+    },
+    {
+      "path": "provenance/revision_cellot_seed123/training_verification_manifest.json",
+      "source": "docs/revision_cellot_seed123/training_verification_manifest.json",
+      "bytes": 270297,
+      "sha256": "6a52c5fa10f8f9fbd1e73422992ee588d66dcceea5cb10ff4d2caa189ce907c6"
+    },
+    {
+      "path": "provenance/revision_depmap_restore/comparison_summary.tsv",
+      "source": "docs/revision_depmap_restore/comparison_summary.tsv",
+      "bytes": 2956,
+      "sha256": "06512b52d9e62e3994282a86ea712e75cfe1cead247cb47158c90f6fbaa284bc"
+    },
+    {
+      "path": "provenance/revision_depmap_restore/endpoint_comparison.tsv.gz",
+      "source": "docs/revision_depmap_restore/endpoint_comparison.tsv.gz",
+      "bytes": 614068,
+      "sha256": "e2c14644d0820da65e5a7ac1f2ce6173c1bf246b339ece7ba3cabc1fa7cd37f0"
+    },
+    {
+      "path": "provenance/revision_depmap_restore/run_manifest.json",
+      "source": "docs/revision_depmap_restore/run_manifest.json",
+      "bytes": 7947,
+      "sha256": "830c6e85e9ebf9d1e173d6a9955d54734e82e5d41769dd8f8e25973ed68ffae6"
+    },
+    {
+      "path": "provenance/revision_scgpt_git_recovery/git_provenance.json",
+      "source": "docs/revision_scgpt_git_recovery/git_provenance.json",
+      "bytes": 3383,
+      "sha256": "f77618e8ef27f2f2803244a35637e899842346c84198ef43d818ef241eed766d"
+    },
+    {
+      "path": "provenance/revision_scgpt_git_recovery/prediction_comparison.tsv",
+      "source": "docs/revision_scgpt_git_recovery/prediction_comparison.tsv",
+      "bytes": 1005,
+      "sha256": "9c25c491ba25e24bb9cba833fdc698beb069195d1cae741d38fb83923991951e"
+    },
+    {
+      "path": "provenance/revision_scgpt_git_recovery/reconstructed_lm_g_scgpt_ridge_hcc_formal_v1_HCC1143.tsv.gz",
+      "source": "docs/revision_scgpt_git_recovery/reconstructed_lm_g_scgpt_ridge_hcc_formal_v1_HCC1143.tsv.gz",
+      "bytes": 22107,
+      "sha256": "20b381231e39db1a6e3819d57d6fef1e660462915c6b632261d2f9b75ca22400"
+    },
+    {
+      "path": "provenance/revision_scgpt_git_recovery/reconstructed_lm_g_scgpt_ridge_hcc_formal_v1_HCC38.tsv.gz",
+      "source": "docs/revision_scgpt_git_recovery/reconstructed_lm_g_scgpt_ridge_hcc_formal_v1_HCC38.tsv.gz",
+      "bytes": 22127,
+      "sha256": "2c3b5c843948ac1943f84346c2db0602c653f852cfe14bef1666b75ae15933cf"
+    },
+    {
+      "path": "provenance/revision_scgpt_git_recovery/reconstructed_scgpt_hcc_formal_v1_HCC1143.tsv.gz",
+      "source": "docs/revision_scgpt_git_recovery/reconstructed_scgpt_hcc_formal_v1_HCC1143.tsv.gz",
+      "bytes": 22111,
+      "sha256": "99e3f342cb971f5b606dd03e704fac6d36cbca78f46ec3eaa786d624fb7d1a02"
+    },
+    {
+      "path": "provenance/revision_scgpt_git_recovery/reconstructed_scgpt_hcc_formal_v1_HCC38.tsv.gz",
+      "source": "docs/revision_scgpt_git_recovery/reconstructed_scgpt_hcc_formal_v1_HCC38.tsv.gz",
+      "bytes": 21790,
+      "sha256": "7f867ed04dfd003a1faee6cee35164d7057b5ba450af33971d59e2bd36a7700c"
+    },
+    {
+      "path": "provenance/revision_scgpt_git_recovery/verification_manifest.json",
+      "source": "docs/revision_scgpt_git_recovery/verification_manifest.json",
+      "bytes": 7475,
+      "sha256": "d434bcdfbd8d4518bc5d313d85583c50bb3b388aea30ab7d948536d198eb767a"
+    },
+    {
+      "path": "recompute.py",
+      "source": "scripts/release/recompute_revision_archive.py",
+      "bytes": 7379,
+      "sha256": "18d0344ff32fa761e93a629471648ba4446317237a494cf086d6973b15354171"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/cellot_hcc_formal_v1/HCC1143/prediction_manifest.json",
+      "source": "reports/hcc_prediction_contract/cellot_hcc_formal_v1/HCC1143/prediction_manifest.json",
+      "bytes": 1414,
+      "sha256": "a2f614a60351e8984ca0133ae6b2c23f6d384bc7dab2be593795f9f2b20ed701"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/cellot_hcc_formal_v1/HCC38/prediction_manifest.json",
+      "source": "reports/hcc_prediction_contract/cellot_hcc_formal_v1/HCC38/prediction_manifest.json",
+      "bytes": 1406,
+      "sha256": "8632aeda41c2896e5248f2254309e06f4364d19e1123fec28501007ade7335cd"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/cpa_v0.8.8/HCC1143/prediction_manifest.json",
+      "source": "reports/hcc_prediction_contract/cpa_v0.8.8/HCC1143/prediction_manifest.json",
+      "bytes": 638203,
+      "sha256": "d0af12c424bf35af90f3a2551cad4788a33867a6a4f8781f1d42ceedefc97a21"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/cpa_v0.8.8/HCC38/prediction_manifest.json",
+      "source": "reports/hcc_prediction_contract/cpa_v0.8.8/HCC38/prediction_manifest.json",
+      "bytes": 638195,
+      "sha256": "630a7415b66799ac9a53d0bc87d95f0d65dc4bddf8df6a6256e35fed542e1667"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/gears_hcc_formal_v1/HCC1143/prediction_manifest.json",
+      "source": "reports/hcc_prediction_contract/gears_hcc_formal_v1/HCC1143/prediction_manifest.json",
+      "bytes": 1408,
+      "sha256": "e4e9e79fd9f866a4ef962f761fce604903e1063da1572ef960975db3301aaff7"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/gears_hcc_formal_v1/HCC38/prediction_manifest.json",
+      "source": "reports/hcc_prediction_contract/gears_hcc_formal_v1/HCC38/prediction_manifest.json",
+      "bytes": 1400,
+      "sha256": "f8e698b0350116200a05c26d468f9bc91b67cfec86d0382afaa21623b4eca97c"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/geneformer_hcc_formal_v1/HCC1143/prediction_manifest.json",
+      "source": "reports/hcc_prediction_contract/geneformer_hcc_formal_v1/HCC1143/prediction_manifest.json",
+      "bytes": 1265,
+      "sha256": "c1f61cd6c567672e806aa0331c88a314ebd46f33c826bb85c39c9d7598b82422"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/geneformer_hcc_formal_v1/HCC38/prediction_manifest.json",
+      "source": "reports/hcc_prediction_contract/geneformer_hcc_formal_v1/HCC38/prediction_manifest.json",
+      "bytes": 1257,
+      "sha256": "9458a3244565fd2427b6a52511491529f7a2854d0ccb550dcb1404a82187c1b2"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/lm_g_geneformer_ridge_hcc_formal_v1/HCC1143/prediction_manifest.json",
+      "source": "reports/hcc_prediction_contract/lm_g_geneformer_ridge_hcc_formal_v1/HCC1143/prediction_manifest.json",
+      "bytes": 1331,
+      "sha256": "0ca7a01a26e23154a32a0ec123fd48a7ba71e208d19848f7201dcca8c8a3598e"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/lm_g_geneformer_ridge_hcc_formal_v1/HCC38/prediction_manifest.json",
+      "source": "reports/hcc_prediction_contract/lm_g_geneformer_ridge_hcc_formal_v1/HCC38/prediction_manifest.json",
+      "bytes": 1323,
+      "sha256": "8445382f65bf0287e98a664f341abd526e9ff8a7e68bdf30a9080a559bb4d5de"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/lm_g_scgpt_ridge_hcc_formal_v1/HCC1143/prediction_manifest.json",
+      "source": "reports/hcc_prediction_contract/lm_g_scgpt_ridge_hcc_formal_v1/HCC1143/prediction_manifest.json",
+      "bytes": 1280,
+      "sha256": "af5c783b4b63c587cee6d779f8aab17eae96c79904e4de5627d88f7f31ee4fe0"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/lm_g_scgpt_ridge_hcc_formal_v1/HCC38/prediction_manifest.json",
+      "source": "reports/hcc_prediction_contract/lm_g_scgpt_ridge_hcc_formal_v1/HCC38/prediction_manifest.json",
+      "bytes": 1272,
+      "sha256": "801914685343e859f3493aab01af626303d5a3537022ee22b901e14c9094ede4"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/lm_train_lowrank_hcc_formal_v1/HCC1143/prediction_manifest.json",
+      "source": "reports/hcc_prediction_contract/lm_train_lowrank_hcc_formal_v1/HCC1143/prediction_manifest.json",
+      "bytes": 1462,
+      "sha256": "972b6e10b126ac8ab2251906d8df303d5bd1f828ef801c4aaa46916be1da2d4c"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/lm_train_lowrank_hcc_formal_v1/HCC38/prediction_manifest.json",
+      "source": "reports/hcc_prediction_contract/lm_train_lowrank_hcc_formal_v1/HCC38/prediction_manifest.json",
+      "bytes": 1454,
+      "sha256": "b4e047cf876bd493e56871ca92899ffa457160083fb6e738278e1969058b62db"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/null_model/HCC1143/prediction_manifest.json",
+      "source": "reports/hcc_prediction_contract/null_model/HCC1143/prediction_manifest.json",
+      "bytes": 1358,
+      "sha256": "f260df681b0223b5d6986158c709a8c964d879bb28e6a2eb372f1a0093a46298"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/null_model/HCC38/prediction_manifest.json",
+      "source": "reports/hcc_prediction_contract/null_model/HCC38/prediction_manifest.json",
+      "bytes": 1350,
+      "sha256": "5b2881e56260e7907338d4d31d4c84e2fec8ae4fea1d00a1d0eb2a99d704289e"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/scgen_hcc_formal_v1/HCC1143/prediction_manifest.json",
+      "source": "reports/hcc_prediction_contract/scgen_hcc_formal_v1/HCC1143/prediction_manifest.json",
+      "bytes": 1403,
+      "sha256": "d354b69a3aaf10f123cb6bdd3880bff5b57e13b59c626fe84db70d993fa5891e"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/scgen_hcc_formal_v1/HCC38/prediction_manifest.json",
+      "source": "reports/hcc_prediction_contract/scgen_hcc_formal_v1/HCC38/prediction_manifest.json",
+      "bytes": 1395,
+      "sha256": "9149316d51c81e677747c4389d5c796d50a9039926be86509631431edfdbe149"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/scgpt_hcc_formal_v1/HCC1143/prediction_manifest.json",
+      "source": "reports/hcc_prediction_contract/scgpt_hcc_formal_v1/HCC1143/prediction_manifest.json",
+      "bytes": 1214,
+      "sha256": "f3f98b16751cbb754c44cf9b6f5b6fce51d56223412bcd46a27ff6d35f54e2a3"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/scgpt_hcc_formal_v1/HCC38/prediction_manifest.json",
+      "source": "reports/hcc_prediction_contract/scgpt_hcc_formal_v1/HCC38/prediction_manifest.json",
+      "bytes": 1206,
+      "sha256": "5a7312a7bdf2fb3c9bc73cbea2eba1f7730c7d8019fee576d02a8bdc01ad7f2e"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/shared_mean_baseline/HCC1143/prediction_manifest.json",
+      "source": "reports/hcc_prediction_contract/shared_mean_baseline/HCC1143/prediction_manifest.json",
+      "bytes": 1406,
+      "sha256": "3b104c181a6b06bb46ccb5ecbf30108a72325b8e8999f2ee4129193e2c27d515"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/shared_mean_baseline/HCC38/prediction_manifest.json",
+      "source": "reports/hcc_prediction_contract/shared_mean_baseline/HCC38/prediction_manifest.json",
+      "bytes": 1398,
+      "sha256": "b33bf26c03a54410224e45cd8f7f985c430dd98718a05c4906a2a52cc5c057a4"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/bridge_inference_summary.tsv",
+      "source": "reports/revision/m1_bridge_confounding/bridge_inference_summary.tsv",
+      "bytes": 6684,
+      "sha256": "1b54a671b8aac3446b235b8c6464e298f32fc9d3ef17cb7019928d043735a83a"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/combined_robustness_summary.tsv",
+      "source": "reports/revision/m1_bridge_confounding/combined_robustness_summary.tsv",
+      "bytes": 8069,
+      "sha256": "bf7d69087ccf3d229b1e20daf5c4d954cbe1ddecad2caa82c597dff916c387b4"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/covariate_pairwise_correlations.tsv",
+      "source": "reports/revision/m1_bridge_confounding/covariate_pairwise_correlations.tsv",
+      "bytes": 2189,
+      "sha256": "9942c478f33997af1724516692431d9c8482f9eac44f8583815ac6c0c1139006"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/equal_n_attrition_summary.tsv",
+      "source": "reports/revision/m1_bridge_confounding/equal_n_attrition_summary.tsv",
+      "bytes": 4062,
+      "sha256": "4ee5efaffa83bbe39c51e222e2c6265ea150a4ebb5c46a27a1580728035d2ce9"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/equal_n_depth_summary.tsv",
+      "source": "reports/revision/m1_bridge_confounding/equal_n_depth_summary.tsv",
+      "bytes": 957,
+      "sha256": "c1f11c5fb95bdf6c51755f500f6a1416acf88e005a0b5dcfec0be8beb91a497e"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/equal_n_replicate_correlations.tsv.gz",
+      "source": "reports/revision/m1_bridge_confounding/equal_n_replicate_correlations.tsv.gz",
+      "bytes": 83000,
+      "sha256": "13deded3e3734c4812179b4769a029d713118e22e54e25680c2de3c941d754bd"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/equal_n_target_summary.tsv",
+      "source": "reports/revision/m1_bridge_confounding/equal_n_target_summary.tsv",
+      "bytes": 37487,
+      "sha256": "b332c376d6df8c5ba3e560b8d64b67796f49e014610dcfceefd6c6eef8038eaa"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/fixed_cohort_equal_n_depth_summary.tsv",
+      "source": "reports/revision/m1_bridge_confounding/fixed_cohort_equal_n_depth_summary.tsv",
+      "bytes": 957,
+      "sha256": "34f3ca14d1357c8dad6002f7155f4b3312f1859dfc64620b1912fedc24657ee3"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/fixed_cohort_equal_n_inference.tsv",
+      "source": "reports/revision/m1_bridge_confounding/fixed_cohort_equal_n_inference.tsv",
+      "bytes": 1671,
+      "sha256": "f12fd562d5b62bd0f61c2ccdfa5cfe8b91e206fbca0268910c39e404b27c436a"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/fixed_cohort_equal_n_replicate_correlations.tsv.gz",
+      "source": "reports/revision/m1_bridge_confounding/fixed_cohort_equal_n_replicate_correlations.tsv.gz",
+      "bytes": 51506,
+      "sha256": "eb364bc811a82b4f915283b9ddf207abe27cdc00ab2ee643478e698384c5267b"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/fixed_cohort_targets.tsv",
+      "source": "reports/revision/m1_bridge_confounding/fixed_cohort_targets.tsv",
+      "bytes": 5939,
+      "sha256": "5c7b89cc75d92e3029ac8074eca4793884f323804bd56809e270338984a63419"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/linear_model_sensitivity.tsv",
+      "source": "reports/revision/m1_bridge_confounding/linear_model_sensitivity.tsv",
+      "bytes": 1210,
+      "sha256": "db6b06eac5d9b4092a3f404053df443ff551c117b6083093a28781690125bd9c"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/m1_final_manifest.json",
+      "source": "reports/revision/m1_bridge_confounding/m1_final_manifest.json",
+      "bytes": 6241,
+      "sha256": "7682341f436dea6684f1a2f7ffb1eea3d42a131df86d8226559ff4786fa65420"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/m1_go_no_go_decision.tsv",
+      "source": "reports/revision/m1_bridge_confounding/m1_go_no_go_decision.tsv",
+      "bytes": 172,
+      "sha256": "30ded16e15639c1b341dce7fce12d9587546959718b3779e7b7327c8ff73317e"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/matched_size_null_replicates.tsv.gz",
+      "source": "reports/revision/m1_bridge_confounding/matched_size_null_replicates.tsv.gz",
+      "bytes": 1116062,
+      "sha256": "6d115c69add5f73d745207080d2cb9c44001356d8512ab971877a70bcc45262c"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/matched_size_null_target_summary.tsv",
+      "source": "reports/revision/m1_bridge_confounding/matched_size_null_target_summary.tsv",
+      "bytes": 13805,
+      "sha256": "acc67191e9b2fedb7c3bb5b765b5966aa6c54accd8e5d6298ddb858f5037e637"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/revised_gate_components.tsv",
+      "source": "reports/revision/m1_bridge_confounding/revised_gate_components.tsv",
+      "bytes": 1451,
+      "sha256": "cea88fa5788e08670b737311ba60a50058d30e71a19ce5d4597f2a054ea61dea"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/run_manifest.json",
+      "source": "reports/revision/m1_bridge_confounding/run_manifest.json",
+      "bytes": 4606,
+      "sha256": "87cf7aeda00bc84ee6e8f3974acc661f2d64475fba042f50d289957fae79c261"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/target_level_covariates_and_corrected_shift.tsv",
+      "source": "reports/revision/m1_bridge_confounding/target_level_covariates_and_corrected_shift.tsv",
+      "bytes": 32858,
+      "sha256": "858a8ff2dd9ed708a8adfa369118ff89d9e38407771a4a25b3387bdbf210d6fb"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/truth_recalculation_validation.tsv",
+      "source": "reports/revision/m1_bridge_confounding/truth_recalculation_validation.tsv",
+      "bytes": 251,
+      "sha256": "f7f7e7ec4e7087e95a0e14c39446dfe8d31d3f8a9d71053d8f30877869178d56"
+    },
+    {
+      "path": "reports/revision/m2_attrition_audit/attrition_flow.tsv",
+      "source": "reports/revision/m2_attrition_audit/attrition_flow.tsv",
+      "bytes": 2469,
+      "sha256": "da6690f099c2717ed82e970ec60fac4e7d14f0411669183a6e1a83db8f93f1b6"
+    },
+    {
+      "path": "reports/revision/m2_attrition_audit/context_qualification_summary.tsv",
+      "source": "reports/revision/m2_attrition_audit/context_qualification_summary.tsv",
+      "bytes": 2415,
+      "sha256": "49a2a04dd4509d1d7872fb135881eee6c7cb1b1a19af6bd3ae9dea0894008118"
+    },
+    {
+      "path": "reports/revision/m2_attrition_audit/identifier_audit.tsv",
+      "source": "reports/revision/m2_attrition_audit/identifier_audit.tsv",
+      "bytes": 1690,
+      "sha256": "a55625f828753e08490396494fb08754ef78db4aad3b14885cae5a569f96a803"
+    },
+    {
+      "path": "reports/revision/m2_attrition_audit/minimum_cell_filter_on_off_bridge.tsv",
+      "source": "reports/revision/m2_attrition_audit/minimum_cell_filter_on_off_bridge.tsv",
+      "bytes": 2186,
+      "sha256": "cd2958bf050cd38ae71ccbe54e9628867ab9517c624db5df5c8d1fe49cbfce14"
+    },
+    {
+      "path": "reports/revision/m2_attrition_audit/preprocessing_registry.tsv",
+      "source": "reports/revision/m2_attrition_audit/preprocessing_registry.tsv",
+      "bytes": 1406,
+      "sha256": "ccabffd3d672179325933327e424300ea594b5c23a07bdaf124e952e437dc8c1"
+    },
+    {
+      "path": "reports/revision/m2_attrition_audit/target_eligibility_detail.tsv",
+      "source": "reports/revision/m2_attrition_audit/target_eligibility_detail.tsv",
+      "bytes": 10237,
+      "sha256": "619def8bfe2d806afa1ee4542a2026a16535baf525c746b5089b79949d3bdd06"
+    },
+    {
+      "path": "reports/revision/m2_endpoint_object/endpoint_category_summary.tsv",
+      "source": "reports/revision/m2_endpoint_object/endpoint_category_summary.tsv",
+      "bytes": 1267,
+      "sha256": "025dbb4e0f995b44a5d611fd61fdf726fa740f804c1c7f60f1243562bbcda6f3"
+    },
+    {
+      "path": "reports/revision/m2_endpoint_object/endpoint_category_transition_detail.tsv",
+      "source": "reports/revision/m2_endpoint_object/endpoint_category_transition_detail.tsv",
+      "bytes": 13577,
+      "sha256": "de011eb48c97207c576863bfbdeb0446a1b169b691b825d5e6b152c376fae0f3"
+    },
+    {
+      "path": "reports/revision/m2_endpoint_object/endpoint_category_transition_summary.tsv",
+      "source": "reports/revision/m2_endpoint_object/endpoint_category_transition_summary.tsv",
+      "bytes": 979,
+      "sha256": "736008a7657455b3f629a3674433ef1e88b47d1cb7a73f2cb5d0b81fd5849d70"
+    },
+    {
+      "path": "reports/revision/m2_endpoint_object/endpoint_statistic_candidate_summary.tsv",
+      "source": "reports/revision/m2_endpoint_object/endpoint_statistic_candidate_summary.tsv",
+      "bytes": 1474,
+      "sha256": "e5a03ea30dcfef9be656fdcf388961e9a6c46ab3a144d6926b007545462ddcb6"
+    },
+    {
+      "path": "reports/revision/m2_endpoint_object/raw_category_recalculation_validation.tsv",
+      "source": "reports/revision/m2_endpoint_object/raw_category_recalculation_validation.tsv",
+      "bytes": 3671,
+      "sha256": "de7706ff83dd263ec329a75ae887e4452be37c6ceb9f408297c7451e89122a48"
+    },
+    {
+      "path": "reports/revision/m2_endpoint_object/run_manifest.json",
+      "source": "reports/revision/m2_endpoint_object/run_manifest.json",
+      "bytes": 3101,
+      "sha256": "297618b355a037fb8be88448347b6b4f69ddcdecf72376f6f649a41501673246"
+    },
+    {
+      "path": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+      "source": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+      "bytes": 20167,
+      "sha256": "ca3b7bc97bbe19bd956a472fb25b97d65dcf21a586eb5770ef10eb5ab3c7fa71"
+    },
+    {
+      "path": "reports/revision/m2_endpoint_object/shared_corrected_anchors.tsv",
+      "source": "reports/revision/m2_endpoint_object/shared_corrected_anchors.tsv",
+      "bytes": 251,
+      "sha256": "13094b0023d7e3046541d0cad3b5b0d6f9fdc92f0b24b6ad1ed7b2770519d5e7"
+    },
+    {
+      "path": "reports/revision/m3_metric_validity/contract_validation.tsv",
+      "source": "reports/revision/m3_metric_validity/contract_validation.tsv",
+      "bytes": 263,
+      "sha256": "6e3ecd180b9df703cda00a497078bba7cd6a3be4b10f8ad32d4d97dfe5acdc8e"
+    },
+    {
+      "path": "reports/revision/m3_metric_validity/observed_shift_HCC1143.tsv.gz",
+      "source": "reports/revision/m3_metric_validity/observed_shift_HCC1143.tsv.gz",
+      "bytes": 22085,
+      "sha256": "453eb845e3ee1514b74d9453ba8f1903a0288832d4ec6d018ca572f7dd7361d9"
+    },
+    {
+      "path": "reports/revision/m3_metric_validity/observed_shift_HCC38.tsv.gz",
+      "source": "reports/revision/m3_metric_validity/observed_shift_HCC38.tsv.gz",
+      "bytes": 21544,
+      "sha256": "3f142d64401398f5841d59f8a9137b274668b57cb16bb1723df2588663aa69f4"
+    },
+    {
+      "path": "reports/revision/m3_metric_validity/reference_acceptance.tsv",
+      "source": "reports/revision/m3_metric_validity/reference_acceptance.tsv",
+      "bytes": 1053,
+      "sha256": "ccb2b0db986f8ad2eef9fd26449716fc86762ad02992422eafee02a0430b52bd"
+    },
+    {
+      "path": "reports/revision/m3_metric_validity/reference_context_metrics.tsv",
+      "source": "reports/revision/m3_metric_validity/reference_context_metrics.tsv",
+      "bytes": 18632,
+      "sha256": "a54ec5275a7bd42bde8643f12eff8a057bdb9dc409eb80a1e792fa32a204b4ec"
+    },
+    {
+      "path": "reports/revision/m3_metric_validity/reference_random_direction_seed_summary.tsv",
+      "source": "reports/revision/m3_metric_validity/reference_random_direction_seed_summary.tsv",
+      "bytes": 15652,
+      "sha256": "0a90d4c4e67d2d5ba68cfbc3da885ccb5f038a152491c422036fd2f4aa1cb42d"
+    },
+    {
+      "path": "reports/revision/m3_metric_validity/reference_target_metrics.tsv",
+      "source": "reports/revision/m3_metric_validity/reference_target_metrics.tsv",
+      "bytes": 512498,
+      "sha256": "80fa61e5f2514893591f31ce99b9d3f659ee826205c0ff417a14f51373e0d827"
+    },
+    {
+      "path": "reports/revision/m3_metric_validity/run_manifest.json",
+      "source": "reports/revision/m3_metric_validity/run_manifest.json",
+      "bytes": 5169,
+      "sha256": "1fd6c86509188ad0285131d2d5cd613c6c900284980fbda73d8de2f8759c8d2c"
+    },
+    {
+      "path": "reports/revision/m4_hcc_full_audit/all_formal_pair_distances.tsv",
+      "source": "reports/revision/m4_hcc_full_audit/all_formal_pair_distances.tsv",
+      "bytes": 11222,
+      "sha256": "bf2ae0b1a124918485e9a12bee6cad6a038ef727c36cc98317d0233bea7cc59e"
+    },
+    {
+      "path": "reports/revision/m4_hcc_full_audit/discordant_pair_candidates.tsv",
+      "source": "reports/revision/m4_hcc_full_audit/discordant_pair_candidates.tsv",
+      "bytes": 781,
+      "sha256": "7dce7c5f328a1b530682f81b7b692a2c388ee199b19d9a8399a6e963842578e8"
+    },
+    {
+      "path": "reports/revision/m4_hcc_full_audit/formal_and_diagnostic_context_metrics.tsv",
+      "source": "reports/revision/m4_hcc_full_audit/formal_and_diagnostic_context_metrics.tsv",
+      "bytes": 16876,
+      "sha256": "1f0350fc374353a96309680ad702e50c4351b178ece3a545d7350a37c5975c9a"
+    },
+    {
+      "path": "reports/revision/m4_hcc_full_audit/formal_and_diagnostic_target_metrics.tsv.gz",
+      "source": "reports/revision/m4_hcc_full_audit/formal_and_diagnostic_target_metrics.tsv.gz",
+      "bytes": 75425,
+      "sha256": "bd4358686ef7484eae944c975a9dc3cb9ed033405d0f83dabb4032eef87dafcd"
+    },
+    {
+      "path": "reports/revision/m4_hcc_full_audit/formal_metric_profile_long.tsv",
+      "source": "reports/revision/m4_hcc_full_audit/formal_metric_profile_long.tsv",
+      "bytes": 19041,
+      "sha256": "37867c2ac12b12faead9b706feca263325f2a6db9318c2389c94345f81f4d3fc"
+    },
+    {
+      "path": "reports/revision/m4_hcc_full_audit/high_reconstruction_homogenization_candidates.tsv",
+      "source": "reports/revision/m4_hcc_full_audit/high_reconstruction_homogenization_candidates.tsv",
+      "bytes": 879,
+      "sha256": "107b5f053a010c4184fcb8d59489e592cb8e9b6053aefaebc45aea1eea57457e"
+    },
+    {
+      "path": "reports/revision/m4_hcc_full_audit/metric_correlation_summary.tsv",
+      "source": "reports/revision/m4_hcc_full_audit/metric_correlation_summary.tsv",
+      "bytes": 11818,
+      "sha256": "46fb23a1007656c993aea26f96f1d008718f30f829b747fec4ffcfd7a4e6a714"
+    },
+    {
+      "path": "reports/revision/m4_hcc_full_audit/model_training_evaluation_registry.tsv",
+      "source": "reports/revision/m4_hcc_full_audit/model_training_evaluation_registry.tsv",
+      "bytes": 11989,
+      "sha256": "c67cb0dc91458c2ffcf396a9a8b157687a81838a4ab6116a7926035427fe17cb"
+    },
+    {
+      "path": "reports/revision/m4_hcc_full_audit/revised_model_context_completion.tsv",
+      "source": "reports/revision/m4_hcc_full_audit/revised_model_context_completion.tsv",
+      "bytes": 14055,
+      "sha256": "dab7f75788bc748a9c694868e5f2a180825ff4df0693478dfa481dbf31ea8b86"
+    },
+    {
+      "path": "reports/revision/m4_hcc_full_audit/run_manifest.json",
+      "source": "reports/revision/m4_hcc_full_audit/run_manifest.json",
+      "bytes": 27261,
+      "sha256": "bda7235c7d1f92eb2ee7fa2f35951cbd7db43f5286e7e7e601ac512892cd5297"
+    },
+    {
+      "path": "reports/revision/m4_hcc_full_audit/sensitivity_completion_and_point_estimates.tsv",
+      "source": "reports/revision/m4_hcc_full_audit/sensitivity_completion_and_point_estimates.tsv",
+      "bytes": 18502,
+      "sha256": "32669cacdafaf8eb0e305821473768f7860532c6c3e6e08cc4fbf2ab755f4238"
+    },
+    {
+      "path": "reports/revision/m5_candidate_qualification/candidate_qualification_summary.tsv",
+      "source": "reports/revision/m5_candidate_qualification/candidate_qualification_summary.tsv",
+      "bytes": 891,
+      "sha256": "c677bb872741d6f4dd93f917aff22a70f4d2888b3f7639c1ba3775047f2db20c"
+    },
+    {
+      "path": "reports/revision/m5_candidate_qualification/closed_form_null_validation.tsv",
+      "source": "reports/revision/m5_candidate_qualification/closed_form_null_validation.tsv",
+      "bytes": 433,
+      "sha256": "518a43e69b4bec20b3e31434aaae403cf9f229afe867d9c5bcac7bae409eddee"
+    },
+    {
+      "path": "reports/revision/m5_candidate_qualification/run_manifest.json",
+      "source": "reports/revision/m5_candidate_qualification/run_manifest.json",
+      "bytes": 5994,
+      "sha256": "59278f6fcef2b71036f8a71ec882cdc78327996e8f6146f1c8ef23af5ed0fff5"
+    },
+    {
+      "path": "reports/revision/m5_candidate_qualification/selected_context_decision.json",
+      "source": "reports/revision/m5_candidate_qualification/selected_context_decision.json",
+      "bytes": 916,
+      "sha256": "7a85f099fd0b43eda44896d201a3daaf67794d52ab1af5eaba577ef9e4a7faa4"
+    },
+    {
+      "path": "reports/revision/m5_candidate_qualification/selected_context_endpoint_object.tsv.gz",
+      "source": "reports/revision/m5_candidate_qualification/selected_context_endpoint_object.tsv.gz",
+      "bytes": 239425,
+      "sha256": "17395fdaad03e341e2616a08dea4f02901ee13ca49f6073f89e644c5b0ca9f5f"
+    },
+    {
+      "path": "reports/revision/m5_candidate_qualification/selected_response_gene_space.tsv",
+      "source": "reports/revision/m5_candidate_qualification/selected_response_gene_space.tsv",
+      "bytes": 35624,
+      "sha256": "792d617e1d047219d429988a492e0d5ac1a103a99fedf8fd4d9cb94c28e4962d"
+    },
+    {
+      "path": "reports/revision/m5_independent_full_audit/formal_and_reference_context_metrics.tsv",
+      "source": "reports/revision/m5_independent_full_audit/formal_and_reference_context_metrics.tsv",
+      "bytes": 6562,
+      "sha256": "c59805e3e7cdc06ceaeccea5074f1690dd4e90492681e0f9b2df6c26d52ae6a6"
+    },
+    {
+      "path": "reports/revision/m5_independent_full_audit/formal_and_reference_target_metrics.tsv.gz",
+      "source": "reports/revision/m5_independent_full_audit/formal_and_reference_target_metrics.tsv.gz",
+      "bytes": 1332603,
+      "sha256": "37a102419546bb191a761d729b4db65f6192914219f53468423fd34cb4bc8856"
+    },
+    {
+      "path": "reports/revision/m5_independent_full_audit/formal_metric_profile_long.tsv",
+      "source": "reports/revision/m5_independent_full_audit/formal_metric_profile_long.tsv",
+      "bytes": 4044,
+      "sha256": "c1367779a9a6500ea33d294cc56bbe97a1fad2081cf74e52bf0aa2b1e1ef9a45"
+    },
+    {
+      "path": "reports/revision/m5_independent_full_audit/model_completion.tsv",
+      "source": "reports/revision/m5_independent_full_audit/model_completion.tsv",
+      "bytes": 486,
+      "sha256": "d72726260b714777c6d81f7948b4f3338ad24a1f1fe22eeb0ae7ab9f28ea0970"
+    },
+    {
+      "path": "reports/revision/m5_independent_full_audit/model_training_evaluation_registry.tsv",
+      "source": "reports/revision/m5_independent_full_audit/model_training_evaluation_registry.tsv",
+      "bytes": 979,
+      "sha256": "75e72b85d4508951d7d8bc2887587d67b12e6b7211b46f66e6a5a6e7c395e20f"
+    },
+    {
+      "path": "reports/revision/m5_independent_full_audit/reference_validation.tsv",
+      "source": "reports/revision/m5_independent_full_audit/reference_validation.tsv",
+      "bytes": 196,
+      "sha256": "55867dc1ad6956fd67882199562297a125ab23457634b14c1d6a82ca043323b6"
+    },
+    {
+      "path": "reports/revision/m5_independent_full_audit/run_manifest.json",
+      "source": "reports/revision/m5_independent_full_audit/run_manifest.json",
+      "bytes": 5703,
+      "sha256": "67bd008c7a8df74ee587483a6fe679ff5f63e1ec8da092166798244e5171fa17"
+    },
+    {
+      "path": "reports/revision/m6_endpoint_tuning/cutoff_grid_scores.tsv",
+      "source": "reports/revision/m6_endpoint_tuning/cutoff_grid_scores.tsv",
+      "bytes": 10104,
+      "sha256": "71cb7325801198e8ebd573a9618c2d219a6c129ef358c7a5e14d00f3b5759d14"
+    },
+    {
+      "path": "reports/revision/m6_endpoint_tuning/frozen_score_reproduction.tsv",
+      "source": "reports/revision/m6_endpoint_tuning/frozen_score_reproduction.tsv",
+      "bytes": 3594,
+      "sha256": "087dbf53e016553be5d8f05fd6a10b88760fee990c0f03257701dddeaa8bb3aa"
+    },
+    {
+      "path": "reports/revision/m6_endpoint_tuning/inflation_summary.tsv",
+      "source": "reports/revision/m6_endpoint_tuning/inflation_summary.tsv",
+      "bytes": 793,
+      "sha256": "815733c075bb30c87bfc0bf51e8a60e3a984fd863526dcbe61da8bb705c65c66"
+    },
+    {
+      "path": "reports/revision/m6_endpoint_tuning/model_context_inflation.tsv",
+      "source": "reports/revision/m6_endpoint_tuning/model_context_inflation.tsv",
+      "bytes": 2930,
+      "sha256": "e5eae4d2a9a135837f1b2987490b70669c0ccbf5c5b9ea41fdcd2c6cbf90d527"
+    },
+    {
+      "path": "reports/revision/m6_endpoint_tuning/run_manifest.json",
+      "source": "reports/revision/m6_endpoint_tuning/run_manifest.json",
+      "bytes": 3340,
+      "sha256": "a01b541ec96c9359fe6136a468231952c3f69fd8930e43cd340b58bb044f34c5"
+    },
+    {
+      "path": "reports/truth_driven_bridge/master_atlas/shared_target_axis_membership.tsv",
+      "source": "reports/truth_driven_bridge/master_atlas/shared_target_axis_membership.tsv",
+      "bytes": 4387,
+      "sha256": "a5be3d1222eda3c6b677494f50e69342fe114473639ef0f9517f99aa79f22a21"
+    },
+    {
+      "path": "src/wtbench/__init__.py",
+      "source": "src/wtbench/__init__.py",
+      "bytes": 58,
+      "sha256": "06bf5314a9324278ad6b842dd55805b42c92b29b9e5b732b71f2394fc712999b"
+    },
+    {
+      "path": "src/wtbench/hcc_prediction_export.py",
+      "source": "src/wtbench/hcc_prediction_export.py",
+      "bytes": 22691,
+      "sha256": "9ea3159bf47b1f17180f8c1ff5af785df4e4d11063b6e4cb5cf3065c608a56c4"
+    },
+    {
+      "path": "src/wtbench/revision_attrition_audit.py",
+      "source": "src/wtbench/revision_attrition_audit.py",
+      "bytes": 33859,
+      "sha256": "c9a92e7c224fa135534923b17a9a58d87fb5a6527606a23ed6b3e948b0ff1aae"
+    },
+    {
+      "path": "src/wtbench/revision_bridge_sensitivity.py",
+      "source": "src/wtbench/revision_bridge_sensitivity.py",
+      "bytes": 45082,
+      "sha256": "d9ec39385c2e1707c34223ddcca51ee2f2eb2474ca51e239e2502cdb3f969077"
+    },
+    {
+      "path": "src/wtbench/revision_endpoint_object.py",
+      "source": "src/wtbench/revision_endpoint_object.py",
+      "bytes": 16043,
+      "sha256": "c0de6b6975570954340e6bd4e2e5f12a23daa7b24fa1452599e5fd2bee33cc06"
+    },
+    {
+      "path": "src/wtbench/revision_hcc_audit.py",
+      "source": "src/wtbench/revision_hcc_audit.py",
+      "bytes": 43536,
+      "sha256": "96dd421cda588401813c861df010cccb1f3503691b9901bf6cd1856ad4a8d869"
+    },
+    {
+      "path": "src/wtbench/revision_m5_audit.py",
+      "source": "src/wtbench/revision_m5_audit.py",
+      "bytes": 25921,
+      "sha256": "043270baa549e5d6b6c994c497b489a54806d33787e93fdf292e70a671654b2a"
+    },
+    {
+      "path": "src/wtbench/revision_m5_qualification.py",
+      "source": "src/wtbench/revision_m5_qualification.py",
+      "bytes": 22344,
+      "sha256": "0724ade89dc713d285ad76ca97a6b2f9dc97869f9ed7a8ac165edbe34eaba71e"
+    },
+    {
+      "path": "src/wtbench/revision_m6_endpoint_tuning.py",
+      "source": "src/wtbench/revision_m6_endpoint_tuning.py",
+      "bytes": 14838,
+      "sha256": "f20fb901cb70d160113f454017faf79f5bc4921f866f5924a98d2d2112051adc"
+    },
+    {
+      "path": "src/wtbench/revision_metric_validity.py",
+      "source": "src/wtbench/revision_metric_validity.py",
+      "bytes": 37195,
+      "sha256": "018ffe625eb770ac90760bae2e6994ae9fd24e7fa1ed76bc2f9957b2fa7a1f27"
+    },
+    {
+      "path": "src/wtbench/truth_bridge.py",
+      "source": "src/wtbench/truth_bridge.py",
+      "bytes": 48355,
+      "sha256": "a8c8a96fd1241a0cc1bf5d3ac809cfb179402fa85c2cb7b95346729a4ee74edc"
+    }
+  ],
+  "score_groups": [
+    {
+      "name": "m3",
+      "expected": "expected/m3.tsv",
+      "items": [
+        {
+          "context": "HCC1143",
+          "entrant_id": "observed_shift_oracle",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC1143.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "reference_type": "observed_shift_oracle",
+          "reference_seed": null
+        },
+        {
+          "context": "HCC1143",
+          "entrant_id": "negated_oracle",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC1143.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "reference_type": "negated_oracle",
+          "reference_seed": null
+        },
+        {
+          "context": "HCC1143",
+          "entrant_id": "shared_mean_baseline",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC1143.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "reference_type": "shared_mean_baseline",
+          "reference_seed": null,
+          "prediction": "data/predictions/hcc_scorer_ready/shared_mean_baseline/HCC1143/predicted_shift.tsv.gz"
+        },
+        {
+          "context": "HCC1143",
+          "entrant_id": "observed_magnitude_random_direction_seed20260920",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC1143.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "reference_type": "observed_magnitude_random_direction",
+          "reference_seed": 20260920
+        },
+        {
+          "context": "HCC1143",
+          "entrant_id": "observed_magnitude_random_direction_seed20260921",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC1143.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "reference_type": "observed_magnitude_random_direction",
+          "reference_seed": 20260921
+        },
+        {
+          "context": "HCC1143",
+          "entrant_id": "observed_magnitude_random_direction_seed20260922",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC1143.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "reference_type": "observed_magnitude_random_direction",
+          "reference_seed": 20260922
+        },
+        {
+          "context": "HCC1143",
+          "entrant_id": "observed_magnitude_random_direction_seed20260923",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC1143.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "reference_type": "observed_magnitude_random_direction",
+          "reference_seed": 20260923
+        },
+        {
+          "context": "HCC1143",
+          "entrant_id": "observed_magnitude_random_direction_seed20260924",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC1143.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "reference_type": "observed_magnitude_random_direction",
+          "reference_seed": 20260924
+        },
+        {
+          "context": "HCC1143",
+          "entrant_id": "observed_magnitude_random_direction_seed20260925",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC1143.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "reference_type": "observed_magnitude_random_direction",
+          "reference_seed": 20260925
+        },
+        {
+          "context": "HCC1143",
+          "entrant_id": "observed_magnitude_random_direction_seed20260926",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC1143.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "reference_type": "observed_magnitude_random_direction",
+          "reference_seed": 20260926
+        },
+        {
+          "context": "HCC1143",
+          "entrant_id": "observed_magnitude_random_direction_seed20260927",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC1143.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "reference_type": "observed_magnitude_random_direction",
+          "reference_seed": 20260927
+        },
+        {
+          "context": "HCC1143",
+          "entrant_id": "observed_magnitude_random_direction_seed20260928",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC1143.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "reference_type": "observed_magnitude_random_direction",
+          "reference_seed": 20260928
+        },
+        {
+          "context": "HCC1143",
+          "entrant_id": "observed_magnitude_random_direction_seed20260929",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC1143.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "reference_type": "observed_magnitude_random_direction",
+          "reference_seed": 20260929
+        },
+        {
+          "context": "HCC38",
+          "entrant_id": "observed_shift_oracle",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC38.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "reference_type": "observed_shift_oracle",
+          "reference_seed": null
+        },
+        {
+          "context": "HCC38",
+          "entrant_id": "negated_oracle",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC38.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "reference_type": "negated_oracle",
+          "reference_seed": null
+        },
+        {
+          "context": "HCC38",
+          "entrant_id": "shared_mean_baseline",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC38.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "reference_type": "shared_mean_baseline",
+          "reference_seed": null,
+          "prediction": "data/predictions/hcc_scorer_ready/shared_mean_baseline/HCC38/predicted_shift.tsv.gz"
+        },
+        {
+          "context": "HCC38",
+          "entrant_id": "observed_magnitude_random_direction_seed20260920",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC38.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "reference_type": "observed_magnitude_random_direction",
+          "reference_seed": 20260920
+        },
+        {
+          "context": "HCC38",
+          "entrant_id": "observed_magnitude_random_direction_seed20260921",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC38.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "reference_type": "observed_magnitude_random_direction",
+          "reference_seed": 20260921
+        },
+        {
+          "context": "HCC38",
+          "entrant_id": "observed_magnitude_random_direction_seed20260922",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC38.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "reference_type": "observed_magnitude_random_direction",
+          "reference_seed": 20260922
+        },
+        {
+          "context": "HCC38",
+          "entrant_id": "observed_magnitude_random_direction_seed20260923",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC38.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "reference_type": "observed_magnitude_random_direction",
+          "reference_seed": 20260923
+        },
+        {
+          "context": "HCC38",
+          "entrant_id": "observed_magnitude_random_direction_seed20260924",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC38.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "reference_type": "observed_magnitude_random_direction",
+          "reference_seed": 20260924
+        },
+        {
+          "context": "HCC38",
+          "entrant_id": "observed_magnitude_random_direction_seed20260925",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC38.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "reference_type": "observed_magnitude_random_direction",
+          "reference_seed": 20260925
+        },
+        {
+          "context": "HCC38",
+          "entrant_id": "observed_magnitude_random_direction_seed20260926",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC38.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "reference_type": "observed_magnitude_random_direction",
+          "reference_seed": 20260926
+        },
+        {
+          "context": "HCC38",
+          "entrant_id": "observed_magnitude_random_direction_seed20260927",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC38.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "reference_type": "observed_magnitude_random_direction",
+          "reference_seed": 20260927
+        },
+        {
+          "context": "HCC38",
+          "entrant_id": "observed_magnitude_random_direction_seed20260928",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC38.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "reference_type": "observed_magnitude_random_direction",
+          "reference_seed": 20260928
+        },
+        {
+          "context": "HCC38",
+          "entrant_id": "observed_magnitude_random_direction_seed20260929",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC38.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "reference_type": "observed_magnitude_random_direction",
+          "reference_seed": 20260929
+        }
+      ],
+      "bh_entrants": [],
+      "bh_columns": []
+    },
+    {
+      "name": "m4",
+      "expected": "expected/m4.tsv",
+      "items": [
+        {
+          "context": "HCC1143",
+          "entrant_id": "cellot_hcc_formal_v1",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC1143.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "prediction": "data/predictions/hcc_scorer_ready/cellot_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz",
+          "endpoint_seed": 20431914
+        },
+        {
+          "context": "HCC1143",
+          "entrant_id": "cpa_v0.8.8",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC1143.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "prediction": "data/predictions/hcc_scorer_ready/cpa_v0.8.8/HCC1143/predicted_shift.tsv.gz",
+          "endpoint_seed": 20689055
+        },
+        {
+          "context": "HCC1143",
+          "entrant_id": "gears_hcc_formal_v1",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC1143.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "prediction": "data/predictions/hcc_scorer_ready/gears_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz",
+          "endpoint_seed": 20270803
+        },
+        {
+          "context": "HCC1143",
+          "entrant_id": "geneformer_hcc_formal_v1",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC1143.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "prediction": "data/predictions/hcc_scorer_ready/geneformer_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz",
+          "endpoint_seed": 20720456
+        },
+        {
+          "context": "HCC1143",
+          "entrant_id": "scgen_hcc_formal_v1",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC1143.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "prediction": "data/predictions/hcc_scorer_ready/scgen_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz",
+          "endpoint_seed": 20469856
+        },
+        {
+          "context": "HCC1143",
+          "entrant_id": "scgpt_hcc_formal_v1",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC1143.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "prediction": "data/predictions/hcc_scorer_ready/scgpt_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz",
+          "endpoint_seed": 21233792
+        },
+        {
+          "context": "HCC1143",
+          "entrant_id": "lm_train_lowrank_hcc_formal_v1",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC1143.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "prediction": "data/predictions/hcc_scorer_ready/lm_train_lowrank_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz",
+          "endpoint_seed": 20986790
+        },
+        {
+          "context": "HCC1143",
+          "entrant_id": "lm_g_geneformer_ridge_hcc_formal_v1",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC1143.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "prediction": "data/predictions/hcc_scorer_ready/lm_g_geneformer_ridge_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz",
+          "endpoint_seed": 20889924
+        },
+        {
+          "context": "HCC1143",
+          "entrant_id": "lm_g_scgpt_ridge_hcc_formal_v1",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC1143.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "prediction": "data/predictions/hcc_scorer_ready/lm_g_scgpt_ridge_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz",
+          "endpoint_seed": 20391472
+        },
+        {
+          "context": "HCC1143",
+          "entrant_id": "null_model",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC1143.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "prediction": "data/predictions/hcc_scorer_ready/null_model/HCC1143/predicted_shift.tsv.gz",
+          "endpoint_seed": 20467089
+        },
+        {
+          "context": "HCC1143",
+          "entrant_id": "shared_mean_baseline",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC1143.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "prediction": "data/predictions/hcc_scorer_ready/shared_mean_baseline/HCC1143/predicted_shift.tsv.gz",
+          "endpoint_seed": 20456800
+        },
+        {
+          "context": "HCC38",
+          "entrant_id": "cellot_hcc_formal_v1",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC38.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "prediction": "data/predictions/hcc_scorer_ready/cellot_hcc_formal_v1/HCC38/predicted_shift.tsv.gz",
+          "endpoint_seed": 20905210
+        },
+        {
+          "context": "HCC38",
+          "entrant_id": "cpa_v0.8.8",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC38.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "prediction": "data/predictions/hcc_scorer_ready/cpa_v0.8.8/HCC38/predicted_shift.tsv.gz",
+          "endpoint_seed": 21153634
+        },
+        {
+          "context": "HCC38",
+          "entrant_id": "gears_hcc_formal_v1",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC38.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "prediction": "data/predictions/hcc_scorer_ready/gears_hcc_formal_v1/HCC38/predicted_shift.tsv.gz",
+          "endpoint_seed": 20286404
+        },
+        {
+          "context": "HCC38",
+          "entrant_id": "geneformer_hcc_formal_v1",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC38.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "prediction": "data/predictions/hcc_scorer_ready/geneformer_hcc_formal_v1/HCC38/predicted_shift.tsv.gz",
+          "endpoint_seed": 20995840
+        },
+        {
+          "context": "HCC38",
+          "entrant_id": "scgen_hcc_formal_v1",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC38.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "prediction": "data/predictions/hcc_scorer_ready/scgen_hcc_formal_v1/HCC38/predicted_shift.tsv.gz",
+          "endpoint_seed": 20352964
+        },
+        {
+          "context": "HCC38",
+          "entrant_id": "scgpt_hcc_formal_v1",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC38.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "prediction": "data/predictions/hcc_scorer_ready/scgpt_hcc_formal_v1/HCC38/predicted_shift.tsv.gz",
+          "endpoint_seed": 21246203
+        },
+        {
+          "context": "HCC38",
+          "entrant_id": "lm_train_lowrank_hcc_formal_v1",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC38.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "prediction": "data/predictions/hcc_scorer_ready/lm_train_lowrank_hcc_formal_v1/HCC38/predicted_shift.tsv.gz",
+          "endpoint_seed": 20839302
+        },
+        {
+          "context": "HCC38",
+          "entrant_id": "lm_g_geneformer_ridge_hcc_formal_v1",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC38.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "prediction": "data/predictions/hcc_scorer_ready/lm_g_geneformer_ridge_hcc_formal_v1/HCC38/predicted_shift.tsv.gz",
+          "endpoint_seed": 21246951
+        },
+        {
+          "context": "HCC38",
+          "entrant_id": "lm_g_scgpt_ridge_hcc_formal_v1",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC38.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "prediction": "data/predictions/hcc_scorer_ready/lm_g_scgpt_ridge_hcc_formal_v1/HCC38/predicted_shift.tsv.gz",
+          "endpoint_seed": 20939060
+        },
+        {
+          "context": "HCC38",
+          "entrant_id": "null_model",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC38.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "prediction": "data/predictions/hcc_scorer_ready/null_model/HCC38/predicted_shift.tsv.gz",
+          "endpoint_seed": 20595604
+        },
+        {
+          "context": "HCC38",
+          "entrant_id": "shared_mean_baseline",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC38.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "prediction": "data/predictions/hcc_scorer_ready/shared_mean_baseline/HCC38/predicted_shift.tsv.gz",
+          "endpoint_seed": 20524132
+        }
+      ],
+      "bh_entrants": [
+        "cellot_hcc_formal_v1",
+        "cpa_v0.8.8",
+        "gears_hcc_formal_v1",
+        "geneformer_hcc_formal_v1",
+        "lm_g_geneformer_ridge_hcc_formal_v1",
+        "lm_g_scgpt_ridge_hcc_formal_v1",
+        "lm_train_lowrank_hcc_formal_v1",
+        "scgen_hcc_formal_v1",
+        "scgpt_hcc_formal_v1"
+      ],
+      "bh_columns": [
+        [
+          "endpoint_alignment_label_permutation_pvalue",
+          "endpoint_alignment_permutation_qvalue_bh"
+        ],
+        [
+          "target_identity_label_permutation_pvalue",
+          "target_identity_permutation_qvalue_bh"
+        ]
+      ]
+    },
+    {
+      "name": "m5",
+      "expected": "expected/m5.tsv",
+      "items": [
+        {
+          "context": "Replogle K562 essential day 6",
+          "entrant_id": "geneformer_embedding_kernel_loo",
+          "observed": "data/predictions/revision_m5_replogle/observed_shift_contract.npz",
+          "endpoint": "reports/revision/m5_candidate_qualification/selected_context_endpoint_object.tsv.gz",
+          "prediction": "data/predictions/revision_m5_replogle/geneformer_embedding_kernel_loo_predicted_shift.npz",
+          "endpoint_seed": 21048339
+        },
+        {
+          "context": "Replogle K562 essential day 6",
+          "entrant_id": "geneformer_embedding_ridge_loo",
+          "observed": "data/predictions/revision_m5_replogle/observed_shift_contract.npz",
+          "endpoint": "reports/revision/m5_candidate_qualification/selected_context_endpoint_object.tsv.gz",
+          "prediction": "data/predictions/revision_m5_replogle/geneformer_embedding_ridge_loo_predicted_shift.npz",
+          "endpoint_seed": 20494170
+        },
+        {
+          "context": "Replogle K562 essential day 6",
+          "entrant_id": "chargram_lowrank_ridge_loo",
+          "observed": "data/predictions/revision_m5_replogle/observed_shift_contract.npz",
+          "endpoint": "reports/revision/m5_candidate_qualification/selected_context_endpoint_object.tsv.gz",
+          "prediction": "data/predictions/revision_m5_replogle/chargram_lowrank_ridge_loo_predicted_shift.npz",
+          "endpoint_seed": 21119378
+        },
+        {
+          "context": "Replogle K562 essential day 6",
+          "entrant_id": "observed_shift_oracle",
+          "observed": "data/predictions/revision_m5_replogle/observed_shift_contract.npz",
+          "endpoint": "reports/revision/m5_candidate_qualification/selected_context_endpoint_object.tsv.gz",
+          "reference_type": "observed_shift_oracle",
+          "reference_seed": null,
+          "identity_permutations": 0
+        },
+        {
+          "context": "Replogle K562 essential day 6",
+          "entrant_id": "negated_oracle",
+          "observed": "data/predictions/revision_m5_replogle/observed_shift_contract.npz",
+          "endpoint": "reports/revision/m5_candidate_qualification/selected_context_endpoint_object.tsv.gz",
+          "reference_type": "negated_oracle",
+          "reference_seed": null,
+          "identity_permutations": 0
+        },
+        {
+          "context": "Replogle K562 essential day 6",
+          "entrant_id": "observed_magnitude_random_direction",
+          "observed": "data/predictions/revision_m5_replogle/observed_shift_contract.npz",
+          "endpoint": "reports/revision/m5_candidate_qualification/selected_context_endpoint_object.tsv.gz",
+          "reference_type": "observed_magnitude_random_direction",
+          "reference_seed": 20260920,
+          "identity_permutations": 0
+        },
+        {
+          "context": "Replogle K562 essential day 6",
+          "entrant_id": "shared_mean_baseline",
+          "observed": "data/predictions/revision_m5_replogle/observed_shift_contract.npz",
+          "endpoint": "reports/revision/m5_candidate_qualification/selected_context_endpoint_object.tsv.gz",
+          "reference_type": "shared_mean_baseline",
+          "reference_seed": null,
+          "identity_permutations": 0
+        }
+      ],
+      "bh_entrants": [
+        "chargram_lowrank_ridge_loo",
+        "geneformer_embedding_kernel_loo",
+        "geneformer_embedding_ridge_loo"
+      ],
+      "bh_columns": [
+        [
+          "endpoint_alignment_label_permutation_pvalue",
+          "endpoint_alignment_permutation_qvalue_bh"
+        ],
+        [
+          "target_identity_label_permutation_pvalue",
+          "target_identity_permutation_qvalue_bh"
+        ]
+      ],
+      "inference_overrides": {
+        "bootstrap_replicates": 5000,
+        "bootstrap_seed": 20261101,
+        "target_identity_permutations": 999,
+        "target_identity_seed": 20261103
+      }
+    },
+    {
+      "name": "cellot_seed123",
+      "expected": "expected/cellot_seed123.tsv",
+      "items": [
+        {
+          "context": "HCC38",
+          "entrant_id": "cellot_hcc_seed123_retrain_v1",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC38.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "prediction": "matrices/cellot_seed123/HCC38.tsv.gz",
+          "endpoint_seed": 21225699
+        },
+        {
+          "context": "HCC1143",
+          "entrant_id": "cellot_hcc_seed123_retrain_v1",
+          "observed": "reports/revision/m3_metric_validity/observed_shift_HCC1143.tsv.gz",
+          "endpoint": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+          "prediction": "matrices/cellot_seed123/HCC1143.tsv.gz",
+          "endpoint_seed": 20933264
+        }
+      ],
+      "bh_entrants": [
+        "cellot_hcc_seed123_retrain_v1"
+      ],
+      "bh_columns": [
+        [
+          "endpoint_alignment_label_permutation_pvalue",
+          "endpoint_q_bh_new_two_context_family"
+        ],
+        [
+          "target_identity_label_permutation_pvalue",
+          "identity_q_bh_new_two_context_family"
+        ]
+      ]
+    }
+  ]
+}
