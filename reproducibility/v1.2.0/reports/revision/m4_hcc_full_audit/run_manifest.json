@@ -1,0 +1,569 @@
+{
+  "status": "M4_HCC_AUDIT_FINAL",
+  "date": "2026-09-04",
+  "audit_id": "bib_26_1443_revision_hcc_full_audit_v1",
+  "real_models_retrained": false,
+  "formal_model_contexts_scored": 18,
+  "diagnostic_model_contexts_scored": 4,
+  "sensitivity_model_contexts_point_scored": 24,
+  "inputs": [
+    {
+      "path": "configs/revision/revision_hcc_full_audit_v1.json",
+      "sha256": "07b11c288a0709fe6c11d5d04ad2973b5f2d016c4abe35487bb2a064bd51e7e2"
+    },
+    {
+      "path": "configs/revision/amendment_005_hcc_audit_scope.json",
+      "sha256": "c3e0eaa5c0f503729a54c0eb4de8a205d9ae346801882e7b3e0c72c68e638490"
+    },
+    {
+      "path": "configs/revision/revision_metric_spec_v1.json",
+      "sha256": "6c7fffa1c032dbf789b1a1a000a7c32d598262122b2c04f1e6c8ba72f7cde0e9"
+    },
+    {
+      "path": "configs/revision/amendment_004_metric_contract.json",
+      "sha256": "874882b6034756d9d02a642aa26a573e65d44ccb413eaf58cbc1e6c596b9ef9f"
+    },
+    {
+      "path": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+      "sha256": "ca3b7bc97bbe19bd956a472fb25b97d65dcf21a586eb5770ef10eb5ab3c7fa71"
+    },
+    {
+      "path": "reports/truth_driven_bridge/master_atlas/shared_target_axis_membership.tsv",
+      "sha256": "a5be3d1222eda3c6b677494f50e69342fe114473639ef0f9517f99aa79f22a21"
+    },
+    {
+      "path": "configs/revision/revision_model_context_completion_v1.tsv",
+      "sha256": "f1d841cd1167f984f6db62d86a730ce520f4bd0fa91c3b6fcaeee1902908881c"
+    },
+    {
+      "path": "reports/figure5_sensitivity/finite_budget_manifest.tsv",
+      "sha256": "f43893ce1f9a8070c99ef99e8975f991ecff09536722016e566444fa714bec57"
+    },
+    {
+      "path": "src/wtbench/revision_hcc_audit.py",
+      "sha256": "96dd421cda588401813c861df010cccb1f3503691b9901bf6cd1856ad4a8d869"
+    },
+    {
+      "path": "src/wtbench/revision_metric_validity.py",
+      "sha256": "d8fae47666da2968bc2ac9b9e8f7a8b0db5efcf88312636959dc0840af8c7d4b"
+    },
+    {
+      "path": "scripts/revision/run_m4_hcc_audit.py",
+      "sha256": "9b9a7c41de14842b5032849319addd141baa0d3b01638a92526c496ad376d2c5"
+    },
+    {
+      "path": "reports/revision/m3_metric_validity/observed_shift_HCC1143.tsv.gz",
+      "sha256": "453eb845e3ee1514b74d9453ba8f1903a0288832d4ec6d018ca572f7dd7361d9"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/cellot_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz",
+      "sha256": "adf36a2d545c72f109d31f5e5a4c936e13925c3abf7911de6c64aa2c59b941f9"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/cellot_hcc_formal_v1/HCC1143/prediction_manifest.json",
+      "sha256": "a2f614a60351e8984ca0133ae6b2c23f6d384bc7dab2be593795f9f2b20ed701"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/cpa_v0.8.8/HCC1143/predicted_shift.tsv.gz",
+      "sha256": "f8695b57bc78832647c12cba9f3b255b2f4c102fd63037b63ce7c6e19749178d"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/cpa_v0.8.8/HCC1143/prediction_manifest.json",
+      "sha256": "d0af12c424bf35af90f3a2551cad4788a33867a6a4f8781f1d42ceedefc97a21"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/gears_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz",
+      "sha256": "ce1aecc47262a3afef2bc86e72b050bae72478ee92b5c1b7f81d63a317c3e5ab"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/gears_hcc_formal_v1/HCC1143/prediction_manifest.json",
+      "sha256": "e4e9e79fd9f866a4ef962f761fce604903e1063da1572ef960975db3301aaff7"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/geneformer_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz",
+      "sha256": "2abd50a0a5843c83ca60cfb679242cf05e798f4fca877a3e34f58d638c026d5d"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/geneformer_hcc_formal_v1/HCC1143/prediction_manifest.json",
+      "sha256": "c1f61cd6c567672e806aa0331c88a314ebd46f33c826bb85c39c9d7598b82422"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/scgen_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz",
+      "sha256": "c00cc60f93f4bc45ddb71efe7975d652dcd6ecd4e2104b844e3c15e7d9493aba"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/scgen_hcc_formal_v1/HCC1143/prediction_manifest.json",
+      "sha256": "d354b69a3aaf10f123cb6bdd3880bff5b57e13b59c626fe84db70d993fa5891e"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/scgpt_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz",
+      "sha256": "ba7c5159a50701924cd127d470f31520e0825cfb7fd4065ea30d6bb813b53fc1"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/scgpt_hcc_formal_v1/HCC1143/prediction_manifest.json",
+      "sha256": "f3f98b16751cbb754c44cf9b6f5b6fce51d56223412bcd46a27ff6d35f54e2a3"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/lm_train_lowrank_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz",
+      "sha256": "5145a3ba8f3da1e3fe70810486c04685fb69792102bf11aacbbde052548d9b5d"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/lm_train_lowrank_hcc_formal_v1/HCC1143/prediction_manifest.json",
+      "sha256": "972b6e10b126ac8ab2251906d8df303d5bd1f828ef801c4aaa46916be1da2d4c"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/lm_g_geneformer_ridge_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz",
+      "sha256": "f96020dcacc734dddd5bcc5e583ed1a430c370967a786b6bdb6ae3be39095c4f"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/lm_g_geneformer_ridge_hcc_formal_v1/HCC1143/prediction_manifest.json",
+      "sha256": "0ca7a01a26e23154a32a0ec123fd48a7ba71e208d19848f7201dcca8c8a3598e"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/lm_g_scgpt_ridge_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz",
+      "sha256": "7335bcbd4a60a26f4363e58471855c17273c3a69cca46d0c06984cd56a59232d"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/lm_g_scgpt_ridge_hcc_formal_v1/HCC1143/prediction_manifest.json",
+      "sha256": "af5c783b4b63c587cee6d779f8aab17eae96c79904e4de5627d88f7f31ee4fe0"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/null_model/HCC1143/predicted_shift.tsv.gz",
+      "sha256": "7b30fce1958afffa972936f0550b5ed33031adb035a40537085238c4bb3c4689"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/null_model/HCC1143/prediction_manifest.json",
+      "sha256": "f260df681b0223b5d6986158c709a8c964d879bb28e6a2eb372f1a0093a46298"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/shared_mean_baseline/HCC1143/predicted_shift.tsv.gz",
+      "sha256": "a367bf5953e29a2096b1ad3785520ca1fb096b741a565539d0edbe87629b3f61"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/shared_mean_baseline/HCC1143/prediction_manifest.json",
+      "sha256": "3b104c181a6b06bb46ccb5ecbf30108a72325b8e8999f2ee4129193e2c27d515"
+    },
+    {
+      "path": "reports/revision/m3_metric_validity/observed_shift_HCC38.tsv.gz",
+      "sha256": "3f142d64401398f5841d59f8a9137b274668b57cb16bb1723df2588663aa69f4"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/cellot_hcc_formal_v1/HCC38/predicted_shift.tsv.gz",
+      "sha256": "4161c656e376e52fbcd9cdf461b7299e09b6ef01add8c7243c8cd2b36cc60777"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/cellot_hcc_formal_v1/HCC38/prediction_manifest.json",
+      "sha256": "8632aeda41c2896e5248f2254309e06f4364d19e1123fec28501007ade7335cd"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/cpa_v0.8.8/HCC38/predicted_shift.tsv.gz",
+      "sha256": "b3feec83b9318e297583b6ee3c39b7c13e06c0eaaf71c9769a116c2ee3423699"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/cpa_v0.8.8/HCC38/prediction_manifest.json",
+      "sha256": "630a7415b66799ac9a53d0bc87d95f0d65dc4bddf8df6a6256e35fed542e1667"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/gears_hcc_formal_v1/HCC38/predicted_shift.tsv.gz",
+      "sha256": "f6e24e099edb022244ac52c3c782fe2bff03d495787e6ffbb849c0403f47a2df"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/gears_hcc_formal_v1/HCC38/prediction_manifest.json",
+      "sha256": "f8e698b0350116200a05c26d468f9bc91b67cfec86d0382afaa21623b4eca97c"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/geneformer_hcc_formal_v1/HCC38/predicted_shift.tsv.gz",
+      "sha256": "b083f38585ef88be27bb978159a519919cb6f859e85338ad53053303fa36c09e"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/geneformer_hcc_formal_v1/HCC38/prediction_manifest.json",
+      "sha256": "9458a3244565fd2427b6a52511491529f7a2854d0ccb550dcb1404a82187c1b2"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/scgen_hcc_formal_v1/HCC38/predicted_shift.tsv.gz",
+      "sha256": "d88aaff5d16fc447c16b1ff79737c36b01c5886dc92de28bae626cfee7457941"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/scgen_hcc_formal_v1/HCC38/prediction_manifest.json",
+      "sha256": "9149316d51c81e677747c4389d5c796d50a9039926be86509631431edfdbe149"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/scgpt_hcc_formal_v1/HCC38/predicted_shift.tsv.gz",
+      "sha256": "6700c257ae263b4ad4160093cef946a77b250090642e962fdf0f7c0cd41d4d43"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/scgpt_hcc_formal_v1/HCC38/prediction_manifest.json",
+      "sha256": "5a7312a7bdf2fb3c9bc73cbea2eba1f7730c7d8019fee576d02a8bdc01ad7f2e"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/lm_train_lowrank_hcc_formal_v1/HCC38/predicted_shift.tsv.gz",
+      "sha256": "76595c8d8d3ad45feffad91b9039168cb26d86c0769dc21c43c371f065e30bf3"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/lm_train_lowrank_hcc_formal_v1/HCC38/prediction_manifest.json",
+      "sha256": "b4e047cf876bd493e56871ca92899ffa457160083fb6e738278e1969058b62db"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/lm_g_geneformer_ridge_hcc_formal_v1/HCC38/predicted_shift.tsv.gz",
+      "sha256": "7c737fe16da8648358238dc72bada9983206c5d9d3e2c88f0f5d55554d99fe46"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/lm_g_geneformer_ridge_hcc_formal_v1/HCC38/prediction_manifest.json",
+      "sha256": "8445382f65bf0287e98a664f341abd526e9ff8a7e68bdf30a9080a559bb4d5de"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/lm_g_scgpt_ridge_hcc_formal_v1/HCC38/predicted_shift.tsv.gz",
+      "sha256": "9e22aefc51a9e60b66ff083da4e42368efd635c6af35b62bfdb5499f9b056023"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/lm_g_scgpt_ridge_hcc_formal_v1/HCC38/prediction_manifest.json",
+      "sha256": "801914685343e859f3493aab01af626303d5a3537022ee22b901e14c9094ede4"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/null_model/HCC38/predicted_shift.tsv.gz",
+      "sha256": "2b3194d7906ccb8f9a6ca106a6b9e6af56deeabc561c04a42c40c6817f11a0eb"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/null_model/HCC38/prediction_manifest.json",
+      "sha256": "5b2881e56260e7907338d4d31d4c84e2fec8ae4fea1d00a1d0eb2a99d704289e"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/shared_mean_baseline/HCC38/predicted_shift.tsv.gz",
+      "sha256": "041d4e995635f10a9abb138fd01a952b343a4b7f67e03c10adfcf51476a995a1"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/shared_mean_baseline/HCC38/prediction_manifest.json",
+      "sha256": "b33bf26c03a54410224e45cd8f7f985c430dd98718a05c4906a2a52cc5c057a4"
+    },
+    {
+      "path": "configs/gears_hcc_formal_v1.json",
+      "sha256": "d8631d607ebadf578c8e6632fe8c57ce488b6332dcb3969850e0f24f6c1c67a5"
+    },
+    {
+      "path": "configs/geneformer_hcc_formal_v1.json",
+      "sha256": "8b9055b3c7d65b7237a25512397293bf55b0ee0a8511570398bc557c08524b59"
+    },
+    {
+      "path": "configs/scgpt_hcc_formal_v1.json",
+      "sha256": "e16df5d45e3adfbd66cb8e8115bbbb68df2828b62de8390d6ce963bd1b475463"
+    },
+    {
+      "path": "configs/lm_train_lowrank_hcc_formal_v1.json",
+      "sha256": "e8d9c861f36799b2130a05298f020778a8d75b84c2243176ea5f34ed107176d5"
+    },
+    {
+      "path": "configs/lm_g_geneformer_ridge_hcc_formal_v1.json",
+      "sha256": "237de0b8830ad242fe59013264275682dc8273ff9e6664c4718cf9a3fda19d6f"
+    },
+    {
+      "path": "configs/lm_g_scgpt_ridge_hcc_formal_v1.json",
+      "sha256": "2d4b87f3f27ed44045f748f7184b577977a66daa8a03769456b52e26662834c3"
+    },
+    {
+      "path": "configs/checkpoint_registry_v1.yaml",
+      "sha256": "c44569a0a9031a23b8cbf3bbe0807758a9ee55752dc7eceeeda870189e0050be"
+    },
+    {
+      "path": "scripts/models/cpa/run_cpa_full_materialization.py",
+      "sha256": "b318a33bb16af02e71b3eff0f2c2d8f1d439795bd5a235745687da0098f9f91b"
+    },
+    {
+      "path": "scripts/models/scgen/run_scgen_hcc_smoke.py",
+      "sha256": "3e4e41751b574b7f0254e55b8e4d448ff5831f91753f4e6b71df6cb7943e1ed2"
+    },
+    {
+      "path": "scripts/pipeline/run_hcc_model_queue.py",
+      "sha256": "105ba98e54f75894951b425e626f4bbf01f0b54448c9764aecc0244d424ac083"
+    },
+    {
+      "path": "scripts/models/cellot/prepare_cellot_hcc_smoke.py",
+      "sha256": "b8a7cdb89ebd8c8f5fbd8d9fa7798c00dc0b291c1a2b050ecef2123aff5393c2"
+    },
+    {
+      "path": "scripts/models/cellot/run_cellot_hcc_staged.py",
+      "sha256": "1c90764476a82c2ad2ab8c7ce02d6aa87a118574865debbf26ac2affcce9c500"
+    },
+    {
+      "path": "scripts/pipeline/gears_hcc_predictions.py",
+      "sha256": "d4cac879909ebef25f0c5e88e0deb0d310f3358e7049b4fdadcb255576c1c19c"
+    },
+    {
+      "path": "scripts/stage1a/adapters/gears/build_predictions.py",
+      "sha256": "8a6f855911483c48f84b6222b65cd73b1be00232f6862451e8cfd22f86d53bd3"
+    },
+    {
+      "path": "src/wtbench/hcc_prediction_export.py",
+      "sha256": "9ea3159bf47b1f17180f8c1ff5af785df4e4d11063b6e4cb5cf3065c608a56c4"
+    },
+    {
+      "path": "reports/model_eligibility/cpa_full_materialization/training_cost_report_HCC1143.json",
+      "sha256": "ed0f6c474543d0f6beb66aa8ae0e93edd563fb1d1f1b38d43cf14ff6e7966076"
+    },
+    {
+      "path": "reports/model_eligibility/scgen_hcc_smoke/HCC1143/smoke_report.json",
+      "sha256": "faf4a4c060bb2af7d5709f160eeeac1f8f45393677cc3c11cfd6a67152150647"
+    },
+    {
+      "path": "reports/model_eligibility/cellot_hcc_smoke/HCC1143/staging_manifest.json",
+      "sha256": "a1e4bec7733d327dcebf09604087e992bffe165dd54936f7ef6850fe4cb686ae"
+    },
+    {
+      "path": "data/predictions/gears_raw/gears_hcc_formal_v1/HCC1143/provenance.json",
+      "sha256": "24f09f662367103ac5352ee16ecaba15ea5b8169631b4d621106a66fb6e46cbb"
+    },
+    {
+      "path": "reports/model_eligibility/cpa_full_materialization/training_cost_report_HCC38.json",
+      "sha256": "0007a1e14a305ea334d726cec84c76c93547a7fe660493c9262aba87c12bcfcd"
+    },
+    {
+      "path": "reports/model_eligibility/scgen_hcc_smoke/HCC38/smoke_report.json",
+      "sha256": "594de85acc297df2e6e2e11bba6fafe8e8f9abf1ddc73360338831d1cc6bc8dc"
+    },
+    {
+      "path": "reports/model_eligibility/cellot_hcc_smoke/HCC38/staging_manifest.json",
+      "sha256": "2862dea592f8c368eaf702f6f9c4ce866216913f94040001a3b6aefe93abbc8c"
+    },
+    {
+      "path": "data/predictions/gears_raw/gears_hcc_formal_v1/HCC38/provenance.json",
+      "sha256": "a7f0133fc253ce4cc2fa97e89602748b8eabf5826dfb3dfc0b9d17c566bff33f"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/cellot_hcc_sens_iter100_seed1/HCC1143/predicted_shift.tsv.gz",
+      "sha256": "1b980eda287dcb5ee88b808bdee61bb86ed4742ebf16ad0d1534ba94aa8245d7"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/cellot_hcc_sens_iter100_seed1/HCC1143/prediction_manifest.json",
+      "sha256": "7dce23c7038a88dfd34eb0780290b0147ef8f370ffa3779ee8ae483da681e657"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/cellot_hcc_sens_iter200_seed2/HCC1143/predicted_shift.tsv.gz",
+      "sha256": "9a512b3a8d211372fdbb66ce6b2bd66419516e1e4637a6a881ea68f3144b9cb7"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/cellot_hcc_sens_iter200_seed2/HCC1143/prediction_manifest.json",
+      "sha256": "83e33931e50b21effd62cc43430db244a76baed65d6192cff4f9ebedf966a925"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/cellot_hcc_sens_iter500_seed1_full/HCC1143/predicted_shift.tsv.gz",
+      "sha256": "cb3be49da7fb9ec591486fc1f6b6bd9ececf10d171d4497b9e58b37f86fe1a6b"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/cellot_hcc_sens_iter500_seed1_full/HCC1143/prediction_manifest.json",
+      "sha256": "ae1d14fa0c4642414864684e26263058129ddd61b9e0828af857f0e83bbcaf3f"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/cpa_hcc_sens_e200_latent32_seed1/HCC1143/predicted_shift.tsv.gz",
+      "sha256": "89852d11fe27ab6cd1a9222f2a2e96cddf9400d31fcaca891c1f89c7ec6a750c"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/cpa_hcc_sens_e200_latent32_seed1/HCC1143/prediction_manifest.json",
+      "sha256": "1130a0df4c93c36d43296c949d07d0b51863f03a3319f9e8995060ec6dcbc877"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/cpa_hcc_sens_e200_latent64_seed2/HCC1143/predicted_shift.tsv.gz",
+      "sha256": "ec46ed731e3985e85420022910e7b487415448e349de1448ea1e068ef83f34f4"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/cpa_hcc_sens_e200_latent64_seed2/HCC1143/prediction_manifest.json",
+      "sha256": "9ce90ee094497726fd194bc5901ab46de2297492e24f193f0e8f2c6435f04ba6"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/gears_hcc_formal_v1_e20_lr1e-03_wd1e-06/HCC1143/predicted_shift.tsv.gz",
+      "sha256": "e0213a8488749afc7bec4226c37ec9b51d9bc04f63c599fced389e7bf79eeb37"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/gears_hcc_formal_v1_e20_lr1e-03_wd1e-06/HCC1143/prediction_manifest.json",
+      "sha256": "c4106725c1fb66641b548b18db6905cd841e9c3f169eb56d0acae029a61e07b4"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/gears_hcc_formal_v1_e30_lr1e-03_wd1e-05/HCC1143/predicted_shift.tsv.gz",
+      "sha256": "d38206ebf366c310685166b82b2de2caab9e10e5cff6f46c6d77184d3faa5b8a"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/gears_hcc_formal_v1_e30_lr1e-03_wd1e-05/HCC1143/prediction_manifest.json",
+      "sha256": "d9bb096de5493762e9a1a31b05b944360412f7e48a45cda468d5da7171699970"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/gears_hcc_formal_v1_e30_lr2e-03_wd1e-06/HCC1143/predicted_shift.tsv.gz",
+      "sha256": "9e2b430d178f6c3784fa5a4e38e7bf9c938153e890ac392e800d9448937840cf"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/gears_hcc_formal_v1_e30_lr2e-03_wd1e-06/HCC1143/prediction_manifest.json",
+      "sha256": "c7742627f75b45066f0665711544ba3cc883de9b80a2b41d4c97fd3d80f4c927"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/gears_hcc_formal_v1_e30_lr5e-04_wd1e-06/HCC1143/predicted_shift.tsv.gz",
+      "sha256": "8731893d6db75fbf2922c36113347a75ca867afd0af11d9e43983d68efacaf46"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/gears_hcc_formal_v1_e30_lr5e-04_wd1e-06/HCC1143/prediction_manifest.json",
+      "sha256": "2d1c76f46b9460106d4235c2d34d55a11ee41433eba5d406c0e323c2d81f8537"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/gears_hcc_formal_v1_e40_lr1e-03_wd1e-06/HCC1143/predicted_shift.tsv.gz",
+      "sha256": "3f474c8032cebb94645474d5b174182dfbfbe3b395393c911342608da633b126"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/gears_hcc_formal_v1_e40_lr1e-03_wd1e-06/HCC1143/prediction_manifest.json",
+      "sha256": "7a64bbc21dcd4e39f1bbedff289c7ff8ef6d3c9bfd89860e4f00d96875eb34c6"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/scgen_hcc_sens_e100_seed2/HCC1143/predicted_shift.tsv.gz",
+      "sha256": "591db97fe755dd50ade76e2193f4aac713aaef36a1b733286331aeba794464eb"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/scgen_hcc_sens_e100_seed2/HCC1143/prediction_manifest.json",
+      "sha256": "bb0bc4f19e0659c7ab0da185952067648e04c156f64b2d07147d83f3d7b1887f"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/scgen_hcc_sens_e60_seed1/HCC1143/predicted_shift.tsv.gz",
+      "sha256": "b29c1bbdd4cb26373d96f2831325104d5f9bf332220a00503bf4d19dfccbe789"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/scgen_hcc_sens_e60_seed1/HCC1143/prediction_manifest.json",
+      "sha256": "acd0886c9cff1fa6cea3abd427b34fac31f3ad1b8e2dff185d4ae9819df7fd40"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/cellot_hcc_sens_iter100_seed1/HCC38/predicted_shift.tsv.gz",
+      "sha256": "2fdc8aa56ba4fc6a17f2c61593f20dc03ce6c7db8471d994aea02014628ac311"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/cellot_hcc_sens_iter100_seed1/HCC38/prediction_manifest.json",
+      "sha256": "287336b4994079330981c03e01912933898ee02eede6f77bf978162993a3d00e"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/cellot_hcc_sens_iter200_seed2/HCC38/predicted_shift.tsv.gz",
+      "sha256": "203eaff96365b3aa741aacd78d14cf5415c33489d3afd254321ad932f3f6643a"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/cellot_hcc_sens_iter200_seed2/HCC38/prediction_manifest.json",
+      "sha256": "15c189a2ae4d514594b04bfffbe6eecd1d8273a1716f5c7fdf73ca56eadc72b8"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/cellot_hcc_sens_iter500_seed1_full/HCC38/predicted_shift.tsv.gz",
+      "sha256": "1906fe87ba6385e7c7bf8126f01d6b1770f7246bd0e782f6fe9000d53bcc44ac"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/cellot_hcc_sens_iter500_seed1_full/HCC38/prediction_manifest.json",
+      "sha256": "3fb451e338c08b475d54dd86760cfdd477be8227a442c4e3df5d5fe3f4807527"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/cpa_hcc_sens_e200_latent32_seed1/HCC38/predicted_shift.tsv.gz",
+      "sha256": "cfcbd9f5579054b6dc54858c6590ccc4a45f5bd37341e4be3e09bf9df72fa8d3"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/cpa_hcc_sens_e200_latent32_seed1/HCC38/prediction_manifest.json",
+      "sha256": "4e1a9673adcc64110ea1ccbf7ade92f59e3adeb581cc2f228efc49bf97025b02"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/cpa_hcc_sens_e200_latent64_seed2/HCC38/predicted_shift.tsv.gz",
+      "sha256": "3d7289e52af69a05f8783e94df3ac9a783b84ccaec69cff997b6bd5c2015b55c"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/cpa_hcc_sens_e200_latent64_seed2/HCC38/prediction_manifest.json",
+      "sha256": "546c428888c6903c59f61e37e1d45c6db2aa6e6b94a0d55896bfd25be431229b"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/gears_hcc_formal_v1_e20_lr1e-03_wd1e-06/HCC38/predicted_shift.tsv.gz",
+      "sha256": "cd63e3e5716b9e8d7694e39e42fc1b8731484c5228658233f9453e86dc887367"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/gears_hcc_formal_v1_e20_lr1e-03_wd1e-06/HCC38/prediction_manifest.json",
+      "sha256": "00cd1cf1c72e8e4ad46c5cc2d1d357bed7887a71b2f7500f22fe2ee514d1a40b"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/gears_hcc_formal_v1_e30_lr1e-03_wd1e-05/HCC38/predicted_shift.tsv.gz",
+      "sha256": "de46443d01b70ef07c55e0e70e63fd7a6672d2d3c73f54d5046dc4fcb5e96d69"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/gears_hcc_formal_v1_e30_lr1e-03_wd1e-05/HCC38/prediction_manifest.json",
+      "sha256": "64b1702ad57a2330a7658370e2ee9d9a276341263dde717ff02e1b65c031e728"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/gears_hcc_formal_v1_e30_lr2e-03_wd1e-06/HCC38/predicted_shift.tsv.gz",
+      "sha256": "659372a0054b0aad381d74e6591f43f4f737c31c56d0027871c582160609f9d6"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/gears_hcc_formal_v1_e30_lr2e-03_wd1e-06/HCC38/prediction_manifest.json",
+      "sha256": "c7d4c7aa7542315934412fc3d6f612a35eb9587ac18d453abbeb71fdcc8e2da4"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/gears_hcc_formal_v1_e30_lr5e-04_wd1e-06/HCC38/predicted_shift.tsv.gz",
+      "sha256": "5d3f1f583ceec9ca448f66f6a12cce37e349ba5e26cf820651963c4577658bb9"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/gears_hcc_formal_v1_e30_lr5e-04_wd1e-06/HCC38/prediction_manifest.json",
+      "sha256": "41f9515645ede842608f55d83a13f4e3b3420e28e7333c0822f16cfeb89ea453"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/gears_hcc_formal_v1_e40_lr1e-03_wd1e-06/HCC38/predicted_shift.tsv.gz",
+      "sha256": "5023746280f0db6b92c50bf6985a3fa663162819939a3bb10f2e684d3d55d23a"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/gears_hcc_formal_v1_e40_lr1e-03_wd1e-06/HCC38/prediction_manifest.json",
+      "sha256": "39768591919de0e41af6a578a43805f82c41447d589716324c79e002278ea770"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/scgen_hcc_sens_e100_seed2/HCC38/predicted_shift.tsv.gz",
+      "sha256": "d3a58ef4e7be851c81e52cd0b8b924da2b5da5eafe41153b71e22ed50f03fb07"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/scgen_hcc_sens_e100_seed2/HCC38/prediction_manifest.json",
+      "sha256": "ceee43eb967bf268def3f4a3c40b2131d97b19d79bfced52c207065616180db1"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/scgen_hcc_sens_e60_seed1/HCC38/predicted_shift.tsv.gz",
+      "sha256": "adab1f015fd7173d2cead3ebba4f3fac423588b7ba25ab990d19723e6fd41e57"
+    },
+    {
+      "path": "reports/hcc_prediction_contract/scgen_hcc_sens_e60_seed1/HCC38/prediction_manifest.json",
+      "sha256": "b309a7c78b5073bd9d6538d9f54d8567596a630506f207d59f021935be53070b"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "reports/revision/m4_hcc_full_audit/formal_and_diagnostic_target_metrics.tsv.gz",
+      "sha256": "bd4358686ef7484eae944c975a9dc3cb9ed033405d0f83dabb4032eef87dafcd"
+    },
+    {
+      "path": "reports/revision/m4_hcc_full_audit/formal_and_diagnostic_context_metrics.tsv",
+      "sha256": "1f0350fc374353a96309680ad702e50c4351b178ece3a545d7350a37c5975c9a"
+    },
+    {
+      "path": "reports/revision/m4_hcc_full_audit/formal_metric_profile_long.tsv",
+      "sha256": "37867c2ac12b12faead9b706feca263325f2a6db9318c2389c94345f81f4d3fc"
+    },
+    {
+      "path": "reports/revision/m4_hcc_full_audit/metric_correlation_summary.tsv",
+      "sha256": "46fb23a1007656c993aea26f96f1d008718f30f829b747fec4ffcfd7a4e6a714"
+    },
+    {
+      "path": "reports/revision/m4_hcc_full_audit/discordant_pair_candidates.tsv",
+      "sha256": "7dce7c5f328a1b530682f81b7b692a2c388ee199b19d9a8399a6e963842578e8"
+    },
+    {
+      "path": "reports/revision/m4_hcc_full_audit/high_reconstruction_homogenization_candidates.tsv",
+      "sha256": "107b5f053a010c4184fcb8d59489e592cb8e9b6053aefaebc45aea1eea57457e"
+    },
+    {
+      "path": "reports/revision/m4_hcc_full_audit/revised_model_context_completion.tsv",
+      "sha256": "dab7f75788bc748a9c694868e5f2a180825ff4df0693478dfa481dbf31ea8b86"
+    },
+    {
+      "path": "reports/revision/m4_hcc_full_audit/model_training_evaluation_registry.tsv",
+      "sha256": "c67cb0dc91458c2ffcf396a9a8b157687a81838a4ab6116a7926035427fe17cb"
+    },
+    {
+      "path": "reports/revision/m4_hcc_full_audit/all_formal_pair_distances.tsv",
+      "sha256": "bf2ae0b1a124918485e9a12bee6cad6a038ef727c36cc98317d0233bea7cc59e"
+    },
+    {
+      "path": "reports/revision/m4_hcc_full_audit/sensitivity_completion_and_point_estimates.tsv",
+      "sha256": "32669cacdafaf8eb0e305821473768f7860532c6c3e6e08cc4fbf2ab755f4238"
+    },
+    {
+      "path": "reports/revision/m4_hcc_full_audit/M4_HCC_AUDIT_FINAL.md",
+      "sha256": "d2803cdc9fd2a279b17901e8cc9b47d5df5b354798a87a53d3cc076ae9de1341"
+    }
+  ]
+}

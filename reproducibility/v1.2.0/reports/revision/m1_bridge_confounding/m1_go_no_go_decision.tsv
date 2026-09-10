@@ -1,0 +1,3 @@
+cell_line	all_primary_components_pass	dual_context_endpoint_object_pass	decision
+HCC1143	True	False	proceed_for_context
+HCC38	False	False	stop_and_reassess_endpoint_object

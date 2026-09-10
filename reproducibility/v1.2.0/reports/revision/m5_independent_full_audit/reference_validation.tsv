@@ -1,0 +1,5 @@
+check	observed	expected	pass
+oracle_direction	1.0	1.0	True
+negated_direction	-1.0	-1.0	True
+magnitude_only_l2	3.1163435941427975e-16	0.0	True
+shared_mean_homogenization	1.000000000000001	1.0	True
