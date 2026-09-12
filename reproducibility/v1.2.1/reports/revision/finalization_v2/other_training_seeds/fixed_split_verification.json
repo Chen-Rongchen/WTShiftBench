@@ -1,0 +1,40 @@
+{
+  "checks": [
+    {
+      "model": "scgen",
+      "context": "HCC38",
+      "same_split": true,
+      "distinct_initializations": true
+    },
+    {
+      "model": "scgen",
+      "context": "HCC1143",
+      "same_split": true,
+      "distinct_initializations": true
+    },
+    {
+      "model": "cpa",
+      "context": "HCC38",
+      "same_split": true,
+      "distinct_initializations": true
+    },
+    {
+      "model": "cpa",
+      "context": "HCC1143",
+      "same_split": true,
+      "distinct_initializations": true
+    },
+    {
+      "model": "gears",
+      "context": "HCC38",
+      "same_split": true,
+      "distinct_initializations": true
+    },
+    {
+      "model": "gears",
+      "context": "HCC1143",
+      "same_split": true,
+      "distinct_initializations": true
+    }
+  ]
+}

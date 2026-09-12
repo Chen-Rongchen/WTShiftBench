@@ -1,0 +1,23 @@
+{
+  "stage": "hcc_prediction_contract",
+  "cell_line": "HCC38",
+  "model_id": "geneformer_hcc_formal_v1",
+  "model_version": "geneformer_hcc_formal_v1",
+  "prediction_space": "truth_aligned_log_shift",
+  "normalization_applied_in_export": true,
+  "log1p_applied_in_export": true,
+  "source_kind": "geneformer_target_embedding_leave_one_out_kernel",
+  "object_role": "entrant",
+  "export_script": "scripts/pipeline/hcc_prediction_export.py",
+  "export_timestamp": "2026-04-09T18:38:59.319891+00:00",
+  "input_prediction_path": "data/predictions/geneformer_raw/geneformer_hcc_formal_v1/HCC38/predicted_shift.tsv.gz",
+  "aligned_prediction_path": "data/predictions/hcc_aligned/geneformer_hcc_formal_v1/HCC38/predicted_shift_aligned.tsv.gz",
+  "scorer_ready_prediction_path": "data/predictions/hcc_scorer_ready/geneformer_hcc_formal_v1/HCC38/predicted_shift.tsv.gz",
+  "target_universe_source": "reports/truth_driven_bridge/master_atlas/shared_target_axis_membership.tsv",
+  "gene_space_source": "reports/truth_driven_bridge/master_atlas/shared_target_axis_membership.tsv",
+  "allow_missing_targets": false,
+  "allow_missing_genes": false,
+  "contract_pass": true,
+  "export_status": "contract_validated",
+  "source_checkpoint": "geneformer_gf_12l_95m_i4096"
+}

@@ -1,0 +1,21 @@
+﻿cell_line,stage_order,stage,parent_stage,unit,n_retained,n_excluded_from_parent,rule
+HCC1143,1,matrix_barcodes,,cell,24499,,all supplied matrix barcodes
+HCC1143,2,barcodes_with_protospacer_call,matrix_barcodes,cell,13475,11024.0,barcode appears in the protospacer call table
+HCC1143,3,single_feature_cells,barcodes_with_protospacer_call,cell,11636,1839.0,num_features == 1
+HCC1143,4,single_feature_controls,single_feature_cells,cell_partition,1325,,parsed target starts with intergenic_chr_
+HCC1143,5,single_feature_perturbed,single_feature_cells,cell_partition,10311,,single-feature cells assigned to a non-control target
+HCC1143,6,assayed_noncontrol_targets,single_feature_perturbed,target,50,0.0,distinct parsed target symbols with >=1 single-feature cell
+HCC1143,7,targets_passing_minimum_cells,assayed_noncontrol_targets,target,49,1.0,n_cells_target >= 20
+HCC1143,8,targets_with_depmap_gene_column,targets_passing_minimum_cells,target,49,0.0,target symbol resolves to a DepMap gene column
+HCC1143,9,targets_with_exact_model_endpoint,targets_with_depmap_gene_column,target,48,1.0,dependency probability is nonmissing for the exact DepMap model
+HCC1143,10,final_truth_object_perturbed_cells,single_feature_perturbed,cell,10106,205.0,cells belonging to final endpoint-eligible targets
+HCC38,1,matrix_barcodes,,cell,31547,,all supplied matrix barcodes
+HCC38,2,barcodes_with_protospacer_call,matrix_barcodes,cell,16800,14747.0,barcode appears in the protospacer call table
+HCC38,3,single_feature_cells,barcodes_with_protospacer_call,cell,14485,2315.0,num_features == 1
+HCC38,4,single_feature_controls,single_feature_cells,cell_partition,1666,,parsed target starts with intergenic_chr_
+HCC38,5,single_feature_perturbed,single_feature_cells,cell_partition,12819,,single-feature cells assigned to a non-control target
+HCC38,6,assayed_noncontrol_targets,single_feature_perturbed,target,50,0.0,distinct parsed target symbols with >=1 single-feature cell
+HCC38,7,targets_passing_minimum_cells,assayed_noncontrol_targets,target,48,2.0,n_cells_target >= 20
+HCC38,8,targets_with_depmap_gene_column,targets_passing_minimum_cells,target,48,0.0,target symbol resolves to a DepMap gene column
+HCC38,9,targets_with_exact_model_endpoint,targets_with_depmap_gene_column,target,47,1.0,dependency probability is nonmissing for the exact DepMap model
+HCC38,10,final_truth_object_perturbed_cells,single_feature_perturbed,cell,12509,310.0,cells belonging to final endpoint-eligible targets

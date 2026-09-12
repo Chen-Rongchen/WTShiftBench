@@ -1,0 +1,29 @@
+{
+  "context": "HCC38",
+  "seed": 125,
+  "passed": true,
+  "checkpoint_sha256": "4294d962f7791593e53c8c88420d00a204b8bd3bdc2d9d988345053c012725ef",
+  "checkpoint_unchanged": true,
+  "trained_state_sha256": "5c3d29a497e27f293cbc9d11565c709924d3977d840be91015b500e891149c7d",
+  "stored_init_params": {
+    "kwargs": {},
+    "non_kwargs": {}
+  },
+  "explicit_load_parameters": {
+    "n_latent": 64,
+    "recon_loss": "gauss",
+    "doser_type": "logsigm",
+    "n_hidden_encoder": 128,
+    "n_layers_encoder": 2,
+    "n_hidden_decoder": 128,
+    "n_layers_decoder": 2,
+    "seed": 125
+  },
+  "inference_seed": 123,
+  "saved_encoder_sha256": "3e34c68ecb716d72c6ab569ae9300b544b9a9ff4627c41a66514d7572d11b568",
+  "native_load_limitation": "CPA保存的covariate列表已含batch，原生load重复追加导致类别不符；本入口按原setup一次性重建编码器并严格加载张量",
+  "maximum_absolute_difference": 9.999054535747565e-17,
+  "absolute_tolerance": 1e-05,
+  "loader_sha256": "dade0411e71ef8c667c1e2bf82f7b6dd2606cbb9f7046680d71af82bcb867cc8",
+  "scope": "保存权重及JSON编码器到预测的回放；空构造器元数据由已记录实际配方显式补给，不改checkpoint或声称历史训练重现"
+}

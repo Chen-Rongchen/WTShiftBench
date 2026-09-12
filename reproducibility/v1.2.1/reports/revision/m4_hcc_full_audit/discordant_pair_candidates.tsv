@@ -1,0 +1,5 @@
+cell_line	model_a	model_b	conventional_distance	audit_profile_distance	discordance_ratio	conventional_distance_median	audit_profile_distance_median	is_predefined_candidate
+HCC1143	cpa_v0.8.8	geneformer_hcc_formal_v1	0.03467842320457159	2.914604617583409	10.238235075121787	0.9364203179156214	2.2435244851602505	True
+HCC1143	cpa_v0.8.8	lm_g_geneformer_ridge_hcc_formal_v1	0.18959409294935037	3.228897440184432	7.34517931876865	0.9364203179156214	2.2435244851602505	True
+HCC38	scgpt_hcc_formal_v1	lm_g_geneformer_ridge_hcc_formal_v1	0.12073470826965471	2.905180114754424	7.836277666889863	0.873586344879214	2.410123495208568	True
+HCC38	scgpt_hcc_formal_v1	lm_train_lowrank_hcc_formal_v1	0.3154715054367997	3.354487161057075	5.932194865355584	0.873586344879214	2.410123495208568	True

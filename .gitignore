@@ -144,3 +144,22 @@ manuscript/extended_data/
 depmap/
 RNAi/
 downloads/
+
+# v1.2.1公开白名单；运行输出及私有投稿材料不跟踪
+!reproducibility/v1.2.1/**/docs/
+!reproducibility/v1.2.1/**/docs/**
+!reproducibility/v1.2.1/reports/
+!reproducibility/v1.2.1/reports/**
+!docs/
+docs/*
+!docs/CHANGELOG.md
+!docs/THIRD_PARTY_NOTICES.md
+/reproducibility/v1.2.1/outputs/
+/release_build/
+.env
+.env.*
+!.env.example
+/private_submission/
+**/Manuscript_revision_*.docx
+**/Response_to_reviewers.*
+**/revision_text_en.json

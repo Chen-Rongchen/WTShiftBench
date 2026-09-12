@@ -1,0 +1,4 @@
+model_id	display_name	model_family	completion_call	target_heldout	heldout_response_used_for_own_prediction	n_targets	n_genes	feature_shape
+geneformer_embedding_kernel_loo	Geneformer kernel LOO	Geneformer	valid_for_full_audit	True	False	1882	1024	1882x512
+geneformer_embedding_ridge_loo	Geneformer ridge LOO	linear_embedding	valid_for_full_audit	True	False	1882	1024	1882x32
+chargram_lowrank_ridge_loo	Chargram ridge LOO	linear_symbolic	valid_for_full_audit	True	False	1882	1024	1882x32

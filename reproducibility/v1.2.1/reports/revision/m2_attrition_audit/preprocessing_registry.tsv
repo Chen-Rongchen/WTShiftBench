@@ -1,0 +1,27 @@
+cell_line	stage	parameter	value
+HCC38	readout	cell_line	HCC38
+HCC38	readout	readout_day	14
+HCC38	endpoint	depmap_model_id	ACH-000276
+HCC38	cell_filter	single_feature_rule	num_features == 1
+HCC38	control	definition	target_gene starts with intergenic_chr_
+HCC38	control	matching	same context; all eligible intergenic controls; no further lane/batch matching
+HCC38	target_filter	minimum_perturbed_cells	20
+HCC38	gene_filter	feature_type	Gene Expression
+HCC38	gene_filter	hvg_or_expression_filter	none
+HCC38	normalization	target_sum	10000.0
+HCC38	normalization	transform	log1p after per-cell total-count scaling
+HCC38	category	rank_scope	within context
+HCC38	category	cutoffs	percentile rank <=0.25 or >=0.75
+HCC1143	readout	cell_line	HCC1143
+HCC1143	readout	readout_day	14
+HCC1143	endpoint	depmap_model_id	ACH-000374
+HCC1143	cell_filter	single_feature_rule	num_features == 1
+HCC1143	control	definition	target_gene starts with intergenic_chr_
+HCC1143	control	matching	same context; all eligible intergenic controls; no further lane/batch matching
+HCC1143	target_filter	minimum_perturbed_cells	20
+HCC1143	gene_filter	feature_type	Gene Expression
+HCC1143	gene_filter	hvg_or_expression_filter	none
+HCC1143	normalization	target_sum	10000.0
+HCC1143	normalization	transform	log1p after per-cell total-count scaling
+HCC1143	category	rank_scope	within context
+HCC1143	category	cutoffs	percentile rank <=0.25 or >=0.75

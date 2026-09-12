@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "analysis_id": "bib_revision_m6_endpoint_tuning_A010",
+  "status": "frozen_before_cutoff_grid_scoring",
+  "frozen_date": "2026-09-05",
+  "amendment": "configs/revision/amendment_010_formal_release_v2.json",
+  "frozen_cutoff": {
+    "low": 0.25,
+    "high": 0.75
+  },
+  "candidate_cutoffs": [
+    {
+      "low": 0.1,
+      "high": 0.9
+    },
+    {
+      "low": 0.15,
+      "high": 0.85
+    },
+    {
+      "low": 0.2,
+      "high": 0.8
+    },
+    {
+      "low": 0.25,
+      "high": 0.75
+    },
+    {
+      "low": 0.3,
+      "high": 0.7
+    }
+  ],
+  "optimized_metric": "anchor_separation_auc_from_predicted_shift_mean_abs",
+  "tie_break": "minimum absolute distance from frozen low quantile, then smaller low quantile",
+  "inputs": [
+    {
+      "scope": "primary_hcc",
+      "endpoint_object": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+      "target_metrics": "reports/revision/finalization_v2/m4/formal_and_diagnostic_target_metrics.tsv.gz",
+      "context_metrics": "reports/revision/finalization_v2/m4/formal_and_diagnostic_context_metrics.tsv",
+      "formal_role_column": "entrant_kind",
+      "formal_role_value": "formal"
+    },
+    {
+      "scope": "independent_sensitivity",
+      "endpoint_object": "reports/revision/m5_candidate_qualification/selected_context_endpoint_object.tsv.gz",
+      "target_metrics": "reports/revision/m5_independent_full_audit/formal_and_reference_target_metrics.tsv.gz",
+      "context_metrics": "reports/revision/m5_independent_full_audit/formal_and_reference_context_metrics.tsv",
+      "formal_role_column": "entrant_kind",
+      "formal_role_value": "formal"
+    }
+  ],
+  "validation": {
+    "frozen_auc_absolute_error_max": 1e-12,
+    "minimum_anchor_targets": 2,
+    "minimum_low_information_targets": 2
+  },
+  "summary": {
+    "inflation_thresholds": [
+      0.0,
+      0.02,
+      0.05,
+      0.1
+    ],
+    "primary_scope": "primary_hcc",
+    "independent_scope": "independent_sensitivity"
+  },
+  "outputs": {
+    "root": "reports/revision/finalization_v2/m6",
+    "cutoff_grid_scores": "cutoff_grid_scores.tsv",
+    "model_context_inflation": "model_context_inflation.tsv",
+    "aggregate_summary": "inflation_summary.tsv",
+    "validation": "frozen_score_reproduction.tsv",
+    "figure": "endpoint_tuning_inflation.png",
+    "report": "M6_ENDPOINT_TUNING_FINAL.md",
+    "manifest": "run_manifest.json"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "amendment": "A013",
+  "created_utc": "2026-09-11T13:37:55.739777+00:00",
+  "inputs_sha256": {
+    "configs/revision/amendment_013_other_model_seeds.json": "25bdfe6e8b4bc7913ea19b4a40ec8334ca036ef2f4fa795bf544004b8738df19",
+    "configs/revision/amendment_014_seed_execution_fixes.json": "acc08dc83c6c62303a5aecf4c3493a2991cf321adfe8d52275889f9320c7f065",
+    "scripts/revision/run_other_model_training_seeds.py": "67bb1a04909df35d5e75db7411493acb0e90b30b3704b41e8cded485d2bbb0c4",
+    "pixi.lock": "d5cde7e0a5a6fd39d72ee928c3d82ab50c41cfdb048d7c1990c0fe86cffb203e",
+    "configs/gears_hcc_formal_v1.json": "d8631d607ebadf578c8e6632fe8c57ce488b6332dcb3969850e0f24f6c1c67a5",
+    "scripts/models/cpa/run_cpa_full_materialization.py": "b318a33bb16af02e71b3eff0f2c2d8f1d439795bd5a235745687da0098f9f91b",
+    "scripts/models/scgen/run_scgen_hcc_smoke.py": "3e4e41751b574b7f0254e55b8e4d448ff5831f91753f4e6b71df6cb7943e1ed2",
+    "scripts/stage1a/adapters/gears/build_predictions.py": "8a6f855911483c48f84b6222b65cd73b1be00232f6862451e8cfd22f86d53bd3",
+    "data/processed/cpa_hcc_formal/HCC38.h5ad": "5be5e70295ce2e978d33036f104bbf769fb041fb01fde22cce5cad3bb96c2a16",
+    "data/processed/hcc_gears_formal/HCC38.h5ad": "3ff2eac30369c321c0795e33fb73e28da5b4b3b142e7f6fc9dc502219c0b58b7",
+    "tmp/gears_hcc/gears_hcc_formal_v1/HCC38/gene2go_all.pkl": "f145c5e84a53048d87942a417d870a4f2d8db50200b96e492b358c13aba8c771",
+    "tmp/gears_hcc/gears_hcc_formal_v1/HCC38/gene_set.pkl": "e147c3e647131b31aab684333beb81490c76d6c11bede19db1bc615f024ca19c",
+    "tmp/gears_hcc/gears_hcc_formal_v1/HCC38/custom_split.pkl": "664c28b54b9413bb5713dce9e2af212565c6543483b268152b68e1d47adef351",
+    "tmp/gears_hcc/gears_hcc_formal_v1/HCC38/hcc38_gears_hcc_formal_v1/perturb_processed.h5ad": "51500c410f4864afeb139e89b2bf0d5c3bd033c40a258e29a87ca3bd83302d77",
+    "tmp/gears_hcc/gears_hcc_formal_v1/HCC38/hcc38_gears_hcc_formal_v1/data_pyg/cell_graphs.pkl": "fe18cc7a2bf00d17d3f06cefd9d26f04746a5b7c9147adb072f0cdc3447084c3",
+    "data/processed/cpa_hcc_formal/HCC1143.h5ad": "f540f6198bfef0ad70df5ab4be2b244b047770d36dad07f383857614456e38d4",
+    "data/processed/hcc_gears_formal/HCC1143.h5ad": "deb7acb0eff676cc0e588aae7c386ec3c912af794354d1b8c252588b5917153c",
+    "tmp/gears_hcc/gears_hcc_formal_v1/HCC1143/gene2go_all.pkl": "f145c5e84a53048d87942a417d870a4f2d8db50200b96e492b358c13aba8c771",
+    "tmp/gears_hcc/gears_hcc_formal_v1/HCC1143/gene_set.pkl": "e147c3e647131b31aab684333beb81490c76d6c11bede19db1bc615f024ca19c",
+    "tmp/gears_hcc/gears_hcc_formal_v1/HCC1143/custom_split.pkl": "664c28b54b9413bb5713dce9e2af212565c6543483b268152b68e1d47adef351",
+    "tmp/gears_hcc/gears_hcc_formal_v1/HCC1143/hcc1143_gears_hcc_formal_v1/perturb_processed.h5ad": "508a39abdc6b986aa11f57cb4e1bbd539d00de5802508e0a5eb924eecbdebb0c",
+    "tmp/gears_hcc/gears_hcc_formal_v1/HCC1143/hcc1143_gears_hcc_formal_v1/data_pyg/cell_graphs.pkl": "439027bfd971fc18e8bed103699a2ae2670843f2ff25bdaebe7ef2d125ec9394"
+  }
+}

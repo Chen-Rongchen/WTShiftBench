@@ -1,0 +1,4 @@
+candidate_rank	dataset_id	context	status	n_cells_total	n_control_cells	n_single_perturbation_cells	n_assayed_targets	n_eligible_targets	n_expression_genes	mean_gene_control_sd	raw_spearman_rho	corrected_spearman_rho	bootstrap_ci_low	bootstrap_ci_high	permutation_pvalue_two_sided	geneformer_mapped_targets	common_target_coverage	minimum_common_target_coverage	supported_real_entrants	response_gene_count	qualified
+1	replogle_k562_essential_day6	Replogle K562 essential day 6	evaluated	310385.0	10691.0	299694.0	2057.0	1882.0	8563.0	0.3289886363126377	0.4018413096087801	0.45180330649089745	0.4138481348973169	0.4879897893652513	9.999000099990002e-05	1882.0	1.0	0.8	3.0	1024.0	True
+2	gse264667_hepg2_day7	HepG2 day 7	not_evaluated_after_first_qualified_candidate																		False
+3	gse264667_jurkat_day7	Jurkat day 7	not_evaluated_after_first_qualified_candidate																		False

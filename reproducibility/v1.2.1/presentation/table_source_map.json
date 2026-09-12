@@ -1,0 +1,1031 @@
+[
+  {
+    "title": "Table 1. HCC attrition from supplied records to the endpoint object",
+    "headers": [
+      "Step",
+      "HCC38\nretained",
+      "excluded",
+      "HCC1143\nretained",
+      "excluded"
+    ],
+    "rows": [
+      [
+        "Input matrix barcodes",
+        "31,547",
+        "—",
+        "24,499",
+        "—"
+      ],
+      [
+        "Barcodes with guide calls",
+        "16,800",
+        "14,747",
+        "13,475",
+        "11,024"
+      ],
+      [
+        "Single-feature cells",
+        "14,485",
+        "2,315",
+        "11,636",
+        "1,839"
+      ],
+      [
+        "Intergenic controls (branch)",
+        "1,666",
+        "—",
+        "1,325",
+        "—"
+      ],
+      [
+        "Noncontrol cells (branch)",
+        "12,819",
+        "—",
+        "10,311",
+        "—"
+      ],
+      [
+        "Recovered noncontrol targets",
+        "50",
+        "0",
+        "50",
+        "0"
+      ],
+      [
+        "Targets with ≥20 cells",
+        "48",
+        "2",
+        "49",
+        "1"
+      ],
+      [
+        "Targets with a DepMap gene column",
+        "48",
+        "0",
+        "49",
+        "0"
+      ],
+      [
+        "Targets with nonmissing exact-model endpoint",
+        "47",
+        "1",
+        "48",
+        "1"
+      ],
+      [
+        "Final perturbation cells",
+        "12,509",
+        "310",
+        "10,106",
+        "205"
+      ]
+    ],
+    "sources": [
+      "reports/revision/m2_attrition_audit/attrition_flow.tsv"
+    ]
+  },
+  {
+    "title": "Table 2. Main HCC associations and prespecified conditional analyses",
+    "headers": [
+      "Statistic",
+      "HCC38 ρ [95% CI]",
+      "P / q",
+      "HCC1143 ρ [95% CI]",
+      "P / q"
+    ],
+    "rows": [
+      [
+        "Raw",
+        "0.726\n[0.553, 0.836]",
+        "0.0001 / 0.0001",
+        "0.779\n[0.624, 0.882]",
+        "0.0001 / 0.0001"
+      ],
+      [
+        "Corrected",
+        "0.440\n[0.182, 0.635]",
+        "0.0018 / 0.0018",
+        "0.544\n[0.298, 0.719]",
+        "0.0002 / 0.0004"
+      ],
+      [
+        "Mean equal-n20 amplitude",
+        "0.448\n[0.202, 0.641]",
+        "0.0013 / 0.0013",
+        "0.531\n[0.274, 0.732]",
+        "0.0002 / 0.0004"
+      ],
+      [
+        "Raw | log count",
+        "0.040\n[-0.300, 0.363]",
+        "0.803 / 0.803",
+        "0.364\n[0.032, 0.608]",
+        "0.0132 / 0.0264"
+      ],
+      [
+        "Raw | count + library",
+        "-0.141\n[-0.448, 0.218]",
+        "0.362 / 0.362",
+        "0.349\n[-0.011, 0.600]",
+        "0.0185 / 0.037"
+      ],
+      [
+        "Raw | count + baseline + RNA proxy",
+        "0.005\n[-0.383, 0.375]",
+        "0.974 / 0.974",
+        "0.328\n[-0.037, 0.583]",
+        "0.0266 / 0.0532"
+      ],
+      [
+        "Raw | count + breadth",
+        "-0.068\n[-0.393, 0.278]",
+        "0.656 / 0.656",
+        "0.147\n[-0.194, 0.481]",
+        "0.34 / 0.656"
+      ]
+    ],
+    "sources": [
+      "reports/revision/m1_bridge_confounding/bridge_inference_summary.tsv"
+    ]
+  },
+  {
+    "title": "Table 3a. HCC1143: amplitude ordering, direction and anchor separation",
+    "headers": [
+      "Implementation",
+      "Setting",
+      "Endpoint ρ\n[95% CI]; q",
+      "Signed cosine\n[95% CI]",
+      "Anchor AUC\n[95% CI]"
+    ],
+    "rows": [
+      [
+        "Geneformer kernel",
+        "LOO",
+        "0.146\n[-0.176, 0.455]\nq=0.538",
+        "0.102\n[0.013, 0.200]",
+        "0.854\n[0.604, 1.000]"
+      ],
+      [
+        "Geneformer ridge",
+        "LOO",
+        "-0.001\n[-0.315, 0.308]\nq=0.994",
+        "0.100\n[0.035, 0.174]",
+        "0.354\n[0.062, 0.667]"
+      ],
+      [
+        "Linear low-rank",
+        "LOO",
+        "0.195\n[-0.093, 0.456]\nq=0.421",
+        "0.000\n[-0.022, 0.120]",
+        "0.625\n[0.312, 0.958]"
+      ],
+      [
+        "scGPT kernel",
+        "LOO",
+        "0.263\n[-0.034, 0.525]\nq=0.222",
+        "0.160\n[0.095, 0.217]",
+        "0.583\n[0.208, 0.896]"
+      ],
+      [
+        "scGPT ridge",
+        "LOO",
+        "0.040\n[-0.278, 0.354]\nq=0.977",
+        "0.043\n[-0.042, 0.106]",
+        "0.583\n[0.229, 0.917]"
+      ],
+      [
+        "CPA",
+        "Fit",
+        "-0.162\n[-0.418, 0.125]\nq=0.524",
+        "0.098\n[-0.010, 0.131]",
+        "0.542\n[0.229, 0.834]"
+      ],
+      [
+        "CellOT",
+        "Fit",
+        "0.488\n[0.189, 0.718]\nq=0.00315",
+        "0.138\n[0.093, 0.183]",
+        "0.812\n[0.542, 1.000]"
+      ],
+      [
+        "GEARS",
+        "Fit",
+        "0.016\n[-0.265, 0.299]\nq=0.977",
+        "0.208\n[0.172, 0.274]",
+        "0.375\n[0.083, 0.708]"
+      ],
+      [
+        "scGen",
+        "Fit",
+        "0.520\n[0.257, 0.723]\nq=0.0009",
+        "0.536\n[0.338, 0.616]",
+        "0.875\n[0.562, 1.000]"
+      ],
+      [
+        "Shared-mean reference",
+        "Reference",
+        "NA",
+        "0.119\n[0.082, 0.211]",
+        "0.500\n[0.500, 0.500]"
+      ],
+      [
+        "Zero-output reference",
+        "Reference",
+        "NA",
+        "NA",
+        "0.500\n[0.500, 0.500]"
+      ]
+    ],
+    "sources": [
+      "reports/revision/finalization_v2/m4/formal_and_diagnostic_context_metrics_with_uncertainty.tsv",
+      "reports/revision/finalization_v2/m4/model_training_evaluation_registry.tsv"
+    ]
+  },
+  {
+    "title": "Table 3a (continued). Identity and homogenization",
+    "headers": [
+      "Implementation",
+      "Identity ρ; q",
+      "Predicted H",
+      "Excess H",
+      "Centered excess H"
+    ],
+    "rows": [
+      [
+        "Geneformer kernel",
+        "-0.030\nq=0.798",
+        "0.478\n[0.386, 0.570]",
+        "0.417\n[0.314, 0.520]",
+        "-0.032\n[-0.074, 0.010]"
+      ],
+      [
+        "Geneformer ridge",
+        "-0.018\nq=0.798",
+        "0.037\n[-0.007, 0.080]",
+        "-0.024\n[-0.078, 0.031]",
+        "-0.049\n[-0.086, -0.012]"
+      ],
+      [
+        "Linear low-rank",
+        "0.028\nq=0.576",
+        "0.033\n[-0.005, 0.071]",
+        "-0.028\n[-0.086, 0.030]",
+        "-0.055\n[-0.090, -0.020]"
+      ],
+      [
+        "scGPT kernel",
+        "-0.034\nq=0.798",
+        "0.254\n[0.201, 0.306]",
+        "0.193\n[0.125, 0.261]",
+        "0.010\n[-0.037, 0.058]"
+      ],
+      [
+        "scGPT ridge",
+        "0.011\nq=0.778",
+        "0.027\n[-0.013, 0.067]",
+        "-0.033\n[-0.095, 0.029]",
+        "-0.055\n[-0.090, -0.019]"
+      ],
+      [
+        "CPA",
+        "0.006\nq=0.784",
+        "0.939\n[0.916, 0.962]",
+        "0.878\n[0.833, 0.923]",
+        "-0.057\n[-0.092, -0.022]"
+      ],
+      [
+        "CellOT",
+        "-0.003\nq=0.798",
+        "0.567\n[0.533, 0.600]",
+        "0.506\n[0.454, 0.558]",
+        "-0.042\n[-0.089, 0.005]"
+      ],
+      [
+        "GEARS",
+        "0.003\nq=0.784",
+        "0.472\n[0.426, 0.519]",
+        "0.412\n[0.354, 0.470]",
+        "-0.037\n[-0.073, -0.001]"
+      ],
+      [
+        "scGen",
+        "0.327\nq=0.0009",
+        "0.779\n[0.727, 0.830]",
+        "0.718\n[0.663, 0.773]",
+        "0.042\n[0.017, 0.067]"
+      ],
+      [
+        "Shared-mean reference",
+        "NA\nq=NA",
+        "1.000\n[1.000, 1.000]",
+        "0.939\n[0.900, 0.979]",
+        "NA"
+      ],
+      [
+        "Zero-output reference",
+        "NA\nq=NA",
+        "NA",
+        "NA",
+        "NA"
+      ]
+    ],
+    "sources": [
+      "reports/revision/finalization_v2/m4/formal_and_diagnostic_context_metrics_with_uncertainty.tsv",
+      "reports/revision/finalization_v2/m4/model_training_evaluation_registry.tsv"
+    ]
+  },
+  {
+    "title": "Table 3a (continued). Conventional reconstruction",
+    "headers": [
+      "Implementation",
+      "Median Pearson [95% CI]",
+      "Median nRMSE [95% CI]"
+    ],
+    "rows": [
+      [
+        "Geneformer kernel",
+        "0.055\n[-0.007, 0.161]",
+        "1.075\n[1.017, 1.126]"
+      ],
+      [
+        "Geneformer ridge",
+        "0.086\n[0.012, 0.152]",
+        "1.786\n[1.419, 2.137]"
+      ],
+      [
+        "Linear low-rank",
+        "0.005\n[-0.028, 0.096]",
+        "1.914\n[1.544, 2.602]"
+      ],
+      [
+        "scGPT kernel",
+        "0.116\n[0.057, 0.225]",
+        "1.153\n[1.101, 1.183]"
+      ],
+      [
+        "scGPT ridge",
+        "0.027\n[-0.075, 0.099]",
+        "2.328\n[2.031, 2.854]"
+      ],
+      [
+        "CPA",
+        "0.060\n[-0.015, 0.107]",
+        "1.052\n[1.027, 1.101]"
+      ],
+      [
+        "CellOT",
+        "0.119\n[0.062, 0.190]",
+        "15.797\n[11.771, 19.641]"
+      ],
+      [
+        "GEARS",
+        "0.207\n[0.152, 0.276]",
+        "1.639\n[1.249, 2.021]"
+      ],
+      [
+        "scGen",
+        "0.554\n[0.403, 0.631]",
+        "1.859\n[1.310, 2.559]"
+      ],
+      [
+        "Shared-mean reference",
+        "0.110\n[0.066, 0.200]",
+        "1.444\n[1.186, 1.703]"
+      ],
+      [
+        "Zero-output reference",
+        "NA",
+        "1.000\n[1.000, 1.000]"
+      ]
+    ],
+    "sources": [
+      "reports/revision/finalization_v2/m4/formal_and_diagnostic_context_metrics_with_uncertainty.tsv",
+      "reports/revision/finalization_v2/m4/model_training_evaluation_registry.tsv"
+    ]
+  },
+  {
+    "title": "Table 3b. HCC38: amplitude ordering, direction and anchor separation",
+    "headers": [
+      "Implementation",
+      "Setting",
+      "Endpoint ρ\n[95% CI]; q",
+      "Signed cosine\n[95% CI]",
+      "Anchor AUC\n[95% CI]"
+    ],
+    "rows": [
+      [
+        "Geneformer kernel",
+        "LOO",
+        "-0.122\n[-0.377, 0.143]\nq=0.622",
+        "0.132\n[0.093, 0.212]",
+        "0.357\n[0.071, 0.690]"
+      ],
+      [
+        "Geneformer ridge",
+        "LOO",
+        "-0.014\n[-0.335, 0.285]\nq=0.977",
+        "0.059\n[-0.039, 0.121]",
+        "0.357\n[0.048, 0.714]"
+      ],
+      [
+        "Linear low-rank",
+        "LOO",
+        "0.052\n[-0.246, 0.334]\nq=0.977",
+        "0.017\n[-0.069, 0.106]",
+        "0.143\n[0.000, 0.429]"
+      ],
+      [
+        "scGPT kernel",
+        "LOO",
+        "0.473\n[0.196, 0.679]\nq=0.00324",
+        "0.072\n[0.018, 0.147]",
+        "0.786\n[0.476, 1.000]"
+      ],
+      [
+        "scGPT ridge",
+        "LOO",
+        "0.031\n[-0.283, 0.344]\nq=0.977",
+        "0.025\n[-0.002, 0.074]",
+        "0.500\n[0.167, 0.833]"
+      ],
+      [
+        "CPA",
+        "Fit",
+        "-0.158\n[-0.431, 0.146]\nq=0.524",
+        "0.190\n[0.077, 0.257]",
+        "0.429\n[0.095, 0.762]"
+      ],
+      [
+        "CellOT",
+        "Fit",
+        "0.668\n[0.435, 0.827]\nq=0.0009",
+        "0.172\n[0.075, 0.233]",
+        "1.000\n[1.000, 1.000]"
+      ],
+      [
+        "GEARS",
+        "Fit",
+        "0.227\n[-0.113, 0.526]\nq=0.324",
+        "0.149\n[0.098, 0.222]",
+        "0.619\n[0.286, 0.905]"
+      ],
+      [
+        "scGen",
+        "Fit",
+        "0.486\n[0.225, 0.681]\nq=0.00315",
+        "0.406\n[0.331, 0.650]",
+        "1.000\n[1.000, 1.000]"
+      ],
+      [
+        "Shared-mean reference",
+        "Reference",
+        "NA",
+        "0.173\n[0.078, 0.233]",
+        "0.500\n[0.500, 0.500]"
+      ],
+      [
+        "Zero-output reference",
+        "Reference",
+        "NA",
+        "NA",
+        "0.500\n[0.500, 0.500]"
+      ]
+    ],
+    "sources": [
+      "reports/revision/finalization_v2/m4/formal_and_diagnostic_context_metrics_with_uncertainty.tsv",
+      "reports/revision/finalization_v2/m4/model_training_evaluation_registry.tsv"
+    ]
+  },
+  {
+    "title": "Table 3b (continued). Identity and homogenization",
+    "headers": [
+      "Implementation",
+      "Identity ρ; q",
+      "Predicted H",
+      "Excess H",
+      "Centered excess H"
+    ],
+    "rows": [
+      [
+        "Geneformer kernel",
+        "0.086\nq=0.22",
+        "0.515\n[0.430, 0.599]",
+        "0.457\n[0.378, 0.537]",
+        "-0.014\n[-0.048, 0.021]"
+      ],
+      [
+        "Geneformer ridge",
+        "0.042\nq=0.317",
+        "0.024\n[-0.006, 0.054]",
+        "-0.033\n[-0.072, 0.005]",
+        "-0.038\n[-0.066, -0.011]"
+      ],
+      [
+        "Linear low-rank",
+        "-0.013\nq=0.798",
+        "0.018\n[-0.011, 0.046]",
+        "-0.040\n[-0.082, 0.003]",
+        "-0.041\n[-0.070, -0.013]"
+      ],
+      [
+        "scGPT kernel",
+        "-0.014\nq=0.798",
+        "0.202\n[0.149, 0.255]",
+        "0.145\n[0.082, 0.208]",
+        "0.010\n[-0.027, 0.047]"
+      ],
+      [
+        "scGPT ridge",
+        "-0.012\nq=0.798",
+        "0.007\n[-0.017, 0.032]",
+        "-0.050\n[-0.089, -0.011]",
+        "-0.042\n[-0.070, -0.014]"
+      ],
+      [
+        "CPA",
+        "0.033\nq=0.581",
+        "0.994\n[0.993, 0.996]",
+        "0.937\n[0.905, 0.969]",
+        "-0.040\n[-0.071, -0.009]"
+      ],
+      [
+        "CellOT",
+        "-0.034\nq=0.798",
+        "0.637\n[0.605, 0.669]",
+        "0.579\n[0.532, 0.627]",
+        "-0.038\n[-0.069, -0.007]"
+      ],
+      [
+        "GEARS",
+        "0.096\nq=0.206",
+        "0.546\n[0.459, 0.633]",
+        "0.489\n[0.403, 0.575]",
+        "-0.030\n[-0.061, 0.001]"
+      ],
+      [
+        "scGen",
+        "0.431\nq=0.0009",
+        "0.794\n[0.739, 0.848]",
+        "0.736\n[0.696, 0.777]",
+        "0.034\n[0.007, 0.061]"
+      ],
+      [
+        "Shared-mean reference",
+        "NA\nq=NA",
+        "1.000\n[1.000, 1.000]",
+        "0.943\n[0.911, 0.974]",
+        "NA"
+      ],
+      [
+        "Zero-output reference",
+        "NA\nq=NA",
+        "NA",
+        "NA",
+        "NA"
+      ]
+    ],
+    "sources": [
+      "reports/revision/finalization_v2/m4/formal_and_diagnostic_context_metrics_with_uncertainty.tsv",
+      "reports/revision/finalization_v2/m4/model_training_evaluation_registry.tsv"
+    ]
+  },
+  {
+    "title": "Table 3b (continued). Conventional reconstruction",
+    "headers": [
+      "Implementation",
+      "Median Pearson [95% CI]",
+      "Median nRMSE [95% CI]"
+    ],
+    "rows": [
+      [
+        "Geneformer kernel",
+        "0.142\n[0.086, 0.208]",
+        "1.034\n[1.006, 1.098]"
+      ],
+      [
+        "Geneformer ridge",
+        "0.067\n[-0.034, 0.120]",
+        "1.711\n[1.570, 2.168]"
+      ],
+      [
+        "Linear low-rank",
+        "0.011\n[-0.067, 0.101]",
+        "1.771\n[1.463, 2.468]"
+      ],
+      [
+        "scGPT kernel",
+        "0.054\n[-0.016, 0.118]",
+        "1.145\n[1.088, 1.235]"
+      ],
+      [
+        "scGPT ridge",
+        "0.023\n[-0.016, 0.069]",
+        "2.273\n[1.863, 3.166]"
+      ],
+      [
+        "CPA",
+        "0.133\n[0.049, 0.249]",
+        "1.349\n[1.044, 1.519]"
+      ],
+      [
+        "CellOT",
+        "0.168\n[0.098, 0.222]",
+        "19.227\n[14.027, 25.342]"
+      ],
+      [
+        "GEARS",
+        "0.148\n[0.100, 0.225]",
+        "2.112\n[1.509, 2.553]"
+      ],
+      [
+        "scGen",
+        "0.508\n[0.451, 0.705]",
+        "2.299\n[1.525, 2.829]"
+      ],
+      [
+        "Shared-mean reference",
+        "0.171\n[0.079, 0.247]",
+        "1.361\n[1.082, 1.500]"
+      ],
+      [
+        "Zero-output reference",
+        "NA",
+        "1.000\n[1.000, 1.000]"
+      ]
+    ],
+    "sources": [
+      "reports/revision/finalization_v2/m4/formal_and_diagnostic_context_metrics_with_uncertainty.tsv",
+      "reports/revision/finalization_v2/m4/model_training_evaluation_registry.tsv"
+    ]
+  },
+  {
+    "title": "Table 3c. Replogle K562 essential day 6: amplitude ordering, direction and anchor separation",
+    "headers": [
+      "Implementation",
+      "Setting",
+      "Endpoint ρ\n[95% CI]; q",
+      "Signed cosine\n[95% CI]",
+      "Anchor AUC\n[95% CI]"
+    ],
+    "rows": [
+      [
+        "Chargram ridge",
+        "LOO",
+        "0.199\n[0.154, 0.243]\nq=0.00015",
+        "0.264\n[0.246, 0.284]",
+        "0.757\n[0.709, 0.801]"
+      ],
+      [
+        "Geneformer kernel",
+        "LOO",
+        "0.036\n[-0.010, 0.080]\nq=0.122",
+        "0.135\n[0.122, 0.146]",
+        "0.537\n[0.484, 0.591]"
+      ],
+      [
+        "Geneformer ridge",
+        "LOO",
+        "0.296\n[0.253, 0.337]\nq=0.00015",
+        "0.264\n[0.243, 0.282]",
+        "0.782\n[0.738, 0.823]"
+      ],
+      [
+        "Shared-mean reference",
+        "Reference",
+        "NA",
+        "0.262\n[0.248, 0.279]",
+        "0.500\n[0.500, 0.500]"
+      ]
+    ],
+    "sources": [
+      "reports/revision/finalization_v2/m5/formal_and_reference_context_metrics_with_uncertainty.tsv"
+    ]
+  },
+  {
+    "title": "Table 3c (continued). Identity and homogenization",
+    "headers": [
+      "Implementation",
+      "Identity ρ; q",
+      "Predicted H",
+      "Excess H",
+      "Centered excess H"
+    ],
+    "rows": [
+      [
+        "Chargram ridge",
+        "-0.026\nq=0.992",
+        "0.682\n[0.669, 0.696]",
+        "0.608\n[0.593, 0.623]",
+        "0.065\n[0.057, 0.073]"
+      ],
+      [
+        "Geneformer kernel",
+        "0.018\nq=0.045",
+        "0.290\n[0.281, 0.298]",
+        "0.216\n[0.206, 0.226]",
+        "-0.011\n[-0.013, -0.009]"
+      ],
+      [
+        "Geneformer ridge",
+        "0.086\nq=0.003",
+        "0.726\n[0.714, 0.738]",
+        "0.652\n[0.639, 0.665]",
+        "0.004\n[-0.004, 0.011]"
+      ],
+      [
+        "Shared-mean reference",
+        "NA\nq=NA",
+        "1.000\n[1.000, 1.000]",
+        "0.926\n[0.920, 0.932]",
+        "NA"
+      ]
+    ],
+    "sources": [
+      "reports/revision/finalization_v2/m5/formal_and_reference_context_metrics_with_uncertainty.tsv"
+    ]
+  },
+  {
+    "title": "Table 3c (continued). Conventional reconstruction",
+    "headers": [
+      "Implementation",
+      "Median Pearson [95% CI]",
+      "Median nRMSE [95% CI]"
+    ],
+    "rows": [
+      [
+        "Chargram ridge",
+        "0.236\n[0.221, 0.255]",
+        "0.988\n[0.980, 0.998]"
+      ],
+      [
+        "Geneformer kernel",
+        "0.111\n[0.102, 0.118]",
+        "1.111\n[1.100, 1.128]"
+      ],
+      [
+        "Geneformer ridge",
+        "0.232\n[0.221, 0.248]",
+        "0.989\n[0.981, 0.997]"
+      ],
+      [
+        "Shared-mean reference",
+        "0.250\n[0.235, 0.265]",
+        "0.979\n[0.973, 0.985]"
+      ]
+    ],
+    "sources": [
+      "reports/revision/finalization_v2/m5/formal_and_reference_context_metrics_with_uncertainty.tsv"
+    ]
+  },
+  {
+    "title": "Table S1. CellOT formal seed and fixed-recipe training-seed sensitivities",
+    "headers": [
+      "Context / seed",
+      "Endpoint ρ [CI]; q",
+      "Signed cosine [CI]",
+      "AUC [CI]",
+      "Identity ρ; q"
+    ],
+    "rows": [
+      [
+        "HCC1143\nseed 123",
+        "0.488\n[0.189, 0.718]\nq=0.00315",
+        "0.138\n[0.093, 0.183]",
+        "0.812\n[0.542, 1.000]",
+        "-0.003\nq=0.798"
+      ],
+      [
+        "HCC1143\nseed 124",
+        "-0.404\n[-0.648, -0.114]\nq=0.0192",
+        "0.062\n[-0.005, 0.113]",
+        "0.396\n[0.083, 0.771]",
+        "-0.064\nq=0.956"
+      ],
+      [
+        "HCC1143\nseed 125",
+        "-0.215\n[-0.493, 0.080]\nq=0.294",
+        "0.076\n[0.031, 0.179]",
+        "0.604\n[0.250, 0.958]",
+        "0.000\nq=0.933"
+      ],
+      [
+        "HCC1143\nseed 126",
+        "-0.034\n[-0.304, 0.257]\nq=0.817",
+        "0.054\n[-0.024, 0.157]",
+        "0.583\n[0.208, 0.938]",
+        "-0.031\nq=0.933"
+      ],
+      [
+        "HCC1143\nseed 127",
+        "-0.315\n[-0.561, -0.035]\nq=0.0768",
+        "0.038\n[-0.026, 0.100]",
+        "0.208\n[0.000, 0.521]",
+        "-0.029\nq=0.933"
+      ],
+      [
+        "HCC38\nseed 123",
+        "0.668\n[0.435, 0.827]\nq=0.0009",
+        "0.172\n[0.075, 0.233]",
+        "1.000\n[1.000, 1.000]",
+        "-0.034\nq=0.798"
+      ],
+      [
+        "HCC38\nseed 124",
+        "-0.141\n[-0.390, 0.158]\nq=0.548",
+        "0.077\n[0.005, 0.137]",
+        "0.357\n[0.048, 0.690]",
+        "0.063\nq=0.389"
+      ],
+      [
+        "HCC38\nseed 125",
+        "-0.106\n[-0.421, 0.241]\nq=0.549",
+        "0.100\n[0.001, 0.171]",
+        "0.405\n[0.119, 0.738]",
+        "0.064\nq=0.389"
+      ],
+      [
+        "HCC38\nseed 126",
+        "0.416\n[0.146, 0.637]\nq=0.0192",
+        "0.150\n[0.084, 0.214]",
+        "0.810\n[0.500, 1.000]",
+        "-0.041\nq=0.933"
+      ],
+      [
+        "HCC38\nseed 127",
+        "-0.116\n[-0.425, 0.201]\nq=0.549",
+        "0.090\n[0.034, 0.130]",
+        "0.405\n[0.071, 0.762]",
+        "-0.020\nq=0.933"
+      ]
+    ],
+    "sources": [
+      "reports/revision/finalization_v2/cellot_five_seeds/all_seed_context_metrics.tsv"
+    ]
+  },
+  {
+    "title": "Table S2. Legacy raw-context estimates and retrospective classification",
+    "headers": [
+      "Context",
+      "Targets",
+      "Raw ρ [95% CI]",
+      "P",
+      "Legacy rule"
+    ],
+    "rows": [
+      [
+        "HepG2 day 7",
+        "1000",
+        "0.493\n[0.439, 0.539]",
+        "0.000999",
+        "Pass"
+      ],
+      [
+        "Jurkat day 7",
+        "1687",
+        "0.311\n[0.269, 0.357]",
+        "0.000999",
+        "Pass"
+      ],
+      [
+        "K562 TF day 13",
+        "10",
+        "0.515\n[-0.185, 0.858]",
+        "0.149",
+        "Fail"
+      ],
+      [
+        "K562 TF day 7",
+        "10",
+        "0.733\n[0.195, 0.950]",
+        "0.028",
+        "Pass"
+      ],
+      [
+        "K562 essential CRISPRi day 6",
+        "1882",
+        "0.402\n[0.362, 0.440]",
+        "0.000999",
+        "Pass"
+      ],
+      [
+        "K562 genome-scale CRISPRi day 8",
+        "9261",
+        "0.252\n[0.232, 0.272]",
+        "0.000999",
+        "Fail"
+      ],
+      [
+        "HCC1143 day 14",
+        "48",
+        "0.779\n[0.615, 0.880]",
+        "0.000999",
+        "Pass"
+      ],
+      [
+        "HCC38 day 14",
+        "47",
+        "0.726\n[0.556, 0.836]",
+        "0.000999",
+        "Pass"
+      ]
+    ],
+    "sources": [
+      "reports/revision/m2_attrition_audit/context_qualification_summary.tsv"
+    ]
+  },
+  {
+    "title": "Table S3. Complete A003 corrected-object categories",
+    "headers": [
+      "Context",
+      "Anchor",
+      "Shift-excess",
+      "Dependency-excess",
+      "Low",
+      "Middle"
+    ],
+    "rows": [
+      [
+        "HCC38",
+        "7",
+        "0",
+        "0",
+        "6",
+        "34"
+      ],
+      [
+        "HCC1143",
+        "9",
+        "0",
+        "1",
+        "6",
+        "32"
+      ]
+    ],
+    "sources": [
+      "reports/revision/m2_endpoint_object/endpoint_category_summary.tsv"
+    ]
+  },
+  {
+    "title": "Table S4. Project-specific accounting against benchmarking considerations [21]",
+    "headers": [
+      "Consideration",
+      "Implementation",
+      "Limitation or remaining delivery"
+    ],
+    "rows": [
+      [
+        "Purpose and scope",
+        "External dependency reference and separate capabilities",
+        "Restricted HCC panel and mixed training designs"
+      ],
+      [
+        "Methods",
+        "Nine specified HCC and three Replogle implementations",
+        "Not an exhaustive or fair architecture leaderboard"
+      ],
+      [
+        "Datasets",
+        "Eligibility and attrition; frozen independent candidate order",
+        "HCC development was not preregistered"
+      ],
+      [
+        "Parameters",
+        "Versioned settings, checkpoints and finite-budget records",
+        "Unequal budgets; historical metadata gaps retained"
+      ],
+      [
+        "Primary measures",
+        "Signed direction, magnitude diagnostics, target resampling",
+        "Identity uses Mantel inference; H jackknife conditions on saved outputs; no composite winner"
+      ],
+      [
+        "Secondary measures",
+        "Execution/completion and environment records",
+        "No common-hardware runtime competition"
+      ],
+      [
+        "Interpretation",
+        "Numerical findings including attenuation and discordance",
+        "No equivalence or between-model difference test"
+      ],
+      [
+        "Presentation",
+        "Complete formal-output tables and actual scope",
+        "Revised external figures and source data are supplied"
+      ],
+      [
+        "Extension",
+        "Fixed target×gene outputs and versioned object",
+        "Revision-specific archive not yet public"
+      ],
+      [
+        "Reproducibility",
+        "Hash records, replay and new seeded CellOT route",
+        "Not all historical raw-to-training paths reproduced"
+      ]
+    ],
+    "sources": [
+      "docs/revision_benchmark_positioning.md"
+    ]
+  }
+]

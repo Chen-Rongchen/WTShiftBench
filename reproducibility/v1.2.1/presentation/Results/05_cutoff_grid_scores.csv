@@ -1,0 +1,106 @@
+scope,cell_line,entrant_id,display_name,low_quantile,high_quantile,full_endpoint_anchor_n,full_low_information_n,scored_anchor_n,scored_low_information_n,anchor_auc,estimable
+primary_hcc,HCC1143,cellot_hcc_seed123_retrain_v1,CellOT,0.1,0.9,1,1,0,1,NA,False
+primary_hcc,HCC1143,cpa_v0.8.8,CPA,0.1,0.9,1,1,0,1,NA,False
+primary_hcc,HCC1143,gears_hcc_formal_v1,GEARS,0.1,0.9,1,1,0,1,NA,False
+primary_hcc,HCC1143,geneformer_hcc_formal_v1,Geneformer kernel,0.1,0.9,1,1,0,1,NA,False
+primary_hcc,HCC1143,lm_g_geneformer_ridge_hcc_formal_v1,Geneformer ridge,0.1,0.9,1,1,0,1,NA,False
+primary_hcc,HCC1143,lm_g_scgpt_ridge_hcc_formal_v1,scGPT ridge,0.1,0.9,1,1,0,1,NA,False
+primary_hcc,HCC1143,lm_train_lowrank_hcc_formal_v1,Linear low-rank,0.1,0.9,1,1,0,1,NA,False
+primary_hcc,HCC1143,scgen_hcc_formal_v1,scGen,0.1,0.9,1,1,0,1,NA,False
+primary_hcc,HCC1143,scgpt_hcc_formal_v1,scGPT kernel,0.1,0.9,1,1,0,1,NA,False
+primary_hcc,HCC1143,cellot_hcc_seed123_retrain_v1,CellOT,0.15,0.85,3,1,2,1,NA,False
+primary_hcc,HCC1143,cpa_v0.8.8,CPA,0.15,0.85,3,1,2,1,NA,False
+primary_hcc,HCC1143,gears_hcc_formal_v1,GEARS,0.15,0.85,3,1,2,1,NA,False
+primary_hcc,HCC1143,geneformer_hcc_formal_v1,Geneformer kernel,0.15,0.85,3,1,2,1,NA,False
+primary_hcc,HCC1143,lm_g_geneformer_ridge_hcc_formal_v1,Geneformer ridge,0.15,0.85,3,1,2,1,NA,False
+primary_hcc,HCC1143,lm_g_scgpt_ridge_hcc_formal_v1,scGPT ridge,0.15,0.85,3,1,2,1,NA,False
+primary_hcc,HCC1143,lm_train_lowrank_hcc_formal_v1,Linear low-rank,0.15,0.85,3,1,2,1,NA,False
+primary_hcc,HCC1143,scgen_hcc_formal_v1,scGen,0.15,0.85,3,1,2,1,NA,False
+primary_hcc,HCC1143,scgpt_hcc_formal_v1,scGPT kernel,0.15,0.85,3,1,2,1,NA,False
+primary_hcc,HCC1143,cellot_hcc_seed123_retrain_v1,CellOT,0.2,0.8,6,3,5,3,0.8666666666666667,True
+primary_hcc,HCC1143,cpa_v0.8.8,CPA,0.2,0.8,6,3,5,3,0.4,True
+primary_hcc,HCC1143,gears_hcc_formal_v1,GEARS,0.2,0.8,6,3,5,3,0.26666666666666666,True
+primary_hcc,HCC1143,geneformer_hcc_formal_v1,Geneformer kernel,0.2,0.8,6,3,5,3,0.8,True
+primary_hcc,HCC1143,lm_g_geneformer_ridge_hcc_formal_v1,Geneformer ridge,0.2,0.8,6,3,5,3,0.2,True
+primary_hcc,HCC1143,lm_g_scgpt_ridge_hcc_formal_v1,scGPT ridge,0.2,0.8,6,3,5,3,0.3333333333333333,True
+primary_hcc,HCC1143,lm_train_lowrank_hcc_formal_v1,Linear low-rank,0.2,0.8,6,3,5,3,0.6,True
+primary_hcc,HCC1143,scgen_hcc_formal_v1,scGen,0.2,0.8,6,3,5,3,0.8,True
+primary_hcc,HCC1143,scgpt_hcc_formal_v1,scGPT kernel,0.2,0.8,6,3,5,3,0.4,True
+primary_hcc,HCC1143,cellot_hcc_seed123_retrain_v1,CellOT,0.25,0.75,9,6,8,6,0.8125,True
+primary_hcc,HCC1143,cpa_v0.8.8,CPA,0.25,0.75,9,6,8,6,0.5416666666666666,True
+primary_hcc,HCC1143,gears_hcc_formal_v1,GEARS,0.25,0.75,9,6,8,6,0.375,True
+primary_hcc,HCC1143,geneformer_hcc_formal_v1,Geneformer kernel,0.25,0.75,9,6,8,6,0.8541666666666666,True
+primary_hcc,HCC1143,lm_g_geneformer_ridge_hcc_formal_v1,Geneformer ridge,0.25,0.75,9,6,8,6,0.3541666666666667,True
+primary_hcc,HCC1143,lm_g_scgpt_ridge_hcc_formal_v1,scGPT ridge,0.25,0.75,9,6,8,6,0.5833333333333334,True
+primary_hcc,HCC1143,lm_train_lowrank_hcc_formal_v1,Linear low-rank,0.25,0.75,9,6,8,6,0.625,True
+primary_hcc,HCC1143,scgen_hcc_formal_v1,scGen,0.25,0.75,9,6,8,6,0.875,True
+primary_hcc,HCC1143,scgpt_hcc_formal_v1,scGPT kernel,0.25,0.75,9,6,8,6,0.5833333333333334,True
+primary_hcc,HCC1143,cellot_hcc_seed123_retrain_v1,CellOT,0.3,0.7,11,6,10,6,0.8,True
+primary_hcc,HCC1143,cpa_v0.8.8,CPA,0.3,0.7,11,6,10,6,0.48333333333333334,True
+primary_hcc,HCC1143,gears_hcc_formal_v1,GEARS,0.3,0.7,11,6,10,6,0.3,True
+primary_hcc,HCC1143,geneformer_hcc_formal_v1,Geneformer kernel,0.3,0.7,11,6,10,6,0.75,True
+primary_hcc,HCC1143,lm_g_geneformer_ridge_hcc_formal_v1,Geneformer ridge,0.3,0.7,11,6,10,6,0.38333333333333336,True
+primary_hcc,HCC1143,lm_g_scgpt_ridge_hcc_formal_v1,scGPT ridge,0.3,0.7,11,6,10,6,0.5666666666666667,True
+primary_hcc,HCC1143,lm_train_lowrank_hcc_formal_v1,Linear low-rank,0.3,0.7,11,6,10,6,0.6333333333333333,True
+primary_hcc,HCC1143,scgen_hcc_formal_v1,scGen,0.3,0.7,11,6,10,6,0.8833333333333333,True
+primary_hcc,HCC1143,scgpt_hcc_formal_v1,scGPT kernel,0.3,0.7,11,6,10,6,0.5666666666666667,True
+primary_hcc,HCC38,cellot_hcc_seed123_retrain_v1,CellOT,0.1,0.9,0,1,0,1,NA,False
+primary_hcc,HCC38,cpa_v0.8.8,CPA,0.1,0.9,0,1,0,1,NA,False
+primary_hcc,HCC38,gears_hcc_formal_v1,GEARS,0.1,0.9,0,1,0,1,NA,False
+primary_hcc,HCC38,geneformer_hcc_formal_v1,Geneformer kernel,0.1,0.9,0,1,0,1,NA,False
+primary_hcc,HCC38,lm_g_geneformer_ridge_hcc_formal_v1,Geneformer ridge,0.1,0.9,0,1,0,1,NA,False
+primary_hcc,HCC38,lm_g_scgpt_ridge_hcc_formal_v1,scGPT ridge,0.1,0.9,0,1,0,1,NA,False
+primary_hcc,HCC38,lm_train_lowrank_hcc_formal_v1,Linear low-rank,0.1,0.9,0,1,0,1,NA,False
+primary_hcc,HCC38,scgen_hcc_formal_v1,scGen,0.1,0.9,0,1,0,1,NA,False
+primary_hcc,HCC38,scgpt_hcc_formal_v1,scGPT kernel,0.1,0.9,0,1,0,1,NA,False
+primary_hcc,HCC38,cellot_hcc_seed123_retrain_v1,CellOT,0.15,0.85,3,2,3,2,1.0,True
+primary_hcc,HCC38,cpa_v0.8.8,CPA,0.15,0.85,3,2,3,2,0.6666666666666666,True
+primary_hcc,HCC38,gears_hcc_formal_v1,GEARS,0.15,0.85,3,2,3,2,0.5,True
+primary_hcc,HCC38,geneformer_hcc_formal_v1,Geneformer kernel,0.15,0.85,3,2,3,2,0.5,True
+primary_hcc,HCC38,lm_g_geneformer_ridge_hcc_formal_v1,Geneformer ridge,0.15,0.85,3,2,3,2,0.5,True
+primary_hcc,HCC38,lm_g_scgpt_ridge_hcc_formal_v1,scGPT ridge,0.15,0.85,3,2,3,2,0.16666666666666666,True
+primary_hcc,HCC38,lm_train_lowrank_hcc_formal_v1,Linear low-rank,0.15,0.85,3,2,3,2,0.0,True
+primary_hcc,HCC38,scgen_hcc_formal_v1,scGen,0.15,0.85,3,2,3,2,1.0,True
+primary_hcc,HCC38,scgpt_hcc_formal_v1,scGPT kernel,0.15,0.85,3,2,3,2,0.6666666666666666,True
+primary_hcc,HCC38,cellot_hcc_seed123_retrain_v1,CellOT,0.2,0.8,5,4,5,4,1.0,True
+primary_hcc,HCC38,cpa_v0.8.8,CPA,0.2,0.8,5,4,5,4,0.6,True
+primary_hcc,HCC38,gears_hcc_formal_v1,GEARS,0.2,0.8,5,4,5,4,0.5,True
+primary_hcc,HCC38,geneformer_hcc_formal_v1,Geneformer kernel,0.2,0.8,5,4,5,4,0.35,True
+primary_hcc,HCC38,lm_g_geneformer_ridge_hcc_formal_v1,Geneformer ridge,0.2,0.8,5,4,5,4,0.55,True
+primary_hcc,HCC38,lm_g_scgpt_ridge_hcc_formal_v1,scGPT ridge,0.2,0.8,5,4,5,4,0.35,True
+primary_hcc,HCC38,lm_train_lowrank_hcc_formal_v1,Linear low-rank,0.2,0.8,5,4,5,4,0.2,True
+primary_hcc,HCC38,scgen_hcc_formal_v1,scGen,0.2,0.8,5,4,5,4,1.0,True
+primary_hcc,HCC38,scgpt_hcc_formal_v1,scGPT kernel,0.2,0.8,5,4,5,4,0.8,True
+primary_hcc,HCC38,cellot_hcc_seed123_retrain_v1,CellOT,0.25,0.75,7,6,7,6,1.0,True
+primary_hcc,HCC38,cpa_v0.8.8,CPA,0.25,0.75,7,6,7,6,0.42857142857142855,True
+primary_hcc,HCC38,gears_hcc_formal_v1,GEARS,0.25,0.75,7,6,7,6,0.6190476190476191,True
+primary_hcc,HCC38,geneformer_hcc_formal_v1,Geneformer kernel,0.25,0.75,7,6,7,6,0.35714285714285715,True
+primary_hcc,HCC38,lm_g_geneformer_ridge_hcc_formal_v1,Geneformer ridge,0.25,0.75,7,6,7,6,0.35714285714285715,True
+primary_hcc,HCC38,lm_g_scgpt_ridge_hcc_formal_v1,scGPT ridge,0.25,0.75,7,6,7,6,0.5,True
+primary_hcc,HCC38,lm_train_lowrank_hcc_formal_v1,Linear low-rank,0.25,0.75,7,6,7,6,0.14285714285714285,True
+primary_hcc,HCC38,scgen_hcc_formal_v1,scGen,0.25,0.75,7,6,7,6,1.0,True
+primary_hcc,HCC38,scgpt_hcc_formal_v1,scGPT kernel,0.25,0.75,7,6,7,6,0.7857142857142857,True
+primary_hcc,HCC38,cellot_hcc_seed123_retrain_v1,CellOT,0.3,0.7,8,8,8,8,1.0,True
+primary_hcc,HCC38,cpa_v0.8.8,CPA,0.3,0.7,8,8,8,8,0.40625,True
+primary_hcc,HCC38,gears_hcc_formal_v1,GEARS,0.3,0.7,8,8,8,8,0.671875,True
+primary_hcc,HCC38,geneformer_hcc_formal_v1,Geneformer kernel,0.3,0.7,8,8,8,8,0.421875,True
+primary_hcc,HCC38,lm_g_geneformer_ridge_hcc_formal_v1,Geneformer ridge,0.3,0.7,8,8,8,8,0.5625,True
+primary_hcc,HCC38,lm_g_scgpt_ridge_hcc_formal_v1,scGPT ridge,0.3,0.7,8,8,8,8,0.609375,True
+primary_hcc,HCC38,lm_train_lowrank_hcc_formal_v1,Linear low-rank,0.3,0.7,8,8,8,8,0.21875,True
+primary_hcc,HCC38,scgen_hcc_formal_v1,scGen,0.3,0.7,8,8,8,8,0.984375,True
+primary_hcc,HCC38,scgpt_hcc_formal_v1,scGPT kernel,0.3,0.7,8,8,8,8,0.796875,True
+independent_sensitivity,Replogle K562 essential day 6,chargram_lowrank_ridge_loo,Chargram ridge LOO,0.1,0.9,55,43,55,43,0.8046511627906977,True
+independent_sensitivity,Replogle K562 essential day 6,geneformer_embedding_kernel_loo,Geneformer kernel LOO,0.1,0.9,55,43,55,43,0.5674418604651162,True
+independent_sensitivity,Replogle K562 essential day 6,geneformer_embedding_ridge_loo,Geneformer ridge LOO,0.1,0.9,55,43,55,43,0.8993657505285412,True
+independent_sensitivity,Replogle K562 essential day 6,chargram_lowrank_ridge_loo,Chargram ridge LOO,0.15,0.85,99,97,99,97,0.8073518692075393,True
+independent_sensitivity,Replogle K562 essential day 6,geneformer_embedding_kernel_loo,Geneformer kernel LOO,0.15,0.85,99,97,99,97,0.5218160991356867,True
+independent_sensitivity,Replogle K562 essential day 6,geneformer_embedding_ridge_loo,Geneformer ridge LOO,0.15,0.85,99,97,99,97,0.8815995001562011,True
+independent_sensitivity,Replogle K562 essential day 6,chargram_lowrank_ridge_loo,Chargram ridge LOO,0.2,0.8,153,149,153,149,0.7752774487871211,True
+independent_sensitivity,Replogle K562 essential day 6,geneformer_embedding_kernel_loo,Geneformer kernel LOO,0.2,0.8,153,149,153,149,0.5202000263192526,True
+independent_sensitivity,Replogle K562 essential day 6,geneformer_embedding_ridge_loo,Geneformer ridge LOO,0.2,0.8,153,149,153,149,0.8059393779883318,True
+independent_sensitivity,Replogle K562 essential day 6,chargram_lowrank_ridge_loo,Chargram ridge LOO,0.25,0.75,210,226,210,226,0.7571428571428571,True
+independent_sensitivity,Replogle K562 essential day 6,geneformer_embedding_kernel_loo,Geneformer kernel LOO,0.25,0.75,210,226,210,226,0.5372734934681838,True
+independent_sensitivity,Replogle K562 essential day 6,geneformer_embedding_ridge_loo,Geneformer ridge LOO,0.25,0.75,210,226,210,226,0.7822798145806995,True
+independent_sensitivity,Replogle K562 essential day 6,chargram_lowrank_ridge_loo,Chargram ridge LOO,0.3,0.7,282,299,282,299,0.7274366090277283,True
+independent_sensitivity,Replogle K562 essential day 6,geneformer_embedding_kernel_loo,Geneformer kernel LOO,0.3,0.7,282,299,282,299,0.5408928105505348,True
+independent_sensitivity,Replogle K562 essential day 6,geneformer_embedding_ridge_loo,Geneformer ridge LOO,0.3,0.7,282,299,282,299,0.7809838943048933,True

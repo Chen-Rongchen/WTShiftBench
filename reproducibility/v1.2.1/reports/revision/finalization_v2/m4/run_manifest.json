@@ -1,0 +1,26 @@
+{
+  "amendment": "A010",
+  "inputs_sha256": {
+    "configs/revision/amendment_010_formal_release_v2.json": "618c928f57cfe3e91fb86da282be0b2635ed6b87f1ea0e5d73e8ac7071203ebb",
+    "src/wtbench/revision_finalization.py": "5121ed924d8b977f5db9c9b9bd4c8e4419e2b7d02ba5da0633f0b989a511deb1",
+    "reports/revision/m4_hcc_full_audit/formal_and_diagnostic_context_metrics.tsv": "1f0350fc374353a96309680ad702e50c4351b178ece3a545d7350a37c5975c9a",
+    "docs/revision_cellot_seed123/new_context_metrics.tsv": "8e8f4e6e4c899dd02c73a68df462cb1b8b45096856b883fa6b001b5b9324c18b",
+    "reports/revision/m4_hcc_full_audit/formal_and_diagnostic_target_metrics.tsv.gz": "bd4358686ef7484eae944c975a9dc3cb9ed033405d0f83dabb4032eef87dafcd",
+    "docs/revision_cellot_seed123/new_target_metrics.tsv.gz": "af5565a486b54473ab167d8773e55bbec1a2165425a77f53aa320d76a3304c6c",
+    "reports/revision/m4_hcc_full_audit/model_training_evaluation_registry.tsv": "c67cb0dc91458c2ffcf396a9a8b157687a81838a4ab6116a7926035427fe17cb",
+    "reports/revision/m4_hcc_full_audit/revised_model_context_completion.tsv": "dab7f75788bc748a9c694868e5f2a180825ff4df0693478dfa481dbf31ea8b86",
+    "docs/revision_cellot_seed123/predicted_shift_HCC1143.tsv.gz": "c41f2a75439a9c5fbdb8937d69a8f13090eff92d54dbb5328e18e62489416243",
+    "docs/revision_cellot_seed123/predicted_shift_HCC38.tsv.gz": "e3f46f0237892717d340ded1d0c870898fc211650d7c866a13aef95f9569a1f1"
+  },
+  "outputs_sha256": {
+    "reports/revision/finalization_v2/m4/formal_and_diagnostic_context_metrics.tsv": "6038a69f918eecdfeb1da571d1d4c2a3c8e43d63b31b11f442cc8f854724cb80",
+    "reports/revision/finalization_v2/m4/formal_and_diagnostic_target_metrics.tsv.gz": "a68ab149b5c230f92878606050db49a7e174c88febc5890c8b3f6435aa61bd4d",
+    "reports/revision/finalization_v2/m4/model_training_evaluation_registry.tsv": "fbfd7c889d74ec6ba24c8688f4f5556e57afef145225175d4c8a7aa851c33af4",
+    "reports/revision/finalization_v2/m4/revised_model_context_completion.tsv": "904084e1ad4b4c23ecd53a454d4f39b57f47cb8276c1d883586dedecf1ee9ec0",
+    "reports/revision/finalization_v2/m4/metric_correlation_summary.tsv": "3ddaae8428e972b45ec89da2e3427a575b2a9ff19673d59f05e093df7bf6db3a",
+    "reports/revision/finalization_v2/m4/formal_metric_long.tsv": "8cc3408ba7fa8275e0d947fcf45db27e584b8b3cfa9b6723cc543622e9706f94",
+    "reports/revision/finalization_v2/m4/all_discordance_pairs.tsv": "e6c3b6e9a8e56d90abb5bdb27198c5b051acf1fb8e3a576a898f785fe8d8712b",
+    "reports/revision/finalization_v2/m4/selected_discordance_pairs.tsv": "78f360df4e77562dbbf944a2ff5818e3a719723e8e4c07703b000c84899a72d1",
+    "reports/revision/finalization_v2/m4/reconstruction_homogenization_examples.tsv": "407b0dc60a4563404a3289f59860156ecdc2862ed98fa08389144ffedafc332e"
+  }
+}

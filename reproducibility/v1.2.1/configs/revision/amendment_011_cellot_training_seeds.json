@@ -1,0 +1,18 @@
+{
+  "amendment_id": "A011",
+  "date": "2026-09-11",
+  "purpose": "作者允许补充123/124/125训练seed；检验CellOT在同一数据和训练参数下的seed敏感性",
+  "known_results": "seed123和历史CellOT结果已知；seed124/125尚未训练或评分",
+  "base_registration": "configs/revision/cellot_seed123_retrain_v1.json",
+  "formal_seed": 123,
+  "additional_seeds": [124, 125],
+  "contexts": ["HCC38", "HCC1143"],
+  "fits_per_seed": 94,
+  "output_root": "reports/revision/cellot_training_seed_sensitivity_v1",
+  "max_parallel_jobs": 8,
+  "unchanged": "全部94份staged输入、特征、datasplit、1000步/10inner步、lr、batch、checkpoint规则、CPU确定性与依赖版本均与seed123相同",
+  "reporting": "123固定为正式entrant；124/125全部作为训练seed敏感性，不择优、不平均预测矩阵，不合并进正式18-test BH。不将三个seed范围解释为可靠的训练总体CI。",
+  "scoring": "每个seed按原M4公式与预算评分，分开记录context/seed结果；若进行endpoint/identity置换，分别对新增4个输出作独立BH family。",
+  "historical_sensitivity": "原投稿seed1/2是准备细胞抽样seed，同时改变训练步数，不作已有多训练seed证据",
+  "pilot": "复用seed123中已验证的同seed执行确定性路径；不为新seed伪造重复训练试验。每项训练验收seed、1000步、输入与checkpoint hash。"
+}

@@ -1,0 +1,145 @@
+{
+  "status": "M1_FINAL",
+  "date": "2026-09-04",
+  "final_report": "reports/revision/m1_bridge_confounding/M1_FINAL.md",
+  "inputs": [
+    {
+      "path": "src/wtbench/revision_bridge_sensitivity.py",
+      "sha256": "d9ec39385c2e1707c34223ddcca51ee2f2eb2474ca51e239e2502cdb3f969077"
+    },
+    {
+      "path": "scripts/revision/run_m1_bridge_sensitivity.py",
+      "sha256": "2fd7860891185b9c106124568b5fe0c27832751b371e32cd915bc05731b7241a"
+    },
+    {
+      "path": "scripts/revision/finalize_m1_outputs.py",
+      "sha256": "9faec6904174304759ee0c01b826a3a169fd966e76e1d45789cc3bf3a27f4c5b"
+    },
+    {
+      "path": "configs/revision/revision_analysis_registry_v1.json",
+      "sha256": "8ae26754516d12e9af160b6a3178f7b4f4ef7eadc5edc701883af47d1bba66f5"
+    },
+    {
+      "path": "configs/revision/amendment_001_m1_statistical_clarifications.json",
+      "sha256": "40c51b79ce20b2e0b5bc569cdc05e53ae5ca8e953f42c1aaeaebd9ff7d0aeb7c"
+    },
+    {
+      "path": "configs/revision/amendment_002_m1_code_audit.json",
+      "sha256": "8f2ddc7bd3243684d3a15cc1511dc48d1ae2792073c7512b3f432ab242cd500f"
+    },
+    {
+      "path": "reports/truth_driven_bridge/sensitivity/control_subsample_summary.tsv",
+      "sha256": "192f98c32e94e5603699f2ab8c2c4ec5ade23119a93408dc620d2956d4706592"
+    },
+    {
+      "path": "reports/truth_driven_bridge/sensitivity/leave_anchor_out_summary.tsv",
+      "sha256": "9a4e2ee8974d88f7cf77de864bcd62dbf4aa921c0c8a4e6f8dd131307e4f8e1b"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/run_manifest.json",
+      "sha256": "87cf7aeda00bc84ee6e8f3974acc661f2d64475fba042f50d289957fae79c261"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "reports/revision/m1_bridge_confounding/M1_FINAL.md",
+      "sha256": "13a05570c8878c46ad6577d2676685553b59f1eb2d7bf07399d78d4db51ad0d3"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/bridge_inference_summary.tsv",
+      "sha256": "1b54a671b8aac3446b235b8c6464e298f32fc9d3ef17cb7019928d043735a83a"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/combined_robustness_summary.tsv",
+      "sha256": "bf7d69087ccf3d229b1e20daf5c4d954cbe1ddecad2caa82c597dff916c387b4"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/covariate_pairwise_correlations.tsv",
+      "sha256": "9942c478f33997af1724516692431d9c8482f9eac44f8583815ac6c0c1139006"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/equal_n_attrition_summary.tsv",
+      "sha256": "4ee5efaffa83bbe39c51e222e2c6265ea150a4ebb5c46a27a1580728035d2ce9"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/equal_n_depth_summary.tsv",
+      "sha256": "c1f11c5fb95bdf6c51755f500f6a1416acf88e005a0b5dcfec0be8beb91a497e"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/equal_n_replicate_correlations.tsv.gz",
+      "sha256": "13deded3e3734c4812179b4769a029d713118e22e54e25680c2de3c941d754bd"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/equal_n_target_summary.tsv",
+      "sha256": "b332c376d6df8c5ba3e560b8d64b67796f49e014610dcfceefd6c6eef8038eaa"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/fixed_cohort_equal_n_depth_summary.tsv",
+      "sha256": "34f3ca14d1357c8dad6002f7155f4b3312f1859dfc64620b1912fedc24657ee3"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/fixed_cohort_equal_n_inference.tsv",
+      "sha256": "f12fd562d5b62bd0f61c2ccdfa5cfe8b91e206fbca0268910c39e404b27c436a"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/fixed_cohort_equal_n_replicate_correlations.tsv.gz",
+      "sha256": "eb364bc811a82b4f915283b9ddf207abe27cdc00ab2ee643478e698384c5267b"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/fixed_cohort_targets.tsv",
+      "sha256": "5c7b89cc75d92e3029ac8074eca4793884f323804bd56809e270338984a63419"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/linear_model_sensitivity.tsv",
+      "sha256": "db6b06eac5d9b4092a3f404053df443ff551c117b6083093a28781690125bd9c"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/m1_equal_n_depth_sensitivity.png",
+      "sha256": "a1157fa4e77627f7c73acf2437a03571a356d7f01d95bb68497ac8b759199ea0"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/m1_equal_n_depth_sensitivity.svg",
+      "sha256": "f34993c7a33b553ea0c93b0cdb2154d6744b22ead493e73485e154835d0ee7c9"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/m1_go_no_go_decision.tsv",
+      "sha256": "30ded16e15639c1b341dce7fce12d9587546959718b3779e7b7327c8ff73317e"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/m1_report.md",
+      "sha256": "44334692242aa514eafc00995b5581f8fdb11aa484ff1d2c6795c3b2676f5662"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/m1_sampling_confounding.png",
+      "sha256": "69dc1d2baa4b85750711a9dcfe7424fa709e41a3d05ddc0332572c13627e57b1"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/m1_sampling_confounding.svg",
+      "sha256": "ea04df0b2b86b8d6f0f0a759a89301157d27bd55565452afda5049721e66bb2d"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/matched_size_null_replicates.tsv.gz",
+      "sha256": "6d115c69add5f73d745207080d2cb9c44001356d8512ab971877a70bcc45262c"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/matched_size_null_target_summary.tsv",
+      "sha256": "acc67191e9b2fedb7c3bb5b765b5966aa6c54accd8e5d6298ddb858f5037e637"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/revised_gate_components.tsv",
+      "sha256": "cea88fa5788e08670b737311ba60a50058d30e71a19ce5d4597f2a054ea61dea"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/run_manifest.json",
+      "sha256": "87cf7aeda00bc84ee6e8f3974acc661f2d64475fba042f50d289957fae79c261"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/target_level_covariates_and_corrected_shift.tsv",
+      "sha256": "858a8ff2dd9ed708a8adfa369118ff89d9e38407771a4a25b3387bdbf210d6fb"
+    },
+    {
+      "path": "reports/revision/m1_bridge_confounding/truth_recalculation_validation.tsv",
+      "sha256": "f7f7e7ec4e7087e95a0e14c39446dfe8d31d3f8a9d71053d8f30877869178d56"
+    }
+  ]
+}

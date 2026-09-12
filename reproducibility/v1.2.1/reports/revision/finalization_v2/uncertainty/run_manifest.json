@@ -1,0 +1,43 @@
+{
+  "amendment": "A010",
+  "inputs_sha256": {
+    "configs/revision/amendment_010_formal_release_v2.json": "618c928f57cfe3e91fb86da282be0b2635ed6b87f1ea0e5d73e8ac7071203ebb",
+    "src/wtbench/revision_finalization.py": "5121ed924d8b977f5db9c9b9bd4c8e4419e2b7d02ba5da0633f0b989a511deb1",
+    "reports/revision/finalization_v2/m4/formal_and_diagnostic_context_metrics.tsv": "6038a69f918eecdfeb1da571d1d4c2a3c8e43d63b31b11f442cc8f854724cb80",
+    "reports/revision/m3_metric_validity/observed_shift_HCC1143.tsv.gz": "453eb845e3ee1514b74d9453ba8f1903a0288832d4ec6d018ca572f7dd7361d9",
+    "docs/revision_cellot_seed123/predicted_shift_HCC1143.tsv.gz": "c41f2a75439a9c5fbdb8937d69a8f13090eff92d54dbb5328e18e62489416243",
+    "data/predictions/hcc_scorer_ready/cpa_v0.8.8/HCC1143/predicted_shift.tsv.gz": "f8695b57bc78832647c12cba9f3b255b2f4c102fd63037b63ce7c6e19749178d",
+    "data/predictions/hcc_scorer_ready/gears_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz": "ce1aecc47262a3afef2bc86e72b050bae72478ee92b5c1b7f81d63a317c3e5ab",
+    "data/predictions/hcc_scorer_ready/geneformer_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz": "2abd50a0a5843c83ca60cfb679242cf05e798f4fca877a3e34f58d638c026d5d",
+    "data/predictions/hcc_scorer_ready/lm_g_geneformer_ridge_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz": "f96020dcacc734dddd5bcc5e583ed1a430c370967a786b6bdb6ae3be39095c4f",
+    "data/predictions/hcc_scorer_ready/lm_g_scgpt_ridge_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz": "7335bcbd4a60a26f4363e58471855c17273c3a69cca46d0c06984cd56a59232d",
+    "data/predictions/hcc_scorer_ready/lm_train_lowrank_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz": "5145a3ba8f3da1e3fe70810486c04685fb69792102bf11aacbbde052548d9b5d",
+    "data/predictions/hcc_scorer_ready/null_model/HCC1143/predicted_shift.tsv.gz": "7b30fce1958afffa972936f0550b5ed33031adb035a40537085238c4bb3c4689",
+    "data/predictions/hcc_scorer_ready/scgen_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz": "c00cc60f93f4bc45ddb71efe7975d652dcd6ecd4e2104b844e3c15e7d9493aba",
+    "data/predictions/hcc_scorer_ready/scgpt_hcc_formal_v1/HCC1143/predicted_shift.tsv.gz": "ba7c5159a50701924cd127d470f31520e0825cfb7fd4065ea30d6bb813b53fc1",
+    "data/predictions/hcc_scorer_ready/shared_mean_baseline/HCC1143/predicted_shift.tsv.gz": "a367bf5953e29a2096b1ad3785520ca1fb096b741a565539d0edbe87629b3f61",
+    "reports/revision/m3_metric_validity/observed_shift_HCC38.tsv.gz": "3f142d64401398f5841d59f8a9137b274668b57cb16bb1723df2588663aa69f4",
+    "docs/revision_cellot_seed123/predicted_shift_HCC38.tsv.gz": "e3f46f0237892717d340ded1d0c870898fc211650d7c866a13aef95f9569a1f1",
+    "data/predictions/hcc_scorer_ready/cpa_v0.8.8/HCC38/predicted_shift.tsv.gz": "b3feec83b9318e297583b6ee3c39b7c13e06c0eaaf71c9769a116c2ee3423699",
+    "data/predictions/hcc_scorer_ready/gears_hcc_formal_v1/HCC38/predicted_shift.tsv.gz": "f6e24e099edb022244ac52c3c782fe2bff03d495787e6ffbb849c0403f47a2df",
+    "data/predictions/hcc_scorer_ready/geneformer_hcc_formal_v1/HCC38/predicted_shift.tsv.gz": "b083f38585ef88be27bb978159a519919cb6f859e85338ad53053303fa36c09e",
+    "data/predictions/hcc_scorer_ready/lm_g_geneformer_ridge_hcc_formal_v1/HCC38/predicted_shift.tsv.gz": "7c737fe16da8648358238dc72bada9983206c5d9d3e2c88f0f5d55554d99fe46",
+    "data/predictions/hcc_scorer_ready/lm_g_scgpt_ridge_hcc_formal_v1/HCC38/predicted_shift.tsv.gz": "9e22aefc51a9e60b66ff083da4e42368efd635c6af35b62bfdb5499f9b056023",
+    "data/predictions/hcc_scorer_ready/lm_train_lowrank_hcc_formal_v1/HCC38/predicted_shift.tsv.gz": "76595c8d8d3ad45feffad91b9039168cb26d86c0769dc21c43c371f065e30bf3",
+    "data/predictions/hcc_scorer_ready/null_model/HCC38/predicted_shift.tsv.gz": "2b3194d7906ccb8f9a6ca106a6b9e6af56deeabc561c04a42c40c6817f11a0eb",
+    "data/predictions/hcc_scorer_ready/scgen_hcc_formal_v1/HCC38/predicted_shift.tsv.gz": "d88aaff5d16fc447c16b1ff79737c36b01c5886dc92de28bae626cfee7457941",
+    "data/predictions/hcc_scorer_ready/scgpt_hcc_formal_v1/HCC38/predicted_shift.tsv.gz": "6700c257ae263b4ad4160093cef946a77b250090642e962fdf0f7c0cd41d4d43",
+    "data/predictions/hcc_scorer_ready/shared_mean_baseline/HCC38/predicted_shift.tsv.gz": "041d4e995635f10a9abb138fd01a952b343a4b7f67e03c10adfcf51476a995a1",
+    "reports/revision/m5_independent_full_audit/formal_and_reference_context_metrics.tsv": "c59805e3e7cdc06ceaeccea5074f1690dd4e90492681e0f9b2df6c26d52ae6a6",
+    "data/predictions/revision_m5_replogle/observed_shift_contract.npz": "e0182d7655af315d44dd3b8672e2914897119ea699091a449911ffc628b30ebd",
+    "data/predictions/revision_m5_replogle/geneformer_embedding_kernel_loo_predicted_shift.npz": "dd78117ad06f76650e49e40205a8644b19774285c244022b6166eebd19d8ae80",
+    "data/predictions/revision_m5_replogle/geneformer_embedding_ridge_loo_predicted_shift.npz": "9e82693d297b4add10b7f762e029ff79b4591a855e5e561e7f3c0498d6b5b1d1",
+    "data/predictions/revision_m5_replogle/chargram_lowrank_ridge_loo_predicted_shift.npz": "1a2eeae5876ff31fe29c29b2a25559508998c62d65f4783608cdbbc3e697e992",
+    "reports/revision/m3_metric_validity/reference_context_metrics.tsv": "a54ec5275a7bd42bde8643f12eff8a057bdb9dc409eb80a1e792fa32a204b4ec"
+  },
+  "outputs_sha256": {
+    "reports/revision/finalization_v2/uncertainty/homogenization_intervals.tsv": "2cc7fa86829f7c6abf56eb31261178d4d97162aac3c825c0df89fa78cadcf746",
+    "reports/revision/finalization_v2/m4/formal_and_diagnostic_context_metrics_with_uncertainty.tsv": "7eefe5b18dfff40c4b91fce5c85dcb7b23262d82944acf9151bbffd15db0bd30",
+    "reports/revision/finalization_v2/m5/formal_and_reference_context_metrics_with_uncertainty.tsv": "9ced9d124ce4c037e54246e268024e8b54cab2e85380019111c7a156b3acdfc5"
+  }
+}
