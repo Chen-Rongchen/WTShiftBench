@@ -1,0 +1,85 @@
+{
+  "analysis_id": "bib_revision_m6_endpoint_tuning_A010",
+  "n_model_contexts": 21,
+  "frozen_reproduction_all_pass": true,
+  "counterfactual_only": true,
+  "inputs": [
+    {
+      "path": "reports/revision/finalization_v2/m4/m6_config.json",
+      "size_bytes": 2415,
+      "sha256": "f87b426f13aac769860de57f1e61ba587493195dc648de915624635f355d3b6f"
+    },
+    {
+      "path": "configs/revision/amendment_010_formal_release_v2.json",
+      "size_bytes": 3364,
+      "sha256": "618c928f57cfe3e91fb86da282be0b2635ed6b87f1ea0e5d73e8ac7071203ebb"
+    },
+    {
+      "path": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+      "size_bytes": 20167,
+      "sha256": "ca3b7bc97bbe19bd956a472fb25b97d65dcf21a586eb5770ef10eb5ab3c7fa71"
+    },
+    {
+      "path": "reports/revision/finalization_v2/m4/formal_and_diagnostic_target_metrics.tsv.gz",
+      "size_bytes": 72997,
+      "sha256": "a68ab149b5c230f92878606050db49a7e174c88febc5890c8b3f6435aa61bd4d"
+    },
+    {
+      "path": "reports/revision/finalization_v2/m4/formal_and_diagnostic_context_metrics.tsv",
+      "size_bytes": 16600,
+      "sha256": "6038a69f918eecdfeb1da571d1d4c2a3c8e43d63b31b11f442cc8f854724cb80"
+    },
+    {
+      "path": "reports/revision/m5_candidate_qualification/selected_context_endpoint_object.tsv.gz",
+      "size_bytes": 239425,
+      "sha256": "17395fdaad03e341e2616a08dea4f02901ee13ca49f6073f89e644c5b0ca9f5f"
+    },
+    {
+      "path": "reports/revision/m5_independent_full_audit/formal_and_reference_target_metrics.tsv.gz",
+      "size_bytes": 1332603,
+      "sha256": "37a102419546bb191a761d729b4db65f6192914219f53468423fd34cb4bc8856"
+    },
+    {
+      "path": "reports/revision/m5_independent_full_audit/formal_and_reference_context_metrics.tsv",
+      "size_bytes": 6562,
+      "sha256": "c59805e3e7cdc06ceaeccea5074f1690dd4e90492681e0f9b2df6c26d52ae6a6"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "reports/revision/finalization_v2/m6/cutoff_grid_scores.tsv",
+      "size_bytes": 10135,
+      "sha256": "1c98783063a5fed524b72683f4c0610b99e64422459b028530fa6ddcb9194d44"
+    },
+    {
+      "path": "reports/revision/finalization_v2/m6/model_context_inflation.tsv",
+      "size_bytes": 2904,
+      "sha256": "b5a25dd7ca26068ad0b64c9626d36e77a3c9451c89dfd4ffde8d54b6d920ad3b"
+    },
+    {
+      "path": "reports/revision/finalization_v2/m6/inflation_summary.tsv",
+      "size_bytes": 806,
+      "sha256": "7fcc1bb147002922b509401c2725c6e164deb8505a0669ff3c75a25925e903cc"
+    },
+    {
+      "path": "reports/revision/finalization_v2/m6/frozen_score_reproduction.tsv",
+      "size_bytes": 3523,
+      "sha256": "c9bcf9e441083d04be7be30771a2d3a4128ba5cb24ea4aec8978802abec1606e"
+    },
+    {
+      "path": "reports/revision/finalization_v2/m6/endpoint_tuning_inflation.png",
+      "size_bytes": 158114,
+      "sha256": "fb06a2ec119563ef70865086cabef02c8c3f53c142c73cdce2beaca0b5009da7"
+    },
+    {
+      "path": "reports/revision/finalization_v2/m6/endpoint_tuning_inflation.svg",
+      "size_bytes": 81622,
+      "sha256": "649829487d0a2b7fb169b8d5ebb609de80d5187693893a69074aa7df58faa929"
+    },
+    {
+      "path": "reports/revision/finalization_v2/m6/M6_ENDPOINT_TUNING_FINAL.md",
+      "size_bytes": 1155,
+      "sha256": "bd2b5f873ebaacceea248873f3fda9e815e116e55dd37a9e20c22f809f124ce8"
+    }
+  ]
+}

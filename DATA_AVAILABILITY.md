@@ -1,98 +1,24 @@
-# Data availability and reproduction
+# 数据与复现资产
 
-WTShiftBench uses public perturbation and dependency resources. Large raw
-single-cell objects and model-prediction intermediates are intentionally not
-stored in Git. The repository contains:
+当前版本为 v1.2.1。代码入口见[复现说明](reproducibility/v1.2.1/README.md)，实际 ZIP 大小和 SHA256 见[资产清单](reproducibility/v1.2.1/manifests/archive_assets.json)。下载 URL／版本 DOI 尚未核验时保持空缺，不复用 v1.2.0 DOI。GitHub 源码快照本身不包含两个大型数据／训练 ZIP。
 
-- editable SVG panels and panel-level source tables under `figures/`;
-- governed benchmark registries under `benchmark/registry/`;
-- compact reference gene sets under `data/reference/`;
-- primary-context covariate tables under `data/covariates/`.
+## 上游来源与当前用途
 
-All paths below are relative to the repository root.
+| 对象 | 来源 | 本版本处理 |
+|---|---|---|
+| HCC38／HCC1143 | GEO GSE241115 | 保留既有预处理与冻结端点；模型共同47-gene评分空间 |
+| Replogle K562 essential | figshare 20029387 | day6；1,882 targets × 1,024 genes；legacy ID中的day7仅保留作映射 |
+| K562 TF | GEO GSE90063 | 既有7／13天外部context检验 |
+| HepG2／Jurkat | GEO GSE264667 | 外部context sensitivity；适用范围以冻结纳入集合为准 |
+| dependency probability | DepMap Public 25Q3 CRISPRGeneDependency.csv | 当前primary端点；越高表示依赖越强 |
+| gene effect | DepMap Public 25Q3 CRISPRGeneEffect.csv | 当前所有context的GE sensitivity；越负表示依赖越强 |
 
-## Public datasets
+逐文件官方 hash 与 ModelID 见[DepMap登记](reproducibility/v1.2.1/provenance/depmap_provenance.tsv)。历史HepG2／Jurkat GE与23Q4的数值及missing状态匹配，不等于恢复了当年下载日志。精确内部Chronos build未公开的部分不推测。官方大表与本项目提取表的hash分开保存。
 
-| Context | Public source | Role |
-| --- | --- | --- |
-| HCC38 and HCC1143, day 14 | GEO [GSE241115](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE241115) | Primary endpoint object and model audit |
-| K562 TF perturbations, days 7 and 13 | GEO [GSE90063](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE90063) | Temporal-boundary evidence |
-| K562 essential CRISPRi, day 6 | Replogle et al. figshare [20029387](https://plus.figshare.com/articles/dataset/20029387) | Scale and modality boundary |
-| K562 genome-wide CRISPRi, day 8 | Replogle et al. 2022 public Perturb-seq release | Target-universe boundary |
-| HepG2 and Jurkat, day 7 | GEO [GSE264667](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE264667) | Secondary endpoint extension |
+## 归档内容
 
-DepMap Public 25Q3 CRISPR dependency and gene-effect tables are obtained from
-the [DepMap data portal](https://depmap.org/portal/download/). The frozen endpoint
-release and interpretation boundaries are recorded in
-`benchmark/registry/endpoint_registry.tsv`.
+矩阵ZIP包含87个已登记输出及相应实测矩阵／轴、冻结endpoint/categories、当前统计配置、评分代码、expected比较基准和科学来源记录。完整评分与辅助复算的范围见当前README；expected不是预测值或评分答案的计算输入。
 
-## Environment
+训练ZIP保留CellOT123–127两context的470个checkpoint、staged输入和执行代码。其他模型的已报告seed预测也进入矩阵评分范围，但不能因此宣称其全部原始数据处理、上游预训练和训练checkpoint均已归档。
 
-```bash
-pixi install --environment core
-pixi run --environment core check-env
-```
-
-Model-specific environments are installed only when their predictions must be
-regenerated:
-
-```bash
-pixi install --environment gears
-pixi install --environment scgpt
-pixi install --environment geneformer
-pixi install --environment cpa
-pixi install --environment scgen
-pixi install --environment cellot
-```
-
-## Data acquisition
-
-The acquisition registry is `configs/dataset_acquisition_registry_v1.json`.
-It records expected repository-relative destinations and dataset roles.
-
-```bash
-# Generate an auditable acquisition plan.
-pixi run --environment core plan-data
-
-# GEO supplementary files.
-pixi run --environment core download-gse90063
-pixi run --environment core download-gse264667
-
-# Replogle essential CRISPRi object.
-pixi run --environment core python scripts/download/replogle_k562_essential.py
-```
-
-GSE241115 and Replogle genome-wide files can be downloaded from their public
-records and placed at the repository-relative locations recorded in
-`configs/dataset_acquisition_registry_v1.json`. Raw-file redistribution terms
-remain governed by the original repositories.
-
-## Analysis and figures
-
-After the required raw data, DepMap tables and model outputs have been
-materialized:
-
-```bash
-pixi run --environment gears materialize-edfig1
-pixi run --environment core build-registry
-pixi run --environment core build-figures
-pixi run --environment core test
-pixi run --environment core validate-release
-```
-
-`build-figures` regenerates active panel-level SVG and source-data files under
-`figures/`. It does not publish manuscripts, assembled figures, raster exports
-or prediction intermediates.
-
-The exact figure-to-source mapping and hashes are provided in:
-
-- `source_data/figure_source_data_manifest.tsv`;
-- `benchmark/registry/figure_source_data_manifest.tsv`;
-- `benchmark/registry/artifact_hash_manifest.tsv`.
-
-## Versioned archive
-
-Use the manuscript-aligned GitHub release for the code and source-data snapshot.
-A version-specific Zenodo archival DOI should be cited only after the final
-public record is deposited and verified. Do not reuse an older archive DOI for a
-new manuscript-aligned release.
+不默认重新分发全部raw h5ad、完整DepMap大表或上游预训练权重。原站获取和各自使用条件见[第三方来源说明](docs/THIRD_PARTY_NOTICES.md)。公开发布前仍需作者按实际文件核对再分发权限。

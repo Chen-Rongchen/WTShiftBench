@@ -1,0 +1,136 @@
+{
+  "version": "1.2.1",
+  "public_download_verified": false,
+  "executions": [
+    {
+      "name": "source_tests",
+      "working_directory": "repository/reproducibility/v1.2.1",
+      "command": [
+        "pixi",
+        "run",
+        "--frozen",
+        "--environment",
+        "core",
+        "python",
+        "-m",
+        "pytest",
+        "tests",
+        "-q"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 1.44,
+      "log_sha256": "9ad72570541d4e0b2e2415205c7e243306d94c9dc60161da4020486dea68dadf"
+    },
+    {
+      "name": "public_figures",
+      "working_directory": "repository/reproducibility/v1.2.1",
+      "command": [
+        "pixi",
+        "run",
+        "--frozen",
+        "--environment",
+        "core",
+        "python",
+        "build_figures.py",
+        "--output",
+        "outputs/figures"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 32.89,
+      "log_sha256": "6ba765d26ce5064614cdf589868dbbf99569f9088a6626863923708ae7a644f0"
+    },
+    {
+      "name": "matrix_points",
+      "working_directory": "verification/matrix_scoring_nrlu4m5y/WTShiftBench_v1.2.1_matrices",
+      "command": [
+        "pixi",
+        "run",
+        "--frozen",
+        "--environment",
+        "core",
+        "python",
+        "recompute.py",
+        "--points-only",
+        "--output",
+        "recomputed"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 17.23,
+      "log_sha256": "7921b83dc90e0de805f660652543ece29e3c9439b02ea3c11ecd0273f57457bb"
+    }
+  ],
+  "figures": [
+    {
+      "file": "Fig_1.png",
+      "pixels_equal_to_current_delivery": true,
+      "sha256": "f7a4026e205214a6750556c9751cbb4825f65fbd5d023c0e908d630f8f6fb163"
+    },
+    {
+      "file": "Fig_2.png",
+      "pixels_equal_to_current_delivery": true,
+      "sha256": "d12d158d253fd6c395f9178483e48d2646f7da97c3dce4552151e927ea05133d"
+    },
+    {
+      "file": "Fig_3.png",
+      "pixels_equal_to_current_delivery": true,
+      "sha256": "5045179b3b117dd85186c01414d41e797754345ccbff186d08be71cd4d63a7ec"
+    },
+    {
+      "file": "Fig_4.png",
+      "pixels_equal_to_current_delivery": true,
+      "sha256": "a52ffd1f47926d3e30a68afc48e9c72d1d1c865fc18c61ebf2e9482cfac6a056"
+    },
+    {
+      "file": "Fig_S1.png",
+      "pixels_equal_to_current_delivery": true,
+      "sha256": "81e73c634db65bf063160e8ab6d7f6d6c3d5d9eaf431a02691834b8da643b629"
+    },
+    {
+      "file": "Fig_S2.png",
+      "pixels_equal_to_current_delivery": true,
+      "sha256": "f25e389d6b3222e7038dcfa7461431e0632441cb0c40a7ae40f2bfcb70b5be9d"
+    },
+    {
+      "file": "Fig_S3.png",
+      "pixels_equal_to_current_delivery": true,
+      "sha256": "c742f8ad7c6f6a6eb7c2bef7d36ebf51e0136bba1c67b254b6cd6a0b327414ac"
+    },
+    {
+      "file": "Fig_S4.png",
+      "pixels_equal_to_current_delivery": true,
+      "sha256": "ff877d05e259cb7efa578e39810d60dd247d7ce4413dd54bdfda7b69eee7fee6"
+    },
+    {
+      "file": "Fig_S5.png",
+      "pixels_equal_to_current_delivery": true,
+      "sha256": "ee51e8e2288991427dec89eec8986e98a5cf1362263c292821536b1c462af53b"
+    },
+    {
+      "file": "Fig_S6.png",
+      "pixels_equal_to_current_delivery": true,
+      "sha256": "69481097b9d9c6bf29be95aa06335e3b55c6589ea6f9c3a78bbb3f2946d21b3b"
+    },
+    {
+      "file": "Fig_S7.png",
+      "pixels_equal_to_current_delivery": true,
+      "sha256": "14a8aef7d8199536d5e2ca46a1dce8b2bd0f656c7ef7ff2e8f1a5f71a5bcfdad"
+    },
+    {
+      "file": "Graphical_Abstract.png",
+      "pixels_equal_to_current_delivery": true,
+      "sha256": "924560ca113708d71c2fd79d18c6a687e3352971f655e9b5b2f184fea33e011f"
+    }
+  ],
+  "scoring_outputs": 87,
+  "point_comparisons": 208,
+  "matrix_files_verified": 371,
+  "scoring_module": "matrix_scoring/src/wtbench/revision_metric_validity.py",
+  "current_scope": "当前源码测试、12PNG像素一致、新目录87输出点估计；未在本轮重跑完整CI/P/q、470回放或训练",
+  "prior_full_inference_record": "verification/local/local_verification.json：87输出/373项完整推断，独立历史执行记录",
+  "passed": true,
+  "final_source_tests": {
+    "exit_code": 0,
+    "summary": "17 passed in 1.01s",
+    "log_sha256": "e26681e3129097ceaa49a879500d01423709ef94ad0c3b307a5f052e727a307b"
+  }
+}

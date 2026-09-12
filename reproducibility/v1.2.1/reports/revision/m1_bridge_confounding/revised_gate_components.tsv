@@ -1,0 +1,7 @@
+analysis_id	cell_line	n_targets	spearman_rho	bootstrap_ci_low	bootstrap_ci_high	permutation_pvalue_two_sided	bootstrap_replicates_completed	permutations_completed	statistic	permutation_method	permutation_qvalue_bh_within_analysis	effect_pass	ci_pass	q_pass	component_pass
+equal_n_expected_shift_depth_20	HCC38	47	0.4475730683261398	0.20228610282558723	0.6409760979498049	0.0012998700129987	5000	10000	spearman	endpoint_label	0.0012998700129987	True	True	True	True
+noise_corrected_shift	HCC38	47	0.44040357336780867	0.18169893507997487	0.6354898877844487	0.0017998200179982	5000	10000	spearman	endpoint_label	0.0017998200179982	True	True	True	True
+partial_model_a_log_n	HCC38	47	0.03950876730235249	-0.3001010339642953	0.36347429888943317	0.8028197180281972	5000	10000	partial_spearman	freedman_lane_rank_residual	0.8028197180281972	False	False	False	False
+equal_n_expected_shift_depth_20	HCC1143	48	0.530593428529544	0.2735302767950046	0.7321767158249787	0.00019998000199980003	5000	10000	spearman	endpoint_label	0.00039996000399960006	True	True	True	True
+noise_corrected_shift	HCC1143	48	0.543623452355093	0.2979033652156504	0.7188067546593158	0.00019998000199980003	5000	10000	spearman	endpoint_label	0.00039996000399960006	True	True	True	True
+partial_model_a_log_n	HCC1143	48	0.3636249319340776	0.03218498912762759	0.6077923592546437	0.0131986801319868	5000	10000	partial_spearman	freedman_lane_rank_residual	0.0263973602639736	True	True	True	True

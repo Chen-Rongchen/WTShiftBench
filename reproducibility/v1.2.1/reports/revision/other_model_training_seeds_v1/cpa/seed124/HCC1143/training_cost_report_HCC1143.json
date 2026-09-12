@@ -1,0 +1,25 @@
+{
+  "stage": "cpa_full_materialization",
+  "cell_line": "HCC1143",
+  "seed": 124,
+  "n_cells": 11405,
+  "n_genes": 36601,
+  "n_targets": 47,
+  "n_control_cells": 1325,
+  "shift_shape": [
+    47,
+    36602
+  ],
+  "device": "cuda:0",
+  "train_wall_seconds": 1881.32,
+  "gpu_memory_peak_gb": 0.833,
+  "max_epochs": 400,
+  "early_stopping_patience": 15,
+  "batch_size": 256,
+  "n_latent": 64,
+  "output_path": "reports/revision/other_model_training_seeds_v1/cpa/seed124/HCC1143/predicted_shift_HCC1143.tsv.gz",
+  "endpoint_blind": true,
+  "early_stopping_used": true,
+  "hvg_subset": false,
+  "timestamp_utc": "2026-09-11T14:50:05.948449+00:00"
+}

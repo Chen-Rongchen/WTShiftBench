@@ -1,0 +1,25 @@
+{
+  "context": "HCC38",
+  "target": "ARID1A",
+  "kind": "pilot",
+  "training_seed": 123,
+  "torch_initial_seed": 123,
+  "deterministic_algorithms": true,
+  "device": "cpu",
+  "torch_threads": 1,
+  "job_sha256": "6eef336a1ba5cb6487de3f6cb78a8bc3bbba7abcbb7596ed6abba979ccce428c",
+  "package_versions": {
+    "torch": "2.5.1",
+    "numpy": "1.26.4",
+    "pytables": "3.9.2",
+    "python": "3.9.23 | packaged by conda-forge | (main, Jun  4 2025, 17:57:12) \n[GCC 13.3.0]"
+  },
+  "last_step": 999,
+  "elapsed_seconds": 66.32393079530448,
+  "outputs_sha256": {
+    "reports/revision/cellot_seed123_retrain_v1/pilot/repeat_1/model-cellot/cache/model.pt": "f395de892bd69049acc305654853ba2e1c9721ad47a9d19231f26bcca26cc8e9",
+    "reports/revision/cellot_seed123_retrain_v1/pilot/repeat_1/model-cellot/cache/last.pt": "b15b54203a631617b4330719b635ce1764fbae473f0d6e0465264ecde572df85",
+    "reports/revision/cellot_seed123_retrain_v1/pilot/repeat_1/model-cellot/config.yaml": "711a2b6100bef3917815f61123591591a23fa14d41816d0e4b256e5b691006d0"
+  },
+  "completed_utc": "2026-09-07T11:06:44.531324+00:00"
+}

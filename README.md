@@ -1,123 +1,30 @@
 # WTShiftBench
 
-## v1.2.0 返修公开复现入口
+WTShiftBench（whole-transcriptome shift benchmark）审计模型输出的外部 dependency 排序、响应方向、anchor separation、靶标间结构及同质化。各维度分别解释，不合成通用排行榜，也不把 endpoint 排序当作完整转录响应恢复。
 
-WT由作者确认代表whole-transcriptome；HCC模型评分仍为共同47基因空间。本次冻结矩阵、endpoint/category表、配置、可用seeds、原评分代码和provenance全部位于[`reproducibility/v1.2.0/`](reproducibility/v1.2.0/docs/README.md)。
+## 当前入口：v1.2.1
 
-```sh
-cd reproducibility/v1.2.0
-pixi install --environment core --locked
-pixi run --environment core python recompute.py --output /tmp/wtshiftbench_recomputed
-```
+[v1.2.1 复现说明](reproducibility/v1.2.1/README.md) 是当前科学版本的唯一执行入口。本源码候选尚未声明完成公开下载验收；版本 DOI 与下载位置由正式发布后补入的资产清单确定。不把历史版本 DOI 当作 v1.2.1 DOI。
 
-该入口复算M3/M4/M5和CellOT seed123补充评分及原有CI/P/q，不要求重新训练。明确的历史seed/Chronos来源缺口保留；不新增identity或homogenization的CI。下面的根目录布局与图件入口保留为v1.1.1历史实现，不与本次修订评分入口混用。私有稿件、回复信和本地私有Git历史未发布。
+- 代码、配置、小型冻结结果与带轴索引：`reproducibility/v1.2.1/`。
+- 矩阵、CellOT 五-seed 训练资产：独立 ZIP，见[资产清单](reproducibility/v1.2.1/manifests/archive_assets.json)。不纳入普通 Git 历史。
+- 源数据、数据使用条件与范围：[数据说明](DATA_AVAILABILITY.md)、[第三方来源](docs/THIRD_PARTY_NOTICES.md)。
+- 本轮变更：[版本记录](docs/CHANGELOG.md)。
 
----
+## 两条不同的执行路径
 
-Code and source-data repository for:
+评分无需重训模型：下载矩阵 ZIP，校验 SHA256，在原结构解压后的根目录使用 Pixi 执行 `recompute.py`。完整运行从实测／预测矩阵计算统计量，再与 `expected/` 对账；不要把源码浏览目录与旧根目录混拼成计算环境。
 
-> **WTShiftBench: a problem-solving benchmark protocol for endpoint-aligned
-> auditing of transcriptomic perturbation model outputs**
+CellOT 训练／回放另用训练 ZIP。正式 CellOT 为 seed123，其余 seed124–127 全部公开作为敏感性检查；五次结果并不支持将 seed123 单次正向排序概括为稳定能力。470 个 checkpoint 回放与两个 ARID1A target 的 staged 重训，是不同验收范围。
 
-Article type: Problem solving protocol.
+## 评价范围
 
-WTShiftBench evaluates whether model-generated perturbation shifts recover a
-fixed endpoint-aligned recovery object anchored to DepMap Public 25Q3 CRISPR
-dependency. The audit separates endpoint recovery, target-identity preservation
-and output homogenization while keeping claim boundaries explicit. It is not a
-direct DepMap predictor, a drug-efficacy model, a cell-death mechanism assay or
-a universal model-ranking leaderboard.
+HCC 模型共同评分空间为 **47 genes**，不是47个 targets 的同义词，也不是全转录组模型恢复。HCC 的 held-out 与 in-sample 输出按冻结登记分别解释。Replogle 完整评分为 **1,882 targets × 1,024 genes**；三个具体 entrants 使用 target-response-held-out LOO。名称中的 WT 不扩大实际评分空间。
 
-## Repository contents
+当前 primary probability 与 gene-effect sensitivity 均采用 DepMap Public 25Q3。历史 HepG2／Jurkat gene-effect 数值匹配23Q4的事实保留在 provenance，不再作为当前 sensitivity 输入。
 
-- `benchmark/`: benchmark definition and governed dataset, endpoint, metric and
-  model registries.
-- `figures/`: editable SVG panels and panel-level source data for Figures 1-4
-  and Extended Data Figures 1-6.
-- `source_data/`: publication-facing figure source-data index.
-- `src/wtbench/`: reusable scoring and figure-generation code.
-- `scripts/figures/`: stable entry points for active figure panels.
-- `scripts/`: data acquisition, preprocessing, model adapters and analyses.
-- `configs/`: frozen, repository-relative analysis and model configurations.
-- `reproduce_figures.sh`: public figure and source-data rebuild entry point.
+## 历史版本
 
-Large raw single-cell objects, model-training intermediates, manuscripts,
-assembled figures and raster exports are not included. Dataset accessions and
-preparation notes are listed in
-[`DATA_AVAILABILITY.md`](DATA_AVAILABILITY.md).
+`reproducibility/v1.2.0/` 及旧 tag 原样保留。根目录原有 `src/`、`scripts/`、`configs/`、`pixi.toml` 和旧绘图入口属于历史／开发路径，不是本轮 v1.2.1 执行入口。旧说明中的“CellOT seed123仅为补充”“尚未新增H区间”和未明的 legacy gene-effect 来源，不代表当前版本状态。
 
-## Environment
-
-The repository uses [Pixi](https://pixi.sh/) for reproducible environments.
-
-```bash
-git clone https://github.com/Chen-Rongchen/WTShiftBench.git
-cd WTShiftBench
-
-pixi install --environment core
-pixi run --environment core check-env
-```
-
-Model-specific environments are isolated:
-
-```bash
-pixi install --environment gears
-pixi install --environment scgpt
-pixi install --environment geneformer
-pixi install --environment cpa
-pixi install --environment scgen
-pixi install --environment cellot
-```
-
-## Reproduction
-
-The active manuscript-aligned figure set is Figures 1-4 and Extended Data
-Figures 1-6. The repository provides editable figure panels, panel-level
-source-data tables, governed registries, artifact hashes and reproducibility
-manifests for this bundle.
-
-Build the active registries:
-
-```bash
-pixi run --environment core build-registry
-```
-
-Validate the public release bundle:
-
-```bash
-pixi run --environment core validate-release
-```
-
-Regenerate public figure panels after acquiring the required datasets:
-
-```bash
-pixi run --environment core build-figures
-```
-
-Detailed benchmark definitions and scoring boundaries are documented in
-[`benchmark/README.md`](benchmark/README.md).
-
-The figure-to-script and figure-to-source-data mappings are indexed in
-[`source_data/figure_source_data_manifest.tsv`](source_data/figure_source_data_manifest.tsv).
-All repository paths are relative to the repository root.
-
-## Verification
-
-```bash
-pixi run --environment core test
-pixi run --environment core validate-release
-```
-
-The release validator rejects manuscripts, assembled figures, raster exports,
-prediction intermediates and machine-specific absolute paths.
-
-## Citation
-
-Use the metadata in [`CITATION.cff`](CITATION.cff) and cite the versioned
-GitHub release corresponding to the analysis snapshot. A version-specific
-Zenodo DOI should be cited once the manuscript-aligned archival release has
-been deposited.
-
-## License
-
-Released under the [MIT License](LICENSE).
+投稿主稿、标记稿、审稿原信与逐点回复不属于本公开源码树。

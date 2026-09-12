@@ -1,0 +1,12 @@
+checkpoints:
+  scgpt_human:
+    local_resolved_path: models/pretrained/scgpt_human
+  geneformer_gf_12l_95m_i4096:
+    local_resolved_path: models/pretrained/geneformer_gf_12l_95m_i4096
+    checkpoint_subdir: gf-12L-95M-i4096
+    source_repository: ctheodoris/Geneformer
+    source_revision: 933ca80e39d421c47a12168699766bb7e4e2c197
+    weight_file: model.safetensors
+    weight_size_bytes: 152012980
+    weight_sha256: 4365ba23e393fcfa0e65a94ac64a0983cd788bd23a8d4914f4ab66f85cfe043c
+    embedding_shape: [20275, 512]

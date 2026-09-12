@@ -1,0 +1,21 @@
+{
+  "amendment_id": "A013",
+  "date": "2026-09-11",
+  "reason": "作者要求核对其他模型并完成有必要的多seed分析；CellOT三seed不稳定已知，因此在看其他模型新seed结果前限定工作范围",
+  "known_results": "所有历史正式模型分数及CellOT123/124/125已知；以下新的其他模型seed实验尚未运行",
+  "training_models": ["scgen", "cpa", "gears"],
+  "training_seeds": [123, 124, 125],
+  "contexts": ["HCC38", "HCC1143"],
+  "total_new_context_fits": 18,
+  "output_root": "reports/revision/other_model_training_seeds_v1",
+  "max_parallel_gpu_jobs": 2,
+  "scgen": {"max_epochs": 100, "batch_size": 128, "early_stopping_patience": 10, "max_targets": 0, "fixed_scvi_split_seed": 0},
+  "cpa": {"max_epochs": 400, "batch_size": 256, "early_stopping_patience": 15, "n_latent": 64, "fixed_scvi_split_seed": 0, "checkpoint_selection": "沿用实际CPA0.8.8的validation cpa_metric最大值，不误称ELBO最小值"},
+  "gears": {"recipe": "configs/gears_hcc_formal_v1.json", "fixed_processed_graphs": "tmp/gears_hcc/gears_hcc_formal_v1/<context>", "fixed_data_and_split_seed": 123, "inference_seed": 123, "optimization_seed": "在GEARS导入后显式设置123/124/125；上游导入时manual_seed(0)不能冒称原配置training_seed123就是历史Torch初始化seed", "epochs": 30},
+  "scope": "仅同context输出审计，不改成held-out或公平架构排名；初始化/优化seed改变，数据、实际划分与训练预算固定并记录hash；预测阶段固定seed123，隔离可控的推断随机性",
+  "formal_results": "保留已有正式输出与其BH集合；18个新输出全部作为敏感性，不择优迁移正式模型，不平均预测，不改变A003",
+  "inference": "沿用M4点估计、bootstrap、endpoint/Mantel预算及H配对jackknife；新增18个输出的endpoint与identity各作独立BH family；不将target CI当跨seed稳定性",
+  "deterministic_controls": "HCC Geneformer/scGPT kernel和ridge、linear low-rank为固定输入上的确定性运算，不做无效训练seed重复",
+  "replogle_feature_check": "Replogle ridge确有randomized PCA/SVD；另以feature seed123/124/125复算两个ridge，共6输出，只测特征近似随机性，不训练基础模型、不替换正式特征或旧BH",
+  "stopping_rule": "三seed全部报告后结束，不按显著性追加；数据/环境不一致先报告，不静默改变参数或以新seed替代失败"
+}

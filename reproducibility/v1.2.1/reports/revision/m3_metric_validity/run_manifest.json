@@ -1,0 +1,123 @@
+{
+  "status": "M3_REFERENCE_FINAL",
+  "date": "2026-09-04",
+  "spec_id": "bib_26_1443_revision_metric_spec_v1",
+  "real_model_outputs_scored": false,
+  "all_reference_checks_passed": true,
+  "inputs": [
+    {
+      "path": "configs/revision/revision_metric_spec_v1.json",
+      "sha256": "6c7fffa1c032dbf789b1a1a000a7c32d598262122b2c04f1e6c8ba72f7cde0e9"
+    },
+    {
+      "path": "configs/revision/amendment_004_metric_contract.json",
+      "sha256": "874882b6034756d9d02a642aa26a573e65d44ccb413eaf58cbc1e6c596b9ef9f"
+    },
+    {
+      "path": "configs/truth_driven_bridge_hcc38_hcc1143_v1.json",
+      "sha256": "2726e3a4acac44fe53cbb582dc5fa2647982173a6ce860abde5b606211f91389"
+    },
+    {
+      "path": "reports/truth_driven_bridge/master_atlas/shared_target_axis_membership.tsv",
+      "sha256": "a5be3d1222eda3c6b677494f50e69342fe114473639ef0f9517f99aa79f22a21"
+    },
+    {
+      "path": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+      "sha256": "ca3b7bc97bbe19bd956a472fb25b97d65dcf21a586eb5770ef10eb5ab3c7fa71"
+    },
+    {
+      "path": "configs/hcc_prediction_contract_v1.json",
+      "sha256": "b6c10dfa72e2f222f40ccecc66ff696825168d5f54119cc47af914b4ca1b0631"
+    },
+    {
+      "path": "reports/truth_driven_bridge/truth_architecture_contract/truth_architecture_contract.tsv",
+      "sha256": "a9d85694d4f961f596757a07cd6631b5dca077ae6d5ba8b0b4275315deb5a873"
+    },
+    {
+      "path": "configs/revision/revision_model_context_completion_v1.tsv",
+      "sha256": "f1d841cd1167f984f6db62d86a730ce520f4bd0fa91c3b6fcaeee1902908881c"
+    },
+    {
+      "path": "src/wtbench/revision_metric_validity.py",
+      "sha256": "d8fae47666da2968bc2ac9b9e8f7a8b0db5efcf88312636959dc0840af8c7d4b"
+    },
+    {
+      "path": "scripts/revision/run_m3_reference_validation.py",
+      "sha256": "0c17ed79932bcce0bf7d857c59203c0c9720b9c5cd0764c91c42cecbd9e46d06"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/shared_mean_baseline/HCC1143/predicted_shift.tsv.gz",
+      "sha256": "a367bf5953e29a2096b1ad3785520ca1fb096b741a565539d0edbe87629b3f61"
+    },
+    {
+      "path": "data/GSE241115/GSM7716952_matrix_HCC1143_aggrMH004-6.mtx.gz",
+      "sha256": "3d1774d0fc5b44eb4828427e9a4d67d9e318497e66c747c52eb8cae6b634ad3c"
+    },
+    {
+      "path": "data/GSE241115/GSM7716952_barcodes_HCC1143_aggrMH004-6.tsv.gz",
+      "sha256": "0de2199601d099efc28e12ec5c4c52c66b53e844ba6aea46e85c003a675cfa44"
+    },
+    {
+      "path": "data/GSE241115/GSM7716952_features_HCC1143_aggrMH004-6.tsv.gz",
+      "sha256": "76a06265b7cdd84fd5bb3ed8b94574f31b5fde0ec3f2a8261c7b5ae20f5606fc"
+    },
+    {
+      "path": "data/GSE241115/GSM7716952_protospacer_calls_per_cell_HCC1143_aggrMH004-6.csv.gz",
+      "sha256": "a32e2a0ca577a9b0a7ceacb8daf2bbc92c5c936b6cdb0f1986b2a24171831c77"
+    },
+    {
+      "path": "data/predictions/hcc_scorer_ready/shared_mean_baseline/HCC38/predicted_shift.tsv.gz",
+      "sha256": "041d4e995635f10a9abb138fd01a952b343a4b7f67e03c10adfcf51476a995a1"
+    },
+    {
+      "path": "data/GSE241115/GSM7716951_matrix_HCC38_aggrMH001-3.mtx.gz",
+      "sha256": "8efd9017d3f43d867f17a3d10699540c5e3d197e4ade1ed571f923284ff29a3e"
+    },
+    {
+      "path": "data/GSE241115/GSM7716951_barcodes_HCC38_aggrMH001-3.tsv.gz",
+      "sha256": "aca39f328b94312833c6ddfdff6db36c94097f6a0c0b3a93ad50d34e80a1e235"
+    },
+    {
+      "path": "data/GSE241115/GSM7716951_features_HCC38_aggrMH001-3.tsv.gz",
+      "sha256": "5711f0857fb7fe9cf65fe39134736ef37f992713a951e2ddcbc276c875d070ae"
+    },
+    {
+      "path": "data/GSE241115/GSM7716951_protospacer_calls_per_cell_HCC38_aggrMH001-3.csv.gz",
+      "sha256": "8fdc329fb8ecf41b37d6502c1c04b52788fba95840414a1c7fc682a375a930f1"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "reports/revision/m3_metric_validity/observed_shift_HCC1143.tsv.gz",
+      "sha256": "453eb845e3ee1514b74d9453ba8f1903a0288832d4ec6d018ca572f7dd7361d9"
+    },
+    {
+      "path": "reports/revision/m3_metric_validity/observed_shift_HCC38.tsv.gz",
+      "sha256": "3f142d64401398f5841d59f8a9137b274668b57cb16bb1723df2588663aa69f4"
+    },
+    {
+      "path": "reports/revision/m3_metric_validity/reference_target_metrics.tsv",
+      "sha256": "80fa61e5f2514893591f31ce99b9d3f659ee826205c0ff417a14f51373e0d827"
+    },
+    {
+      "path": "reports/revision/m3_metric_validity/reference_context_metrics.tsv",
+      "sha256": "a54ec5275a7bd42bde8643f12eff8a057bdb9dc409eb80a1e792fa32a204b4ec"
+    },
+    {
+      "path": "reports/revision/m3_metric_validity/reference_random_direction_seed_summary.tsv",
+      "sha256": "0a90d4c4e67d2d5ba68cfbc3da885ccb5f038a152491c422036fd2f4aa1cb42d"
+    },
+    {
+      "path": "reports/revision/m3_metric_validity/contract_validation.tsv",
+      "sha256": "6e3ecd180b9df703cda00a497078bba7cd6a3be4b10f8ad32d4d97dfe5acdc8e"
+    },
+    {
+      "path": "reports/revision/m3_metric_validity/reference_acceptance.tsv",
+      "sha256": "ccb2b0db986f8ad2eef9fd26449716fc86762ad02992422eafee02a0430b52bd"
+    },
+    {
+      "path": "reports/revision/m3_metric_validity/M3_REFERENCE_FINAL.md",
+      "sha256": "17c76e21b2b12ac5dfdf90f44ff7b8932bc17cad7acb30397cf1f41fbae9fae3"
+    }
+  ]
+}

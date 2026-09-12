@@ -1,0 +1,16 @@
+cell_line	context_role	raw_category	corrected_category	n_targets
+HCC1143	qualified_primary_context	endpoint_anchor	endpoint_anchor	8
+HCC1143	qualified_primary_context	endpoint_anchor	middle	2
+HCC1143	qualified_primary_context	low_information	low_information	3
+HCC1143	qualified_primary_context	low_information	middle	3
+HCC1143	qualified_primary_context	middle	dependency_excess	1
+HCC1143	qualified_primary_context	middle	endpoint_anchor	1
+HCC1143	qualified_primary_context	middle	low_information	3
+HCC1143	qualified_primary_context	middle	middle	27
+HCC38	sensitivity_boundary_context	endpoint_anchor	endpoint_anchor	5
+HCC38	sensitivity_boundary_context	endpoint_anchor	middle	4
+HCC38	sensitivity_boundary_context	low_information	low_information	5
+HCC38	sensitivity_boundary_context	low_information	middle	1
+HCC38	sensitivity_boundary_context	middle	endpoint_anchor	2
+HCC38	sensitivity_boundary_context	middle	low_information	1
+HCC38	sensitivity_boundary_context	middle	middle	29
