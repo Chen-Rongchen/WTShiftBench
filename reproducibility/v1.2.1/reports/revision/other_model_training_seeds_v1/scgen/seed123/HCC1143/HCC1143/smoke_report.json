@@ -1,0 +1,302 @@
+{
+  "stage": "scgen_hcc_smoke",
+  "cell_line": "HCC1143",
+  "input_path": "data/processed/cpa_hcc_formal/HCC1143.h5ad",
+  "prediction_path": "reports/revision/other_model_training_seeds_v1/scgen/seed123/HCC1143/HCC1143/predicted_shift.tsv.gz",
+  "n_targets": 47,
+  "targets": [
+    "ARID1A",
+    "BMPR1A",
+    "CDKN2A",
+    "COMMD6",
+    "ENY2",
+    "ERC1",
+    "ETV3",
+    "GON4L",
+    "HDGF",
+    "HLX",
+    "KLF3",
+    "LAMTOR5",
+    "MAML3",
+    "MIER1",
+    "MTDH",
+    "MYBL1",
+    "NCOA1",
+    "NPM1",
+    "PA2G4",
+    "PARK7",
+    "PCBD1",
+    "PEX14",
+    "PFDN5",
+    "PMF1",
+    "PRDX2",
+    "PRPF6",
+    "RORC",
+    "RPS3",
+    "RUVBL2",
+    "SMAD1",
+    "STAT3",
+    "TAB3",
+    "TADA3",
+    "THAP8",
+    "THRA",
+    "TMF1",
+    "TMSB4X",
+    "UBP1",
+    "VEZF1",
+    "XBP1",
+    "YBX1",
+    "ZBTB17",
+    "ZBTB20",
+    "ZBTB5",
+    "ZNF131",
+    "ZNF24",
+    "ZNF566"
+  ],
+  "n_genes": 47,
+  "n_cells": 11405,
+  "n_control_cells": 1325,
+  "max_epochs": 100,
+  "batch_size": 128,
+  "early_stopping_patience": 10,
+  "train_wall_seconds": 14.82,
+  "device_cuda_available": true,
+  "per_target": {
+    "ARID1A": {
+      "predicted_cells": 1325,
+      "target_cells": 195,
+      "latent_delta_l2": 1.6188553234432865
+    },
+    "BMPR1A": {
+      "predicted_cells": 1325,
+      "target_cells": 93,
+      "latent_delta_l2": 1.5501671451963888
+    },
+    "CDKN2A": {
+      "predicted_cells": 1325,
+      "target_cells": 169,
+      "latent_delta_l2": 0.9017261561649219
+    },
+    "COMMD6": {
+      "predicted_cells": 1325,
+      "target_cells": 324,
+      "latent_delta_l2": 2.3940363328254772
+    },
+    "ENY2": {
+      "predicted_cells": 1325,
+      "target_cells": 161,
+      "latent_delta_l2": 4.153368985617819
+    },
+    "ERC1": {
+      "predicted_cells": 1325,
+      "target_cells": 412,
+      "latent_delta_l2": 0.9072526312963901
+    },
+    "ETV3": {
+      "predicted_cells": 1325,
+      "target_cells": 187,
+      "latent_delta_l2": 0.9467497162023457
+    },
+    "GON4L": {
+      "predicted_cells": 1325,
+      "target_cells": 115,
+      "latent_delta_l2": 1.59739027388455
+    },
+    "HDGF": {
+      "predicted_cells": 1325,
+      "target_cells": 319,
+      "latent_delta_l2": 2.7327250404828947
+    },
+    "HLX": {
+      "predicted_cells": 1325,
+      "target_cells": 213,
+      "latent_delta_l2": 0.8595020040857321
+    },
+    "KLF3": {
+      "predicted_cells": 1325,
+      "target_cells": 223,
+      "latent_delta_l2": 1.211501763957109
+    },
+    "LAMTOR5": {
+      "predicted_cells": 1325,
+      "target_cells": 274,
+      "latent_delta_l2": 3.266581603720249
+    },
+    "MAML3": {
+      "predicted_cells": 1325,
+      "target_cells": 341,
+      "latent_delta_l2": 0.7848585601449324
+    },
+    "MIER1": {
+      "predicted_cells": 1325,
+      "target_cells": 254,
+      "latent_delta_l2": 1.907929951421371
+    },
+    "MTDH": {
+      "predicted_cells": 1325,
+      "target_cells": 290,
+      "latent_delta_l2": 4.369775172048451
+    },
+    "MYBL1": {
+      "predicted_cells": 1325,
+      "target_cells": 142,
+      "latent_delta_l2": 2.7321679572013036
+    },
+    "NCOA1": {
+      "predicted_cells": 1325,
+      "target_cells": 334,
+      "latent_delta_l2": 0.7473493919571718
+    },
+    "NPM1": {
+      "predicted_cells": 1325,
+      "target_cells": 125,
+      "latent_delta_l2": 9.926591789516463
+    },
+    "PA2G4": {
+      "predicted_cells": 1325,
+      "target_cells": 154,
+      "latent_delta_l2": 6.066955645813431
+    },
+    "PARK7": {
+      "predicted_cells": 1325,
+      "target_cells": 215,
+      "latent_delta_l2": 6.838381034505402
+    },
+    "PCBD1": {
+      "predicted_cells": 1325,
+      "target_cells": 214,
+      "latent_delta_l2": 2.2008152535346976
+    },
+    "PEX14": {
+      "predicted_cells": 1325,
+      "target_cells": 282,
+      "latent_delta_l2": 1.2761758019576195
+    },
+    "PFDN5": {
+      "predicted_cells": 1325,
+      "target_cells": 57,
+      "latent_delta_l2": 6.19016763413071
+    },
+    "PMF1": {
+      "predicted_cells": 1325,
+      "target_cells": 40,
+      "latent_delta_l2": 3.261834430775421
+    },
+    "PRDX2": {
+      "predicted_cells": 1325,
+      "target_cells": 186,
+      "latent_delta_l2": 3.750388816405957
+    },
+    "PRPF6": {
+      "predicted_cells": 1325,
+      "target_cells": 23,
+      "latent_delta_l2": 3.166017653507059
+    },
+    "RORC": {
+      "predicted_cells": 1325,
+      "target_cells": 230,
+      "latent_delta_l2": 0.8771636560748953
+    },
+    "RPS3": {
+      "predicted_cells": 1325,
+      "target_cells": 72,
+      "latent_delta_l2": 6.865335273951479
+    },
+    "RUVBL2": {
+      "predicted_cells": 1325,
+      "target_cells": 51,
+      "latent_delta_l2": 4.273118966939126
+    },
+    "SMAD1": {
+      "predicted_cells": 1325,
+      "target_cells": 299,
+      "latent_delta_l2": 0.8830869488938432
+    },
+    "STAT3": {
+      "predicted_cells": 1325,
+      "target_cells": 305,
+      "latent_delta_l2": 1.7092855828927345
+    },
+    "TAB3": {
+      "predicted_cells": 1325,
+      "target_cells": 222,
+      "latent_delta_l2": 1.0191347408984521
+    },
+    "TADA3": {
+      "predicted_cells": 1325,
+      "target_cells": 133,
+      "latent_delta_l2": 3.3360137371459992
+    },
+    "THAP8": {
+      "predicted_cells": 1325,
+      "target_cells": 335,
+      "latent_delta_l2": 1.2348793420261603
+    },
+    "THRA": {
+      "predicted_cells": 1325,
+      "target_cells": 188,
+      "latent_delta_l2": 1.279704441310436
+    },
+    "TMF1": {
+      "predicted_cells": 1325,
+      "target_cells": 145,
+      "latent_delta_l2": 1.287736991285269
+    },
+    "TMSB4X": {
+      "predicted_cells": 1325,
+      "target_cells": 266,
+      "latent_delta_l2": 7.140886045487096
+    },
+    "UBP1": {
+      "predicted_cells": 1325,
+      "target_cells": 267,
+      "latent_delta_l2": 1.0568350739379029
+    },
+    "VEZF1": {
+      "predicted_cells": 1325,
+      "target_cells": 255,
+      "latent_delta_l2": 1.8452890288187738
+    },
+    "XBP1": {
+      "predicted_cells": 1325,
+      "target_cells": 314,
+      "latent_delta_l2": 1.9383526077669653
+    },
+    "YBX1": {
+      "predicted_cells": 1325,
+      "target_cells": 177,
+      "latent_delta_l2": 9.272810218889909
+    },
+    "ZBTB17": {
+      "predicted_cells": 1325,
+      "target_cells": 75,
+      "latent_delta_l2": 3.4591526943929534
+    },
+    "ZBTB20": {
+      "predicted_cells": 1325,
+      "target_cells": 315,
+      "latent_delta_l2": 0.6715494766212153
+    },
+    "ZBTB5": {
+      "predicted_cells": 1325,
+      "target_cells": 212,
+      "latent_delta_l2": 0.9929640563459962
+    },
+    "ZNF131": {
+      "predicted_cells": 1325,
+      "target_cells": 43,
+      "latent_delta_l2": 2.5166512818183877
+    },
+    "ZNF24": {
+      "predicted_cells": 1325,
+      "target_cells": 462,
+      "latent_delta_l2": 1.0408208062907562
+    },
+    "ZNF566": {
+      "predicted_cells": 1325,
+      "target_cells": 372,
+      "latent_delta_l2": 1.09142982668536
+    }
+  },
+  "timestamp_utc": "2026-09-11T13:34:18.629820+00:00"
+}

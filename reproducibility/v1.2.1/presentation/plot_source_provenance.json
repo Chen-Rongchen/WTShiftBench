@@ -1,0 +1,20 @@
+{
+  "说明": "自动提取同一绘图函数，仅将D40路径映射到公开源表；不包含文稿编辑或回复函数。",
+  "原脚本SHA256": "0e0d7aa6ad738a25be9f43abdef9407cf8d108775017d1726080648e1bfae797",
+  "函数SHA256": {
+    "setup": "8531b9978c62fccc5d938d9707678123f04c9119d82ebcecf0e9672f4795450b",
+    "save": "c3e069e04a61544f47816f0abc83d171961d8fa0afdd9bf82333700376e9a5fe",
+    "heading": "36d607d4f0807d152d2040bcdac81d1caf31ee4b2ef1c3c0bb45728a7fff13ae",
+    "forest": "189e87f07bcc08fa57d7425d3d6c0da772e002c0d6cb61106ac666a8028ec1b6",
+    "heat": "7a6a1a8fea51fe937ca61656bd12338c22937e629100454b9a0c0ddc700cd1ff",
+    "box": "4fb18df760736dcbab6eab2cebc62684ecc8bdcd82890564c4187b21aa8abbb8",
+    "figure1": "b36abb81bd64b2847b1613144cac830e44cd4b21110d9879c58c11f61422919f",
+    "figure2": "d9e77408ccf45e925a9e8e372278dfe5048a9786cb30bb011ce91ba27c1fb9de",
+    "figure3": "1a8ec005bbccc68ed112e93c2c0382eaa514494dbe5dbcd967ba5cf0010d3d02",
+    "figure4": "29eceb2802427a13596909f7ef4d2dd89af566ea91faf6b3ab455a4e032022ba",
+    "supplementary": "2ab938cfa339638aa1fd9d40351727b25c0b2574e62bf33319c152c56c2bcee8",
+    "graphical": "8ff3c7c484f7d0ce547bf4e7bcc6be0fc5cd131ffb734147067f3a2bbb2285be",
+    "plots": "c51bf2b794290cfa487d3d64ba06e38d444274025a9e87aa7dac69e9a13aa477"
+  },
+  "公开脚本SHA256": "fba90c2279c1b7acc86fdbaa2c4b8c7a017018958e853510326dfa174d3381ab"
+}

@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "audit_id": "bib_26_1443_revision_m5_replogle_full_audit_v1",
+  "status": "frozen_before_independent_model_outputs",
+  "frozen_date": "2026-09-05",
+  "amendment": "configs/revision/amendment_007_independent_full_audit.json",
+  "implementation_amendments": [
+    "configs/revision/amendment_008_constant_similarity_guard.json"
+  ],
+  "metric_spec": "configs/revision/revision_metric_spec_v1.json",
+  "selection_decision": "reports/revision/m5_candidate_qualification/selected_context_decision.json",
+  "inputs": {
+    "endpoint_object": "reports/revision/m5_candidate_qualification/selected_context_endpoint_object.tsv.gz",
+    "response_gene_space": "reports/revision/m5_candidate_qualification/selected_response_gene_space.tsv",
+    "h5ad": "data/raw/replogle_2022_k562_essential.h5ad",
+    "geneformer_asset_root": "models/pretrained/geneformer_assets/geneformer",
+    "checkpoint_registry": "configs/checkpoint_registry_v1.yaml",
+    "checkpoint_key": "geneformer_gf_12l_95m_i4096"
+  },
+  "contract": {
+    "context": "Replogle K562 essential day 6",
+    "context_role": "qualified_independent_context",
+    "target_count": 1882,
+    "response_gene_count": 1024,
+    "normalization_target_sum": 10000.0,
+    "control_rule": "nperts_eq_0",
+    "perturbation_rule": "nperts_eq_1",
+    "target_column": "gene",
+    "matrix_chunk_size": 512,
+    "require_complete_target_and_gene_contract": true
+  },
+  "formal_entrants": [
+    {
+      "model_id": "geneformer_embedding_kernel_loo",
+      "display_name": "Geneformer kernel LOO",
+      "model_family": "Geneformer",
+      "method": "cosine_kernel_loo",
+      "top_k": 4,
+      "temperature": 1.0
+    },
+    {
+      "model_id": "geneformer_embedding_ridge_loo",
+      "display_name": "Geneformer ridge LOO",
+      "model_family": "linear_embedding",
+      "method": "ridge_press_loo",
+      "feature_source": "geneformer_embedding_pca",
+      "n_components": 32,
+      "ridge_lambda": 0.1,
+      "feature_seed": 42
+    },
+    {
+      "model_id": "chargram_lowrank_ridge_loo",
+      "display_name": "Chargram ridge LOO",
+      "model_family": "linear_symbolic",
+      "method": "ridge_press_loo",
+      "feature_source": "symbol_chargram_truncated_svd",
+      "ngram_min": 2,
+      "ngram_max": 4,
+      "n_components": 32,
+      "ridge_lambda": 0.1,
+      "feature_seed": 42
+    }
+  ],
+  "references": {
+    "random_direction_seed": 20260920,
+    "entrants": [
+      "observed_shift_oracle",
+      "negated_oracle",
+      "observed_magnitude_random_direction",
+      "shared_mean_baseline"
+    ]
+  },
+  "inference": {
+    "bootstrap_replicates": 5000,
+    "bootstrap_seed": 20261101,
+    "endpoint_label_permutations": 10000,
+    "endpoint_label_seed": 20261102,
+    "target_identity_permutations": 999,
+    "target_identity_seed": 20261103,
+    "target_identity_sidedness": "one_sided_positive",
+    "multiple_testing": "BH separately across the three formal endpoint tests and three formal target-identity tests"
+  },
+  "outputs": {
+    "root": "reports/revision/m5_independent_full_audit",
+    "matrix_root": "data/predictions/revision_m5_replogle",
+    "observed_matrix": "observed_shift_contract.npz",
+    "prediction_template": "<model_id>_predicted_shift.npz",
+    "target_metrics": "formal_and_reference_target_metrics.tsv.gz",
+    "context_metrics": "formal_and_reference_context_metrics.tsv",
+    "metric_long": "formal_metric_profile_long.tsv",
+    "reference_validation": "reference_validation.tsv",
+    "completion": "model_completion.tsv",
+    "training_registry": "model_training_evaluation_registry.tsv",
+    "report": "M5_INDEPENDENT_FULL_AUDIT_FINAL.md",
+    "manifest": "run_manifest.json"
+  }
+}

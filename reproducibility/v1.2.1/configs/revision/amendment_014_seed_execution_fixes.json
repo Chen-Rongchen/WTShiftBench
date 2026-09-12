@@ -1,0 +1,13 @@
+{
+  "amendment_id": "A014",
+  "date": "2026-09-11",
+  "extends": "configs/revision/amendment_013_other_model_seeds.json",
+  "observed_state": "scGen六次训练完成但尚未评分；CPA六次在训练前的seed断言失败，GEARS六次在读取缓存时失败；未查看这些模型新评分",
+  "cpa_actual_issue": "CPA0.8.8的CPAModule.__init__(seed=0)重置Torch/NumPy/scvi seed，旧runner未传入模型seed；不能把外部CLI seed1当实际内部初始化seed",
+  "cpa_fix": "在CPA构造函数传入指定seed123/124/125，构造后将scvi划分seed固定0，再重置优化RNG为训练seed；断言模型训练入口的实际torch_initial_seed。超参数/预算不变。",
+  "gears_actual_issue": "PertData.load按组合标签解析+，不支持本项目缓存的单基因condition；原构建路径new_data_process没有这项过滤",
+  "gears_fix": "直接读取已冻结perturb_processed.h5ad和cell_graphs.pkl，恢复原new_data_process创建的对象字段，继续使用原custom_split和图；不改gene/target/cell集合",
+  "failed_attempts": "原CPA/GEARS失败目录与日志移动为failed_pretraining_*及logs_initial_attempt保留；没有已训练新checkpoint，不续训失败缓存；scGen六个成功输出保持原样",
+  "provenance": "第一次input_manifest保留为input_manifest_initial.json；修复runner重新登记hash，不改数据hash或A013范围。",
+  "feature_environment": "Replogle特征载入需要Torch；使用已锁定的cellot Pixi环境执行相同评分源码，不修改core依赖或正式模型结果"
+}

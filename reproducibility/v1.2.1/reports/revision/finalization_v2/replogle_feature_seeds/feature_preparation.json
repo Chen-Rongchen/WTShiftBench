@@ -1,0 +1,9 @@
+{
+  "sha256": "029b9aab0594a262a2b03f01f145309ddc49a0421be52d7d2f7e96714fe58c4c",
+  "shape": [
+    1882,
+    512
+  ],
+  "source": "既定Geneformer checkpoint的固定target embedding；在geneformer Pixi环境只提取，不训练",
+  "config_sha256": "e383fe699fd47d4063a93f8ecd3479900f58f55bcc11da2bdf3941f3dfe0e305"
+}

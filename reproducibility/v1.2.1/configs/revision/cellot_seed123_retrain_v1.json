@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "run_id": "cellot_hcc_seed123_retrain_v1",
+  "date": "2026-09-07",
+  "purpose": "补充明确记录种子的训练路线；不是恢复历史seed，不替换冻结正式输出",
+  "contexts": ["HCC38", "HCC1143"],
+  "targets_per_context": 47,
+  "genes_per_context": 47,
+  "training_seed": 123,
+  "seed_policy": "每个target的新进程均重置为123，不按target序号递增；Python/NumPy/PyTorch均设置",
+  "historical_training_seed": null,
+  "source_revision": "522d2b953da8ad244fcf36f64521487fdf763788",
+  "source_root": "/tmp/wtko_cellot_install",
+  "original_staging_root": "reports/model_eligibility/cellot_hcc_smoke",
+  "original_replay_manifest": "docs/revision_cellot_replay/verification_manifest.json",
+  "output_root": "reports/revision/cellot_seed123_retrain_v1",
+  "runtime_amendment": {
+    "date": "2026-09-07",
+    "reason": "首次pilot在step0写HDF日志时缺少PyTables；补齐真实训练依赖后从空目录重试，不续训失败cache",
+    "original_freeze_commit": "306e1d5",
+    "historical_lock_sha256": "5b6d7fcb4425603cc23ec0bd456d93945f8e1a4ccca2075bbb5e1c851dacc955",
+    "current_lock_sha256": "d5cde7e0a5a6fd39d72ee928c3d82ab50c41cfdb048d7c1990c0fe86cffb203e",
+    "historical_input_change": "pixi.lock",
+    "packages": "新增PyTables3.9.2及依赖；hdf5=1.14.3、h5py=3.13.0；MKL固定原2022.1.0；torch/NumPy/pandas版本不变，完整build见lock",
+    "numexpr_note": "MKL2022.1.0约束下numexpr为2.7.3；pandas自动禁用该可选加速，HDF日志写入/读取已实测通过",
+    "failed_attempt": "reports/revision/cellot_seed123_retrain_v1/pilot/failed_missing_pytables_repeat_1",
+    "new_model_scores_seen": false
+  },
+  "data_policy": "原staged input.h5ad/features和已保存合并配置不变；不重新抽样、不重新归一化",
+  "training": {
+    "n_iters": 1000,
+    "n_inner_iters": 10,
+    "learning_rate": 0.0001,
+    "batch_size": 256,
+    "datasplit_random_state": 0,
+    "checkpoint_selection": "沿用原训练程序的固定步数MMD最优model.pt，不用endpoint分数选checkpoint"
+  },
+  "runtime": {
+    "environment": "cellot",
+    "device": "cpu",
+    "torch_threads": 1,
+    "torch_interop_threads": 1,
+    "deterministic_algorithms": true,
+    "max_workers": 4,
+    "python_hash_seed": 123,
+    "blas_threads": 1
+  },
+  "pilot": {
+    "context": "HCC38",
+    "target": "ARID1A",
+    "selection": "HCC38中按名称排序首个target，独立于endpoint/model结果",
+    "replicates": 2,
+    "acceptance": "best/last checkpoint所有模型与优化器状态、步数和导出shift逐元素精确相同",
+    "full_run_requires_pass": true,
+    "reuse_pilot_as_full_output": false
+  },
+  "full_run": {
+    "n_target_fits": 94,
+    "incomplete_cache_policy": "不自动续训：原CellOT checkpoint不保存RNG；失败记录保留，先定位再决定新尝试",
+    "promotion_policy": "所有94项完成后整体比较，不选更好seed/context/target替换正式结果",
+    "scored_target_held_out": false
+  },
+  "scoring": {
+    "hcc_config": "configs/revision/revision_hcc_full_audit_v1.json",
+    "metric_spec": "configs/revision/revision_metric_spec_v1.json",
+    "old_results": "reports/revision/m4_hcc_full_audit/formal_and_diagnostic_context_metrics.tsv",
+    "old_model_id": "cellot_hcc_formal_v1",
+    "inference": "沿用冻结score_context的5000 bootstrap和10000 Mantel，以及M4 endpoint permutation定义和base seeds",
+    "bh_policy": "新输出单独两context family；不改变原18-test family，不按新旧q值比较优劣",
+    "difference_policy": "逐维描述新减旧；不声称完成模型差值检验或跨训练seed稳定性",
+    "replace_existing_results": false
+  }
+}

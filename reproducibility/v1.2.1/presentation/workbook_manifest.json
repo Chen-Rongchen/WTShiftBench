@@ -1,0 +1,485 @@
+{
+  "sheets": [
+    {
+      "name": "INDEX",
+      "rows": 49
+    },
+    {
+      "name": "Dictionary",
+      "rows": 13
+    },
+    {
+      "name": "S1",
+      "rows": 12
+    },
+    {
+      "name": "S2",
+      "rows": 10
+    },
+    {
+      "name": "S3",
+      "rows": 4
+    },
+    {
+      "name": "S4",
+      "rows": 12
+    },
+    {
+      "name": "D01",
+      "rows": 23
+    },
+    {
+      "name": "D02",
+      "rows": 8
+    },
+    {
+      "name": "D03",
+      "rows": 27
+    },
+    {
+      "name": "D04",
+      "rows": 22
+    },
+    {
+      "name": "D05",
+      "rows": 106
+    },
+    {
+      "name": "D06",
+      "rows": 4
+    },
+    {
+      "name": "D07",
+      "rows": 22
+    },
+    {
+      "name": "D08",
+      "rows": 37
+    },
+    {
+      "name": "D09",
+      "rows": 29
+    },
+    {
+      "name": "D10",
+      "rows": 9
+    },
+    {
+      "name": "D11",
+      "rows": 9
+    },
+    {
+      "name": "D12",
+      "rows": 9
+    },
+    {
+      "name": "D13",
+      "rows": 5
+    },
+    {
+      "name": "D14",
+      "rows": 37
+    },
+    {
+      "name": "D15",
+      "rows": 3
+    },
+    {
+      "name": "D16",
+      "rows": 23
+    },
+    {
+      "name": "D17",
+      "rows": 9
+    },
+    {
+      "name": "D18",
+      "rows": 21
+    },
+    {
+      "name": "D19",
+      "rows": 23
+    },
+    {
+      "name": "D20",
+      "rows": 27
+    },
+    {
+      "name": "D21",
+      "rows": 5
+    },
+    {
+      "name": "D22",
+      "rows": 101
+    },
+    {
+      "name": "D23",
+      "rows": 11
+    },
+    {
+      "name": "D24",
+      "rows": 7
+    },
+    {
+      "name": "D25",
+      "rows": 85
+    },
+    {
+      "name": "D26",
+      "rows": 7
+    },
+    {
+      "name": "D27",
+      "rows": 96
+    },
+    {
+      "name": "D28",
+      "rows": 96
+    },
+    {
+      "name": "D29",
+      "rows": 9
+    },
+    {
+      "name": "D30",
+      "rows": 4
+    },
+    {
+      "name": "D31",
+      "rows": 3
+    },
+    {
+      "name": "D32",
+      "rows": 23
+    },
+    {
+      "name": "D33",
+      "rows": 47
+    },
+    {
+      "name": "D34",
+      "rows": 85
+    },
+    {
+      "name": "D35",
+      "rows": 25
+    },
+    {
+      "name": "D36",
+      "rows": 4
+    },
+    {
+      "name": "D37",
+      "rows": 4
+    },
+    {
+      "name": "D38",
+      "rows": 11
+    },
+    {
+      "name": "D39",
+      "rows": 17
+    },
+    {
+      "name": "D40",
+      "rows": 33
+    },
+    {
+      "name": "D41",
+      "rows": 9
+    },
+    {
+      "name": "D42",
+      "rows": 49
+    },
+    {
+      "name": "D43",
+      "rows": 331
+    },
+    {
+      "name": "D44",
+      "rows": 49
+    },
+    {
+      "name": "D45",
+      "rows": 7
+    },
+    {
+      "name": "D46",
+      "rows": 19
+    }
+  ],
+  "sources": {
+    "D01": {
+      "source": "reports/revision/finalization_v2/m4/formal_and_diagnostic_context_metrics_with_uncertainty.tsv",
+      "sha256": "7eefe5b18dfff40c4b91fce5c85dcb7b23262d82944acf9151bbffd15db0bd30",
+      "csv": "Results/01_formal_and_diagnostic_context_metrics.csv",
+      "rows": 22
+    },
+    "D02": {
+      "source": "reports/revision/finalization_v2/m5/formal_and_reference_context_metrics_with_uncertainty.tsv",
+      "sha256": "9ced9d124ce4c037e54246e268024e8b54cab2e85380019111c7a156b3acdfc5",
+      "csv": "Results/02_formal_and_reference_context_metrics.csv",
+      "rows": 7
+    },
+    "D03": {
+      "source": "reports/revision/m3_metric_validity/reference_context_metrics.tsv",
+      "sha256": "a54ec5275a7bd42bde8643f12eff8a057bdb9dc409eb80a1e792fa32a204b4ec",
+      "csv": "Results/03_reference_context_metrics.csv",
+      "rows": 26
+    },
+    "D04": {
+      "source": "reports/revision/finalization_v2/m6/model_context_inflation.tsv",
+      "sha256": "b5a25dd7ca26068ad0b64c9626d36e77a3c9451c89dfd4ffde8d54b6d920ad3b",
+      "csv": "Results/04_model_context_inflation.csv",
+      "rows": 21
+    },
+    "D05": {
+      "source": "reports/revision/finalization_v2/m6/cutoff_grid_scores.tsv",
+      "sha256": "1c98783063a5fed524b72683f4c0610b99e64422459b028530fa6ddcb9194d44",
+      "csv": "Results/05_cutoff_grid_scores.csv",
+      "rows": 105
+    },
+    "D06": {
+      "source": "reports/revision/finalization_v2/m6/inflation_summary.tsv",
+      "sha256": "7fcc1bb147002922b509401c2725c6e164deb8505a0669ff3c75a25925e903cc",
+      "csv": "Results/06_inflation_summary.csv",
+      "rows": 3
+    },
+    "D07": {
+      "source": "reports/revision/finalization_v2/m6/frozen_score_reproduction.tsv",
+      "sha256": "c9bcf9e441083d04be7be30771a2d3a4128ba5cb24ea4aec8978802abec1606e",
+      "csv": "Results/07_frozen_score_reproduction.csv",
+      "rows": 21
+    },
+    "D08": {
+      "source": "reports/revision/m1_bridge_confounding/bridge_inference_summary.tsv",
+      "sha256": "1b54a671b8aac3446b235b8c6464e298f32fc9d3ef17cb7019928d043735a83a",
+      "csv": "Results/08_bridge_inference_summary.csv",
+      "rows": 36
+    },
+    "D09": {
+      "source": "reports/revision/m1_bridge_confounding/covariate_pairwise_correlations.tsv",
+      "sha256": "9942c478f33997af1724516692431d9c8482f9eac44f8583815ac6c0c1139006",
+      "csv": "Results/09_covariate_pairwise_correlations.csv",
+      "rows": 28
+    },
+    "D10": {
+      "source": "reports/revision/m1_bridge_confounding/equal_n_depth_summary.tsv",
+      "sha256": "c1f11c5fb95bdf6c51755f500f6a1416acf88e005a0b5dcfec0be8beb91a497e",
+      "csv": "Results/10_equal_n_depth_summary.csv",
+      "rows": 8
+    },
+    "D11": {
+      "source": "reports/revision/m1_bridge_confounding/fixed_cohort_equal_n_depth_summary.tsv",
+      "sha256": "34f3ca14d1357c8dad6002f7155f4b3312f1859dfc64620b1912fedc24657ee3",
+      "csv": "Results/11_fixed_cohort_equal_n_depth_summary.csv",
+      "rows": 8
+    },
+    "D12": {
+      "source": "reports/revision/m1_bridge_confounding/fixed_cohort_equal_n_inference.tsv",
+      "sha256": "f12fd562d5b62bd0f61c2ccdfa5cfe8b91e206fbca0268910c39e404b27c436a",
+      "csv": "Results/12_fixed_cohort_equal_n_inference.csv",
+      "rows": 8
+    },
+    "D13": {
+      "source": "reports/revision/m1_bridge_confounding/linear_model_sensitivity.tsv",
+      "sha256": "db6b06eac5d9b4092a3f404053df443ff551c117b6083093a28781690125bd9c",
+      "csv": "Results/13_linear_model_sensitivity.csv",
+      "rows": 4
+    },
+    "D14": {
+      "source": "reports/revision/m1_bridge_confounding/combined_robustness_summary.tsv",
+      "sha256": "bf7d69087ccf3d229b1e20daf5c4d954cbe1ddecad2caa82c597dff916c387b4",
+      "csv": "Results/14_combined_robustness_summary.csv",
+      "rows": 36
+    },
+    "D15": {
+      "source": "reports/revision/m1_bridge_confounding/truth_recalculation_validation.tsv",
+      "sha256": "f7f7e7ec4e7087e95a0e14c39446dfe8d31d3f8a9d71053d8f30877869178d56",
+      "csv": "Results/15_truth_recalculation_validation.csv",
+      "rows": 2
+    },
+    "D16": {
+      "source": "docs/revision_external_cell_count/association_inference.tsv",
+      "sha256": "8a8c5dd250df03c26c97fb4be5db71ea46fec7f04ee57a573c0762b5ba3254fa",
+      "csv": "Results/16_association_inference.csv",
+      "rows": 22
+    },
+    "D17": {
+      "source": "docs/revision_external_cell_count/count_shift_dependency_summary.tsv",
+      "sha256": "60cc7a46138ed569371e06f9f5933d7b1002ec8948d639e37b165b0c3374a47e",
+      "csv": "Results/17_count_shift_dependency_summary.csv",
+      "rows": 8
+    },
+    "D18": {
+      "source": "reports/revision/m2_attrition_audit/attrition_flow.tsv",
+      "sha256": "da6690f099c2717ed82e970ec60fac4e7d14f0411669183a6e1a83db8f93f1b6",
+      "csv": "Results/18_attrition_flow.csv",
+      "rows": 20
+    },
+    "D19": {
+      "source": "reports/revision/m2_attrition_audit/identifier_audit.tsv",
+      "sha256": "a55625f828753e08490396494fb08754ef78db4aad3b14885cae5a569f96a803",
+      "csv": "Results/19_identifier_audit.csv",
+      "rows": 22
+    },
+    "D20": {
+      "source": "reports/revision/m2_attrition_audit/preprocessing_registry.tsv",
+      "sha256": "ccabffd3d672179325933327e424300ea594b5c23a07bdaf124e952e437dc8c1",
+      "csv": "Results/20_preprocessing_registry.csv",
+      "rows": 26
+    },
+    "D21": {
+      "source": "reports/revision/m2_attrition_audit/minimum_cell_filter_on_off_bridge.tsv",
+      "sha256": "cd2958bf050cd38ae71ccbe54e9628867ab9517c624db5df5c8d1fe49cbfce14",
+      "csv": "Results/21_minimum_cell_filter_on_off_bridge.csv",
+      "rows": 4
+    },
+    "D22": {
+      "source": "reports/revision/m2_attrition_audit/target_eligibility_detail.tsv",
+      "sha256": "619def8bfe2d806afa1ee4542a2026a16535baf525c746b5089b79949d3bdd06",
+      "csv": "Results/22_target_eligibility_detail.csv",
+      "rows": 100
+    },
+    "D23": {
+      "source": "reports/revision/m2_endpoint_object/endpoint_category_summary.tsv",
+      "sha256": "025dbb4e0f995b44a5d611fd61fdf726fa740f804c1c7f60f1243562bbcda6f3",
+      "csv": "Results/23_endpoint_category_summary.csv",
+      "rows": 10
+    },
+    "D24": {
+      "source": "reports/revision/m2_endpoint_object/endpoint_statistic_candidate_summary.tsv",
+      "sha256": "e5a03ea30dcfef9be656fdcf388961e9a6c46ab3a144d6926b007545462ddcb6",
+      "csv": "Results/24_endpoint_statistic_candidate_summary.csv",
+      "rows": 6
+    },
+    "D25": {
+      "source": "docs/revision_equal_n_attrition/group_comparison.tsv",
+      "sha256": "33dbb9c3b0384491081cbf13c2af64d7f3b6907d9bc6d8a54726f281812b4b3e",
+      "csv": "Results/25_group_comparison.csv",
+      "rows": 84
+    },
+    "D26": {
+      "source": "docs/revision_external_cell_count/cohort_sources.tsv",
+      "sha256": "58807613857f2dc998c5e26b4af26a6bbddcc118b72c8a2ef4808c9666660743",
+      "csv": "Results/26_cohort_sources.csv",
+      "rows": 6
+    },
+    "D27": {
+      "source": "reports/revision/m2_endpoint_object/sampling_aware_endpoint_object.tsv",
+      "sha256": "ca3b7bc97bbe19bd956a472fb25b97d65dcf21a586eb5770ef10eb5ab3c7fa71",
+      "csv": "Results/27_sampling_aware_endpoint_object.csv",
+      "rows": 95
+    },
+    "D28": {
+      "source": "reports/revision/m1_bridge_confounding/target_level_covariates_and_corrected_shift.tsv",
+      "sha256": "858a8ff2dd9ed708a8adfa369118ff89d9e38407771a4a25b3387bdbf210d6fb",
+      "csv": "Results/28_target_level_covariates_and_corrected_shift.csv",
+      "rows": 95
+    },
+    "D29": {
+      "source": "reports/revision/m2_attrition_audit/context_qualification_summary.tsv",
+      "sha256": "49a2a04dd4509d1d7872fb135881eee6c7cb1b1a19af6bd3ae9dea0894008118",
+      "csv": "Results/29_context_qualification_summary.csv",
+      "rows": 8
+    },
+    "D30": {
+      "source": "reports/revision/m5_candidate_qualification/candidate_qualification_summary.tsv",
+      "sha256": "c677bb872741d6f4dd93f917aff22a70f4d2888b3f7639c1ba3775047f2db20c",
+      "csv": "Results/30_candidate_qualification_summary.csv",
+      "rows": 3
+    },
+    "D31": {
+      "source": "reports/revision/m5_candidate_qualification/closed_form_null_validation.tsv",
+      "sha256": "518a43e69b4bec20b3e31434aaae403cf9f229afe867d9c5bcac7bae409eddee",
+      "csv": "Results/31_closed_form_null_validation.csv",
+      "rows": 2
+    },
+    "D32": {
+      "source": "reports/revision/finalization_v2/m4/model_training_evaluation_registry.tsv",
+      "sha256": "fbfd7c889d74ec6ba24c8688f4f5556e57afef145225175d4c8a7aa851c33af4",
+      "csv": "Results/32_model_training_evaluation_registry.csv",
+      "rows": 22
+    },
+    "D33": {
+      "source": "reports/revision/finalization_v2/m4/revised_model_context_completion.tsv",
+      "sha256": "904084e1ad4b4c23ecd53a454d4f39b57f47cb8276c1d883586dedecf1ee9ec0",
+      "csv": "Results/33_revised_model_context_completion.csv",
+      "rows": 46
+    },
+    "D34": {
+      "source": "reports/revision/finalization_v2/m4/metric_correlation_summary.tsv",
+      "sha256": "3ddaae8428e972b45ec89da2e3427a575b2a9ff19673d59f05e093df7bf6db3a",
+      "csv": "Results/34_metric_correlation_summary.csv",
+      "rows": 84
+    },
+    "D35": {
+      "source": "reports/revision/m4_hcc_full_audit/sensitivity_completion_and_point_estimates.tsv",
+      "sha256": "32669cacdafaf8eb0e305821473768f7860532c6c3e6e08cc4fbf2ab755f4238",
+      "csv": "Results/35_sensitivity_completion_and_point_estimates.csv",
+      "rows": 24
+    },
+    "D36": {
+      "source": "reports/revision/m5_independent_full_audit/model_training_evaluation_registry.tsv",
+      "sha256": "75e72b85d4508951d7d8bc2887587d67b12e6b7211b46f66e6a5a6e7c395e20f",
+      "csv": "Results/36_model_training_evaluation_registry.csv",
+      "rows": 3
+    },
+    "D37": {
+      "source": "reports/revision/m5_independent_full_audit/model_completion.tsv",
+      "sha256": "d72726260b714777c6d81f7948b4f3338ad24a1f1fe22eeb0ae7ab9f28ea0970",
+      "csv": "Results/37_model_completion.csv",
+      "rows": 3
+    },
+    "D38": {
+      "source": "reports/revision/finalization_v2/cellot_five_seeds/all_seed_context_metrics.tsv",
+      "sha256": "93cbd6d2300041e923701493ee4f49c02e2008d438bcd32df44869522dc298f4",
+      "csv": "Results/38_new_context_metrics.csv",
+      "rows": 10
+    },
+    "D39": {
+      "source": "docs/revision_cellot_seed123/old_new_comparison.tsv",
+      "sha256": "8641b6d22c2b0556e9134e35c6a92cf3557128af727c04467d5c9df13e0c8940",
+      "csv": "Results/39_old_new_comparison.csv",
+      "rows": 16
+    },
+    "D41": {
+      "source": "reports/revision/finalization_v2/depmap/gene_effect_sensitivity.tsv",
+      "sha256": "b37bdce3545ca2e26d7f3b255d9d6f142f12fc0886dad28b2ee63c2b00e3830c",
+      "csv": "Results/D41_gene_effect_sensitivity.csv",
+      "rows": 8
+    },
+    "D42": {
+      "source": "reports/revision/finalization_v2/depmap/candidate_comparison.tsv",
+      "sha256": "c73d23532f1450c66b108616487eedc34f7ad4ab49e1e17c2bfeba3b286ebec4",
+      "csv": "Results/D42_candidate_comparison.csv",
+      "rows": 48
+    },
+    "D43": {
+      "source": "reports/revision/finalization_v2/uncertainty/homogenization_intervals.tsv",
+      "sha256": "2cc7fa86829f7c6abf56eb31261178d4d97162aac3c825c0df89fa78cadcf746",
+      "csv": "Results/D43_homogenization_intervals.csv",
+      "rows": 330
+    },
+    "D44": {
+      "source": "reports/revision/finalization_v2/cellot_five_seeds/additional_homogenization_intervals.tsv",
+      "sha256": "6eeb1389be1e5bb0079f09e89a0c5cbeea94d6ae6d18f5b9bb9e6ce459e7595f",
+      "csv": "Results/D44_additional_homogenization_intervals.csv",
+      "rows": 48
+    },
+    "D45": {
+      "source": "reports/revision/finalization_v2/replogle_feature_seeds/context_metrics.tsv",
+      "sha256": "1875f5c8cd66d5ce252d31640454809f9ef686139fae068baa5a9a23b47365a0",
+      "csv": "Results/D45_context_metrics.csv",
+      "rows": 6
+    },
+    "D46": {
+      "source": "reports/revision/finalization_v2/other_training_seeds/context_metrics.tsv",
+      "sha256": "142506d24c62294644ba86c8600affbb263ea9a30228f7d73cc61fc7e37e0c7e",
+      "csv": "Results/D46_context_metrics.csv",
+      "rows": 18
+    }
+  },
+  "presentation_source_sha256": "fb2f669216ba188df8805e2727127bd88109a770b3829a48813842109213b735"
+}

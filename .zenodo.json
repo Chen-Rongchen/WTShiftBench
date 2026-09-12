@@ -20,8 +20,8 @@
       "name": "Cheng, Shuqun"
     }
   ],
-  "version": "v1.2.0",
-  "description": "WTShiftBench返修公开复现归档。reproducibility/v1.2.0包含sampling-aware endpoint/category表、带target/gene轴的HCC和Replogle实测/预测矩阵、配置、可用seeds、原评分代码、Pixi锁文件和provenance。独立入口recompute.py从冻结矩阵复算五维评分、常规重构摘要及原已提供的CI/P/q。包括HCC两个context的9个正式entrants、诊断对照、Replogle 1882×1024的3个target-held-out entrants与CellOT seed123补充输出。不声称恢复未知的历史训练seed或所有raw-to-training路径。私有稿件、回复信及本地私有Git历史不在归档中；根目录旧图件为v1.1.1历史材料。代码保留MIT许可，衍生数据须同时遵循与引用原始数据集及DepMap的条款。",
+  "version": "1.2.1",
+  "description": "WTShiftBench v1.2.1：采样校正端点、带轴矩阵评分源码、五seed CellOT与已报告训练/特征seed检查。代码快照不等于完整数据归档；资产及实际验收范围见当前复现入口。",
   "license": "MIT",
   "keywords": [
     "Perturb-seq",

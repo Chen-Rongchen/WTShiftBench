@@ -1,0 +1,35 @@
+{
+  "initial_state_sha256": "1ba5d88ce33a054fb604b026507927bc2ac53efc5bbad1d19d24ed0ab9f3b13a",
+  "torch_initial_seed": 123,
+  "scvi_split_seed": 0,
+  "training_arguments": {
+    "max_epochs": 100,
+    "batch_size": 128,
+    "early_stopping": true,
+    "early_stopping_patience": 10
+  },
+  "split_sha256": "0c2f02439dbbb1d652e48c9793baf14363aa38c1c5d23388e874249f2b681484",
+  "trained_state_sha256": "ecda3cfe8a15e7c0d8c379f96c958c6ac6b902653cda39d8d68c41200f1147c4",
+  "actual_epochs": 12,
+  "scvi_version": "0.19.0",
+  "model": "scgen",
+  "context": "HCC1143",
+  "training_seed": 123,
+  "inference_seed": 123,
+  "prediction_path": "reports/revision/other_model_training_seeds_v1/scgen/seed123/HCC1143/HCC1143/predicted_shift.tsv.gz",
+  "prediction_sha256": "6e53308099ef822fa78a98d5d1d04ecbb492ae399031eaf50ea0dd44da1f5926",
+  "elapsed_seconds": 23.05802621366456,
+  "completed_utc": "2026-09-11T13:34:18.630404+00:00",
+  "package_versions": {
+    "torch": "2.0.0",
+    "numpy": "1.23.5",
+    "python": "3.10.20 | packaged by conda-forge | (main, Mar  5 2026, 16:42:22) [GCC 14.3.0]"
+  },
+  "cuda_available": true,
+  "torch_threads": 1,
+  "deterministic_algorithms": false,
+  "scope": "训练seed敏感性；GPU核可能非逐位确定，不声称历史运行的精确重现",
+  "checkpoint_hashes": {
+    "reports/revision/other_model_training_seeds_v1/scgen/seed123/HCC1143/checkpoint/model.pt": "68cbbde250844543fc73c9769a939b7a4055d1be32d3b47de58c754a069f2697"
+  }
+}

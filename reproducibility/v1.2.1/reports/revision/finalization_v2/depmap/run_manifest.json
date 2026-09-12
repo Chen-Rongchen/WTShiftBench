@@ -1,0 +1,27 @@
+{
+  "amendment": "A010",
+  "inputs_sha256": {
+    "configs/revision/amendment_010_formal_release_v2.json": "618c928f57cfe3e91fb86da282be0b2635ed6b87f1ea0e5d73e8ac7071203ebb",
+    "src/wtbench/revision_finalization.py": "cd572d4abfa8118083a2b0317f7632718774ab5c9373d8034081366551bd5e51",
+    "data/processed/truth_driven_bridge/combined_target_level_bridge_table.tsv.gz": "2f0163bf2f48cb399294860c67aa011bb2ca506541c6baff0051b0a35a472766",
+    "data/processed/truth_driven_bridge_replogle_k562_essential_day7/combined_target_level_bridge_table.tsv.gz": "3fb96fb05ed2ae967506c2bef7a5d8613281ad37f694a55ff28439fbc1fd6206",
+    "data/processed/truth_driven_bridge_replogle_k562_gwps_day8/combined_target_level_bridge_table.tsv.gz": "e2c2bd014bdbf59f19d54d7378d6b9b8e9329cc3a17e09c532e40c82aa75fea6",
+    "reports/gse264667_endpoint_extension/gse264667_hepg2_day7/target_level_bridge_table.tsv.gz": "214e9bfb68666fa055a37309893879300dc072e37d511876a4b268da7bac75fd",
+    "reports/gse264667_endpoint_extension/gse264667_jurkat_day7/target_level_bridge_table.tsv.gz": "938d5cc86d216798db7a367541a819ba21ef5f3f91886bdee16c5c6b91e6e734",
+    "data/processed/truth_driven_bridge_gse90063_7d/combined_target_level_bridge_table.tsv.gz": "dcb908cc880c14dbeee2c4b1e10c459d9e651a07f882f0c06360a891c0410594",
+    "data/processed/truth_driven_bridge_gse90063_13d/combined_target_level_bridge_table.tsv.gz": "062f58cb2b4c6f2337efdc9007e3684c259fbd0f1f7b9ff49beb7ea22baa57ec",
+    "depmap/CRISPRGeneEffect.csv": "fa44b6a7cefe8748aaa2bef21bd49aa105f7ebfe819510da3022266d88f24d51",
+    "depmap/23Q2/CRISPRGeneEffect.csv": "d1633bfa0bf4719e72e564f15d9bcda7fddbbd3dac2a8a3aebf4898ac9f56f00",
+    "depmap/23Q4/CRISPRGeneEffect.csv": "f119e3f43125fc5e669ca028141582feda3b4b3f45d72d22a21597eb0913d191",
+    "depmap/24Q4/CRISPRGeneEffect.csv": "3d8f3ec6dbf2db7ff834b79b508622ec0b226f3518003fe96ecf5a4fcf167e3b",
+    "depmap/25Q2/CRISPRGeneEffect.csv": "3f69c065a2991f19673fb49fdddf174acf35f2f5bdec9d798dfc884f737efcc4",
+    "depmap/26Q1/CRISPRGeneEffect.csv": "e610a4cefb13a82b5b256b47eb08b63ff14843f8dbd0fb164bc0a32688e5b89e"
+  },
+  "outputs_sha256": {
+    "reports/revision/finalization_v2/depmap/candidate_file_registry.tsv": "5cc9c81b893f3fd5e577dd27a85376241335dc4bbda5f1e5b70cb2102238f81a",
+    "reports/revision/finalization_v2/depmap/candidate_comparison.tsv": "c73d23532f1450c66b108616487eedc34f7ad4ab49e1e17c2bfeba3b286ebec4",
+    "reports/revision/finalization_v2/depmap/candidate_detail.tsv.gz": "2cb999520f49bc1a82fd917c9e5f19fde9cf0e2d96b2770dd7942bc9b60ada96",
+    "reports/revision/finalization_v2/depmap/gene_effect_sensitivity.tsv": "b37bdce3545ca2e26d7f3b255d9d6f142f12fc0886dad28b2ee63c2b00e3830c",
+    "reports/revision/finalization_v2/depmap/gene_effect_target_values.tsv.gz": "45734dacf7d2c060e93cbb80152d3b188748f86b3d3a8d5349c459b7d16fc50e"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "amendment": "A013",
+  "scope": "A013_six_Replogle_feature_sensitivity_outputs",
+  "inputs_sha256": {
+    "configs/revision/amendment_013_other_model_seeds.json": "25bdfe6e8b4bc7913ea19b4a40ec8334ca036ef2f4fa795bf544004b8738df19",
+    "scripts/revision/score_other_model_seeds.py": "f80be88bf1e66154212464f3d61a8afd2aea4c61a63f267f5e2531a3f76ebb33",
+    "configs/revision/revision_m5_full_audit_v1.json": "e383fe699fd47d4063a93f8ecd3479900f58f55bcc11da2bdf3941f3dfe0e305",
+    "data/predictions/revision_m5_replogle/observed_shift_contract.npz": "e0182d7655af315d44dd3b8672e2914897119ea699091a449911ffc628b30ebd",
+    "reports/revision/m5_candidate_qualification/selected_context_endpoint_object.tsv.gz": "17395fdaad03e341e2616a08dea4f02901ee13ca49f6073f89e644c5b0ca9f5f",
+    "configs/revision/revision_metric_spec_v1.json": "6c7fffa1c032dbf789b1a1a000a7c32d598262122b2c04f1e6c8ba72f7cde0e9",
+    "reports/revision/finalization_v2/replogle_feature_seeds/fixed_geneformer_features.npz": "029b9aab0594a262a2b03f01f145309ddc49a0421be52d7d2f7e96714fe58c4c",
+    "src/wtbench/revision_m5_audit.py": "043270baa549e5d6b6c994c497b489a54806d33787e93fdf292e70a671654b2a",
+    "reports/revision/finalization_v2/replogle_feature_seeds/geneformer_embedding_ridge_loo_feature_seed123_predicted_shift.npz": "b1f854b549a663c2eb97e8294cf36a28921de459cd8fa36cae022a85787ca74f",
+    "reports/revision/finalization_v2/replogle_feature_seeds/geneformer_embedding_ridge_loo_feature_seed124_predicted_shift.npz": "311825d096272d6331722285be38946e632c444d3a18d54f2e35f1ba33807da2",
+    "reports/revision/finalization_v2/replogle_feature_seeds/geneformer_embedding_ridge_loo_feature_seed125_predicted_shift.npz": "ccb3f200971fbfb9b464ca1ccbd6cc946b972f9aa371690fb873ccc221bc7538",
+    "reports/revision/finalization_v2/replogle_feature_seeds/chargram_lowrank_ridge_loo_feature_seed123_predicted_shift.npz": "afa53fa5c284ac898266a1fd44d6a42d559e86091218279f4505334673132ead",
+    "reports/revision/finalization_v2/replogle_feature_seeds/chargram_lowrank_ridge_loo_feature_seed124_predicted_shift.npz": "fde13955c323eeb0caf80ddd45ac1dee0eabefac30abc9234689857091f97900",
+    "reports/revision/finalization_v2/replogle_feature_seeds/chargram_lowrank_ridge_loo_feature_seed125_predicted_shift.npz": "13ebbd3466d589c445b703954322e0f6b9791b354ced96e696b14f36302e3468"
+  },
+  "outputs_sha256": {
+    "reports/revision/finalization_v2/replogle_feature_seeds/context_metrics.tsv": "1875f5c8cd66d5ce252d31640454809f9ef686139fae068baa5a9a23b47365a0",
+    "reports/revision/finalization_v2/replogle_feature_seeds/target_metrics.tsv.gz": "3e31f9e3a606a4387153228e5bdd6997c412326c036c63ca8c97778a42221b10"
+  }
+}
