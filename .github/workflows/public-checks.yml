@@ -3,7 +3,7 @@ name: v1.2.1公开源码轻量检查
 on:
   push:
     branches: [main]
-    paths: ['reproducibility/v1.2.1/**', '.github/workflows/public-checks.yml']
+    paths: ['reproducibility/v1.2.1/**', '.github/workflows/public-checks.yml', 'scripts/release/validate_public_bundle.py', 'tests/test_public_bundle.py']
   pull_request:
   workflow_dispatch:
 
