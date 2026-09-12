@@ -2,12 +2,21 @@
 
 import hashlib
 import importlib.util
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SPEC = importlib.util.spec_from_file_location("public_bundle", ROOT / "scripts/release/validate_public_bundle.py")
 MODULE = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(MODULE)
+
+
+def test_public_documents_do_not_use_submission_iteration_labels(monkeypatch):
+    monkeypatch.chdir(ROOT)
+    pattern = re.compile(r"(?<![A-Za-z0-9])v[456](?![A-Za-z0-9])|\d+\.\d+\.\d+-dev(?:[.\d]+)?")
+    for name in MODULE.tracked_paths():
+        if name.endswith(".md"):
+            assert not pattern.search((ROOT / name).read_text()), name
 
 
 def test_current_and_historical_public_trees_pass(monkeypatch):
