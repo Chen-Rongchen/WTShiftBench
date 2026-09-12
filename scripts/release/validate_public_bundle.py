@@ -1,13 +1,13 @@
-"""Validate the curated public release file set in Git's index.
-
-Local manuscript and build artifacts may remain in the working tree without
-entering the public release.
-"""
+"""检查公开文件白名单；旧根布局与版本化复现目录分别按其清单验证。"""
 
 from __future__ import annotations
 
+import csv
+import hashlib
+import json
 import re
 import subprocess
+from functools import lru_cache
 from pathlib import Path
 from pathlib import PurePosixPath
 
@@ -71,6 +71,39 @@ TEXT_SUFFIXES = {
     ".yml",
 }
 
+PUBLIC_DOCUMENTS = {
+    "docs/CHANGELOG.md",
+    "docs/THIRD_PARTY_NOTICES.md",
+    "docs/verification/v1.2.1/local_source_verification.json",
+}
+RELEASE_INDEXES = {
+    "reproducibility/v1.2.0/": "reproducibility/v1.2.0/archive_manifest.json",
+    "reproducibility/v1.2.1/": "reproducibility/v1.2.1/manifests/file_index.tsv",
+}
+# 这些已公开运行回执含当时机器路径，不能据此拒绝或改写历史。
+# 仅放行逐字节匹配清单的指定JSON，不放行可执行代码、配置或任意日志。
+HISTORICAL_PATH_RECORDS = {
+    f"reproducibility/{version}/provenance/revision_cellot_replay/verification_manifest.json"
+    for version in ("v1.2.0", "v1.2.1")
+} | {
+    f"reproducibility/v1.2.1/reports/revision/other_model_training_seeds_v1/cpa/seed{seed}/{context}/completed.json"
+    for seed in (123, 124, 125)
+    for context in ("HCC38", "HCC1143")
+} | {
+    f"reproducibility/v1.2.1/reports/revision/other_model_training_seeds_v1/{name}.json"
+    for name in ("progress", "training_complete")
+}
+
+
+@lru_cache(maxsize=1)
+def release_files() -> dict[str, str]:
+    entries = {}
+    for prefix, index_path in RELEASE_INDEXES.items():
+        with Path(index_path).open(encoding="utf-8") as handle:
+            rows = json.load(handle)["files"] if index_path.endswith(".json") else csv.DictReader(handle, delimiter="\t")
+            entries.update({prefix + row["path"]: row["sha256"] for row in rows})
+    return entries
+
 
 def tracked_paths() -> list[str]:
     result = subprocess.run(
@@ -87,10 +120,19 @@ def validate_path(path_text: str) -> list[str]:
     errors: list[str] = []
     top_level = path.parts[0] if path.parts else ""
 
-    if top_level not in ALLOWED_TOP_LEVEL:
+    versioned = any(path_text.startswith(prefix) for prefix in RELEASE_INDEXES)
+    if versioned:
+        if path_text not in release_files() and path_text not in RELEASE_INDEXES.values():
+            errors.append("file is not registered in the versioned public manifest")
+    elif path_text not in PUBLIC_DOCUMENTS and top_level not in ALLOWED_TOP_LEVEL:
         errors.append("path is outside the curated public repository layout")
-    if top_level in {"manuscript", "reports", "docs", "resource_registry", "model_registry"}:
+    if top_level in {"manuscript", "reports", "resource_registry", "model_registry"}:
         errors.append("internal analysis or submission material is excluded")
+    if any(name in path.name.lower() for name in (
+        "manuscript_revision", "response_to_reviewers", "revision_text_en",
+        "closure_audit", "reviewer_response_evidence_map",
+    )) or any(part in {".env", "private_submission"} for part in path.parts):
+        errors.append("private submission or account material is excluded")
     if "caption" in path.name.lower() or "figure_legend" in path.name.lower():
         errors.append("figure captions and manuscript legends are excluded")
     if path.parts[:2] == ("figure_build", "output"):
@@ -123,16 +165,20 @@ def validate_contents(path_text: str) -> list[str]:
     path = Path(path_text)
     if path_text == "scripts/release/validate_public_bundle.py":
         return []
+    errors = []
+    declared_hash = release_files().get(path_text)
+    if declared_hash is not None:
+        if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != declared_hash:
+            return [f"{path_text}: frozen public manifest SHA256 mismatch"]
     if path.suffix.lower() not in TEXT_SUFFIXES or not path.is_file():
         return []
     try:
         text = path.read_text(encoding="utf-8")
     except UnicodeDecodeError:
         return []
-    errors = []
     for pattern in MACHINE_PATH_PATTERNS:
         match = pattern.search(text)
-        if match:
+        if match and not (declared_hash is not None and path_text in HISTORICAL_PATH_RECORDS):
             errors.append(
                 f"{path_text}: machine-specific absolute path is forbidden ({match.group(0)})"
             )
