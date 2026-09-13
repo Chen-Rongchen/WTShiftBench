@@ -19,6 +19,15 @@ def test_public_documents_do_not_use_submission_iteration_labels(monkeypatch):
             assert not pattern.search((ROOT / name).read_text()), name
 
 
+def test_historical_figures_are_not_presented_as_current_results():
+    historical = (ROOT / "figures/README.md").read_text()
+    assert historical.startswith("# 历史公开图件")
+    assert "../reproducibility/v1.2.1/README.md" in historical
+    assert "不代表 v1.2.1 的正式结果" in historical
+    assert "Active figure panels" not in historical
+    assert "[原有 SVG 图件](figures/README.md)" in (ROOT / "README.md").read_text()
+
+
 def test_current_and_historical_public_trees_pass(monkeypatch):
     monkeypatch.chdir(ROOT)
     paths = MODULE.tracked_paths()
