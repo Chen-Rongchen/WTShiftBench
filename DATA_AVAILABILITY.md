@@ -1,6 +1,6 @@
 # 数据与复现资产
 
-当前版本为 v1.2.1。代码入口见[复现说明](reproducibility/v1.2.1/README.md)，实际 ZIP 大小和 SHA256 见[资产清单](reproducibility/v1.2.1/manifests/archive_assets.json)。下载 URL／版本 DOI 尚未核验时保持空缺，不复用 v1.2.0 DOI。GitHub 源码快照本身不包含两个大型数据／训练 ZIP。
+当前版本为 v1.2.1。代码入口见[复现说明](reproducibility/v1.2.1/README.md)，ZIP下载URL、大小和SHA256见[资产清单](reproducibility/v1.2.1/manifests/archive_assets.json)。[GitHub Release](https://github.com/Chen-Rongchen/WTShiftBench/releases/tag/v1.2.1) 已提供四个计算复现ZIP；Zenodo版本DOI尚未回填，不复用v1.2.0 DOI。GitHub自动源码快照本身不包含两个大型数据／训练ZIP，需要分别下载Release附件。
 
 ## 上游来源与当前用途
 
