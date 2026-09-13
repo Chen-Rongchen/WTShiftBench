@@ -17,6 +17,8 @@
 
 ## 归档内容
 
+公开数值源表、绘图代码和图源对应关系；本轮人工排版的论文成品图、最终投稿Excel及稿件／回复不作为默认公开附件。原有公开SVG保留为[历史图件](figures/README.md)，不指代当前结果。
+
 矩阵ZIP包含87个已登记输出及相应实测矩阵／轴、冻结endpoint/categories、当前统计配置、评分代码、expected比较基准和科学来源记录。完整评分与辅助复算的范围见当前README；expected不是预测值或评分答案的计算输入。
 
 训练ZIP保留CellOT123–127两context的470个checkpoint、staged输入和执行代码。其他模型的已报告seed预测也进入矩阵评分范围，但不能因此宣称其全部原始数据处理、上游预训练和训练checkpoint均已归档。

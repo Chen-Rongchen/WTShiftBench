@@ -46,7 +46,9 @@ pixi run --frozen --environment core python build_figures.py --output outputs/fi
 pixi run --frozen --environment core python -m pytest tests -q
 ```
 
-绘图直接读取`presentation/Results/`的46张冻结CSV/TSV及科学配置，不需要Word、稿件或回复。绘图函数来自同一交付实现；函数hash与唯一D40路径映射见`presentation/plot_source_provenance.json`。PDF/SVG可能含时间等元数据；数值、图源和PNG像素可独立比较。
+绘图直接读取`presentation/Results/`的46张冻结CSV/TSV及科学配置，不需要Word、稿件或回复。绘图函数来自同一交付实现；函数hash与唯一D40路径映射见`presentation/plot_source_provenance.json`。
+
+现有`build_figures.py`生成程序排版的组合图及其图源清单，不是逐panel独立文件导出器。各panel的绘制代码与数值来源可以核对；作者后续的人工拼接、字体和留白调整留在私有工作区。论文成品图和最终投稿Excel不作为默认公开附件，其对应源表仍公开。不承诺自动生成与人工最终版逐像素相同的版式；PDF/SVG也可能包含时间等元数据。
 
 ## 5. 对象、运行与历史
 
