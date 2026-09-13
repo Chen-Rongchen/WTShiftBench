@@ -1,0 +1,27 @@
+{
+  "version": "1.2.1",
+  "github_release_id": 387881850,
+  "github_release_url": "https://github.com/Chen-Rongchen/WTShiftBench/releases/tag/v1.2.1",
+  "published_at_utc": "2026-09-13T11:46:42Z",
+  "verified_at_utc": "2026-09-13T12:04:03Z",
+  "git_tag": "v1.2.1",
+  "verified_release_commit": "63a00cedcf4960ede5f1b21066cc94a8469cec6c",
+  "github_release_published": true,
+  "is_draft": false,
+  "server_asset_count": 7,
+  "server_asset_sizes_and_sha256_match_local": true,
+  "server_assets": ["PUBLIC_README.md", "release_manifest.json", "SHA256SUMS", "WTShiftBench_v1.2.1_source.zip", "WTShiftBench_v1.2.1_matrices_20260912.zip", "WTShiftBench_v1.2.1_cellot_training_20260912.zip", "WTShiftBench_v1.2.1_local_verification_20260912.zip"],
+  "anonymous_downloads_verified": [
+    {"filename": "WTShiftBench_v1.2.1_source.zip", "url": "https://github.com/Chen-Rongchen/WTShiftBench/releases/download/v1.2.1/WTShiftBench_v1.2.1_source.zip", "bytes": 43107487, "sha256": "b7de6257c063c9cd4bb68e05db0f74193c18ce96a3aff42af1bc26832cb91903", "zip_crc_checked": true},
+    {"filename": "WTShiftBench_v1.2.1_local_verification_20260912.zip", "url": "https://github.com/Chen-Rongchen/WTShiftBench/releases/download/v1.2.1/WTShiftBench_v1.2.1_local_verification_20260912.zip", "bytes": 14990, "sha256": "cae6731c4e8bd5b0f1d31ad3afcfac16724cc6ab11a74fce390e5b1df25a5c8a", "zip_crc_checked": true}
+  ],
+  "anonymous_downloads_pending": ["WTShiftBench_v1.2.1_matrices_20260912.zip", "WTShiftBench_v1.2.1_cellot_training_20260912.zip"],
+  "download_limitation": "默认通道下载超时，切换通道后仍出现TLS连接错误；保留部分下载，不计作通过。源码及小型验收包在独立目录完成匿名下载、大小/SHA256/ZIP核验。",
+  "all_four_archives_download_verified": false,
+  "full_statistics_recomputed_from_public_download": false,
+  "checkpoint_replay_executed_from_public_download": false,
+  "staged_retraining_executed_from_public_download": false,
+  "zenodo_record_verified": false,
+  "zenodo_version_doi": null,
+  "scope": "正式发布和七个服务端附件对账通过；仅两个匿名下载包核验通过。未完成四包公开下载闭环，不把既有本地完整复算记录当作本轮复算。"
+}
