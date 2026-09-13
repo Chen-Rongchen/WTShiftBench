@@ -75,6 +75,7 @@ PUBLIC_DOCUMENTS = {
     "docs/CHANGELOG.md",
     "docs/THIRD_PARTY_NOTICES.md",
     "docs/verification/v1.2.1/local_source_verification.json",
+    "docs/verification/v1.2.1/github_release_verification.json",
 }
 RELEASE_INDEXES = {
     "reproducibility/v1.2.0/": "reproducibility/v1.2.0/archive_manifest.json",

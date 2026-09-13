@@ -4,12 +4,13 @@ WTShiftBench（whole-transcriptome shift benchmark）审计模型输出的外部
 
 ## 当前入口：v1.2.1
 
-[v1.2.1 复现说明](reproducibility/v1.2.1/README.md) 是当前科学版本的唯一执行入口。本源码候选尚未声明完成公开下载验收；版本 DOI 与下载位置由正式发布后补入的资产清单确定。不把历史版本 DOI 当作 v1.2.1 DOI。
+[v1.2.1 复现说明](reproducibility/v1.2.1/README.md) 是当前科学版本的唯一执行入口。[GitHub Release v1.2.1](https://github.com/Chen-Rongchen/WTShiftBench/releases/tag/v1.2.1) 已发布四个计算复现ZIP，固定源码提交为 `63a00cedcf4960ede5f1b21066cc94a8469cec6c`。本页后续更新只提供发布／验证说明，不移动该tag。Zenodo版本DOI及公开下载完整统计复算仍单独验收，不用历史DOI替代。
 
 - 代码、配置、小型冻结结果与带轴索引：`reproducibility/v1.2.1/`。
 - 矩阵、CellOT 五-seed 训练资产：独立 ZIP，见[资产清单](reproducibility/v1.2.1/manifests/archive_assets.json)。不纳入普通 Git 历史。
 - 源数据、数据使用条件与范围：[数据说明](DATA_AVAILABILITY.md)、[第三方来源](docs/THIRD_PARTY_NOTICES.md)。
 - 本轮变更：[版本记录](docs/CHANGELOG.md)。
+- [公开发布／下载核验记录](docs/verification/v1.2.1/github_release_verification.json)：七个服务端附件大小及SHA256一致；源码和小型验收包匿名下载通过，两个大包的完整下载核验因网络错误仍待完成，不等于全部统计已经公开复算。
 
 ## 两条不同的执行路径
 

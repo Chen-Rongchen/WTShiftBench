@@ -1,10 +1,10 @@
 # WTShiftBench v1.2.1 复现入口
 
-本目录是公开源码候选，尚未声明完成Zenodo公开下载验证。不要在根目录旧实现执行当前命令。当前工作目录、输入ZIP和所加载模块必须来自同一版本。
+本目录对应已发布的[GitHub Release v1.2.1](https://github.com/Chen-Rongchen/WTShiftBench/releases/tag/v1.2.1)，固定源码为`63a00cedcf4960ede5f1b21066cc94a8469cec6c`。发布后的文档提交不移动tag或替换归档ZIP。Zenodo公开下载及版本DOI仍单独验收。不要在根目录旧实现执行当前命令；工作目录、输入ZIP和所加载模块必须来自同一版本。
 
 ## 1. 下载与校验
 
-[manifests/archive_assets.json](manifests/archive_assets.json)列出三个既有ZIP的实际字节数、SHA256及`extracted_root`；下载位置在正式发布并核验后补入。不得用旧版本DOI补空。将矩阵ZIP、训练ZIP分别解压到不同的新目录，保留原内部路径。
+[manifests/archive_assets.json](manifests/archive_assets.json)列出三个计算／验收ZIP的GitHub下载位置、实际字节数、SHA256及`extracted_root`；精确源码ZIP另在Release的Assets中提供，四包完整清单为Release附件`release_manifest.json`。不得用旧版本DOI补空。将矩阵ZIP、训练ZIP分别解压到不同的新目录，保留原内部路径。
 
 矩阵ZIP展开后须进入`WTShiftBench_v1.2.1_matrices/`，训练ZIP须进入`WTShiftBench_v1.2.1_cellot_training/`。不要停留在其父目录运行，否则Pixi可能向上找到另一项目的环境。
 
@@ -62,4 +62,4 @@ pixi run --frozen --environment core python -m pytest tests -q
 
 ## 6. 验证与发布状态
 
-`verification/local/`保留已有本地验收记录的真实范围，不重命名成公开验证。源码候选本轮检查另在发布交接中记录。正式发布后须从实际公共URL下载到新目录，校验hash、执行所承诺路径并记录环境和误差，再回填版本DOI；不要预填`public_download_verified=true`。
+`verification/local/`保留发布前本地验收记录的真实范围，不重命名成公开验证。GitHub发布状态、匿名下载文件核验、矩阵到完整统计复算与Zenodo验收分别记录；不能只因出现下载URL就填写`public_download_verified=true`。取得相应版本DOI后再回填引用。
