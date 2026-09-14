@@ -3,10 +3,12 @@
   "distribution_release": "v1.2.0",
   "provider": "GitHub Release",
   "release_url": "https://github.com/Chen-Rongchen/WTShiftBench/releases/tag/v1.2.0",
-  "status": "Published; fresh anonymous-download SHA256 and ZIP-integrity checks passed; full scoring in progress",
+  "status": "Published; fresh anonymous-download integrity and full scoring verification passed",
   "verified_release_commit": "ca6b0ee1562de9e20f12bec432283c55b0e64bca",
-  "public_download_scope": "Archive bytes and ZIP integrity; full scoring is recorded separately",
-  "public_score_recomputation_verified": false,
+  "public_download_scope": "Archive bytes, ZIP integrity, 87-output/373-comparison full scoring, four cutoff tables, and eight gene-effect contexts; no retraining or checkpoint replay",
+  "public_score_recomputation_verified": true,
+  "public_verification_url": "https://github.com/Chen-Rongchen/WTShiftBench/releases/download/v1.2.0/public_download_verification.json",
+  "public_verification_sha256": "f96d2c0130051d53373cf907587722ba2744ecc5fcb2459c40f634c27b821eb0",
   "archives": [
     {
       "path": "WTShiftBench_v1.2.0_matrices_20260915.zip",
