@@ -6,7 +6,8 @@
 - Preserve frozen matrices, expected results, scoring implementations, environments, and historical execution records. Original archive bytes are unchanged.
 - Refresh the source-view documentation checksums and language regression checks. The archived matrix manifest still describes the original matrix ZIP, not a newly translated data package.
 - Use v1.2.2 for the English source/documentation release and download mirrors; retain scientific assets v1.2.1 and their already validated execution paths. No models, statistics, seeds, or numerical results change.
-- The earlier v1.2.1 Git tag and Zenodo source record remain historical references. Retirement of its GitHub Release page/attachments is conditional on successful verification of the replacement downloads; release status and verification receipts are recorded separately.
+- All four replacement ZIPs passed anonymous download, SHA256 and ZIP-integrity checks. Retired the earlier v1.2.1 GitHub Release page/attachments afterwards; its Git tag, Git history and Zenodo source record remain preserved. Original scientific recomputation receipts retain their historical URLs and timestamps.
+- The new source record is `10.5281/zenodo.22753462`; like the earlier source DOI, it does not contain the matrix/training ZIPs. Persistent data archiving remains a separate step. Post-release documentation does not move the v1.2.2 tag or replace its source ZIP.
 
 ## [1.2.1] — 2026-09-12
 

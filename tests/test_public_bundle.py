@@ -30,7 +30,7 @@ def test_historical_figures_are_not_presented_as_current_results():
 
 
 def test_current_reading_guides_are_in_english():
-    paths = ["README.md", "DATA_AVAILABILITY.md", "CITATION.cff", ".zenodo.json",
+    paths = ["README.md", "DATA_AVAILABILITY.md", "CITATION.cff", ".zenodo.json", ".github/workflows/public-checks.yml",
              "docs/CHANGELOG.md", "docs/THIRD_PARTY_NOTICES.md", "figures/README.md",
              "data/reference/gene_sets/axis_annotation/README.md",
              "reproducibility/v1.2.1/README.md", "reproducibility/v1.2.1/docs/README.md",
