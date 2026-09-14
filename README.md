@@ -4,13 +4,13 @@ WTShiftBench（whole-transcriptome shift benchmark）审计模型输出的外部
 
 ## 当前入口：v1.2.1
 
-[v1.2.1 复现说明](reproducibility/v1.2.1/README.md) 是当前科学版本的唯一执行入口。[GitHub Release v1.2.1](https://github.com/Chen-Rongchen/WTShiftBench/releases/tag/v1.2.1) 已发布四个计算复现ZIP，固定源码提交为 `63a00cedcf4960ede5f1b21066cc94a8469cec6c`。本页后续更新只提供发布／验证说明，不移动该tag。Zenodo版本DOI及公开下载完整统计复算仍单独验收，不用历史DOI替代。
+[v1.2.1 复现说明](reproducibility/v1.2.1/README.md) 是当前科学版本的唯一执行入口。[GitHub Release v1.2.1](https://github.com/Chen-Rongchen/WTShiftBench/releases/tag/v1.2.1) 已发布四个计算复现ZIP，固定源码提交为 `63a00cedcf4960ede5f1b21066cc94a8469cec6c`。本页后续更新只提供发布／验证说明，不移动该tag。2026-09-14已从实际公开下载的矩阵完成87输出、373项完整统计对账。代码版本DOI为[10.5281/zenodo.22735108](https://doi.org/10.5281/zenodo.22735108)，该Zenodo记录目前仅含源码，不包含矩阵和训练附件；数据持久归档仍需单独完成。
 
 - 代码、配置、小型冻结结果与带轴索引：`reproducibility/v1.2.1/`。
 - 矩阵、CellOT 五-seed 训练资产：独立 ZIP，见[资产清单](reproducibility/v1.2.1/manifests/archive_assets.json)。不纳入普通 Git 历史。
 - 源数据、数据使用条件与范围：[数据说明](DATA_AVAILABILITY.md)、[第三方来源](docs/THIRD_PARTY_NOTICES.md)。
 - 本轮变更：[版本记录](docs/CHANGELOG.md)。
-- [公开发布／下载核验记录](docs/verification/v1.2.1/github_release_verification.json)：七个服务端附件大小及SHA256一致；源码和小型验收包匿名下载通过，两个大包的完整下载核验因网络错误仍待完成，不等于全部统计已经公开复算。
+- [公开下载与完整复算记录](docs/verification/v1.2.1/github_release_verification.json)：四个ZIP实际下载及SHA256/ZIP校验通过；371个矩阵成员、87输出/373项统计、M6四表和八context的GE辅助复算通过。训练包1767个成员核验通过，但本次未重新回放checkpoint或训练模型。2026-09-13的初次下载失败记录保留在Git历史中，不再代表当前验收状态。
 
 ## 两条不同的执行路径
 

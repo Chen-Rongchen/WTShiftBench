@@ -1,6 +1,8 @@
 # 数据与复现资产
 
-当前版本为 v1.2.1。代码入口见[复现说明](reproducibility/v1.2.1/README.md)，ZIP下载URL、大小和SHA256见[资产清单](reproducibility/v1.2.1/manifests/archive_assets.json)。[GitHub Release](https://github.com/Chen-Rongchen/WTShiftBench/releases/tag/v1.2.1) 已提供四个计算复现ZIP；Zenodo版本DOI尚未回填，不复用v1.2.0 DOI。GitHub自动源码快照本身不包含两个大型数据／训练ZIP，需要分别下载Release附件。
+当前版本为 v1.2.1。代码入口见[复现说明](reproducibility/v1.2.1/README.md)，ZIP下载URL、大小和SHA256见[资产清单](reproducibility/v1.2.1/manifests/archive_assets.json)。[GitHub Release](https://github.com/Chen-Rongchen/WTShiftBench/releases/tag/v1.2.1) 已提供四个计算复现ZIP。代码版本DOI为[10.5281/zenodo.22735108](https://doi.org/10.5281/zenodo.22735108)；实际核验该Zenodo记录只有源码ZIP，内容与固定Release代码一致，不包含矩阵／训练附件。完整数据归档和对应版本DOI仍待完成，不能以源码DOI冒充数据已归档。
+
+2026-09-14从GitHub实际重新下载四个ZIP，并在新解压目录的锁定Pixi环境完成87输出/373项完整评分对账，以及M6四表、八context的gene-effect辅助复算；全部在冻结容差内通过。详见[公开下载验收记录](docs/verification/v1.2.1/github_release_verification.json)。本次没有重新训练模型、重放470个checkpoint或重新处理全部原始细胞；这些范围与既有本地验证分别记录。
 
 ## 上游来源与当前用途
 
