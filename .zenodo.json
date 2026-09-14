@@ -21,7 +21,7 @@
     }
   ],
   "version": "1.2.1",
-  "description": "WTShiftBench v1.2.1：采样校正端点、带轴矩阵评分源码、五seed CellOT与已报告训练/特征seed检查。代码快照不等于完整数据归档；资产及实际验收范围见当前复现入口。",
+  "description": "WTShiftBench v1.2.1 provides a sampling-aware endpoint definition, scoring code for matrices with explicit target and gene axes, five-seed CellOT evaluation, and reported training- and feature-seed checks. The code snapshot is not the complete data archive. See the current reproducibility guide for assets and the scope of actual verification.",
   "license": "MIT",
   "keywords": [
     "Perturb-seq",

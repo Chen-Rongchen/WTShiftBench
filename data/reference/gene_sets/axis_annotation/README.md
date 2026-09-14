@@ -1,32 +1,18 @@
-# Stage 2 Axis Annotation 基因集资源
+# Historical Stage 2 axis-annotation gene sets
 
-这个目录用于放置 `Stage 2 axis enrichment` 使用的本地 `GMT` 资源。
+This directory stores local GMT resources used by the historical Stage 2 axis-enrichment workflow. It is not the current v1.2.1 scoring entry point.
 
-当前约定：
+The recorded workflow accepts local GMT files only; `scripts/pipeline/axis_enrichment.py` does not download them at runtime and fails when `gmt_path` is absent.
 
-- 只接受本地 `GMT` 文件
-- `scripts/pipeline/axis_enrichment.py` 不在脚本内部自动联网下载
-- 缺失 `gmt_path` 时直接 `fail-fast`
+| File | Recorded source |
+|---|---|
+| `msigdb_hallmark.gmt` | Enrichr / MSigDB_Hallmark_2020 |
+| `reactome.gmt` | Enrichr / Reactome_2022 |
+| `go_bp.gmt` | Enrichr / GO_Biological_Process_2025 |
+| `corum.gmt` | Enrichr / CORUM |
 
-当前文件：
+During the recorded run, the official Reactome `ReactomePathways.gmt.zip` endpoint returned HTTP 504, so the accessible Enrichr source was used. This historical substitution is retained for provenance.
 
-- `msigdb_hallmark.gmt`
-  来源：`Enrichr / MSigDB_Hallmark_2020`
-- `reactome.gmt`
-  来源：`Enrichr / Reactome_2022`
-  说明：本次运行时 `Reactome` 官方 `ReactomePathways.gmt.zip` 返回 `504`，先使用可访问镜像以保证分析链条可执行
-- `go_bp.gmt`
-  来源：`Enrichr / GO_Biological_Process_2025`
-- `corum.gmt`
-  来源：`Enrichr / CORUM`
+Associated historical paths are `configs/axis_enrichment_template_v1.json` and `scripts/pipeline/axis_enrichment.py`; the recorded output is `reports/axis_analysis/axis_enrichment.tsv`. These paths describe the original workflow, not a promise that the current public matrix package executes this separate analysis.
 
-推荐搭配：
-
-- `configs/axis_enrichment_template_v1.json`
-- `scripts/pipeline/axis_enrichment.py`
-
-已生成产物：
-
-- `reports/axis_analysis/axis_enrichment.tsv`
-
-后续如果需要更严格的数据库冻结，可以把这些来源进一步固化到版本化 manifest 中，但当前最小注释流程已经可复现执行。
+The original note proposed adding a versioned source manifest for tighter database freezing; this English translation does not claim that such additional provenance work has since been completed.
