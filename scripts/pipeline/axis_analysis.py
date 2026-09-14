@@ -13,8 +13,8 @@ DEFAULT_CONFIG_PATH = PROJECT_ROOT / "configs/axis_analysis_template_v1.json"
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="初始化 Stage 2 axis annotation / validation 标准输出目录。")
-    parser.add_argument("--config", default=str(DEFAULT_CONFIG_PATH), help="axis analysis 配置 JSON 路径。")
+    parser = argparse.ArgumentParser(description="Initialize standard Stage2 axis annotation/validation output directories.")
+    parser.add_argument("--config", default=str(DEFAULT_CONFIG_PATH), help="Axis-analysis JSON configuration path")
     return parser
 
 
@@ -28,17 +28,17 @@ def resolve_path(path_value: str | Path) -> Path:
 def load_json(path: Path) -> dict[str, object]:
     payload = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(payload, dict):
-        raise ValueError(f"{path} 必须是 JSON 对象。")
+        raise ValueError(f"{path} must be a JSON object.")
     return payload
 
 
 def require_fields(payload: dict[str, object], key: str, required_fields: list[str]) -> None:
     block = payload.get(key)
     if not isinstance(block, dict):
-        raise ValueError(f"{key} 必须是 JSON 对象。")
+        raise ValueError(f"{key} must be a JSON object.")
     missing = [field for field in required_fields if field not in block]
     if missing:
-        raise ValueError(f"{key} 缺少字段: {missing}")
+        raise ValueError(f"{key} missing fields: {missing}")
 
 
 def validate_config(config: dict[str, object]) -> None:
@@ -57,7 +57,7 @@ def validate_config(config: dict[str, object]) -> None:
     ]
     missing = [field for field in required_top_level if field not in config]
     if missing:
-        raise ValueError(f"配置缺少字段: {missing}")
+        raise ValueError(f"Configuration missing fields: {missing}")
 
     require_fields(
         config,
@@ -205,21 +205,21 @@ def write_tables(config: dict[str, object], report_root: Path) -> list[str]:
 
 def write_readme(config: dict[str, object], report_root: Path, written_tables: list[str]) -> None:
     lines = [
-        "# Stage 2 Axis Analysis 输出说明",
+        "# Stage2 axis-analysis outputs",
         "",
-        "## 定位",
+        "## Role",
         "",
-        "- 这是 Stage 2 frozen axis 的 annotation / validation 标准输出目录。",
-        "- 当前脚本负责读取配置、校验字段并物化基础表；后续 enrichment 或 consistency audit 可在此目录继续追加。",
-        "- axis discovery 仍必须先于这里发生；这里不允许用 enrichment 单独定义 axis。",
+        "- Standard annotation/validation output directory for frozen Stage2 axes.",
+        "- This script reads configuration, validates fields, and materializes base tables; enrichment or consistency audits can append outputs later.",
+        "- Axis discovery must precede this step; enrichment alone must not define axes.",
         "",
-        "## 当前配置范围",
+        "## Current configuration scope",
         "",
         f"- dataset_role = `{config['analysis_scope']['dataset_role']}`",
         f"- cell_lines = `{', '.join(str(item) for item in config['analysis_scope']['cell_lines'])}`",
         f"- axis_families = `{', '.join(str(item) for item in config['analysis_scope']['axis_families'])}`",
         "",
-        "## 推荐执行顺序",
+        "## Recommended execution order",
         "",
     ]
     for item in config["governance"]["recommended_execution_order"]:
@@ -227,7 +227,7 @@ def write_readme(config: dict[str, object], report_root: Path, written_tables: l
     lines.extend(
         [
             "",
-            "## 当前标准输出表",
+            "## Standard output tables",
             "",
         ]
     )
@@ -236,19 +236,19 @@ def write_readme(config: dict[str, object], report_root: Path, written_tables: l
     lines.extend(
         [
             "",
-            "## 当前已自动物化的真实对象",
+            "## Materialized objects",
             "",
-            "- `axis_membership.tsv`：已从 frozen `shared_target_axis_membership.tsv` 物化。",
-            "- `axis_gene_signature.tsv`：已从 frozen `shared_target_master_atlas.tsv` 物化出第一版 target-seed ranking。",
-            "- `axis_summary.tsv`：已从 frozen `axis_summary_fine.tsv`、`axis_summary_macro.tsv` 与 `axis_crossline_consistency.tsv` 物化。",
-            "- 当前 `axis_gene_signature.tsv` 还是 target-seed 骨架，不等于最终 gene-level enrichment signature。",
+            "- axis_membership.tsv: materialized from frozen shared_target_axis_membership.tsv.",
+            "- axis_gene_signature.tsv: initial target-seed ranking from frozen shared_target_master_atlas.tsv.",
+            "- axis_summary.tsv: materialized from frozen axis_summary_fine.tsv, axis_summary_macro.tsv, and axis_crossline_consistency.tsv.",
+            "- axis_gene_signature.tsv remains a target-seed scaffold, not the final gene-level enrichment signature.",
             "",
-            "## 当前解释边界",
+            "## Interpretation limits",
             "",
-            "- `axis_enrichment.tsv` 若已由独立 runner 生成，则它只提供第一版 annotation 线索，不单独充当 axis definition 证据。",
-            "- `axis_target_consistency.tsv` 只有在真实 per-target signature 到位后才应物化，当前不应伪造。",
+            "- Independently generated axis_enrichment.tsv provides initial annotation only, not standalone axis-definition evidence.",
+            "- Materialize axis_target_consistency.tsv only when actual per-target signatures are available; do not fabricate them.",
             "",
-            "## 治理边界",
+            "## Governance limits",
             "",
         ]
     )

@@ -12,8 +12,8 @@ DEFAULT_CONFIG_PATH = PROJECT_ROOT / "configs/axis_validation_summary_v1.json"
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="汇总 Stage 2 axis validation 结果。")
-    parser.add_argument("--config", default=str(DEFAULT_CONFIG_PATH), help="axis validation summary 配置 JSON 路径。")
+    parser = argparse.ArgumentParser(description="Summarize Stage2 axis-validation results.")
+    parser.add_argument("--config", default=str(DEFAULT_CONFIG_PATH), help="Axis-validation summary JSON configuration path")
     return parser
 
 
@@ -27,7 +27,7 @@ def resolve_path(path_value: str | Path) -> Path:
 def load_json(path: Path) -> dict[str, object]:
     payload = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(payload, dict):
-        raise ValueError(f"{path} 必须是 JSON 对象。")
+        raise ValueError(f"{path} must be a JSON object.")
     return payload
 
 
@@ -87,12 +87,12 @@ def write_markdown(path: Path, summary: pd.DataFrame) -> None:
     lines = [
         "# Stage 2 Axis Validation Summary",
         "",
-        "## 说明",
+        "## Notes",
         "",
-        "- 本摘要只汇总当前 `axis_enrichment` 与 `per-target consistency` 的数量证据。",
-        "- 它不会自动提升 frozen `final_call`，只提供保守的 validation 状态。",
+        "- Summarize quantitative evidence from current axis_enrichment and per-target consistency only.",
+        "- Do not automatically promote frozen final_call; provide conservative validation status only.",
         "",
-        "## 逐轴摘要",
+        "## Per-axis summary",
         "",
     ]
     for row in summary.itertuples(index=False):

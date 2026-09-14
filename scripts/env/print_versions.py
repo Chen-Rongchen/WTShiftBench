@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""打印当前环境的 Python、平台、关键依赖与 GPU 状态。"""
+"""Print Python, platform, key dependency versions, and GPU status."""
 
 from __future__ import annotations
 
@@ -31,7 +31,7 @@ PACKAGE_MAP = {
 
 
 def get_package_version(package_name: str) -> str:
-    """尝试获取包的版本号，如果未安装返回 `not installed`。"""
+    """Return a package version or not installed."""
     module_name, distribution_name = PACKAGE_MAP.get(package_name, (package_name, None))
 
     try:
@@ -50,7 +50,7 @@ def get_package_version(package_name: str) -> str:
 
 
 def print_gpu_info():
-    """打印 GPU 信息。"""
+    """Print GPU information."""
     try:
         import torch
         if torch.cuda.is_available():
@@ -73,7 +73,7 @@ def print_gpu_info():
 
 
 def print_versions(environment: Optional[str] = None):
-    """打印版本信息。"""
+    """Print version information."""
     if environment:
         print(f"=== {environment.upper()} Environment Version Report ===")
     else:

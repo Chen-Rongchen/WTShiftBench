@@ -1,0 +1,18 @@
+{
+  "amendment_id": "A011",
+  "date": "2026-09-11",
+  "purpose": "Author-authorized training seeds 123/124/125 to examine CellOT seed sensitivity under identical data and training parameters",
+  "known_results": "Seed123 and historical CellOT results were known; seeds124/125 had not been trained or scored",
+  "base_registration": "configs/revision/cellot_seed123_retrain_v1.json",
+  "formal_seed": 123,
+  "additional_seeds": [124, 125],
+  "contexts": ["HCC38", "HCC1143"],
+  "fits_per_seed": 94,
+  "output_root": "reports/revision/cellot_training_seed_sensitivity_v1",
+  "max_parallel_jobs": 8,
+  "unchanged": "All 94 staged inputs, features, datasplits, 1000 steps/10 inner steps, learning rate, batch size, checkpoint rule, CPU determinism, and dependency versions match seed123",
+  "reporting": "123 remains formal; all 124/125 outputs are training-seed sensitivity, without best-run selection, prediction averaging, or inclusion in the formal 18-test BH family. The three-seed range is not a reliable training-population CI.",
+  "scoring": "Use original M4 formulas and budgets per seed, recording each context/seed separately; endpoint/identity permutations, if used, receive separate BH families over the four additional outputs.",
+  "historical_sensitivity": "Original-submission seeds1/2 controlled cell preparation sampling and also changed training steps; they are not evidence of multiple training seeds",
+  "pilot": "Reuse the same-seed deterministic execution path verified for seed123; do not claim new repeat-training trials for new seeds. Verify seed, 1000 steps, input hashes, and checkpoint hashes for each fit."
+}

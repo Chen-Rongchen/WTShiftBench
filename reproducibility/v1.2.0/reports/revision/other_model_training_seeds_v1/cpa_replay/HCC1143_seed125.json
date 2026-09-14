@@ -1,0 +1,29 @@
+{
+  "context": "HCC1143",
+  "seed": 125,
+  "passed": true,
+  "checkpoint_sha256": "b3b65c4f51e5e7a3c45d1f2fe5bc7faac3c113cbc1aa2edb398c29ae0e83a554",
+  "checkpoint_unchanged": true,
+  "trained_state_sha256": "14ac23c59737dc863f8b98666e9b90bced9645b04f2b8d9359552445c9ef8ba0",
+  "stored_init_params": {
+    "kwargs": {},
+    "non_kwargs": {}
+  },
+  "explicit_load_parameters": {
+    "n_latent": 64,
+    "recon_loss": "gauss",
+    "doser_type": "logsigm",
+    "n_hidden_encoder": 128,
+    "n_layers_encoder": 2,
+    "n_hidden_decoder": 128,
+    "n_layers_decoder": 2,
+    "seed": 125
+  },
+  "inference_seed": 123,
+  "saved_encoder_sha256": "a214d3212f1f71d67ff63f6d7909d06ed9d5e8034040c34f4cff7e22731b1c3a",
+  "native_load_limitation": "CPA's saved covariate list already contains batch; native load appends it again, causing a category mismatch. This entry reconstructs encoders once using the original setup and strictly loads tensors",
+  "maximum_absolute_difference": 9.999054535747565e-17,
+  "absolute_tolerance": 1e-05,
+  "loader_sha256": "dade0411e71ef8c667c1e2bf82f7b6dd2606cbb9f7046680d71af82bcb867cc8",
+  "scope": "Replay saved weights and JSON encoders to predictions; fill missing constructor metadata explicitly from the recorded actual recipe, without changing checkpoints or claiming historical training reproduction"
+}

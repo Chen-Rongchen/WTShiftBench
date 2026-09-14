@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""只运行 Stage 2 covariate balance audit。"""
+"""Run only the Stage2 covariate-balance audit."""
 from __future__ import annotations
 
 import argparse
@@ -17,7 +17,7 @@ def load_covariate_config(path: Path) -> dict:
     required = {"base_config", "output", "covariates"}
     missing = sorted(required - set(payload))
     if missing:
-        raise ValueError(f"covariate audit 配置缺少字段: {missing}")
+        raise ValueError(f"Covariate-audit configuration missing fields: {missing}")
     return payload
 
 
@@ -26,10 +26,10 @@ def write_covariate_outputs(report_root: Path, outputs: dict[str, pd.DataFrame])
     md_lines = [
         "# Stage 2 Covariate Balance Summary",
         "",
-        "## 状态",
+        "## Status",
         "",
-        f"- 已完成 `{len(outputs)}` 个 cell line 的 covariate balance 审计",
-        "- 统计量：`total_variation_distance`",
+        f"- Covariate-balance audits completed for `{len(outputs)}` cell lines",
+        "- Statistic: total_variation_distance",
         "",
     ]
 
@@ -104,18 +104,18 @@ def run_covariate_audit_from_config(config_path: Path) -> tuple[Path, dict[str, 
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="运行 Stage 2 covariate balance audit。")
+    parser = argparse.ArgumentParser(description="Run the Stage2 covariate-balance audit.")
     parser.add_argument(
         "--config",
         type=Path,
         default=Path("configs/truth_bridge_covariate_audit_v1.json"),
-        help="covariate audit 配置 JSON。",
+        help="Covariate-audit JSON configuration.",
     )
     args = parser.parse_args()
 
     out_dir, out = run_covariate_audit_from_config(args.config)
 
-    print("Stage 2 covariate audit 完成。")
+    print("Stage2 covariate audit completed.")
     for cell_line in sorted(out):
         print(f"- {out_dir / f'{cell_line}_target_control_balance.tsv'}")
     print(f"- {out_dir / 'summary.tsv'}")

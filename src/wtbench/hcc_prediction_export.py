@@ -101,7 +101,7 @@ def load_axis_membership(axis_membership_path: Path = DEFAULT_AXIS_MEMBERSHIP_PA
     required = {"target_gene", "fine_axis"}
     missing = sorted(required - set(frame.columns))
     if missing:
-        raise ValueError(f"axis_membership 缺少列: {missing}")
+        raise ValueError(f"axis_membership missing columns: {missing}")
     return frame
 
 
@@ -110,7 +110,7 @@ def load_truth_contract(truth_contract_path: Path = DEFAULT_TRUTH_CONTRACT_PATH)
     required = {"fine_axis", "architecture_role"}
     missing = sorted(required - set(frame.columns))
     if missing:
-        raise ValueError(f"truth_contract 缺少列: {missing}")
+        raise ValueError(f"truth_contract missing columns: {missing}")
     return frame
 
 
@@ -143,7 +143,7 @@ def _load_expression_and_calls(
                 filters.get("allow_degraded_unverified_single_perturbation", False)
             ),
         )
-    raise ValueError(f"不支持的 source_kind: {spec.source_kind}")
+    raise ValueError(f"Unsupported source_kind: {spec.source_kind}")
 
 
 def compute_truth_aligned_log_shift_matrix(
@@ -163,12 +163,12 @@ def compute_truth_aligned_log_shift_matrix(
     )
     missing_genes = [gene for gene in gene_order if gene not in gene_index.index]
     if missing_genes:
-        raise ValueError(f"{spec.cell_line} 缺少 axis-member genes: {missing_genes}")
+        raise ValueError(f"{spec.cell_line} missing axis-member genes: {missing_genes}")
     selected_gene_positions = gene_index.loc[gene_order].to_numpy(dtype=np.int64)
 
     control_mask = calls["is_control"].to_numpy(dtype=bool)
     if int(control_mask.sum()) < int(truth_config["filters"]["min_control_cells"]):
-        raise ValueError(f"{spec.cell_line} control cells 不足，无法导出 Stage 2 HCC prediction contract。")
+        raise ValueError(f"{spec.cell_line} has insufficient control cells for the Stage 2 HCC prediction contract.")
 
     normalized_selected = normalized[:, selected_gene_positions]
     control_mean = np.asarray(normalized_selected[control_mask].mean(axis=0)).ravel().astype(np.float64)
@@ -177,12 +177,12 @@ def compute_truth_aligned_log_shift_matrix(
     present_targets = set(calls.loc[~calls["is_control"], "target_gene"].astype(str).tolist())
     missing_targets = [target for target in target_order if target not in present_targets]
     if missing_targets:
-        raise ValueError(f"{spec.cell_line} 缺少 frozen targets: {missing_targets}")
+        raise ValueError(f"{spec.cell_line} missing frozen targets: {missing_targets}")
 
     for target_gene in target_order:
         target_mask = (~calls["is_control"]).to_numpy() & calls["target_gene"].astype(str).eq(target_gene).to_numpy()
         if not target_mask.any():
-            raise ValueError(f"{spec.cell_line} target={target_gene} 没有单扰动细胞。")
+            raise ValueError(f"{spec.cell_line} target={target_gene} has no single-perturbation cells.")
         target_mean = np.asarray(normalized_selected[target_mask].mean(axis=0)).ravel().astype(np.float64)
         delta = target_mean - control_mean
         records.append({"target_gene": target_gene, **dict(zip(gene_order, delta.tolist()))})
@@ -218,7 +218,7 @@ def build_builtin_shared_mean_baseline(
         .tolist()
     )
     if not backbone_targets:
-        raise ValueError("没有 canonical_backbone targets，无法构建 shared_mean_baseline。")
+        raise ValueError("No canonical_backbone targets available to build shared_mean_baseline.")
     truth_indexed = truth_aligned_log_shift.set_index("target_gene")
     backbone_mean = truth_indexed.loc[backbone_targets].mean(axis=0)
     records = []
@@ -233,18 +233,18 @@ def align_prediction_to_contract(
 ) -> pd.DataFrame:
     target_order, gene_order = expected_target_and_gene_order(axis_membership)
     if prediction.columns[0] != "target_gene":
-        raise ValueError("prediction 首列必须是 target_gene。")
+        raise ValueError("The first prediction column must be target_gene.")
     frame = prediction.copy()
     frame["target_gene"] = frame["target_gene"].astype(str)
     duplicate_targets = frame.loc[frame["target_gene"].duplicated(), "target_gene"].drop_duplicates().tolist()
     if duplicate_targets:
-        raise ValueError(f"prediction 出现重复 target_gene: {duplicate_targets}")
+        raise ValueError(f"Duplicate prediction target_gene: {duplicate_targets}")
     if any(target not in set(frame["target_gene"]) for target in target_order):
         missing_targets = [target for target in target_order if target not in set(frame["target_gene"])]
-        raise ValueError(f"prediction 缺少 frozen targets: {missing_targets}")
+        raise ValueError(f"Prediction missing frozen targets: {missing_targets}")
     if any(gene not in frame.columns for gene in gene_order):
         missing_genes = [gene for gene in gene_order if gene not in frame.columns]
-        raise ValueError(f"prediction 缺少 axis-member genes: {missing_genes}")
+        raise ValueError(f"Prediction missing axis-member genes: {missing_genes}")
     aligned = frame.set_index("target_gene").loc[target_order, gene_order].reset_index()
     return aligned
 
@@ -279,7 +279,7 @@ def write_prediction_matrix(frame: pd.DataFrame, path: Path) -> None:
 def load_prediction_matrix(path: Path) -> pd.DataFrame:
     frame = pd.read_csv(path, sep="\t")
     if frame.empty:
-        raise ValueError(f"{path} 为空。")
+        raise ValueError(f"{path} is empty.")
     return frame
 
 
@@ -474,7 +474,7 @@ def export_builtin_hcc_prediction(
     truth_contract = load_truth_contract(truth_contract_path)
     specs = {spec.cell_line: spec for spec in build_dataset_specs(truth_config)}
     if cell_line not in specs:
-        raise ValueError(f"未在 Stage 2 truth config 中找到 cell_line={cell_line}")
+        raise ValueError(f"cell_line={cell_line} not found in the Stage 2 truth config")
     spec = specs[cell_line]
 
     artifacts = build_export_artifacts(contract, model_id=model_id, cell_line=cell_line)
@@ -491,7 +491,7 @@ def export_builtin_hcc_prediction(
             truth_contract=truth_contract,
         )
     else:
-        raise ValueError(f"当前 export skeleton 仅支持 builtin null/baseline，收到 object_role={object_role}")
+        raise ValueError(f"The export skeleton supports only builtin null/baseline outputs; received object_role={object_role}")
 
     return _finalize_export(
         raw_prediction=raw_prediction,

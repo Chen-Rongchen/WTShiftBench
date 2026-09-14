@@ -1,4 +1,4 @@
-"""BIB 大修 M2：HCC truth-object attrition、identifier 与 filter 审计。"""
+"""M2 HCC truth-object attrition, identifier, and filter audit."""
 
 from __future__ import annotations
 
@@ -40,7 +40,7 @@ def sha256_file(path: Path) -> str:
 
 
 def load_dependency_subset(path: Path, target_genes: set[str]) -> tuple[pd.DataFrame, pd.DataFrame]:
-    """只读取所需 DepMap 列，同时保留 column-level identifier 审计。"""
+    """Read required DepMap columns while retaining column-level identifier checks."""
     raw_columns = pd.read_csv(path, nrows=0).columns
     clean_columns = clean_depmap_gene_columns(raw_columns)
     column_map = pd.DataFrame(
@@ -55,7 +55,7 @@ def load_dependency_subset(path: Path, target_genes: set[str]) -> tuple[pd.DataF
     frame.columns = clean_depmap_gene_columns(frame.columns)
     frame = frame.rename(columns={"ModelID": "depmap_model_id"})
     if "depmap_model_id" not in frame:
-        raise ValueError("DepMap dependency table 缺少 ModelID。")
+        raise ValueError("DepMap dependency table lacks ModelID.")
     return frame, column_map
 
 
@@ -67,7 +67,7 @@ def compute_raw_shift_table(
 ) -> pd.DataFrame:
     control_positions = np.flatnonzero(calls["is_control"].to_numpy(bool))
     if len(control_positions) == 0:
-        raise ValueError("没有 single-feature intergenic controls。")
+        raise ValueError("No single-feature intergenic controls.")
     control_mean = np.asarray(normalized[control_positions].mean(axis=0)).ravel()
     rows: list[dict[str, Any]] = []
     for target_gene, group in calls.loc[~calls["is_control"]].groupby("target_gene", sort=True):
@@ -235,7 +235,7 @@ def process_dataset(
         dependency["depmap_model_id"].astype(str).eq(spec.depmap_model_id)
     ]
     if len(dep_row_frame) != 1:
-        raise ValueError(f"{spec.cell_line} exact DepMap model row 不是唯一一行。")
+        raise ValueError(f"{spec.cell_line} does not have exactly one matching DepMap model row.")
     dependency_row = dep_row_frame.iloc[0]
     dependency_columns = set(dependency.columns) - {"depmap_model_id"}
     targets = compute_raw_shift_table(
@@ -264,7 +264,7 @@ def process_dataset(
     expected_set = set(expected["target_gene"])
     if observed_set != expected_set:
         raise ValueError(
-            f"{spec.cell_line} attrition final target set 与 frozen endpoint object 不一致："
+            f"{spec.cell_line} final attrition target set differs from the frozen endpoint object: "
             f"missing={sorted(expected_set-observed_set)}, extra={sorted(observed_set-expected_set)}"
         )
     validation = targets.loc[targets["final_eligible"], ["target_gene", "raw_shift_mean_abs"]].merge(
@@ -276,7 +276,7 @@ def process_dataset(
         np.max(np.abs(validation["raw_shift_mean_abs"] - validation["observed_shift_mean_abs"]))
     )
     if max_error > 1e-12:
-        raise ValueError(f"{spec.cell_line} filter-on raw shift 未精确复现 M1：max error={max_error}")
+        raise ValueError(f"{spec.cell_line} filter-on raw shift did not exactly reproduce M1: max error={max_error}")
 
     flow = pd.DataFrame(
         attrition_rows(
@@ -627,13 +627,13 @@ def run(config_path: Path, output_root: Path) -> dict[str, Any]:
     build_flow_figure(flow, comparison, output_root / "attrition_flow.png")
 
     report_lines = [
-        "# BIB 大修 M2：target eligibility 与 attrition 审计",
+        "# M2: Target eligibility and attrition audit",
         "",
-        "## 关键结论",
+        "## Key findings",
         "",
-        "- Eligibility 未使用 observed shift magnitude、dependency magnitude 或 model output。",
-        "- 唯一 readout-based target filter 是每个 target 至少 20 个 single-feature perturbed cells；下表同时给出 filter on/off 的 raw bridge。",
-        "- Primary contexts 与 25/75 cutoffs 是 benchmark-development choices，不声称在所有 observed-data/model exploration 前预注册；revision sampling-aware object 则在 revised model rescoring 前冻结。",
+        "- Eligibility did not use observed shift magnitude, dependency magnitude, or model output.",
+        "- The only readout-based target filter required at least 20 single-feature perturbed cells per target; the table also reports raw bridges with the filter on/off.",
+        "- Primary contexts and 25/75 cutoffs were benchmark-development choices, not preregistered before all observed-data/model exploration; the revision sampling-aware object was frozen before revised model rescoring.",
         "",
         "## Target attrition",
         "",

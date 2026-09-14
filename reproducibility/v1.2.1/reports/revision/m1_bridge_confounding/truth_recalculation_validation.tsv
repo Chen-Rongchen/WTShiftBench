@@ -1,3 +1,0 @@
-cell_line	n_targets	n_control_cells	n_gene_features	max_shift_recalculation_abs_error	target_count_min	target_count_median	target_count_max
-HCC38	47	1666	36601	9.71445146547012e-17	25	266.0	472
-HCC1143	48	1325	36601	9.974659986866641e-17	23	213.5	462

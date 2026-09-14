@@ -6,7 +6,7 @@
   "entrant_version": "lm_g_geneformer_ridge_k562_tf_7d_formal_v1",
   "model_id": "lm_g_geneformer_ridge_k562_tf_7d_formal_v1",
   "model_family": "linear_ridge_external_feature",
-  "claim_scope": "lm_G_geneformer_ridge K562 7d Stage 2 linear control 的第一版正式 recipe。用于 explanation-oriented control，不用于 primary winner claim。",
+  "claim_scope": "First formal recipe for the lm_G_geneformer_ridge K562 7d Stage 2 linear control; explanation-oriented, not a primary-winner claim.",
   "checkpoint_registry_ref": "configs/checkpoint_registry_v1.yaml",
   "checkpoint_key": "geneformer_gf_12l_95m_i4096",
   "truth_config_path": "configs/truth_driven_bridge_dixit_k562_tf_7d_gse90063_v1.json",
@@ -21,8 +21,8 @@
   "cell_lines": [
     "dixit_2016_k562_tf_7d_gse90063"
   ],
-  "input_space_description": "运行时从 Geneformer checkpoint 与 asset_root 解析 target embedding，并在 Stage 2 truth delta 上执行 leave-one-target-out 线性 ridge 闭式解。",
-  "output_space_description": "model-native raw output 必须先导出到 truth_aligned_log_shift，再进入 scorer-ready prediction contract。",
+  "input_space_description": "Resolve target embeddings from the Geneformer checkpoint and asset_root at runtime, then fit closed-form leave-one-target-out linear ridge to Stage 2 truth deltas.",
+  "output_space_description": "Export model-native raw outputs to truth_aligned_log_shift before applying the scorer-ready prediction contract.",
   "preprocessing_identity": {
     "target_feature_source": "geneformer_checkpoint_embedding_runtime_lookup",
     "target_feature_family": "pretrained_gene_embedding",

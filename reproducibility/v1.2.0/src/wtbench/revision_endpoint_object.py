@@ -1,4 +1,4 @@
-"""BIB 大修 M2：物化 sampling-aware endpoint object。"""
+"""M2: Materialize the sampling-aware endpoint object."""
 
 from __future__ import annotations
 
@@ -114,7 +114,7 @@ def candidate_summary(
                 & inference["analysis_id"].eq(inference_ids[label])
             ]
             if len(source) != 1:
-                raise ValueError(f"{cell_line}/{label} 的 M1 inference 不是唯一一行。")
+                raise ValueError(f"{cell_line}/{label} does not have exactly one M1 inference row.")
             source_row = source.iloc[0]
             rows.append(
                 {
@@ -262,7 +262,7 @@ def run(config_path: Path, output_root: Path) -> dict[str, Any]:
         validation["expected_raw_category"]
     )
     if not validation["matches_existing_raw_grid"].all():
-        raise ValueError("重算的 raw 25/75 categories 与既有 bridge decomposition 不一致。")
+        raise ValueError("Recomputed raw 25/75 categories differ from the existing bridge decomposition.")
 
     category_counts = category_summary(working)
     transition_detail = working[[
@@ -324,13 +324,13 @@ def run(config_path: Path, output_root: Path) -> dict[str, Any]:
     build_figure(working, output_root / "sampling_aware_endpoint_object.png")
 
     lines = [
-        "# BIB 大修 M2：sampling-aware endpoint object",
+        "# M2: Sampling-aware endpoint object",
         "",
-        "- Primary shift statistic：matched-size noise-corrected shift；负值不截断。",
+        "- Primary shift statistic: matched-size noise-corrected shift, without truncating negative values.",
         "- Raw mean-absolute shift：descriptive reference。",
         "- Expected equal-n shift at 20 cells：sampling-depth sensitivity。",
         "- HCC1143：qualified primary context；HCC38：sensitivity/boundary context。",
-        "- 本对象在任何 revised model scoring 前冻结。",
+        "- This object was frozen before any revised model scoring.",
         "",
         "## Statistic summary",
         "",
@@ -368,7 +368,7 @@ def run(config_path: Path, output_root: Path) -> dict[str, Any]:
             "",
             "## Interpretation boundary",
             "",
-            "该对象校正的是 matched-control null 下可预期的 finite-sampling shift floor；它不声称消除所有技术或生物混杂。HCC38 只用于 sensitivity，不得用于重新调节 categories、cutoffs 或模型指标。",
+            "The object corrects the expected finite-sampling shift floor under the matched-control null; it does not claim to remove all technical or biological confounding. HCC38 is sensitivity-only and must not be used to retune categories, cutoffs, or metrics.",
             "",
         ]
     )

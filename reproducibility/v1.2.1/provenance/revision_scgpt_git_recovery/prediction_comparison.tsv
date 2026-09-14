@@ -1,9 +1,0 @@
-context	model_id	reference	n_values	max_abs_difference	rmse_difference	exact_numeric_equal	within_frozen_tolerance
-HCC38	scgpt_hcc_formal_v1	raw_prediction	2209	1.4365678785432934e-16	4.853826139532683e-17	False	True
-HCC38	scgpt_hcc_formal_v1	frozen_scorer_input	2209	1.4365678785432934e-16	4.853826139532683e-17	False	True
-HCC38	lm_g_scgpt_ridge_hcc_formal_v1	raw_prediction	2209	7.771561172376096e-16	1.2318904630322685e-16	False	True
-HCC38	lm_g_scgpt_ridge_hcc_formal_v1	frozen_scorer_input	2209	7.771561172376096e-16	1.2318904693555122e-16	False	True
-HCC1143	scgpt_hcc_formal_v1	raw_prediction	2209	1.5222198501696482e-16	4.9861713803343925e-17	False	True
-HCC1143	scgpt_hcc_formal_v1	frozen_scorer_input	2209	1.5222198501696482e-16	4.9861713803343925e-17	False	True
-HCC1143	lm_g_scgpt_ridge_hcc_formal_v1	raw_prediction	2209	6.106226635438361e-16	1.1271942967392692e-16	False	True
-HCC1143	lm_g_scgpt_ridge_hcc_formal_v1	frozen_scorer_input	2209	6.106226635438361e-16	1.1271943013723573e-16	False	True

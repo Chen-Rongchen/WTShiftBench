@@ -144,7 +144,7 @@ def build_target_delta_matrix_k562(*, calls, gene_meta, normalized_expression, t
     output_gene_positions = gene_index.loc[output_genes].to_numpy(dtype=np.int64)
     control_mask = calls["is_control"].to_numpy(dtype=bool)
     if not control_mask.any():
-        raise ValueError("K562 没有 control cells。")
+        raise ValueError("K562 has no control cells.")
     normalized = normalized_expression[:, output_gene_positions]
     control_mean = np.asarray(normalized[control_mask].mean(axis=0)).ravel().astype(np.float64)
     records = []
@@ -158,7 +158,7 @@ def build_target_delta_matrix_k562(*, calls, gene_meta, normalized_expression, t
         delta = target_mean - control_mean
         records.append({"target_gene": target_gene, **dict(zip(output_genes, delta.tolist()))})
     if len(records) < 2:
-        raise ValueError("K562 perturbed targets 少于 2 个。")
+        raise ValueError("K562 has fewer than two perturbed targets.")
     return pd.DataFrame(records), {
         "target_cell_counts": target_cell_counts,
         "control_cells": int(control_mask.sum()),
@@ -202,7 +202,7 @@ def predict_leave_one_out_geneformer_ridge(
             target_to_token[target] = tid
 
     if len(mapped_targets) < 2:
-        raise ValueError("Geneformer 可映射 targets 少于 2 个。")
+        raise ValueError("Fewer than two mappable Geneformer targets.")
 
     # SVD on output gene dimension
     svd = TruncatedSVD(n_components=min(n_components, n_outputs - 1, n_targets - 1), random_state=42)

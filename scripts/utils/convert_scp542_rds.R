@@ -1,7 +1,7 @@
 #!/usr/bin/env Rscript
-# SCP542 RDS → CSV/TSV 转换脚本
-# 关键发现：ccle 是 per-cell-line NMF（198株细胞系，每株独立30个程序）
-# 输出目录：data/baselines/scp542/
+# Convert SCP542 RDS to CSV/TSV.
+# Key finding: ccle uses per-cell-line NMF(198 cell lines,30 independent programs per line).
+# Output directory:data/baselines/scp542/
 
 suppressPackageStartupMessages(library(methods))
 

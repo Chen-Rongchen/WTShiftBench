@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""从 Stage 2 protospacer calls 物化 covariates TSV。"""
+"""Materialize covariate TSVs from Stage2 protospacer calls."""
 from __future__ import annotations
 
 import argparse
@@ -22,7 +22,7 @@ from wtbench.truth_bridge import (
 def load_config(path: Path) -> dict:
     payload = json.loads(path.read_text(encoding="utf-8"))
     if "datasets" not in payload:
-        raise ValueError("配置缺少 datasets。")
+        raise ValueError("Configuration lacks datasets.")
     return payload
 
 
@@ -40,7 +40,7 @@ def load_transcriptome_covariates(dataset: dict, calls: pd.DataFrame) -> pd.Data
     barcodes_path_raw = dataset.get("barcodes_path")
     features_path_raw = dataset.get("features_path")
     if not (matrix_path_raw and barcodes_path_raw and features_path_raw):
-        raise ValueError("缺少 transcriptome covariates 所需的 matrix/barcodes/features 路径。")
+        raise ValueError("Missing matrix/barcodes/features paths required for transcriptome covariates.")
 
     barcodes = pd.read_csv(
         resolve_path(str(barcodes_path_raw)),
@@ -53,7 +53,7 @@ def load_transcriptome_covariates(dataset: dict, calls: pd.DataFrame) -> pd.Data
 
     calls = calls.loc[calls["cell_barcode"].isin(barcode_index.index), ["cell_barcode"]].copy()
     if calls.empty:
-        raise ValueError("single-feature calls 无法与 transcriptome barcodes 对齐。")
+        raise ValueError("Single-feature calls cannot align to transcriptome barcodes.")
 
     calls["matrix_col_index"] = calls["cell_barcode"].map(barcode_index).astype(int)
     calls = calls.sort_values("matrix_col_index").drop_duplicates(subset=["cell_barcode"])
@@ -83,7 +83,7 @@ def materialize_one(dataset: dict, control_prefix: str, n_bins: int) -> Path:
     required = {"cell_barcode", "num_features", "feature_call", "num_umis"}
     missing = sorted(required - set(calls.columns))
     if missing:
-        raise ValueError(f"{calls_path} 缺少列: {missing}")
+        raise ValueError(f"{calls_path} missing columns: {missing}")
 
     calls = calls.copy()
     calls["cell_barcode"] = calls["cell_barcode"].astype("string")
@@ -96,10 +96,10 @@ def materialize_one(dataset: dict, control_prefix: str, n_bins: int) -> Path:
         lambda x: is_control_target(str(x), control_prefix)
     )
 
-    # 与 truth bridge 主线保持一致：只保留 single-feature called cells。
+    # Match the truth-bridge pipeline by retaining only single-feature called cells.
     calls = calls.loc[calls["num_features"].eq(1)].copy()
     if calls.empty:
-        raise ValueError(f"{calls_path} 在 num_features == 1 过滤后为空。")
+        raise ValueError(f"{calls_path} is empty after num_features==1 filtering.")
 
     if dataset.get("matrix_path") and dataset.get("barcodes_path") and dataset.get("features_path"):
         transcriptome = load_transcriptome_covariates(dataset, calls)
@@ -191,18 +191,18 @@ def materialize_covariates_from_config(config_path: Path) -> list[Path]:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="物化 Stage 2 covariates TSV。")
+    parser = argparse.ArgumentParser(description="Materialize Stage2 covariate TSVs.")
     parser.add_argument(
         "--config",
         type=Path,
         default=Path("configs/hcc_covariates_v1.json"),
-        help="covariates 物化配置 JSON。",
+        help="Covariate materialization JSON configuration.",
     )
     args = parser.parse_args()
 
     outputs = materialize_covariates_from_config(args.config)
 
-    print("Stage 2 covariates 物化完成。")
+    print("Stage2 covariate materialization completed.")
     for path in outputs:
         print(f"- {path}")
 

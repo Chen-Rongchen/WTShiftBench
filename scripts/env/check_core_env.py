@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""验证 core 环境的主链路依赖。"""
+"""Verify core-environment pipeline dependencies."""
 
 from __future__ import annotations
 
@@ -42,7 +42,7 @@ def main() -> int:
     print()
     if failed:
         print("Result: FAILED")
-        print("缺失或不可用模块:", ", ".join(failed))
+        print("Missing or unavailable modules:", ", ".join(failed))
         return 1
 
     print("Result: PASSED")

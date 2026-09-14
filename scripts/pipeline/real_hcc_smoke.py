@@ -137,16 +137,16 @@ def render_report(summary: pd.DataFrame, output_path: Path) -> None:
     lines = [
         "# Stage 2 Real HCC Smoke",
         "",
-        "## 定位",
+        "## Role",
         "",
-        "- 本报告只覆盖真实 HCC 输入桥的 smoke adjudication。",
-        "- 当前检查 `null_model`、`shared_mean_baseline` 与所有已冻结 entrant 是否成功导出、通过 contract、并可进入 scorer。",
-        "- 这仍是 smoke adjudication，不直接上升为 architecture recovery 正式结论。",
+        "- This report covers smoke adjudication of actual HCC input bridges only.",
+        "- Check whether null_model, shared_mean_baseline, and all frozen entrants export successfully, pass the contract, and enter scoring.",
+        "- This remains smoke adjudication, not a formal architecture-recovery conclusion.",
         "",
-        "## 状态",
+        "## Status",
         "",
-        "- A/B/C 三层在本报告中固定映射到：`A=canonical_backbone`，`B=shift_excess`，`C=context_deviation`。",
-        "- `cosine`、`L2`、`top-20 overlap` 只作为辅助裁决层，用于解释为什么赢/输，不替代 architecture-level 主裁决。",
+        "- Fixed A/B/C mapping: A=canonical_backbone, B=shift_excess, C=context_deviation.",
+        "- Cosine, L2, and top20 overlap are auxiliary diagnostics explaining successes/failures, not substitutes for architecture-level primary assessment.",
         "",
     ]
     for row in summary.itertuples(index=False):
@@ -159,13 +159,13 @@ def render_report(summary: pd.DataFrame, output_path: Path) -> None:
                 f"structure-vs-context separation = `{row.structure_vs_context_separation_score:.3f}`。"
             )
             lines.append(
-                f"- 辅助数值层（全 targets）：cosine = `{_format_metric(row.cosine_similarity_mean)}`；"
+                f"- Auxiliary values(all targets): cosine=`{_format_metric(row.cosine_similarity_mean)}`; "
                 f"L2 = `{_format_metric(row.l2_distance_mean)}`；"
                 f"top-20 overlap = `{_format_metric(row.top20_overlap_mean)}`。"
             )
             for layer_key, role_name, prefix in ROLE_DISPLAY:
                 lines.append(
-                    f"- {layer_key} 层 `{role_name}`：cosine = `{_format_metric(getattr(row, f'{prefix}_cosine_similarity_mean'))}`；"
+                    f"- Layer{layer_key} `{role_name}`: cosine=`{_format_metric(getattr(row, f'{prefix}_cosine_similarity_mean'))}`; "
                     f"L2 = `{_format_metric(getattr(row, f'{prefix}_l2_distance_mean'))}`；"
                     f"top-20 overlap = `{_format_metric(getattr(row, f'{prefix}_top20_overlap_mean'))}`。"
                 )
@@ -264,33 +264,33 @@ def build_backbone_diagnosis(summary: pd.DataFrame) -> pd.DataFrame:
 
 def render_backbone_diagnosis_report(diagnosis: pd.DataFrame, output_path: Path) -> None:
     lines = [
-        "# GEARS Backbone 诊断摘要",
+        "# GEARS backbone diagnostic summary",
         "",
-        "## 定位",
+        "## Role",
         "",
-        "- 这是 GEARS 正式 recipe sweep 前的最小诊断中间产物。",
-        "- 它只服务于 `canonical_backbone recovery` 的失败分解，不引入新 truth object、entrant 或评分体系。",
-        "- `failure_mode_call` 固定限制为：`direction / amplitude / tradeoff / mixed`。",
+        "- Minimal diagnostic intermediate output before formal GEARS recipe sweeping.",
+        "- Used only to decompose canonical_backbone recovery failures; no new truth objects, entrants, or scoring systems.",
+        "- failure_mode_call is restricted to direction/amplitude/tradeoff/mixed.",
         "",
-        "## 诊断口径",
+        "## Diagnostic definitions",
         "",
-        "- `direction`：backbone cosine 明显落后，但 top-20 overlap 没有同步明显变差，优先怀疑方向没有学到。",
-        "- `amplitude`：backbone L2 明显落后，但 cosine 没有同步明显变差，优先怀疑幅度校准。",
-        "- `tradeoff`：backbone recovery 落后，同时 separation 明显更强，按 backbone-vs-separation trade-off 处理。",
-        "- `mixed`：不能被单一 failure mode 干净解释。",
+        "- Direction: markedly worse backbone cosine without corresponding top20-overlap loss suggests inadequate directional learning.",
+        "- Amplitude: markedly worse backbone L2 without corresponding cosine loss suggests magnitude-calibration problems.",
+        "- Tradeoff: worse backbone recovery with stronger separation is interpreted as a backbone-versus-separation trade-off.",
+        "- Mixed: no single failure mode provides a clear explanation.",
         "",
     ]
     if diagnosis.empty:
         lines.extend(
             [
-                "## 结果",
+                "## Results",
                 "",
-                "- 当前没有可写出的 backbone 诊断记录。",
+                "- No backbone diagnostic records available.",
             ]
         )
         output_path.write_text("\n".join(lines), encoding="utf-8")
         return
-    lines.extend(["## 结果", ""])
+    lines.extend(["## Results", ""])
     for row in diagnosis.itertuples(index=False):
         lines.append(f"### {row.model_id} / {row.cell_line}")
         lines.append(

@@ -1,0 +1,12 @@
+{
+  "mode": "train",
+  "seed": 123,
+  "context": "HCC1143",
+  "target": "ARID1A",
+  "maximum_absolute_difference": 8.326672684688674e-17,
+  "tolerance": 1e-10,
+  "passed": true,
+  "scope": "Verify only this target's staged-data-to-prediction path; not a new seed experiment or complete raw-data processing",
+  "torch": "2.5.1",
+  "numpy": "1.26.4"
+}

@@ -1,17 +1,17 @@
 {
   "amendment_id": "A003",
   "date": "2026-09-04",
-  "reason": "M1_FINAL 显示 raw shift 受到 cell-count structure 放大，冻结的 dual-context Gate 为 STOP_AND_REASSESS；在任何 revised model scoring 前重新定义 sampling-aware endpoint object。",
+  "reason": "M1_FINAL showed amplification of raw shift by cell-count structure, and the frozen dual-context Gate returned STOP_AND_REASSESS; redefine the sampling-aware endpoint object before any revised model scoring.",
   "affected_decisions": [
     {
       "field": "endpoint_object.primary_shift_statistic",
       "value": "noise_corrected_shift = observed mean-absolute shift minus the expected matched-size control-null shift",
-      "rationale": "直接针对 reviewer 指出的 target-specific finite-sampling bias，保留所有通过原 eligibility 的 targets，并使用实际全部 perturbed cells。选择不依据 revised model score。"
+      "rationale": "Address target-specific finite-sampling bias, retaining all originally eligible targets and all available perturbed cells. Selection does not use revised model scores."
     },
     {
       "field": "endpoint_object.negative_corrected_values",
       "value": "retain without truncation",
-      "rationale": "负值表示 observed shift 未超过 matched-size null expectation；截断会人为制造 ties 并改变 rank/categories。"
+      "rationale": "Negative values indicate observed shift below the matched-size null expectation; truncation would introduce ties and change ranks/categories."
     },
     {
       "field": "endpoint_object.sensitivity_statistics",
@@ -20,12 +20,12 @@
         "replicate-wise equal-n rho distributions",
         "raw observed mean-absolute shift as descriptive reference"
       ],
-      "rationale": "equal-depth statistic 仍包含固定 20-cell 下的 sampling component；raw statistic 不再作为未经 qualification 的 primary endpoint。"
+      "rationale": "The equal-depth statistic still contains a sampling component at 20 cells; the raw statistic is no longer an unqualified primary endpoint."
     },
     {
       "field": "endpoint_object.category_rule",
       "value": "within-context percentile ranks; low <=0.25, high >=0.75; high/high=endpoint_anchor, high/low=shift_excess, low/high=dependency_excess, low/low=low_information, otherwise=middle",
-      "rationale": "保留原 25/75 endpoint-plane 逻辑，只替换经 sampling qualification 的 shift statistic。"
+      "rationale": "Retain the original 25/75 endpoint-plane logic, replacing only the sampling-qualified shift statistic."
     },
     {
       "field": "endpoint_object.context_roles",
@@ -33,7 +33,7 @@
         "HCC1143": "qualified_primary_context",
         "HCC38": "sensitivity_boundary_context"
       },
-      "rationale": "M1 Gate 的 context-level decision 为 HCC1143 proceed、HCC38 stop/reassess；不再把两者描述为同等强度的双 primary evidence。"
+      "rationale": "M1 context-level Gate decisions were proceed for HCC1143 and stop/reassess for HCC38; they are no longer described as equally strong dual-primary evidence."
     }
   ],
   "whether_results_were_seen": true,

@@ -1,8 +1,8 @@
 {
   "completed_utc": "2026-09-07T07:36:57.339702+00:00",
-  "status": "核验完成；HepG2/Jurkat 历史 gene-effect 来源尚未确定",
-  "official_file_provenance": "用户于 2026-09-07 确认文件来自 DepMap 官方，按项目要求恢复 25Q3；不要求重新下载。",
-  "scope": "数值、缺失状态和来源核验；未重训、重评分、覆盖旧表或修改冻结对象。",
+  "status": "Verification complete; historical HepG2/Jurkat gene-effect sources remain unresolved",
+  "official_file_provenance": "On 2026-09-07, the user confirmed official DepMap provenance and restored 25Q3 as requested; no additional download required.",
+  "scope": "Numerical, missingness, and provenance checks only; no retraining, rescoring, overwriting old tables, or changing frozen objects.",
   "tolerance_absolute": 1e-12,
   "file_checks": [
     {
@@ -187,11 +187,11 @@
     "git_paths_for_original_gene_effect": [],
     "generating_script_commit": "d67951f",
     "generating_script_unchanged_since_commit": true,
-    "matching_logic": "分别按 ModelID 选择各文件行，再按基因名取值；不依赖行号相同。",
-    "old_materialization_provenance": "QC 保存表达原始文件/输出哈希，没有保存 DepMap gene-effect 输入的版本和哈希。",
+    "matching_logic": "Select rows by ModelID independently in each file, then retrieve genes by name; do not rely on matching row numbers.",
+    "old_materialization_provenance": "QC recorded raw-expression and output hashes, but not the DepMap gene-effect input version or hash.",
     "searched_archive": "WTShiftBench_repo_source_tables_for_BIB.zip",
     "archive_gene_effect_members": [],
-    "conclusion": "现有 Git/投稿 ZIP 无旧原始 CSV；无法由记录确定旧 HepG2/Jurkat gene-effect 文件版本。"
+    "conclusion": "Available Git objects and submission ZIPs contain no historical raw CSV; existing records cannot identify the historical HepG2/Jurkat gene-effect version."
   },
   "outputs": [
     {

@@ -125,8 +125,8 @@
   "point_comparisons": 208,
   "matrix_files_verified": 371,
   "scoring_module": "matrix_scoring/src/wtbench/revision_metric_validity.py",
-  "current_scope": "当前源码测试、12PNG像素一致、新目录87输出点估计；未在本轮重跑完整CI/P/q、470回放或训练",
-  "prior_full_inference_record": "verification/local/local_verification.json：87输出/373项完整推断，独立历史执行记录",
+  "current_scope": "Current source tests, pixel identity of 12 PNGs and 87-output point scoring in a new directory; full CI/P/q, 470 replays and training were not rerun in this check.",
+  "prior_full_inference_record": "verification/local/local_verification.json: 87 outputs / 373 full-inference comparisons in an independent historical execution",
   "passed": true,
   "final_source_tests": {
     "exit_code": 0,

@@ -25,7 +25,7 @@ def load_recipe(path: Path) -> dict[str, object]:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="按配置运行 Dixit supplementary axis compression；默认配置固定为 GSE90063 K562 13d-only。"
+        description="Run configured Dixit supplementary axis compression; default is GSE90063 K56213d-only."
     )
     parser.add_argument("--config", default=str(DEFAULT_CONFIG_PATH))
     return parser

@@ -79,48 +79,48 @@ Cross-line (HCC38 vs BT549 TNBC proxy):
 SCP542_NEGATIVE_CLAIMS = """
 Explicitly NOT supported by SCP542 analysis:
 
-1. "某 backbone 轴锚定到单一 SCP542 全局程序"
-   → 所有轴都broad分布，没有单点锚定。不存在"program X = our backbone"
+1. "A backbone axis is anchored to one SCP542 global program"
+   All axes are broadly distributed, without a single anchor; no program X equals our backbone.
 
-2. "HCC1143 的 basal state 已被解释"
-   → HCC1143 不在 SCP542，BT549 只是 proxy，不代表 HCC1143
+2. "The HCC1143 basal state has been explained"
+   HCC1143 is absent from SCP542; BT549 is a proxy, not HCC1143.
 
-3. "Type A/B 在 SCP542 中有精确匹配"
+3. "Type A/B exactly match SCP542 programs"
    → Type A peak at 8.1/7.6/9.9，Type B peak at 6.5/8.2
-   → 分散在多个程序，没有一对一的 SCP542 global program 匹配
+   They span multiple programs, without one-to-one SCP542 global-program matches.
 
-4. "K562 的结构复现有 SCP542 解释"
-   → K562 完全不在 SCP542，N/A
+4. "SCP542 explains K562 structural replication"
+   K562 is absent from SCP542; not applicable.
 
-5. "SCP542 解释了为什么 line-skewed 发生"
-   → SCP542 只提供了 basal heterogeneity 的存在性证据（broad distribution）
-   → 但不能直接解释"为什么同一基因在HCC38和HCC1143效果不同"
+5. "SCP542 explains why line-skewing occurs"
+   SCP542 only provides evidence of basal heterogeneity through broad distributions.
+   It does not directly explain why the same gene has different effects in HCC38/HCC1143.
 """
 
 # ── What SCP542 DOES support ────────────────────────────────────────────────
 SCP542_POSITIVE_CLAIMS = """
 Supported by SCP542 analysis (positive claims):
 
-1. "backbone 轴在 basal 空间中处于高可塑状态"
-   → 所有 backbone 轴都跨 17-30 个程序分布
-   → 这解释了为什么这些轴在扰动后表现为"强位移"：
-     它们本来就嵌入在高可变的 basal 程序维度中
+1. "Backbone axes occupy highly plastic basal states"
+   All backbone axes span17-30 programs.
+   This is offered as an explanation for strong perturbational displacement:
+     they are already embedded in highly variable basal-program dimensions.
 
-2. "Type A（state-rewriting）锚定在 chromatin/spliceosome 命运程序"
-   → ENY2/TADA3/PRPF6/NPM1/ARID1A 在 basal HCC38 中就集中于
-     chromatin/spliceosome 程序（8.1/7.6/9.9）
-   → 这支持"state-rewriting"功能定位
+2. "Type A(state-rewriting) anchors to chromatin/spliceosome fate programs"
+   ENY2/TADA3/PRPF6/NPM1/ARID1A concentrate in basal HCC38
+     chromatin/spliceosome programs(8.1/7.6/9.9).
+   This supports the state-rewriting functional interpretation.
 
-3. "Type B（transition）与 signaling/cell-cycle 程序绑定"
-   → LAMTOR5/VEZF1 basal loading 集中在 signaling 程序（6.5/8.2）
-   → 这支持"过渡状态"功能定位
+3. "Type B(transition) associates with signaling/cell-cycle programs"
+   LAMTOR5/VEZF1 basal loadings concentrate in signaling programs(6.5/8.2).
+   This supports a transition-state functional interpretation.
 
-4. "TNBC 内部 basal state 存在异质性"
+4. "Basal states vary within TNBC"
    → HCC38 vs BT549 loading correlation ≈ 0
-   → 这为 line-skewed 提供了 basal heterogeneity 来源证据
+   This provides evidence of basal heterogeneity underlying line-skewing.
 
-5. "basal placement 是 distributed 而非 focal"
-   → 这是所有轴的共同特征，支持"broad programmatic effect"模型
+5. "Basal placement is distributed rather than focal"
+   All axes share this property, supporting a broad programmatic-effect model.
 """
 
 

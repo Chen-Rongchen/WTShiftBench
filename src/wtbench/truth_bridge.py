@@ -83,7 +83,7 @@ def load_config(config_path: Path) -> dict[str, Any]:
     required = {"datasets", "depmap", "output", "filters", "metrics", "group_comparison"}
     missing = sorted(required - set(payload))
     if missing:
-        raise ValueError(f"Stage 2 bridge 配置缺少字段: {missing}")
+        raise ValueError(f"Stage 2 bridge config missing fields: {missing}")
     return payload
 
 
@@ -93,7 +93,7 @@ def build_dataset_specs(config: dict[str, Any]) -> list[DatasetSpec]:
         source_kind = str(item.get("source_kind", "mtx_protospacer"))
         dataset_role = str(item.get("dataset_role", "primary"))
         if dataset_role not in DATASET_ROLE_TO_SECTION:
-            raise ValueError(f"不支持的 dataset_role: {dataset_role}")
+            raise ValueError(f"Unsupported dataset_role: {dataset_role}")
         specs.append(
             DatasetSpec(
                 cell_line=str(item["cell_line"]),
@@ -142,7 +142,7 @@ def load_depmap_endpoint(path: Path) -> pd.DataFrame:
     frame.columns = clean_depmap_gene_columns(pd.Index(frame.columns))
     frame = frame.rename(columns={"ModelID": "depmap_model_id"})
     if "depmap_model_id" not in frame.columns:
-        raise ValueError(f"{path} 缺少 depmap_model_id 列。")
+        raise ValueError(f"{path} lacks depmap_model_id.")
     return frame
 
 
@@ -160,12 +160,12 @@ def load_feature_metadata(path: Path) -> pd.DataFrame:
 
 def load_single_feature_calls(spec: DatasetSpec, control_prefix: str) -> pd.DataFrame:
     if spec.protospacer_calls_path is None:
-        raise ValueError(f"{spec.cell_line} 缺少 protospacer_calls_path。")
+        raise ValueError(f"{spec.cell_line} lacks protospacer_calls_path.")
     calls = pd.read_csv(spec.protospacer_calls_path)
     required = {"cell_barcode", "num_features", "feature_call", "num_umis"}
     missing = sorted(required - set(calls.columns))
     if missing:
-        raise ValueError(f"{spec.cell_line} protospacer calls 缺少列: {missing}")
+        raise ValueError(f"{spec.cell_line} protospacer calls missing columns: {missing}")
 
     calls = calls.loc[calls["num_features"] == 1].copy()
     calls["cell_barcode"] = stringify(calls["cell_barcode"])
@@ -195,7 +195,7 @@ def resolve_single_perturbation_status(
             "unverified",
         )
     raise ValueError(
-        "formal 模式要求显式单扰动证据；当前输入既无 is_single_perturbation，也无 num_features==1 可验证。"
+        "Formal mode requires explicit single-perturbation evidence; the input provides neither is_single_perturbation nor verifiable num_features==1."
     )
 
 
@@ -204,14 +204,14 @@ def load_expression_for_called_cells(
     calls: pd.DataFrame,
 ) -> tuple[sparse.csr_matrix, pd.DataFrame, pd.DataFrame]:
     if spec.barcodes_path is None or spec.features_path is None or spec.matrix_path is None:
-        raise ValueError(f"{spec.cell_line} 的 mtx_protospacer 源缺少必要路径。")
+        raise ValueError(f"{spec.cell_line} mtx_protospacer source lacks required paths.")
     barcodes = pd.read_csv(spec.barcodes_path, sep="\t", header=None, names=["cell_barcode"])
     barcodes["cell_barcode"] = stringify(barcodes["cell_barcode"])
     barcode_index = pd.Series(np.arange(len(barcodes), dtype=np.int64), index=barcodes["cell_barcode"])
 
     calls = calls.loc[calls["cell_barcode"].isin(barcode_index.index)].copy()
     if calls.empty:
-        raise ValueError(f"{spec.cell_line} 没有任何 single-feature cells 能在 barcode 列表中对齐。")
+        raise ValueError(f"{spec.cell_line} has no single-feature cells aligned to the barcode list.")
     calls["matrix_col_index"] = calls["cell_barcode"].map(barcode_index).astype(int)
     calls = calls.sort_values("matrix_col_index").reset_index(drop=True)
 
@@ -231,7 +231,7 @@ def load_expression_from_h5ad(
     allow_degraded_unverified: bool,
 ) -> tuple[sparse.csr_matrix, pd.DataFrame, pd.DataFrame]:
     if spec.h5ad_path is None:
-        raise ValueError(f"{spec.cell_line} 缺少 h5ad_path。")
+        raise ValueError(f"{spec.cell_line} lacks h5ad_path.")
     import anndata as ad
 
     adata = ad.read_h5ad(spec.h5ad_path)
@@ -239,7 +239,7 @@ def load_expression_from_h5ad(
     required_obs = {"target_gene", "is_control"}
     missing = sorted(required_obs - set(obs.columns))
     if missing:
-        raise ValueError(f"{spec.cell_line} h5ad.obs 缺少列: {missing}")
+        raise ValueError(f"{spec.cell_line} h5ad.obs missing columns: {missing}")
 
     obs["target_gene"] = stringify(obs["target_gene"])
     obs["is_control"] = obs["is_control"].astype(bool)
@@ -276,7 +276,7 @@ def load_expression_from_h5ad(
     else:
         matrix = sparse.csr_matrix(np.asarray(adata.X))
     if matrix.shape[0] != len(obs):
-        raise ValueError(f"{spec.cell_line} h5ad X 与 obs 行数不一致。")
+        raise ValueError(f"{spec.cell_line} h5ad X and obs row counts differ.")
 
     gene_meta = pd.DataFrame(
         {
@@ -289,10 +289,10 @@ def load_expression_from_h5ad(
 
 def log_normalize_csr(matrix: sparse.csr_matrix, target_sum: float) -> sparse.csr_matrix:
     if matrix.shape[0] == 0:
-        raise ValueError("收到空矩阵，无法做 log-normalization。")
+        raise ValueError("Cannot log-normalize an empty matrix.")
     libsize = np.asarray(matrix.sum(axis=1)).ravel().astype(np.float64)
     if np.any(libsize <= 0):
-        raise ValueError("存在 library size <= 0 的细胞，无法归一化。")
+        raise ValueError("Cannot normalize cells with library size <= 0.")
     scaling = target_sum / libsize
     normalized = matrix.multiply(scaling[:, None]).tocsr()
     normalized.data = np.log1p(normalized.data)
@@ -301,14 +301,14 @@ def log_normalize_csr(matrix: sparse.csr_matrix, target_sum: float) -> sparse.cs
 
 def mean_vector(matrix: sparse.csr_matrix) -> np.ndarray:
     if matrix.shape[0] == 0:
-        raise ValueError("空细胞集合无法计算均值向量。")
+        raise ValueError("Cannot compute a mean vector from an empty cell set.")
     return np.asarray(matrix.mean(axis=0)).ravel().astype(np.float64, copy=False)
 
 
 def compute_embedding(matrix: sparse.csr_matrix, n_components: int) -> np.ndarray:
     usable_components = int(min(n_components, matrix.shape[0] - 1, matrix.shape[1] - 1))
     if usable_components < 2:
-        raise ValueError("细胞数或基因数不足，无法稳定计算 E-distance embedding。")
+        raise ValueError("Insufficient cells or genes for stable E-distance embedding.")
     svd = TruncatedSVD(n_components=usable_components, random_state=0)
     return svd.fit_transform(matrix)
 
@@ -319,7 +319,7 @@ def resolve_edistance_pairwise_max_points(metrics_cfg: dict[str, Any]) -> int | 
         return None
     max_points = int(value)
     if max_points < 2:
-        raise ValueError("edistance_pairwise_max_points 必须 >= 2，或设为 null 以使用精确全量距离。")
+        raise ValueError("edistance_pairwise_max_points must be >= 2 or null for exact full distances.")
     return max_points
 
 
@@ -404,17 +404,17 @@ def build_bridge_records(
     effect_series: pd.Series,
     dependency_series: pd.Series,
 ) -> pd.DataFrame:
-    """在给定 control 细胞行号子集上计算 target-level truth 与 DepMap join（行号与 calls / normalized 对齐）。"""
+    """Compute target-level truth and DepMap joins on control rows aligned with calls/normalized data."""
     min_target_cells = int(filters["min_target_cells"])
     control_mask = calls["is_control"].to_numpy(dtype=bool)
     all_control = np.flatnonzero(control_mask)
     control_set = set(int(x) for x in all_control.tolist())
     pos_set = {int(x) for x in np.asarray(control_positions).ravel().tolist()}
     if not pos_set.issubset(control_set):
-        raise ValueError("control_positions 必须全部为 is_control 行。")
+        raise ValueError("All control_positions must refer to is_control rows.")
     if len(pos_set) < int(filters["min_control_cells"]):
         raise ValueError(
-            f"control 子集细胞数 {len(pos_set)} < min_control_cells={filters['min_control_cells']}"
+            f"Control subset size {len(pos_set)} < min_control_cells={filters['min_control_cells']}"
         )
 
     control_positions = np.sort(np.asarray(control_positions, dtype=np.int64))
@@ -493,9 +493,9 @@ def build_bridge_records(
 
     bridge_table = pd.DataFrame(records).sort_values(["cell_line", "target_gene"]).reset_index(drop=True)
     if bridge_table.empty:
-        raise ValueError(f"{spec.cell_line} 没有任何 target 满足最小细胞数阈值。")
+        raise ValueError(f"{spec.cell_line} has no targets meeting the minimum cell-count threshold.")
     if bridge_table.duplicated(["cell_line", "target_gene"]).any():
-        raise ValueError(f"{spec.cell_line} bridge table 出现重复主键。")
+        raise ValueError(f"{spec.cell_line} bridge table contains duplicate primary keys.")
     return bridge_table
 
 
@@ -505,7 +505,7 @@ def prepare_bridge_inputs(
     depmap_effect: pd.DataFrame,
     depmap_dependency: pd.DataFrame,
 ) -> tuple[sparse.csr_matrix, np.ndarray, pd.DataFrame, pd.DataFrame, pd.Series, pd.Series]:
-    """加载表达、log-normalize、SVD embedding，并解析 DepMap 行向量。"""
+    """Load expression, log-normalize, compute SVD embeddings, and parse DepMap row vectors."""
     filters = config["filters"]
     metrics_cfg = config["metrics"]
     if spec.source_kind == "mtx_protospacer":
@@ -522,7 +522,7 @@ def prepare_bridge_inputs(
             ),
         )
     else:
-        raise ValueError(f"不支持的 source_kind: {spec.source_kind}")
+        raise ValueError(f"Unsupported source_kind: {spec.source_kind}")
 
     min_control_cells = int(filters["min_control_cells"])
 
@@ -532,7 +532,7 @@ def prepare_bridge_inputs(
     control_mask = calls["is_control"].to_numpy(dtype=bool)
     if int(control_mask.sum()) < min_control_cells:
         raise ValueError(
-            f"{spec.cell_line} control cells 不足: {int(control_mask.sum())} < {min_control_cells}"
+            f"{spec.cell_line} insufficient control cells: {int(control_mask.sum())} < {min_control_cells}"
         )
 
     effect_row = depmap_effect.loc[
@@ -542,7 +542,7 @@ def prepare_bridge_inputs(
         depmap_dependency["depmap_model_id"].astype("string").eq(spec.depmap_model_id)
     ]
     if effect_row.empty or dependency_row.empty:
-        raise ValueError(f"{spec.cell_line} 在 DepMap 中找不到 model_id={spec.depmap_model_id}。")
+        raise ValueError(f"{spec.cell_line} model_id={spec.depmap_model_id} not found in DepMap.")
     effect_series = effect_row.iloc[0]
     dependency_series = dependency_row.iloc[0]
 
@@ -647,8 +647,8 @@ def summarize_correlations(bridge_table: pd.DataFrame) -> pd.DataFrame:
                     if not pd.isna(pearson_rho)
                     else np.nan,
                     "alignment_note": (
-                        "depmap_gene_effect: aligned>0 表示 truth metric 越高，gene effect 越负；"
-                        "depmap_gene_dependency: aligned>0 表示 truth metric 越高，gene dependency 越高"
+                        "depmap_gene_effect: aligned>0 means higher truth metrics correspond to more negative gene effect; "
+                        "depmap_gene_dependency: aligned>0 means higher truth metrics correspond to higher gene dependency"
                     ),
                 }
             )
@@ -713,8 +713,8 @@ def summarize_group_comparisons(bridge_table: pd.DataFrame, config: dict[str, An
                     "mannwhitney_u": float(statistic) if not pd.isna(statistic) else np.nan,
                     "pvalue": float(pvalue) if not pd.isna(pvalue) else np.nan,
                     "alignment_note": (
-                        "aligned_effect_direction>0 表示 high truth 组更符合桥接方向；"
-                        "gene effect 为更负，gene dependency 为更高"
+                        "aligned_effect_direction>0 means the high-truth group better follows the bridge direction; "
+                        "more negative gene effect or higher gene dependency"
                     ),
                 }
             )
@@ -728,9 +728,9 @@ def centered_sign(values: pd.Series) -> pd.Series:
 
 
 def build_cross_cell_line_outputs(bridge_tables: list[pd.DataFrame]) -> tuple[pd.DataFrame, pd.DataFrame]:
-    """逐对 cell line 做 inner join（target_gene）与相关；三数据集时为 C(3,2)=3 对，互不混在一个宽表里。"""
+    """Join targets and correlate each cell-line pair separately; three datasets yield C(3,2)=3 pairs."""
     if len(bridge_tables) < 2:
-        raise ValueError("跨 cell line 一致性分析至少需要两个数据集。")
+        raise ValueError("Cross-cell-line consistency analysis requires at least two datasets.")
 
     variables = [*TRUTH_METRIC_COLUMNS, *DEPMAP_ENDPOINT_COLUMNS]
     summary_rows: list[dict[str, Any]] = []
@@ -886,18 +886,18 @@ def write_markdown_report(
     lines = [
         "# Stage 2 Truth-Driven Bridge v1",
         "",
-        "## 摘要",
+        "## Summary",
         "",
-        "- 本报告只覆盖 truth-side bridge，不包含任何 entrant predicted shift。",
-        "- `DepMap gene effect` 与 `gene dependency` 并列输出；主报告严格按 dataset role 与 evidence tier 分层。",
-        "- 主结论只允许 primary datasets 的 primary truth metrics；supplementary datasets 与非 primary metrics 不进入主结论。",
+        "- This report covers only the truth-side bridge, excluding entrant predicted shifts.",
+        "- DepMap gene effect and gene dependency are reported in parallel, stratified by dataset role and evidence tier.",
+        "- Main conclusions use only primary truth metrics from primary datasets; supplementary datasets and nonprimary metrics are excluded.",
     ]
     primary_datasets = [name for name, role in roles.items() if role == "primary"]
     if primary_datasets:
         lines.extend(
             [
                 "",
-                "## 主结论",
+                "## Main findings",
                 "",
             ]
         )
@@ -907,24 +907,24 @@ def write_markdown_report(
         lines.append(f"### {cell_line}")
         audit_row = per_line_audits.loc[per_line_audits["cell_line"].eq(cell_line)].iloc[0]
         lines.append(
-            f"- single-feature cells: `{int(audit_row['n_cells_with_single_feature'])}`；control cells: `{int(audit_row['n_control_cells'])}`；可分析 targets: `{int(audit_row['n_targets_in_bridge_table'])}`。"
+            f"- Single-feature cells: `{int(audit_row['n_cells_with_single_feature'])}`; control cells: `{int(audit_row['n_control_cells'])}`; analyzable targets: `{int(audit_row['n_targets_in_bridge_table'])}`."
         )
         lines.append(
-            f"- DepMap 双端点同时 join 成功率：`{audit_row['depmap_both_join_rate']:.1%}`。"
+            f"- Successful joins to both DepMap endpoints: `{audit_row['depmap_both_join_rate']:.1%}`."
         )
         lines.append(
-            f"- 单扰动判定：`{audit_row['single_perturbation_filter_status']}`（evidence=`{audit_row['single_perturbation_evidence_source']}`）。"
+            f"- Single-perturbation classification: `{audit_row['single_perturbation_filter_status']}` (evidence=`{audit_row['single_perturbation_evidence_source']}`)."
         )
         for row in best.itertuples(index=False):
             lines.append(
-                f"- `{row.truth_metric}` vs `{row.depmap_endpoint}` 的 aligned Spearman = `{row.spearman_rho_aligned:.3f}`（n=`{row.n_targets}`）。"
+                f"- `{row.truth_metric}` vs `{row.depmap_endpoint}` aligned Spearman = `{row.spearman_rho_aligned:.3f}` (n=`{row.n_targets}`)."
             )
         lines.append("")
 
     if primary_datasets:
         lines.extend(
             [
-                "## 补充证据",
+                "## Supplementary evidence",
                 "",
             ]
         )
@@ -933,17 +933,17 @@ def write_markdown_report(
         supplementary = select_summary_rows(correlation, ["supplementary", "auxiliary"])
         lines.append(f"### {cell_line}")
         if supplementary.empty:
-            lines.append("- 无 supplementary / auxiliary 指标可报告。")
+            lines.append("- No supplementary/auxiliary metrics to report.")
         for row in supplementary.itertuples(index=False):
             lines.append(
-                f"- `{row.truth_metric}`（{METRIC_TIERS[row.truth_metric]}）vs `{row.depmap_endpoint}` 的 aligned Spearman = `{row.spearman_rho_aligned:.3f}`（n=`{row.n_targets}`）。"
+                f"- `{row.truth_metric}` ({METRIC_TIERS[row.truth_metric]}) vs `{row.depmap_endpoint}` aligned Spearman = `{row.spearman_rho_aligned:.3f}` (n=`{row.n_targets}`)."
             )
         lines.append("")
 
     if primary_datasets:
         lines.extend(
             [
-                "## 分组比较",
+                "## Group comparisons",
                 "",
             ]
         )
@@ -957,7 +957,7 @@ def write_markdown_report(
         lines.append(f"### {cell_line}")
         for row in best.itertuples(index=False):
             lines.append(
-                f"- `{row.truth_metric}` 分层后，`{row.depmap_endpoint}` 的 aligned_effect_direction = `{row.aligned_effect_direction:.3f}`（high=`{row.n_high}`，low=`{row.n_low}`）。"
+                f"- After stratification by `{row.truth_metric}`, `{row.depmap_endpoint}` aligned_effect_direction = `{row.aligned_effect_direction:.3f}` (high=`{row.n_high}`, low=`{row.n_low}`)."
             )
         lines.append("")
 
@@ -965,7 +965,7 @@ def write_markdown_report(
     if supplementary_datasets:
         lines.extend(
             [
-                "## 外部补充复现",
+                "## External supplementary replication",
                 "",
             ]
         )
@@ -975,25 +975,25 @@ def write_markdown_report(
             best = select_summary_rows(correlation, ["primary", "supplementary", "auxiliary"]).head(4)
             lines.append(f"### {cell_line}")
             lines.append(
-                f"- dataset role: `{audit_row['dataset_role']}`；single-feature cells: `{int(audit_row['n_cells_with_single_feature'])}`；control cells: `{int(audit_row['n_control_cells'])}`；可分析 targets: `{int(audit_row['n_targets_in_bridge_table'])}`。"
+                f"- Dataset role: `{audit_row['dataset_role']}`; single-feature cells: `{int(audit_row['n_cells_with_single_feature'])}`; control cells: `{int(audit_row['n_control_cells'])}`; analyzable targets: `{int(audit_row['n_targets_in_bridge_table'])}`."
             )
             lines.append(
-                f"- 单扰动判定：`{audit_row['single_perturbation_filter_status']}`（evidence=`{audit_row['single_perturbation_evidence_source']}`）。"
+                f"- Single-perturbation classification: `{audit_row['single_perturbation_filter_status']}` (evidence=`{audit_row['single_perturbation_evidence_source']}`)."
             )
             for row in best.itertuples(index=False):
                 lines.append(
-                    f"- `{row.truth_metric}`（{METRIC_TIERS[row.truth_metric]}）vs `{row.depmap_endpoint}` 的 aligned Spearman = `{row.spearman_rho_aligned:.3f}`（n=`{row.n_targets}`）。"
+                    f"- `{row.truth_metric}` ({METRIC_TIERS[row.truth_metric]}) vs `{row.depmap_endpoint}` aligned Spearman = `{row.spearman_rho_aligned:.3f}` (n=`{row.n_targets}`)."
                 )
             lines.append("")
 
     lines.extend(
         [
-            "## 跨 Cell Line 一致性",
+            "## Cross-cell-line consistency",
             "",
         ]
     )
     if cross_summary.empty:
-        lines.append("- 本配置仅含单个 cell line / 数据集，未计算跨 cell line 一致性。")
+        lines.append("- This configuration contains only one cell line/dataset; cross-cell-line consistency was not computed.")
     else:
         allowed_cross = [*DEPMAP_ENDPOINT_COLUMNS, "real_shift_L2", "real_shift_mean_abs", "real_Edistance", "real_DEG_burden"]
         top_cross = cross_summary.loc[cross_summary["variable"].isin(allowed_cross)].sort_values(
@@ -1005,21 +1005,21 @@ def write_markdown_report(
             n_shared = int(row.n_shared_targets) if not pd.isna(row.n_shared_targets) else 0
             if n_shared < 3:
                 lines.append(
-                    f"- `{row.variable}` 在 `{row.cell_line_pair}` 上：两线 **inner join 共享 target** 仅 `{n_shared}` 个，不足以报告稳定 Spearman（靶基因重叠极少属预期）。"
+                    f"- `{row.variable}` in `{row.cell_line_pair}`: only `{n_shared}` shared targets after inner join, insufficient for stable Spearman estimation; sparse target overlap is expected."
                 )
                 continue
             lines.append(
-                f"- `{row.variable}` 在 `{row.cell_line_pair}` 上的 Spearman = `{row.spearman_rho:.3f}`，centered sign concordance = `{row.centered_sign_concordance:.3f}`。"
+                f"- `{row.variable}` in `{row.cell_line_pair}`: Spearman = `{row.spearman_rho:.3f}`, centered sign concordance = `{row.centered_sign_concordance:.3f}`."
             )
 
     lines.extend(
         [
             "",
-            "## 附录",
+            "## Appendix",
             "",
-            "- `aligned` 方向按 endpoint 区分：`gene effect` 为更负，`gene dependency` 为更高。",
-            "- `real_DEG_burden` 在 v1 中按 `abs(log1p-normalized delta) >= threshold` 且表达达到 floor 的基因数定义。",
-            "- `real_Edistance` 在 v1 中基于同 cell line 单扰动细胞的 log-normalized expression SVD embedding 计算。",
+            "- Aligned direction depends on the endpoint: more negative gene effect or higher gene dependency.",
+            "- In v1, real_DEG_burden counts genes with abs(log1p-normalized delta) >= threshold and expression at or above the floor.",
+            "- In v1, real_Edistance uses SVD embeddings of log-normalized expression from single-perturbation cells in the same cell line.",
         ]
     )
     report_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
@@ -1114,12 +1114,12 @@ def run_from_config(config_path: Path) -> dict[str, Path]:
 
 
 def build_argparser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="构建 Stage 2 truth-driven bridge 主线产物。")
+    parser = argparse.ArgumentParser(description="Build Stage 2 truth-driven bridge outputs.")
     parser.add_argument(
         "--config",
         type=Path,
         default=PROJECT_ROOT / "configs/truth_driven_bridge_hcc38_hcc1143_v1.json",
-        help="Stage 2 truth-driven bridge 配置 JSON 路径。",
+        help="Path to the Stage 2 truth-driven bridge JSON configuration.",
     )
     return parser
 
@@ -1127,7 +1127,7 @@ def build_argparser() -> argparse.ArgumentParser:
 def main() -> None:
     args = build_argparser().parse_args()
     outputs = run_from_config(args.config)
-    print("Stage 2 truth-driven bridge 完成。")
+    print("Stage 2 truth-driven bridge completed.")
     for key, value in outputs.items():
         print(f"- {key}: {value}")
 

@@ -1,12 +1,12 @@
 # Data and reproducibility assets
 
-The frozen analysis uses scientific assets v1.2.1; the English documentation/source release is **v1.2.2**. See the [guide](reproducibility/v1.2.1/README.md) and [asset manifest](reproducibility/v1.2.1/manifests/archive_assets.json) for download URLs, sizes, SHA256 values, and extraction roots. [GitHub Release v1.2.2](https://github.com/Chen-Rongchen/WTShiftBench/releases/tag/v1.2.2) distributes the new source ZIP and the three unchanged scientific ZIPs. Their original names and internal execution paths are retained deliberately.
+The current English publication candidate is **v1.2.0**, prepared on 15 September 2026. See the [guide](reproducibility/v1.2.0/README.md), [asset manifest](reproducibility/v1.2.0/manifests/archive_assets.json), and planned [GitHub Release v1.2.0](https://github.com/Chen-Rongchen/WTShiftBench/releases/tag/v1.2.0). Text translation changes source/container hashes but preserves numerical results, matrix axes, seeds, and checkpoint tensors. Relative execution paths within each package are retained.
 
-The **English v1.2.2 source DOI** is [10.5281/zenodo.22753462](https://doi.org/10.5281/zenodo.22753462), corresponding to `942108f06f738a4b54783c9d3ef412e9943ef5de`. The preserved [original v1.2.1 source DOI](https://doi.org/10.5281/zenodo.22735108) corresponds to `63a00cedcf4960ede5f1b21066cc94a8469cec6c`. Both are source-only records, not the matrix/training archive. The data record and its DOI remain pending; a code DOI is not a substitute.
+A new code/data version DOI remains pending. Preserved historical source-only records [10.5281/zenodo.22753462](https://doi.org/10.5281/zenodo.22753462) and [10.5281/zenodo.22735108](https://doi.org/10.5281/zenodo.22735108) correspond to commits `942108f06f738a4b54783c9d3ef412e9943ef5de` and `63a00cedcf4960ede5f1b21066cc94a8469cec6c`, respectively. They neither identify this English derivative nor contain the complete matrix/training assets.
 
-The [replacement-download receipt](https://github.com/Chen-Rongchen/WTShiftBench/releases/download/v1.2.2/replacement_verification.json) verifies all four new release downloads and unchanged scientific ZIP bytes. The earlier GitHub Release page/attachments have been retired; its tag and Zenodo record remain available.
+Earlier v1.2.x GitHub release pages and tags were removed by the author, who requested the v1.2.0 label for this distribution. Git history and earlier Zenodo records remain. Cite the exact new commit and archive hashes, not the reused version label or an old DOI alone.
 
-On 14 September 2026, publicly downloaded files passed full score recomputation in a new extraction directory and frozen Pixi environment: 87 outputs/373 comparisons, four cutoff-sensitivity tables, and gene-effect sensitivity in eight contexts. See the [verification record](docs/verification/v1.2.1/github_release_verification.json). This run did not retrain models, replay 470 checkpoints, or repeat all raw-cell processing.
+On 14 September 2026, the original publicly downloaded files passed 87-output/373-comparison full scoring, four cutoff-sensitivity tables, and eight-context gene-effect sensitivity in a new directory and frozen Pixi environment. The [historical receipt](docs/verification/v1.2.1/github_release_verification.json) retains that scope: no retraining, checkpoint replay, or complete raw-cell reprocessing. Fresh verification of the current English derivative is recorded separately; publication/public-download status must not be inferred from the old receipt.
 
 ## Sources and current use
 
@@ -19,7 +19,7 @@ On 14 September 2026, publicly downloaded files passed full score recomputation 
 | Dependency probability | DepMap Public 25Q3 CRISPRGeneDependency.csv | Primary endpoint; higher values indicate greater dependency |
 | Gene effect | DepMap Public 25Q3 CRISPRGeneEffect.csv | Current sensitivity across contexts; more negative values indicate greater dependency |
 
-The [DepMap registry](reproducibility/v1.2.1/provenance/depmap_provenance.tsv) distinguishes ModelIDs, official-file hashes, and extracted-table hashes. Historical HepG2/Jurkat values and missingness match 23Q4; numerical matching does not recover the original download log. Unavailable exact internal Chronos builds are not inferred.
+The [DepMap registry](reproducibility/v1.2.0/provenance/depmap_provenance.tsv) distinguishes ModelIDs, official-file hashes, and extracted-table hashes. Historical HepG2/Jurkat values and missingness match 23Q4; numerical matching does not recover the original download log. Unavailable exact internal Chronos builds are not inferred.
 
 ## Contents and limits
 

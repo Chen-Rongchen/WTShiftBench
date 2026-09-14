@@ -3,7 +3,7 @@
   "version": 1,
   "dataset_role": "supplementary_external_structure_replication",
   "admission_status": "formal_default_gse90063_13d",
-  "claim_scope": "Dixit/K562 supplementary external structure replication 的默认可重跑入口。当前固定指向 GSE90063 K562 TF pool 13d-only，用于 formal supplementary path；7d 仅作 temporal sensitivity，legacy recipe 需显式使用 historical-only 配置。",
+  "claim_scope": "Default reproducible entry point for Dixit/K562 supplementary external structure replication. The formal supplementary path uses GSE90063 K562 TF pool 13d-only; 7d is temporal sensitivity only. Legacy replay requires an explicit historical-only configuration.",
   "input_paths": {
     "bridge_table": "data/processed/truth_driven_bridge_gse90063_13d/dixit_2016_k562_tf_13d_gse90063/target_level_bridge_table.tsv.gz",
     "hcc_atlas": "reports/truth_driven_bridge/master_atlas/shared_target_master_atlas.tsv",

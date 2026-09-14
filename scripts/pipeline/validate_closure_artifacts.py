@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""校验 Stage 2 closure 相关关键产物的结构与固定边界。"""
+"""Validate structure and fixed boundaries of key Stage2 closure artifacts."""
 from __future__ import annotations
 
 import argparse
@@ -15,24 +15,24 @@ from wtbench.truth_bridge import resolve_path
 def load_validation_config(path: Path) -> dict[str, Any]:
     payload = json.loads(path.read_text(encoding="utf-8"))
     if "artifacts" not in payload:
-        raise ValueError("validation 配置缺少 artifacts。")
+        raise ValueError("Validation configuration lacks artifacts.")
     return payload
 
 
 def ensure_required_columns(frame: pd.DataFrame, required_columns: list[str], *, path: Path) -> None:
     missing = sorted(set(required_columns) - set(frame.columns))
     if missing:
-        raise ValueError(f"{path} 缺少列: {missing}")
+        raise ValueError(f"{path} missing columns: {missing}")
 
 
 def ensure_allowed_values(frame: pd.DataFrame, allowed_values: dict[str, list[str]], *, path: Path) -> None:
     for column, allowed in allowed_values.items():
         if column not in frame.columns:
-            raise ValueError(f"{path} 缺少枚举校验列: {column}")
+            raise ValueError(f"{path} missing enumeration-validation column: {column}")
         observed = {str(value) for value in frame[column].dropna().unique()}
         unexpected = sorted(observed - set(allowed))
         if unexpected:
-            raise ValueError(f"{path} 列 {column} 出现未允许值: {unexpected}")
+            raise ValueError(f"{path} column {column} contains disallowed values: {unexpected}")
 
 
 def ensure_required_rows(frame: pd.DataFrame, required_rows: list[dict[str, dict[str, str]]], *, path: Path) -> None:
@@ -43,28 +43,28 @@ def ensure_required_rows(frame: pd.DataFrame, required_rows: list[dict[str, dict
         mask = pd.Series([True] * len(frame))
         for column, expected in match.items():
             if column not in frame.columns:
-                raise ValueError(f"{path} 缺少 required_rows 所需列: {column}")
+                raise ValueError(f"{path} missing required_rows column: {column}")
             mask = mask & frame[column].astype("string").eq(str(expected))
         if not bool(mask.any()):
-            raise ValueError(f"{path} 缺少要求行: {match}")
+            raise ValueError(f"{path} missing required row: {match}")
 
 
 def ensure_required_substrings(text: str, required_substrings: list[str], *, path: Path) -> None:
     missing = [value for value in required_substrings if value not in text]
     if missing:
-        raise ValueError(f"{path} 缺少关键短语: {missing}")
+        raise ValueError(f"{path} missing required phrases: {missing}")
 
 
 def ensure_forbidden_substrings(text: str, forbidden_substrings: list[str], *, path: Path) -> None:
     observed = [value for value in forbidden_substrings if value in text]
     if observed:
-        raise ValueError(f"{path} 出现禁写短语: {observed}")
+        raise ValueError(f"{path} contains prohibited phrases: {observed}")
 
 
 def validate_one_artifact(artifact: dict[str, Any]) -> Path:
     path = resolve_path(str(artifact["path"]))
     if not path.exists():
-        raise FileNotFoundError(f"缺少校验产物: {path}")
+        raise FileNotFoundError(f"Missing validation artifact: {path}")
 
     required_substrings = artifact.get("required_substrings")
     forbidden_substrings = artifact.get("forbidden_substrings")
@@ -90,17 +90,17 @@ def validate_artifacts_from_config(config_path: Path) -> list[Path]:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="校验 Stage 2 closure 相关关键产物。")
+    parser = argparse.ArgumentParser(description="Validate key Stage2 closure artifacts.")
     parser.add_argument(
         "--config",
         type=Path,
         default=Path("configs/closure_artifact_validation_v1.json"),
-        help="closure artifact validation 配置 JSON。",
+        help="Closure-artifact validation JSON configuration.",
     )
     args = parser.parse_args()
 
     validated = validate_artifacts_from_config(args.config)
-    print("Stage 2 closure 关键产物校验通过。")
+    print("Stage2 key closure-artifact validation passed.")
     for path in validated:
         print(f"- {path}")
 

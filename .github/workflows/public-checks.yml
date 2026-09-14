@@ -1,9 +1,9 @@
-name: Frozen v1.2.1 scientific source checks
+name: English v1.2.0 public source checks
 
 on:
   push:
     branches: [main]
-    paths: ['reproducibility/v1.2.1/**', '.github/workflows/public-checks.yml', 'scripts/release/validate_public_bundle.py', 'tests/test_public_bundle.py']
+    paths: ['reproducibility/v1.2.0/**', '.github/workflows/public-checks.yml', 'scripts/release/validate_public_bundle.py', 'tests/test_public_bundle.py']
   pull_request:
   workflow_dispatch:
 
@@ -18,10 +18,10 @@ jobs:
       - uses: prefix-dev/setup-pixi@v0.8.10
         with:
           pixi-version: v0.66.0
-          manifest-path: reproducibility/v1.2.1/pixi.toml
+          manifest-path: reproducibility/v1.2.0/pixi.toml
           environments: core
           frozen: true
           cache: true
       - name: Synthetic-input tests without private manuscript dependencies
-        working-directory: reproducibility/v1.2.1
+        working-directory: reproducibility/v1.2.0
         run: pixi run --frozen --environment core python -m pytest tests -q

@@ -1,18 +1,18 @@
 """Paper-aligned Linear Baseline with External P Embedding.
 
-根据 Ahlmann-Eltze et al. 2025 Nature Methods 的线性模型:
+Following the linear model in Ahlmann-Eltze et al.2025, Nature Methods:
     Y ≈ G W P^T + b
 
-其中:
+where:
 - Y: perturbation-level shift matrix (genes x perturbations)
 - G: gene embedding from PCA of Y (n_genes, K)
-- P: external perturbation embedding (n_targets, K) - 从外部来源提供
+- P: external perturbation embeddings(n_targets,K), provided from external sources
 - W: linear mapping (K, K)
 - b: bias = row_mean(Y_train)
 
-此 baseline 与 linear_pca_shift_baseline 的区别在于:
-- P embedding 不是从 training data 学习，而是使用外部提供的 embedding
-- 适用于有预训练 embedding 的场景（如 scGPT embeddings, Geneformer embeddings）
+Unlike linear_pca_shift_baseline:
+- P embeddings are externally supplied, not learned from training data
+- Suitable for pretrained embeddings such as scGPT or Geneformer
 """
 
 from __future__ import annotations
@@ -31,7 +31,7 @@ from wtbench.baselines.linear_utils import (
 )
 
 
-# 默认参数
+# Default parameters
 DEFAULT_N_COMPONENTS = 10
 DEFAULT_RIDGE_LAMBDA = 0.1
 
@@ -40,7 +40,7 @@ DEFAULT_RIDGE_LAMBDA = 0.1
 class LinearExternalPConfig:
     n_components: int = DEFAULT_N_COMPONENTS
     ridge_lambda: float = DEFAULT_RIDGE_LAMBDA
-    p_embedding_source: str = "external"  # 标记 P 来源
+    p_embedding_source: str = "external"  # P provenance
 
 
 @dataclass(frozen=True)
@@ -56,16 +56,16 @@ def compute_train_shifts(
     train_targets: list[str],
     evaluable_genes: list[str],
 ):
-    """计算训练数据的 shift matrix。
+    """Compute the training-data shift matrix.
 
     Args:
-        adata: AnnData 对象
-        train_targets: 训练目标基因列表
-        evaluable_genes: 可评估的基因列表（scoring space）
+        adata: AnnData object
+        train_targets: training target gene names
+        evaluable_genes: evaluable gene names(scoring space)
 
     Returns:
-        Y_train: 形状 (n_evaluable_genes, n_train_targets) 的 shift matrix
-        gene_names: 对应的基因名列表
+        Y_train: shift matrix of shape(n_evaluable_genes,n_train_targets)
+        gene_names: corresponding gene names
     """
     from scipy import sparse
 
@@ -79,9 +79,9 @@ def compute_train_shifts(
 
     if (gene_positions < 0).any():
         missing = [evaluable_genes[i] for i, pos in enumerate(gene_positions) if pos < 0][:10]
-        raise ValueError(f"缺少 evaluable gene: {missing}")
+        raise ValueError(f"Missing evaluable genes: {missing}")
 
-    # 计算 control baseline
+    # Compute the control baseline.
     control_mask = obs["is_control"].to_numpy()
     if sparse.issparse(adata.X):
         control_values = np.asarray(adata.X[control_mask].mean(axis=0)).ravel()
@@ -89,7 +89,7 @@ def compute_train_shifts(
         control_values = np.asarray(adata.X[control_mask].mean(axis=0)).ravel()
     control_values = control_values.astype(np.float64)
 
-    # 计算每个 train target 的 delta
+    # Compute deltas for each training target.
     Y_train_rows = []
     valid_train_targets = []
 
@@ -111,7 +111,7 @@ def compute_train_shifts(
         valid_train_targets.append(target)
 
     if not valid_train_targets:
-        raise ValueError("没有可用的训练目标。")
+        raise ValueError("No available training targets.")
 
     Y_train = np.array(Y_train_rows, dtype=np.float64).T  # (n_genes, n_targets)
 
@@ -127,34 +127,34 @@ def build_linear_external_p_baseline(
     n_components: int = DEFAULT_N_COMPONENTS,
     ridge_lambda: float = DEFAULT_RIDGE_LAMBDA,
 ) -> LinearExternalPResult:
-    """构建使用外部 P embedding 的 paper-aligned linear baseline。
+    """Build a paper-aligned linear baseline with external P embeddings.
 
     Args:
-        adata: AnnData 对象
-        train_targets: 训练目标基因列表
-        test_targets: 测试目标基因列表
-        evaluable_genes: 可评估的基因列表
-        external_p_embeddings: 外部提供的 target embedding 字典 {gene_name: embedding}
-        n_components: PCA 分量数 K
-        ridge_lambda: Ridge 正则化参数
+        adata: AnnData object
+        train_targets: training target gene names
+        test_targets: test target gene names
+        evaluable_genes: evaluable gene names
+        external_p_embeddings: externally provided target embeddings {gene_name:embedding}
+        n_components: number K of PCA components
+        ridge_lambda: ridge regularization parameter
 
     Returns:
-        LinearExternalPResult: 包含预测结果和元数据
+        LinearExternalPResult: predictions and metadata
     """
-    # Step 1: 计算训练数据的 shift matrix
+    # Step1: Compute the training shift matrix.
     Y_train, valid_train_targets = compute_train_shifts(
         adata, train_targets, evaluable_genes
     )
     n_genes, n_train = Y_train.shape
 
-    # Step 2: 计算 bias (行均值)
+    # Step2: Compute row-mean bias.
     bias = Y_train.mean(axis=1)  # (n_genes,)
     Y_centered = Y_train - bias[:, np.newaxis]  # (n_genes, n_train)
 
-    # Step 3: 构建 gene embedding G (从 Y_train 的 PCA)
+    # Step3: Build gene embeddings G using PCA on Y_train.
     G, explained_variance = build_gene_embedding_from_shift_pca(Y_centered, n_components)
 
-    # Step 4: 收集有效的 training target embeddings
+    # Step4: Collect valid training-target embeddings.
     P_train_rows = []
     valid_train_indices = []
     unmapped_train = []
@@ -167,17 +167,17 @@ def build_linear_external_p_baseline(
             unmapped_train.append(target)
 
     if not P_train_rows:
-        raise ValueError("没有可用的 training target embedding (来自 external_p_embeddings)。")
+        raise ValueError("No training-target embeddings available in external_p_embeddings.")
 
     P_train = np.array(P_train_rows, dtype=np.float64)  # (n_valid_train, K)
     valid_Y_centered = Y_centered[:, valid_train_indices]
 
-    # Step 5: 求解 W
+    # Step5: Solve W.
     W = solve_bilinear_ridge_closed_form(
         valid_Y_centered, G, P_train, ridge_lambda
     )
 
-    # Step 6: 对 test targets 使用外部 embedding 并预测
+    # Step6: Predict test targets using external embeddings.
     P_test_rows = []
     test_valid_indices = []
     test_unmapped = []
@@ -190,14 +190,14 @@ def build_linear_external_p_baseline(
             test_unmapped.append(target)
 
     if not P_test_rows:
-        raise ValueError("没有可用的 test target embedding (来自 external_p_embeddings)。")
+        raise ValueError("No test-target embeddings available in external_p_embeddings.")
 
     P_test = np.array(P_test_rows, dtype=np.float64)  # (n_valid_test, K)
 
-    # 预测
+    # Predict.
     Y_pred = predict_shift_from_gwp(G, W, P_test, bias)  # (n_test, n_genes)
 
-    # 构建 DataFrame
+    # Build the DataFrame.
     predicted_shift = pd.DataFrame(
         Y_pred,
         index=[test_targets[i] for i in test_valid_indices],
@@ -205,7 +205,7 @@ def build_linear_external_p_baseline(
     )
     predicted_shift.index.name = "target_gene"
 
-    # Target coverage 统计
+    # Target coverage statistics.
     coverage = {
         "n_train_targets": len(train_targets),
         "n_test_targets": len(test_targets),
@@ -250,17 +250,17 @@ def build_linear_external_p_baseline(
 
 
 def load_external_embeddings_from_file(embeddings_path: Path) -> dict[str, np.ndarray]:
-    """从文件加载外部 embeddings。
+    """Load external embeddings from a file.
 
-    支持格式:
-    - .npy: 直接加载 numpy array，假设形状为 (n_targets, K)
-    - .tsv/.csv: 加载为 DataFrame，行索引为 target name，列为 embedding 维度
+    Supported formats:
+    - .npy: NumPy array assumed to have shape(n_targets,K)
+    - .tsv/.csv: DataFrame indexed by target name, with embedding dimensions as columns
 
     Args:
-        embeddings_path: embeddings 文件路径
+        embeddings_path: path to embeddings
 
     Returns:
-        {target_name: embedding_array} 字典
+        Dictionary {target_name:embedding_array}
     """
     import pandas as pd
 
@@ -281,11 +281,11 @@ def load_external_embeddings_from_file(embeddings_path: Path) -> dict[str, np.nd
         return embeddings
 
     else:
-        raise ValueError(f"不支持的 embedding 文件格式: {suffix}")
+        raise ValueError(f"Unsupported embedding format: {suffix}")
 
 
 def main():
-    """命令行入口。"""
+    """Command-line entry point."""
     import argparse
     import anndata as ad
 
@@ -302,20 +302,20 @@ def main():
     parser.add_argument("--metadata-path", default=None)
     args = parser.parse_args()
 
-    # 加载数据
+    # Load data.
     adata = ad.read_h5ad(args.formal_h5ad_path)
 
-    # 加载 evaluable genes
+    # Load evaluable genes.
     evaluable_genes = [
         line.strip()
         for line in Path(args.evaluable_genes_path).read_text().splitlines()
         if line.strip()
     ]
 
-    # 加载外部 P embeddings
+    # Load external P embeddings.
     external_p_embeddings = load_external_embeddings_from_file(Path(args.external_p_embeddings_path))
 
-    # 加载 train targets (如果未指定，从 formal filtered h5ad 中推断)
+    # Load training targets, inferring from formal filtered H5AD if unspecified.
     if args.train_targets is None:
         obs = adata.obs
         obs["is_control"] = obs["is_control"].astype(bool)
@@ -325,7 +325,7 @@ def main():
     else:
         train_targets = args.train_targets
 
-    # 构建 baseline
+    # Build baseline.
     result = build_linear_external_p_baseline(
         adata=adata,
         train_targets=train_targets,
@@ -336,7 +336,7 @@ def main():
         ridge_lambda=args.ridge_lambda,
     )
 
-    # 写入预测结果
+    # Write predictions.
     result.predicted_shift.to_csv(
         args.output_path,
         sep="\t",
@@ -345,7 +345,7 @@ def main():
         index_label="target_gene",
     )
 
-    # 写入元数据
+    # Write metadata.
     if args.metadata_path:
         metadata = {
             "model_params": result.model_params,
@@ -356,7 +356,7 @@ def main():
             json.dumps(metadata, ensure_ascii=False, indent=2)
         )
 
-    print(f"已写出: {args.output_path}")
+    print(f"Written: {args.output_path}")
     print(f"n_test_targets: {len(result.predicted_shift)}")
     print(f"n_genes: {len(result.predicted_shift.columns)}")
     print(f"test_coverage: {result.target_coverage['test_coverage']:.4f}")

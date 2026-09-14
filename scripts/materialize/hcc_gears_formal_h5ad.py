@@ -31,7 +31,7 @@ def load_recipe(path: Path) -> dict[str, object]:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="物化 Stage 2 HCC GEARS 使用的 normalized+log1p formal-like h5ad。")
+    parser = argparse.ArgumentParser(description="Materialize normalized+log1p formal-like H5AD for Stage2 HCC GEARS.")
     parser.add_argument("--config", default="configs/gears_hcc_formal_v1.json")
     parser.add_argument("--cell-line", action="append", choices=["HCC38", "HCC1143"])
     return parser
