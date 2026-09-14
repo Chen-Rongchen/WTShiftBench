@@ -1,0 +1,35 @@
+{
+  "initial_state_sha256": "e822b04f747ba98b37b20a0347cde39d78f3f27719dc6201b1f0c7c4c7917522",
+  "torch_initial_seed": 124,
+  "scvi_split_seed": 0,
+  "training_arguments": {
+    "max_epochs": 100,
+    "batch_size": 128,
+    "early_stopping": true,
+    "early_stopping_patience": 10
+  },
+  "split_sha256": "0c2f02439dbbb1d652e48c9793baf14363aa38c1c5d23388e874249f2b681484",
+  "trained_state_sha256": "4ca83842d8db52d240ab9adb39fbd8a883b67704098b6d142b0142634f966923",
+  "actual_epochs": 12,
+  "scvi_version": "0.19.0",
+  "model": "scgen",
+  "context": "HCC1143",
+  "training_seed": 124,
+  "inference_seed": 123,
+  "prediction_path": "reports/revision/other_model_training_seeds_v1/scgen/seed124/HCC1143/HCC1143/predicted_shift.tsv.gz",
+  "prediction_sha256": "85d33a0aaab14e068208cb46403d097468c610d89b1ed3c03774031737ca8dc0",
+  "elapsed_seconds": 14.35945834312588,
+  "completed_utc": "2026-09-11T13:34:36.557386+00:00",
+  "package_versions": {
+    "torch": "2.0.0",
+    "numpy": "1.23.5",
+    "python": "3.10.20 | packaged by conda-forge | (main, Mar  5 2026, 16:42:22) [GCC 14.3.0]"
+  },
+  "cuda_available": true,
+  "torch_threads": 1,
+  "deterministic_algorithms": false,
+  "scope": "Training-seed sensitivity; GPU kernels may not be bitwise deterministic, so exact historical-run reproduction is not claimed",
+  "checkpoint_hashes": {
+    "reports/revision/other_model_training_seeds_v1/scgen/seed124/HCC1143/checkpoint/model.pt": "b2f7e5264fc71cc3ff64448d4cce6cbe66a29f80cf39884fc615b071b6ad1f22"
+  }
+}

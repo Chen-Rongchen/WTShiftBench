@@ -1,7 +1,7 @@
 {
   "stage": "per_target_signature_materialization",
   "version": 1,
-  "purpose": "从 Stage 2 frozen truth 输入中物化真实 per_target_signature，对应 axis validation 所需的 target×gene delta 对象。",
+  "purpose": "Materialize real per_target_signature objects from Stage 2 frozen truth inputs, providing target-by-gene deltas for axis validation.",
   "input": {
     "truth_bridge_config_path": "configs/truth_driven_bridge_hcc38_hcc1143_v1.json",
     "axis_membership_path": "reports/axis_analysis/axis_membership.tsv"

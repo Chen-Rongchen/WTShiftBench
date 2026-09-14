@@ -1,0 +1,23 @@
+{
+  "amendment_id": "A012",
+  "date": "2026-09-11",
+  "purpose": "Author-requested extension of CellOT training-randomness checks to seeds123-127; add only126/127 without retraining or selecting existing results",
+  "known_results": "Results for123/124/125 were known and positive endpoint ordering was not retained across three seeds;126/127 were not yet trained. This extension was registered at the author's request after results were known, not retrospectively described as initial preregistration.",
+  "base_registration": "configs/revision/cellot_seed123_retrain_v1.json",
+  "previous_registration": "configs/revision/amendment_011_cellot_training_seeds.json",
+  "previous_scoring_root": "reports/revision/finalization_v2/cellot_seeds",
+  "formal_seed": 123,
+  "additional_seeds": [126, 127],
+  "reported_seeds": [123, 124, 125, 126, 127],
+  "contexts": ["HCC38", "HCC1143"],
+  "fits_per_seed": 94,
+  "output_root": "reports/revision/cellot_training_seed_sensitivity_v2",
+  "scoring_output_root": "reports/revision/finalization_v2/cellot_five_seeds",
+  "max_parallel_jobs": 8,
+  "unchanged": "All94 staged inputs, features, datasplits,1000 steps/10 inner steps, learning rate, batch size, MMD checkpoint rule, CPU determinism, and dependencies match123/124/125; each target resets to the same training seed rather than incrementing by target",
+  "reporting": "Report all five seeds side by side;123 remains formal. No best-run selection, prediction averaging, or significance-driven seed additions. Seed ranges describe randomness, not reliable training-population CIs",
+  "scoring": "126/127 use original M4 formulas/inference budgets;124/125 retain frozen estimates, CIs, and raw P values. Recompute separate endpoint/identity BH families across eight outputs from four sensitivity seeds and two contexts;123 remains in the formal18-test family",
+  "inference_family": "A012_eight_additional_seed_context_outputs",
+  "stopping_rule": "Stop at127; retain and report failures without replacing failed or unfavorable runs with new seeds. Future scope changes require new authorization and registration.",
+  "scope": "Only CellOT training is added here; inspect other models' actual stochastic training paths before starting any additional multi-seed work"
+}

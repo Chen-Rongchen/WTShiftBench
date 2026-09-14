@@ -1,5 +1,17 @@
 # Public technical changelog
 
+## [1.2.0] — English publication candidate, 2026-09-15
+
+- At the author's request, use v1.2.0 after removal of earlier v1.2.x GitHub release pages and tags. This is a new distribution, not the historical v1.2.0 bytes. Exact commit, date, and hashes identify it; Git history and existing DOI records are not rewritten.
+- Translate public documentation, code comments, runtime messages, configuration narratives, table annotations, and historical receipts into English. Preserve historical dates, conclusions, adoption chronology, source hashes, scientific values, axes, seeds, and checkpoint tensors.
+- Consolidate the current source view at `reproducibility/v1.2.0/`, retaining internal execution paths. Original prior source views remain in Git history and private immutable backups.
+- Rebuild English matrix/training/local-receipt ZIPs with new manifests and translation provenance. Original local/public verification does not count as a new derivative verification. Publication and new public-download verification remain pending until separately recorded.
+- Keep original SVG paths and geometry, with English layer identifiers and historical labels. Do not publish private manuscripts, responses, final assembled figures/workbooks, or internal editing logs.
+- Remove non-gene placeholder tokens from a legacy annotation list without changing its real gene identifiers or the current scoring implementation.
+- Local verification of the English assets passed 87 outputs/373 full-inference comparisons, four cutoff-sensitivity tables, and eight gene-effect contexts. The public-root and current-source test suites passed (44 and 17 tests). All 46 source tables retain their numerical cells and ordering; all 470 checkpoint files retain their original bytes. Fresh public-download verification is a separate post-publication step.
+
+The entries below describe historical publications at their stated dates. Their former availability and tag statements are superseded by the current publication note, not assertions that removed releases still exist.
+
 ## [1.2.2] — 2026-09-14
 
 - Provide English project, data, reproduction, training, provenance, and citation guides.

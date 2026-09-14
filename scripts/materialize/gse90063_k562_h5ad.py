@@ -30,14 +30,14 @@ def load_config(config_path: Path) -> dict[str, Any]:
     required = {"dataset_label", "input", "mapping", "output"}
     missing = sorted(required - set(payload))
     if missing:
-        raise ValueError(f"配置缺少字段: {missing}")
+        raise ValueError(f"Configuration missing fields: {missing}")
     return payload
 
 
 def read_last_column(path: Path) -> pd.Series:
     frame = pd.read_csv(path)
     if frame.shape[1] == 0:
-        raise ValueError(f"{path} 没有可读取列。")
+        raise ValueError(f"{path} has no readable columns.")
     values = frame.iloc[:, -1].astype(str).str.strip()
     return values
 
@@ -80,8 +80,8 @@ def build_cell_to_guides(assignments: pd.DataFrame) -> dict[str, set[str]]:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="物化 GSE90063 K562 TF pool 为 Stage 2 可用 h5ad。")
-    parser.add_argument("--config", required=True, help="配置文件路径")
+    parser = argparse.ArgumentParser(description="Materialize the GSE90063 K562 TF pool as Stage2-ready H5AD.")
+    parser.add_argument("--config", required=True, help="Configuration file path")
     args = parser.parse_args()
 
     config = load_config(resolve_path(args.config))
@@ -110,7 +110,7 @@ def main() -> None:
 
     if matrix_genes_by_cells.shape != (len(gene_names), len(cell_barcodes)):
         raise ValueError(
-            "矩阵维度与基因/细胞注释不一致："
+            "Matrix dimensions differ from gene/cell annotations: "
             f"{matrix_genes_by_cells.shape} vs ({len(gene_names)}, {len(cell_barcodes)})"
         )
 

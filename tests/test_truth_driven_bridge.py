@@ -74,7 +74,7 @@ class Stage2TruthBridgeHelpersTests(unittest.TestCase):
 
     def test_resolve_single_perturbation_status_fails_without_evidence(self) -> None:
         obs = pd.DataFrame({"is_control": [False, True]})
-        with self.assertRaisesRegex(ValueError, "formal 模式要求显式单扰动证据"):
+        with self.assertRaisesRegex(ValueError, "Formal mode requires explicit single-perturbation evidence"):
             resolve_single_perturbation_status(obs, allow_degraded_unverified=False)
 
     def test_edistance_pairwise_cap_is_configurable(self) -> None:

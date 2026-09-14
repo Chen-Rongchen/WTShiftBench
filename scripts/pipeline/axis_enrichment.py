@@ -13,8 +13,8 @@ DEFAULT_CONFIG_PATH = PROJECT_ROOT / "configs/axis_enrichment_template_v1.json"
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="运行 Stage 2 axis-level enrichment。")
-    parser.add_argument("--config", default=str(DEFAULT_CONFIG_PATH), help="axis enrichment 配置 JSON 路径。")
+    parser = argparse.ArgumentParser(description="Run Stage2 axis-level enrichment.")
+    parser.add_argument("--config", default=str(DEFAULT_CONFIG_PATH), help="Axis-enrichment JSON configuration path")
     return parser
 
 
@@ -28,7 +28,7 @@ def resolve_path(path_value: str | Path) -> Path:
 def load_json(path: Path) -> dict[str, object]:
     payload = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(payload, dict):
-        raise ValueError(f"{path} 必须是 JSON 对象。")
+        raise ValueError(f"{path} must be a JSON object.")
     return payload
 
 
@@ -144,7 +144,7 @@ def main() -> None:
         database = str(collection["database"])
         gmt_path = resolve_path(str(collection["gmt_path"]))
         if not gmt_path.exists():
-            raise FileNotFoundError(f"缺少 gene set GMT：{gmt_path}")
+            raise FileNotFoundError(f"Missing gene-set GMT: {gmt_path}")
         terms = load_gmt(gmt_path)
         for axis_id, axis_genes in axis_gene_sets.items():
             rows.append(

@@ -25,7 +25,7 @@ def load_sensitivity_config(path: Path) -> dict[str, Any]:
     required = {"base_config", "output", "control_subsample"}
     missing = sorted(required - set(payload))
     if missing:
-        raise ValueError(f"Stage 2 sensitivity 配置缺少字段: {missing}")
+        raise ValueError(f"Stage2 sensitivity configuration missing fields: {missing}")
     return payload
 
 
@@ -34,7 +34,7 @@ def rank_stability_vs_baseline(
     replicate: pd.DataFrame,
     truth_metrics: list[str],
 ) -> pd.DataFrame:
-    """各 truth 指标在 target 上的秩，与 baseline 是否一致（Spearman）。"""
+    """Spearman agreement of target ranks for each truth metric against baseline."""
     merged = baseline.loc[:, ["target_gene", *truth_metrics]].merge(
         replicate.loc[:, ["target_gene", *truth_metrics]],
         on="target_gene",
@@ -66,8 +66,8 @@ def audit_covariate_balance(
     strat_col: str,
 ) -> pd.DataFrame:
     """
-    比较各 target 与 control 在 strat_col 上的分布；报告 total variation distance。
-    covariates 至少含 barcode_col、strat_col。
+    Compare each target/control distribution over strat_col and report total variation distance.
+    Covariates must contain barcode_col and strat_col.
     """
     merged = calls[[barcode_col, "target_gene", "is_control"]].merge(
         covariates[[barcode_col, strat_col]].drop_duplicates(subset=[barcode_col]),
@@ -107,16 +107,16 @@ def run_covariate_audits(
     barcode_col: str,
     strat_columns: list[str],
 ) -> pd.DataFrame:
-    """对多个 strat 列批量运行 covariate audit，并合并为一张长表。"""
+    """Run covariate audits across stratification columns and combine into a long table."""
     if barcode_col not in covariates.columns:
-        raise ValueError(f"covariates 缺少条形码列: {barcode_col}")
+        raise ValueError(f"Covariates missing barcode column: {barcode_col}")
     if not strat_columns:
-        raise ValueError("strat_columns 不能为空。")
+        raise ValueError("strat_columns must not be empty.")
 
     outputs: list[pd.DataFrame] = []
     for strat_col in strat_columns:
         if strat_col not in covariates.columns:
-            raise ValueError(f"covariates 缺少分层列: {strat_col}")
+            raise ValueError(f"Covariates missing stratification column: {strat_col}")
         frame = audit_covariate_balance(
             calls,
             covariates,
@@ -132,22 +132,22 @@ def run_covariate_audits(
 
 
 def get_covariate_strat_columns(block: dict[str, Any]) -> list[str]:
-    """兼容旧的 strat_column 与新的 strat_columns 配置。"""
+    """Support both legacy strat_column and newer strat_columns configurations."""
     if "strat_columns" in block:
         cols = [str(value) for value in block["strat_columns"]]
     elif "strat_column" in block:
         cols = [str(block["strat_column"])]
     else:
-        raise ValueError("covariate block 缺少 strat_column 或 strat_columns。")
+        raise ValueError("Covariate block lacks strat_column or strat_columns.")
 
     cols = [value for value in cols if value]
     if not cols:
-        raise ValueError("covariate block 未提供有效的分层列。")
+        raise ValueError("Covariate block provides no valid stratification columns.")
     return cols
 
 
 def summarize_replicate_correlations(correlation_long: pd.DataFrame) -> pd.DataFrame:
-    """replicate 维上汇总 spearman_rho_aligned（按 cell_line, truth_metric, depmap_endpoint）。"""
+    """Summarize spearman_rho_aligned across replicates by cell_line/truth_metric/depmap_endpoint."""
     gcols = ["cell_line", "truth_metric", "depmap_endpoint"]
     rows: list[dict[str, Any]] = []
     for key, grp in correlation_long.groupby(gcols, sort=False):
@@ -215,8 +215,8 @@ def run_control_subsample_sensitivity(
     depmap_dependency: pd.DataFrame,
 ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     """
-    对 control 无放回子抽样，重复计算 bridge 与 summarize_correlations。
-    返回 (replicate_long, summary, rank_stability_long)。
+    Subsample controls without replacement and recompute bridges/summarize_correlations.
+    Return(replicate_long,summary,rank_stability_long).
     """
     n_replicates = int(sensitivity["n_replicates"])
     rng_seed = int(sensitivity.get("random_seed", 0))
@@ -312,7 +312,7 @@ def run_deg_threshold_sweep(
     depmap_effect: pd.DataFrame,
     depmap_dependency: pd.DataFrame,
 ) -> pd.DataFrame:
-    """仅改变 DEG 阈值，重算 bridge 与 depmap_gene_effect 的 Spearman（aligned）。"""
+    """Vary only the legacy DEG threshold and recompute aligned bridge-gene-effect Spearman."""
     thresholds = [float(x) for x in sweep["deg_abs_log1p_delta_thresholds"]]
     floor = float(sweep.get("deg_expression_floor", base_config["metrics"]["deg_expression_floor"]))
     specs = build_dataset_specs(base_config)
@@ -365,7 +365,7 @@ def run_covariate_audit_if_configured(
     depmap_effect: pd.DataFrame,
     depmap_dependency: pd.DataFrame,
 ) -> dict[str, pd.DataFrame]:
-    """按 cell_line 读取可选 covariates TSV，返回 {cell_line: audit_df}。"""
+    """Read optional per-cell-line covariate TSVs, returning {cell_line:audit_df}."""
     out: dict[str, pd.DataFrame] = {}
     specs = build_dataset_specs(base_config)
     for spec in specs:
@@ -394,8 +394,8 @@ def run_all_sensitivity_analyses(
     depmap_dependency: pd.DataFrame,
 ) -> dict[str, Any]:
     """
-    每个 cell line 仅调用一次 prepare_bridge_inputs（昂贵 SVD），再依次做：
-    control 子抽样、DEG 阈值扫描、可选协变量审计。
+    Call prepare_bridge_inputs with expensive SVD once per cell line, followed by
+    control subsampling, legacy DEG-threshold scans, and optional covariate audits.
     """
     specs = build_dataset_specs(base_config)
     filters = base_config["filters"]

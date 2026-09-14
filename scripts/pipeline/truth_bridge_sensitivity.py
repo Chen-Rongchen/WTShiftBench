@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Stage 2 truth bridge 敏感性分析：control 子抽样、DEG 阈值扫描、可选协变量分层审计。"""
+"""Stage2 truth-bridge sensitivity: control subsampling, legacy DEG-threshold scans, and optional covariate-stratified audits."""
 from __future__ import annotations
 
 import argparse
@@ -22,22 +22,22 @@ def write_sensitivity_report(report_root: Path, summary) -> None:
     lines = [
         "# Stage 2 Truth Bridge Sensitivity",
         "",
-        "## 状态",
+        "## Status",
         "",
         f"- configured_replicates = `{configured}`",
         f"- completed_replicates = `{completed}`",
         f"- formal_interval_citable = `{str(formal).lower()}`",
         f"- sensitivity_claim_status = `{claim_status}`",
         "",
-        "## 解释边界",
+        "## Interpretation limits",
         "",
     ]
     if formal:
-        lines.append("- 当前 control subsampling 已达到配置重复次数，可正式引用区间/分位数结果。")
+        lines.append("- Control subsampling reached configured replicates; interval/quantile results can be cited.")
     else:
-        lines.append("- 当前仅为 partial / preliminary sensitivity snapshot。")
-        lines.append("- 未跑满 configured replicates 前，禁止输出正式 interval claim。")
-        lines.append("- 未跑满 configured replicates 前，禁止写 robustness range established。")
+        lines.append("- This is only a partial/preliminary sensitivity snapshot.")
+        lines.append("- Do not make formal interval claims before completing configured replicates.")
+        lines.append("- Do not claim established robustness ranges before completing configured replicates.")
     (report_root / "sensitivity_report.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
@@ -81,18 +81,18 @@ def run_sensitivity_from_config(config_path: Path) -> tuple[Path, dict]:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Stage 2 truth-driven bridge 敏感性分析。")
+    parser = argparse.ArgumentParser(description="Stage2 truth-driven bridge sensitivity analysis.")
     parser.add_argument(
         "--config",
         type=Path,
         default=Path("configs/truth_bridge_sensitivity_v1.json"),
-        help="敏感性分析配置 JSON。",
+        help="Sensitivity-analysis JSON configuration.",
     )
     args = parser.parse_args()
 
     report_root, _ = run_sensitivity_from_config(args.config)
 
-    print("Stage 2 truth bridge 敏感性分析完成。")
+    print("Stage2 truth-bridge sensitivity analysis completed.")
     print(f"- {report_root}")
 
 

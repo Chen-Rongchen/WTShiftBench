@@ -51,7 +51,7 @@ def load_config(config_path: Path) -> dict[str, Any]:
 def accession_bucket(accession: str) -> str:
     match = re.fullmatch(r"([A-Z]+)(\d+)", accession)
     if not match:
-        raise ValueError(f"无法解析 accession: {accession}")
+        raise ValueError(f"Cannot parse accession: {accession}")
     prefix, digits = match.groups()
     return f"{prefix}{digits[:-3]}nnn"
 
@@ -247,12 +247,12 @@ def write_manifest(records: list[SupplementaryFile], manifest_path: Path) -> Non
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="下载 GEO series 下的 supplementary 文件。")
-    parser.add_argument("--config", required=True, help="下载配置 JSON")
-    parser.add_argument("--dry-run", action="store_true", help="只生成 manifest，不下载 supplementary 文件")
-    parser.add_argument("--max-files", type=int, default=None, help="最多处理前 N 个文件，用于测试")
-    parser.add_argument("--sample-accession", action="append", default=[], help="只解析指定 GSM 的 suppl 目录，可重复传入")
-    parser.add_argument("--test-records", action="store_true", help="使用配置中的 test_records，不访问 GEO 元数据")
+    parser = argparse.ArgumentParser(description="Download supplementary files for GEO series.")
+    parser.add_argument("--config", required=True, help="Download configuration JSON")
+    parser.add_argument("--dry-run", action="store_true", help="Generate a manifest without downloading supplementary files")
+    parser.add_argument("--max-files", type=int, default=None, help="Process at most the first N files for testing")
+    parser.add_argument("--sample-accession", action="append", default=[], help="Parse only specified GSM supplementary directories; repeatable")
+    parser.add_argument("--test-records", action="store_true", help="Use configured test_records without accessing GEO metadata")
     return parser
 
 

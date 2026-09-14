@@ -2,12 +2,12 @@
   "schema_version": 1,
   "run_id": "cellot_hcc_seed123_retrain_v1",
   "date": "2026-09-07",
-  "purpose": "补充明确记录种子的训练路线；不是恢复历史seed，不替换冻结正式输出",
+  "purpose": "Supplementary training with an explicitly recorded seed; neither recovery of the historical seed nor replacement of frozen formal outputs",
   "contexts": ["HCC38", "HCC1143"],
   "targets_per_context": 47,
   "genes_per_context": 47,
   "training_seed": 123,
-  "seed_policy": "每个target的新进程均重置为123，不按target序号递增；Python/NumPy/PyTorch均设置",
+  "seed_policy": "Reset Python/NumPy/PyTorch seeds to 123 in each target-specific process; do not increment by target index",
   "historical_training_seed": null,
   "source_revision": "522d2b953da8ad244fcf36f64521487fdf763788",
   "source_root": "/tmp/wtko_cellot_install",
@@ -16,24 +16,24 @@
   "output_root": "reports/revision/cellot_seed123_retrain_v1",
   "runtime_amendment": {
     "date": "2026-09-07",
-    "reason": "首次pilot在step0写HDF日志时缺少PyTables；补齐真实训练依赖后从空目录重试，不续训失败cache",
+    "reason": "The first pilot failed at step 0 while writing HDF logs because PyTables was missing; install the required training dependency and retry from an empty directory rather than resuming the failed cache",
     "original_freeze_commit": "306e1d5",
     "historical_lock_sha256": "5b6d7fcb4425603cc23ec0bd456d93945f8e1a4ccca2075bbb5e1c851dacc955",
     "current_lock_sha256": "d5cde7e0a5a6fd39d72ee928c3d82ab50c41cfdb048d7c1990c0fe86cffb203e",
     "historical_input_change": "pixi.lock",
-    "packages": "新增PyTables3.9.2及依赖；hdf5=1.14.3、h5py=3.13.0；MKL固定原2022.1.0；torch/NumPy/pandas版本不变，完整build见lock",
-    "numexpr_note": "MKL2022.1.0约束下numexpr为2.7.3；pandas自动禁用该可选加速，HDF日志写入/读取已实测通过",
+    "packages": "Add PyTables 3.9.2 and dependencies; hdf5=1.14.3, h5py=3.13.0; retain MKL 2022.1.0 and unchanged torch/NumPy/pandas versions; full builds are in the lockfile",
+    "numexpr_note": "MKL 2022.1.0 constrains numexpr to 2.7.3; pandas disables this optional accelerator automatically; HDF log writing and reading were tested successfully",
     "failed_attempt": "reports/revision/cellot_seed123_retrain_v1/pilot/failed_missing_pytables_repeat_1",
     "new_model_scores_seen": false
   },
-  "data_policy": "原staged input.h5ad/features和已保存合并配置不变；不重新抽样、不重新归一化",
+  "data_policy": "Retain original staged input.h5ad/features and saved merged configurations; no resampling or renormalization",
   "training": {
     "n_iters": 1000,
     "n_inner_iters": 10,
     "learning_rate": 0.0001,
     "batch_size": 256,
     "datasplit_random_state": 0,
-    "checkpoint_selection": "沿用原训练程序的固定步数MMD最优model.pt，不用endpoint分数选checkpoint"
+    "checkpoint_selection": "Retain the original fixed-budget training procedure's MMD-selected model.pt; do not select checkpoints using endpoint scores"
   },
   "runtime": {
     "environment": "cellot",
@@ -48,16 +48,16 @@
   "pilot": {
     "context": "HCC38",
     "target": "ARID1A",
-    "selection": "HCC38中按名称排序首个target，独立于endpoint/model结果",
+    "selection": "Alphabetically first HCC38 target, selected independently of endpoint/model results",
     "replicates": 2,
-    "acceptance": "best/last checkpoint所有模型与优化器状态、步数和导出shift逐元素精确相同",
+    "acceptance": "Exact elementwise agreement of all model and optimizer states, step counts, and exported shifts for best/last checkpoints",
     "full_run_requires_pass": true,
     "reuse_pilot_as_full_output": false
   },
   "full_run": {
     "n_target_fits": 94,
-    "incomplete_cache_policy": "不自动续训：原CellOT checkpoint不保存RNG；失败记录保留，先定位再决定新尝试",
-    "promotion_policy": "所有94项完成后整体比较，不选更好seed/context/target替换正式结果",
+    "incomplete_cache_policy": "No automatic resume: original CellOT checkpoints do not save RNG states; retain failed-run records and investigate before deciding on another attempt",
+    "promotion_policy": "Compare all 94 completed fits together; do not select a better seed/context/target to replace formal results",
     "scored_target_held_out": false
   },
   "scoring": {
@@ -65,9 +65,9 @@
     "metric_spec": "configs/revision/revision_metric_spec_v1.json",
     "old_results": "reports/revision/m4_hcc_full_audit/formal_and_diagnostic_context_metrics.tsv",
     "old_model_id": "cellot_hcc_formal_v1",
-    "inference": "沿用冻结score_context的5000 bootstrap和10000 Mantel，以及M4 endpoint permutation定义和base seeds",
-    "bh_policy": "新输出单独两context family；不改变原18-test family，不按新旧q值比较优劣",
-    "difference_policy": "逐维描述新减旧；不声称完成模型差值检验或跨训练seed稳定性",
+    "inference": "Retain frozen score_context settings of 5000 bootstrap and 10000 Mantel iterations, plus the M4 endpoint permutation definition and base seeds",
+    "bh_policy": "Use a separate two-context family for new outputs; leave the original 18-test family unchanged and do not compare performance using old versus new q values",
+    "difference_policy": "Describe new-minus-old differences per dimension; do not claim between-model difference testing or training-seed stability",
     "replace_existing_results": false
   }
 }

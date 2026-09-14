@@ -20,12 +20,12 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 def load_prediction(path: Path) -> pd.DataFrame:
     frame = pd.read_csv(path, sep="\t")
     if frame.empty:
-        raise ValueError(f"{path} 为空。")
+        raise ValueError(f"{path} is empty.")
     return frame
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="验证 Stage 2 HCC scorer-ready prediction contract。")
+    parser = argparse.ArgumentParser(description="Validate the Stage2 HCC scorer-ready prediction contract.")
     parser.add_argument("--prediction-path", required=True)
     parser.add_argument("--summary-path", required=True)
     parser.add_argument("--contract-path", default=str(DEFAULT_CONTRACT_PATH))

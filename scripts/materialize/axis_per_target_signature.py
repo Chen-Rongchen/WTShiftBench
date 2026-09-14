@@ -21,8 +21,8 @@ DEFAULT_CONFIG_PATH = PROJECT_ROOT / "configs/axis_per_target_signature_v1.json"
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="物化 Stage 2 axis per-target signature。")
-    parser.add_argument("--config", default=str(DEFAULT_CONFIG_PATH), help="per-target signature 配置 JSON 路径。")
+    parser = argparse.ArgumentParser(description="Materialize Stage2 axis per-target signatures.")
+    parser.add_argument("--config", default=str(DEFAULT_CONFIG_PATH), help="Per-target signature configuration JSON path")
     return parser
 
 
@@ -36,7 +36,7 @@ def resolve_path(path_value: str | Path) -> Path:
 def load_json(path: Path) -> dict[str, object]:
     payload = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(payload, dict):
-        raise ValueError(f"{path} 必须是 JSON 对象。")
+        raise ValueError(f"{path} must be a JSON object.")
     return payload
 
 
@@ -46,7 +46,7 @@ def load_axis_membership(axis_analysis_config: dict[str, object]) -> pd.DataFram
     membership = pd.read_csv(membership_path, sep="\t")
     membership = membership.rename(columns={"fine_axis": "axis_id"}).loc[:, ["axis_id", "target_gene"]]
     if membership.empty:
-        raise ValueError("axis membership 为空，无法物化 per-target signature。")
+        raise ValueError("Empty axis membership; cannot materialize per-target signatures.")
     return membership.drop_duplicates().sort_values(["axis_id", "target_gene"]).reset_index(drop=True)
 
 
@@ -113,7 +113,7 @@ def main() -> None:
     require_all_cell_lines = bool(config["analysis"]["require_all_cell_lines"])
     score_mode = str(config["analysis"]["score_mode"])
     if score_mode != "abs_of_mean_signed_delta":
-        raise ValueError(f"当前不支持的 score_mode: {score_mode}")
+        raise ValueError(f"Unsupported score_mode: {score_mode}")
 
     depmap_cfg = truth_bridge_config["depmap"]
     depmap_effect = load_depmap_endpoint(resolve_path(str(depmap_cfg["gene_effect_path"])))
@@ -125,7 +125,7 @@ def main() -> None:
         if spec.dataset_role == dataset_role and spec.cell_line in selected_cell_lines
     ]
     if not specs:
-        raise ValueError("没有匹配到任何 Stage 2 truth bridge dataset spec。")
+        raise ValueError("No matching Stage2 truth-bridge dataset specifications.")
 
     min_target_cells = int(truth_bridge_config["filters"]["min_target_cells"])
     per_line_frames: list[pd.DataFrame] = []
@@ -147,14 +147,14 @@ def main() -> None:
         per_line_frames.append(frame)
 
     if not per_line_frames:
-        raise ValueError("没有生成任何 per-target gene delta。")
+        raise ValueError("No per-target gene deltas generated.")
     combined = pd.concat(per_line_frames, ignore_index=True)
     if combined.empty:
-        raise ValueError("per-target gene delta 结果为空。")
+        raise ValueError("Per-target gene delta results are empty.")
 
     combined = membership.merge(combined, on="target_gene", how="inner")
     if combined.empty:
-        raise ValueError("axis membership 与 per-target delta 没有交集。")
+        raise ValueError("Axis membership and per-target deltas have no intersection.")
 
     aggregated = (
         combined.groupby(["axis_id", "target_gene", "gene"], as_index=False)
@@ -173,7 +173,7 @@ def main() -> None:
         expected_count = len(specs)
         aggregated = aggregated.loc[aggregated["n_cell_lines"].eq(expected_count)].copy()
         if aggregated.empty:
-            raise ValueError("要求所有 cell lines 同时存在后，per-target signature 为空。")
+            raise ValueError("No per-target signatures remain after requiring all cell lines.")
 
     aggregated["score"] = aggregated["signed_score"].abs()
     aggregated["rank"] = (

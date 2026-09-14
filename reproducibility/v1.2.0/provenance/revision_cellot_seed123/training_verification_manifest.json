@@ -1,5 +1,5 @@
 {
-  "status": "94项训练及两张预测导出验收通过",
+  "status": "All 94 fits and both prediction exports passed verification",
   "contexts": {
     "HCC38": 47,
     "HCC1143": 47
@@ -9,13 +9,13 @@
   "original_manifest_entries_checked": 671,
   "runtime_amendment": {
     "date": "2026-09-07",
-    "reason": "首次pilot在step0写HDF日志时缺少PyTables；补齐真实训练依赖后从空目录重试，不续训失败cache",
+    "reason": "The first pilot failed at step 0 while writing HDF logs because PyTables was missing; install the required training dependency and retry from an empty directory rather than resuming the failed cache",
     "original_freeze_commit": "306e1d5",
     "historical_lock_sha256": "5b6d7fcb4425603cc23ec0bd456d93945f8e1a4ccca2075bbb5e1c851dacc955",
     "current_lock_sha256": "d5cde7e0a5a6fd39d72ee928c3d82ab50c41cfdb048d7c1990c0fe86cffb203e",
     "historical_input_change": "pixi.lock",
-    "packages": "新增PyTables3.9.2及依赖；hdf5=1.14.3、h5py=3.13.0；MKL固定原2022.1.0；torch/NumPy/pandas版本不变，完整build见lock",
-    "numexpr_note": "MKL2022.1.0约束下numexpr为2.7.3；pandas自动禁用该可选加速，HDF日志写入/读取已实测通过",
+    "packages": "Add PyTables 3.9.2 and dependencies; hdf5=1.14.3, h5py=3.13.0; retain MKL 2022.1.0 and unchanged torch/NumPy/pandas versions; full builds are in the lockfile",
+    "numexpr_note": "MKL 2022.1.0 constrains numexpr to 2.7.3; pandas disables this optional accelerator automatically; HDF log writing and reading were tested successfully",
     "failed_attempt": "reports/revision/cellot_seed123_retrain_v1/pilot/failed_missing_pytables_repeat_1",
     "new_model_scores_seen": false
   },

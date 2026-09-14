@@ -1,0 +1,1136 @@
+{
+  "source_revision": "522d2b953da8ad244fcf36f64521487fdf763788",
+  "compared_target_fits": 188,
+  "formal_seed": 123,
+  "comparisons": [
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "ARID1A",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "BMPR1A",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "CDKN2A",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "COMMD6",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "ENY2",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "ERC1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "ETV3",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "GON4L",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "HDGF",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "HLX",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "KLF3",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "LAMTOR5",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "MAML3",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "MIER1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "MTDH",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "MYBL1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "NCOA1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "NPM1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "PA2G4",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "PARK7",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "PCBD1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "PEX14",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "PFDN5",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "PMF1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "PRDX2",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "PRPF6",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "RORC",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "RPS3",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "RUVBL2",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "SMAD1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "STAT3",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "TAB3",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "TADA3",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "THAP8",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "THRA",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "TMF1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "TMSB4X",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "UBP1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "VEZF1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "XBP1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "YBX1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "ZBTB17",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "ZBTB20",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "ZBTB5",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "ZNF131",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "ZNF24",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC38",
+      "target": "ZNF566",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "ARID1A",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "BMPR1A",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "CDKN2A",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "COMMD6",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "ENY2",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "ERC1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "ETV3",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "GON4L",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "HDGF",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "HLX",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "KLF3",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "LAMTOR5",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "MAML3",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "MIER1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "MTDH",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "MYBL1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "NCOA1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "NPM1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "PA2G4",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "PARK7",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "PCBD1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "PEX14",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "PFDN5",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "PMF1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "PRDX2",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "PRPF6",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "RORC",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "RPS3",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "RUVBL2",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "SMAD1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "STAT3",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "TAB3",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "TADA3",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "THAP8",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "THRA",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "TMF1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "TMSB4X",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "UBP1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "VEZF1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "XBP1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "YBX1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "ZBTB17",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "ZBTB20",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "ZBTB5",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "ZNF131",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "ZNF24",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 124,
+      "context": "HCC1143",
+      "target": "ZNF566",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "ARID1A",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "BMPR1A",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "CDKN2A",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "COMMD6",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "ENY2",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "ERC1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "ETV3",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "GON4L",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "HDGF",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "HLX",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "KLF3",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "LAMTOR5",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "MAML3",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "MIER1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "MTDH",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "MYBL1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "NCOA1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "NPM1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "PA2G4",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "PARK7",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "PCBD1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "PEX14",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "PFDN5",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "PMF1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "PRDX2",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "PRPF6",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "RORC",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "RPS3",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "RUVBL2",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "SMAD1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "STAT3",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "TAB3",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "TADA3",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "THAP8",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "THRA",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "TMF1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "TMSB4X",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "UBP1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "VEZF1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "XBP1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "YBX1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "ZBTB17",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "ZBTB20",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "ZBTB5",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "ZNF131",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "ZNF24",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC38",
+      "target": "ZNF566",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "ARID1A",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "BMPR1A",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "CDKN2A",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "COMMD6",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "ENY2",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "ERC1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "ETV3",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "GON4L",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "HDGF",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "HLX",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "KLF3",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "LAMTOR5",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "MAML3",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "MIER1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "MTDH",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "MYBL1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "NCOA1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "NPM1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "PA2G4",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "PARK7",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "PCBD1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "PEX14",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "PFDN5",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "PMF1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "PRDX2",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "PRPF6",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "RORC",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "RPS3",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "RUVBL2",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "SMAD1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "STAT3",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "TAB3",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "TADA3",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "THAP8",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "THRA",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "TMF1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "TMSB4X",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "UBP1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "VEZF1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "XBP1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "YBX1",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "ZBTB17",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "ZBTB20",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "ZBTB5",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "ZNF131",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "ZNF24",
+      "same_inputs_config_runtime": true
+    },
+    {
+      "seed": 125,
+      "context": "HCC1143",
+      "target": "ZNF566",
+      "same_inputs_config_runtime": true
+    }
+  ],
+  "scope": "Itemwise checks of identical staged cells, features, complete model configurations, libraries, determinism, and iteration counts; training seeds differ and concurrency limits are4/8, with each task single-threaded"
+}

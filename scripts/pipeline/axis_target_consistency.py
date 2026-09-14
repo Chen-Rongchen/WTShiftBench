@@ -13,8 +13,8 @@ DEFAULT_CONFIG_PATH = PROJECT_ROOT / "configs/axis_target_consistency_template_v
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="运行 Stage 2 per-target pathway consistency audit。")
-    parser.add_argument("--config", default=str(DEFAULT_CONFIG_PATH), help="axis target consistency 配置 JSON 路径。")
+    parser = argparse.ArgumentParser(description="Run Stage2 per-target pathway consistency audit.")
+    parser.add_argument("--config", default=str(DEFAULT_CONFIG_PATH), help="Axis-target consistency JSON configuration path")
     return parser
 
 
@@ -28,7 +28,7 @@ def resolve_path(path_value: str | Path) -> Path:
 def load_json(path: Path) -> dict[str, object]:
     payload = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(payload, dict):
-        raise ValueError(f"{path} 必须是 JSON 对象。")
+        raise ValueError(f"{path} must be a JSON object.")
     return payload
 
 
@@ -130,8 +130,8 @@ def main() -> None:
     signature_path = resolve_path(str(config["input"]["per_target_signature_path"]))
     if not signature_path.exists():
         raise FileNotFoundError(
-            f"缺少 per_target_signature 输入：{signature_path}。"
-            "当前不允许脚本内部伪造 per-target signature；请先物化真实对象后再运行 consistency audit。"
+            f"Missing per_target_signature input: {signature_path}. "
+            "The script must not fabricate per-target signatures; materialize actual objects before running the consistency audit."
         )
 
     output_path = resolve_path(str(config["output"]["table_path"]))
@@ -159,12 +159,12 @@ def main() -> None:
             seen_columns = set(chunk.columns)
             missing_columns = sorted(required_columns - seen_columns)
             if missing_columns:
-                raise ValueError(f"per_target_signature 缺少字段：{missing_columns}")
+                raise ValueError(f"per_target_signature missing fields: {missing_columns}")
         universe.update(chunk["gene"].astype(str))
         top_frames = update_top_target_gene_sets(top_frames, chunk, top_n=top_n)
 
     if seen_columns is None:
-        raise ValueError("per_target_signature 为空。")
+        raise ValueError("per_target_signature is empty.")
 
     rows: list[pd.DataFrame] = []
 
@@ -172,7 +172,7 @@ def main() -> None:
         database = str(collection["database"])
         gmt_path = resolve_path(str(collection["gmt_path"]))
         if not gmt_path.exists():
-            raise FileNotFoundError(f"缺少 gene set GMT：{gmt_path}")
+            raise FileNotFoundError(f"Missing gene-set GMT: {gmt_path}")
         terms = load_gmt(gmt_path)
         for (axis_id, target_gene), target_frame in top_frames.items():
             rows.append(

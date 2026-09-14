@@ -67,7 +67,7 @@ class Stage2ClosureArtifactValidationTests(unittest.TestCase):
             ).to_csv(final_claim, sep="\t", index=False)
 
             note = root / "boundary.md"
-            note.write_text("A0 architecture form 已 confirmed\nn=10\ngated_downstream_layer\n", encoding="utf-8")
+            note.write_text("A0 architecture form confirmed\nn=10\ngated_downstream_layer\n", encoding="utf-8")
 
             config_path = root / "validation.json"
             config_path.write_text(
@@ -95,7 +95,7 @@ class Stage2ClosureArtifactValidationTests(unittest.TestCase):
                             {
                                 "path": str(note),
                                 "required_substrings": [
-                                    "A0 architecture form 已 confirmed",
+                                    "A0 architecture form confirmed",
                                     "n=10",
                                     "gated_downstream_layer",
                                 ],
@@ -135,7 +135,7 @@ class Stage2ClosureArtifactValidationTests(unittest.TestCase):
                 encoding="utf-8",
             )
 
-            with self.assertRaisesRegex(ValueError, "禁写短语"):
+            with self.assertRaisesRegex(ValueError, "prohibited phrases"):
                 validate_artifacts_from_config(config_path)
 
 

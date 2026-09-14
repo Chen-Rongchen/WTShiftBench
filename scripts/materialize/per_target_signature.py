@@ -21,15 +21,15 @@ DEFAULT_CONFIG_PATH = PROJECT_ROOT / "configs/per_target_signature_materializati
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="物化 Stage 2 per_target_signature。")
-    parser.add_argument("--config", default=str(DEFAULT_CONFIG_PATH), help="per_target_signature 物化配置 JSON 路径。")
+    parser = argparse.ArgumentParser(description="Materialize Stage2 per_target_signature.")
+    parser.add_argument("--config", default=str(DEFAULT_CONFIG_PATH), help="per_target_signature materialization JSON configuration path")
     return parser
 
 
 def load_json(path: Path) -> dict[str, object]:
     payload = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(payload, dict):
-        raise ValueError(f"{path} 必须是 JSON 对象。")
+        raise ValueError(f"{path} must be a JSON object.")
     return payload
 
 
@@ -37,7 +37,7 @@ def build_axis_target_map(axis_membership: pd.DataFrame) -> pd.DataFrame:
     required = {"axis_id", "target_gene"}
     missing = sorted(required - set(axis_membership.columns))
     if missing:
-        raise ValueError(f"axis_membership 缺少列：{missing}")
+        raise ValueError(f"axis_membership missing columns: {missing}")
     return axis_membership.loc[:, ["axis_id", "target_gene"]].drop_duplicates().reset_index(drop=True)
 
 
@@ -128,7 +128,7 @@ def main() -> None:
         if spec.dataset_role == dataset_role and spec.cell_line in scope_cell_lines
     ]
     if not specs:
-        raise ValueError("当前配置没有匹配到任何 dataset spec。")
+        raise ValueError("No matching dataset specification in this configuration.")
 
     depmap_effect = load_depmap_endpoint(resolve_path(str(truth_config["depmap"]["gene_effect_path"])))
     depmap_dependency = load_depmap_endpoint(resolve_path(str(truth_config["depmap"]["gene_dependency_path"])))

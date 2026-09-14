@@ -2665,7 +2665,7 @@
     "passed": true,
     "m6_tables": 4,
     "gene_effect_contexts": 8,
-    "scope": "M6从冻结target级评分重建；GE从归档提取值复算，不代替全官方文件来源核验"
+    "scope": "Rebuild M6 from frozen target-level scores and GE statistics from archived extracted values; this does not replace provenance verification of complete official files."
   },
   "environment": {
     "prefix": "<matrix-root>/.pixi/envs/core",
@@ -2781,7 +2781,7 @@
       }
     }
   ],
-  "path_redaction": "仅以<matrix-root>替换新下载解压目录的本机路径；原始执行回执及日志私有保存，原始日志SHA256不变。",
+  "path_redaction": "Replace only the machine-specific extraction directory with <matrix-root>. Original execution receipts and logs remain private; original log SHA256 values are unchanged.",
   "private_receipt_sha256": "0ea67b1eb6f12d0ed088405e323bc117da60663af3493eb4a3ff8023b9f0716f",
   "matrix_manifest_sha256": "e8d3e043daae93474eb596fe2c5664e9ae498cd579dfe951b967915ed26942df",
   "pixi_lock_sha256": "d5cde7e0a5a6fd39d72ee928c3d82ab50c41cfdb048d7c1990c0fe86cffb203e",
@@ -3058,7 +3058,7 @@
   "training_manifest_files_verified": 1767,
   "checkpoint_replay_executed_this_run": false,
   "staged_retraining_executed_this_run": false,
-  "prior_local_training_verification_scope": "既有本地记录覆盖470个checkpoint回放、两个ARID1A target的staged重训，不是本次公开下载后重新执行。",
+  "prior_local_training_verification_scope": "Prior local records cover 470 checkpoint replays and staged retraining of two ARID1A targets, not executions repeated after this public download.",
   "zenodo": {
     "source_version_doi": "10.5281/zenodo.22735108",
     "record_url": "https://zenodo.org/records/22735108",
@@ -3075,8 +3075,8 @@
     "matrix_training_download_verified": false
   },
   "remaining": [
-    "矩阵、训练和验收资产仍需对应的Zenodo数据归档及实际文件核验",
-    "代码和数据DOI按各自范围引用，不将源码DOI当作完整数据归档"
+    "Matrix, training and verification assets still require a corresponding Zenodo data archive and actual file verification",
+    "Cite code and data DOIs according to their scope; a source DOI is not a complete data archive"
   ],
-  "scope": "GitHub公开下载后的完整冻结矩阵评分及辅助统计已通过；Zenodo仅源码下载核验通过。本记录不代表重新训练、跨seed稳定性或完整raw-to-training复现。"
+  "scope": "Full frozen-matrix scoring and auxiliary statistics passed after GitHub public download; only source download was verified on Zenodo. This record does not establish retraining, cross-seed stability or complete raw-to-training reproduction."
 }

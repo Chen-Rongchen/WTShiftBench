@@ -181,7 +181,7 @@ def build_target_delta_matrix_k562(
 
     control_mask = calls["is_control"].to_numpy(dtype=bool)
     if not control_mask.any():
-        raise ValueError(f"K562 没有 control cells。")
+        raise ValueError(f"K562 has no control cells.")
 
     normalized = normalized_expression[:, output_gene_positions]
     control_mean = np.asarray(normalized[control_mask].mean(axis=0)).ravel().astype(np.float64)
@@ -199,7 +199,7 @@ def build_target_delta_matrix_k562(
         records.append({"target_gene": target_gene, **dict(zip(output_genes, delta.tolist()))})
 
     if len(records) < 2:
-        raise ValueError(f"K562 perturbed targets 少于 2 个，无法执行 leave-one-out。")
+        raise ValueError(f"K562 has fewer than two perturbed targets; cannot run leave-one-out.")
 
     return pd.DataFrame(records), {
         "target_cell_counts": target_cell_counts,
@@ -245,7 +245,7 @@ def predict_leave_one_out_geneformer(
             mapped_token_ids.append(token_id)
 
     if len(mapped_targets) < 2:
-        raise ValueError("Geneformer 可映射 targets 少于 2 个，无法执行 leave-one-target-out 预测。")
+        raise ValueError("Fewer than two mappable Geneformer targets; cannot run leave-one-target-out prediction.")
 
     # Build train reference: all mapped targets (for leave-one-out)
     train_targets = mapped_targets
@@ -261,7 +261,7 @@ def predict_leave_one_out_geneformer(
         token_id = token_dict.get(ensembl_id) if ensembl_id is not None else None
         if token_id is None:
             if fallback_policy != "mean_train_real_shift":
-                raise ValueError(f"不支持的 fallback_policy: {fallback_policy}")
+                raise ValueError(f"Unsupported fallback_policy: {fallback_policy}")
             predicted_rows.append(fallback_delta)
             fallback_targets.append(target)
             continue
@@ -392,7 +392,7 @@ def run_one_timepoint(
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="生成 Stage 2 Geneformer K562 raw prediction。")
+    parser = argparse.ArgumentParser(description="Generate Stage2 Geneformer K562 raw predictions.")
     parser.add_argument(
         "--config",
         default=str(PROJECT_ROOT / "configs/geneformer_k562_tf_13d_formal_v1.json"),

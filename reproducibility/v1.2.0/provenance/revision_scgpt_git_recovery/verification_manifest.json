@@ -1,5 +1,5 @@
 {
-  "status": "数值复现通过",
+  "status": "Numerical reproduction passed",
   "completed_utc": "2026-09-07T09:27:12.770802+00:00",
   "upstream_revision": "571a0445d68fa48381f863ff75dd4f6d0eae3dfc",
   "historical_download_revision_was_recorded": false,
@@ -107,7 +107,7 @@
       180,
       230
     ],
-    "policy": "项目helper恢复Git历史CPU分支；M5使用其独立softmax函数，不改变M5"
+    "policy": "Restore the historical CPU branch in the project helper; M5 uses its separate softmax function and is unchanged"
   },
   "inputs_sha256": {
     "models/pretrained/scgpt_human/best_model.pt": "6cb5d451ab5c4b33eb673adbe4fddc61d2389df1b89b7651a9fe2e557572b922",
@@ -140,5 +140,5 @@
   },
   "model_rescoring": false,
   "historical_predictions_overwritten": false,
-  "conclusion": "来源登记与上游唯一权重历史相符，当前文件通过LFS/词表hash；数值复现不冒称原下载已记录hash或全模型所有参数逐字节被历史预测唯一确定。"
+  "conclusion": "Source registration matches the sole upstream weight history, and current files pass LFS/vocabulary hash checks. Numerical reproduction does not imply that the original download recorded hashes or that historical predictions uniquely identify every model parameter byte."
 }

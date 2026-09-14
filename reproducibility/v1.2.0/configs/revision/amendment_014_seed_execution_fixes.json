@@ -1,0 +1,13 @@
+{
+  "amendment_id": "A014",
+  "date": "2026-09-11",
+  "extends": "configs/revision/amendment_013_other_model_seeds.json",
+  "observed_state": "Six scGen fits completed but were not scored; six CPA runs failed pretraining seed assertions and six GEARS runs failed cache loading; no new scores from these models had been inspected",
+  "cpa_actual_issue": "CPA0.8.8 CPAModule.__init__(seed=0) resets Torch/NumPy/scvi seeds; the old runner omitted the model seed, so external CLI seed1 was not the actual internal initialization seed",
+  "cpa_fix": "Pass seed123/124/125 to the CPA constructor, then fix the scvi split seed to0 and reset optimization RNG to the training seed; assert actual torch_initial_seed at training entry. Hyperparameters/budgets are unchanged.",
+  "gears_actual_issue": "PertData.load parses combination labels using + and does not support cached single-gene conditions; original new_data_process did not apply this filter",
+  "gears_fix": "Read frozen perturb_processed.h5ad and cell_graphs.pkl directly, restore fields created by original new_data_process, and retain custom_split and graphs; gene/target/cell sets are unchanged",
+  "failed_attempts": "Retain original CPA/GEARS failed directories and logs as failed_pretraining_* and logs_initial_attempt; no new trained checkpoint existed and failed caches are not resumed; keep all six successful scGen outputs unchanged",
+  "provenance": "Retain the first input_manifest as input_manifest_initial.json; register the repaired runner hash without changing data hashes or A013 scope.",
+  "feature_environment": "Replogle feature loading requires Torch; run unchanged scoring source in the locked cellot Pixi environment, without modifying core dependencies or formal results"
+}

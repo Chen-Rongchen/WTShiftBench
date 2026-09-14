@@ -52,7 +52,7 @@ def convert_score_matrix(config: dict[str, Any]) -> tuple[pd.DataFrame, pd.DataF
     score_path = resolve_path(str(inputs["score_matrix_path"]))
     score_direction = str(conversion["score_direction"])
     if score_direction != "lower_is_more_dependent":
-        raise ValueError(f"不支持的 RNAi 分数方向: {score_direction}")
+        raise ValueError(f"Unsupported RNAi score orientation: {score_direction}")
 
     ccle_col = str(conversion["cell_line_id_column"])
     model_id_col = str(conversion["model_id_column"])
@@ -61,7 +61,7 @@ def convert_score_matrix(config: dict[str, Any]) -> tuple[pd.DataFrame, pd.DataF
     scores = pd.read_csv(score_path, index_col=0)
     matched_ccle_ids = [column for column in scores.columns if column in mapped.index]
     if not matched_ccle_ids:
-        raise ValueError("RNAi score matrix 中没有细胞系能映射到 DepMap ModelID。")
+        raise ValueError("No RNAi score-matrix cell line maps to a DepMap ModelID.")
 
     effect = scores.loc[:, matched_ccle_ids].transpose()
     effect.index = mapped.loc[matched_ccle_ids].astype(str).to_numpy()

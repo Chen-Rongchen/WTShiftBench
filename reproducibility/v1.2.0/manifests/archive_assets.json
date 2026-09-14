@@ -1,0 +1,33 @@
+{
+  "version": "1.2.0",
+  "distribution_release": "v1.2.0",
+  "provider": "GitHub Release",
+  "release_url": "https://github.com/Chen-Rongchen/WTShiftBench/releases/tag/v1.2.0",
+  "status": "Local candidate; publication and public-download verification pending",
+  "archives": [
+    {
+      "path": "WTShiftBench_v1.2.0_matrices_20260915.zip",
+      "bytes": 87705556,
+      "sha256": "0ec8c7ad5bda63affb784d96763998ec1584e9fcd6bfab8cecd3ef38eaae3562",
+      "extracted_root": "WTShiftBench_v1.2.0_matrices",
+      "download_url": "https://github.com/Chen-Rongchen/WTShiftBench/releases/download/v1.2.0/WTShiftBench_v1.2.0_matrices_20260915.zip",
+      "public_download_verified": false
+    },
+    {
+      "path": "WTShiftBench_v1.2.0_cellot_training_20260915.zip",
+      "bytes": 277384276,
+      "sha256": "3da9e9cd2ec6b8e9c9fbfa5ee9f5283d5693d8b80176f117e22f1f3c3b5fe085",
+      "extracted_root": "WTShiftBench_v1.2.0_cellot_training",
+      "download_url": "https://github.com/Chen-Rongchen/WTShiftBench/releases/download/v1.2.0/WTShiftBench_v1.2.0_cellot_training_20260915.zip",
+      "public_download_verified": false
+    },
+    {
+      "path": "WTShiftBench_v1.2.0_local_verification_20260915.zip",
+      "bytes": 16037,
+      "sha256": "ca1761b178e9247532fa93782c9ba3cd68a1984a807cc67167ea0d4c68a97fa6",
+      "extracted_root": "WTShiftBench_v1.2.0_local_verification",
+      "download_url": "https://github.com/Chen-Rongchen/WTShiftBench/releases/download/v1.2.0/WTShiftBench_v1.2.0_local_verification_20260915.zip",
+      "public_download_verified": false
+    }
+  ]
+}

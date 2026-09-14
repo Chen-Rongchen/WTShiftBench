@@ -3,7 +3,7 @@
   "registry_id": "bib_26_1443_revision_analysis_v1",
   "status": "frozen",
   "frozen_date": "2026-09-04",
-  "author_confirmation": "用户确认按 plan_revision v1.0 的优先级逐项执行",
+  "author_confirmation": "The user confirmed execution in the priority order of plan_revision v1.0",
   "amendment_policy": {
     "overwrite_frozen_decisions": false,
     "required_fields": [
@@ -41,7 +41,7 @@
     "depmap_primary_endpoint": {
       "path": "depmap/CRISPRGeneDependency.csv",
       "column_semantics": "dependency probability; stronger dependency is larger",
-      "release_claim": "25Q3，须在 M2 用来源文件名或元数据再次核实"
+      "release_claim": "25Q3, to be verified in M2 against source filenames or metadata"
     },
     "depmap_secondary_endpoint": {
       "path": "depmap/CRISPRGeneEffect.csv",

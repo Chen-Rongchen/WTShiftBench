@@ -51,7 +51,7 @@ def resolve_path(path_value: str | Path) -> Path:
 def load_json(path: Path) -> dict[str, Any]:
     payload = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(payload, dict):
-        raise ValueError(f"{path} 必须是 JSON 对象。")
+        raise ValueError(f"{path} must be a JSON object.")
     return payload
 
 
@@ -60,13 +60,13 @@ def parse_config(config_path: Path) -> AnalysisConfig:
     required = {"input", "analysis", "output"}
     missing = sorted(required - set(payload))
     if missing:
-        raise ValueError(f"配置缺少字段: {missing}")
+        raise ValueError(f"Configuration missing fields: {missing}")
 
     input_block = payload["input"]
     analysis_block = payload["analysis"]
     output_block = payload["output"]
     if not isinstance(input_block, dict) or not isinstance(analysis_block, dict) or not isinstance(output_block, dict):
-        raise ValueError("input / analysis / output 必须都是 JSON 对象。")
+        raise ValueError("input/analysis/output must all be JSON objects.")
 
     return AnalysisConfig(
         config_path=config_path,
@@ -100,11 +100,11 @@ def parse_config(config_path: Path) -> AnalysisConfig:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="运行 Stage 2 两层 bridge decomposition 分析。")
+    parser = argparse.ArgumentParser(description="Run Stage2 two-layer bridge decomposition.")
     parser.add_argument(
         "--config",
         default=str(PROJECT_ROOT / "configs/truth_bridge_decomposition_v1.json"),
-        help="bridge decomposition 配置 JSON 路径。",
+        help="Bridge-decomposition JSON configuration path.",
     )
     return parser
 
@@ -123,7 +123,7 @@ def aligned_depmap_strength(series: pd.Series, metric_name: str) -> pd.Series:
         return -series.astype(float)
     if metric_name == "depmap_gene_dependency":
         return series.astype(float)
-    raise ValueError(f"不支持的 DepMap 指标: {metric_name}")
+    raise ValueError(f"Unsupported DepMap metric: {metric_name}")
 
 
 def safe_quantile_rank(series: pd.Series) -> pd.Series:
@@ -203,7 +203,7 @@ def prepare_target_level_table(bridge: pd.DataFrame, config: AnalysisConfig) -> 
         pieces.append(group)
 
     if not pieces:
-        raise ValueError("没有可用于 bridge decomposition 的 primary/both targets。")
+        raise ValueError("No primary/both targets available for bridge decomposition.")
     return pd.concat(pieces, ignore_index=True)
 
 
@@ -381,7 +381,7 @@ def add_axis_annotations(
     required = {"target_gene", "axis_id", "axis_family"}
     missing = sorted(required - set(membership_view.columns))
     if missing:
-        raise ValueError(f"axis_membership 缺少字段: {missing}")
+        raise ValueError(f"axis_membership missing fields: {missing}")
 
     merged = target_level.merge(
         membership_view.loc[:, [c for c in membership_view.columns if c in {
@@ -898,77 +898,77 @@ def write_markdown_report(
     lines = [
         "# Stage 2 Truth Bridge Decomposition v1",
         "",
-        "## 定位",
+        "## Role",
         "",
-        "- 本分析把 truth–DepMap bridge 明确拆成两层：`target-level joint-priority grid` 与 `axis-level shared explanatory structure`。",
-        f"- 第一层使用 `{config.shift_metric}` 与 `{config.depmap_metric}`；DepMap 侧统一转成“数值越大表示 dependency/liability 越强”的 aligned strength。",
-        f"- 第二层不把 `Pearson` 当作主结论，而是看哪些 axis 同时对 transcriptomic side 与 DepMap side 提供较强解释。",
+        "- Decompose the truth-DepMap bridge into a target-level joint-priority grid and axis-level shared explanatory structure.",
+        f"- The first layer uses `{config.shift_metric}` and `{config.depmap_metric}`, aligning DepMap strength so higher values mean stronger dependency/liability.",
+        f"- The second layer emphasizes axes explaining both transcriptomic and DepMap sides, rather than Pearson as the main conclusion.",
         "",
-        "## 第一层：Target-Level Joint Grid",
+        "## Layer1: Target-level joint grid",
         "",
-        f"- 先对两侧分别做 `high / middle / low` 三段分层：`<= {config.quantile_low:.2f}` 记为 `low`，`>= {config.quantile_high:.2f}` 记为 `high`，其余记为 `middle`。",
-        "- 只有落在四个角点的 target 才进入 `Q1-Q4`；只要任一侧落在 `middle`，就统一保留在 `middle band`。",
-        f"- `Q1_anchor`：shift 高、dependency 高。",
-        f"- `Q2_transcriptomic_excess`：shift 高、dependency 低。",
-        f"- `Q3_dependency_excess`：shift 低、dependency 高。",
-        f"- `Q4_low_information`：shift 低、dependency 低。",
+        f"- Stratify each side into high/middle/low: <={config.quantile_low:.2f} is low, >={config.quantile_high:.2f} is high, and the remainder is middle.",
+        "- Only corner targets enter Q1-Q4; targets in the middle on either side remain in the middle band.",
+        f"- Q1_anchor: high shift, high dependency.",
+        f"- Q2_transcriptomic_excess: high shift, low dependency.",
+        f"- Q3_dependency_excess: low shift, high dependency.",
+        f"- Q4_low_information: low shift, low dependency.",
         "",
-        "### 每条 cell line 的 grid 分布",
+        "### Grid distribution per cell line",
         "",
     ]
     for row in target_grid_summary.itertuples(index=False):
         lines.append(
-            f"- `{row.cell_line}` / `{row.joint_grid}`：`n={row.n_targets}`，占比 `{row.fraction_targets:.1%}`，"
+            f"- `{row.cell_line}` / `{row.joint_grid}`: n={row.n_targets}, fraction={row.fraction_targets:.1%}, "
             f"median shift=`{row.median_shift_value:.4f}`，median dep strength=`{row.median_depmap_strength:.4f}`。"
         )
 
     lines.extend(
         [
             "",
-            "### shared canonical anchors（前 10）",
+            "### Shared canonical anchors(top10)",
             "",
         ]
     )
     if shared_anchor_rows.empty:
-        lines.append("- 当前没有 target 同时满足 shared canonical anchor 条件。")
+        lines.append("- No target meets shared canonical-anchor criteria.")
     else:
         for row in shared_anchor_rows.itertuples(index=False):
             lines.append(
-                f"- `{row.target_gene}`：Q1 命中 `{row.q1_anchor_count}/{row.n_cell_lines}` 条 cell line，"
+                f"- `{row.target_gene}`: Q1 in{row.q1_anchor_count}/{row.n_cell_lines} cell lines, "
                 f"mean shift quantile=`{row.shift_quantile_mean:.3f}`，mean dep quantile=`{row.depmap_quantile_mean:.3f}`。"
             )
     lines.extend(
         [
             "",
-            "### anchor stability（跨 cutoff）",
+            "### Anchor stability across cutoffs",
             "",
         ]
     )
     if stable_anchor_rows.empty:
-        lines.append("- 当前没有跨 cutoff 稳定的 shared anchors。")
+        lines.append("- No shared anchors are stable across cutoffs.")
     else:
         for row in stable_anchor_rows.itertuples(index=False):
             lines.append(
                 f"- `{row.target_gene}`：shared anchor stability=`{row.shared_anchor_stability_fraction:.2f}`，"
-                f"调用次数 `{row.n_shared_anchor_calls}/{row.n_cutoff_pairs}`。"
+                f"Calls={row.n_shared_anchor_calls}/{row.n_cutoff_pairs}."
             )
 
     lines.extend(
         [
             "",
-            "## 第二层：Axis-Level Shared Explanatory Structure",
+            "## Layer2: Axis-level shared explanatory structure",
             "",
-            f"- 这里的 `R²` 不是教科书式全局方差分解，而是对每个 axis 做 one-vs-rest explanatory strength 近似。",
-            f"- `shared_backbone_axis` 的判定要求两侧 `R²` 均不低于 `{config.axis_shared_r2_min:.3f}`，且 axis 对两侧均呈正向 lift。",
-            f"- 只有 `n_targets >= {config.axis_min_targets_for_formal_call}` 的 axis 才进入 formal axis call；更小的 axis 只记为 `preliminary`。",
-            f"- `transcriptomic_heavy_axis` / `dependency_heavy_axis` 用两侧 `R²` 差值超过 `{config.axis_skew_delta_min:.3f}` 来定义偏斜结构。",
+            f"- R-squared here is a one-versus-rest approximation of per-axis explanatory strength, not global variance decomposition.",
+            f"- shared_backbone_axis requires R-squared>={config.axis_shared_r2_min:.3f} on both sides and positive lift on both.",
+            f"- Only axes with n_targets>={config.axis_min_targets_for_formal_call} receive formal calls; smaller axes are preliminary.",
+            f"- transcriptomic_heavy_axis/dependency_heavy_axis require between-side R-squared differences>{config.axis_skew_delta_min:.3f}.",
             "",
             "### shared backbone axes",
             "",
         ]
     )
     if shared_axis_rows.empty:
-        lines.append("- 当前没有 axis 满足 shared backbone axis 条件。")
+        lines.append("- No axis meets shared-backbone criteria.")
     else:
         for row in shared_axis_rows.itertuples(index=False):
             lines.append(
@@ -984,7 +984,7 @@ def write_markdown_report(
         ]
     )
     if transcriptomic_heavy_rows.empty:
-        lines.append("- 当前没有 axis 被判为 transcriptomic-heavy。")
+        lines.append("- No axis is called transcriptomic-heavy.")
     else:
         for row in transcriptomic_heavy_rows.itertuples(index=False):
             lines.append(
@@ -999,7 +999,7 @@ def write_markdown_report(
         ]
     )
     if dependency_heavy_rows.empty:
-        lines.append("- 当前没有 axis 被判为 dependency-heavy。")
+        lines.append("- No axis is called dependency-heavy.")
     else:
         for row in dependency_heavy_rows.itertuples(index=False):
             lines.append(
@@ -1014,11 +1014,11 @@ def write_markdown_report(
         ]
     )
     if preliminary_rows.empty:
-        lines.append("- 当前没有 axis 被标记为 preliminary shared/skewed signal。")
+        lines.append("- No preliminary shared/skewed axis signal.")
     else:
         for row in preliminary_rows.itertuples(index=False):
             lines.append(
-                f"- `{row.axis_id}`：当前仅有 `{row.n_targets}` 个 target，先记为 `{row.explanatory_call}`，"
+                f"- `{row.axis_id}`: only{row.n_targets} targets, provisionally labeled `{row.explanatory_call}`, "
                 f"shift R²=`{row.shift_r2_mean:.3f}`，dep R²=`{row.depmap_r2_mean:.3f}`。"
             )
     lines.extend(
@@ -1029,28 +1029,28 @@ def write_markdown_report(
         ]
     )
     if stable_axis_rows.empty:
-        lines.append("- 当前没有 axis 在 bootstrap 下达到稳定 formal call。")
+        lines.append("- No axis achieves a stable formal call under bootstrap.")
     else:
         for row in stable_axis_rows.itertuples(index=False):
             lines.append(
                 f"- `{row.axis_id}`：dominant bootstrap call=`{row.bootstrap_dominant_call}`，"
-                f"稳定度=`{row.bootstrap_dominant_call_fraction:.2f}`。"
+                f"Stability={row.bootstrap_dominant_call_fraction:.2f}."
             )
 
     lines.extend(
         [
             "",
-            "## 证据分层摘要",
+            "## Evidence tiers",
             "",
-            f"- `primary_evidence`：`{int(evidence_counts.get('primary_evidence', 0))}` 个对象。",
-            f"- `supporting_but_sensitive/supporting_but_unstable`：`{int(evidence_counts.get('supporting_but_sensitive', 0) + evidence_counts.get('supporting_but_unstable', 0))}` 个对象。",
-            f"- `preliminary_only`：`{int(evidence_counts.get('preliminary_only', 0))}` 个对象。",
+            f"- primary_evidence: {int(evidence_counts.get('primary_evidence', 0))} objects.",
+            f"- supporting_but_sensitive/supporting_but_unstable: {int(evidence_counts.get('supporting_but_sensitive', 0) + evidence_counts.get('supporting_but_unstable', 0))} objects.",
+            f"- preliminary_only: {int(evidence_counts.get('preliminary_only', 0))} objects.",
             "",
-            "## 解释边界",
+            "## Interpretation limits",
             "",
-            "- 这里的结果支持 `target` 或 `axis` 上 transcriptomic impact 与 cellular dependency 的共定位，不构成因果证明。",
-            "- `Q2/Q3` 在这里被保留为 deviation structure，而不是被当作噪音丢弃。",
-            "- 若后续需要 formal 写作，应优先引用 shared anchors 与 shared backbone axes，而不是把单个整体相关系数当作主叙事。",
+            "- These results support target-/axis-level colocalization of transcriptomic impact and cellular dependency, not causality.",
+            "- Q2/Q3 are retained as deviation structures, not discarded as noise.",
+            "- Subsequent formal writing should prioritize shared anchors and shared backbone axes over one overall correlation coefficient.",
         ]
     )
 
@@ -1130,7 +1130,7 @@ def run_from_config(config_path: Path) -> dict[str, Any]:
 def main() -> None:
     args = build_parser().parse_args()
     outputs = run_from_config(Path(args.config))
-    print(f"bridge decomposition 已写出到 {outputs['report_root'].relative_to(PROJECT_ROOT)}")
+    print(f"Bridge decomposition written to {outputs['report_root'].relative_to(PROJECT_ROOT)}")
 
 
 if __name__ == "__main__":

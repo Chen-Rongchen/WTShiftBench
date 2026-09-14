@@ -2,7 +2,7 @@
   "stage": "dixit_k562_temporal_panel",
   "version": 1,
   "dataset_role": "supplementary_temporal_panel",
-  "claim_scope": "GSE90063 K562 TF pool 13d/7d temporal panel；13d 是 primary formal supplementary bridge test，7d 是 temporal sensitivity / early-bridge probe。",
+  "claim_scope": "GSE90063 K562 TF pool 13d/7d temporal panel: 13d is the primary formal supplementary bridge test; 7d is a temporal sensitivity / early-bridge probe.",
   "timepoints": [
     {
       "label": "7d",

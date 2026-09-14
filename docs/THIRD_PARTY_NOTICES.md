@@ -2,7 +2,7 @@
 
 The root LICENSE applies only to project code covered by that license. It does not automatically cover third-party data, model weights, code, or derived assets.
 
-- Included CellOT source retains its BSD-3-Clause license and author attribution; see `reproducibility/v1.2.1/training/cellot/vendor/cellot/LICENSE`. Execution uses the complete vendor directory in the training ZIP.
+- Included CellOT source retains its BSD-3-Clause license and author attribution; see `reproducibility/v1.2.0/training/cellot/vendor/cellot/LICENSE`. Execution uses the complete vendor directory in the training ZIP.
 - GEO datasets retain their accessions and publication references. Obtain data from [GEO](https://www.ncbi.nlm.nih.gov/geo/); accessions are listed in [DATA_AVAILABILITY.md](../DATA_AVAILABILITY.md). Check each dataset's upstream usage requirements.
 - Replogle data: [figshare 20029387](https://figshare.com/articles/dataset/20029387). The project MIT license is not a license for those data.
 - Official DepMap files: [download portal](https://depmap.org/portal/download/all/). Releases, ModelIDs, official-file hashes, and extracted-table hashes are recorded separately. Complete official CSV files are not redistributed with the source snapshot.

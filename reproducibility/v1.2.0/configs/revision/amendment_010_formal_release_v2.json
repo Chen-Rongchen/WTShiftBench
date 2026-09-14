@@ -1,0 +1,46 @@
+{
+  "amendment_id": "A010",
+  "date": "2026-09-11",
+  "purpose": "Author-authorized formal-result migration, 25Q3 secondary-endpoint standardization, and homogenization uncertainty supplement",
+  "whether_results_were_seen": true,
+  "known_results": "Historical/seed123 CellOT scores and per-release DepMap value checks were known; homogenization intervals and the new formal M6 summary had not yet been generated",
+  "unchanged": ["A003 corrected object and negative values", "25Q3 probability primary endpoint", "25/75 categories and target/gene axes", "Primary signed cosine", "Original uploaded DOCX and AI disclosure", "Historical results, checkpoints, and v1.2.0 public archive"],
+  "cellot": {
+    "historical_entrant": "cellot_hcc_formal_v1",
+    "formal_entrant": "cellot_hcc_seed123_retrain_v1",
+    "contexts": ["HCC38", "HCC1143"],
+    "training_registration": "configs/revision/cellot_seed123_retrain_v1.json",
+    "training_seed": 123,
+    "pretrained_checkpoint": null,
+    "scored_target_held_out": false,
+    "decision_chronology": "The training recipe was registered before training; formal adoption was explicitly authorized after results were known to provide a fully documented formal execution path. Both contexts are replaced together, without selecting seeds, targets, or metrics.",
+    "migration": "Reuse all completed retraining and scored values; recompute BH for the 18 formal endpoint/identity tests and affected M4 correlations/M6 summaries; retain historical outputs separately"
+  },
+  "gene_effect_sensitivity": {
+    "release": "DepMap Public 25Q3",
+    "file": "depmap/CRISPRGeneEffect.csv",
+    "sha256": "fa44b6a7cefe8748aaa2bef21bd49aa105f7ebfe819510da3022266d88f24d51",
+    "historical_hepg2_jurkat_match": "All 2701 finite values and missingness match 23Q4, with maximum error 4.44e-16; this does not recover historical download logs or the internal Chronos commit",
+    "cohort": "Within each context's existing probability-evaluable cohort, require nonmissing shift/probability/25Q3 gene effect for the same targets; do not change the formal eligible object",
+    "statistic": "Spearman(raw mean-absolute shift, -gene effect), compared with probability and historical gene effect on the same targets for provenance/sensitivity",
+    "bootstrap_replicates": 5000,
+    "permutations": 10000,
+    "base_seed": 20260912,
+    "confidence": 0.95,
+    "bh_family": "The eight-context 25Q3 gene-effect tests form a separate family, excluded from primary inference"
+  },
+  "homogenization_uncertainty": {
+    "scope": "All formal outputs and displayed diagnostic references in HCC and Replogle",
+    "method": "Paired delete-one-target jackknife",
+    "unit": "Target, not target pair; remove the same target from predicted and observed matrices",
+    "centering": "After each deletion, recompute predicted and observed means across remaining targets separately and recenter",
+    "statistics": ["predicted H", "observed H", "predicted minus observed H"],
+    "forms": ["uncentered", "target-centered"],
+    "interval": "Full estimate +/- t(n-1,0.975)*sqrt((n-1)/n*sum((leave-one estimate-mean leave-one estimate)^2)), intersected with theoretical range [-1,1] or excess range [-2,2]",
+    "zero_vectors": "Retain A004 zero-vector threshold 1e-12; if the full or any leave-one estimate is undefined, report interval NA with the reason, not zero",
+    "random_seed": null,
+    "interpretation": "Approximate target-level intervals conditional on saved outputs; exclude training randomness, cell-sampling uncertainty, and cross-context generalization; not used for significant model rankings"
+  },
+  "outputs_root": "reports/revision/finalization_v2",
+  "public_release": "Generate a new version matching formal results; the old v1.2.0 DOI must not represent it. Backfill after publication and actual download recomputation"
+}

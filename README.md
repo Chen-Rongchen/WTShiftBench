@@ -2,19 +2,19 @@
 
 WTShiftBench (whole-transcriptome shift benchmark) audits external dependency ordering, response direction, anchor separation, between-target structure, and homogenization in perturbation-model outputs. These properties are interpreted separately, not combined into a universal leaderboard. Endpoint ordering alone does not establish faithful transcriptional recovery.
 
-## Current release: v1.2.2 — English documentation
+## Current release candidate: v1.2.0 — English public assets
 
-Use the [English reproducibility guide](reproducibility/v1.2.1/README.md). [GitHub Release v1.2.2](https://github.com/Chen-Rongchen/WTShiftBench/releases/tag/v1.2.2) is the English documentation/source release. It retains the frozen **v1.2.1 scientific assets and execution paths**: the three matrix/training/local-verification ZIPs are byte-identical to their previously verified versions. Only the source ZIP and distribution documentation are updated. The release manifest identifies the exact new source commit and all asset hashes.
+Use the [reproducibility guide](reproducibility/v1.2.0/README.md) and the planned [GitHub Release v1.2.0](https://github.com/Chen-Rongchen/WTShiftBench/releases/tag/v1.2.0). Public documentation, code comments, runtime messages, and textual metadata are in English. Translated files and ZIPs have new hashes; scientific numerical values, matrix axes, seeds, and checkpoint tensors are unchanged. The release manifest will identify the exact source commit and all asset hashes.
 
-On 14 September 2026, the original publicly downloaded scientific assets passed full recomputation of 87 outputs and all 373 comparison checks. All four replacement ZIPs also passed [anonymous download, SHA256 and ZIP-integrity verification](https://github.com/Chen-Rongchen/WTShiftBench/releases/download/v1.2.2/replacement_verification.json). This check confirms identical scientific asset bytes; it is not a new statistical run.
+This English derivative passed [local verification](reproducibility/v1.2.0/verification/local/english_publication_20260915.json) on 15 September 2026: 87 outputs and 373 full-inference comparisons, four cutoff-sensitivity tables, and gene-effect sensitivity in eight contexts. All 470 checkpoint files retain their original bytes; this check did not retrain models or replay checkpoints. Publication and fresh public-download verification remain pending until recorded explicitly. The original assets' public-download receipts are historical evidence, not proof of a new download.
 
-The English **v1.2.2 source DOI** is [10.5281/zenodo.22753462](https://doi.org/10.5281/zenodo.22753462). It contains the source snapshot, not the matrix/training ZIPs; their persistent data archive remains pending. The earlier v1.2.1 source record [10.5281/zenodo.22735108](https://doi.org/10.5281/zenodo.22735108) is preserved separately.
+A new version-specific archive DOI remains pending. Earlier source-only DOIs are preserved historical records and must not be cited as this package's complete matrix/training archive; see [data availability](DATA_AVAILABILITY.md).
 
-- Code, configurations, numerical source tables, and axis indexes: `reproducibility/v1.2.1/`.
-- Matrix and five-seed CellOT training ZIPs: [asset manifest](reproducibility/v1.2.1/manifests/archive_assets.json). Large ZIPs are release assets, not ordinary Git files.
+- Code, configurations, numerical source tables, and axis indexes: `reproducibility/v1.2.0/`.
+- Matrix and five-seed CellOT training ZIPs: [asset manifest](reproducibility/v1.2.0/manifests/archive_assets.json). Large ZIPs are release assets, not ordinary Git files.
 - Sources and usage conditions: [data availability](DATA_AVAILABILITY.md) and [third-party notices](docs/THIRD_PARTY_NOTICES.md).
 - Technical changes: [changelog](docs/CHANGELOG.md).
-- [Public-download verification](docs/verification/v1.2.1/github_release_verification.json): four ZIPs passed size/SHA256/ZIP checks; 371 matrix-package members, 87 outputs/373 comparisons, four cutoff-sensitivity tables, and gene-effect sensitivity in eight contexts passed verification. All 1,767 training-package manifest members passed integrity checks. This run did not replay checkpoints or retrain models. Earlier incomplete-download reports remain in Git history.
+- [Historical public-download verification](docs/verification/v1.2.1/github_release_verification.json): original-package scoring, four cutoff-sensitivity tables, and gene-effect sensitivity in eight contexts passed. That run did not replay checkpoints or retrain models. Its timestamps and original hashes identify the historical assets.
 
 ## Scoring and training are different paths
 
@@ -32,7 +32,7 @@ Both the current dependency-probability endpoint and gene-effect sensitivity use
 
 ## Historical versions
 
-`reproducibility/v1.2.0/` and existing tags remain historical records. The v1.2.1 GitHub Release page and attachments were retired after replacement-download verification on 14 September 2026; its Git tag and Zenodo source record are retained. Current asset links use v1.2.2. Original download receipts preserve the URLs used at the time and do not serve as current download indexes. Root-level `src/`, `scripts/`, `configs/`, `pixi.toml`, and plotting commands are legacy/development paths, not the current analysis entry point.
+At the author's request, the current publication label is v1.2.0 after removal of earlier v1.2.x GitHub release pages and tags. The label has been used before: identify this distribution by its date, exact commit, and hashes, not the label alone. Scientific history and original archive hashes are retained in provenance; Git history and previous Zenodo records are not rewritten. `reproducibility/v1.2.0/` now contains the current source view. Root-level `src/`, `scripts/`, `configs/`, `pixi.toml`, and plotting commands remain legacy/development paths, not the current analysis entry point.
 
 [Existing SVG figures](figures/README.md) remain at their original paths as historical assets, not current results. Do not mix historical panels into the revised analysis. Earlier statements that seed 123 was supplementary, homogenization intervals were unavailable, or gene-effect provenance was unresolved describe earlier versions.
 
@@ -42,4 +42,4 @@ Public materials include analysis/plotting code, configurations, environments, s
 
 Manuscripts, reviewer responses, final submission workbooks, manually assembled publication figures, layout projects, and internal editing logs remain private. Their numerical CSV/TSV sources and plotting code remain public. Public computation does not require private submission files and does not promise pixel-identical reproduction of final manual layouts.
 
-Current reading guides are in English. Frozen machine-readable provenance and archived execution logs may retain original-language annotations; documentation translation does not silently rewrite those records.
+Public textual material is English. Translated historical records retain their original dates, conclusions, and source hashes; translation does not retrospectively change what was known or verified. Original unmodified records are retained privately.

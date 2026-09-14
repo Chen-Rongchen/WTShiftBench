@@ -240,7 +240,7 @@ def main():
 
     # ── Dixit category-level analysis ─────────────────────────────────────
     print("\n" + "="*70)
-    print("DIXIT — Category-level对照 (supplementary)")
+    print("DIXIT - Category-level comparison (supplementary)")
     print("="*70)
 
     dixit_path = RESIDUAL_DIR / "dixit_2016_raw__control_context_residual_quadrant.tsv"

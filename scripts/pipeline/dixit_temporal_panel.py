@@ -171,15 +171,15 @@ def write_report(
     lines = [
         "# GSE90063 K562 13d/7d temporal panel",
         "",
-        "## 定位",
+        "## Role",
         "",
-        "`13d` 是 primary formal supplementary bridge test；`7d` 是 temporal sensitivity / early-bridge probe。该 panel 只回答同一 K562 TF pool 外部 context 下，早期与后期接同一 DepMap endpoint 时 bridge / architecture 轮廓如何变化；它不支持 primary closure 或 external model-side generalization proved。",
+        "13d is the primary formal supplementary bridge test;7d is temporal sensitivity/an early-bridge probe. The panel asks how early/late bridge and architecture profiles differ in the same K562 TF-pool context linked to the same DepMap endpoint; it does not establish primary closure or external model-side generalization.",
         "",
-        "## 项目对象层 target 口径",
+        "## Project-level target definition",
         "",
-        "在当前项目对象层与现行 admission/bridgeability 规则下，`7d` 与 `13d` 目前各有 10 个正式 bridgeable targets 进入 DepMap 对接；这一数字不应与原始实验设计中的 target / guide 数直接等同。",
+        "Under current project-level admission/bridgeability rules,7d and13d each contribute10 formal bridgeable targets to DepMap integration; this count is not equivalent to targets/guides in the original experimental design.",
         "",
-        "正式 bridgeable targets：`" + " / ".join(sorted(target_delta["target_gene"].astype(str))) + "`。",
+        "Formal bridgeable targets: `" + " / ".join(sorted(target_delta["target_gene"].astype(str))) + "`.",
         "",
         "## Primary temporal readout",
         "",
@@ -205,7 +205,7 @@ def write_report(
             f"- `{row['timepoint']}` `{row['comparison_field']}`: `{row['K562_Dixit']}` (`{row['replication_status']}`)"
         )
     lines.append("")
-    lines.append("## 产物")
+    lines.append("## Outputs")
     lines.append("")
     lines.append("- `temporal_bridge_summary.tsv`")
     lines.append("- `temporal_target_delta.tsv`")
@@ -215,7 +215,7 @@ def write_report(
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="构建 GSE90063 K562 13d/7d temporal panel 汇总。")
+    parser = argparse.ArgumentParser(description="Build the GSE90063 K56213d/7d temporal-panel summary.")
     parser.add_argument("--config", default=str(DEFAULT_CONFIG_PATH))
     return parser
 

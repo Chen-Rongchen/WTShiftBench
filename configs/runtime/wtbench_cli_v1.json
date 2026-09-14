@@ -8,67 +8,67 @@
   },
   "commands": {
     "stage2.truth_bridge": {
-      "description": "构建 Stage 2 truth-driven bridge 主线产物。",
+      "description": "Build the primary Stage 2 truth-driven bridge outputs.",
       "callable": "wtbench.truth_bridge:run_from_config",
       "default_config": "configs/truth_driven_bridge_hcc38_hcc1143_v1.json",
       "config_env": "WTBENCH_STAGE2_TRUTH_BRIDGE_CONFIG"
     },
     "stage2.sensitivity": {
-      "description": "运行 Stage 2 truth bridge sensitivity。",
+      "description": "Run Stage 2 truth-bridge sensitivity.",
       "callable": "scripts.pipeline.truth_bridge_sensitivity:run_sensitivity_from_config",
       "default_config": "configs/truth_bridge_sensitivity_hcc_full_v1.json",
       "config_env": "WTBENCH_STAGE2_SENSITIVITY_CONFIG"
     },
     "stage2.closure": {
-      "description": "串联 HCC covariates、sensitivity 与 covariate audit。",
+      "description": "Run HCC covariates, sensitivity and covariate audit in sequence.",
       "callable": "scripts.pipeline.closure_pipeline:run_closure_pipeline_from_config",
       "default_config": "configs/stage2_closure_pipeline_v1.json",
       "config_env": "WTBENCH_STAGE2_CLOSURE_CONFIG"
     },
     "stage2.materialize_covariates": {
-      "description": "物化 HCC Stage 2 covariates TSV。",
+      "description": "Materialize the HCC Stage 2 covariate TSV.",
       "callable": "scripts.materialize.covariates:materialize_covariates_from_config",
       "default_config": "configs/hcc_covariates_v1.json",
       "config_env": "WTBENCH_STAGE2_COVARIATES_CONFIG"
     },
     "stage2.covariate_audit": {
-      "description": "运行 HCC Stage 2 covariate balance audit。",
+      "description": "Run the HCC Stage 2 covariate-balance audit.",
       "callable": "scripts.pipeline.covariate_audit:run_covariate_audit_from_config",
       "default_config": "configs/truth_bridge_covariate_audit_v1.json",
       "config_env": "WTBENCH_STAGE2_COVARIATE_AUDIT_CONFIG"
     },
     "stage2.validate_closure": {
-      "description": "校验 Stage 2 closure 关键产物与固定边界。",
+      "description": "Validate key Stage 2 closure artifacts and frozen interpretation boundaries.",
       "callable": "scripts.pipeline.validate_closure_artifacts:validate_artifacts_from_config",
       "default_config": "configs/closure_artifact_validation_v1.json",
       "config_env": "WTBENCH_STAGE2_VALIDATION_CONFIG"
     },
     "stage2.bridge_decomposition": {
-      "description": "构建 Stage 2 truth bridge decomposition 产物。",
+      "description": "Build Stage 2 truth-bridge decomposition outputs.",
       "callable": "wtbench.bridge_decomposition:run_from_config",
       "default_config": "configs/truth_bridge_decomposition_v1.json",
       "config_env": "WTBENCH_STAGE2_BRIDGE_DECOMPOSITION_CONFIG"
     },
     "stage2.rnai_demeter2_conversion": {
-      "description": "把 DEMETER2 RNAi 分数转换为 DepMap-style endpoint 宽表。",
+      "description": "Convert DEMETER2 RNAi scores to a wide DepMap-style endpoint table.",
       "callable": "scripts.utils.convert_rnai_demeter2_to_depmap_endpoints:run_from_config",
       "default_config": "configs/rnai_demeter2_conversion_v1.json",
       "config_env": "WTBENCH_STAGE2_RNAI_DEMETER2_CONVERSION_CONFIG"
     },
     "stage2.k562_rnai_endpoint_consistency": {
-      "description": "汇总 GSE90063 K562 7d/13d 的 CRISPR DepMap vs DEMETER2 RNAi endpoint consistency。",
+      "description": "Summarize CRISPR DepMap versus DEMETER2 RNAi endpoint consistency in GSE90063 K562 7d/13d.",
       "callable": "scripts.pipeline.k562_rnai_endpoint_consistency:run_from_config",
       "default_config": "configs/k562_rnai_endpoint_consistency_v1.json",
       "config_env": "WTBENCH_STAGE2_K562_RNAI_ENDPOINT_CONSISTENCY_CONFIG"
     },
     "stage2.dixit_axis_compression": {
-      "description": "运行 Dixit/K562 13d supplementary axis compression。",
+      "description": "Run supplementary Dixit/K562 13d axis compression.",
       "callable": "scripts.pipeline.dixit_axis_compression:run_from_config",
       "default_config": "configs/dixit_axis_compression_v1.json",
       "config_env": "WTBENCH_STAGE2_DIXIT_AXIS_COMPRESSION_CONFIG"
     },
     "stage2.dixit_temporal_panel": {
-      "description": "汇总 GSE90063 K562 13d/7d temporal panel。",
+      "description": "Summarize the GSE90063 K562 13d/7d temporal panel.",
       "callable": "scripts.pipeline.dixit_temporal_panel:run_from_config",
       "default_config": "configs/dixit_k562_temporal_panel_gse90063_v1.json",
       "config_env": "WTBENCH_STAGE2_DIXIT_TEMPORAL_PANEL_CONFIG"

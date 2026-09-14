@@ -1,4 +1,4 @@
-"""BIB 大修 M3/M4：sampling-aware endpoint 下的 revised audit metrics。"""
+"""M3/M4 revised audit metrics under the sampling-aware endpoint."""
 
 from __future__ import annotations
 
@@ -45,7 +45,7 @@ def _derived_seed(base_seed: int, *parts: object) -> int:
 
 def contract_axes(axis_membership: pd.DataFrame) -> tuple[list[str], list[str]]:
     if "target_gene" not in axis_membership:
-        raise ValueError("axis membership 缺少 target_gene。")
+        raise ValueError("Axis membership lacks target_gene.")
     axis = axis_membership["target_gene"].astype(str)
     targets = sorted(axis.drop_duplicates().tolist())
     genes = targets.copy()
@@ -60,22 +60,22 @@ def validate_contract_matrix(
     matrix_name: str,
 ) -> pd.DataFrame:
     if frame.empty or str(frame.columns[0]) != "target_gene":
-        raise ValueError(f"{matrix_name}: 首列必须是 target_gene。")
+        raise ValueError(f"{matrix_name}: first column must be target_gene.")
     work = frame.copy()
     work["target_gene"] = work["target_gene"].astype(str)
     duplicates = work.loc[work["target_gene"].duplicated(), "target_gene"].tolist()
     if duplicates:
-        raise ValueError(f"{matrix_name}: target 重复: {sorted(set(duplicates))}")
+        raise ValueError(f"{matrix_name}: duplicate targets: {sorted(set(duplicates))}")
     actual_targets = set(work["target_gene"])
     missing_targets = [target for target in target_order if target not in actual_targets]
     missing_genes = [gene for gene in gene_order if gene not in work.columns]
     if missing_targets or missing_genes:
         raise ValueError(
-            f"{matrix_name}: contract 缺失 targets={missing_targets}, genes={missing_genes}"
+            f"{matrix_name}: contract missing targets={missing_targets}, genes={missing_genes}"
         )
     matrix = work.set_index("target_gene").loc[target_order, gene_order].astype(float)
     if not np.isfinite(matrix.to_numpy(dtype=float)).all():
-        raise ValueError(f"{matrix_name}: 含非有限值。")
+        raise ValueError(f"{matrix_name}: contains nonfinite values.")
     return matrix
 
 
@@ -301,7 +301,7 @@ def build_target_metrics(
     tolerance: float,
 ) -> pd.DataFrame:
     if not prediction.index.equals(observed.index) or not prediction.columns.equals(observed.columns):
-        raise ValueError("prediction 与 observed contract 的 target/gene 顺序不一致。")
+        raise ValueError("Prediction and observed contract target/gene ordering differ.")
     pred = prediction.to_numpy(dtype=float)
     obs = observed.to_numpy(dtype=float)
     pred_norm = np.linalg.norm(pred, axis=1)
@@ -371,7 +371,7 @@ def build_target_metrics(
     )
     if target["depmap_gene_dependency"].isna().any():
         missing = target.loc[target["depmap_gene_dependency"].isna(), "target_gene"].tolist()
-        raise ValueError(f"{cell_line}: endpoint object 缺少 contract targets: {missing}")
+        raise ValueError(f"{cell_line}: endpoint object missing contract targets: {missing}")
     return target
 
 
@@ -616,15 +616,15 @@ def _write_report(
     validation: pd.DataFrame,
 ) -> Path:
     lines = [
-        "# BIB 大修 M3 reference-control validation",
+        "# M3: Reference-control validation",
         "",
-        "状态：`FINAL`。本阶段只运行预先冻结的 reference controls；未读取或重评分 real-model outputs。",
+        "Status: `FINAL`. This stage runs only prefrozen reference controls; real-model outputs are neither read nor rescored.",
         "",
-        "## 共同 output contract",
+        "## Common output contract",
         "",
-        "- 所有比较固定在 47 targets × 47 response genes 的 truth-aligned log1p shift contract。",
-        "- HCC1143 endpoint categories 仍由完整 48-target corrected object 定义；SS18L2 仅因历史共同模型输出轴缺失而不进入评分，不重新计算 percentile/category。",
-        "- 因 gene space 为 47 genes，conventional metrics 只能解释为 common-contract-space reconstruction。",
+        "- All comparisons use the truth-aligned log1p shift contract of 47 targets by 47 response genes.",
+        "- HCC1143 categories remain defined by the full 48-target corrected object; SS18L2 is excluded only because it is absent from the historical common model-output axis. Percentiles/categories are not recalculated.",
+        "- With 47 genes, conventional metrics describe common-contract-space reconstruction only.",
         "",
         "## Reference behavior",
         "",
@@ -667,8 +667,8 @@ def _write_report(
             "",
             f"- {int(acceptance['passed'].sum())}/{len(acceptance)} pre-frozen checks passed。",
             f"- Contract validation rows: {len(validation)}；failed={int((~validation['passed']).sum())}。",
-            "- Oracle 与 negated oracle 的 magnitude-sensitive summaries 可相同，但 primary signed cosine 必须相反；这是保留多维 profile 而不做 composite ranking 的直接理由。",
-            "- Magnitude-only random directions 若保留 endpoint magnitude signal，却不能获得 directional recovery 或 target identity，即说明这些维度没有被 magnitude calibration 替代。",
+            "- Oracle and negated oracle may share magnitude-sensitive summaries, but primary signed cosine must have opposite signs; this directly motivates a multidimensional profile rather than composite ranking.",
+            "- If magnitude-only random directions retain endpoint magnitude signal without directional recovery or target identity, magnitude calibration does not replace these dimensions.",
             "",
         ]
     )
@@ -694,7 +694,7 @@ def run_reference_validation(config_path: Path, output_root: Path | None = None)
     expected_genes = int(config["contract"]["expected_gene_count"])
     if len(target_order) != expected_targets or len(gene_order) != expected_genes:
         raise ValueError(
-            f"冻结 contract 维度不符: observed={len(target_order)}x{len(gene_order)}, "
+            f"Frozen contract dimension mismatch: observed={len(target_order)}x{len(gene_order)}, "
             f"expected={expected_targets}x{expected_genes}"
         )
 
@@ -707,7 +707,7 @@ def run_reference_validation(config_path: Path, output_root: Path | None = None)
 
     for cell_line in config["contexts"]:
         if cell_line not in specs:
-            raise ValueError(f"truth config 缺少 {cell_line}。")
+            raise ValueError(f"Truth config lacks {cell_line}.")
         observed_frame = compute_truth_aligned_log_shift_matrix(
             specs[cell_line], truth_config, axis_membership
         )
@@ -792,9 +792,9 @@ def run_reference_validation(config_path: Path, output_root: Path | None = None)
     acceptance = _reference_acceptance(context_summary, target_summary, config)
     if bool(config["reference_acceptance"]["all_checks_must_pass"]) and not acceptance["passed"].all():
         failed = acceptance.loc[~acceptance["passed"]].to_dict(orient="records")
-        raise AssertionError(f"M3 reference acceptance 未通过: {failed}")
+        raise AssertionError(f"M3 reference acceptance failed: {failed}")
     if not validation["passed"].all():
-        raise AssertionError("M3 contract validation 未通过。")
+        raise AssertionError("M3 contract validation failed.")
 
     target_path = output_root / config["outputs"]["reference_target_summary"]
     context_path = output_root / config["outputs"]["reference_context_summary"]

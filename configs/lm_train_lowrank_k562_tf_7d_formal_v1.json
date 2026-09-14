@@ -6,7 +6,7 @@
   "entrant_version": "lm_train_lowrank_k562_tf_7d_formal_v1",
   "model_id": "lm_train_lowrank_k562_tf_7d_formal_v1",
   "model_family": "linear_lowrank_external_feature",
-  "claim_scope": "lm_train_lowrank K562 7d Stage 2 linear control 的第一版正式 recipe。用于 explanation-oriented control，不用于 primary winner claim。",
+  "claim_scope": "First formal recipe for the lm_train_lowrank K562 7d Stage 2 linear control; explanation-oriented, not a primary-winner claim.",
   "truth_config_path": "configs/truth_driven_bridge_dixit_k562_tf_7d_gse90063_v1.json",
   "contract_path": "configs/k562_7d_prediction_contract_v1.json",
   "prediction_gene_id_type": "hgnc_symbol",
@@ -18,8 +18,8 @@
   "cell_lines": [
     "dixit_2016_k562_tf_7d_gse90063"
   ],
-  "input_space_description": "冻结 gene_symbol_chargram_v1 target-side feature；在 Stage 2 truth delta 上执行 leave-one-target-out 线性 low-rank 闭式解。",
-  "output_space_description": "model-native raw output 必须先导出到 truth_aligned_log_shift，再进入 scorer-ready prediction contract。",
+  "input_space_description": "Frozen gene_symbol_chargram_v1 target-side features with a closed-form leave-one-target-out linear low-rank fit to Stage 2 truth deltas.",
+  "output_space_description": "Export model-native raw outputs to truth_aligned_log_shift before applying the scorer-ready prediction contract.",
   "preprocessing_identity": {
     "target_feature_source": "gene_symbol_chargram_v1",
     "target_feature_family": "symbolic_target_feature",

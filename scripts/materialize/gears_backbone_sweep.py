@@ -13,8 +13,8 @@ DEFAULT_CONFIG_PATH = PROJECT_ROOT / "configs/gears_hcc_backbone_sweep_v1.json"
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="物化 GEARS backbone 有限预算 sweep 候选 recipe。")
-    parser.add_argument("--config", default=str(DEFAULT_CONFIG_PATH), help="sweep 配置 JSON 路径。")
+    parser = argparse.ArgumentParser(description="Materialize finite-budget GEARS backbone sweep candidate recipes.")
+    parser.add_argument("--config", default=str(DEFAULT_CONFIG_PATH), help="Sweep configuration JSON path")
     return parser
 
 
@@ -28,7 +28,7 @@ def resolve_path(path_value: str | Path) -> Path:
 def load_json(path: Path) -> dict[str, object]:
     payload = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(payload, dict):
-        raise ValueError(f"{path} 必须是 JSON 对象。")
+        raise ValueError(f"{path} must be a JSON object.")
     return payload
 
 
@@ -90,7 +90,7 @@ def materialize_candidates(sweep: dict[str, object], base_recipe: dict[str, obje
         )
     frame = pd.DataFrame(rows).sort_values(["change_count", "epochs", "lr", "weight_decay"]).reset_index(drop=True)
     if str(sweep["selection"]["strategy"]) != "nearest_to_base":
-        raise ValueError("当前只支持 nearest_to_base 选择策略。")
+        raise ValueError("Only nearest_to_base selection is supported.")
     max_candidates = int(sweep["selection"]["max_candidates"])
     frame = frame.sort_values("distance_tuple").head(max_candidates).reset_index(drop=True)
     frame["candidate_rank"] = range(1, len(frame) + 1)
@@ -118,7 +118,7 @@ def build_recipe(
     recipe["entrant_version"] = recipe["model_id"]
     recipe["claim_scope"] = (
         str(base_recipe["claim_scope"])
-        + " 当前对象属于 GEARS backbone 有限 sweep 候选，只用于基于诊断摘要的定向比较。"
+        + " This object is a finite GEARS backbone sweep candidate used only for targeted comparisons based on diagnostic summaries."
     )
     recipe["sweep_context"] = {
         "stage": "gears_backbone_recovery_sweep_candidate",
@@ -139,21 +139,21 @@ def write_markdown_report(
     output_path: Path,
 ) -> None:
     lines = [
-        "# GEARS Backbone Sweep 候选",
+        "# GEARS backbone sweep candidates",
         "",
-        "## 定位",
+        "## Role",
         "",
-        "- 这是 GEARS HCC primary mainline 的有限预算 backbone sweep 候选物化清单。",
-        "- 这里只物化 recipe，不扩模型、不扩 truth object、不引入新评分体系。",
-        f"- 当前诊断摘要：`{diagnostic_summary}`。",
+        "- Candidate inventory for the finite-budget GEARS HCC primary-analysis backbone sweep.",
+        "- Materialize recipes only; no additional models, truth objects, or scoring systems.",
+        f"- Current diagnostic summary: `{diagnostic_summary}`.",
         "",
-        "## 候选选择策略",
+        "## Candidate selection policy",
         "",
         f"- strategy = `{sweep['selection']['strategy']}`",
         f"- max_candidates = `{int(sweep['selection']['max_candidates'])}`",
-        "- 选择原则：优先保留与 base recipe 距离最近的候选，先比较单轴变化，再比较多轴联动。",
+        "- Prefer candidates nearest the base recipe; compare single-axis changes before multi-axis combinations.",
         "",
-        "## 候选列表",
+        "## Candidate list",
         "",
     ]
     for row in candidates.itertuples(index=False):
@@ -179,7 +179,7 @@ def main() -> None:
     base_recipe_path = resolve_path(str(sweep["base_recipe_config_path"]))
     diagnostic_path = resolve_path(str(sweep["prerequisite_artifact_path"]))
     if not diagnostic_path.exists():
-        raise FileNotFoundError(f"缺少前置诊断产物：{diagnostic_path}")
+        raise FileNotFoundError(f"Missing prerequisite diagnostic output: {diagnostic_path}")
     base_recipe = load_json(base_recipe_path)
     generated_config_root = resolve_path(str(sweep["generated_config_root"]))
     report_root = resolve_path(str(sweep["report_root"]))
@@ -217,9 +217,9 @@ def main() -> None:
         candidates=manifest,
         output_path=report_root / "candidate_manifest.md",
     )
-    print(f"已写出: {report_root / 'candidate_manifest.tsv'}")
-    print(f"已写出: {report_root / 'candidate_manifest.md'}")
-    print(f"已写出: {generated_config_root}")
+    print(f"Written: {report_root / 'candidate_manifest.tsv'}")
+    print(f"Written: {report_root / 'candidate_manifest.md'}")
+    print(f"Written: {generated_config_root}")
 
 
 if __name__ == "__main__":
