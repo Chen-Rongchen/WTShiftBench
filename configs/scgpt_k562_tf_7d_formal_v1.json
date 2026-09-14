@@ -6,7 +6,7 @@
   "entrant_version": "scgpt_k562_tf_7d_formal_v1",
   "model_id": "scgpt_k562_tf_7d_formal_v1",
   "model_family": "scGPT",
-  "claim_scope": "scGPT K562 7d Stage 2 entrant 的第一版正式 recipe。",
+  "claim_scope": "First formal recipe for the scGPT K562 7d Stage 2 entrant.",
   "checkpoint_registry_ref": "configs/checkpoint_registry_v1.yaml",
   "checkpoint_key": "scgpt_human",
   "truth_config_path": "configs/truth_driven_bridge_dixit_k562_tf_7d_gse90063_v1.json",
@@ -18,8 +18,8 @@
   "cell_lines": [
     "dixit_2016_k562_tf_7d_gse90063"
   ],
-  "input_space_description": "scGPT gene vocabulary 映射后的 target-side embedding lookup；backbone 冻结，仅训练 adapter/head。",
-  "output_space_description": "model-native raw output 必须先导出到 truth_aligned_log_shift，再进入 scorer-ready prediction contract。",
+  "input_space_description": "Target-side embedding lookup after scGPT gene-vocabulary mapping; the backbone is frozen and only the adapter/head is trained.",
+  "output_space_description": "Export model-native raw outputs to truth_aligned_log_shift before applying the scorer-ready prediction contract.",
   "preprocessing_identity": {
     "gene_vocabulary": "checkpoint vocab.json",
     "gene_mapping": "gene_symbol_to_scgpt_vocab",

@@ -1,7 +1,7 @@
 {
   "stage": "axis_per_target_signature",
   "version": 1,
-  "purpose": "从 Stage 2 frozen HCC truth 输入中物化 per-target gene signature，用于 axis target consistency audit。该流程复用 truth bridge 的正式归一化与 control/target 划分逻辑，不允许手工伪造。",
+  "purpose": "Materialize per-target gene signatures from Stage 2 frozen HCC truth inputs for the axis target-consistency audit. Reuse formal truth-bridge normalization and control/target partitioning; do not fabricate signatures.",
   "input": {
     "truth_bridge_config_path": "configs/truth_driven_bridge_hcc38_hcc1143_v1.json",
     "axis_analysis_config_path": "configs/axis_analysis_template_v1.json"

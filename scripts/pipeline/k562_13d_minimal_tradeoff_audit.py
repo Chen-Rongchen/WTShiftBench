@@ -95,9 +95,9 @@ def load_role_table(axis_membership_path: Path, axis_summary_path: Path) -> pd.D
     missing_membership = sorted(required_membership - set(axis_membership.columns))
     missing_summary = sorted(required_summary - set(axis_summary.columns))
     if missing_membership:
-        raise ValueError(f"{axis_membership_path} 缺少列: {missing_membership}")
+        raise ValueError(f"{axis_membership_path} missing columns: {missing_membership}")
     if missing_summary:
-        raise ValueError(f"{axis_summary_path} 缺少列: {missing_summary}")
+        raise ValueError(f"{axis_summary_path} missing columns: {missing_summary}")
     role_table = axis_membership.loc[:, ["target_gene", "fine_axis"]].drop_duplicates().merge(
         axis_summary.loc[:, ["fine_axis", "architecture_role"]].drop_duplicates(),
         on="fine_axis",
@@ -111,9 +111,9 @@ def load_role_table(axis_membership_path: Path, axis_summary_path: Path) -> pd.D
 def load_prediction_matrix(path: Path) -> pd.DataFrame:
     frame = pd.read_csv(path, sep="\t")
     if frame.empty:
-        raise ValueError(f"{path} 为空。")
+        raise ValueError(f"{path} is empty.")
     if frame.columns[0] != "target_gene":
-        raise ValueError(f"{path} 首列必须是 target_gene。")
+        raise ValueError(f"{path} first column must be target_gene.")
     frame["target_gene"] = frame["target_gene"].astype(str)
     return frame
 
@@ -127,7 +127,7 @@ def build_truth_shift_matrix(
 ) -> pd.DataFrame:
     raw = ad.read_h5ad(input_h5ad_path)
     if "target_gene" not in raw.obs or "is_control" not in raw.obs:
-        raise ValueError(f"{input_h5ad_path} 必须包含 obs['target_gene'] 与 obs['is_control']。")
+        raise ValueError(f"{input_h5ad_path} must contain obs['target_gene'] and obs['is_control'].")
 
     symbol_to_var: dict[str, str] = {}
     for var_name in raw.var.index.astype(str).tolist():
@@ -142,7 +142,7 @@ def build_truth_shift_matrix(
             flush=True,
         )
     if not present_genes:
-        raise ValueError("预测矩阵列与 K562 h5ad gene symbols 没有交集，无法同空间评分。")
+        raise ValueError("Prediction columns and K562 H5AD gene symbols do not overlap; same-space scoring is impossible.")
 
     raw_sub = raw[:, [symbol_to_var[gene] for gene in present_genes]].copy()
     normalized = log_normalize_csr(raw_sub.X, target_sum=target_sum).tocsr()
@@ -150,7 +150,7 @@ def build_truth_shift_matrix(
     obs["target_gene"] = obs["target_gene"].astype(str)
     is_control = obs["is_control"].astype(bool).to_numpy()
     if not is_control.any():
-        raise ValueError("K562 h5ad 中没有 control cells。")
+        raise ValueError("K562 H5AD contains no control cells.")
     control_mean = np.asarray(normalized[is_control].mean(axis=0)).ravel().astype(np.float64)
 
     rows: list[np.ndarray] = []
@@ -163,7 +163,7 @@ def build_truth_shift_matrix(
         rows.append(target_mean - control_mean)
         kept_targets.append(target_gene)
     if not rows:
-        raise ValueError("K562 h5ad 中没有可与预测矩阵对齐的 perturbation target。")
+        raise ValueError("K562 H5AD contains no perturbation targets aligned to predictions.")
     truth = pd.DataFrame(rows, columns=present_genes)
     truth.insert(0, "target_gene", kept_targets)
     return truth
@@ -189,9 +189,9 @@ def align_prediction_and_truth(
     ]
     gene_order = [gene for gene in prediction.columns[1:] if gene in set(truth.columns[1:])]
     if not target_order:
-        raise ValueError("预测、truth 与 role table 没有共同 target。")
+        raise ValueError("Predictions, truth, and role tables share no targets.")
     if not gene_order:
-        raise ValueError("预测与 truth 没有共同 gene columns。")
+        raise ValueError("Predictions and truth share no gene columns.")
     prediction_aligned = prediction.set_index("target_gene").loc[target_order, gene_order]
     truth_aligned = truth.set_index("target_gene").loc[target_order, gene_order]
     roles_aligned = role_table.set_index("target_gene").loc[target_order].reset_index()
@@ -329,13 +329,13 @@ def render_report(comparison: pd.DataFrame, calls: pd.DataFrame, output_path: Pa
     lines = [
         "# K562 13d minimal model-side trade-off audit",
         "",
-        "## 定位",
+        "## Role",
         "",
-        "- 这不是 leaderboard；只检查 HCC 中的非对称 model-side architecture trade-off 是否在 GSE90063 K562 13d KO context 中出现同类方向。",
-        "- 固定口径：`shared_mean_baseline` 若更强，含义只限于 shared backbone；entrant 若更强，主要看 `shift-excess` 与 target-specific separation。",
-        "- `shift-excess` 不等于 shared trend / overall displacement。",
+        "- Not a leaderboard; test whether the asymmetric HCC model-side architecture trade-off recurs directionally in GSE90063 K56213d KO.",
+        "- Fixed interpretation: stronger shared_mean_baseline supports shared backbone only; stronger entrants are assessed mainly for shift-excess and target-specific separation.",
+        "- Shift-excess is not shared trend or overall displacement.",
         "",
-        "## 模型最小集",
+        "## Minimal model set",
         "",
     ]
     for row in comparison.itertuples(index=False):
@@ -345,9 +345,9 @@ def render_report(comparison: pd.DataFrame, calls: pd.DataFrame, output_path: Pa
             f"shift-excess = `{row.shift_excess_recovery_score:.3f}`；"
             f"separation = `{row.structure_vs_context_separation_score:.3f}`。"
         )
-    lines.extend(["", "## 方向判读", ""])
+    lines.extend(["", "## Directional interpretation", ""])
     if calls.empty:
-        lines.append("- 未生成方向判读；通常是 baseline 缺失或没有可比较 entrant。")
+        lines.append("- No directional interpretation generated; usually the baseline or comparable entrants are missing.")
     else:
         for row in calls.itertuples(index=False):
             lines.append(f"### {row.model_id}")
@@ -359,10 +359,10 @@ def render_report(comparison: pd.DataFrame, calls: pd.DataFrame, output_path: Pa
             )
             if row.direction_call == "same_direction_as_hcc_tradeoff" and row.shift_excess_recovery_delta_vs_baseline < 0:
                 lines.append(
-                    "- 定级：`partial recurrence / partial-support`。K562 13d 复现了 backbone-vs-separation 主方向，但 `shift-excess` 分量未复现。"
+                    "- Assessment: partial recurrence/partial-support. K56213d repeats the backbone-versus-separation direction but not the shift-excess component."
                 )
                 lines.append(
-                    "- 禁止升级：不能写成 `full recurrence`、`complete model-side generalization` 或 `GEARS deviation-sensitive advantage broadly established`。"
+                    "- Do not upgrade to full recurrence, complete model-side generalization, or broadly established GEARS deviation-sensitive advantage."
                 )
             lines.append("")
     lines.extend(
@@ -371,7 +371,7 @@ def render_report(comparison: pd.DataFrame, calls: pd.DataFrame, output_path: Pa
             "",
             "In the external K562 13-day setting, we observed a partial recurrence of the model-side architecture trade-off seen in HCC: the shared baseline again remained stronger on backbone recovery, whereas GEARS retained an advantage in structure-vs-context separation. However, the shift-excess component was not recapitulated, indicating that the external support is partial and that finer deviation-sensitive recovery remains context-dependent under the current data setting.",
             "",
-            "在外部 K562 13 天数据中，我们观察到与 HCC 主分析一致的模型侧架构 trade-off 的部分复现：`shared_mean_baseline` 再次在 backbone recovery 上占优，而 `GEARS` 仍在 structure-vs-context separation 上表现更强。然而，`shift-excess` 成分未得到复现，提示当前外部支持属于部分支持，且更细粒度的 deviation-sensitive recovery 在现有数据设定下仍具有 context dependence。",
+            "External K56213d data partially repeat the HCC model-side architecture trade-off: shared_mean_baseline again favors backbone recovery, whereas GEARS shows stronger structure-versus-context separation. Shift-excess does not recur, so external support is partial and finer deviation-sensitive recovery remains context-dependent under these data settings.",
             "",
             "## Evidence tier",
             "",
@@ -379,7 +379,7 @@ def render_report(comparison: pd.DataFrame, calls: pd.DataFrame, output_path: Pa
             "- full three-component recurrence：`not established`",
             "- external model-side generalization：`not established`",
             "- framework-level supplementary strengthening：`yes`",
-            "- HCC 主 biological content strengthened：`no`",
+            "- HCC primary biological content strengthened: no",
         ]
     )
     output_path.write_text("\n".join(lines), encoding="utf-8")
@@ -393,17 +393,17 @@ def iter_prediction_models(config: dict[str, Any]) -> list[dict[str, Any]]:
         prediction_path = str(model.get("prediction_path", ""))
         if not prediction_path:
             if bool(model.get("required", False)):
-                raise ValueError(f"{model.get('model_id')} 启用但 prediction_path 为空。")
+                raise ValueError(f"{model.get('model_id')} is enabled but prediction_path is empty.")
             continue
         models.append(model)
     if len(models) > 2:
-        raise ValueError("最小集最多允许 baseline + 2 个 prediction models。")
+        raise ValueError("The minimal set permits a baseline plus at most two prediction models.")
     return models
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="运行 GSE90063 K562 13d 最小 model-side architecture trade-off 方向审计。"
+        description="Run the minimal model-side architecture trade-off directional audit on GSE90063 K56213d."
     )
     parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG_PATH)
     args = parser.parse_args()
@@ -417,7 +417,7 @@ def main() -> None:
     )
     prediction_models = iter_prediction_models(config)
     if not prediction_models:
-        raise ValueError("配置中没有启用的 prediction model。")
+        raise ValueError("No enabled prediction model in configuration.")
 
     loaded_predictions: dict[str, pd.DataFrame] = {}
     target_candidates: set[str] = set()
@@ -438,7 +438,7 @@ def main() -> None:
                 seen_genes.add(gene)
                 gene_order.append(gene)
     if not loaded_predictions:
-        raise ValueError("没有可读取的 prediction matrix。")
+        raise ValueError("No readable prediction matrix.")
     target_order = [
         target
         for target in role_table["target_gene"].astype(str).tolist()

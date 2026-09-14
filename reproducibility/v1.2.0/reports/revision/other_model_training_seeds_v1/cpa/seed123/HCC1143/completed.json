@@ -1,0 +1,37 @@
+{
+  "initial_state_sha256": "9edfac7807126c4905fd24c6f7633fa82293114cec875e6352b63bafc42d2b53",
+  "torch_initial_seed": 123,
+  "scvi_split_seed": 0,
+  "training_arguments": {
+    "max_epochs": 400,
+    "batch_size": 256,
+    "use_gpu": true,
+    "early_stopping_patience": 15,
+    "save_path": "/home/data/gz0705/WTKO/reports/revision/other_model_training_seeds_v1/cpa/seed123/HCC1143/checkpoint_HCC1143"
+  },
+  "split_sha256": "0c2f02439dbbb1d652e48c9793baf14363aa38c1c5d23388e874249f2b681484",
+  "trained_state_sha256": "d5b756dc399958ba304460af9d1ad7a436a6a2356ccb92dc3f63104e745d6168",
+  "actual_epochs": 190,
+  "scvi_version": "0.20.3",
+  "model": "cpa",
+  "context": "HCC1143",
+  "training_seed": 123,
+  "inference_seed": 123,
+  "runner_sha256": "67bb1a04909df35d5e75db7411493acb0e90b30b3704b41e8cded485d2bbb0c4",
+  "prediction_path": "reports/revision/other_model_training_seeds_v1/cpa/seed123/HCC1143/predicted_shift_HCC1143.tsv.gz",
+  "prediction_sha256": "f27d36d882782ab5c5ad6907ae04433a9eb80922864662d04b6736b2303cdc85",
+  "elapsed_seconds": 1943.989615122322,
+  "completed_utc": "2026-09-11T14:10:21.209772+00:00",
+  "package_versions": {
+    "torch": "2.0.0",
+    "numpy": "1.23.5",
+    "python": "3.10.13 | packaged by conda-forge | (main, Oct 26 2023, 18:07:37) [GCC 12.3.0]"
+  },
+  "cuda_available": true,
+  "torch_threads": 1,
+  "deterministic_algorithms": false,
+  "scope": "Training-seed sensitivity; GPU kernels may not be bitwise deterministic, so exact historical-run reproduction is not claimed",
+  "checkpoint_hashes": {
+    "reports/revision/other_model_training_seeds_v1/cpa/seed123/HCC1143/checkpoint_HCC1143/model.pt": "c0419159b32f9003187b67e08facf78121021d26b25f453b97c7bd8373587af2"
+  }
+}

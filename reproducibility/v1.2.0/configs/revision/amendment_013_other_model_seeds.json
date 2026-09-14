@@ -1,0 +1,21 @@
+{
+  "amendment_id": "A013",
+  "date": "2026-09-11",
+  "reason": "The author requested checks of other models and necessary multi-seed analyses; CellOT three-seed instability was known, so scope was fixed before observing other models' new-seed results",
+  "known_results": "All historical formal scores and CellOT123/124/125 were known; the new other-model seed experiments below had not run",
+  "training_models": ["scgen", "cpa", "gears"],
+  "training_seeds": [123, 124, 125],
+  "contexts": ["HCC38", "HCC1143"],
+  "total_new_context_fits": 18,
+  "output_root": "reports/revision/other_model_training_seeds_v1",
+  "max_parallel_gpu_jobs": 2,
+  "scgen": {"max_epochs": 100, "batch_size": 128, "early_stopping_patience": 10, "max_targets": 0, "fixed_scvi_split_seed": 0},
+  "cpa": {"max_epochs": 400, "batch_size": 256, "early_stopping_patience": 15, "n_latent": 64, "fixed_scvi_split_seed": 0, "checkpoint_selection": "Retain actual CPA0.8.8 validation cpa_metric maximization, not ELBO minimization"},
+  "gears": {"recipe": "configs/gears_hcc_formal_v1.json", "fixed_processed_graphs": "tmp/gears_hcc/gears_hcc_formal_v1/<context>", "fixed_data_and_split_seed": 123, "inference_seed": 123, "optimization_seed": "Explicitly set123/124/125 after importing GEARS; upstream manual_seed(0) during import prevents treating the historical training_seed123 config as the actual historical Torch initialization seed", "epochs": 30},
+  "scope": "Same-context output audits only, not held-out tests or fair architecture rankings; vary initialization/optimization seeds while fixing data, actual splits, and training budgets with hashes; fix prediction seed123 to isolate controllable inference randomness",
+  "formal_results": "Retain formal outputs and BH families; all18 new outputs are sensitivity analyses, with no best-run formal migration, prediction averaging, or A003 changes",
+  "inference": "Retain M4 estimates, bootstrap and endpoint/Mantel budgets, and paired H jackknife; use separate endpoint/identity BH families over18 new outputs; target CIs are not cross-seed stability estimates",
+  "deterministic_controls": "HCC Geneformer/scGPT kernel and ridge plus linear low-rank are deterministic on fixed inputs; no redundant training-seed repeats",
+  "replogle_feature_check": "Replogle ridge uses randomized PCA/SVD; recompute both ridge models with feature seeds123/124/125 for six outputs, assessing feature approximation only, without foundation-model training or replacement of formal features/BH families",
+  "stopping_rule": "Report all three seeds and stop; no significance-driven additions. Report data/environment mismatches before proceeding; do not silently change parameters or replace failures with new seeds"
+}

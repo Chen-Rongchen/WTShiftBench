@@ -170,7 +170,7 @@ def build_target_delta_matrix_k562(
 
     control_mask = calls["is_control"].to_numpy(dtype=bool)
     if not control_mask.any():
-        raise ValueError(f"K562 没有 control cells。")
+        raise ValueError(f"K562 has no control cells.")
 
     normalized = normalized_expression[:, output_gene_positions]
     control_mean = np.asarray(normalized[control_mask].mean(axis=0)).ravel().astype(np.float64)
@@ -188,7 +188,7 @@ def build_target_delta_matrix_k562(
         records.append({"target_gene": target_gene, **dict(zip(output_genes, delta.tolist()))})
 
     if len(records) < 2:
-        raise ValueError(f"K562 perturbed targets 少于 2 个。")
+        raise ValueError(f"K562 has fewer than two perturbed targets.")
 
     return pd.DataFrame(records), {
         "target_cell_counts": target_cell_counts,
@@ -333,7 +333,7 @@ def run_one_timepoint(
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="生成 Stage 2 lm_train_lowrank K562 raw prediction。")
+    parser = argparse.ArgumentParser(description="Generate Stage2 lm_train_lowrank K562 raw predictions.")
     parser.add_argument(
         "--config",
         default=str(PROJECT_ROOT / "configs/lm_train_lowrank_k562_tf_13d_formal_v1.json"),

@@ -1,9 +1,9 @@
 {
-  "status": "两context新训练按冻结规则评分完成",
+  "status": "New training outputs for both contexts scored under frozen rules",
   "training_seed": 123,
   "historical_results_unchanged": true,
   "old_training_seed": null,
-  "scope": "single-seed same-context fit补充；不作跨seed稳定性或模型差值显著性主张",
+  "scope": "Single-seed same-context fit supplement; no claim of cross-seed stability or significant model differences",
   "inputs_sha256": {
     "configs/revision/cellot_seed123_retrain_v1.json": "fad0dcc7559d4deccf44c2726dc135a3fd3a3fbd9d4fb1d1a88310470f14b88f",
     "configs/revision/revision_hcc_full_audit_v1.json": "07b11c288a0709fe6c11d5d04ad2973b5f2d016c4abe35487bb2a064bd51e7e2",

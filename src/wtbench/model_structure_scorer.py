@@ -41,7 +41,7 @@ def build_axis_gene_sets(axis_membership: pd.DataFrame) -> dict[str, list[str]]:
     required = {"target_gene", "fine_axis"}
     missing = sorted(required - set(axis_membership.columns))
     if missing:
-        raise ValueError(f"axis_membership 缺少列: {missing}")
+        raise ValueError(f"axis_membership missing columns: {missing}")
     deduped = axis_membership.loc[:, ["target_gene", "fine_axis"]].drop_duplicates()
     axis_gene_sets: dict[str, list[str]] = {}
     for fine_axis, group in deduped.groupby("fine_axis", sort=True):
@@ -198,9 +198,9 @@ def summarize_structure_scores(projected: pd.DataFrame) -> pd.DataFrame:
 def load_prediction_matrix(path: Path) -> pd.DataFrame:
     frame = pd.read_csv(path, sep="\t")
     if frame.empty:
-        raise ValueError(f"{path} 为空。")
+        raise ValueError(f"{path} is empty.")
     if frame.columns[0] != "target_gene":
-        raise ValueError(f"{path} 首列必须是 target_gene。")
+        raise ValueError(f"{path} first column must be target_gene.")
     return frame
 
 

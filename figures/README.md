@@ -1,8 +1,8 @@
 # Historical public figures
 
-This directory preserves previously published SVG panels and source tables at their original paths. These are historical assets and **do not represent the formal v1.2.1 results** or the author's final manually assembled publication figures.
+This directory preserves previously published SVG panels and source tables at their original paths. These are historical assets and **do not represent the current formal results** or the author's final manually assembled publication figures. English layer identifiers do not change panel geometry or scientific content.
 
-Use the [v1.2.1 reproducibility guide](../reproducibility/v1.2.1/README.md) for current analyses, numerical source tables, and plotting. The panels and legacy commands below are not the current Figure 1–4 / S1–S7 entry point.
+Use the [v1.2.0 reproducibility guide](../reproducibility/v1.2.0/README.md) for current analyses, numerical source tables, and plotting. The panels and legacy commands below are not the current Figure 1–4 / S1–S7 entry point.
 
 | Historical figure | Retained panels | Historical generator |
 |---|---|---|
@@ -17,10 +17,10 @@ Use the [v1.2.1 reproducibility guide](../reproducibility/v1.2.1/README.md) for 
 | Extended Data Figure 5 | a–c | `scripts/figures/build_extended_data_figure5.py` |
 | Extended Data Figure 6 | a–d | `scripts/figures/build_extended_data_figure6.py` |
 
-Only when examining historical figures, use the old root environment and this historical command; it is not the current v1.2.1 plotting command:
+Only when examining historical figures, use the old root environment and this historical command; it is not the current plotting command:
 
 ```sh
 pixi run --environment core build-figures
 ```
 
-Historical source paths and hashes are in `source_data/figure_source_data_manifest.tsv`. Current numerical sources and plotting mappings are in `reproducibility/v1.2.1/presentation/`. Do not mix these sets.
+Historical source paths and hashes are in `source_data/figure_source_data_manifest.tsv`. Current numerical sources and plotting mappings are in `reproducibility/v1.2.0/presentation/`. Do not mix these sets.

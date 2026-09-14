@@ -1,4 +1,4 @@
-"""BIB 大修 M4：在冻结的 sampling-aware object 下重评分 HCC entrants。"""
+"""M4: Rescore HCC entrants using the frozen sampling-aware object."""
 
 from __future__ import annotations
 
@@ -427,16 +427,16 @@ def _write_report(
 ) -> Path:
     formal = context_metrics.loc[context_metrics["entrant_role"].eq("formal")].copy()
     lines = [
-        "# BIB 大修 M4 HCC revised full audit",
+        "# M4: Revised HCC full audit",
         "",
-        "状态：`FINAL`。所有 formal entrant 使用 A003 sampling-aware endpoint object、A004 metrics 与 A005 entrant scope 统一重评分；未重新训练，也未按 revised score 选择配置。",
+        "Status: `FINAL`. All formal entrants are rescored consistently using the A003 sampling-aware endpoint object, A004 metrics, and A005 entrant scope; no retraining or configuration selection based on revised scores.",
         "",
-        "## 解释范围",
+        "## Interpretation scope",
         "",
-        "- HCC1143 是 sampling-aware qualified primary context；HCC38 是 sensitivity/boundary context。",
-        "- 所有数值位于共同 47-target × 47-gene contract，只能称为 common-contract-space audit/reconstruction。",
-        "- HCC1143 的 SS18L2 保持为完整 48-target endpoint object 中的 anchor，但因历史共同 prediction axis 缺失，不进入模型评分；categories 未重算。",
-        "- 五维结果是 audit profile，不生成 composite leaderboard。",
+        "- HCC1143 is the sampling-aware qualified primary context; HCC38 is a sensitivity/boundary context.",
+        "- All values use the common 47-target by 47-gene contract and describe only common-contract-space audit/reconstruction.",
+        "- HCC1143 SS18L2 remains an anchor in the full 48-target endpoint object but is excluded from model scoring because it is absent from the historical common prediction axis; categories were not recalculated.",
+        "- The five dimensions form an audit profile, not a composite leaderboard.",
         "",
     ]
     for cell_line in ["HCC1143", "HCC38"]:
@@ -472,7 +472,7 @@ def _write_report(
 
     lines.extend(["## Predefined discordance search", ""])
     if discordant.empty:
-        lines.append("- 没有 model pair 满足冻结的 similar-reconstruction/different-audit candidate rule；未事后放宽阈值。")
+        lines.append("- No model pair met the frozen similar-reconstruction/different-audit candidate rule; thresholds were not relaxed after observing results.")
     else:
         for _, row in discordant.sort_values(["cell_line", "discordance_ratio"], ascending=[True, False]).iterrows():
             lines.append(
@@ -483,7 +483,7 @@ def _write_report(
             )
     lines.extend(["", "## Homogenization warning search", ""])
     if warnings.empty:
-        lines.append("- 没有 formal entrant 同时满足 above-median conventional reconstruction 与 ΔH > 0.10；未事后降低 warning rule。")
+        lines.append("- No formal entrant met both above-median conventional reconstruction and Delta H > 0.10; the warning rule was not lowered after observing results.")
     else:
         for _, row in warnings.iterrows():
             lines.append(
@@ -512,17 +512,17 @@ def _write_report(
             "",
             "## Data-supported audit findings",
             "",
-            f"- Qualified HCC1143 中，scGen 的 endpoint rho={h1143_scgen['endpoint_alignment_spearman']:.3f}、"
+            f"- In qualified HCC1143, scGen endpoint rho={h1143_scgen['endpoint_alignment_spearman']:.3f}, "
             f"directional median={h1143_scgen['directional_recovery_median_signed_cosine']:.3f}、"
-            f"identity rho={h1143_scgen['target_identity_spearman']:.3f}；但 uncentered ΔH="
-            f"{h1143_scgen['excess_homogenization_uncentered']:.3f}，说明较强 recovery 与 shared-output concentration 可同时存在。scGen 使用 scored-target observed cells，因此该 finding 只限于 fit-output audit。",
-            f"- Boundary HCC38 中，scGPT kernel 的 endpoint rho={h38_scgpt['endpoint_alignment_spearman']:.3f}，"
-            f"但 directional median={h38_scgpt['directional_recovery_median_signed_cosine']:.3f}、"
-            f"identity rho={h38_scgpt['target_identity_spearman']:.3f}；这是 endpoint magnitude ordering 与 direction/identity 明显不一致的实例。",
-            f"- Homogenization 的 centering sensitivity 区分了不同结构：HCC1143 CPA 的 ΔH "
+            f"identity rho={h1143_scgen['target_identity_spearman']:.3f}; however, uncentered Delta H="
+            f"{h1143_scgen['excess_homogenization_uncentered']:.3f}, showing that stronger recovery can coexist with shared-output concentration. scGen uses scored-target observed cells, so this finding is restricted to a fit-output audit.",
+            f"- In boundary HCC38, scGPT kernel endpoint rho={h38_scgpt['endpoint_alignment_spearman']:.3f}, "
+            f"but directional median={h38_scgpt['directional_recovery_median_signed_cosine']:.3f}, "
+            f"identity rho={h38_scgpt['target_identity_spearman']:.3f}; this illustrates disagreement between endpoint magnitude ordering and direction/identity.",
+            f"- Centering sensitivity distinguishes homogenization structures: HCC1143 CPA Delta H "
             f"{h1143_cpa['excess_homogenization_uncentered']:.3f}→{h1143_cpa['excess_homogenization_centered']:.3f}，"
-            f"而 CellOT 为 {h1143_cellot['excess_homogenization_uncentered']:.3f}→"
-            f"{h1143_cellot['excess_homogenization_centered']:.3f}。前者主要是跨 target 共同分量，后者在去除共同均值后仍有 excess similarity。",
+            f"whereas CellOT changes from {h1143_cellot['excess_homogenization_uncentered']:.3f} to "
+            f"{h1143_cellot['excess_homogenization_centered']:.3f}. The former mainly reflects a shared cross-target component; the latter retains excess similarity after removing the shared mean.",
         ]
     )
 
@@ -536,16 +536,16 @@ def _write_report(
             "",
             "## Training/evaluation boundary",
             "",
-            f"- {heldout_n} 个 formal entrants 使用 target-held-out/leave-one-target-out 构造；{in_sample_n} 个 formal entrants 使用 scored target 的 same-context observed data 进行拟合或验证。",
-            "- 因此本 worked example 同时包含 held-out prediction audit 与 in-sample/fit-output audit；不能整体解释为 unseen-target generalization comparison。",
-            "- scGen 的队列命令未显式传 seed，按 runner 冻结默认值为 1；CellOT staging/model YAML 未记录 seed，仍是必须在 M7 关闭或明确保留的 reproducibility gap。",
+            f"- {heldout_n} formal entrants use target-held-out/leave-one-target-out construction; {in_sample_n} use same-context observed data from scored targets for fitting or validation.",
+            "- This worked example combines held-out prediction audits and in-sample/fit-output audits; it is not an overall unseen-target generalization comparison.",
+            "- scGen batch commands did not explicitly pass a seed and use the frozen runner default of 1; CellOT staging/model YAML did not record a seed, a reproducibility gap to resolve or disclose in M7.",
             "",
             "## Statistical notes",
             "",
-            "- Endpoint alignment 使用 two-sided endpoint-label permutation；target identity 使用 one-sided target-label/Mantel permutation。",
-            "- BH correction 分别在 18 个 formal entrant-context endpoint tests 和 18 个 identity tests 内完成；diagnostics/sensitivity runs 不进入该 family。",
-            "- Anchor AUC 只比较 frozen anchors 与 low-information targets，并给 class-stratified bootstrap CI；不按点估计排序。",
-            "- Homogenization 以 observed target geometry 为参照，报告 predicted−observed；没有 universal cutoff。",
+            "- Endpoint alignment uses two-sided endpoint-label permutation; target identity uses one-sided target-label/Mantel permutation.",
+            "- BH correction is applied separately to 18 formal entrant-context endpoint tests and 18 identity tests; diagnostic/sensitivity runs are excluded from these families.",
+            "- Anchor AUC compares frozen anchors with low-information targets and includes class-stratified bootstrap CIs; point estimates are not used for ranking.",
+            "- Homogenization uses observed target geometry as reference and reports predicted minus observed; there is no universal cutoff.",
             "",
         ]
     )
@@ -666,7 +666,7 @@ def run_hcc_audit(config_path: Path, output_root: Path | None = None) -> dict[st
     if not completion["hash_matches_registry"].all() or not completion["completion_call"].eq(
         "valid_for_rescore"
     ).all():
-        raise ValueError("formal/diagnostic prediction completion 或 hash validation 未通过。")
+        raise ValueError("Formal/diagnostic prediction completion or hash validation failed.")
 
     target_frames: list[pd.DataFrame] = []
     context_rows: list[dict[str, Any]] = []
@@ -802,7 +802,7 @@ def run_hcc_audit(config_path: Path, output_root: Path | None = None) -> dict[st
     ]
     if missing_training_provenance:
         raise FileNotFoundError(
-            "training registry provenance 缺失: "
+            "Missing training registry provenance: "
             + ", ".join(_relative(path) for path in missing_training_provenance)
         )
     input_paths.extend(training_provenance_paths)

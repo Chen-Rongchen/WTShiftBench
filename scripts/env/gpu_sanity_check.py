@@ -16,7 +16,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="检查宿主层与 pixi gears 环境里的 GPU/CUDA 可见性是否稳定。"
+        description="Check stable GPU/CUDA visibility on the host and in the Pixi gears environment."
     )
     parser.add_argument("--probe-runs", type=int, default=5)
     return parser

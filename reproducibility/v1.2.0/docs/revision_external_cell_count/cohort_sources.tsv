@@ -1,7 +1,7 @@
 context	input_targets	analyzed_targets	excluded_nonfinite	minimum_observed_count	median_count	response_gene_count	source	eligibility_note
-Replogle K562 essential day 6	1882	1882	0	20	123.0	8563	reports/revision/m5_candidate_qualification/selected_context_endpoint_object.tsv.gz	M5 已冻结的 1882-target 对象；上游至少 20 cells
-HepG2 day 7	1061	1000	61	50	74.0	9624	reports/gse264667_endpoint_extension/gse264667_hepg2_day7/target_level_bridge_table.tsv.gz	上游至少 50 cells；本次不恢复已被过滤的 targets
-Jurkat day 7	1815	1687	128	50	100.0	8882	reports/gse264667_endpoint_extension/gse264667_jurkat_day7/target_level_bridge_table.tsv.gz	上游至少 50 cells；本次不恢复已被过滤的 targets
-Replogle K562 genome-wide day 8	9787	9261	526	20	180.0	8248	data/processed/truth_driven_bridge_replogle_k562_gwps_day8/K562_GWPS_day8/target_level_bridge_table.tsv.gz	沿用既有 genome-wide 表的 target eligibility
-K562 TF day 7	10	10	0	1402	2007.0	23111	data/processed/truth_driven_bridge_gse90063_7d/dixit_2016_k562_tf_7d_gse90063/target_level_bridge_table.tsv.gz	沿用既有 10-target temporal panel
-K562 TF day 13	10	10	0	813	1101.0	21713	data/processed/truth_driven_bridge_gse90063_13d/dixit_2016_k562_tf_13d_gse90063/target_level_bridge_table.tsv.gz	沿用既有 10-target temporal panel
+Replogle K562 essential day 6	1882	1882	0	20	123.0	8563	reports/revision/m5_candidate_qualification/selected_context_endpoint_object.tsv.gz	M5 frozen 1882-target object; upstream minimum of 20 cells
+HepG2 day 7	1061	1000	61	50	74.0	9624	reports/gse264667_endpoint_extension/gse264667_hepg2_day7/target_level_bridge_table.tsv.gz	Upstream minimum of 50 cells; previously filtered targets are not restored
+Jurkat day 7	1815	1687	128	50	100.0	8882	reports/gse264667_endpoint_extension/gse264667_jurkat_day7/target_level_bridge_table.tsv.gz	Upstream minimum of 50 cells; previously filtered targets are not restored
+Replogle K562 genome-wide day 8	9787	9261	526	20	180.0	8248	data/processed/truth_driven_bridge_replogle_k562_gwps_day8/K562_GWPS_day8/target_level_bridge_table.tsv.gz	Retain target eligibility from the existing genome-wide table
+K562 TF day 7	10	10	0	1402	2007.0	23111	data/processed/truth_driven_bridge_gse90063_7d/dixit_2016_k562_tf_7d_gse90063/target_level_bridge_table.tsv.gz	Retain the existing 10-target temporal panel
+K562 TF day 13	10	10	0	813	1101.0	21713	data/processed/truth_driven_bridge_gse90063_13d/dixit_2016_k562_tf_13d_gse90063/target_level_bridge_table.tsv.gz	Retain the existing 10-target temporal panel

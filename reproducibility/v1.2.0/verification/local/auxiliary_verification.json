@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "m6_tables": 4,
+  "gene_effect_contexts": 8,
+  "scope": "Rebuild M6 from frozen target-level scores and GE statistics from archived extracted values; this does not replace provenance verification of complete official files."
+}

@@ -1,5 +1,5 @@
 {
-  "status": "Git来源锁定记录；权重恢复与数值复现结果另见verification_manifest.json",
+  "status": "Git source pinning record; weight recovery and numerical reproduction are documented separately in verification_manifest.json",
   "date": "2026-09-07",
   "project_head_at_scan": "0f1893024d833d04b74e23d1af6be323a9a06e72",
   "project_git": {
@@ -7,7 +7,7 @@
     "all_objects": 6511,
     "blobs": 4577,
     "blob_total_bytes": 480436124,
-    "scan": "本地全部对象；可读文本、JSON词表候选、ZIP成员、LFS指针及all/reflog路径；未找到scGPT权重本体或其LFS指针",
+    "scan": "All local objects, readable text, candidate vocabulary JSON files, ZIP members, LFS pointers, and all/reflog paths searched; no scGPT weights or their LFS pointers found",
     "lfs_pointer_count": 8,
     "lfs_paths": [
       "vendor/geneformer/geneformer/gene_median_dictionary_gc104M.pkl",
@@ -52,18 +52,18 @@
     "weight_size_bytes": 205385258,
     "vocab_blob": "b20d3ca0efc52e1511e31a5bd14f462d18ba1636",
     "vocab_size_bytes": 1317639,
-    "revision_meaning": "本次由原登记镜像Git恢复的固定版本，不是原运行曾记录过的revision；上游其后唯一提交仅改args.json"
+    "revision_meaning": "Pinned revision recovered from the originally registered mirror Git repository in this audit, not a revision recorded by the original run; the only subsequent upstream commit changed args.json"
   },
   "cellot_git_followup": {
     "commit": "d67951fe24a4963ee0b86489bd133cafe841e51f",
     "file": "scripts/models/cellot/prepare_cellot_hcc_smoke.py",
     "seed_default": 1,
-    "seed_use": "np.random.default_rng(args.seed)控制细胞抽样；生成的训练命令未传seed，不能视为历史训练seed已找回"
+    "seed_use": "np.random.default_rng(args.seed) controls cell sampling; generated training commands did not pass a seed, so this does not recover the historical training seed"
   },
   "depmap_git_followup": {
     "prior_audit": "docs/revision_depmap_restore/README.md",
     "raw_csv_in_reachable_path_history": false,
-    "note": "本次再次按all/reflog对象路径查找无CRISPRGeneEffect.csv；保留此前旧HepG2/Jurkat来源核验结论，不重复改写官方文件"
+    "note": "Repeated all/reflog path search found no CRISPRGeneEffect.csv; retain the previous historical HepG2/Jurkat provenance conclusion without rewriting official files"
   },
   "frozen_predictions_modified": false
 }

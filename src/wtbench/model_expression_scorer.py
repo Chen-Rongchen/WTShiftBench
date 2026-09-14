@@ -53,7 +53,7 @@ def _load_truth_for_cell_line(
     axis_membership = load_tsv(Path(axis_membership_path))
     specs = {spec.cell_line: spec for spec in build_dataset_specs(truth_config)}
     if cell_line not in specs:
-        raise ValueError(f"未知 cell_line: {cell_line}")
+        raise ValueError(f"Unknown cell_line: {cell_line}")
     truth = compute_truth_aligned_log_shift_matrix(
         specs[cell_line],
         truth_config,

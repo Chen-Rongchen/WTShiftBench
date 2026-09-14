@@ -1,5 +1,5 @@
 {
-  "status": "checkpoint到正式预测的数值复现通过",
+  "status": "Checkpoint-to-formal-prediction numerical reproduction passed",
   "started_utc": "2026-09-07T10:05:26.303981+00:00",
   "upstream_repository": "https://github.com/bunnech/cellot",
   "upstream_revision": "522d2b953da8ad244fcf36f64521487fdf763788",
@@ -1444,5 +1444,5 @@
     "docs/revision_cellot_replay/export_HCC1143.log": "ea75631cde0c03755dabb40a6140436146f25eedaea1133da151851f3ee776cb",
     "docs/revision_cellot_replay/prediction_comparison.tsv": "4a84c4dfbcf325bcac6d21b38a80a28a7df6508da9ead4d85ec2c83d29436c9e"
   },
-  "conclusion": "此验证只验收保存模型到预测的路径；不反推历史训练seed，也不证明从头训练和多seed稳定性。"
+  "conclusion": "This check validates saved-model-to-prediction replay only; it does not recover the historical training seed or establish from-scratch reproduction or multi-seed stability."
 }

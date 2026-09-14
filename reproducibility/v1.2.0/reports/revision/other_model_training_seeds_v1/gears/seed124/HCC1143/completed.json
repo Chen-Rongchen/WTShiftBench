@@ -1,0 +1,33 @@
+{
+  "initial_state_sha256": "51dfec3cdebf4febf19add989da0de05829cb6db95362e5d538587e163854def",
+  "torch_initial_seed": 124,
+  "split_sha256": "664c28b54b9413bb5713dce9e2af212565c6543483b268152b68e1d47adef351",
+  "data_and_split_seed": 123,
+  "graph_sha256": "439027bfd971fc18e8bed103699a2ae2670843f2ff25bdaebe7ef2d125ec9394",
+  "trained_state_sha256": "39fd3c3393c016b746d193360d8293c4e705593306fd07c3c9f3710c947bc586",
+  "actual_epochs": 30,
+  "model": "gears",
+  "context": "HCC1143",
+  "training_seed": 124,
+  "inference_seed": 123,
+  "runner_sha256": "67bb1a04909df35d5e75db7411493acb0e90b30b3704b41e8cded485d2bbb0c4",
+  "prediction_path": "reports/revision/other_model_training_seeds_v1/gears/seed124/HCC1143/predicted_shift.tsv.gz",
+  "prediction_sha256": "ddefd6b22a087fc99345166f82eda0e84210e2aa1fc99b38c12f0c9cf566ed72",
+  "elapsed_seconds": 1328.387299192138,
+  "completed_utc": "2026-09-11T16:56:19.957726+00:00",
+  "package_versions": {
+    "torch": "2.5.1",
+    "numpy": "1.26.4",
+    "python": "3.10.13 | packaged by conda-forge | (main, Oct 26 2023, 18:07:37) [GCC 12.3.0]"
+  },
+  "cuda_available": true,
+  "torch_threads": 1,
+  "deterministic_algorithms": false,
+  "scope": "Training-seed sensitivity; GPU kernels may not be bitwise deterministic, so exact historical-run reproduction is not claimed",
+  "checkpoint_hashes": {
+    "reports/revision/other_model_training_seeds_v1/gears/seed124/HCC1143/checkpoint/model.pt": "e4e6e095f6aeb7602cf77b719caf13c15ddea39b1be7bf24d7c4f0967b3822f2",
+    "reports/revision/other_model_training_seeds_v1/gears/seed124/HCC1143/checkpoint/config.pkl": "ad90300eea6a393c5c0b0f3ecbb7ff6242a566c313dc59a56d46378d84b9550b",
+    "reports/revision/other_model_training_seeds_v1/gears/seed124/HCC1143/cache/gene_set.pkl": "e147c3e647131b31aab684333beb81490c76d6c11bede19db1bc615f024ca19c",
+    "reports/revision/other_model_training_seeds_v1/gears/seed124/HCC1143/cache/gene2go_all.pkl": "f145c5e84a53048d87942a417d870a4f2d8db50200b96e492b358c13aba8c771"
+  }
+}

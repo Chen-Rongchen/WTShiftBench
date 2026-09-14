@@ -1,7 +1,7 @@
 {
   "stage": "axis_analysis_template",
   "version": 1,
-  "purpose": "为 Stage 2 frozen axis 提供 machine-readable 分析骨架。该配置只定义 axis discovery 之后的 annotation 与 validation 入口，不允许用 enrichment 单独定义 axis。",
+  "purpose": "Machine-readable analysis scaffold for Stage 2 frozen axes. This configuration defines annotation and validation after axis discovery; enrichment alone must not define an axis.",
   "input_objects": {
     "truth_bridge_report_root": "reports/truth_driven_bridge",
     "truth_bridge_data_root": "data/processed/truth_driven_bridge",

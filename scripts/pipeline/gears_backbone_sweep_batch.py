@@ -17,12 +17,12 @@ CELL_LINES = ["HCC38", "HCC1143"]
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="顺序执行 GEARS backbone sweep 候选。")
-    parser.add_argument("--manifest", default=str(DEFAULT_MANIFEST_PATH), help="候选 manifest TSV 路径。")
-    parser.add_argument("--report-root", default=str(DEFAULT_REPORT_ROOT), help="批处理报告输出目录。")
-    parser.add_argument("--start-rank", type=int, default=2, help="起始 candidate_rank。默认跳过与 base 等价的 rank1。")
-    parser.add_argument("--end-rank", type=int, default=6, help="结束 candidate_rank。")
-    parser.add_argument("--skip-existing", action="store_true", help="若原始预测已存在则跳过训练。")
+    parser = argparse.ArgumentParser(description="Execute GEARS backbone sweep candidates sequentially.")
+    parser.add_argument("--manifest", default=str(DEFAULT_MANIFEST_PATH), help="Candidate manifest TSV path")
+    parser.add_argument("--report-root", default=str(DEFAULT_REPORT_ROOT), help="Batch-report output directory")
+    parser.add_argument("--start-rank", type=int, default=2, help="Starting candidate_rank; default skips base-equivalent rank1")
+    parser.add_argument("--end-rank", type=int, default=6, help="Final candidate_rank")
+    parser.add_argument("--skip-existing", action="store_true", help="Skip training if raw predictions already exist")
     return parser
 
 

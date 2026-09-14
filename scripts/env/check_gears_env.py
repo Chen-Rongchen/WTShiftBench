@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""验证 GEARS 环境，要求 GPU PyTorch 与 `gears` 可导入。"""
+"""Verify the GEARS environment requires GPU PyTorch and importable gears."""
 
 from __future__ import annotations
 
@@ -50,15 +50,15 @@ def main() -> int:
             print(f"GPU: {torch.cuda.get_device_name(0)}")
         else:
             failed.append("torch.cuda")
-            print("✗ 需要 GPU 版 PyTorch，但当前 CUDA 不可用。")
+            print("GPU PyTorch required, but CUDA is unavailable.")
     except Exception as exc:
         failed.append("torch.cuda")
-        print(f"✗ torch.cuda 检查失败: {exc}")
+        print(f"torch.cuda check failed: {exc}")
 
     print()
     if failed:
         print("Result: FAILED")
-        print("失败项:", ", ".join(failed))
+        print("Failed checks:", ", ".join(failed))
         return 1
 
     print("Result: PASSED")

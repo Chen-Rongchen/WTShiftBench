@@ -1,4 +1,4 @@
-"""检查公开文件白名单；旧根布局与版本化复现目录分别按其清单验证。"""
+"""Validate public allowlists, checking legacy and versioned layouts against their manifests."""
 
 from __future__ import annotations
 
@@ -78,20 +78,19 @@ PUBLIC_DOCUMENTS = {
     "docs/verification/v1.2.1/github_release_verification.json",
 }
 RELEASE_INDEXES = {
-    "reproducibility/v1.2.0/": "reproducibility/v1.2.0/archive_manifest.json",
-    "reproducibility/v1.2.1/": "reproducibility/v1.2.1/manifests/file_index.tsv",
+    "reproducibility/v1.2.0/": "reproducibility/v1.2.0/manifests/file_index.tsv",
 }
-# 这些已公开运行回执含当时机器路径，不能据此拒绝或改写历史。
-# 仅放行逐字节匹配清单的指定JSON，不放行可执行代码、配置或任意日志。
+# Published historical receipts contain machine paths; do not reject or rewrite historical evidence for that alone.
+# Allow only specified JSON records matching registered bytes, not executable code, configurations, or arbitrary logs.
 HISTORICAL_PATH_RECORDS = {
     f"reproducibility/{version}/provenance/revision_cellot_replay/verification_manifest.json"
-    for version in ("v1.2.0", "v1.2.1")
+    for version in ("v1.2.0",)
 } | {
-    f"reproducibility/v1.2.1/reports/revision/other_model_training_seeds_v1/cpa/seed{seed}/{context}/completed.json"
+    f"reproducibility/v1.2.0/reports/revision/other_model_training_seeds_v1/cpa/seed{seed}/{context}/completed.json"
     for seed in (123, 124, 125)
     for context in ("HCC38", "HCC1143")
 } | {
-    f"reproducibility/v1.2.1/reports/revision/other_model_training_seeds_v1/{name}.json"
+    f"reproducibility/v1.2.0/reports/revision/other_model_training_seeds_v1/{name}.json"
     for name in ("progress", "training_complete")
 }
 

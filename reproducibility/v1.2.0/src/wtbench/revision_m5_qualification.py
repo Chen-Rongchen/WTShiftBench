@@ -455,7 +455,7 @@ def run_candidate_qualification(config_path: Path, output_root: Path | None = No
     report_lines = [
         "# M5 independent-context candidate qualification",
         "",
-        "本阶段只使用 endpoint 与技术可行性信息；selection 前未计算或查看 independent-context model score。",
+        "Only endpoint and technical-feasibility information was used at this stage; independent-context model scores were not computed or inspected before selection.",
         "",
         f"- closed-form null validation: {'PASS' if validation['validation_pass'].all() else 'FAIL'}",
         f"- selected context: {decision['selected_context'] or 'none'}",

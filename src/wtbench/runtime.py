@@ -43,19 +43,19 @@ def load_cli_registry(path: Path | None = None) -> dict[str, Any]:
 
 def validate_cli_registry(payload: dict[str, Any], *, path: Path) -> None:
     if "commands" not in payload:
-        raise ValueError(f"{path} 缺少 commands。")
+        raise ValueError(f"{path} lacks commands.")
     if not isinstance(payload["commands"], dict) or not payload["commands"]:
-        raise ValueError(f"{path} 的 commands 必须是非空 JSON 对象。")
+        raise ValueError(f"{path} commands must be a nonempty JSON object.")
     for name, item in payload["commands"].items():
         if not isinstance(item, dict):
-            raise ValueError(f"{path} 命令 {name} 必须是 JSON 对象。")
+            raise ValueError(f"{path} command {name} must be a JSON object.")
         missing = sorted({"callable", "default_config"} - set(item))
         if missing:
-            raise ValueError(f"{path} 命令 {name} 缺少字段: {missing}")
+            raise ValueError(f"{path} command {name} missing fields: {missing}")
         if ":" not in str(item["callable"]):
-            raise ValueError(f"{path} 命令 {name} callable 必须采用 module:function 格式。")
+            raise ValueError(f"{path} command {name} callable must use module:function format.")
         if item.get("config_env") is not None and not str(item["config_env"]).startswith("WTBENCH_"):
-            raise ValueError(f"{path} 命令 {name} config_env 必须以 WTBENCH_ 开头。")
+            raise ValueError(f"{path} command {name} config_env must start with WTBENCH_.")
 
 
 def build_runtime_commands(registry: dict[str, Any]) -> dict[str, RuntimeCommand]:
@@ -81,17 +81,17 @@ def resolve_command_config(command: RuntimeCommand, override: Path | None = None
             return resolve_project_path(env_value)
     if command.default_config is not None:
         return command.default_config
-    raise ValueError(f"{command.name} 未配置 default_config，必须通过 --config 指定。")
+    raise ValueError(f"{command.name} has no default_config; specify --config.")
 
 
 def load_callable(callable_path: str) -> Callable[..., Any]:
     if ":" not in callable_path:
-        raise ValueError(f"callable 必须采用 module:function 格式: {callable_path}")
+        raise ValueError(f"Callable must use module:function format: {callable_path}")
     module_name, function_name = callable_path.split(":", 1)
     module = importlib.import_module(module_name)
     fn = getattr(module, function_name)
     if not callable(fn):
-        raise TypeError(f"{callable_path} 不是可调用对象。")
+        raise TypeError(f"{callable_path} is not callable.")
     return fn
 
 

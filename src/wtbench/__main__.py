@@ -18,31 +18,31 @@ from wtbench.runtime import (
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="wtbench",
-        description="WT Benchmark 统一运行入口。默认使用 pixi 环境，不依赖 Docker 镜像。",
+        description="Unified WT Benchmark entry point; uses Pixi by default without requiring Docker images.",
     )
     parser.add_argument(
         "--registry",
         type=Path,
         default=None,
-        help="CLI 注册表 JSON。也可用 WTBENCH_CLI_REGISTRY 指定。",
+        help="CLI registry JSON; alternatively set WTBENCH_CLI_REGISTRY.",
     )
     sub = parser.add_subparsers(dest="action", required=True)
 
-    sub.add_parser("version", help="打印项目版本。")
-    sub.add_parser("list", help="列出注册表中的可运行命令。")
+    sub.add_parser("version", help="Print project version.")
+    sub.add_parser("list", help="List runnable registry commands.")
 
-    run = sub.add_parser("run", help="运行一个注册命令。")
-    run.add_argument("command", help="命令名，来自 configs/runtime/wtbench_cli_v1.json。")
+    run = sub.add_parser("run", help="Run a registered command.")
+    run.add_argument("command", help="Command name from configs/runtime/wtbench_cli_v1.json.")
     run.add_argument(
         "--config",
         type=Path,
         default=None,
-        help="覆盖注册表默认配置；相对路径按项目根目录解析。",
+        help="Override the registered default configuration; resolve relative paths from the project root.",
     )
     run.add_argument(
         "--json",
         action="store_true",
-        help="以 JSON 输出返回值，便于流水线读取。",
+        help="Output returned values as JSON for pipeline consumption.",
     )
     return parser
 
@@ -66,7 +66,7 @@ def main() -> None:
 
     if args.command not in commands:
         available = ", ".join(sorted(commands))
-        raise SystemExit(f"未知命令: {args.command}。可用命令: {available}")
+        raise SystemExit(f"Unknown command: {args.command}. Available: {available}")
 
     command = commands[args.command]
     config_path = resolve_command_config(command, args.config)
@@ -76,7 +76,7 @@ def main() -> None:
         print(json.dumps(render_jsonable(result), ensure_ascii=False, indent=2))
         return
 
-    print(f"完成: {args.command}")
+    print(f"Completed: {args.command}")
     print(f"- config: {config_path}")
     rendered = render_jsonable(result)
     if isinstance(rendered, dict):

@@ -65,7 +65,7 @@ def build_smoke_prediction_matrices(axis_membership: pd.DataFrame) -> dict[str, 
         "fine_axis",
     ].astype(str).tolist()
     if not backbone_axes:
-        raise ValueError("smoke 需要至少一个 canonical_backbone axis。")
+        raise ValueError("Smoke testing requires at least one canonical_backbone axis.")
     backbone_template = pd.concat(
         [axis_templates[axis] for axis in backbone_axes],
         axis=1,
@@ -101,13 +101,13 @@ def render_smoke_report(summary: pd.DataFrame, output_path: Path) -> None:
     lines = [
         "# Stage 2 HCC Structure Scorer Smoke",
         "",
-        "## 定位",
+        "## Role",
         "",
-        "- 这是 scorer contract smoke，不是真实 entrant adjudication。",
-        "- 本轮只验证 scorer 是否能稳定区分 `null`、`shared mean baseline`、`oracle structure positive control` 三类状态。",
-        "- 真实 HCC entrant smoke 仍需等待 HCC aligned prediction 输入到位。",
+        "- Scorer-contract smoke test, not real-entrant adjudication.",
+        "- Verify only stable discrimination among null, shared-mean baseline, and oracle structure positive control.",
+        "- Real HCC entrant smoke testing awaits aligned HCC prediction inputs.",
         "",
-        "## 结果",
+        "## Results",
         "",
     ]
     for row in ordered.itertuples(index=False):
@@ -121,10 +121,10 @@ def render_smoke_report(summary: pd.DataFrame, output_path: Path) -> None:
         lines.append("")
     lines.extend(
         [
-            "## 结论边界",
+            "## Conclusion boundaries",
             "",
-            "- 若 oracle 明显高于 shared mean，且 shared mean 明显高于 null，说明 scorer 至少具备基本区分力。",
-            "- 这一步只关闭“scorer 是否可用”的 smoke 风险，不关闭真实 entrant 的 architecture recovery 结论。",
+            "- Oracle above shared-mean and shared-mean above null indicates basic scorer discrimination.",
+            "- This resolves only scorer usability in a smoke test, not real-entrant architecture recovery.",
             "",
         ]
     )

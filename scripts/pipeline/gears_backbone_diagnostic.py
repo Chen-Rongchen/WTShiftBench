@@ -12,8 +12,8 @@ DEFAULT_CONFIG_PATH = PROJECT_ROOT / "configs/gears_backbone_diagnostic_v1.json"
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="生成 GEARS HCC backbone 失败分解摘要。")
-    parser.add_argument("--config", default=str(DEFAULT_CONFIG_PATH), help="诊断配置 JSON 路径。")
+    parser = argparse.ArgumentParser(description="Generate GEARS HCC backbone failure-decomposition summaries.")
+    parser.add_argument("--config", default=str(DEFAULT_CONFIG_PATH), help="Diagnostic JSON configuration path")
     return parser
 
 
@@ -27,7 +27,7 @@ def resolve_path(path_value: str | Path) -> Path:
 def load_json(path: Path) -> dict[str, object]:
     payload = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(payload, dict):
-        raise ValueError(f"{path} 必须是 JSON 对象。")
+        raise ValueError(f"{path} must be a JSON object.")
     return payload
 
 
@@ -148,15 +148,15 @@ def build_diagnostic_rows(config: dict[str, object]) -> pd.DataFrame:
 
 def write_markdown_report(config: dict[str, object], summary: pd.DataFrame, output_path: Path) -> None:
     lines = [
-        "# GEARS Backbone 诊断摘要",
+        "# GEARS backbone diagnostic summary",
         "",
-        "## 定位",
+        "## Role",
         "",
-        "- 这是 GEARS HCC primary mainline 在正式 recipe sweep 前的最小失败分解产物。",
-        "- 它只服务于 `canonical_backbone recovery` 诊断，不引入新 entrant、新 truth object 或新评分体系。",
-        "- sweep 必须基于这里的 `failure_mode_call` 才能启动。",
+        "- Minimal failure decomposition for the GEARS HCC primary analysis before formal recipe sweeping.",
+        "- Used only to diagnose canonical_backbone recovery; no new entrants, truth objects, or scoring system.",
+        "- A sweep can start only from the failure_mode_call recorded here.",
         "",
-        "## 当前诊断",
+        "## Current diagnosis",
         "",
     ]
     for row in summary.itertuples(index=False):
@@ -182,9 +182,9 @@ def write_markdown_report(config: dict[str, object], summary: pd.DataFrame, outp
         lines.append("")
     lines.extend(
         [
-            "## Sweep 边界",
+            "## Sweep boundaries",
             "",
-            "- 允许变化：",
+            "- Allowed changes:",
         ]
     )
     for item in config["allowed_sweep_axes"]:
@@ -192,7 +192,7 @@ def write_markdown_report(config: dict[str, object], summary: pd.DataFrame, outp
     lines.extend(
         [
             "",
-            "- 禁止变化：",
+            "- Prohibited changes:",
         ]
     )
     for item in config["disallowed_sweep_axes"]:
@@ -202,7 +202,7 @@ def write_markdown_report(config: dict[str, object], summary: pd.DataFrame, outp
             "",
             "## Stop Rule",
             "",
-            "- 如果一轮有限 sweep 后，`canonical_backbone recovery` 仍不能接近或追平 `shared_mean_baseline`，且任何改进都以明显损失 `structure/context separation` 为代价，则停止继续把 `GEARS` 推为 HCC primary winner，并将当前结果收口为 architecture trade-off diagnosis。",
+            "- If a finite sweep cannot approach shared_mean_baseline canonical_backbone recovery without substantial structure/context-separation loss, stop promoting GEARS as the HCC primary winner and conclude with architecture trade-off diagnosis.",
             "",
         ]
     )
@@ -219,8 +219,8 @@ def main() -> None:
     summary.to_csv(output_root / "gears_backbone_diagnostic_summary.tsv", sep="\t", index=False)
     write_markdown_report(config, summary, output_root / "gears_backbone_diagnostic_summary.md")
 
-    print(f"已写出: {output_root / 'gears_backbone_diagnostic_summary.tsv'}")
-    print(f"已写出: {output_root / 'gears_backbone_diagnostic_summary.md'}")
+    print(f"Written: {output_root / 'gears_backbone_diagnostic_summary.tsv'}")
+    print(f"Written: {output_root / 'gears_backbone_diagnostic_summary.md'}")
 
 
 if __name__ == "__main__":

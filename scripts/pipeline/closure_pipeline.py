@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""按固定顺序运行 Stage 2 closure 主线。"""
+"""Run the Stage2 closure pipeline in fixed order."""
 from __future__ import annotations
 
 import argparse
@@ -22,7 +22,7 @@ def load_pipeline_config(path: Path) -> dict:
     }
     missing = sorted(required - set(payload))
     if missing:
-        raise ValueError(f"closure pipeline 配置缺少字段: {missing}")
+        raise ValueError(f"Closure-pipeline configuration missing fields: {missing}")
     return payload
 
 
@@ -44,7 +44,7 @@ def validate_pipeline_outputs(
     missing = [path for path in expected_paths if not path.exists()]
     if missing:
         rendered = ", ".join(str(path) for path in missing)
-        raise FileNotFoundError(f"closure pipeline 输出缺失: {rendered}")
+        raise FileNotFoundError(f"Missing closure-pipeline output: {rendered}")
     return expected_paths
 
 
@@ -78,18 +78,18 @@ def run_closure_pipeline_from_config(config_path: Path) -> dict[str, list[Path] 
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="运行 Stage 2 closure pipeline。")
+    parser = argparse.ArgumentParser(description="Run the Stage2 closure pipeline.")
     parser.add_argument(
         "--config",
         type=Path,
         default=Path("configs/closure_pipeline_v1.json"),
-        help="closure pipeline 配置 JSON。",
+        help="Closure-pipeline JSON configuration.",
     )
     args = parser.parse_args()
 
     outputs = run_closure_pipeline_from_config(args.config)
 
-    print("Stage 2 closure pipeline 完成。")
+    print("Stage2 closure pipeline completed.")
     print("- materialized covariates:")
     for path in outputs["materialized_paths"]:
         print(f"  - {path}")

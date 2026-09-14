@@ -1,0 +1,67 @@
+{
+  "status": "passed",
+  "completed_utc": "2026-09-14T17:20:01.121359+00:00",
+  "public_download": false,
+  "scope": "Local English derivative: full frozen-matrix scoring and auxiliary statistics, not retraining or new checkpoint replay",
+  "score_outputs": 87,
+  "comparisons": 373,
+  "failed": [],
+  "matrix_manifest_members": 372,
+  "auxiliary": {
+    "passed": true,
+    "m6_tables": 4,
+    "gene_effect_contexts": 8,
+    "scope": "M6 rebuilt from frozen target-level scores; GE recomputed from archived extracted values, not a substitute for provenance checks of complete official files"
+  },
+  "tests": [
+    {
+      "scope": "public_root",
+      "output": "............................................                             [100%]\n44 passed in 2.39s",
+      "log_sha256": "0a98364e9426a5afaa78917e155468546aa95eaa00c7ced75952a400db1fd7f0"
+    },
+    {
+      "scope": "current_source",
+      "output": ".................                                                        [100%]\n17 passed in 0.94s",
+      "log_sha256": "c8dc4561fd415176a57bf95a50ec37fe84e843eb080491449f8b051949b2eb0b"
+    }
+  ],
+  "archive_integrity": {
+    "status": "passed",
+    "public_download": false,
+    "assets": [
+      {
+        "filename": "WTShiftBench_v1.2.0_matrices_20260915.zip",
+        "sha256": "0ec8c7ad5bda63affb784d96763998ec1584e9fcd6bfab8cecd3ef38eaae3562",
+        "files": 373,
+        "english_text_passed": true,
+        "unchanged_checkpoint_files": 0,
+        "original_members_preserved": true,
+        "unchanged_nontranslated_bytes": true
+      },
+      {
+        "filename": "WTShiftBench_v1.2.0_cellot_training_20260915.zip",
+        "sha256": "3da9e9cd2ec6b8e9c9fbfa5ee9f5283d5693d8b80176f117e22f1f3c3b5fe085",
+        "files": 1769,
+        "english_text_passed": true,
+        "unchanged_checkpoint_files": 470,
+        "original_members_preserved": true,
+        "unchanged_nontranslated_bytes": true
+      },
+      {
+        "filename": "WTShiftBench_v1.2.0_local_verification_20260915.zip",
+        "sha256": "ca1761b178e9247532fa93782c9ba3cd68a1984a807cc67167ea0d4c68a97fa6",
+        "files": 9,
+        "english_text_passed": true,
+        "unchanged_checkpoint_files": 0,
+        "original_members_preserved": true,
+        "unchanged_nontranslated_bytes": true
+      }
+    ]
+  },
+  "source_tables": {
+    "count": 46,
+    "numeric_cells_and_order_unchanged": true
+  },
+  "checkpoint_scope": "All 470 checkpoint files match original bytes; no new replay or retraining claimed",
+  "original_evidence_preserved": true
+}

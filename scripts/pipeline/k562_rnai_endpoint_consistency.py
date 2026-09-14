@@ -29,7 +29,7 @@ def aligned_endpoint_values(frame: pd.DataFrame, column: str) -> pd.Series:
 
 def require_path(path: Path) -> None:
     if not path.exists():
-        raise FileNotFoundError(f"缺少输入文件: {path}")
+        raise FileNotFoundError(f"Missing input file: {path}")
 
 
 def load_bridge(path: Path, prefix: str, truth_metrics: list[str], endpoints: list[str]) -> pd.DataFrame:
@@ -96,7 +96,7 @@ def summarize_timepoint(
                     "platform_pair": "CRISPR_DepMap_vs_DEMETER2_RNAi",
                     "n_shared_targets": int(len(endpoint_subset)),
                     "spearman": float(endpoint_corr) if not pd.isna(endpoint_corr) else pd.NA,
-                    "interpretation": "CRISPR DepMap 是 matched primary endpoint；DEMETER2 RNAi 是 cross-platform sensitivity endpoint。",
+                    "interpretation": "CRISPR DepMap is the matched primary endpoint; DEMETER2 RNAi is a cross-platform sensitivity endpoint.",
                 }
             )
             for truth_metric in truth_metrics:
@@ -115,7 +115,7 @@ def summarize_timepoint(
                             "platform_pair": platform,
                             "n_shared_targets": int(len(subset)),
                             "spearman": float(rho) if not pd.isna(rho) else pd.NA,
-                            "interpretation": "RNAi 不替代 CRISPR 主线，也不提供等价 primary evidence。",
+                            "interpretation": "RNAi neither replaces the CRISPR primary analysis nor provides equivalent primary evidence.",
                         }
                     )
     return pd.DataFrame(rows)
@@ -156,7 +156,7 @@ def build_calls(summary: pd.DataFrame, primary_truth_metric: str, primary_endpoi
                 "crispr_vs_rnai_endpoint_spearman": endpoint["spearman"].iloc[0] if not endpoint.empty else pd.NA,
                 "sensitivity_call": bridge_call,
                 "allowed_wording": "CRISPR DepMap = matched primary endpoint; RNAi DEMETER2 = cross-platform sensitivity endpoint.",
-                "disallowed_wording": "RNAi 替代 CRISPR 主线；RNAi 提供等价 primary evidence。",
+                "disallowed_wording": "RNAi replaces the CRISPR primary analysis or provides equivalent primary evidence.",
             }
         )
     return pd.DataFrame(rows)
@@ -166,11 +166,11 @@ def write_report(path: Path, summary: pd.DataFrame, calls: pd.DataFrame, stage_n
     lines = [
         f"# {stage_name} RNAi endpoint consistency",
         "",
-        "## 定位",
+        "## Role",
         "",
         "- CRISPR DepMap = matched primary endpoint。",
         "- RNAi DEMETER2 = cross-platform sensitivity endpoint。",
-        "- RNAi 不替代 CRISPR 主线，也不提供等价 primary evidence。",
+        "- RNAi neither replaces the CRISPR primary analysis nor provides equivalent primary evidence.",
         "",
         "## Primary readout",
         "",
@@ -182,7 +182,7 @@ def write_report(path: Path, summary: pd.DataFrame, calls: pd.DataFrame, stage_n
     lines.extend(
         [
             "",
-            "## 产物",
+            "## Outputs",
             "",
             "- `endpoint_consistency_summary.tsv`",
             "- `endpoint_consistency_calls.tsv`",
@@ -193,7 +193,7 @@ def write_report(path: Path, summary: pd.DataFrame, calls: pd.DataFrame, stage_n
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="汇总 K562 7d/13d CRISPR DepMap vs RNAi DEMETER2 endpoint consistency。")
+    parser = argparse.ArgumentParser(description="Summarize K5627d/13d CRISPR DepMap versus RNAi DEMETER2 endpoint consistency.")
     parser.add_argument("--config", default=str(DEFAULT_CONFIG_PATH))
     return parser
 
@@ -208,7 +208,7 @@ def run_from_config(config_path: Path) -> dict[str, Path]:
     output_dir = resolve_path(str(recipe["output"]["report_root"]))
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    # 支持 timepoints（K562）和 cell_lines（HCC）两种结构
+    # Support both timepoints(K562) and cell_lines(HCC) layouts.
     items = recipe.get("timepoints", recipe.get("cell_lines"))
 
     target_tables = []

@@ -1,6 +1,0 @@
-{
-  "passed": true,
-  "m6_tables": 4,
-  "gene_effect_contexts": 8,
-  "scope": "M6从冻结target级评分重建；GE从归档提取值复算，不代替全官方文件来源核验"
-}

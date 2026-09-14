@@ -1,4 +1,4 @@
-"""BIB 大修 M1：perturbed-cell 数量与 sampling-noise 稳健性分析。"""
+"""M1 perturbed-cell counts and sampling-noise robustness analysis."""
 
 from __future__ import annotations
 
@@ -282,7 +282,7 @@ def sample_shift_replicates(
 ) -> np.ndarray:
     positions = np.asarray(positions, dtype=np.int64)
     if depth > len(positions):
-        raise ValueError(f"抽样深度 {depth} 超过可用细胞数 {len(positions)}。")
+        raise ValueError(f"Sampling depth {depth} exceeds available cells {len(positions)}.")
     group = matrix[positions]
     rng = np.random.default_rng(seed)
     output = np.empty(replicates, dtype=float)
@@ -310,7 +310,7 @@ def matched_control_null_replicates(
 ) -> np.ndarray:
     n_control = control_matrix.shape[0]
     if depth >= n_control:
-        raise ValueError("pseudo-perturbed 样本必须小于 control pool。")
+        raise ValueError("The pseudo-perturbed sample must be smaller than the control pool.")
     full_mean = np.asarray(control_matrix.mean(axis=0)).ravel()
     sampled = sample_shift_replicates(
         control_matrix,
@@ -347,7 +347,7 @@ def load_context(spec: Any, base_config: dict[str, Any], bridge_path: Path) -> C
     }
     if set(target_positions) != eligible:
         missing = sorted(eligible - set(target_positions))
-        raise ValueError(f"{spec.cell_line} 缺少 eligible target cells: {missing}")
+        raise ValueError(f"{spec.cell_line} missing eligible target cells: {missing}")
 
     raw_library = np.asarray(expression.sum(axis=1)).ravel().astype(float)
     detected = np.asarray(expression.getnnz(axis=1)).ravel().astype(float)
@@ -356,7 +356,7 @@ def load_context(spec: Any, base_config: dict[str, Any], bridge_path: Path) -> C
     gene_to_position = {name: index for index, name in enumerate(gene_names)}
     duplicate_eligible = [target for target in eligible if int(np.sum(gene_names == target)) > 1]
     if duplicate_eligible:
-        raise ValueError(f"eligible target gene symbols 出现重复 feature: {duplicate_eligible}")
+        raise ValueError(f"Duplicate features for eligible target gene symbols: {duplicate_eligible}")
 
     covariate_rows: list[dict[str, Any]] = []
     for target in sorted(target_positions):
@@ -395,7 +395,7 @@ def load_context(spec: Any, base_config: dict[str, Any], bridge_path: Path) -> C
     expected_counts = bridge.set_index("target_gene")["n_cells_target"].astype(int)
     observed_counts = target_covariates.set_index("target_gene")["n_cells_target"].astype(int)
     if not observed_counts.equals(expected_counts.loc[observed_counts.index]):
-        raise ValueError(f"{spec.cell_line} target cell counts 与 frozen bridge table 不一致。")
+        raise ValueError(f"{spec.cell_line} target cell counts differ from the frozen bridge table.")
     return ContextData(
         cell_line=spec.cell_line,
         normalized=normalized,
@@ -565,7 +565,7 @@ def run(registry_path: Path, output_root: Path) -> dict[str, Any]:
     validation_rows: list[dict[str, Any]] = []
 
     for context_index, spec in enumerate(context_specs):
-        print(f"[M1] 载入 {spec.cell_line} raw expression...", flush=True)
+        print(f"[M1] Loading {spec.cell_line} raw expression...", flush=True)
         context = load_context(spec, base_config, bridge_paths[spec.cell_line])
         frame = context.target_covariates.sort_values("target_gene").reset_index(drop=True)
         validation_rows.append(
@@ -901,20 +901,20 @@ def run(registry_path: Path, output_root: Path) -> dict[str, Any]:
 
     key = inference.loc[inference["analysis_id"].isin(["raw_observed_shift", *gate_ids])].copy()
     lines = [
-        "# BIB 大修 M1：cells-per-target 与 sampling-noise 审计",
+        "# M1: Cells-per-target and sampling-noise audit",
         "",
-        "## Go/No-Go 结论",
+        "## Go/No-Go decision",
         "",
-        f"- 双 context endpoint object：`{'PASS' if dual_context_pass else 'STOP_AND_REASSESS'}`。",
+        f"- Dual-context endpoint object: `{'PASS' if dual_context_pass else 'STOP_AND_REASSESS'}`.",
     ]
     for _, row in context_decision.iterrows():
         lines.append(f"- {row['cell_line']}：`{row['decision']}`。")
     lines.extend(
         [
             "",
-            "## Gate 使用的主要数值",
+            "## Principal Gate statistics",
             "",
-            "equal-n Gate component 是每个 target 的 expected equal-n shift 与 dependency 的关联；它不是 1,000 个 replicate-wise rho 的均值。",
+            "The equal-n Gate component is the association of target-level expected equal-n shift with dependency, not the mean of 1,000 replicate-wise rho values.",
             "",
             "| analysis | context | n | rho | 95% CI | permutation q |",
             "| --- | --- | ---: | ---: | --- | ---: |",
@@ -929,7 +929,7 @@ def run(registry_path: Path, output_root: Path) -> dict[str, Any]:
     lines.extend(
         [
             "",
-            "## Equal-n replicate 分布",
+            "## Equal-n replicate distribution",
             "",
             "| cohort | context | depth | targets | median rho | 95% replicate interval |",
             "| --- | --- | ---: | ---: | ---: | --- |",
@@ -944,9 +944,9 @@ def run(registry_path: Path, output_root: Path) -> dict[str, Any]:
     lines.extend(
         [
             "",
-            "## 简洁线性 sensitivity",
+            "## Parsimonious linear sensitivity",
             "",
-            "标准化 OLS 同时纳入 dependency 与 log target-cell count；下表为 dependency coefficient，使用 HC3 robust uncertainty。",
+            "Standardized OLS jointly includes dependency and log target-cell count; the table reports the dependency coefficient with HC3 robust uncertainty.",
             "",
             "| analysis | context | n | beta | 95% CI | P | R2 |",
             "| --- | --- | ---: | ---: | --- | ---: | ---: |",
@@ -961,14 +961,14 @@ def run(registry_path: Path, output_root: Path) -> dict[str, Any]:
     lines.extend(
         [
             "",
-            "## 解释边界",
+            "## Interpretation limits",
             "",
-            "- equal-n 回答 perturbed-cell sampling depth；它不使每个细胞的 UMI/nFeature 相同。",
-            "- threshold-eligible 25/50/100 sensitivity 会改变 target composition；fixed n≥100 cohort 才隔离 sampling depth。",
-            "- matched-size null 估计相同 target-specific cell count 下 sampling-only shift 的期望值。",
-            "- partial-rank P value 使用 rank-scale Freedman-Lane residual permutation，保留 dependency-covariate 的 fitted structure。",
-            "- library complexity 和 target RNA reduction 可能同时含技术与生物成分，因此作为 robustness/proxy，而不是声称完全去混杂。",
-            "- DEG breadth conditional model 是 incremental biological decomposition，不作为纯技术校正。",
+            "- Equal-n addresses perturbed-cell sampling depth; it does not equalize per-cell UMI/nFeature.",
+            "- Threshold-eligible 25/50/100 sensitivity changes target composition; only the fixed n>=100 cohort isolates sampling depth.",
+            "- The matched-size null estimates expected sampling-only shift at the same target-specific cell count.",
+            "- Partial-rank P values use rank-scale Freedman-Lane residual permutation, retaining the fitted dependency-covariate structure.",
+            "- Library complexity and target RNA reduction may contain technical and biological components; they are robustness checks/proxies, not complete deconfounding.",
+            "- The response-breadth conditional model is an incremental biological decomposition, not a purely technical correction.",
             "",
         ]
     )

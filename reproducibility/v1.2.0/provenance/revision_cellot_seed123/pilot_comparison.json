@@ -6,5 +6,5 @@
   "best_and_last_states_exactly_equal": true,
   "predicted_shift_exactly_equal": true,
   "max_abs_difference": 0.0,
-  "scope": "同seed重复性试验，不是跨seed稳健性"
+  "scope": "Same-seed repeatability check, not cross-seed robustness"
 }
