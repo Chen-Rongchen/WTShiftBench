@@ -1,6 +1,6 @@
-# WTShiftBench v1.2.1 reproducibility guide
+# WTShiftBench reproducibility guide — scientific assets v1.2.1
 
-The frozen analysis is distributed through [GitHub Release v1.2.1](https://github.com/Chen-Rongchen/WTShiftBench/releases/tag/v1.2.1), whose source commit is `63a00cedcf4960ede5f1b21066cc94a8469cec6c`. Documentation updates do not move that tag or replace its ZIPs. Execute each workflow from its specified package root; do not import the legacy root implementation.
+The English source/documentation release is [v1.2.2](https://github.com/Chen-Rongchen/WTShiftBench/releases/tag/v1.2.2). Its matrix, training, and local-verification ZIPs retain the v1.2.1 names and exactly the same bytes as the previously verified assets. The scientific implementation and this execution path are unchanged. The original v1.2.1 tag at `63a00cedcf4960ede5f1b21066cc94a8469cec6c` is retained; it is not moved to the new documentation commit. Execute each workflow from its specified package root; do not import the legacy root implementation.
 
 ## 1. Download and verify
 
@@ -73,4 +73,4 @@ Historical records may describe information as unavailable at the time. Those st
 
 [Public-download verification](../../../docs/verification/v1.2.1/github_release_verification.json) passed on 14 September 2026: all four ZIPs, 371 matrix-package members, 87 outputs/373 full-inference comparisons, four cutoff-sensitivity tables, and eight gene-effect contexts. The run used the actual downloaded package and a new frozen Pixi prefix; it did not retrain models or replay checkpoints.
 
-The code-version DOI is [10.5281/zenodo.22735108](https://doi.org/10.5281/zenodo.22735108). Its verified source snapshot does not include the matrix/training assets, whose Zenodo data record remains pending. `verification/local/` retains historical local checks and is not relabeled as a public-download run.
+The original v1.2.1 code-version DOI is [10.5281/zenodo.22735108](https://doi.org/10.5281/zenodo.22735108), not an identifier for the new English source. Its verified snapshot does not include the matrix/training assets, whose Zenodo data record remains pending. `verification/local/` retains historical local checks and is not relabeled as a public-download run. The completed full-inference receipt refers to the original public downloads; replacement-release checks establish unchanged asset bytes separately.

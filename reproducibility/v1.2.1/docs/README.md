@@ -1,6 +1,6 @@
 # Frozen v1.2.1 matrix archive: scope and execution
 
-This English guide describes the unchanged matrix archive distributed in GitHub Release v1.2.1. Its original embedded README was written while the assets were candidates; historical candidate-status text is not the current publication status. For current downloads, source/data DOI distinctions, and public verification, use the [main reproducibility guide](../README.md).
+This English guide describes the unchanged v1.2.1 matrix archive mirrored in GitHub Release v1.2.2. Its original embedded README was written while the assets were candidates; historical candidate-status text is not the current publication status. For current downloads, source/data DOI distinctions, and public verification, use the [main reproducibility guide](../README.md).
 
 The package covers 87 scoring outputs. The separate five-seed CellOT training archive contains 470 checkpoints. Package manifests define the actual members. Historical local verification and later public-download verification are distinct records.
 
