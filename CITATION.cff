@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: 使用WTShiftBench时请引用实际科学版本及相关论文；本候选尚未填入版本DOI。
+message: Cite the specific WTShiftBench code and data versions used, together with the relevant publications. See DATA_AVAILABILITY.md for verified archive identifiers and their scope.
 title: 'WTShiftBench: a problem-solving benchmark protocol for endpoint-aligned auditing
   of transcriptomic perturbation model outputs'
 type: software

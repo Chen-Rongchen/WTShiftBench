@@ -1,37 +1,43 @@
 # WTShiftBench
 
-WTShiftBench（whole-transcriptome shift benchmark）审计模型输出的外部 dependency 排序、响应方向、anchor separation、靶标间结构及同质化。各维度分别解释，不合成通用排行榜，也不把 endpoint 排序当作完整转录响应恢复。
+WTShiftBench (whole-transcriptome shift benchmark) audits external dependency ordering, response direction, anchor separation, between-target structure, and homogenization in perturbation-model outputs. These properties are interpreted separately, not combined into a universal leaderboard. Endpoint ordering alone does not establish faithful transcriptional recovery.
 
-## 当前入口：v1.2.1
+## Current reproducibility entry point: v1.2.1
 
-[v1.2.1 复现说明](reproducibility/v1.2.1/README.md) 是当前科学版本的唯一执行入口。[GitHub Release v1.2.1](https://github.com/Chen-Rongchen/WTShiftBench/releases/tag/v1.2.1) 已发布四个计算复现ZIP，固定源码提交为 `63a00cedcf4960ede5f1b21066cc94a8469cec6c`。本页后续更新只提供发布／验证说明，不移动该tag。2026-09-14已从实际公开下载的矩阵完成87输出、373项完整统计对账。代码版本DOI为[10.5281/zenodo.22735108](https://doi.org/10.5281/zenodo.22735108)，该Zenodo记录目前仅含源码，不包含矩阵和训练附件；数据持久归档仍需单独完成。
+Use the [v1.2.1 guide](reproducibility/v1.2.1/README.md). [GitHub Release v1.2.1](https://github.com/Chen-Rongchen/WTShiftBench/releases/tag/v1.2.1) provides four reproducibility ZIPs and fixes its source snapshot at `63a00cedcf4960ede5f1b21066cc94a8469cec6c`. Later documentation updates do not move that tag or replace its assets.
 
-- 代码、配置、小型冻结结果与带轴索引：`reproducibility/v1.2.1/`。
-- 矩阵、CellOT 五-seed 训练资产：独立 ZIP，见[资产清单](reproducibility/v1.2.1/manifests/archive_assets.json)。不纳入普通 Git 历史。
-- 源数据、数据使用条件与范围：[数据说明](DATA_AVAILABILITY.md)、[第三方来源](docs/THIRD_PARTY_NOTICES.md)。
-- 本轮变更：[版本记录](docs/CHANGELOG.md)。
-- [公开下载与完整复算记录](docs/verification/v1.2.1/github_release_verification.json)：四个ZIP实际下载及SHA256/ZIP校验通过；371个矩阵成员、87输出/373项统计、M6四表和八context的GE辅助复算通过。训练包1767个成员核验通过，但本次未重新回放checkpoint或训练模型。2026-09-13的初次下载失败记录保留在Git历史中，不再代表当前验收状态。
+On 14 September 2026, publicly downloaded assets passed full recomputation of 87 outputs and all 373 comparison checks. The code-version DOI is [10.5281/zenodo.22735108](https://doi.org/10.5281/zenodo.22735108). That Zenodo record currently contains only the source snapshot, not the matrix or training archives; their persistent data archive remains pending.
 
-## 两条不同的执行路径
+- Code, configurations, numerical source tables, and axis indexes: `reproducibility/v1.2.1/`.
+- Matrix and five-seed CellOT training ZIPs: [asset manifest](reproducibility/v1.2.1/manifests/archive_assets.json). Large ZIPs are release assets, not ordinary Git files.
+- Sources and usage conditions: [data availability](DATA_AVAILABILITY.md) and [third-party notices](docs/THIRD_PARTY_NOTICES.md).
+- Technical changes: [changelog](docs/CHANGELOG.md).
+- [Public-download verification](docs/verification/v1.2.1/github_release_verification.json): four ZIPs passed size/SHA256/ZIP checks; 371 matrix-package members, 87 outputs/373 comparisons, four cutoff-sensitivity tables, and gene-effect sensitivity in eight contexts passed verification. All 1,767 training-package manifest members passed integrity checks. This run did not replay checkpoints or retrain models. Earlier incomplete-download reports remain in Git history.
 
-评分无需重训模型：下载矩阵 ZIP，校验 SHA256，在原结构解压后的根目录使用 Pixi 执行 `recompute.py`。完整运行从实测／预测矩阵计算统计量，再与 `expected/` 对账；不要把源码浏览目录与旧根目录混拼成计算环境。
+## Scoring and training are different paths
 
-CellOT 训练／回放另用训练 ZIP。正式 CellOT 为 seed123，其余 seed124–127 全部公开作为敏感性检查；五次结果并不支持将 seed123 单次正向排序概括为稳定能力。470 个 checkpoint 回放与两个 ARID1A target 的 staged 重训，是不同验收范围。
+**Scoring requires no retraining.** Download and verify the matrix ZIP, preserve its internal structure, and run `recompute.py` with Pixi from the extracted package root. Statistics are computed from observed/predicted matrices and then compared against `expected/`. Do not combine source-browsing files with legacy code or another environment.
 
-## 评价范围
+**CellOT replay and training use the training ZIP.** Seed 123 is the formal entrant; seeds 124–127 remain separate sensitivity runs. The five-seed results do not establish that the positive seed-123 ordering is a stable cross-seed capability. Historical local verification covered 470 checkpoint replays and staged retraining of two ARID1A targets, not 470 independent retraining validations.
 
-HCC 模型共同评分空间为 **47 genes**，不是47个 targets 的同义词，也不是全转录组模型恢复。HCC 的 held-out 与 in-sample 输出按冻结登记分别解释。Replogle 完整评分为 **1,882 targets × 1,024 genes**；三个具体 entrants 使用 target-response-held-out LOO。名称中的 WT 不扩大实际评分空间。
+## Evaluation scope
 
-当前 primary probability 与 gene-effect sensitivity 均采用 DepMap Public 25Q3。历史 HepG2／Jurkat gene-effect 数值匹配23Q4的事实保留在 provenance，不再作为当前 sensitivity 输入。
+HCC model scoring uses a common **47-gene** space. This is not synonymous with 47 perturbation targets and does not establish whole-transcriptome recovery. Held-out and in-sample outputs retain their registered settings.
 
-## 历史版本
+Replogle scoring covers **1,882 targets × 1,024 genes**; the three specified entrants use target-response-held-out leave-one-out evaluation. The WTShiftBench name does not expand these feature spaces.
 
-`reproducibility/v1.2.0/` 及旧 tag 原样保留。根目录原有 `src/`、`scripts/`、`configs/`、`pixi.toml` 和旧绘图入口属于历史／开发路径，不是本轮 v1.2.1 执行入口。旧说明中的“CellOT seed123仅为补充”“尚未新增H区间”和未明的 legacy gene-effect 来源，不代表当前版本状态。
+Both the current dependency-probability endpoint and gene-effect sensitivity use DepMap Public 25Q3. Historical HepG2/Jurkat gene-effect values match 23Q4; this provenance is retained separately, not used as the current sensitivity input.
 
-[原有 SVG 图件](figures/README.md) 保留原路径，属于历史公开版本，不是 v1.2.1 正式结果入口。当前图源、代码与对应关系从上述 v1.2.1 入口查找；不要将旧 panel 混入当前结果。
+## Historical versions
 
-## 公开与私有范围
+`reproducibility/v1.2.0/` and existing tags remain historical records. Root-level `src/`, `scripts/`, `configs/`, `pixi.toml`, and plotting commands are legacy/development paths, not the current analysis entry point.
 
-公开分析与绘图代码、配置、环境、seeds、端点／类别表、数值源表及必要的科学 provenance。完整矩阵与训练资产单独归档；精简技术版本说明保留影响科学解释的实际变更。
+[Existing SVG figures](figures/README.md) remain at their original paths as historical assets, not current results. Do not mix historical panels into the revised analysis. Earlier statements that seed 123 was supplementary, homogenization intervals were unavailable, or gene-effect provenance was unresolved describe earlier versions.
 
-本轮论文成品图、人工拼图工程、最终投稿 Excel、Word、回复信和内部逐句编辑日志保留私有，不作为默认公开附件。Excel 对应的 CSV／TSV 数值源表、绘图代码和图源映射仍公开。作者可在私有工作区完成最终版式；公开计算不依赖这些投稿文件，也不承诺逐像素重建人工排版。
+## Public and private materials
+
+Public materials include analysis/plotting code, configurations, environments, seeds, endpoint/category tables, numerical source tables, and scientific provenance. Complete matrices and training assets are distributed separately.
+
+Manuscripts, reviewer responses, final submission workbooks, manually assembled publication figures, layout projects, and internal editing logs remain private. Their numerical CSV/TSV sources and plotting code remain public. Public computation does not require private submission files and does not promise pixel-identical reproduction of final manual layouts.
+
+Current reading guides are in English. Frozen machine-readable provenance and archived execution logs may retain original-language annotations; documentation translation does not silently rewrite those records.

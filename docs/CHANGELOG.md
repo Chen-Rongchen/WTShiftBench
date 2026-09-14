@@ -1,48 +1,49 @@
-# 当前公开源码变更
+# Public technical changelog
 
-## [1.2.1] - 2026-09-12
+## Unreleased — English documentation
 
-### 公开下载验收（2026-09-14）
+- Provide English project, data, reproduction, training, provenance, and citation guides.
+- Preserve frozen matrices, expected results, scoring implementations, environments, and historical execution records. Original archive bytes are unchanged.
+- Refresh the source-view documentation checksums and language regression checks. The archived matrix manifest still describes the original matrix ZIP, not a newly translated data package.
+- Release replacement and publication are pending confirmation. No existing release, tag, or Zenodo record has been deleted.
 
-- 四个Release ZIP均从实际公共URL重新下载，大小、SHA256和ZIP CRC通过；保留科学资产字节和原tag，不增加模型或seed，不修改评分实现。
-- 新解压目录的锁定Pixi环境核验371个矩阵成员，完成87输出、373项完整推断对账，M6四表及八context GE辅助统计全部通过；最大连续统计差约6.1e-9，未放宽原容差。
-- 训练包1767个成员hash通过。本次未重复既有470项checkpoint回放或两项staged重训，不把其本地记录写成新的公开执行。
-- Zenodo代码版本DOI为`10.5281/zenodo.22735108`，源码下载及987成员内容对应核验通过；实际记录只有源码，数据／训练资产的Zenodo归档仍待完成。公开回执仅替换机器路径为占位符，原始执行证据私有保留。
-- 下列2026-09-13下载未完成说明是历史快照；最新状态以本节及公开验收JSON为准。本次只追加技术验收说明，不发布另一套科学结果。
+## [1.2.1] — 2026-09-12
 
-### 正式发布（2026-09-13）
+### Public-download verification — 2026-09-14
 
-- GitHub Release v1.2.1固定提交`63a00cedcf4960ede5f1b21066cc94a8469cec6c`，公开源码、矩阵、CellOT训练、本地验收四ZIP及三份说明／清单；未上传本轮成品图、最终Excel或投稿文书。
-- 七附件在GitHub端的大小和SHA256对账通过。源码及小型验收包另经匿名下载核验；两个大包因网络超时／TLS错误未完成下载检查，完整统计复算及Zenodo版本DOI仍待处理。
-- 发布后的首页、下载索引和验收说明以文档提交补充，不移动tag、不替换归档ZIP、不重打科学资产。下文“尚未发布”等为发布前的记录。
+- Downloaded all four release ZIPs from public URLs and verified sizes, SHA256 values, and ZIP integrity.
+- A new extraction directory and frozen Pixi environment passed 371-member integrity checks, 87-output/373-comparison full inference verification, four cutoff-sensitivity table checks, and eight-context gene-effect sensitivity recomputation. Maximum continuous-statistic difference was approximately 6.1e-9; original tolerances were retained.
+- Verified all 1,767 training-package manifest members. This run did not repeat the historical 470 checkpoint replays or two staged retraining checks.
+- Verified code-version DOI `10.5281/zenodo.22735108`: its downloaded source matches all 987 files in the fixed GitHub source snapshot. The Zenodo record contains only source code; matrix/training data archiving remains pending.
+- Public verification records replace machine paths with placeholders; original evidence remains private. Earlier incomplete-download statements below describe their original dates, not current status.
 
-### 发布范围说明（2026-09-13）
+### Release and distribution scope — 2026-09-13
 
-- 当前入口及已验收执行路径保持不变。原有SVG保留原路径，明确为历史公开图件，不作为当前结果入口。
-- 本轮成品图、人工拼图工程、最终投稿Excel及内部编辑日志不作为默认公开附件；数值源表、绘图代码、科学provenance与技术版本说明继续公开。
-- 区分程序生成的组合图与作者最终人工排版，不承诺逐像素复现后者。未修改科学源表、矩阵、训练资产或评分定义。
+- Published GitHub Release v1.2.1 at `63a00cedcf4960ede5f1b21066cc94a8469cec6c`, with source, matrix, CellOT training, and local-verification ZIPs plus three description/manifest files.
+- All seven assets matched server-side sizes and hashes. Initial anonymous source/local-verification downloads passed; initial matrix/training downloads were incomplete because of timeouts/TLS failures. Later verification is recorded above.
+- Retained existing SVGs and paths as historical assets. Final publication figures, manual layout projects, final submission workbooks, manuscripts, responses, and internal editing logs were not uploaded as default attachments.
+- Retained numerical source tables, plotting code, scientific provenance, and technical change notes. Programmatically arranged figures are distinguished from final manual layouts; pixel-identical reproduction of the latter is not promised.
+- Documentation commits update guidance without moving the frozen tag, replacing release ZIPs, or changing scientific results.
 
-### 公开源码与CI
+### Public source and CI
 
-- v1.2.1源码已上传；该版本17项轻量测试在GitHub托管环境通过。既有根CI按旧布局误拒绝docs及整个reproducibility目录，现按两个版本已有清单精确验证路径与SHA256，不放宽为允许全部docs。
-- 保留旧根实现与测试、私有文件排除规则。仅指定的历史JSON回执在hash匹配时允许机器路径；运行源码和配置仍拒绝这类依赖，新增四项回归测试。
-- 仅修公开检查适配，不改变v1.2.1科学资产、模型输出、统计或原有锁文件；Release、Zenodo公开下载验收及版本DOI仍未完成。
-- 公开说明统一使用正式科学版本及更新日期，新增文档命名回归检查；已有科学配置、来源时间线与第三方工具版本保留。
+- Added the versioned source entry point and passed 17 lightweight tests in GitHub CI.
+- Adapted the legacy root public-file validator to check versioned manifests precisely, rather than permitting arbitrary documentation or private material.
+- Preserved private-file exclusion and exact-hash exceptions for specified historical JSON records containing machine paths; runtime code/configurations remain restricted.
+- Retained scientific configurations, selection chronology, and third-party version identifiers. Public documentation uses scientific release identifiers rather than private submission-iteration labels.
 
-### 科学资产
+### Scientific assets
 
-- 正式CellOT采用已登记seed123执行；123–127全部输出分别保留，并报告跨seed变号，不选择最好seed或平均预测。
-- 纳入scGen／CPA／GEARS三个seed检查及Replogle feature-seed检查；区分训练随机性与随机降维。
-- 当前gene-effect sensitivity统一Public25Q3；保留历史HepG2／Jurkat对应23Q4的证据。
-- 更新正式M4检验族及M6；补H与excess的target-delete-one jackknife区间，冻结源表46张。
-- 新增独立公开入口、实际导入依赖、87输出及轴索引、公开源表绘图入口；不改变已验收矩阵／训练ZIP字节。
-- 源码已公开，完整归档、公开下载复算与版本DOI尚未完成；历史v1.2.0和旧tag保留，不覆盖。
+- Adopted the registered seed-123 CellOT execution as formal, retaining all seeds 123–127 separately and reporting cross-seed sign changes without best-seed selection or prediction averaging.
+- Included three-seed scGen/CPA/GEARS checks and Replogle feature-seed checks, distinguishing training randomness from randomized dimensionality reduction.
+- Standardized current gene-effect sensitivity to Public 25Q3 while retaining evidence that historical HepG2/Jurkat values match 23Q4.
+- Updated the formal HCC BH family and cutoff sensitivity; added target-delete-one jackknife intervals for homogenization and excess. Retained 46 frozen numerical source tables.
+- Added complete scoring dependencies, 87-output/axis registries, and public-source plotting without changing the validated matrix/training ZIP bytes.
 
+## [1.2.0] — 2026-09-10
 
-## [1.2.0] - 2026-09-10
-
-- 新增返修冻结的endpoint/category、HCC/Replogle实测和预测target×gene矩阵及明确轴信息。
-- 新增可独立执行的矩阵评分入口、Pixi锁文件、统计seed和训练/历史来源记录。保持原评分定义，范围为冻结矩阵到评分，不承诺恢复全部历史训练。
-- 发布前57组模型/对照的199项完整推断汇总比较通过。HCC最大绝对差约3.6e-15；Replogle保存为float32导致最大差约6.1e-9，P/q与样本数校验未放宽。
-- WT名称获作者确认；不扩大HCC的47基因评分空间，不改模型输出、冻结标签或研究结论。原v1.1.1材料保留为历史版本。
-- 本次仅提交公开材料；不包含本地私有稿件、回复信或其Git历史。Zenodo由GitHub release集成生成版本DOI，发布后还需实际下载验证。
+- Added frozen endpoint/category tables, HCC/Replogle observed and predicted target-by-gene matrices, and explicit axes.
+- Added standalone matrix scoring, Pixi locks, statistical seeds, and training/historical provenance. Matrix-to-score reproducibility does not establish recovery of every historical training trajectory.
+- Pre-release verification passed 199 full-inference comparisons for 57 model/reference outputs. Maximum differences were approximately 3.6e-15 in HCC and 6.1e-9 after Replogle float32 serialization; P/q and sample-count tolerances were not relaxed.
+- Confirmed the WT name without expanding the common HCC 47-gene scoring space or changing predictions and frozen labels. Earlier versions were retained.
+- Published only public reproducibility materials, excluding private manuscripts, responses, and development history. Public-download verification and DOI scope were separate from local checks.
