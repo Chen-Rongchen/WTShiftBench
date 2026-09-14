@@ -1,11 +1,12 @@
 # Public technical changelog
 
-## Unreleased — English documentation
+## [1.2.2] — 2026-09-14
 
 - Provide English project, data, reproduction, training, provenance, and citation guides.
 - Preserve frozen matrices, expected results, scoring implementations, environments, and historical execution records. Original archive bytes are unchanged.
 - Refresh the source-view documentation checksums and language regression checks. The archived matrix manifest still describes the original matrix ZIP, not a newly translated data package.
-- Release replacement and publication are pending confirmation. No existing release, tag, or Zenodo record has been deleted.
+- Use v1.2.2 for the English source/documentation release and download mirrors; retain scientific assets v1.2.1 and their already validated execution paths. No models, statistics, seeds, or numerical results change.
+- The earlier v1.2.1 Git tag and Zenodo source record remain historical references. Retirement of its GitHub Release page/attachments is conditional on successful verification of the replacement downloads; release status and verification receipts are recorded separately.
 
 ## [1.2.1] — 2026-09-12
 

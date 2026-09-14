@@ -20,8 +20,8 @@
       "name": "Cheng, Shuqun"
     }
   ],
-  "version": "1.2.1",
-  "description": "WTShiftBench v1.2.1 provides a sampling-aware endpoint definition, scoring code for matrices with explicit target and gene axes, five-seed CellOT evaluation, and reported training- and feature-seed checks. The code snapshot is not the complete data archive. See the current reproducibility guide for assets and the scope of actual verification.",
+  "version": "1.2.2",
+  "description": "WTShiftBench v1.2.2 provides English public documentation and updated distribution links for the unchanged v1.2.1 scientific assets: sampling-aware endpoints, scoring with explicit target and gene axes, five-seed CellOT evaluation, and reported training- and feature-seed checks. Scoring implementations, numerical results, matrices and training assets are unchanged. The code snapshot is not the complete data archive. The verified execution path remains reproducibility/v1.2.1/. See the English guide for downloads and the scope of actual verification.",
   "license": "MIT",
   "keywords": [
     "Perturb-seq",
