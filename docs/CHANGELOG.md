@@ -1,6 +1,6 @@
 # Public technical changelog
 
-## [1.2.0] — English publication candidate, 2026-09-15
+## [1.2.0] — English publication, 2026-09-15
 
 - At the author's request, use v1.2.0 after removal of earlier v1.2.x GitHub release pages and tags. This is a new distribution, not the historical v1.2.0 bytes. Exact commit, date, and hashes identify it; Git history and existing DOI records are not rewritten.
 - Translate public documentation, code comments, runtime messages, configuration narratives, table annotations, and historical receipts into English. Preserve historical dates, conclusions, adoption chronology, source hashes, scientific values, axes, seeds, and checkpoint tensors.
@@ -9,6 +9,7 @@
 - Keep original SVG paths and geometry, with English layer identifiers and historical labels. Do not publish private manuscripts, responses, final assembled figures/workbooks, or internal editing logs.
 - Remove non-gene placeholder tokens from a legacy annotation list without changing its real gene identifiers or the current scoring implementation.
 - Local verification of the English assets passed 87 outputs/373 full-inference comparisons, four cutoff-sensitivity tables, and eight gene-effect contexts. The public-root and current-source test suites passed (44 and 17 tests). All 46 source tables retain their numerical cells and ordering; all 470 checkpoint files retain their original bytes. Fresh public-download verification is a separate post-publication step.
+- Published at fixed commit `ca6b0ee1562de9e20f12bec432283c55b0e64bca`; all eight initial attachments passed server-side hashes and both GitHub checks passed. Four freshly downloaded ZIPs passed SHA256 and ZIP-integrity checks. Full public-download scoring is in progress; subsequent status documentation does not move the tag or replace the frozen assets.
 
 The entries below describe historical publications at their stated dates. Their former availability and tag statements are superseded by the current publication note, not assertions that removed releases still exist.
 
