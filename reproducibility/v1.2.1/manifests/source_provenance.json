@@ -161,8 +161,8 @@
     {
       "path": "docs/README.md",
       "source_sha256": "90194598280ea7f838c873588d42d0a079fb43c84f1f78e834d3676de8cbd3cb",
-      "sha256": "90194598280ea7f838c873588d42d0a079fb43c84f1f78e834d3676de8cbd3cb",
-      "role": "frozen_bundle_member"
+      "sha256": "cfbfe7ba9a120f0225f7ee034f0ba33fabce5ace21bc72625f0885bf4bd12c14",
+      "role": "translated_documentation_source_view"
     },
     {
       "path": "docs/revision_cellot_seed123/new_context_metrics.tsv",
@@ -2231,8 +2231,8 @@
     {
       "path": "training/cellot/docs/README.md",
       "source_sha256": "b873fca28dacef3db002bed01e690408285da58b3fe65d8ebde77122bf46574f",
-      "sha256": "b873fca28dacef3db002bed01e690408285da58b3fe65d8ebde77122bf46574f",
-      "role": "training_archive_source_view"
+      "sha256": "f4c62c566716812bcbbea5d7055a726f527056585da2b6d49ee89f14bda66723",
+      "role": "translated_documentation_source_view"
     },
     {
       "path": "training/cellot/vendor/cellot/LICENSE",
