@@ -1,10 +1,10 @@
-# 当前对象与统计含义
+# Evaluation objects and statistical interpretation
 
-- 外部端点是dependency；sampling-corrected shift是转录响应幅度统计，不是“构造出的真实fitness”。matched-size control-null扣除后保留负值；负值不是响应方向反转。
-- A003 corrected对象采用冻结25/75 categories；equal-n=20是敏感性，raw是描述性参照。raw偏相关、corrected和equal-n回答不同问题，不写成一串逐级调整。
-- `real_DEG_burden`展示为threshold-defined response-breadth proxy，按冻结表达下限与绝对log1p-normalized均值差≥0.25计数，不是FDR显著DEG数。
-- HCC实测端点资格队列与共同评分子集分开；共同评分空间为47 genes。Replogle完整模型评分为1882×1024。target／gene轴在`manifests/axes/`逐值保存，不能在读者取交集时重新划categories。
-- signed cosine度量方向；endpoint排序和AUC不能替代它。oracle不以dependency排序为优化目标，所以其endpoint相关不必等于1。
-- identity使用target-label Mantel推断；pairwise entries不是独立样本。H及predicted–observed excess使用target-delete-one jackknife区间，中心化版本每次删一后重新中心化；不覆盖训练seed、细胞层抽样或所有系统误差。
-- 常量／零向量的不可定义项按冻结实现保留NA，不以0补齐后声称超过基线。各模型单独的CI/P/q不是模型间差值检验。
-- formal、seed sensitivity与diagnostic的BH族保持原声明。seed123正式结果不代表CellOT跨seed稳定；其他模型in-sample检查不变成held-out泛化证据。
+- Dependency is the external endpoint. Sampling-corrected shift is a transcriptional amplitude statistic, not constructed ground-truth fitness. Negative values after matched-size control-null subtraction are retained and do not indicate reversed response direction.
+- The registered corrected object uses frozen 25/75 categories. Equal-n=20 is a sensitivity analysis; raw shift is descriptive. Raw partial correlations, corrected shift, and equal-n estimates answer different questions, not successive stages of one adjustment.
+- `real_DEG_burden` is a **threshold-defined response-breadth proxy**: genes meeting the registered expression floor and an absolute log1p-normalized mean difference of at least 0.25. It is not an FDR-filtered DEG count.
+- HCC endpoint-qualification cohorts and model-scoring intersections are distinct. The common HCC scoring space has 47 genes. Replogle model scoring covers 1,882 targets × 1,024 genes. Explicit axes are in `manifests/axes/`; taking a scoring intersection must not redefine frozen categories.
+- Signed cosine measures direction. Endpoint ordering and AUC do not substitute for it. The observed oracle does not optimize dependency ordering, so its endpoint correlation need not be 1.
+- Identity uses target-label Mantel inference; pairwise entries are not independent observations. Homogenization and predicted-minus-observed excess have target-delete-one jackknife intervals. Centered estimates are re-centered after each deletion. These intervals do not cover training-seed variability, cell-level sampling uncertainty, or all systematic errors.
+- Undefined constant/zero-vector statistics remain NA under the frozen implementation, rather than being filled with zero to claim baseline superiority. Individual-output CI/P/q values are not tests of differences between models.
+- Formal, seed-sensitivity, and diagnostic BH families retain their declared scope. Formal seed-123 CellOT results do not establish cross-seed stability. Other models' in-sample checks do not become held-out generalization evidence.

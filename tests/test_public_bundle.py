@@ -1,4 +1,4 @@
-"""回归检查：版本化公开清单可通过，私有文件和未登记输入仍被拒绝。"""
+"""Validate public manifests, documentation language, and private-file exclusion."""
 
 import hashlib
 import importlib.util
@@ -21,11 +21,23 @@ def test_public_documents_do_not_use_submission_iteration_labels(monkeypatch):
 
 def test_historical_figures_are_not_presented_as_current_results():
     historical = (ROOT / "figures/README.md").read_text()
-    assert historical.startswith("# 历史公开图件")
+    assert historical.startswith("# Historical public figures")
     assert "../reproducibility/v1.2.1/README.md" in historical
-    assert "不代表 v1.2.1 的正式结果" in historical
+    assert "do not represent the formal v1.2.1 results" in historical
     assert "Active figure panels" not in historical
-    assert "[原有 SVG 图件](figures/README.md)" in (ROOT / "README.md").read_text()
+    assert "[Existing SVG figures](figures/README.md)" in (ROOT / "README.md").read_text()
+
+
+def test_current_reading_guides_are_in_english():
+    paths = ["README.md", "DATA_AVAILABILITY.md", "CITATION.cff", ".zenodo.json",
+             "docs/CHANGELOG.md", "docs/THIRD_PARTY_NOTICES.md", "figures/README.md",
+             "data/reference/gene_sets/axis_annotation/README.md",
+             "reproducibility/v1.2.1/README.md", "reproducibility/v1.2.1/docs/README.md",
+             "reproducibility/v1.2.1/docs/data_dictionary.md",
+             "reproducibility/v1.2.1/provenance/README.md",
+             "reproducibility/v1.2.1/training/cellot/docs/README.md"]
+    for path in paths:
+        assert not re.search(r"[\u4e00-\u9fff]", (ROOT / path).read_text()), path
 
 
 def test_current_and_historical_public_trees_pass(monkeypatch):
