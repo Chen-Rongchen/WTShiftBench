@@ -2,6 +2,7 @@
 
 import hashlib
 import importlib.util
+import json
 import re
 from pathlib import Path
 
@@ -38,6 +39,21 @@ def test_current_reading_guides_are_in_english():
              "reproducibility/v1.2.1/training/cellot/docs/README.md"]
     for path in paths:
         assert not re.search(r"[\u4e00-\u9fff]", (ROOT / path).read_text()), path
+
+
+def test_english_release_preserves_scientific_paths_and_uses_new_downloads():
+    metadata = json.loads((ROOT / ".zenodo.json").read_text())
+    assert metadata["version"] == "1.2.2"
+    assert "version: 1.2.2" in (ROOT / "CITATION.cff").read_text()
+    manifest = json.loads((ROOT / "reproducibility/v1.2.1/manifests/archive_assets.json").read_text())
+    assert manifest["version"] == "1.2.1" and manifest["distribution_release"] == "v1.2.2"
+    for row in manifest["archives"]:
+        assert "/download/v1.2.2/" in row["download_url"]
+        assert row["path"].startswith("WTShiftBench_v1.2.1_")
+    for name in ["README.md", "DATA_AVAILABILITY.md", "reproducibility/v1.2.1/README.md"]:
+        text = (ROOT / name).read_text()
+        assert "/releases/tag/v1.2.2" in text
+        assert "/releases/tag/v1.2.1" not in text
 
 
 def test_current_and_historical_public_trees_pass(monkeypatch):

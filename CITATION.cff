@@ -3,7 +3,7 @@ message: Cite the specific WTShiftBench code and data versions used, together wi
 title: 'WTShiftBench: a problem-solving benchmark protocol for endpoint-aligned auditing
   of transcriptomic perturbation model outputs'
 type: software
-version: 1.2.1
+version: 1.2.2
 authors:
 - family-names: Chen
   given-names: Rongchen
