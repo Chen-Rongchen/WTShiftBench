@@ -6,7 +6,9 @@ WTShiftBench (whole-transcriptome shift benchmark) audits external dependency or
 
 Use the [English reproducibility guide](reproducibility/v1.2.1/README.md). [GitHub Release v1.2.2](https://github.com/Chen-Rongchen/WTShiftBench/releases/tag/v1.2.2) is the English documentation/source release. It retains the frozen **v1.2.1 scientific assets and execution paths**: the three matrix/training/local-verification ZIPs are byte-identical to their previously verified versions. Only the source ZIP and distribution documentation are updated. The release manifest identifies the exact new source commit and all asset hashes.
 
-On 14 September 2026, the original publicly downloaded scientific assets passed full recomputation of 87 outputs and all 373 comparison checks. [10.5281/zenodo.22735108](https://doi.org/10.5281/zenodo.22735108) preserves the **earlier v1.2.1 source snapshot**, not this English source release or the matrix/training archives. Their persistent data archive remains pending. English-release download checks are reported separately from the completed scientific recomputation.
+On 14 September 2026, the original publicly downloaded scientific assets passed full recomputation of 87 outputs and all 373 comparison checks. All four replacement ZIPs also passed [anonymous download, SHA256 and ZIP-integrity verification](https://github.com/Chen-Rongchen/WTShiftBench/releases/download/v1.2.2/replacement_verification.json). This check confirms identical scientific asset bytes; it is not a new statistical run.
+
+The English **v1.2.2 source DOI** is [10.5281/zenodo.22753462](https://doi.org/10.5281/zenodo.22753462). It contains the source snapshot, not the matrix/training ZIPs; their persistent data archive remains pending. The earlier v1.2.1 source record [10.5281/zenodo.22735108](https://doi.org/10.5281/zenodo.22735108) is preserved separately.
 
 - Code, configurations, numerical source tables, and axis indexes: `reproducibility/v1.2.1/`.
 - Matrix and five-seed CellOT training ZIPs: [asset manifest](reproducibility/v1.2.1/manifests/archive_assets.json). Large ZIPs are release assets, not ordinary Git files.
@@ -30,7 +32,7 @@ Both the current dependency-probability endpoint and gene-effect sensitivity use
 
 ## Historical versions
 
-`reproducibility/v1.2.0/` and existing tags remain historical records. The v1.2.1 Git tag and its Zenodo source record are retained even when its GitHub Release page and attachments are retired; current asset links use v1.2.2. Root-level `src/`, `scripts/`, `configs/`, `pixi.toml`, and plotting commands are legacy/development paths, not the current analysis entry point.
+`reproducibility/v1.2.0/` and existing tags remain historical records. The v1.2.1 GitHub Release page and attachments were retired after replacement-download verification on 14 September 2026; its Git tag and Zenodo source record are retained. Current asset links use v1.2.2. Original download receipts preserve the URLs used at the time and do not serve as current download indexes. Root-level `src/`, `scripts/`, `configs/`, `pixi.toml`, and plotting commands are legacy/development paths, not the current analysis entry point.
 
 [Existing SVG figures](figures/README.md) remain at their original paths as historical assets, not current results. Do not mix historical panels into the revised analysis. Earlier statements that seed 123 was supplementary, homogenization intervals were unavailable, or gene-effect provenance was unresolved describe earlier versions.
 

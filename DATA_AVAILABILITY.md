@@ -2,7 +2,9 @@
 
 The frozen analysis uses scientific assets v1.2.1; the English documentation/source release is **v1.2.2**. See the [guide](reproducibility/v1.2.1/README.md) and [asset manifest](reproducibility/v1.2.1/manifests/archive_assets.json) for download URLs, sizes, SHA256 values, and extraction roots. [GitHub Release v1.2.2](https://github.com/Chen-Rongchen/WTShiftBench/releases/tag/v1.2.2) distributes the new source ZIP and the three unchanged scientific ZIPs. Their original names and internal execution paths are retained deliberately.
 
-[10.5281/zenodo.22735108](https://doi.org/10.5281/zenodo.22735108) is the **original v1.2.1 source DOI**, corresponding to commit `63a00cedcf4960ede5f1b21066cc94a8469cec6c`. It is not the English v1.2.2 source DOI and does not contain the matrix/training attachments. Their data archive and version DOI remain pending; a code DOI is not a substitute. See the current release page for separately verified source-archive updates.
+The **English v1.2.2 source DOI** is [10.5281/zenodo.22753462](https://doi.org/10.5281/zenodo.22753462), corresponding to `942108f06f738a4b54783c9d3ef412e9943ef5de`. The preserved [original v1.2.1 source DOI](https://doi.org/10.5281/zenodo.22735108) corresponds to `63a00cedcf4960ede5f1b21066cc94a8469cec6c`. Both are source-only records, not the matrix/training archive. The data record and its DOI remain pending; a code DOI is not a substitute.
+
+The [replacement-download receipt](https://github.com/Chen-Rongchen/WTShiftBench/releases/download/v1.2.2/replacement_verification.json) verifies all four new release downloads and unchanged scientific ZIP bytes. The earlier GitHub Release page/attachments have been retired; its tag and Zenodo record remain available.
 
 On 14 September 2026, publicly downloaded files passed full score recomputation in a new extraction directory and frozen Pixi environment: 87 outputs/373 comparisons, four cutoff-sensitivity tables, and gene-effect sensitivity in eight contexts. See the [verification record](docs/verification/v1.2.1/github_release_verification.json). This run did not retrain models, replay 470 checkpoints, or repeat all raw-cell processing.
 
