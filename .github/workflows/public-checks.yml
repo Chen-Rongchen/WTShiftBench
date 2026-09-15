@@ -1,4 +1,4 @@
-name: English v1.2.0 public source checks
+name: Public checks
 
 on:
   push:
@@ -22,6 +22,6 @@ jobs:
           environments: core
           frozen: true
           cache: true
-      - name: Synthetic-input tests without private manuscript dependencies
+      - name: Run tests
         working-directory: reproducibility/v1.2.0
         run: pixi run --frozen --environment core python -m pytest tests -q

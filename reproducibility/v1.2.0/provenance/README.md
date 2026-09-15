@@ -9,3 +9,14 @@ Formal CellOT uses seed 123 in both HCC contexts; seeds 124–127 are training-s
 This directory preserves scientific sources, runs, and selection chronology, not private reviewer correspondence or author discussions. Machine paths in historical logs describe recorded runs and are not runtime dependencies. Original analysis-worktree commits document provenance together with file hashes; the public release commit is recorded separately in the release manifest.
 
 Public historical records are English derivatives with original dates, conclusions, and source hashes retained. Translation provenance maps original and current hashes; original unmodified records are retained privately. Translation does not establish a new execution, recover an unknown seed, or retroactively make a result-informed decision preregistered.
+
+## Distribution history
+
+The current v1.2.0 distribution was published on 15 September 2026 at commit `ca6b0ee1562de9e20f12bec432283c55b0e64bca`. The version label was previously used for a different distribution; the exact commit and [release manifest](https://github.com/Chen-Rongchen/WTShiftBench/releases/download/v1.2.0/release_manifest.json) distinguish them.
+
+- The 10 September distribution contained 57 model/reference outputs and 199 full-inference comparisons.
+- The 12–13 September distribution, labelled v1.2.1, included the current formal CellOT adoption, five-seed CellOT checks, other model/feature-seed checks, 25Q3 gene-effect sensitivity, and homogenization intervals. Its source commit was `63a00cedcf4960ede5f1b21066cc94a8469cec6c`.
+- The 14 September distribution, labelled v1.2.2, updated documentation while retaining the numerical assets. Its source commit was `942108f06f738a4b54783c9d3ef412e9943ef5de`.
+- The 15 September distribution uses v1.2.0 and updated textual metadata with new file hashes. Numerical results, axes, seeds, and checkpoint tensors were preserved. Earlier release pages/tags were removed, while Git history and existing source-only DOI records remain.
+
+The [historical public-download receipt](../../../docs/verification/v1.2.1/github_release_verification.json) describes the earlier packages. The [current receipt](https://github.com/Chen-Rongchen/WTShiftBench/releases/download/v1.2.0/public_download_verification.json) verifies the current downloads. Historical and current checks are separate executions. Packaging-time status in source snapshots is not a record of later verification.
