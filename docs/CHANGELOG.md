@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Simplify the README, reproduction instructions, and data documentation. Analysis code and release assets are unchanged.
+- Shorten commit descriptions and retain source-commit mappings.
 
 ## v1.2.0 — 2026-09-15
 
