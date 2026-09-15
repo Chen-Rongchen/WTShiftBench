@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Simplify release filenames and update download links. ZIP contents and the release tag are unchanged.
 - Simplify the README, reproduction instructions, and data documentation. Analysis code and release assets are unchanged.
 - Shorten commit descriptions and retain source-commit mappings.
 

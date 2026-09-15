@@ -60,7 +60,10 @@ def test_english_release_preserves_scientific_paths_and_uses_new_downloads():
     assert manifest["version"] == "1.2.0" and manifest["distribution_release"] == "v1.2.0"
     for row in manifest["archives"]:
         assert "/download/v1.2.0/" in row["download_url"]
-        assert row["path"].startswith("WTShiftBench_v1.2.0_")
+        assert row["path"].startswith("WTShiftBench-v1.2.0-")
+        assert "_" not in row["path"] and not re.search(r"\d{8}", row["path"])
+        assert row["download_url"].endswith("/" + row["path"])
+        assert row["extracted_root"].startswith("WTShiftBench_v1.2.0_")
     for name in ["README.md", "DATA_AVAILABILITY.md", "reproducibility/v1.2.0/README.md"]:
         text = (ROOT / name).read_text()
         assert "/releases/tag/v1.2.0" in text
