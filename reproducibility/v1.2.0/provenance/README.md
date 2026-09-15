@@ -12,6 +12,8 @@ Public historical records are English derivatives with original dates, conclusio
 
 ## Distribution history
 
+Commit descriptions on `main` were shortened without changing the original commits' file trees. The [commit map](commit_map.tsv) relates previous identifiers to their equivalents on the current branch. Published tags and existing archive files retain their original identifiers and hashes.
+
 The current v1.2.0 distribution was published on 15 September 2026 at commit `ca6b0ee1562de9e20f12bec432283c55b0e64bca`. The version label was previously used for a different distribution; the exact commit and [release manifest](https://github.com/Chen-Rongchen/WTShiftBench/releases/download/v1.2.0/release_manifest.json) distinguish them.
 
 - The 10 September distribution contained 57 model/reference outputs and 199 full-inference comparisons.
