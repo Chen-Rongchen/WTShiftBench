@@ -4,7 +4,7 @@ WTShiftBench (whole-transcriptome shift benchmark) evaluates how perturbation-mo
 
 ## Reproduce the analysis
 
-Download the [matrix package](https://github.com/Chen-Rongchen/WTShiftBench/releases/download/v1.2.0/WTShiftBench_v1.2.0_matrices_20260915.zip) from [v1.2.0](https://github.com/Chen-Rongchen/WTShiftBench/releases/tag/v1.2.0). Extract it, install [Pixi](https://pixi.sh), and run these commands inside `WTShiftBench_v1.2.0_matrices/`:
+Download the [matrix package](https://github.com/Chen-Rongchen/WTShiftBench/releases/download/v1.2.0/WTShiftBench-v1.2.0-matrices.zip) from [v1.2.0](https://github.com/Chen-Rongchen/WTShiftBench/releases/tag/v1.2.0). Extract it, install [Pixi](https://pixi.sh), and run these commands inside `WTShiftBench_v1.2.0_matrices/`:
 
 ```sh
 pixi run --frozen --environment core python recompute.py --verify-only

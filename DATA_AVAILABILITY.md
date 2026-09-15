@@ -1,6 +1,6 @@
 # Data availability
 
-Download the analysis assets from [v1.2.0](https://github.com/Chen-Rongchen/WTShiftBench/releases/tag/v1.2.0). The [release manifest](https://github.com/Chen-Rongchen/WTShiftBench/releases/download/v1.2.0/release_manifest.json) identifies the source commit, file sizes, and SHA256 checksums. Follow the [reproducibility guide](reproducibility/v1.2.0/README.md) to run the analysis.
+Download the analysis assets from [v1.2.0](https://github.com/Chen-Rongchen/WTShiftBench/releases/tag/v1.2.0). The [release manifest](https://github.com/Chen-Rongchen/WTShiftBench/releases/download/v1.2.0/release-manifest.json) identifies the source commit, file sizes, and SHA256 checksums. Follow the [reproducibility guide](reproducibility/v1.2.0/README.md) to run the analysis.
 
 ## Packages
 
@@ -9,7 +9,7 @@ Download the analysis assets from [v1.2.0](https://github.com/Chen-Rongchen/WTSh
 - **Source:** the code snapshot corresponding to the release.
 - **Local verification:** records of the supported scoring, checkpoint-replay, and staged-training checks.
 
-The [public-download verification record](https://github.com/Chen-Rongchen/WTShiftBench/releases/download/v1.2.0/public_download_verification.json) documents successful matrix-to-statistic recomputation. It is separate from training validation.
+The [public-download verification record](https://github.com/Chen-Rongchen/WTShiftBench/releases/download/v1.2.0/public-download-verification.json) documents successful matrix-to-statistic recomputation. It is separate from training validation.
 
 ## Original data
 

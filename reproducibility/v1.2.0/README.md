@@ -8,6 +8,8 @@ Download the matrix package for scoring. The CellOT training package is only nee
 
 To check a downloaded ZIP, compare the output of `sha256sum filename.zip` with its manifest entry. Extract each package separately and keep its internal paths unchanged.
 
+Release filenames use hyphens without dates. ZIP contents and extraction directories are unchanged; the [release manifest](https://github.com/Chen-Rongchen/WTShiftBench/releases/download/v1.2.0/release-manifest.json) maps filenames retained in historical records to the current downloads.
+
 ## Recompute scores
 
 Run inside the extracted `WTShiftBench_v1.2.0_matrices/` directory:
@@ -57,7 +59,7 @@ Details: [output and axis registry](manifests/outputs.tsv), [run registry](prove
 
 ## Verification
 
-The [public-download check](https://github.com/Chen-Rongchen/WTShiftBench/releases/download/v1.2.0/public_download_verification.json) passed archive integrity, 87-output/373-comparison full scoring, four cutoff tables, and eight gene-effect contexts. It records commands, environments, hashes, and numerical tolerances. This check did not retrain models or replay checkpoints.
+The [public-download check](https://github.com/Chen-Rongchen/WTShiftBench/releases/download/v1.2.0/public-download-verification.json) passed archive integrity, 87-output/373-comparison full scoring, four cutoff tables, and eight gene-effect contexts. It records commands, environments, hashes, and numerical tolerances. This check did not retrain models or replay checkpoints.
 
 Separate [local records](verification/local/) cover 470 checkpoint replays and staged retraining of one ARID1A target in each HCC context, not all models' raw-data-to-training pipelines.
 
