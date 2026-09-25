@@ -1987,8 +1987,9 @@
     {
       "path": "presentation/figure_manifest.json",
       "source_sha256": "a4736639038238842e91fb2bc08daf0e7bf4cd2ed8c4ae4881ab4618231582aa",
-      "sha256": "a4736639038238842e91fb2bc08daf0e7bf4cd2ed8c4ae4881ab4618231582aa",
-      "role": "presentation_map"
+      "sha256": "2e9df0cbf41a21ce503d52eca98b29d63870918c9bc116c99ffccde59207e16b",
+      "role": "finalized_public_plotting_documentation",
+      "previous_public_sha256": "a4736639038238842e91fb2bc08daf0e7bf4cd2ed8c4ae4881ab4618231582aa"
     },
     {
       "path": "presentation/workbook_manifest.json",
@@ -2363,5 +2364,6 @@
       "role": "training_archive_source_view"
     }
   ],
-  "scope": "Current small scientific files; source copies map to original package hashes, with generated indexes and entry points identified separately; not a complete private-workspace copy."
+  "scope": "Current small scientific files; source copies map to original package hashes, with generated indexes and entry points identified separately; not a complete private-workspace copy.",
+  "finalized_plotting_sources": "presentation/final/sources.json"
 }

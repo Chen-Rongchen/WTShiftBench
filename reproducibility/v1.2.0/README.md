@@ -8,7 +8,7 @@ Download the matrix package for scoring. The CellOT training package is only nee
 
 To check a downloaded ZIP, compare the output of `sha256sum filename.zip` with its manifest entry. Extract each package separately and keep its internal paths unchanged.
 
-Release filenames use hyphens without dates. ZIP contents and extraction directories are unchanged; the [release manifest](https://github.com/Chen-Rongchen/WTShiftBench/releases/download/v1.2.0/release-manifest.json) maps filenames retained in historical records to the current downloads.
+Release filenames use hyphens without dates. Matrix, CellOT training and historical verification archives remain unchanged. The source ZIP contains the finalized plotting implementation; the [release manifest](https://github.com/Chen-Rongchen/WTShiftBench/releases/download/v1.2.0/release-manifest.json) identifies its exact commit and distinguishes it from earlier source snapshots.
 
 ## Recompute scores
 
@@ -46,7 +46,9 @@ pixi run --frozen --environment core python build_figures.py --output outputs/fi
 pixi run --frozen --environment core python -m pytest tests -q
 ```
 
-Plotting uses the 46 CSV/TSV source tables in `presentation/Results/` and writes programmatically arranged figures and source manifests. Final manual layout adjustments are separate.
+Plotting renders four main figures and seven supplementary figures using the existing source-table collection and 33 frozen display extracts registered in `presentation/final/sources.json`. It performs no model fitting, bootstrap or permutation inference. Figure 4C shows alignment and identity across all six additional feature-seed runs; S6 separates contexts in panel A and retains all ten ECDF plots in B; S7 retains the full cutoff grid. S4 uses one probability-axis mapping across its six panels.
+
+The output directory contains PDF, editable-text SVG and PNG files plus a plotting receipt. The default DejaVu Sans font is distributed with Matplotlib; pass `--font Arial` if Arial is installed. Manual publication typography is not promised pixel-for-pixel. See [plotting objects and boundaries](plotting/README.md). These changes are part of the normal source archive, not a separate figure or patch archive.
 
 ## Data and model definitions
 

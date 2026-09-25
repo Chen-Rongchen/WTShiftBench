@@ -1,0 +1,9 @@
+Context	Day	Modality	Registered cells	Association genes	Current role
+HCC1143	14	CRISPR	24,499	36,601	Primary
+HCC38	14	CRISPR	31,547	36,601	Sensitivity
+Replogle essential	6	CRISPRi	310,385	8,563	Independent audit
+Replogle genome-wide	8	CRISPRi	1,989,578	8,248	Association
+HepG2	7	CRISPR	145,473	9,624	Association
+Jurkat	7	CRISPR	262,956	8,882	Association
+K562 TF	7	CRISPR	28,034	23,111	Association
+K562 TF	13	CRISPR	15,849	21,713	Association

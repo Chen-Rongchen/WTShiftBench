@@ -1,0 +1,106 @@
+scope	cell_line	entrant_id	display_name	low_quantile	high_quantile	full_endpoint_anchor_n	full_low_information_n	scored_anchor_n	scored_low_information_n	anchor_auc	estimable	source_file	source_data_row_1based
+primary_hcc	HCC1143	cellot_hcc_seed123_retrain_v1	CellOT	0.10000000000000001	0.90000000000000002	1	1	0	1		False	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	1
+primary_hcc	HCC1143	cpa_v0.8.8	CPA	0.10000000000000001	0.90000000000000002	1	1	0	1		False	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	2
+primary_hcc	HCC1143	gears_hcc_formal_v1	GEARS	0.10000000000000001	0.90000000000000002	1	1	0	1		False	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	3
+primary_hcc	HCC1143	geneformer_hcc_formal_v1	Geneformer kernel	0.10000000000000001	0.90000000000000002	1	1	0	1		False	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	4
+primary_hcc	HCC1143	lm_g_geneformer_ridge_hcc_formal_v1	Geneformer ridge	0.10000000000000001	0.90000000000000002	1	1	0	1		False	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	5
+primary_hcc	HCC1143	lm_g_scgpt_ridge_hcc_formal_v1	scGPT ridge	0.10000000000000001	0.90000000000000002	1	1	0	1		False	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	6
+primary_hcc	HCC1143	lm_train_lowrank_hcc_formal_v1	Linear low-rank	0.10000000000000001	0.90000000000000002	1	1	0	1		False	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	7
+primary_hcc	HCC1143	scgen_hcc_formal_v1	scGen	0.10000000000000001	0.90000000000000002	1	1	0	1		False	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	8
+primary_hcc	HCC1143	scgpt_hcc_formal_v1	scGPT kernel	0.10000000000000001	0.90000000000000002	1	1	0	1		False	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	9
+primary_hcc	HCC1143	cellot_hcc_seed123_retrain_v1	CellOT	0.14999999999999999	0.84999999999999998	3	1	2	1		False	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	10
+primary_hcc	HCC1143	cpa_v0.8.8	CPA	0.14999999999999999	0.84999999999999998	3	1	2	1		False	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	11
+primary_hcc	HCC1143	gears_hcc_formal_v1	GEARS	0.14999999999999999	0.84999999999999998	3	1	2	1		False	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	12
+primary_hcc	HCC1143	geneformer_hcc_formal_v1	Geneformer kernel	0.14999999999999999	0.84999999999999998	3	1	2	1		False	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	13
+primary_hcc	HCC1143	lm_g_geneformer_ridge_hcc_formal_v1	Geneformer ridge	0.14999999999999999	0.84999999999999998	3	1	2	1		False	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	14
+primary_hcc	HCC1143	lm_g_scgpt_ridge_hcc_formal_v1	scGPT ridge	0.14999999999999999	0.84999999999999998	3	1	2	1		False	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	15
+primary_hcc	HCC1143	lm_train_lowrank_hcc_formal_v1	Linear low-rank	0.14999999999999999	0.84999999999999998	3	1	2	1		False	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	16
+primary_hcc	HCC1143	scgen_hcc_formal_v1	scGen	0.14999999999999999	0.84999999999999998	3	1	2	1		False	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	17
+primary_hcc	HCC1143	scgpt_hcc_formal_v1	scGPT kernel	0.14999999999999999	0.84999999999999998	3	1	2	1		False	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	18
+primary_hcc	HCC1143	cellot_hcc_seed123_retrain_v1	CellOT	0.20000000000000001	0.80000000000000004	6	3	5	3	0.8666666666666667	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	19
+primary_hcc	HCC1143	cpa_v0.8.8	CPA	0.20000000000000001	0.80000000000000004	6	3	5	3	0.40000000000000002	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	20
+primary_hcc	HCC1143	gears_hcc_formal_v1	GEARS	0.20000000000000001	0.80000000000000004	6	3	5	3	0.26666666666666661	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	21
+primary_hcc	HCC1143	geneformer_hcc_formal_v1	Geneformer kernel	0.20000000000000001	0.80000000000000004	6	3	5	3	0.80000000000000004	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	22
+primary_hcc	HCC1143	lm_g_geneformer_ridge_hcc_formal_v1	Geneformer ridge	0.20000000000000001	0.80000000000000004	6	3	5	3	0.20000000000000001	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	23
+primary_hcc	HCC1143	lm_g_scgpt_ridge_hcc_formal_v1	scGPT ridge	0.20000000000000001	0.80000000000000004	6	3	5	3	0.33333333333333331	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	24
+primary_hcc	HCC1143	lm_train_lowrank_hcc_formal_v1	Linear low-rank	0.20000000000000001	0.80000000000000004	6	3	5	3	0.59999999999999998	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	25
+primary_hcc	HCC1143	scgen_hcc_formal_v1	scGen	0.20000000000000001	0.80000000000000004	6	3	5	3	0.80000000000000004	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	26
+primary_hcc	HCC1143	scgpt_hcc_formal_v1	scGPT kernel	0.20000000000000001	0.80000000000000004	6	3	5	3	0.40000000000000002	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	27
+primary_hcc	HCC1143	cellot_hcc_seed123_retrain_v1	CellOT	0.25	0.75	9	6	8	6	0.8125	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	28
+primary_hcc	HCC1143	cpa_v0.8.8	CPA	0.25	0.75	9	6	8	6	0.54166666666666663	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	29
+primary_hcc	HCC1143	gears_hcc_formal_v1	GEARS	0.25	0.75	9	6	8	6	0.375	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	30
+primary_hcc	HCC1143	geneformer_hcc_formal_v1	Geneformer kernel	0.25	0.75	9	6	8	6	0.85416666666666663	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	31
+primary_hcc	HCC1143	lm_g_geneformer_ridge_hcc_formal_v1	Geneformer ridge	0.25	0.75	9	6	8	6	0.35416666666666669	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	32
+primary_hcc	HCC1143	lm_g_scgpt_ridge_hcc_formal_v1	scGPT ridge	0.25	0.75	9	6	8	6	0.58333333333333337	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	33
+primary_hcc	HCC1143	lm_train_lowrank_hcc_formal_v1	Linear low-rank	0.25	0.75	9	6	8	6	0.625	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	34
+primary_hcc	HCC1143	scgen_hcc_formal_v1	scGen	0.25	0.75	9	6	8	6	0.875	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	35
+primary_hcc	HCC1143	scgpt_hcc_formal_v1	scGPT kernel	0.25	0.75	9	6	8	6	0.58333333333333337	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	36
+primary_hcc	HCC1143	cellot_hcc_seed123_retrain_v1	CellOT	0.29999999999999999	0.69999999999999996	11	6	10	6	0.80000000000000004	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	37
+primary_hcc	HCC1143	cpa_v0.8.8	CPA	0.29999999999999999	0.69999999999999996	11	6	10	6	0.48333333333333328	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	38
+primary_hcc	HCC1143	gears_hcc_formal_v1	GEARS	0.29999999999999999	0.69999999999999996	11	6	10	6	0.29999999999999999	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	39
+primary_hcc	HCC1143	geneformer_hcc_formal_v1	Geneformer kernel	0.29999999999999999	0.69999999999999996	11	6	10	6	0.75	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	40
+primary_hcc	HCC1143	lm_g_geneformer_ridge_hcc_formal_v1	Geneformer ridge	0.29999999999999999	0.69999999999999996	11	6	10	6	0.3833333333333333	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	41
+primary_hcc	HCC1143	lm_g_scgpt_ridge_hcc_formal_v1	scGPT ridge	0.29999999999999999	0.69999999999999996	11	6	10	6	0.56666666666666665	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	42
+primary_hcc	HCC1143	lm_train_lowrank_hcc_formal_v1	Linear low-rank	0.29999999999999999	0.69999999999999996	11	6	10	6	0.6333333333333333	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	43
+primary_hcc	HCC1143	scgen_hcc_formal_v1	scGen	0.29999999999999999	0.69999999999999996	11	6	10	6	0.8833333333333333	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	44
+primary_hcc	HCC1143	scgpt_hcc_formal_v1	scGPT kernel	0.29999999999999999	0.69999999999999996	11	6	10	6	0.56666666666666665	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	45
+primary_hcc	HCC38	cellot_hcc_seed123_retrain_v1	CellOT	0.10000000000000001	0.90000000000000002	0	1	0	1		False	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	46
+primary_hcc	HCC38	cpa_v0.8.8	CPA	0.10000000000000001	0.90000000000000002	0	1	0	1		False	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	47
+primary_hcc	HCC38	gears_hcc_formal_v1	GEARS	0.10000000000000001	0.90000000000000002	0	1	0	1		False	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	48
+primary_hcc	HCC38	geneformer_hcc_formal_v1	Geneformer kernel	0.10000000000000001	0.90000000000000002	0	1	0	1		False	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	49
+primary_hcc	HCC38	lm_g_geneformer_ridge_hcc_formal_v1	Geneformer ridge	0.10000000000000001	0.90000000000000002	0	1	0	1		False	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	50
+primary_hcc	HCC38	lm_g_scgpt_ridge_hcc_formal_v1	scGPT ridge	0.10000000000000001	0.90000000000000002	0	1	0	1		False	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	51
+primary_hcc	HCC38	lm_train_lowrank_hcc_formal_v1	Linear low-rank	0.10000000000000001	0.90000000000000002	0	1	0	1		False	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	52
+primary_hcc	HCC38	scgen_hcc_formal_v1	scGen	0.10000000000000001	0.90000000000000002	0	1	0	1		False	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	53
+primary_hcc	HCC38	scgpt_hcc_formal_v1	scGPT kernel	0.10000000000000001	0.90000000000000002	0	1	0	1		False	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	54
+primary_hcc	HCC38	cellot_hcc_seed123_retrain_v1	CellOT	0.14999999999999999	0.84999999999999998	3	2	3	2	1	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	55
+primary_hcc	HCC38	cpa_v0.8.8	CPA	0.14999999999999999	0.84999999999999998	3	2	3	2	0.66666666666666663	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	56
+primary_hcc	HCC38	gears_hcc_formal_v1	GEARS	0.14999999999999999	0.84999999999999998	3	2	3	2	0.5	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	57
+primary_hcc	HCC38	geneformer_hcc_formal_v1	Geneformer kernel	0.14999999999999999	0.84999999999999998	3	2	3	2	0.5	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	58
+primary_hcc	HCC38	lm_g_geneformer_ridge_hcc_formal_v1	Geneformer ridge	0.14999999999999999	0.84999999999999998	3	2	3	2	0.5	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	59
+primary_hcc	HCC38	lm_g_scgpt_ridge_hcc_formal_v1	scGPT ridge	0.14999999999999999	0.84999999999999998	3	2	3	2	0.1666666666666666	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	60
+primary_hcc	HCC38	lm_train_lowrank_hcc_formal_v1	Linear low-rank	0.14999999999999999	0.84999999999999998	3	2	3	2	0	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	61
+primary_hcc	HCC38	scgen_hcc_formal_v1	scGen	0.14999999999999999	0.84999999999999998	3	2	3	2	1	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	62
+primary_hcc	HCC38	scgpt_hcc_formal_v1	scGPT kernel	0.14999999999999999	0.84999999999999998	3	2	3	2	0.66666666666666663	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	63
+primary_hcc	HCC38	cellot_hcc_seed123_retrain_v1	CellOT	0.20000000000000001	0.80000000000000004	5	4	5	4	1	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	64
+primary_hcc	HCC38	cpa_v0.8.8	CPA	0.20000000000000001	0.80000000000000004	5	4	5	4	0.59999999999999998	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	65
+primary_hcc	HCC38	gears_hcc_formal_v1	GEARS	0.20000000000000001	0.80000000000000004	5	4	5	4	0.5	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	66
+primary_hcc	HCC38	geneformer_hcc_formal_v1	Geneformer kernel	0.20000000000000001	0.80000000000000004	5	4	5	4	0.34999999999999998	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	67
+primary_hcc	HCC38	lm_g_geneformer_ridge_hcc_formal_v1	Geneformer ridge	0.20000000000000001	0.80000000000000004	5	4	5	4	0.55000000000000004	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	68
+primary_hcc	HCC38	lm_g_scgpt_ridge_hcc_formal_v1	scGPT ridge	0.20000000000000001	0.80000000000000004	5	4	5	4	0.34999999999999998	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	69
+primary_hcc	HCC38	lm_train_lowrank_hcc_formal_v1	Linear low-rank	0.20000000000000001	0.80000000000000004	5	4	5	4	0.20000000000000001	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	70
+primary_hcc	HCC38	scgen_hcc_formal_v1	scGen	0.20000000000000001	0.80000000000000004	5	4	5	4	1	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	71
+primary_hcc	HCC38	scgpt_hcc_formal_v1	scGPT kernel	0.20000000000000001	0.80000000000000004	5	4	5	4	0.80000000000000004	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	72
+primary_hcc	HCC38	cellot_hcc_seed123_retrain_v1	CellOT	0.25	0.75	7	6	7	6	1	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	73
+primary_hcc	HCC38	cpa_v0.8.8	CPA	0.25	0.75	7	6	7	6	0.42857142857142849	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	74
+primary_hcc	HCC38	gears_hcc_formal_v1	GEARS	0.25	0.75	7	6	7	6	0.61904761904761907	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	75
+primary_hcc	HCC38	geneformer_hcc_formal_v1	Geneformer kernel	0.25	0.75	7	6	7	6	0.3571428571428571	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	76
+primary_hcc	HCC38	lm_g_geneformer_ridge_hcc_formal_v1	Geneformer ridge	0.25	0.75	7	6	7	6	0.3571428571428571	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	77
+primary_hcc	HCC38	lm_g_scgpt_ridge_hcc_formal_v1	scGPT ridge	0.25	0.75	7	6	7	6	0.5	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	78
+primary_hcc	HCC38	lm_train_lowrank_hcc_formal_v1	Linear low-rank	0.25	0.75	7	6	7	6	0.14285714285714279	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	79
+primary_hcc	HCC38	scgen_hcc_formal_v1	scGen	0.25	0.75	7	6	7	6	1	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	80
+primary_hcc	HCC38	scgpt_hcc_formal_v1	scGPT kernel	0.25	0.75	7	6	7	6	0.7857142857142857	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	81
+primary_hcc	HCC38	cellot_hcc_seed123_retrain_v1	CellOT	0.29999999999999999	0.69999999999999996	8	8	8	8	1	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	82
+primary_hcc	HCC38	cpa_v0.8.8	CPA	0.29999999999999999	0.69999999999999996	8	8	8	8	0.40625	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	83
+primary_hcc	HCC38	gears_hcc_formal_v1	GEARS	0.29999999999999999	0.69999999999999996	8	8	8	8	0.671875	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	84
+primary_hcc	HCC38	geneformer_hcc_formal_v1	Geneformer kernel	0.29999999999999999	0.69999999999999996	8	8	8	8	0.421875	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	85
+primary_hcc	HCC38	lm_g_geneformer_ridge_hcc_formal_v1	Geneformer ridge	0.29999999999999999	0.69999999999999996	8	8	8	8	0.5625	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	86
+primary_hcc	HCC38	lm_g_scgpt_ridge_hcc_formal_v1	scGPT ridge	0.29999999999999999	0.69999999999999996	8	8	8	8	0.609375	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	87
+primary_hcc	HCC38	lm_train_lowrank_hcc_formal_v1	Linear low-rank	0.29999999999999999	0.69999999999999996	8	8	8	8	0.21875	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	88
+primary_hcc	HCC38	scgen_hcc_formal_v1	scGen	0.29999999999999999	0.69999999999999996	8	8	8	8	0.984375	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	89
+primary_hcc	HCC38	scgpt_hcc_formal_v1	scGPT kernel	0.29999999999999999	0.69999999999999996	8	8	8	8	0.796875	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	90
+independent_sensitivity	Replogle K562 essential day 6	chargram_lowrank_ridge_loo	Chargram ridge LOO	0.10000000000000001	0.90000000000000002	55	43	55	43	0.8046511627906977	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	91
+independent_sensitivity	Replogle K562 essential day 6	geneformer_embedding_kernel_loo	Geneformer kernel LOO	0.10000000000000001	0.90000000000000002	55	43	55	43	0.56744186046511624	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	92
+independent_sensitivity	Replogle K562 essential day 6	geneformer_embedding_ridge_loo	Geneformer ridge LOO	0.10000000000000001	0.90000000000000002	55	43	55	43	0.89936575052854117	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	93
+independent_sensitivity	Replogle K562 essential day 6	chargram_lowrank_ridge_loo	Chargram ridge LOO	0.14999999999999999	0.84999999999999998	99	97	99	97	0.80735186920753932	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	94
+independent_sensitivity	Replogle K562 essential day 6	geneformer_embedding_kernel_loo	Geneformer kernel LOO	0.14999999999999999	0.84999999999999998	99	97	99	97	0.52181609913568672	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	95
+independent_sensitivity	Replogle K562 essential day 6	geneformer_embedding_ridge_loo	Geneformer ridge LOO	0.14999999999999999	0.84999999999999998	99	97	99	97	0.88159950015620114	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	96
+independent_sensitivity	Replogle K562 essential day 6	chargram_lowrank_ridge_loo	Chargram ridge LOO	0.20000000000000001	0.80000000000000004	153	149	153	149	0.77527744878712113	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	97
+independent_sensitivity	Replogle K562 essential day 6	geneformer_embedding_kernel_loo	Geneformer kernel LOO	0.20000000000000001	0.80000000000000004	153	149	153	149	0.52020002631925255	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	98
+independent_sensitivity	Replogle K562 essential day 6	geneformer_embedding_ridge_loo	Geneformer ridge LOO	0.20000000000000001	0.80000000000000004	153	149	153	149	0.80593937798833182	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	99
+independent_sensitivity	Replogle K562 essential day 6	chargram_lowrank_ridge_loo	Chargram ridge LOO	0.25	0.75	210	226	210	226	0.75714285714285712	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	100
+independent_sensitivity	Replogle K562 essential day 6	geneformer_embedding_kernel_loo	Geneformer kernel LOO	0.25	0.75	210	226	210	226	0.53727349346818376	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	101
+independent_sensitivity	Replogle K562 essential day 6	geneformer_embedding_ridge_loo	Geneformer ridge LOO	0.25	0.75	210	226	210	226	0.78227981458069951	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	102
+independent_sensitivity	Replogle K562 essential day 6	chargram_lowrank_ridge_loo	Chargram ridge LOO	0.29999999999999999	0.69999999999999996	282	299	282	299	0.72743660902772833	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	103
+independent_sensitivity	Replogle K562 essential day 6	geneformer_embedding_kernel_loo	Geneformer kernel LOO	0.29999999999999999	0.69999999999999996	282	299	282	299	0.54089281055053484	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	104
+independent_sensitivity	Replogle K562 essential day 6	geneformer_embedding_ridge_loo	Geneformer ridge LOO	0.29999999999999999	0.69999999999999996	282	299	282	299	0.78098389430489334	True	docs/revision_delivery/Results/05_cutoff_grid_scores.csv	105

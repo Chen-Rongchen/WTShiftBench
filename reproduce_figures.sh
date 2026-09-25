@@ -1,62 +1,6 @@
 #!/usr/bin/env bash
-# Rebuild the active WTShiftBench panel bundle.
-#
-# Figure 1 panels are publication-designed SVG assets and are retained as
-# provided. All other active panels are regenerated through the Pixi core
-# environment. Composite figures and manuscript files are not synchronized
-# into the public release.
-
+# Render the current four main and seven supplementary figures from frozen tables.
 set -euo pipefail
-
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-cd "$ROOT"
-
-export MPLCONFIGDIR="${MPLCONFIGDIR:-/tmp/wtshiftbench-matplotlib}"
-mkdir -p "$MPLCONFIGDIR"
-
-run_python() {
-    echo
-    echo "==> $*"
-    pixi run --environment core python "$@"
-}
-
-echo "==> Retaining publication-designed Figure 1 panels"
-for panel in a b c; do
-    test -f "figures/Figure_1/panels/Figure_1_panel_${panel}.svg"
-done
-
-# Main figure panels. Builders write their canonical public copies under
-# figures/ and may also create ignored local caches.
-run_python scripts/figures/build_figure2.py --panels-only
-run_python scripts/figures/build_figure3.py --panels-only
-run_python scripts/figures/build_figure4.py --panels-only
-
-for figure in 2 3 4; do
-    mkdir -p "figures/Figure_${figure}/panels"
-    cp "manuscript/figures/Figure_${figure}/panels/"*.svg \
-       "figures/Figure_${figure}/panels/"
-    cp "manuscript/figures/Figure_${figure}/panels/"*_source_data.tsv \
-       "figures/Figure_${figure}/panels/"
-done
-
-# Extended Data panels.
-run_python scripts/figures/build_extended_data_figure1.py --panels-only
-run_python scripts/figures/build_extended_data_figure2.py
-run_python scripts/figures/build_extended_data_figure3.py
-run_python scripts/figures/build_extended_data_figure4.py
-run_python scripts/figures/build_extended_data_figure5.py
-run_python scripts/figures/build_extended_data_figure6.py --panels-only
-
-# Replace internal category IDs in publication-facing panel tables before
-# hashes are calculated.
-run_python scripts/release/normalize_public_labels.py figures
-
-# Refresh the active supplementary-table registry. The registry builder applies
-# the same publication-label normalization before calculating file hashes.
-run_python scripts/pipeline/build_resource_registry.py \
-    --config configs/resource_registry_v1.json
-cp benchmark/registry/figure_source_data_manifest.tsv \
-   source_data/figure_source_data_manifest.tsv
-
-echo
-echo "Done. Active editable SVG panels are available under figures/."
+PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$PROJECT_ROOT"
+exec pixi run --frozen --environment core python reproducibility/v1.2.0/build_figures.py "$@"

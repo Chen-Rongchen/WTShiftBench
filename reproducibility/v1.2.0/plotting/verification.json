@@ -1,0 +1,104 @@
+{
+  "completed_at_utc": "2026-09-25T15:56:38.714323+00:00",
+  "scope": "Local current-panel plotting, source integrity, public-language/privacy and frozen-method unit tests",
+  "test_cases": 31,
+  "failures": 0,
+  "errors": 0,
+  "rendered_figures": 11,
+  "figure4_points_checked": 54,
+  "s6_points_checked": 54,
+  "s6_model_labels_checked": 54,
+  "s6_ecdf_curves_checked": 40,
+  "s7_combinations": 105,
+  "s7_evaluable": 78,
+  "s7_na": 27,
+  "s7_formal_outputs": 21,
+  "zero_auc_increases": 7,
+  "s4_same_ylim_ticks_and_transform": true,
+  "pdf_checks": [
+    {
+      "file": "Figure-1.pdf",
+      "embedded_fonts": [
+        "CWKGXT+ArialMT                       CID TrueType      Identity-H       yes yes yes     16  0"
+      ],
+      "pages": 1
+    },
+    {
+      "file": "Figure-2.pdf",
+      "embedded_fonts": [
+        "CWKGXT+ArialMT                       CID TrueType      Identity-H       yes yes yes     25  0"
+      ],
+      "pages": 1
+    },
+    {
+      "file": "Figure-3.pdf",
+      "embedded_fonts": [
+        "CWKGXT+ArialMT                       CID TrueType      Identity-H       yes yes yes     15  0"
+      ],
+      "pages": 1
+    },
+    {
+      "file": "Figure-4.pdf",
+      "embedded_fonts": [
+        "CWKGXT+ArialMT                       CID TrueType      Identity-H       yes yes yes     15  0"
+      ],
+      "pages": 1
+    },
+    {
+      "file": "S1.pdf",
+      "embedded_fonts": [
+        "CWKGXT+ArialMT                       CID TrueType      Identity-H       yes yes yes     15  0"
+      ],
+      "pages": 1
+    },
+    {
+      "file": "S2.pdf",
+      "embedded_fonts": [
+        "CWKGXT+ArialMT                       CID TrueType      Identity-H       yes yes yes     27  0"
+      ],
+      "pages": 1
+    },
+    {
+      "file": "S3.pdf",
+      "embedded_fonts": [
+        "CWKGXT+ArialMT                       CID TrueType      Identity-H       yes yes yes     43  0"
+      ],
+      "pages": 1
+    },
+    {
+      "file": "S4.pdf",
+      "embedded_fonts": [
+        "CWKGXT+ArialMT                       CID TrueType      Identity-H       yes yes yes     21  0"
+      ],
+      "pages": 1
+    },
+    {
+      "file": "S5.pdf",
+      "embedded_fonts": [
+        "CWKGXT+ArialMT                       CID TrueType      Identity-H       yes yes yes     74  0"
+      ],
+      "pages": 1
+    },
+    {
+      "file": "S6.pdf",
+      "embedded_fonts": [
+        "CWKGXT+ArialMT                       CID TrueType      Identity-H       yes yes yes     21  0"
+      ],
+      "pages": 1
+    },
+    {
+      "file": "S7.pdf",
+      "embedded_fonts": [
+        "CWKGXT+ArialMT                       CID TrueType      Identity-H       yes yes yes     17  0"
+      ],
+      "pages": 1
+    }
+  ],
+  "frozen_display_tables": 33,
+  "frozen_display_table_bytes_unchanged": true,
+  "existing_scoring_inference_code_and_result_tables_unchanged": true,
+  "full_inference_recomputed_this_update": false,
+  "zenodo_fresh_download_scoring": false,
+  "manual_svg_files_read_by_builder": false,
+  "historical_receipts_preserved": true
+}

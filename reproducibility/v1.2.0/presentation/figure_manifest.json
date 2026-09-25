@@ -1,123 +1,75 @@
 {
-  "Fig_1": {
-    "caption": "A–D, Four operations from qualification to output auditing. The HCC construction matrix contains 36,601 expression-feature rows, whereas its common model response panel contains 47 genes. For the worked example, A003 was frozen on 4 September 2026 after benchmark development and before uniform revised scoring, not before all data or historical-output inspection. It retains negative corrected amplitudes, applies 25/75 categories to the complete 47/48-target cohorts, and treats HCC1143 as qualified primary and HCC38 as a boundary context. Arrows denote workflow, not causal effects.",
-    "alt_text": "Four steps connect sampling-aware qualification, frozen categories, declared output axes and separate measures of model capability.",
-    "sources": [
-      "D18",
-      "D20",
-      "D27",
-      "D32",
-      "D36"
-    ]
-  },
-  "Fig_2": {
-    "caption": "A–F, Target-level count, raw amplitude and dependency with frozen pairwise correlations. G, Point estimates and target-bootstrap 95% CIs; joint conditional results use raw amplitude and a threshold-defined breadth proxy. H, Same ≥100-cell targets sampled at varying depth; shaded bands are 2.5th–97.5th replicate percentiles, not target-bootstrap CIs. I,J, Depth-100 group means (legend: excluded/retained counts). K, Full A003 category counts before model intersection. Negative corrected values are retained.",
-    "alt_text": "Sampling correction retains positive association, joint raw count-and-breadth adjustment is inconclusive, and higher coverage thresholds remove a nonrandom target group.",
-    "sources": [
-      "D08",
-      "D09",
-      "D11",
-      "D23",
-      "D25",
-      "D28"
-    ]
-  },
-  "Fig_3": {
-    "caption": "A,B, Nine formal HCC implementations per context, grouped by response-LOO and in-sample fitting, not ranked. CellOT uses seed 123. Cells print raw values; the common correlation/cosine range is −1 to 1, with AUC reference 0.5. C,D, Direction with target-bootstrap 95% CIs and shared mean. E,F, Uncentered and separately centered predicted-minus-observed H with paired target-delete-one jackknife 95% intervals. Positive excess is a warning. G,H, All five CellOT training seeds, including the sequentially registered extension to 126/127 after the first three results were known. Endpoint ordering changes across seeds, so the positive seed-123 result is not a seed-stable model capability. All CIs condition on each saved output, not across seeds. Identity uses Mantel P/q without CI; centered shared-mean zero vectors remain NA. Full values are in Tables 3a,b/S1 and D01/D38/D43/D44.",
-    "alt_text": "Mixed-setting HCC outputs have different properties. Across five CellOT seeds, dependency ordering is positive for 123 and HCC38 seed126 but otherwise negative, alongside weak direction and unsupported positive identity correspondence.",
-    "sources": [
-      "D01",
-      "D32",
-      "D38",
-      "D43",
-      "D44"
-    ]
-  },
-  "Fig_4": {
-    "caption": "A–C, Three Replogle response-LOO implementations and the observed-data shared-mean diagnostic on the same 1,882 targets × 1,024 genes. A,B show existing target-bootstrap 95% CIs; C has no CI and Table 3c supplies target-label Mantel q. These describe individual-output uncertainty, not between-model tests. Shared-mean endpoint and identity are undefined, not zero. D, Oracle, negated, random-direction magnitude-only and shared-mean controls. E, Observed and predicted homogenization, with separately centered excess. F, Apparent AUC changes after selecting among five cutoff pairs; categories change, so this is not performance improvement on the same fixed task. The 1,024-gene oracle amplitude correlation is distinct from corrected context qualification.",
-    "alt_text": "Similar ridge reconstruction summaries coexist with different dependency ordering; negated and random-direction controls show that endpoint scores alone do not demonstrate response recovery.",
-    "sources": [
-      "D02",
-      "D04"
-    ]
-  },
-  "Fig_S1": {
-    "caption": "A,B, All recorded cell and target attrition stages. Counts are not a single linear chain: pooled control and perturbation subsets branch from single-feature calls. Exact parent-stage links and rules are retained in workbook D18; identifier handling and preprocessing are in D19–D20. Corrected categories are in Table S3/D23, and all target eligibility records in D22.",
-    "alt_text": "Complete HCC cell and target counts document construction of the 47- and 48-target endpoint objects.",
-    "sources": [
-      "D18",
-      "D19",
-      "D20",
-      "D22",
-      "D23"
-    ]
-  },
-  "Fig_S2": {
-    "caption": "A,B, Alternative response-amplitude summaries from frozen robustness results (points, without invented intervals). C,D, Available partial-rank sensitivities, with target-bootstrap intervals and Freedman–Lane inference in D08. Breadth is a threshold-defined response proxy, not FDR-defined DEG burden. Full control-cell subsampling and historical raw-anchor influence estimates and interval types are supplied in D14; equal-depth and fixed-cohort distributions are in D10–D12/Fig. 2. These are distinct tests, not successive corrections of the same quantity.",
-    "alt_text": "Alternative amplitude summaries and small covariate models reveal robustness and attenuation without conflating sampling correction and conditional information.",
-    "sources": [
-      "D08",
-      "D10",
-      "D11",
-      "D12",
-      "D14"
-    ]
-  },
-  "Fig_S3": {
-    "caption": "A, Eight historical raw associations with original intervals; retrospective pass/fail accounting and permutation P are in Table S2/D29. B, Available external raw count-only partial associations; these are not count-plus-breadth tests and retain existing cohort filters. C, A006 corrected qualification assesses the first candidate and stops, so HepG2/Jurkat are unassessed rather than rejected. D, All gene-effect sensitivities use Public 25Q3 CRISPRGeneEffect.csv on the existing probability-eligible cohorts (5,000 target bootstraps, 10,000 permutations; eight-context BH family). Historical HepG2/Jurkat columns instead match 23Q4; the release comparison is retained in D42. Full statistics are in D16/D30/D41. The legacy source ID K562_essential_day7 denotes Replogle K562 essential day 6 in the candidate registry; only its display label is standardized.",
-    "alt_text": "Legacy raw, count-adjusted, corrected qualification and unified gene-effect sensitivities are distinguished; unassessed candidates are not mislabeled failures.",
-    "sources": [
-      "D16",
-      "D29",
-      "D30",
-      "D41",
-      "D42"
-    ],
-    "context_display_mapping": {
-      "K562_essential_day7": "Replogle K562 essential day 6",
-      "gse264667_hepg2_day7": "HepG2 day 7",
-      "gse264667_jurkat_day7": "Jurkat day 7"
+  "version": "1.2.0",
+  "entry": "build_figures.py",
+  "figures": {
+    "Figure-1": {
+      "A": "Evaluation concerns",
+      "B": "Endpoint categories",
+      "C": "Context roles"
+    },
+    "Figure-2": {
+      "A": "Corrected association",
+      "B": "Shift estimators",
+      "C": "Count associations",
+      "D": "Conditional association",
+      "E": "Additional contexts"
+    },
+    "Figure-3": {
+      "A": "HCC profiles",
+      "B": "Diagnostic references",
+      "C": "Descriptive metric correlations",
+      "D": "Centering sensitivity",
+      "E": "Training seeds"
+    },
+    "Figure-4": {
+      "A": "Replogle profiles",
+      "B": "Reconstruction versus alignment and identity",
+      "C": "Feature seeds",
+      "D": "Post hoc cutoff selection"
+    },
+    "S1": {
+      "A": "Dataset overview",
+      "B": "Target and gene axis construction"
+    },
+    "S2": {
+      "A": "Raw-response summaries",
+      "B": "Endpoint representation",
+      "C": "Raw-anchor influence",
+      "D": "Gene subsets"
+    },
+    "S3": {
+      "A": "Coverage",
+      "B": "Target expression",
+      "C": "Baseline expression",
+      "D": "Technical distributions",
+      "E": "Control-reference repeats",
+      "F": "Depth-specific cohorts",
+      "G": "Fixed cohort"
+    },
+    "S4": {
+      "A": "Replogle essential day 6",
+      "B": "Replogle genome-wide day 8",
+      "C": "HepG2 day 7",
+      "D": "Jurkat day 7",
+      "E": "K562 TF day 7",
+      "F": "K562 TF day 13"
+    },
+    "S5": {
+      "A": "Target ordering",
+      "B": "Category separation",
+      "C": "Signed direction"
+    },
+    "S6": {
+      "A": "Two contexts by three geometry diagnostics",
+      "B": "Ten pairwise-cosine ECDFs"
+    },
+    "S7": {
+      "A": "Full cutoff grid",
+      "B": "Full and scoring cohort category counts"
     }
   },
-  "Fig_S4": {
-    "caption": "A, All 24 finite-budget HCC sensitivities, without using single-bootstrap placeholder columns as confidence intervals. B, All 21 formal model-context outputs across the predefined five-cutoff grid. Raw AUC values are displayed; class counts and non-estimable cells remain in D05. Formal configurations are not replaced by the largest value. This grid changes category membership and is not a common fixed-task improvement experiment.",
-    "alt_text": "All limited-budget outputs and cutoff choices are shown, not only selected maxima, with undefined values kept as NA.",
-    "sources": [
-      "D05",
-      "D35"
-    ]
-  },
-  "Fig_S5": {
-    "caption": "A,B, Complete seven-measure correlation matrices across nine formal outputs per context, recomputed after A010 replaced historical CellOT with seed-123 outputs. Negative excess H and negative nRMSE retain their minus signs on both axes. Values describe mixed-setting implementations, not independent model trials or evidence of independent dimensions. Figures 3E,F and 4E provide observed-relative and centered homogenization references, including shared-mean NA. Pooled correlations are retained in D34; the figure introduces no further selection or hypothesis tests.",
-    "alt_text": "Full metric-correlation matrices show overlap and differences across the current nine outputs in each HCC context.",
-    "sources": [
-      "D34",
-      "D01",
-      "D02"
-    ]
-  },
-  "Fig_S6": {
-    "caption": "A,B, All eight Hallmark terms present in the retained historical figure source, using mean and median aggregation of the historical response object. C, Full NES and recorded leave-anchor min–max ranges; these are not confidence intervals. All 32 source records, q values and sensitivity fields are supplied in D40. The legacy source contains these Hallmark panels, not populated Reactome/GO panels; empty panels have not been reconstructed from a different contrast. This is descriptive historical annotation, not new enrichment on corrected A003 categories or evidence of pathway causality.",
-    "alt_text": "Eight historical Hallmark programs are shown with aggregation and leave-anchor sensitivities, separately from the corrected endpoint object.",
-    "sources": [
-      "D40"
-    ]
-  },
-  "Fig_S7": {
-    "caption": "A,B, All 18 additional scGen/CPA/GEARS same-context fits: three training seeds, two contexts, fixed data, splits and training budgets. These are supplementary executions, not replacements for the original formal outputs or an architecture ranking. C,D, Six Replogle ridge outputs after changing only randomized feature PCA/SVD seeds; Geneformer's checkpoint, chargram base features and both response-LOO methods remain fixed. Point estimates and, where shown, target-bootstrap intervals condition on each prediction, not a training-seed population. D45/D46 contain all metrics and separate six-output/eighteen-output inference families. No best seed or prediction average is selected.",
-    "alt_text": "A single supplementary figure separates variation from three training seeds in scGen, CPA and GEARS from randomized feature preparation in two Replogle ridge models.",
-    "sources": [
-      "D45",
-      "D46"
-    ]
-  },
-  "Graphical_Abstract": {
-    "caption": "Model-output audit: assess preserved properties, not an overall ranking. Qualification and a versioned object precede uniform scoring; arrows show the workflow, not a causal mechanism.",
-    "alt_text": "Sampling-aware observed responses and dependency define a fixed object for separate model capability measures.",
-    "sources": [
-      "D27",
-      "D01",
-      "D02"
-    ]
-  }
+  "display_sources": "presentation/final/sources.json",
+  "definitions": "plotting/README.md",
+  "scientific_analysis_changed": false,
+  "manual_svg_inputs": false
 }

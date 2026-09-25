@@ -1,0 +1,236 @@
+{
+  "scope": "Frozen plotting tables, not a new analysis",
+  "files": [
+    {
+      "path": "presentation/final/main2/endpoint_targets.tsv",
+      "bytes": 28141,
+      "sha256": "813c34d4a9f5c96d66487525b2712804018a65ae50752009490ca29ece5ad34c",
+      "role": "Frozen display table; copied without numerical edits",
+      "source_file": "Figure_2/source_data/endpoint_targets.tsv"
+    },
+    {
+      "path": "presentation/final/main2/category_counts.tsv",
+      "bytes": 1960,
+      "sha256": "8a4b7344ba5e6a9a417dafc7a3d02923ff2ed457788f68a35421b120be899573",
+      "role": "Frozen display table; copied without numerical edits",
+      "source_file": "Figure_2/source_data/category_counts.tsv"
+    },
+    {
+      "path": "presentation/final/main2/count_associations.tsv",
+      "bytes": 567,
+      "sha256": "f2147e63612296b5d9ac743309311419597795bf76db67df0ab9bb1d9ad33979",
+      "role": "Frozen display table; copied without numerical edits",
+      "source_file": "Figure_2/source_data/count_associations.tsv"
+    },
+    {
+      "path": "presentation/final/main3/formal_profiles.tsv",
+      "bytes": 25005,
+      "sha256": "034776e96d00bae4019e8d56e9960c5275de576eb4edf75bc966eb0f3d3c74d0",
+      "role": "Frozen display table; copied without numerical edits",
+      "source_file": "Figure_3/source_data/formal_profiles.tsv"
+    },
+    {
+      "path": "presentation/final/main3/diagnostic_references.tsv",
+      "bytes": 20209,
+      "sha256": "0fade7b3cab015222ab21de3a996bd48702499d21f468af0edea5041956ecd8f",
+      "role": "Frozen display table; copied without numerical edits",
+      "source_file": "Figure_3/source_data/diagnostic_references.tsv"
+    },
+    {
+      "path": "presentation/final/main3/metric_relationships.tsv",
+      "bytes": 8876,
+      "sha256": "6247bbbc6276f907c24565be28463a15e2dcd099c08df0b31cda2577ae114303",
+      "role": "Frozen display table; copied without numerical edits",
+      "source_file": "Figure_3/source_data/metric_relationships.tsv"
+    },
+    {
+      "path": "presentation/final/main3/training_seeds.tsv",
+      "bytes": 34757,
+      "sha256": "869840ea07f29e164baf20b7df1f9ef51716da94c2e2cbe1e92441d29cdc9c9a",
+      "role": "Frozen display table; copied without numerical edits",
+      "source_file": "Figure_3/source_data/training_seeds.tsv"
+    },
+    {
+      "path": "presentation/final/main4/formal_profiles.tsv",
+      "bytes": 6420,
+      "sha256": "ccb000f4583c88e6f1c1160b928e2b60d66646ff3b25b7b9440ed27593cd6c7f",
+      "role": "Frozen display table; copied without numerical edits",
+      "source_file": "Figure_4/source_data/formal_profiles.tsv"
+    },
+    {
+      "path": "presentation/final/main4/cutoff_comparison.tsv",
+      "bytes": 4746,
+      "sha256": "fd1cff4ca220421be4a4c4f8ff0f05aed2049985dee3cb0ee5647b5344aed2d6",
+      "role": "Frozen display table; copied without numerical edits",
+      "source_file": "Figure_4/source_data/cutoff_comparison.tsv"
+    },
+    {
+      "path": "presentation/final/main4/cutoff_grid.tsv",
+      "bytes": 19285,
+      "sha256": "5111a559e55902b49594d51efb7a3111a68e54e15189d78737f638dd8f3e04b4",
+      "role": "Frozen display table; copied without numerical edits",
+      "source_file": "Figure_4/source_data/cutoff_grid.tsv"
+    },
+    {
+      "path": "presentation/final/main4/feature_seeds.tsv",
+      "bytes": 9381,
+      "sha256": "62c799c46ce78f748bc960d2999be3e394154bc1a7756bc0ed1f37ceb6605cd8",
+      "role": "Frozen display table; copied without numerical edits",
+      "source_file": "Figure_4/source_data/feature_seeds.tsv"
+    },
+    {
+      "path": "presentation/final/supplement/M01_dataset_overview.tsv",
+      "bytes": 441,
+      "sha256": "c56d9d4909f8c4ebc98e5b6200f9c910808ae25fb85fa98babd7371b8b7a9d83",
+      "role": "Frozen display table; copied without numerical edits",
+      "source_file": "Supplementary/source_data/M01_dataset_overview.tsv"
+    },
+    {
+      "path": "presentation/final/supplement/M01_attrition.tsv",
+      "bytes": 2485,
+      "sha256": "f25060c52ab26fcba3e4b1765414b5cad9413d3c117020823844129044e9246b",
+      "role": "Frozen display table; copied without numerical edits",
+      "source_file": "Supplementary/source_data/M01_attrition.tsv"
+    },
+    {
+      "path": "presentation/final/supplement/M01_eligibility.tsv",
+      "bytes": 10039,
+      "sha256": "4db0710c1a02251a1e9c2c06273bc3b095d3b7ccf665f71017a41e4f105be5c4",
+      "role": "Frozen display table; copied without numerical edits",
+      "source_file": "Supplementary/source_data/M01_eligibility.tsv"
+    },
+    {
+      "path": "presentation/final/supplement/M01_frozen_categories.tsv",
+      "bytes": 20127,
+      "sha256": "d7861352879d8268317ec08a94cc6f9db68d5170bb1678f3177a311f6907f4b7",
+      "role": "Frozen display table; copied without numerical edits",
+      "source_file": "Supplementary/source_data/M01_frozen_categories.tsv"
+    },
+    {
+      "path": "presentation/final/supplement/M02_raw_summary.tsv",
+      "bytes": 3160,
+      "sha256": "269b313e29cf9da8878caaa1daa7603aecf5e4bec054606a88fb4852d4b5e15a",
+      "role": "Frozen display table; copied without numerical edits",
+      "source_file": "Supplementary/source_data/M02_raw_summary.tsv"
+    },
+    {
+      "path": "presentation/final/supplement/M02_endpoint_form.tsv",
+      "bytes": 2014,
+      "sha256": "c6ab5843525941f627a18f81caa9e6b18a8751d5bdd6dec243ecea6f331a9fa7",
+      "role": "Frozen display table; copied without numerical edits",
+      "source_file": "Supplementary/source_data/M02_endpoint_form.tsv"
+    },
+    {
+      "path": "presentation/final/supplement/M02_historical_anchor_influence.tsv",
+      "bytes": 734,
+      "sha256": "954861909553fbc62e3efe64ad347f5f1ac0c642b84237704e6b9d88b6cdc264",
+      "role": "Frozen display table; copied without numerical edits",
+      "source_file": "Supplementary/source_data/M02_historical_anchor_influence.tsv"
+    },
+    {
+      "path": "presentation/final/supplement/M02_gene_subset_history.tsv",
+      "bytes": 9813,
+      "sha256": "2523aefac9cc3e53c6bfc6b09265b52e8eeff9e4afcf7d79d811265f7010bb4f",
+      "role": "Frozen display table; copied without numerical edits",
+      "source_file": "Supplementary/source_data/M02_gene_subset_history.tsv"
+    },
+    {
+      "path": "presentation/final/supplement/M03_target_covariates.tsv",
+      "bytes": 31822,
+      "sha256": "6fbd01022c8352e482f9afcecdb01849fb23f2e81e44ad0467e48b262da18fa3",
+      "role": "Frozen display table; copied without numerical edits",
+      "source_file": "Supplementary/source_data/M03_target_covariates.tsv"
+    },
+    {
+      "path": "presentation/final/supplement/M03_historical_TVD.tsv",
+      "bytes": 2177,
+      "sha256": "b877d2f56293dfaddcb27b9602cc3daef7b253c0caa557f90dfb7239a898da62",
+      "role": "Frozen display table; copied without numerical edits",
+      "source_file": "Supplementary/source_data/M03_historical_TVD.tsv"
+    },
+    {
+      "path": "presentation/final/supplement/M03_control_resamples.tsv",
+      "bytes": 37653,
+      "sha256": "2b0af79b65915a7788504e7731d5f987278e0f74fc2d819beae51c8b36ab0740",
+      "role": "Frozen display table; copied without numerical edits",
+      "source_file": "Supplementary/source_data/M03_control_resamples.tsv"
+    },
+    {
+      "path": "presentation/final/supplement/M03_D10.tsv",
+      "bytes": 930,
+      "sha256": "1031af2372f36fdac1d5fd071b5a4bd0c2300f252b68ce6fdc88d63e0b18c620",
+      "role": "Frozen display table; copied without numerical edits",
+      "source_file": "Supplementary/source_data/M03_D10.tsv"
+    },
+    {
+      "path": "presentation/final/supplement/M03_D11.tsv",
+      "bytes": 933,
+      "sha256": "776cd7d5c744bf34e1d2c5983cd85f3b0e341ea828d9a81b218a436db04d8082",
+      "role": "Frozen display table; copied without numerical edits",
+      "source_file": "Supplementary/source_data/M03_D11.tsv"
+    },
+    {
+      "path": "presentation/final/supplement/M04_current_target_distributions.tsv",
+      "bytes": 5643857,
+      "sha256": "93aee611c88d86e1457e6f9ce7073386f8128fc1b821784ab056787a12e7fb54",
+      "role": "Frozen display table; copied without numerical edits",
+      "source_file": "Supplementary/source_data/M04_current_target_distributions.tsv"
+    },
+    {
+      "path": "presentation/final/supplement/M05_formal_target_metrics.tsv",
+      "bytes": 324401,
+      "sha256": "8b5a155f04b9c780028f9f0bbafbd7990a091e9c8130cbc8aab155967af4a0bc",
+      "role": "Frozen display table; copied without numerical edits",
+      "source_file": "Supplementary/source_data/M05_formal_target_metrics.tsv"
+    },
+    {
+      "path": "presentation/final/supplement/M06_completion.tsv",
+      "bytes": 14021,
+      "sha256": "904084e1ad4b4c23ecd53a454d4f39b57f47cb8276c1d883586dedecf1ee9ec0",
+      "role": "Frozen display table; copied without numerical edits",
+      "source_file": "Supplementary/source_data/M06_completion.tsv"
+    },
+    {
+      "path": "presentation/final/supplement/M06_replogle_registry.tsv",
+      "bytes": 979,
+      "sha256": "75e72b85d4508951d7d8bc2887587d67b12e6b7211b46f66e6a5a6e7c395e20f",
+      "role": "Frozen display table; copied without numerical edits",
+      "source_file": "Supplementary/source_data/M06_replogle_registry.tsv"
+    },
+    {
+      "path": "presentation/final/supplement/M07_geometry.tsv",
+      "bytes": 3406,
+      "sha256": "3439b0ae2a41b298730e0cc8026d0b0e5049ed154cef021d41d26d3d7811bc21",
+      "role": "Frozen display table; copied without numerical edits",
+      "source_file": "Supplementary/source_data/M07_geometry.tsv"
+    },
+    {
+      "path": "presentation/final/supplement/M07_pairwise_cosines.tsv",
+      "bytes": 1153263,
+      "sha256": "7967fe790b21449c9671b24b47eb6230e064f7f8a72dd39cab6af57913228545",
+      "role": "Frozen display table; copied without numerical edits",
+      "source_file": "Supplementary/source_data/M07_pairwise_cosines.tsv"
+    },
+    {
+      "path": "presentation/final/supplement/M08_cutoff_grid.tsv",
+      "bytes": 10127,
+      "sha256": "67f25c2540a21e4d54bb3c8472db260ae3ac07efd93d384b2077fb85a8042e42",
+      "role": "Frozen display table; copied without numerical edits",
+      "source_file": "Supplementary/source_data/M08_cutoff_grid.tsv"
+    },
+    {
+      "path": "presentation/final/layout/S5-display-ranks.tsv",
+      "bytes": 98549,
+      "sha256": "dec02c126b5660801d5637746be86cb5846193f19437a7574b5264c6de46a33f",
+      "role": "Frozen display table; copied without numerical edits",
+      "source_file": "Publication_layout/S5-display-ranks.tsv"
+    },
+    {
+      "path": "presentation/final/layout/S7-context-category-counts.tsv",
+      "bytes": 630,
+      "sha256": "1300b6d548d084215fad52f7ad03faec9d184fb15daabe6c04296dc5f63ef1e5",
+      "role": "Frozen display table; copied without numerical edits",
+      "source_file": "Publication_layout/S7-context-category-counts.tsv"
+    }
+  ]
+}

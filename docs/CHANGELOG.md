@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.0+presentation.2 — 2026-09-25
+
+- Finalize the normal v1.2.0 source distribution with the current four-main/seven-supplementary scientific panel map, frozen display extracts, editable vector outputs and coordinate-level regression tests. This build-metadata identifier does not create a v1.2.1 release.
+- Retain model scoring, inference code, frozen result tables, matrix/training archives and historical receipts. Do not include private manuscript files or hand-edited publication figures.
+- Distinguish the finalized source distribution from the original immutable source DOI; the published six-file core data DOI is unchanged. Replace the existing GitHub v1.2.0 release as authorized, after backup and verification, without a separate figure or patch asset.
+
 ## 1.2.0+metadata.1 — 2026-09-25
 
 - Link the published core data DOI 10.5281/zenodo.22768933 and distinguish the original source-only DOI 10.5281/zenodo.22755330 and separate CellOT training assets.
