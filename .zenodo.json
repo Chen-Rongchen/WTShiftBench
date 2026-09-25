@@ -21,6 +21,18 @@
     }
   ],
   "version": "1.2.0",
+  "related_identifiers": [
+    {
+      "identifier": "10.5281/zenodo.22768933",
+      "relation": "isSupplementTo",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.5281/zenodo.22755330",
+      "relation": "isDerivedFrom",
+      "scheme": "doi"
+    }
+  ],
   "description": "WTShiftBench English public assets prepared on 15 September 2026: sampling-aware endpoints, explicit target/gene axes, five-seed CellOT evaluation, and reported training/feature-seed checks. Public text and source annotations are translated; scientific values, axes, seeds, and checkpoint tensors are unchanged. New file and ZIP hashes identify this derivative. The author selected the v1.2.0 publication label after removing earlier v1.2.x GitHub releases; exact commit and hashes distinguish this distribution from historical records. The code snapshot does not contain the complete matrix/training archives. Use reproducibility/v1.2.0/ for current guidance and precise verification scope.",
   "license": "MIT",
   "keywords": [

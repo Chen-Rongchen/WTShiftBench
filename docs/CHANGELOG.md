@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.0+metadata.1 — 2026-09-25
+
+- Link the published core data DOI 10.5281/zenodo.22768933 and distinguish the original source-only DOI 10.5281/zenodo.22755330 and separate CellOT training assets.
+- Correct 233 historical author/committer identities and three annotated tagger identities to Rongchen Chen; preserve all 241 historical file trees, commit messages, timestamps and parent relationships. Register the old/new commit map. Other author identities are unchanged.
+- Retain release v1.2.0 and every existing release asset. Tag identifiers change only because their historical attribution is corrected; no scientific code, plotting code, matrices or archived verification records are replaced. This build-metadata revision is not a new scientific release.
+- Keep historical GitHub verification separate from post-publication Zenodo download/recomputation, which has not been completed in this update.
+
 ## Unreleased
 
 - Simplify release filenames and update download links. ZIP contents and the release tag are unchanged.
